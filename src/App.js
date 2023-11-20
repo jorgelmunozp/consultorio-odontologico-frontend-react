@@ -1,7 +1,6 @@
 import logo from './images/logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-
 import { useFetch } from "./hooks/useFetch";
 
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
@@ -20,11 +19,6 @@ import RegistrarPaciente from './componentesRegistrar/RegistrarPaciente';
 import RegistrarTratamiento from './componentesRegistrar/RegistrarTratamiento';
 import RegistrarDoctor from './componentesRegistrar/RegistrarDoctor';
 import RegistrarConsultorio from './componentesRegistrar/RegistrarConsultorio';
-import EditarCita from './componentesEditar/EditarCita';
-
-
-const ip = process.env.REACT_APP_HOST;
-const puerto = process.env.REACT_APP_PORT;
 
 function App() {
   const menuOpcion = 1;
@@ -87,11 +81,11 @@ function App() {
       <body className='App-body'>
         <div className='contenidoBody'>
           <Menu menu={menu} 
-                urlApicitas={urlApiCitas} 
-                urlApipacientes={urlApiPacientes}
+                urlApiCitas={urlApiCitas} 
+                urlApiPacientes={urlApiPacientes}
                 urlApiTratamientos={urlApiTratamientos}
-                urlApidoctores={urlApiDoctores} 
-                urlApiconsultorios={ urlApiConsultorios}  
+                urlApiDoctores={urlApiDoctores} 
+                urlApiConsultorios={ urlApiConsultorios}  
                 citas={citas} setCitas={setCitas}
                 pacientes={pacientes} setPacientes={setPacientes}
                 tratamientos={tratamientos} setTratamientos={setTratamientos}
@@ -105,29 +99,29 @@ function App() {
 }
 
 
-const Menu = ({menu,urlApicitas,urlApipacientes,urlApiTratamientos,urlApidoctores,urlApiconsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,EditarCita}) => {        //Componente para elegir juego a renderizar
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios}) => {        //Componente para elegir juego a renderizar
   if(menu === 1){
     return <Inicio />;
   }else if(menu === 2){
-    return <ConsultarCitas urlApicitas={urlApicitas} EditarCita={EditarCita} />;
+    return <ConsultarCitas />;
   }else if(menu === 3){
-    return <RegistrarCita urlApicitas={urlApicitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    return <RegistrarCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
-    return <ConsultarPacientes urlApipacientes={urlApipacientes} />;
+    return <ConsultarPacientes />;
   }else if(menu === 5){
-    return <RegistrarPaciente urlApipacientes={urlApipacientes} />;
+    return <RegistrarPaciente urlApiPacientes={urlApiPacientes} />;
   }else if(menu === 6){
-    return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} />;
+    return <ConsultarTratamientos />;
   }else if(menu === 7){
     return <RegistrarTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){
-    return <ConsultarDoctores urlApidoctores={urlApidoctores} />;
+    return <ConsultarDoctores />;
   }else if(menu === 9){
-    return <RegistrarDoctor urlApidoctores={urlApidoctores} />;
+    return <RegistrarDoctor urlApiDoctores={urlApiDoctores} />;
   }else if(menu === 10){
-    return <ConsultarConsultorios urlApiconsultorios={urlApiconsultorios } />;
+    return <ConsultarConsultorios />;
   }else if(menu === 11){
-    return <RegistrarConsultorio urlApiconsultorios={urlApiconsultorios } />;
+    return <RegistrarConsultorio urlApiConsultorios={urlApiConsultorios} />;
   }else if(menu === 14){
     return <Usuario />;
 }

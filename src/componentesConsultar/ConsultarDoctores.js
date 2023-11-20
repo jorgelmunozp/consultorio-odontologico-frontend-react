@@ -1,57 +1,62 @@
-const ConsultarDoctores = ({ urlApidoctores }) => {
-  fetch(urlApidoctores)                 //API REST para la simulación de la tabla doctores de la base de datos
-    .then(response => response.json())
-    .then(doctores => {
+import Swal from 'sweetalert2';
 
-      let contenidoDoctores = document.getElementById('contenidoDoctores');
+const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
+let doctores;
+await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Citas de la base de datos
+        .then(response => response.json())
+        .then(data => doctores = data);
 
-      const headerDoctores =  `  
-          <div class="columnaContenido">
-            <center>
-              <hr/>
-              <h4> Doctores Disponibles </h4>
-              <hr/>
-              <br/><br/>
-              <table border='1'>
-                <tr>
-                  <th> Id </th>
-                  <th> Nombre </th>
-                  <th> Apellido </th>
-                  <th> Especialidad </th>
-                  <th colSpan='3'> </th>
-                </tr>       
-      `;
+const VerDoctor = (doctor) => {
 
-      let bodyDoctores = [];
-      for (const [i] of doctores.entries()) {
-      
-        bodyDoctores[i] = `
-              <tr>
-                <td> ${doctores[i].id} </td>
-                <td> ${doctores[i].doctor.nombre} </td>
-                <td> ${doctores[i].doctor.apellido} </td>
-                <td> ${doctores[i].doctor.especialidad} </td>
-                <td><button class='App-body-boton-vistas' onClick={()=>&#128270;</button></td>
-                <td><button class='App-body-boton-vistas' onClick={()=>&#x270D;</button></td>
-                <td><button class='App-body-boton-vistas color-rojo' onClick={()=>&#x1F7AE;</button></td>
-              </tr>
-      `};
+}
 
-      const footerDoctores =  `  
-                </table>
-              </center>
-            </div>
-      `;
+const EditarDoctor = (doctor) => {
+  
+}
 
-      contenidoDoctores.innerHTML = headerDoctores + bodyDoctores.join('') + footerDoctores;
+const EliminarDoctor = (doctor) => {
+  
+}
+    
+const ConsultarDoctores = () => {
 
-    })
   return (
     <div className="App">
       <div id="contenidoDoctores">
-
+        <center>
+          <hr/>
+          <h4> Doctores Disponibles </h4>
+          <hr/>
+          <br/><br/>
+          <table className="table" border='1'>
+            <thead>
+              <tr>
+                <th> Código </th>
+                <th> Nombre </th>
+                <th> Apellido </th>
+                <th> Especialidad </th>
+                <th colSpan='3'> </th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                doctores.map( doctor => (
+                  <tr>
+                    <td>{ doctor.id }</td>
+                    <td>{ doctor.doctor.nombre }</td>
+                    <td>{ doctor.doctor.apellido }</td>
+                    <td>{ doctor.doctor.especialidad }</td>
+                    <td><button className='App-body-boton-vistas' onClick={ () => VerDoctor(doctor) }>&#128270;</button></td>
+                    <td><button className='App-body-boton-vistas' onClick={ () => EditarDoctor(doctor) }>&#x270D;</button></td>
+                    <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarDoctor(doctor) }>&#x1F7AE;</button></td>
+                  </tr>
+                ))
+              }
+            </tbody>
+            </table>
+          </center>
+        </div>
       </div>
-    </div>
   )
 }
 

@@ -1,68 +1,66 @@
-const ConsultarPacientes = ({urlApipacientes}) => {
-    fetch(urlApipacientes)                 //API REST para la simulación de la tabla tratamientos de la base de datos
+import Swal from 'sweetalert2';
+
+const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
+let pacientes;
+await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Citas de la base de datos
         .then(response => response.json())
-        .then(pacientes => {
-            let contenidoPacientes = document.getElementById('contenidoPacientes');
-            const datosPacientes = [];
+        .then(data => pacientes = data);
 
-            for (const [i] of pacientes.entries()) {
-              datosPacientes.push(
-                pacientes[i]
-              )
-            }
+const VerPaciente = (paciente) => {
 
-            
-            const headerPacientes = `
-                  <div class="columnaContenido">
-                    <center>
-                      <hr/> 
-                      <h4> Pacientes Afiliados </h4>
-                      <hr/>
-                      <br/><br/>
-                      <table border='1'>
-                        <tr>
-                          <th> Id </th>
-                          <th> Identificación </th>
-                          <th> Nombre </th>
-                          <th> Apellido </th>
-                          <th> Género </th>
-                          <th> Eps </th>
-                          <th colSpan='3'> </th>
-                        </tr>  
-            `;
+}
 
-            let bodyPacientes = [];
-            for (const [i] of pacientes.entries()) {
-            
-             bodyPacientes[i] = `
-                <tr>
-                  <td> ${pacientes[i].id} </td>
-                  <td> ${pacientes[i].paciente.identificacion} </td>
-                  <td> ${pacientes[i].paciente.nombre} </td>
-                  <td> ${pacientes[i].paciente.apellido} </td>
-                  <td> ${pacientes[i].paciente.genero} </td>
-                  <td> ${pacientes[i].paciente.eps} </td>
-                  <td><button class='App-body-boton-vistas' onClick={()=>&#128270;</button></td>
-                  <td><button class='App-body-boton-vistas' onClick={()=>&#x270D;</button></td>
-                  <td><button class='App-body-boton-vistas color-rojo' onClick={()=>&#x1F7AE;</button></td>
-                </tr>
-            `};
+const EditarPaciente = (paciente) => {
+  
+}
 
-            const footerPacientes = `
-                  </table>
-                </center>
-              </div>
-            `;
+const EliminarPaciente = (paciente) => {
+  
+}
 
-            contenidoPacientes.innerHTML = headerPacientes + bodyPacientes.join('') + footerPacientes;
-            
-      });
+const ConsultarPacientes = () => {
+
       return(
         <div className="App">
-              <div id="contenidoPacientes">  
-    
-              </div>
+          <div id="contenidoPacientes">  
+            <center>
+              <hr/>
+              <h4> Pacientes Afiliados </h4>
+              <hr/>
+              <br/><br/>
+              <table className="table" border='1'>
+                <thead>
+                  <tr>
+                    <th> Código </th>
+                    <th> Identificación </th>
+                    <th> Nombre </th>
+                    <th> Apellido </th>
+                    <th> Género </th>
+                    <th> Eps </th>
+                    <th colSpan='3'> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    pacientes.map( paciente => (
+                      <tr>
+                        <td>{ paciente.id }</td>
+                        <td>{ paciente.paciente.identificacion }</td>
+                        <td>{ paciente.paciente.nombre }</td>
+                        <td>{ paciente.paciente.apellido }</td>
+                        <td>{ paciente.paciente.genero }</td>
+                        <td>{ paciente.paciente.eps }</td>
+                        <td><button className='App-body-boton-vistas' onClick={ () => VerPaciente(paciente) }>&#128270;</button></td>
+                        <td><button className='App-body-boton-vistas' onClick={ () => EditarPaciente(paciente) }>&#x270D;</button></td>
+                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarPaciente(paciente) }>&#x1F7AE;</button></td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+            </table>
+          </center>
         </div>
+      </div>
       )
     }
     

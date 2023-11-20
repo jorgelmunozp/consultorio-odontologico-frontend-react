@@ -1,52 +1,60 @@
-const ConsultarConsultorios = ({urlApiconsultorios}) => {
-    fetch(urlApiconsultorios) //API REST para la simulación de la tabla tratamientos de la base de datos
-      .then((response) => response.json())
-      .then((consultorios) => {
+import Swal from 'sweetalert2';
 
-        let contenidoConsultorios = document.getElementById("contenidoConsultorios");
-        
-        const headerConsultorios = ` 
-            <div class="columnaContenido">
-            <center>
-              <hr/>
-              <h4> Consultorios Disponibles </h4>
-              <hr/>
-              <br/><br/>
-              <table border='1'>
+const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
+let consultorios;
+await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Citas de la base de datos
+        .then(response => response.json())
+        .then(data => consultorios = data);
+
+const VerConsultorio = (consultorio) => {
+  
+}
+
+const EditarConsultorio = (consultorio) => {
+  
+}
+
+const EliminarConsultorio = (consultorio) => {
+  
+}
+
+const ConsultarConsultorios = () => {
+
+    return (
+      <div className="App">
+        <div id="contenidoConsultorios">
+          <center>
+            <hr/>
+            <h4> Consultorios Disponibles </h4>
+            <hr/>
+            <br/><br/>
+            <table className="table" border='1'>
+              <thead>
                 <tr>
-                  <th> N° </th>
+                  <th> Código </th>
                   <th> Número </th>
                   <th> Consultorio </th>
                   <th colSpan='3'> </th>
-                </tr>  
-        `;
-
-        let bodyConsultorios = [];
-        for (const [i] of consultorios.entries()) {
-        
-          bodyConsultorios[i] = `
-            <tr>
-              <td> ${consultorios[i].id} </td>
-              <td> ${consultorios[i].consultorio.numero} </td>
-              <td> ${consultorios[i].consultorio.nombre} </td>
-              <td><button class='App-body-boton-vistas' onClick={()=>&#128270;</button></td>
-              <td><button class='App-body-boton-vistas' onClick={()=>&#x270D;</button></td>
-              <td><button class='App-body-boton-vistas color-rojo' onClick={()=>&#x1F7AE;</button></td>
-            </tr> 
-        `};
-
-        const footerConsultorios = ` 
-                </table>
-              </center>
-            </div>        
-        `;
-
-        contenidoConsultorios.innerHTML = headerConsultorios + bodyConsultorios.join('') + footerConsultorios;
-
-      });
-    return (
-      <div className="App">
-        <div id="contenidoConsultorios"></div>
+                  <th colSpan='3'> </th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  consultorios.map( consultorio => (
+                    <tr>
+                      <td>{ consultorio.id }</td>
+                      <td>{ consultorio.consultorio.numero }</td>
+                      <td>{ consultorio.consultorio.nombre }</td>
+                      <td><button className='App-body-boton-vistas' onClick={ () => VerConsultorio(consultorio) }>&#128270;</button></td>
+                      <td><button className='App-body-boton-vistas' onClick={ () => EditarConsultorio(consultorio) }>&#x270D;</button></td>
+                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarConsultorio(consultorio) }>&#x1F7AE;</button></td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </center>
+        </div>
       </div>
     );
   }

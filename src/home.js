@@ -12,12 +12,15 @@ export const Inicio = () => {
 
   return (
     <div className="App">
-        <table className="table">
-          <center>
-            <tbody>
+      <center>
+        <table>
+            <thead>
               <tr>
                 <td><h3>Sistema de Información Consultorio Odontológico</h3></td>
               </tr>
+            </thead>
+            <tbody>
+              <center>
               <tr>
                 <td className='App-body-icono'>
                   <LiaToothSolid size={60}/>
@@ -46,10 +49,10 @@ export const Inicio = () => {
                   <TbDentalOff size={60}/>
                 </td>
               </tr>
+              </center>
             </tbody>
-          </center>
-        </table>
-      
+          </table>
+        </center>
     </div>
   )
 }
