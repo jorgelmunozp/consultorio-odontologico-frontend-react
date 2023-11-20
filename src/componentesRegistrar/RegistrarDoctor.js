@@ -37,7 +37,7 @@ const RegistrarDoctor = ({
             <h4>Registrar Doctor</h4>
             <hr/>
             <br/>
-            <table className="table">
+            <table className="tableRegistrar">
               <tr>
                 {/* Codigo de la persona o cedula para registrarse */}
                 <td>
@@ -86,10 +86,16 @@ const RegistrarDoctor = ({
                         Ortodoncia
                       </MenuItem>
                       <MenuItem value={40} className="select-item">
-                        Prótesis
+                        Periodoncia
                       </MenuItem>
                       <MenuItem value={50} className="select-item">
+                        Prótesis
+                      </MenuItem>
+                      <MenuItem value={60} className="select-item">
                         Higiene
+                      </MenuItem>
+                      <MenuItem value={70} className="select-item">
+                        Detartraje
                       </MenuItem>
                     </Select>
                   </FormControl>

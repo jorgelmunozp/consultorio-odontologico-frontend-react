@@ -9,7 +9,7 @@ await fetch(urlApiCitas)                      //API REST para consumo de la tabl
 const VerCita = (cita) => {
   Swal.fire({
     title: "Cita Médica",
-    imageUrl: "http://localhost:3001/consultorio-odontologico-frontend-react/logo192.png",
+    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
     imageWidth: 40,
     imageHeight: 40,
     imageAlt: "🦷",
@@ -17,40 +17,40 @@ const VerCita = (cita) => {
       <center>
         <table class="swalTable" border='1'>
         <thead>
-        <tr>
-          <th>Parámetro</th>
-          <th>Datos Paciente</th>
-        <tr>
+          <tr>
+            <th>Parámetro</th>
+            <th>Datos Paciente</th>
+          <tr>
         </thead>
         <tbody>
-        <tr>
-          <td> Código </td>
-          <td>${ cita.id }</td>
-        <tr>
-        </tr>
-          <td> Paciente </td>
-          <td>${ cita.cita.paciente }</td>
-        <tr>
-        </tr>        
-          <td> Fecha </td>
-          <td>${ cita.cita.fecha }</td>
-        <tr>
-        </tr>     
-          <td> Hora </td>
-          <td>${ cita.cita.hora }</td>
-        <tr>
-        </tr>
-          <td> Consultorio </td>
-          <td>${ cita.cita.consultorio }</td>
-        <tr>
-        </tr>
-          <td> Médico </td>
-          <td>${ cita.cita.medico }</td>
-        <tr>
-        </tr>
-          <td> Tratamiento </td>
-          <td>${ cita.cita.tratamiento }</td>
-        </tr>
+          <tr>
+            <td> Código </td>
+            <td>${ cita.id }</td>
+          <tr>
+          </tr>
+            <td> Paciente </td>
+            <td>${ cita.cita.paciente }</td>
+          <tr>
+          </tr>        
+            <td> Fecha </td>
+            <td>${ cita.cita.fecha }</td>
+          <tr>
+          </tr>     
+            <td> Hora </td>
+            <td>${ cita.cita.hora }</td>
+          <tr>
+          </tr>
+            <td> Consultorio </td>
+            <td>${ cita.cita.consultorio }</td>
+          <tr>
+          </tr>
+            <td> Médico </td>
+            <td>${ cita.cita.medico }</td>
+          <tr>
+          </tr>
+            <td> Tratamiento </td>
+            <td>${ cita.cita.tratamiento }</td>
+          </tr>
         </tbody>
       </table>
     </center>
@@ -63,7 +63,7 @@ const VerCita = (cita) => {
 const EditarCita = (cita) => {
   Swal.fire({
     title: "Editar Cita Médica",
-    imageUrl: "http://localhost:3001/consultorio-odontologico-frontend-react/logo192.png",
+    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
     imageWidth: 40,
     imageHeight: 40,
     imageAlt: "🦷",

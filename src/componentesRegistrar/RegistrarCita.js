@@ -79,7 +79,7 @@ const RegistrarCita = ({
             <h4>Asignar Cita</h4>
             <hr/>
             <br/>
-            <table className="table">
+            <table className="tableRegistrar">
               <tbody>
                 <tr>
                   <td>

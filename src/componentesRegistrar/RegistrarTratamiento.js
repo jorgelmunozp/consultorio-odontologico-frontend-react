@@ -43,7 +43,7 @@ const RegistrarTratamiento = ({
           <h4>Registrar Tratamiento</h4>
           <hr/>
           <br/>
-          <table className="table">
+          <table className="tableRegistrar">
             <tbody>
               <tr>
                 <td colSpan={2}>

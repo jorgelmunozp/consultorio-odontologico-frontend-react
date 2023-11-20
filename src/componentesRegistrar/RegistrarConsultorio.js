@@ -24,7 +24,7 @@ const RegistrarConsultorios = ({
           <h4>Registrar Consultorio</h4>
           <hr/>
           <br/>
-          <table className="table">
+          <table className="tableRegistrar">
             <tbody>
               <tr>
                 <td>
