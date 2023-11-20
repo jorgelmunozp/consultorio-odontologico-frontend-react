@@ -1,38 +1,330 @@
+:root{
+  --dark-color: #212529;
+  --main-color:#5285c5;
+  --icon-color:#ffffff;
+  --lightgray-color: #dddddd;
+  --darkgray-color:#555;
+  --white-color: #ffffff;
+}
+.color-rojo {
+  color: #f00;
+}
+
 .App {
+  font: 3vmin 'CenturyGothic', 'Century Gothic', Arial, sans-serif;
+}
+@font-face {
+  font-family: "CenturyGothic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/CenturyGothic.ttf") format("truetype");
+}
+
+h1,h2,h3 {	
+  color: var(--white-color);
+  font-weight: normal;
+}
+h4 {	
+  color: var(--main-color);
+  font-weight: normal;
+}
+hr { opacity: 0.5; }
+
+.App-link {
+  color: var(--main-color);
+}
+/*************************** HEADER **************************/
+.App-header {
+  background-color: var(--dark-color);
+  height: 10vmin; 
+  width: 100%;
+  color: var(--white-color);
+}
+.App-slogan, .App-slogan td {
+  border: none;
+  padding-left: 1.6vmin;
+}
+.App-logo{
+  height: 5vmin;
+  pointer-events: none;
+}
+.App-Title {
+  margin-top: 2.25vmin;
+  padding-left: 0.75vmin;
+}
+
+/*************************** MENU NAV **************************/
+.App-aside {
+  float: left;
+  height: max-content;
+}
+.App-menu-subtitulo {
+  background-color:  var(--dark-color);
+  color: var(--main-color);
+  padding: 10px 30px;
+  font-size: 2.5vmin;
+  text-align: center;
+  text-decoration: none;
+  width: 15px;
+  display: block;
+}
+.App-menu-item {
+  background-color: var(--dark-color);
+  color: var(--icon-color);
+  padding: 10px 45px 10px 30px;
+  font-size: 2.5vmin;
+  text-align: center;
+  text-decoration: none; 
+  width: 20px;
+  display: block;
+  border: none;
+  cursor: pointer;
+}
+.App-menu-item:hover {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+}
+
+.App-menu-icono {
+}
+.App-menu-icono:hover {
+  color: var(--main-color);
+}
+.App-menu-icono2 {
+}
+
+/*************************** BODY **************************/
+.App-body {
+  display: flex;
+  font-size: 2vw;
+  background-color: #fdfdfd;
+}
+.App-body h3 {
+  text-align: center;
+  color: var(--main-color);
+}
+
+.contenidoBody {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.columnaContenido table, .table {
+  border-collapse: collapse;
+  position: relative;
+  top: -6vh;
+  border-color: var(--lightgray-color);
+  width: 100%;
+}
+.columnaContenido th, .table th  {
+  background-color:var(--main-color);
+  color: var(--white-color);
+  font-size: 2vmin;
+  font-weight: normal;
+  padding: 0.75vmin 1vw;
+  border-bottom: 1px solid var(--dark-color);
+}
+.columnaContenido td, .table td {
+  color: var(--dark-color);
+  font-size: 2.5vmin;
+  text-align: center;
+  padding: 1vmin 1vmin;
+}
+.columnaContenido table tr:nth-child(even){background-color:#fff;}
+.columnaContenido table tr:nth-child(odd){background-color: #f1f1f1;color:#fff}
+.table tr:nth-child(even){background-color:#fff;}
+.table tr:nth-child(odd){background-color: #f1f1f1;color:#fff}
+
+.App-body-icono {
+  color: var(--main-color);
+}
+
+.App-body-boton-vistas {
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.textField{
+  min-width: 29vw!important;
+  width: 100%;
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+}
+.select, .select-item{
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+}
+.button{
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  background-color: var(--main-color)!important;
+  color: var(--icon-color);
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input {
+  font-size: 1.6vw;
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  color: var(--darkgray-color);
+  width: 29vw;
+  height: 8vh;
+  background-color: var(--lightgray-color);
+  border: none;
+  border-radius: 30px;
+  padding-inline-start: 1vw;
+}
+label, .MuiSelect-select {
+  font-size: 1.6vw;
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  color: var(--darkgray-color)!important;
+  min-width: 29vw!important;
+}
+input[type='number'] {
+  color: var(--darkgray-color)!important;
+}
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+  display: none;
+}
+input[type='date'] {
+  width: 100%;
+  height: 8vh;
+  min-width: 29vw!important;
+  color: var(--darkgray-color)!important;
+  cursor: pointer;
+}
+input[type='time'] {
+  width: 100%;
+  height: 8vh;
+  min-width: 29vw!important;
+  color: var(--darkgray-color)!important;
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator ,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  color: var(--main-color);
+  filter: invert(0.5);
+  color-scheme: inherit;
+  cursor: pointer;
+}
+select {
+  font-size: 1.6vw;
+  font-family: inherit;
+  color: var(--darkgray-color);
+  min-width: 29vw!important;
+  width: 30.1vw;
+  height: 8vh;
+  background-color: var(--lightgray-color);
+  border: none;
+  border-radius: 30px;
+  padding-inline-start: 1vw;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/****** selector  *******/
+.selector {
+  width: 30vw;
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  border-radius: 30px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.selector-numero {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  font-size: 1.6vw;
+  color: var(--darkgray-color);
+  height: 8vh;
+  background: var(--lightgray-color);
+  cursor: pointer;
+  padding-left: 0.5vw;
+  border-radius: 30px;
+}
+.selector-opciones {
+  display: none;
+  position: absolute;
+  font-size: 1.4vw;
+  width: 100%;
+  height: 120px;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+  background-color: var(--white-color);
+  overflow-y: scroll;
+  z-index: 1;
+}
+.selector-opciones div {
+  display: block;
+  color: var(--darkgray-color);
+  padding: 5px;
+  text-decoration: none;
+}
+.selector-opciones div:hover {
+  color: var(--white-color);
+  background-color: var(--main-color)
+}
+.flecha {
+  position: relative;
+  height: 15px;
+  width: 20px;
+}
+.flecha::before, .flecha::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 0.20rem;
+  height: 100%;
+  background-color: var(--main-color);
+}
+.flecha::before {
+  left: -5px;
+  transform: rotate(-45deg);
+}
+.flecha::after {
+  left: 5px;
+  transform: rotate(45deg);
 }
 
-.App-link {
-  color: #61dafb;
+.alertMessage {
+  font-size: 2.5vmin;
+  color: var(--darkgray-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/*************************** ALERTS **************************/
+.swalTable {
+  border-collapse: collapse;
+  border-color: var(--lightgray-color);
+  width: 90%;
 }
+.swalTable th  {
+  background-color:var(--main-color);
+  color: var(--white-color);
+  font-size: 2vmin;
+  font-weight: normal;
+  padding: 0.75vmin 1vw;
+  border-bottom: 1px solid var(--dark-color);
+}
+.swalTable td {
+  color: var(--dark-color);
+  font-size: 2.5vmin;
+  text-align: center;
+  padding: 1vmin 1vmin;
+}
+.swalTable td:nth-child(even){background-color:var(--white-color);}
+.swalTable td:nth-child(odd){background-color: #f1f1f1;}
+
+.swal2-title {
+  color: var(--main-color);
+  font-weight: normal;
+}
+.swal2-input {
+  background-color:var(--white-color);
+  height: 4vmin !important;
+  font-size: 2.5vmin;
+  margin: 0;
+  width: 100%;
+}
+
