@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { editarFetch } from '../helpers/editarFetch';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;
@@ -83,27 +84,27 @@ const EditarCita = (cita) => {
         <tr>
         </tr>
           <td> Paciente </td>
-          <td><input type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
+          <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
         <tr>
         </tr>        
           <td> Fecha </td>
-          <td><input type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
+          <td><input id="editarFecha" type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
         <tr>
         </tr>     
           <td> Hora </td>
-          <td><input type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
+          <td><input id="editarHora" type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
         <tr>
         </tr>
           <td> Consultorio </td>
-          <td><input type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
+          <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
         <tr>
         </tr>
           <td> Médico </td>
-          <td><input type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
+          <td><input id="editarMedico" type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
         <tr>
         </tr>
           <td> Tratamiento </td>
-          <td><input type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
+          <td><input id="editarTratamiento" type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
         </tr>
         </tbody>
       </table>
@@ -111,6 +112,22 @@ const EditarCita = (cita) => {
   `,
   confirmButtonColor: "#5285c5",
   confirmButtonText: "Guardar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const contenidoCita = `JSON.stringify({
+        cita: {
+          paciente: "Alejandra Ramos",
+          fecha: "2022-03-01",
+          hora: "08:00",
+          consultorio: "102",
+          medico: "Jose Castillo",
+          tratamiento: "Ortodoncia",
+        },
+      })`;
+      console.log(contenidoCita)
+      editarFetch(urlApiCitas,contenidoCita,"");
+      Swal.fire("Cita Actualizada", "", "success");
+    }
   });
 }
 

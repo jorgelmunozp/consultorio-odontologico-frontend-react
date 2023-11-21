@@ -11,7 +11,7 @@ import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../atomos/botonGuardar/BotonGuardar";
 
 const RegistrarCita = ({
-  urlApicitas,
+  urlApiCitas,
   pacientes,
   tratamientos,
   doctores,
@@ -226,7 +226,7 @@ const RegistrarCita = ({
                 <br></br>
                 <tr>
                   <td colSpan={2}>
-                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApicitas} contenidoApi={contenidoCitas} setAlertMessage={setAlertMessage}></BotonGuardar>
+                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setAlertMessage={setAlertMessage}></BotonGuardar>
                   </td>
                 </tr>
                 <tr>
