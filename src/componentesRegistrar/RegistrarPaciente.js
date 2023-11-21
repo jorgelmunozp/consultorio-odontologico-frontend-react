@@ -11,7 +11,7 @@ import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../atomos/botonGuardar/BotonGuardar";
 
 const RegistrarPaciente = ({ 
-  urlApipacientes
+  urlApiPacientes
  }) => {
 
   const contenidoPacientes = `JSON.stringify({
@@ -134,7 +134,7 @@ const RegistrarPaciente = ({
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApipacientes} contenidoApi={contenidoPacientes} setAlertMessage={setAlertMessage}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApiPacientes} contenidoApi={contenidoPacientes} setAlertMessage={setAlertMessage}></BotonGuardar>
                 </td>
               </tr>
               <tr>
