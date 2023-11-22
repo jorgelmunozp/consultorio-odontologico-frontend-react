@@ -126,7 +126,6 @@ const EditarCita = (cita) => {
           },
           "id": ${document.getElementById('editarId').value}
       }`;
-      console.log(contenidoCita)
       editarFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
