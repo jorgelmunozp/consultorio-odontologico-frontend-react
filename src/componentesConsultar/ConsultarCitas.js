@@ -81,7 +81,7 @@ const EditarCita = (cita) => {
         <tbody>
         <tr>
           <td> Código </td>
-          <td><input type="text" value=${ cita.id } class="swal2-input"></input></td>
+          <td><input id="editarId" type="text" value=${ cita.id } class="swal2-input"></input></td>
         <tr>
         </tr>
           <td> Paciente </td>
@@ -115,23 +115,23 @@ const EditarCita = (cita) => {
   confirmButtonText: "Guardar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoCita = `JSON.stringify({
+      const contenidoCita = `{
           "cita": {
-            "paciente": "Alejandra Ramos",
-            "fecha": "2022-03-01",
-            "hora": "08:00",
-            "consultorio": "402",
-            "medico": "Jose Castillo",
-            "tratamiento": "Ortodoncia"
+            "paciente": "${document.getElementById('editarPaciente').value}",
+            "fecha": "${document.getElementById('editarFecha').value}",
+            "hora": "${document.getElementById('editarHora').value}",
+            "consultorio": "${document.getElementById('editarConsultorio').value}",
+            "medico": "${document.getElementById('editarMedico').value}",
+            "tratamiento": "${document.getElementById('editarTratamiento').value}"
           },
-          "id": "1",
-      })`;
-      editarFetch(urlApiCitas,contenidoCita,cita.id);
+          "id": ${document.getElementById('editarId').value}
+      }`;
+      console.log(contenidoCita)
+      editarFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
   });
 }
-
 const EliminarCita = (cita) => {
   Swal.fire({
     title: "Eliminar Cita?",
