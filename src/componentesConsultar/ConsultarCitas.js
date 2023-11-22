@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { editarFetch } from '../helpers/editarFetch';
+import { eliminarFetch } from '../helpers/eliminarFetch';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;
@@ -115,17 +116,33 @@ const EditarCita = (cita) => {
   }).then((result) => {
     if (result.isConfirmed) {
       const contenidoCita = `JSON.stringify({
-        cita: {
-          paciente: "Alejandra Ramos",
-          fecha: "2022-03-01",
-          hora: "08:00",
-          consultorio: "102",
-          medico: "Jose Castillo",
-          tratamiento: "Ortodoncia",
-        },
+          "cita": {
+            "paciente": "Alejandra Ramos",
+            "fecha": "2022-03-01",
+            "hora": "08:00",
+            "consultorio": "102",
+            "medico": "Jose Castillo",
+            "tratamiento": "Ortodoncia"
+          },
+          "id": "1",
       })`;
-      console.log(contenidoCita)
-      editarFetch(urlApiCitas,contenidoCita,"");
+      console.log("contenidoCita: ",contenidoCita)
+      const contenidoCita2 = `
+        {
+           "cita": {
+            "paciente": "Alejandra Ramos",
+            "fecha": "2022-03-01",
+            "hora": "08:00",
+            "consultorio": "102",
+            "medico": "Jose Castillo",
+            "tratamiento": "Ortodoncia"
+          },
+          "id": 1
+        }
+      `;
+      console.log("contenidoCita2: ",contenidoCita2)
+      console.log("contenidoCita3 stringify: ",JSON.stringify(contenidoCita2))
+      editarFetch(urlApiCitas,eval(JSON.stringify(contenidoCita2)),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
   });
@@ -133,9 +150,65 @@ const EditarCita = (cita) => {
 
 const EliminarCita = (cita) => {
   Swal.fire({
-    title: "Eliminar Cita",
-    text: "Eliminar cita médica",
-    icon: "success"
+    title: "Eliminar Cita?",
+    text: "You won't be able to revert this!",
+    html: `
+        <center>
+          <table class="swalTable" border='1'>
+          <thead>
+          <tr>
+            <th>Parámetro</th>
+            <th>Datos Paciente</th>
+          <tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td> Código </td>
+            <td><input type="text" value=${ cita.id } class="swal2-input"></input></td>
+          <tr>
+          </tr>
+            <td> Paciente </td>
+            <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
+          <tr>
+          </tr>        
+            <td> Fecha </td>
+            <td><input id="editarFecha" type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
+          <tr>
+          </tr>     
+            <td> Hora </td>
+            <td><input id="editarHora" type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
+          <tr>
+          </tr>
+            <td> Consultorio </td>
+            <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
+          <tr>
+          </tr>
+            <td> Médico </td>
+            <td><input id="editarMedico" type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
+          <tr>
+          </tr>
+            <td> Tratamiento </td>
+            <td><input id="editarTratamiento" type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
+          </tr>
+          </tbody>
+        </table>
+      </center>
+    `,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      eliminarFetch(urlApiCitas,cita.id);
+      Swal.fire({
+        title: "Cita Eliminada",
+        text: "La cita fué eliminada con éxito",
+        icon: "success"
+      });
+    }
   });
 }
 
