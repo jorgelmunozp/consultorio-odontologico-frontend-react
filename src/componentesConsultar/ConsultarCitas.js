@@ -120,29 +120,13 @@ const EditarCita = (cita) => {
             "paciente": "Alejandra Ramos",
             "fecha": "2022-03-01",
             "hora": "08:00",
-            "consultorio": "102",
+            "consultorio": "402",
             "medico": "Jose Castillo",
             "tratamiento": "Ortodoncia"
           },
           "id": "1",
       })`;
-      console.log("contenidoCita: ",contenidoCita)
-      const contenidoCita2 = `
-        {
-           "cita": {
-            "paciente": "Alejandra Ramos",
-            "fecha": "2022-03-01",
-            "hora": "08:00",
-            "consultorio": "102",
-            "medico": "Jose Castillo",
-            "tratamiento": "Ortodoncia"
-          },
-          "id": 1
-        }
-      `;
-      console.log("contenidoCita2: ",contenidoCita2)
-      console.log("contenidoCita3 stringify: ",JSON.stringify(contenidoCita2))
-      editarFetch(urlApiCitas,eval(JSON.stringify(contenidoCita2)),cita.id);
+      editarFetch(urlApiCitas,contenidoCita,cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
   });
