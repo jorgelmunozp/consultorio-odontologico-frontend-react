@@ -330,3 +330,6 @@ select::-ms-expand {
   width: 100%;
 }
 
+.swal2-confirm.swal2-styled {
+  background-color: var(--main-color);
+}
