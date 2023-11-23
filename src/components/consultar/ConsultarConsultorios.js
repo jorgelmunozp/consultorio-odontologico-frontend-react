@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
+import { UpdateConsultorio } from '../update/UpdateConsultorio';
 
 const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
 let consultorios;
@@ -8,7 +9,7 @@ await fetch(urlApiConsultorios)                      //API REST para consumo de 
         .then(response => response.json())
         .then(data => consultorios = data);
 
-// const ReadConsultorio = (consultorio) => {
+// const EditarConsultorio = (consultorio) => {
 //   Swal.fire({
 //     title: "Consultorio",
 //     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -18,71 +19,33 @@ await fetch(urlApiConsultorios)                      //API REST para consumo de 
 //     html: `
 //       <center>
 //         <table class="swalTable" border='1'>
-//         <thead>
-//           <tr>
-//             <th>Parámetro</th>
-//             <th>Datos Consultorio</th>
-//           <tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td> Código </td>
-//             <td>${ consultorio.id }</td>
-//           <tr>
-//           </tr>
-//             <td> Número </td>
-//             <td>${ consultorio.consultorio.numero }</td>
-//           <tr>
-//           </tr>        
-//             <td> Nombre </td>
-//             <td>${ consultorio.consultorio.nombre }</td>
-//           <tr>
-//         </tbody>
-//       </table>
-//     </center>
+//           <thead>
+//             <tr>
+//               <th>Parámetro</th>
+//               <th>Datos Consultorio</th>
+//             <tr>
+//           </thead>
+//           <tbody>
+//             <tr>
+//               <td> Código </td>
+//               <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
+//             <tr>
+//             </tr>
+//               <td> Número </td>
+//               <td><input type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
+//             <tr>
+//             </tr>        
+//               <td> Nombre </td>
+//               <td><input type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
+//             <tr>
+//           </tbody>
+//         </table>
+//       </center>
 //   `,
 //   confirmButtonColor: "#5285c5",
 //   confirmButtonText: "Aceptar"
-//   });  
+//   }); 
 // }
-
-const EditarConsultorio = (consultorio) => {
-  Swal.fire({
-    title: "Consultorio",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
-    imageAlt: "🦷",
-    html: `
-      <center>
-        <table class="swalTable" border='1'>
-          <thead>
-            <tr>
-              <th>Parámetro</th>
-              <th>Datos Consultorio</th>
-            <tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Código </td>
-              <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
-            <tr>
-            </tr>
-              <td> Número </td>
-              <td><input type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
-            <tr>
-            </tr>        
-              <td> Nombre </td>
-              <td><input type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
-            <tr>
-          </tbody>
-        </table>
-      </center>
-  `,
-  confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
-  }); 
-}
 
 const ConsultarConsultorios = () => {
     return (
@@ -111,7 +74,7 @@ const ConsultarConsultorios = () => {
                       <td>{ consultorio.consultorio.numero }</td>
                       <td>{ consultorio.consultorio.nombre }</td>
                       <td><button className='App-body-boton-vistas' onClick={ () => ReadConsultorio(consultorio) }>&#128270;</button></td>
-                      <td><button className='App-body-boton-vistas' onClick={ () => EditarConsultorio(consultorio) }>&#x270D;</button></td>
+                      <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios) }>&#x270D;</button></td>
                       <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios) }>&#x1F7AE;</button></td>
                     </tr>
                   ))
