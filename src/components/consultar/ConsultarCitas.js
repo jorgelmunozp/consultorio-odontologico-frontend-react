@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
-import { editarFetch } from '../helpers/editarFetch';
-import { EliminarCita } from '../componentesEliminar/EliminarCita';
+import { editarFetch } from '../../helpers/editarFetch';
+import { EliminarCita } from '../eliminar/EliminarCita';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;

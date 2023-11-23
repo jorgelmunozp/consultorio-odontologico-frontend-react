@@ -9,16 +9,16 @@ import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, T
 import Usuario from './Usuario';
 
 import Inicio from './home';
-import ConsultarCitas from './componentesConsultar/ConsultarCitas';
-import ConsultarPacientes from './componentesConsultar/ConsultarPacientes';
-import ConsultarTratamientos from './componentesConsultar/ConsultarTratamientos';
-import ConsultarDoctores from './componentesConsultar/ConsultarDoctores';
-import ConsultarConsultorios from './componentesConsultar/ConsultarConsultorios';
-import RegistrarCita from './componentesRegistrar/RegistrarCita';
-import RegistrarPaciente from './componentesRegistrar/RegistrarPaciente';
-import RegistrarTratamiento from './componentesRegistrar/RegistrarTratamiento';
-import RegistrarDoctor from './componentesRegistrar/RegistrarDoctor';
-import RegistrarConsultorio from './componentesRegistrar/RegistrarConsultorio';
+import ConsultarCitas from './components/consultar/ConsultarCitas';
+import ConsultarPacientes from './components/consultar/ConsultarPacientes';
+import ConsultarTratamientos from './components/consultar/ConsultarTratamientos';
+import ConsultarDoctores from './components/consultar/ConsultarDoctores';
+import ConsultarConsultorios from './components/consultar/ConsultarConsultorios';
+import RegistrarCita from './components/registrar/RegistrarCita';
+import RegistrarPaciente from './components/registrar/RegistrarPaciente';
+import RegistrarTratamiento from './components/registrar/RegistrarTratamiento';
+import RegistrarDoctor from './components/registrar/RegistrarDoctor';
+import RegistrarConsultorio from './components/registrar/RegistrarConsultorio';
 
 function App() {
   const menuOpcion = 1;

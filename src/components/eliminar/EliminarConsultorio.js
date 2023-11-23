@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { eliminarFetch } from '../helpers/eliminarFetch';
+import { eliminarFetch } from '../../helpers/eliminarFetch';
 
 export const EliminarConsultorio = (consultorio,urlApiConsultorios) => {
     Swal.fire({

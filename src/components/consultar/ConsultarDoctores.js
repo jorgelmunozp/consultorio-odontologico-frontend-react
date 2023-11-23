@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { EliminarDoctor } from '../componentesEliminar/EliminarDoctor';
+import { EliminarDoctor } from '../eliminar/EliminarDoctor';
 
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 let doctores;

@@ -1,9 +1,10 @@
 :root{
   --dark-color: #212529;
-  --main-color:#5285c5;
+  --darkgray-color:#555;
   --icon-color:#ffffff;
   --lightgray-color: #dddddd;
-  --darkgray-color:#555;
+  --main-color:#5285c5;
+  --main-transparent-color: rgba(82, 133, 197, 0.25);
   --white-color: #ffffff;
 }
 .color-rojo {
@@ -130,8 +131,10 @@ hr { opacity: 0.5; }
   text-align: center;
   padding: 1vmin 1vmin;
 }
-.table tr:nth-child(even){background-color:#fff;}
-.table tr:nth-child(odd){background-color: #f1f1f1;color:#fff}
+.table tr:nth-child(even) { background-color:var(--white-color); }
+.table tr:nth-child(odd) { background-color: #f1f1f1; }
+.table tr:nth-child(even):hover { background-color:var(--main-transparent-color); }
+.table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 .tableRegistrar {
   width: 100%;

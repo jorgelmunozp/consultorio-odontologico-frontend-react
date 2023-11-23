@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { EliminarConsultorio } from '../componentesEliminar/EliminarConsultorio';
+import { EliminarConsultorio } from '../eliminar/EliminarConsultorio';
 
 const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
 let consultorios;

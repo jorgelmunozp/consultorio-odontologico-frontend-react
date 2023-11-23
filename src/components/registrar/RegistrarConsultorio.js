@@ -1,7 +1,7 @@
 import React, { useState }  from "react";
 import { TextField } from "@mui/material";
 import { FaClinicMedical } from "react-icons/fa";
-import { BotonGuardar } from "../atomos/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../atomos/botonGuardar/BotonGuardar";
 
 const RegistrarConsultorios = ({
   urlApiConsultorios

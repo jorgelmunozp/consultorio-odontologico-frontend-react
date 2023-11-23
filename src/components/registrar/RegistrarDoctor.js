@@ -1,14 +1,7 @@
 import React, { useState }  from "react";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserMd } from "react-icons/fa";
-import { BotonGuardar } from "../atomos/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../atomos/botonGuardar/BotonGuardar";
 
 const RegistrarDoctor = ({ 
   urlApiDoctores

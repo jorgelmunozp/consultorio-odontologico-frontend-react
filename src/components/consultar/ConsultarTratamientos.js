@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { EliminarTratamiento } from '../componentesEliminar/EliminarTratamiento';
+import { EliminarTratamiento } from '../eliminar/EliminarTratamiento';
 
 const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
 let tratamientos;
