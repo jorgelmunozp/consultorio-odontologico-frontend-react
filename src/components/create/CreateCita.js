@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
-import { BotonGuardar } from "../../atomos/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-const RegistrarCita = ({
+export const CreateCita = ({
   urlApiCitas,
   pacientes,
   tratamientos,
@@ -21,7 +21,6 @@ const RegistrarCita = ({
       "tratamiento": document.getElementById("registroTratamiento").innerText,
     },
   })`
-
 
   const date = new Date();
   const fechaActual = date
@@ -235,6 +234,3 @@ const RegistrarCita = ({
     </div>
   );
 };
-
-
-export default RegistrarCita;

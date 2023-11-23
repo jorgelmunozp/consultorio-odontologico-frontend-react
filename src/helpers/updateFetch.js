@@ -1,4 +1,4 @@
-export const editarFetch = ( urlApi,contenidoApi,citaId ) => {
+export const updateFetch = ( urlApi,contenidoApi,citaId ) => {
     fetch(urlApi + "/" + citaId, {
       method: "PUT",
       body: eval(contenidoApi),

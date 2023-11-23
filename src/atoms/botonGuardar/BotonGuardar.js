@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material';
-import { guardarFetch } from '../../helpers/guardarFetch.js';
+import { createFetch } from '../../helpers/createFetch.js';
 
 export const BotonGuardar = ({ endIcon,titulo,urlApi,contenidoApi,setAlertMessage }) => {
   return (
@@ -8,7 +8,7 @@ export const BotonGuardar = ({ endIcon,titulo,urlApi,contenidoApi,setAlertMessag
             variant="contained"
             className="button"
             size="large"
-            onClick={ () => guardarFetch(urlApi,contenidoApi,setAlertMessage) }
+            onClick={ () => createFetch(urlApi,contenidoApi,setAlertMessage) }
             endIcon={ endIcon }
         >
             {titulo}{" "}

@@ -1,61 +1,12 @@
 import Swal from 'sweetalert2';
-import { EliminarPaciente } from '../eliminar/EliminarPaciente';
+import { DeletePaciente } from '../delete/DeletePaciente';
+import { ReadPaciente } from '../read/ReadPaciente';
 
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 let pacientes;
 await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Citas de la base de datos
         .then(response => response.json())
         .then(data => pacientes = data);
-
-const VerPaciente = (paciente) => {
-  Swal.fire({
-    title: "Paciente",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
-    imageAlt: "🦷",
-    html: `
-      <center>
-        <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Paciente</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td>${ paciente.id }</td>
-          <tr>
-          </tr>
-            <td> Identificación </td>
-            <td>${ paciente.paciente.identificacion }</td>
-          <tr>
-          </tr>        
-            <td> Nombre </td>
-            <td>${ paciente.paciente.nombre }</td>
-          <tr>
-          </tr>     
-            <td> Apellido </td>
-            <td>${ paciente.paciente.apellido }</td>
-          <tr>
-          </tr>
-            <td> Género </td>
-            <td>${ paciente.paciente.genero }</td>
-          <tr>
-          </tr>
-            <td> Eps </td>
-            <td>${ paciente.paciente.eps }</td>
-          <tr>
-        </tbody>
-      </table>
-    </center>
-  `,
-  confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
-  });
-}
 
 const EditarPaciente = (paciente) => {
   Swal.fire({
@@ -138,9 +89,9 @@ const ConsultarPacientes = () => {
                         <td>{ paciente.paciente.apellido }</td>
                         <td>{ paciente.paciente.genero }</td>
                         <td>{ paciente.paciente.eps }</td>
-                        <td><button className='App-body-boton-vistas' onClick={ () => VerPaciente(paciente) }>&#128270;</button></td>
+                        <td><button className='App-body-boton-vistas' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
                         <td><button className='App-body-boton-vistas' onClick={ () => EditarPaciente(paciente) }>&#x270D;</button></td>
-                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarPaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
+                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
                       </tr>
                     ))
                   }

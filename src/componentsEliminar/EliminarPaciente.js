@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { eliminarFetch } from '../../helpers/eliminarFetch';
+import { deleteFetch } from '../helpers/deleteFetch';
 
 export const EliminarPaciente = (paciente,urlApiPacientes) => {
     Swal.fire({
@@ -50,7 +50,7 @@ export const EliminarPaciente = (paciente,urlApiPacientes) => {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        eliminarFetch(urlApiPacientes,paciente.id);
+        deleteFetch(urlApiPacientes,paciente.id);
         Swal.fire({
           title: "Paciente Eliminado",
           text: "El paciente fue eliminado con éxito",

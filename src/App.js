@@ -14,11 +14,11 @@ import ConsultarPacientes from './components/consultar/ConsultarPacientes';
 import ConsultarTratamientos from './components/consultar/ConsultarTratamientos';
 import ConsultarDoctores from './components/consultar/ConsultarDoctores';
 import ConsultarConsultorios from './components/consultar/ConsultarConsultorios';
-import RegistrarCita from './components/registrar/RegistrarCita';
-import RegistrarPaciente from './components/registrar/RegistrarPaciente';
-import RegistrarTratamiento from './components/registrar/RegistrarTratamiento';
-import RegistrarDoctor from './components/registrar/RegistrarDoctor';
-import RegistrarConsultorio from './components/registrar/RegistrarConsultorio';
+import { CreateCita } from './components/create/CreateCita';
+import { CreatePaciente } from './components/create/CreatePaciente';
+import { CreateTratamiento } from './components/create/CreateTratamiento';
+import { CreateDoctor } from './components/create/CreateDoctor';
+import { CreateConsultorio } from './components/create/CreateConsultorio';
 
 function App() {
   const menuOpcion = 1;
@@ -62,19 +62,19 @@ function App() {
           <button className="App-menu-item" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaCalendarPlus className='App-menu-icono2'/></span>
           <button className="App-menu-item" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch className='App-menu-icono'/></button>
-          <button className="App-menu-item" onClick={()=>{setMenu(3); <RegistrarCita/>}}><TbCalendarPlus className='App-menu-icono'/></button>
+          <button className="App-menu-item" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaUserInjured className='App-menu-icono2'/></span>
           <button className="App-menu-item" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch className='App-menu-icono'/></button>
-          <button className="App-menu-item" onClick={()=>{setMenu(5); <RegistrarPaciente/>}}><TbUserEdit className='App-menu-icono'/></button>
+          <button className="App-menu-item" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserEdit className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaStethoscope className='App-menu-icono2'/> </span>
           <button className="App-menu-item" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbVirusSearch className='App-menu-icono'/></button>
-          <button className="App-menu-item" onClick={()=>{setMenu(7); <RegistrarTratamiento/>}}><TbFilterEdit className='App-menu-icono'/></button>
+          <button className="App-menu-item" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterEdit className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaUserMd className='App-menu-icono2'/></span>
           <button className="App-menu-item" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch className='App-menu-icono'/> </button>
-          <button className="App-menu-item" onClick={()=>{setMenu(9); <RegistrarDoctor/>}}><TbUserEdit className='App-menu-icono'/></button>
+          <button className="App-menu-item" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserEdit className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaClinicMedical className='App-menu-icono2'/></span>
           <button className="App-menu-item" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch className='App-menu-icono'/></button>
-          <button className="App-menu-item" onClick={()=>{setMenu(11); <RegistrarConsultorio/>}}><TbHomeEdit className='App-menu-icono'/></button>
+          <button className="App-menu-item" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='App-menu-icono'/></button>
         </nav>
       </aside>
 
@@ -105,23 +105,23 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 2){
     return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 3){
-    return <RegistrarCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
     return <ConsultarPacientes />;
   }else if(menu === 5){
-    return <RegistrarPaciente urlApiPacientes={urlApiPacientes} />;
+    return <CreatePaciente urlApiPacientes={urlApiPacientes} />;
   }else if(menu === 6){
     return <ConsultarTratamientos />;
   }else if(menu === 7){
-    return <RegistrarTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
+    return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){
     return <ConsultarDoctores />;
   }else if(menu === 9){
-    return <RegistrarDoctor urlApiDoctores={urlApiDoctores} />;
+    return <CreateDoctor urlApiDoctores={urlApiDoctores} />;
   }else if(menu === 10){
     return <ConsultarConsultorios />;
   }else if(menu === 11){
-    return <RegistrarConsultorio urlApiConsultorios={urlApiConsultorios} />;
+    return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} />;
   }else if(menu === 14){
     return <Usuario />;
 }

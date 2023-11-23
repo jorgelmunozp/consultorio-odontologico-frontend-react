@@ -1,4 +1,4 @@
-export const guardarFetch = ( urlApi,contenidoApi,setAlertMessage ) => {
+export const createFetch = ( urlApi,contenidoApi,setAlertMessage ) => {
     fetch(urlApi, {
       method: "POST",
       body: eval(contenidoApi),

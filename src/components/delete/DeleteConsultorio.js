@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
-import { eliminarFetch } from '../../helpers/eliminarFetch';
+import { deleteFetch } from '../../helpers/deleteFetch';
 
-export const EliminarConsultorio = (consultorio,urlApiConsultorios) => {
+export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
     Swal.fire({
       title: "Eliminar Consultorio?",
       html: `
@@ -38,7 +38,7 @@ export const EliminarConsultorio = (consultorio,urlApiConsultorios) => {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        eliminarFetch(urlApiConsultorios,consultorio.id);
+        deleteFetch(urlApiConsultorios,consultorio.id);
         Swal.fire({
           title: "Consultorio Eliminado",
           text: "El consultorio fue eliminado con éxito",

@@ -1,9 +1,9 @@
 import React, { useState }  from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserMd } from "react-icons/fa";
-import { BotonGuardar } from "../../atomos/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-const RegistrarDoctor = ({ 
+export const CreateDoctor = ({ 
   urlApiDoctores
 }) => {
 
@@ -111,7 +111,3 @@ const RegistrarDoctor = ({
       </div>
   );
 };
-
-
-
-export default RegistrarDoctor;

@@ -1,4 +1,4 @@
-export const eliminarFetch = ( urlApi,citaId ) => {
+export const deleteFetch = ( urlApi,citaId ) => {
     fetch(urlApi + "/" + citaId, {
       method: "DELETE",
       body: "",

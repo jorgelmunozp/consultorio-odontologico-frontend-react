@@ -1,53 +1,12 @@
 import Swal from 'sweetalert2';
-import { EliminarDoctor } from '../eliminar/EliminarDoctor';
+import { DeleteDoctor } from '../delete/DeleteDoctor';
+import { ReadDoctor } from '../read/ReadDoctor';
 
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 let doctores;
 await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Citas de la base de datos
         .then(response => response.json())
         .then(data => doctores = data);
-
-const VerDoctor = (doctor) => {
-  Swal.fire({
-    title: "Doctor",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
-    imageAlt: "🦷",
-    html: `
-      <center>
-        <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Doctor</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td>${ doctor.id }</td>
-          <tr>
-          </tr>        
-            <td> Nombre </td>
-            <td>${ doctor.doctor.nombre }</td>
-          <tr>
-          </tr>     
-            <td> Apellido </td>
-            <td>${ doctor.doctor.apellido }</td>
-          <tr>
-          </tr>
-            <td> Especialidad </td>
-            <td>${ doctor.doctor.especialidad }</td>
-          <tr>
-        </tbody>
-      </table>
-    </center>
-  `,
-  confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
-  });
-}
 
 const EditarDoctor = (doctor) => {
   Swal.fire({
@@ -119,9 +78,9 @@ const ConsultarDoctores = () => {
                     <td>{ doctor.doctor.nombre }</td>
                     <td>{ doctor.doctor.apellido }</td>
                     <td>{ doctor.doctor.especialidad }</td>
-                    <td><button className='App-body-boton-vistas' onClick={ () => VerDoctor(doctor) }>&#128270;</button></td>
+                    <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
                     <td><button className='App-body-boton-vistas' onClick={ () => EditarDoctor(doctor) }>&#x270D;</button></td>
-                    <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
+                    <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
                   </tr>
                 ))
               }

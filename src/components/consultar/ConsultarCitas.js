@@ -1,66 +1,13 @@
 import Swal from 'sweetalert2';
-import { editarFetch } from '../../helpers/editarFetch';
-import { EliminarCita } from '../eliminar/EliminarCita';
+import { updateFetch } from '../../helpers/updateFetch';
+import { DeleteCita } from '../delete/DeleteCita';
+import { ReadCita } from '../read/ReadCita';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;
 await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
         .then(response => response.json())
         .then(data => citas = data);
-
-const VerCita = (cita) => {
-  Swal.fire({
-    title: "Cita Médica",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
-    imageAlt: "🦷",
-    html: `
-      <center>
-        <table class="swalTable" border='1'>
-          <thead>
-            <tr>
-              <th>Parámetro</th>
-              <th>Datos Paciente</th>
-            <tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Código </td>
-              <td>${ cita.id }</td>
-            <tr>
-            </tr>
-              <td> Paciente </td>
-              <td>${ cita.cita.paciente }</td>
-            <tr>
-            </tr>        
-              <td> Fecha </td>
-              <td>${ cita.cita.fecha }</td>
-            <tr>
-            </tr>     
-              <td> Hora </td>
-              <td>${ cita.cita.hora }</td>
-            <tr>
-            </tr>
-              <td> Consultorio </td>
-              <td>${ cita.cita.consultorio }</td>
-            <tr>
-            </tr>
-              <td> Médico </td>
-              <td>${ cita.cita.medico }</td>
-            <tr>
-            </tr>
-              <td> Tratamiento </td>
-              <td>${ cita.cita.tratamiento }</td>
-            </tr>
-          </tbody>
-        </table>
-      </center>
-  `,
-  confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
-  });
-}
 
 const EditarCita = (cita) => {
   console.log(cita.cita.paciente.split(" ")[0])
@@ -156,7 +103,7 @@ const EditarCita = (cita) => {
           },
           "id": ${document.getElementById('editarId').value}
       }`;
-      editarFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
+      updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
   });
@@ -201,9 +148,9 @@ const ConsultarCitas = ({
                       <td>{ cita.cita.consultorio }</td>
                       <td>{ cita.cita.medico }</td>
                       <td>{ cita.cita.tratamiento }</td>
-                      <td><button className='App-body-boton-vistas' onClick={ () => VerCita(cita) }>&#128270;</button></td>
+                      <td><button className='App-body-boton-vistas' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
                       <td><button className='App-body-boton-vistas' onClick={ () => EditarCita(cita) }>&#x270D;</button></td>
-                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarCita(cita,urlApiCitas) }>&#x1F7AE;</button></td>
+                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas) }>&#x1F7AE;</button></td>
                     </tr>
                   ))
                 }

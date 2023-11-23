@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { eliminarFetch } from '../../helpers/eliminarFetch';
+import { deleteFetch } from '../helpers/deleteFetch';
 
 export const EliminarCita = (cita,urlApiCitas) => {
     Swal.fire({
@@ -54,7 +54,7 @@ export const EliminarCita = (cita,urlApiCitas) => {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        eliminarFetch(urlApiCitas,cita.id);
+        deleteFetch(urlApiCitas,cita.id);
         Swal.fire({
           title: "Cita Eliminada",
           text: "La cita fue eliminada con éxito",
