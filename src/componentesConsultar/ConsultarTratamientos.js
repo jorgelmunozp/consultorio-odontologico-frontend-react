@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { EliminarTratamiento } from '../componentesEliminar/EliminarTratamiento';
 
 const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
 let tratamientos;
@@ -16,32 +17,32 @@ const VerTratamiento = (tratamiento) => {
     html: `
       <center>
         <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Tratamiento</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td>${ tratamiento.id }</td>
-          <tr>
-          </tr>
-            <td> Nombre </td>
-            <td>${ tratamiento.tratamiento.tipo }</td>
-          <tr>
-          </tr>        
-            <td> Consultorio </td>
-            <td>${ tratamiento.tratamiento.consultorio }</td>
-          <tr>
-          </tr>        
-            <td> Doctor </td>
-            <td>${ tratamiento.tratamiento.doctor }</td>
-          <tr>
-        </tbody>
-      </table>
-    </center>
+          <thead>
+            <tr>
+              <th>Parámetro</th>
+              <th>Datos Tratamiento</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Código </td>
+              <td>${ tratamiento.id }</td>
+            <tr>
+            </tr>
+              <td> Nombre </td>
+              <td>${ tratamiento.tratamiento.tipo }</td>
+            <tr>
+            </tr>        
+              <td> Consultorio </td>
+              <td>${ tratamiento.tratamiento.consultorio }</td>
+            <tr>
+            </tr>        
+              <td> Doctor </td>
+              <td>${ tratamiento.tratamiento.doctor }</td>
+            <tr>
+          </tbody>
+        </table>
+      </center>
   `,
   confirmButtonColor: "#5285c5",
   confirmButtonText: "Aceptar"
@@ -90,12 +91,7 @@ const EditarTratamiento = (tratamiento) => {
   });    
 }
 
-const EliminarTratamiento = (tratamiento) => {
-  
-}
-
 const ConsultarTratamientos = ({urlApiTratamientos}) => {
-
       return(
         <div className="App">
           <div id="contenidoTratamientos">  
@@ -124,7 +120,7 @@ const ConsultarTratamientos = ({urlApiTratamientos}) => {
                         <td>{ tratamiento.tratamiento.doctor }</td>
                         <td><button className='App-body-boton-vistas' onClick={ () => VerTratamiento(tratamiento) }>&#128270;</button></td>
                         <td><button className='App-body-boton-vistas' onClick={ () => EditarTratamiento(tratamiento) }>&#x270D;</button></td>
-                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarTratamiento(tratamiento) }>&#x1F7AE;</button></td>
+                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarTratamiento(tratamiento,urlApiTratamientos) }>&#x1F7AE;</button></td>
                       </tr>
                     ))
                   }

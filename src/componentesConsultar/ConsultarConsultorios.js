@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { EliminarConsultorio } from '../componentesEliminar/EliminarConsultorio';
 
 const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
 let consultorios;
@@ -54,40 +55,35 @@ const EditarConsultorio = (consultorio) => {
     html: `
       <center>
         <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Consultorio</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Número </td>
-            <td><input type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
-          <tr>
-          </tr>        
-            <td> Nombre </td>
-            <td><input type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
-          <tr>
-        </tbody>
-      </table>
-    </center>
+          <thead>
+            <tr>
+              <th>Parámetro</th>
+              <th>Datos Consultorio</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Código </td>
+              <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
+            <tr>
+            </tr>
+              <td> Número </td>
+              <td><input type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
+            <tr>
+            </tr>        
+              <td> Nombre </td>
+              <td><input type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
+            <tr>
+          </tbody>
+        </table>
+      </center>
   `,
   confirmButtonColor: "#5285c5",
   confirmButtonText: "Aceptar"
   }); 
 }
 
-const EliminarConsultorio = (consultorio) => {
-  
-}
-
 const ConsultarConsultorios = () => {
-
     return (
       <div className="App">
         <div id="contenidoConsultorios">
@@ -115,7 +111,7 @@ const ConsultarConsultorios = () => {
                       <td>{ consultorio.consultorio.nombre }</td>
                       <td><button className='App-body-boton-vistas' onClick={ () => VerConsultorio(consultorio) }>&#128270;</button></td>
                       <td><button className='App-body-boton-vistas' onClick={ () => EditarConsultorio(consultorio) }>&#x270D;</button></td>
-                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarConsultorio(consultorio) }>&#x1F7AE;</button></td>
+                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarConsultorio(consultorio,urlApiConsultorios) }>&#x1F7AE;</button></td>
                     </tr>
                   ))
                 }

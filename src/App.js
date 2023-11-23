@@ -103,7 +103,7 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   if(menu === 1){
     return <Inicio />;
   }else if(menu === 2){
-    return <ConsultarCitas />;
+    return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 3){
     return <RegistrarCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){

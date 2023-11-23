@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { editarFetch } from '../helpers/editarFetch';
-import { eliminarFetch } from '../helpers/eliminarFetch';
+import { EliminarCita } from '../componentesEliminar/EliminarCita';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;
@@ -18,44 +18,44 @@ const VerCita = (cita) => {
     html: `
       <center>
         <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Paciente</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td>${ cita.id }</td>
-          <tr>
-          </tr>
-            <td> Paciente </td>
-            <td>${ cita.cita.paciente }</td>
-          <tr>
-          </tr>        
-            <td> Fecha </td>
-            <td>${ cita.cita.fecha }</td>
-          <tr>
-          </tr>     
-            <td> Hora </td>
-            <td>${ cita.cita.hora }</td>
-          <tr>
-          </tr>
-            <td> Consultorio </td>
-            <td>${ cita.cita.consultorio }</td>
-          <tr>
-          </tr>
-            <td> Médico </td>
-            <td>${ cita.cita.medico }</td>
-          <tr>
-          </tr>
-            <td> Tratamiento </td>
-            <td>${ cita.cita.tratamiento }</td>
-          </tr>
-        </tbody>
-      </table>
-    </center>
+          <thead>
+            <tr>
+              <th>Parámetro</th>
+              <th>Datos Paciente</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Código </td>
+              <td>${ cita.id }</td>
+            <tr>
+            </tr>
+              <td> Paciente </td>
+              <td>${ cita.cita.paciente }</td>
+            <tr>
+            </tr>        
+              <td> Fecha </td>
+              <td>${ cita.cita.fecha }</td>
+            <tr>
+            </tr>     
+              <td> Hora </td>
+              <td>${ cita.cita.hora }</td>
+            <tr>
+            </tr>
+              <td> Consultorio </td>
+              <td>${ cita.cita.consultorio }</td>
+            <tr>
+            </tr>
+              <td> Médico </td>
+              <td>${ cita.cita.medico }</td>
+            <tr>
+            </tr>
+              <td> Tratamiento </td>
+              <td>${ cita.cita.tratamiento }</td>
+            </tr>
+          </tbody>
+        </table>
+      </center>
   `,
   confirmButtonColor: "#5285c5",
   confirmButtonText: "Aceptar"
@@ -63,6 +63,8 @@ const VerCita = (cita) => {
 }
 
 const EditarCita = (cita) => {
+  console.log(cita.cita.paciente.split(" ")[0])
+  console.log(cita.cita.paciente.split(" ")[1])
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -85,7 +87,7 @@ const EditarCita = (cita) => {
         <tr>
         </tr>
           <td> Paciente </td>
-          <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
+          <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente.split(" ")[0] + cita.cita.paciente.split(" ")[1] } class="swal2-input"></input></td>
         <tr>
         </tr>        
           <td> Fecha </td>
@@ -97,6 +99,32 @@ const EditarCita = (cita) => {
         <tr>
         </tr>
           <td> Consultorio </td>
+          <FormControl fullWidth margin="dense">
+          <InputLabel
+            id="registroConsultorio-label"
+            className="select"
+          >
+            Consultorio
+          </InputLabel>
+          <Select
+            labelId="registroConsultorio-label"
+            id="registroConsultorio"
+            value={consultorio}
+            label="registroConsultorio"
+            onChange={handleChangeConsultorio}
+          >
+            {consultorios.map((consultorios) => {
+              return (
+                <MenuItem
+                  value={consultorios.id}
+                  className="select-item"
+                >
+                  {consultorios.consultorio.numero}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
           <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
         <tr>
         </tr>
@@ -115,6 +143,8 @@ const EditarCita = (cita) => {
   confirmButtonText: "Guardar"
   }).then((result) => {
     if (result.isConfirmed) {
+      console.log(document.getElementById('editarPaciente'))
+      console.log(document.getElementById('editarPaciente').value)
       const contenidoCita = `{
           "cita": {
             "paciente": "${document.getElementById('editarPaciente').value}",
@@ -131,72 +161,14 @@ const EditarCita = (cita) => {
     }
   });
 }
-const EliminarCita = (cita) => {
-  Swal.fire({
-    title: "Eliminar Cita?",
-    text: "You won't be able to revert this!",
-    html: `
-        <center>
-          <table class="swalTable" border='1'>
-          <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Paciente</th>
-          <tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td> Código </td>
-            <td><input type="text" value=${ cita.id } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Paciente </td>
-            <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
-          <tr>
-          </tr>        
-            <td> Fecha </td>
-            <td><input id="editarFecha" type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
-          <tr>
-          </tr>     
-            <td> Hora </td>
-            <td><input id="editarHora" type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Consultorio </td>
-            <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Médico </td>
-            <td><input id="editarMedico" type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Tratamiento </td>
-            <td><input id="editarTratamiento" type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
-          </tr>
-          </tbody>
-        </table>
-      </center>
-    `,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Eliminar",
-    cancelButtonText: "Cancelar"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      eliminarFetch(urlApiCitas,cita.id);
-      Swal.fire({
-        title: "Cita Eliminada",
-        text: "La cita fué eliminada con éxito",
-        icon: "success"
-      });
-    }
-  });
-}
 
-const ConsultarCitas = () => {
-
+const ConsultarCitas = ({
+  urlApiCitas,
+  pacientes,
+  tratamientos,
+  doctores,
+  consultorios,
+}) => {
   return(
       <div className="App">
         <div id="contenidoCitas">  
@@ -231,7 +203,7 @@ const ConsultarCitas = () => {
                       <td>{ cita.cita.tratamiento }</td>
                       <td><button className='App-body-boton-vistas' onClick={ () => VerCita(cita) }>&#128270;</button></td>
                       <td><button className='App-body-boton-vistas' onClick={ () => EditarCita(cita) }>&#x270D;</button></td>
-                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarCita(cita) }>&#x1F7AE;</button></td>
+                      <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarCita(cita,urlApiCitas) }>&#x1F7AE;</button></td>
                     </tr>
                   ))
                 }

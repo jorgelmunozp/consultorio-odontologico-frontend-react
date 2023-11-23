@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { EliminarPaciente } from '../componentesEliminar/EliminarPaciente';
 
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 let pacientes;
@@ -66,52 +67,47 @@ const EditarPaciente = (paciente) => {
     html: `
       <center>
         <table class="swalTable" border='1'>
-        <thead>
-          <tr>
-            <th>Parámetro</th>
-            <th>Datos Paciente</th>
-          <tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> Código </td>
-            <td><input type="text" value=${ paciente.id } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Identificación </td>
-            <td><input type="text" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
-          <tr>
-          </tr>        
-            <td> Nombre </td>
-            <td><input type="text" value=${ paciente.paciente.nombre } class="swal2-input"></input></td>
-          <tr>
-          </tr>     
-            <td> Apellido </td>
-            <td><input type="text" value=${ paciente.paciente.apellido } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Género </td>
-            <td><input type="text" value=${ paciente.paciente.genero } class="swal2-input"></input></td>
-          <tr>
-          </tr>
-            <td> Eps </td>
-            <td><input type="text" value=${ paciente.paciente.eps } class="swal2-input"></input></td>
-          <tr>
-        </tbody>
-      </table>
-    </center>
+          <thead>
+            <tr>
+              <th>Parámetro</th>
+              <th>Datos Paciente</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Código </td>
+              <td><input type="text" value=${ paciente.id } class="swal2-input"></input></td>
+            <tr>
+            </tr>
+              <td> Identificación </td>
+              <td><input type="text" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
+            <tr>
+            </tr>        
+              <td> Nombre </td>
+              <td><input type="text" value=${ paciente.paciente.nombre } class="swal2-input"></input></td>
+            <tr>
+            </tr>     
+              <td> Apellido </td>
+              <td><input type="text" value=${ paciente.paciente.apellido } class="swal2-input"></input></td>
+            <tr>
+            </tr>
+              <td> Género </td>
+              <td><input type="text" value=${ paciente.paciente.genero } class="swal2-input"></input></td>
+            <tr>
+            </tr>
+              <td> Eps </td>
+              <td><input type="text" value=${ paciente.paciente.eps } class="swal2-input"></input></td>
+            <tr>
+          </tbody>
+        </table>
+      </center>
   `,
   confirmButtonColor: "#5285c5",
   confirmButtonText: "Aceptar"
   });  
 }
 
-const EliminarPaciente = (paciente) => {
-  
-}
-
 const ConsultarPacientes = () => {
-
       return(
         <div className="App">
           <div id="contenidoPacientes">  
@@ -144,7 +140,7 @@ const ConsultarPacientes = () => {
                         <td>{ paciente.paciente.eps }</td>
                         <td><button className='App-body-boton-vistas' onClick={ () => VerPaciente(paciente) }>&#128270;</button></td>
                         <td><button className='App-body-boton-vistas' onClick={ () => EditarPaciente(paciente) }>&#x270D;</button></td>
-                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarPaciente(paciente) }>&#x1F7AE;</button></td>
+                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => EliminarPaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
                       </tr>
                     ))
                   }
