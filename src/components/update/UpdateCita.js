@@ -27,7 +27,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
           <tbody>
           <tr>
             <td> Código </td>
-            <td><input id="editarId" type="text" value=${ cita.id } class="swal2-input"></input></td>
+            <td><p id="editarId" class="swal2-input idText"> ${ cita.id } </p></td>
           <tr>
           </tr>
             <td> Paciente </td>
@@ -116,8 +116,6 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log(document.getElementById('editarPaciente'))
-      console.log(document.getElementById('editarPaciente').value)
       const contenidoCita = `{
           "cita": {
             "paciente": "${document.getElementById('editarPaciente').value}",
@@ -127,7 +125,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
             "medico": "${document.getElementById('editarMedico').value}",
             "tratamiento": "${document.getElementById('editarTratamiento').value}"
           },
-          "id": ${document.getElementById('editarId').value}
+          "id": ${cita.id}
       }`;
       updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
