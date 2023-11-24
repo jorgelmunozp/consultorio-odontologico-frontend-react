@@ -39,7 +39,7 @@ export const ReadCita = (cita) => {
             <tr>
             </tr>
               <td> Médico </td>
-              <td>${ cita.cita.medico }</td>
+              <td>${ cita.cita.doctor }</td>
             <tr>
             </tr>
               <td> Tratamiento </td>

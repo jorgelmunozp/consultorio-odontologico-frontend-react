@@ -76,7 +76,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
             <td>
               <form>
                 <select id="editarMedico">
-                  <option value=${ cita.cita.medico }>${ cita.cita.medico }</option>
+                  <option value=${ cita.cita.doctor }>${ cita.cita.doctor }</option>
                   ${ 
                     doctores.map( (doctores) => {
                       return(
@@ -122,7 +122,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
             "fecha": "${document.getElementById('editarFecha').value}",
             "hora": "${document.getElementById('editarHora').value}",
             "consultorio": "${document.getElementById('editarConsultorio').value}",
-            "medico": "${document.getElementById('editarMedico').value}",
+            "doctor": "${document.getElementById('editarMedico').value}",
             "tratamiento": "${document.getElementById('editarTratamiento').value}"
           },
           "id": ${cita.id}

@@ -20,7 +20,7 @@ export const UpdateDoctor = (doctor,urlApiDoctores) => {
           <tbody>
             <tr>
               <td> Código </td>
-              <td><input type="text" value=${ doctor.id } class="swal2-input"></input></td>
+              <td><p id="editarId" class="swal2-input idText"> ${ doctor.id } </p></td>
             <tr>
             </tr>        
               <td> Nombre </td>
@@ -38,7 +38,10 @@ export const UpdateDoctor = (doctor,urlApiDoctores) => {
         </table>
       </center>
   `,
+  showCancelButton: true,
   confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Guardar",
+  cancelButtonText: "Cancelar"
   }); 
 };

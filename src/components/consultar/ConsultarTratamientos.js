@@ -9,7 +9,7 @@ await fetch(urlApiTratamientos)                      //API REST para consumo de 
         .then(response => response.json())
         .then(data => tratamientos = data);
 
-export const ConsultarTratamientos = ({urlApiTratamientos}) => {
+export const ConsultarTratamientos = ({urlApiTratamientos,doctores,consultorios}) => {
       return(
         <div className="App">
           <div id="contenidoTratamientos">  
@@ -37,7 +37,7 @@ export const ConsultarTratamientos = ({urlApiTratamientos}) => {
                         <td>{ tratamiento.tratamiento.consultorio }</td>
                         <td>{ tratamiento.tratamiento.doctor }</td>
                         <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
-                        <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos) }>&#x270D;</button></td>
+                        <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
                         <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos) }>&#x1F7AE;</button></td>
                       </tr>
                     ))

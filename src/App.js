@@ -110,7 +110,7 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 5){
     return <CreatePaciente urlApiPacientes={urlApiPacientes} />;
   }else if(menu === 6){
-    return <ConsultarTratamientos />;
+    return <ConsultarTratamientos doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 7){
     return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){

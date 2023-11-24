@@ -48,7 +48,7 @@ export const ConsultarCitas = ({
                       <td>{ cita.cita.fecha }</td>
                       <td>{ cita.cita.hora }</td>
                       <td>{ cita.cita.consultorio }</td>
-                      <td>{ cita.cita.medico }</td>
+                      <td>{ cita.cita.doctor }</td>
                       <td>{ cita.cita.tratamiento }</td>
                       <td><button className='App-body-boton-vistas' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
                       <td><button className='App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>

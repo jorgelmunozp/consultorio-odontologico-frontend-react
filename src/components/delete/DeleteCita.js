@@ -36,7 +36,7 @@ export const DeleteCita = (cita,urlApiCitas) => {
               <tr>
               </tr>
                 <td> Médico </td>
-                <td>${ cita.cita.medico }</td>
+                <td>${ cita.cita.doctor }</td>
               <tr>
               </tr>
                 <td> Tratamiento </td>

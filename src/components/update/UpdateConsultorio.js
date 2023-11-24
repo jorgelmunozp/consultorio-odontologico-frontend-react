@@ -20,7 +20,7 @@ export const UpdateConsultorio = (consultorio) => {
           <tbody>
             <tr>
               <td> Código </td>
-              <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
+              <td><p id="editarId" class="swal2-input idText"> ${ consultorio.id } </p></td>
             <tr>
             </tr>
               <td> Número </td>
@@ -34,7 +34,10 @@ export const UpdateConsultorio = (consultorio) => {
         </table>
       </center>
   `,
+  showCancelButton: true,
   confirmButtonColor: "#5285c5",
-  confirmButtonText: "Aceptar"
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Guardar",
+  cancelButtonText: "Cancelar"
   }); 
 };

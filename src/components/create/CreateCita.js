@@ -18,7 +18,7 @@ export const CreateCita = ({
       "fecha": document.getElementById("registroFecha").value,
       "hora": document.getElementById("registroHora").value,
       "consultorio": document.getElementById("registroConsultorio").innerText,
-      "medico": document.getElementById("registroMedico").innerText,
+      "doctor": document.getElementById("registroDoctor").innerText,
       "tratamiento": document.getElementById("registroTratamiento").innerText,
     },
   })`
@@ -145,14 +145,14 @@ export const CreateCita = ({
                   <td>
                     <FormControl fullWidth margin="dense">
                       <InputLabel
-                        id="registroMedico-label"
+                        id="registroDoctor-label"
                         className="select"
                       >
                         Médico
                       </InputLabel>
                       <Select
-                        labelId="registroMedico-label"
-                        id="registroMedico"
+                        labelId="registroDoctor-label"
+                        id="registroDoctor"
                         value={doctor}
                         label="Especialidad"
                         onChange={handleChangeDoctor}
