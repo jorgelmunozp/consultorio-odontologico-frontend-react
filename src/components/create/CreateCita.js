@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
+import { getTime } from '../../helpers/getTime';
+import { getDate } from '../../helpers/getDate';
 
 export const CreateCita = ({
   urlApiCitas,
@@ -10,7 +12,6 @@ export const CreateCita = ({
   doctores,
   consultorios
 }) => {
-
   const contenidoCitas = `JSON.stringify({
     "cita": {
       "paciente": document.getElementById("registroPaciente").innerText,
@@ -22,26 +23,8 @@ export const CreateCita = ({
     },
   })`
 
-  const date = new Date();
-  const fechaActual = date
-    .toLocaleDateString("es-CO", {
-      formatMatcher: "basic",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .split("/");
-  let [fecha, setFecha] = useState(
-    fechaActual[2] + "-" + fechaActual[1] + "-" + fechaActual[0]
-  );
-
-  var hours = new Date();
-  const horaActual = hours.toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-  });
-  let [hora, setHora] = useState(horaActual);
+  let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
+  let [hora, setHora] = useState(getTime);
 
   const [paciente, setPaciente] = useState(""); //Select
   const handleChangePaciente = (event) => {

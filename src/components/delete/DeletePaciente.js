@@ -16,27 +16,27 @@ export const DeletePaciente = (paciente,urlApiPacientes) => {
             <tbody>
               <tr>
                 <td> Código </td>
-                <td><input type="text" value=${ paciente.id } class="swal2-input"></input></td>
+                <td>${ paciente.id }</td>
               <tr>
               </tr>
                 <td> Identificación </td>
-                <td><input type="text" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
+                <td>${ paciente.paciente.identificacion }</td>
               <tr>
               </tr>        
                 <td> Nombre </td>
-                <td><input type="text" value=${ paciente.paciente.nombre } class="swal2-input"></input></td>
+                <td>${ paciente.paciente.nombre }</td>
               <tr>
               </tr>     
                 <td> Apellido </td>
-                <td><input type="text" value=${ paciente.paciente.apellido } class="swal2-input"></input></td>
+                <td>${ paciente.paciente.apellido }</td>
               <tr>
               </tr>
                 <td> Género </td>
-                <td><input type="text" value=${ paciente.paciente.genero } class="swal2-input"></input></td>
+                <td>${ paciente.paciente.genero }</td>
               <tr>
               </tr>
                 <td> Eps </td>
-                <td><input type="text" value=${ paciente.paciente.eps } class="swal2-input"></input></td>
+                <td>${ paciente.paciente.eps }</td>
               <tr>
             </tbody>
           </table>

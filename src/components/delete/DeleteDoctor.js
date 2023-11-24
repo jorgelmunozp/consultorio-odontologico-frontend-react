@@ -16,19 +16,19 @@ export const DeleteDoctor = (doctor,urlApiDoctores) => {
             <tbody>
               <tr>
                 <td> Código </td>
-                <td><input type="text" value=${ doctor.id } class="swal2-input"></input></td>
+                <td>${ doctor.id }</td>
               <tr>
               </tr>        
                 <td> Nombre </td>
-                <td><input type="text" value=${ doctor.doctor.nombre } class="swal2-input"></input></td>
+                <td>${ doctor.doctor.nombre }</td>
               <tr>
               </tr>     
                 <td> Apellido </td>
-                <td><input type="text" value=${ doctor.doctor.apellido } class="swal2-input"></input></td>
+                <td>${ doctor.doctor.apellido }</td>
               <tr>
               </tr>
                 <td> Especialidad </td>
-                <td><input type="text" value=${ doctor.doctor.especialidad } class="swal2-input"></input></td>
+                <td>${ doctor.doctor.especialidad }</td>
               <tr>
             </tbody>
           </table>

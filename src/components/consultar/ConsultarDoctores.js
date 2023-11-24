@@ -9,7 +9,7 @@ await fetch(urlApiDoctores)                      //API REST para consumo de la t
         .then(response => response.json())
         .then(data => doctores = data);
    
-const ConsultarDoctores = () => {
+export const ConsultarDoctores = () => {
   return (
     <div className="App">
       <div id="contenidoDoctores">
@@ -48,6 +48,4 @@ const ConsultarDoctores = () => {
         </div>
       </div>
   )
-}
-
-export default ConsultarDoctores;
+};

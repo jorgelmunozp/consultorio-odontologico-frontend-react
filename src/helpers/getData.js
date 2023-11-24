@@ -1,6 +1,6 @@
 export const getData = async( urlApi ) => {
-    const resp = await fetch( urlApi );
-    const doctores = await resp.json();
+    const response = await fetch( urlApi );
+    const responseReturn = await response.json();
 
-    return doctores;
+    return responseReturn;
 }

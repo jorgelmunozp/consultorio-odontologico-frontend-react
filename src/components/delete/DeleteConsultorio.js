@@ -16,15 +16,15 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
             <tbody>
               <tr>
                 <td> Código </td>
-                <td><input type="text" value=${ consultorio.id } class="swal2-input"></input></td>
+                <td>${ consultorio.id }</td>
               <tr>
               </tr>
                 <td> Número </td>
-                <td><input type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
+                <td>${ consultorio.consultorio.numero }</td>
               <tr>
               </tr>        
                 <td> Nombre </td>
-                <td><input type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
+                <td>${ consultorio.consultorio.nombre }</td>
               <tr>
             </tbody>
           </table>

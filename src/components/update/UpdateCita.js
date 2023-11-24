@@ -1,9 +1,14 @@
+import React, { useState } from "react";
 import Swal from 'sweetalert2';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { updateFetch } from '../../helpers/updateFetch';
+import { getTime } from '../../helpers/getTime';
+import { getDate } from '../../helpers/getDate';
 
-export const UpdateCita = (cita,urlApiCitas) => {
+export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,consultorios) => {
   console.log(cita.cita.paciente.split(" ")[0])
   console.log(cita.cita.paciente.split(" ")[1])
+
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -13,73 +18,102 @@ export const UpdateCita = (cita,urlApiCitas) => {
     html: `
       <center>
         <table class="swalTable" border='1'>
-        <thead>
-        <tr>
-          <th>Parámetro</th>
-          <th>Datos Paciente</th>
-        <tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td> Código </td>
-          <td><input id="editarId" type="text" value=${ cita.id } class="swal2-input"></input></td>
-        <tr>
-        </tr>
-          <td> Paciente </td>
-          <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente.split(" ")[0] + cita.cita.paciente.split(" ")[1] } class="swal2-input"></input></td>
-        <tr>
-        </tr>        
-          <td> Fecha </td>
-          <td><input id="editarFecha" type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
-        <tr>
-        </tr>     
-          <td> Hora </td>
-          <td><input id="editarHora" type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
-        <tr>
-        </tr>
-          <td> Consultorio </td>
-          <FormControl fullWidth margin="dense">
-          <InputLabel
-            id="registroConsultorio-label"
-            className="select"
-          >
-            Consultorio
-          </InputLabel>
-          <Select
-            labelId="registroConsultorio-label"
-            id="registroConsultorio"
-            value={consultorio}
-            label="registroConsultorio"
-            onChange={handleChangeConsultorio}
-          >
-            {consultorios.map((consultorios) => {
-              return (
-                <MenuItem
-                  value={consultorios.id}
-                  className="select-item"
-                >
-                  {consultorios.consultorio.numero}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-          <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
-        <tr>
-        </tr>
-          <td> Médico </td>
-          <td><input id="editarMedico" type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
-        <tr>
-        </tr>
-          <td> Tratamiento </td>
-          <td><input id="editarTratamiento" type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
-        </tr>
-        </tbody>
-      </table>
-    </center>
+          <thead>
+          <tr>
+            <th>Parámetro</th>
+            <th>Datos Paciente</th>
+          <tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td> Código </td>
+            <td><input id="editarId" type="text" value=${ cita.id } class="swal2-input"></input></td>
+          <tr>
+          </tr>
+            <td> Paciente </td>
+            <td>
+              <form>
+                <select id="editarPaciente">
+                  <option value=${ cita.cita.paciente }>${ cita.cita.paciente }</option>
+                  ${ 
+                    pacientes.map( (pacientes) => {
+                      return(
+                        `<option value=${pacientes.paciente.nombre + " " + pacientes.paciente.apellido}>${pacientes.paciente.nombre + " " + pacientes.paciente.apellido}</option>`
+                      )
+                    })            
+                  }
+                </select>
+              </form>
+            </td>
+          <tr>
+          </tr>        
+            <td> Fecha </td>
+            <td><input id="editarFecha" type="date" value=${ cita.cita.fecha } class="swal2-input dateSelector"></input></td>
+          <tr>
+          </tr>     
+            <td> Hora </td>
+            <td><input id="editarHora" type="time" value=${ cita.cita.hora } class="swal2-input timeSelector"></input></td>
+          <tr>
+          </tr>
+            <td> Consultorio </td>
+            <td>
+              <form>
+                <select id="editarConsultorio">
+                  <option value=${ cita.cita.consultorio }>${ cita.cita.consultorio }</option>
+                  ${ 
+                    consultorios.map( (consultorios) => {
+                      return(
+                        `<option value=${consultorios.consultorio.numero}>${consultorios.consultorio.numero + " - " + consultorios.consultorio.nombre}</option>`
+                      )
+                    })            
+                  }
+                </select>
+              </form>
+            </td>
+          <tr>
+          </tr>
+            <td> Médico </td>
+            <td>
+              <form>
+                <select id="editarMedico">
+                  <option value=${ cita.cita.medico }>${ cita.cita.medico }</option>
+                  ${ 
+                    doctores.map( (doctores) => {
+                      return(
+                        `<option value=${doctores.doctor.nombre + " " + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
+                      )
+                    })            
+                  }
+                </select>
+              </form>
+            </td>
+          <tr>
+          </tr>
+            <td> Tratamiento </td>
+            <td>
+              <form>
+                <select id="editarTratamiento">
+                  <option value=${ cita.cita.tratamiento }>${ cita.cita.tratamiento }</option>
+                  ${ 
+                    tratamientos.map( (tratamientos) => {
+                      return(
+                        `<option value=${tratamientos.tratamiento.tipo}>${tratamientos.tratamiento.tipo}</option>`
+                      )
+                    })            
+                  }
+                </select>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </center>
   `,
+  showCancelButton: true,
   confirmButtonColor: "#5285c5",
-  confirmButtonText: "Guardar"
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Guardar",
+  cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
       console.log(document.getElementById('editarPaciente'))

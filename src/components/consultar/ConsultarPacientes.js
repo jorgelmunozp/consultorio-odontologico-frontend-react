@@ -9,7 +9,7 @@ await fetch(urlApiPacientes)                      //API REST para consumo de la 
         .then(response => response.json())
         .then(data => pacientes = data);
 
-const ConsultarPacientes = () => {
+export const ConsultarPacientes = () => {
       return(
         <div className="App">
           <div id="contenidoPacientes">  
@@ -52,6 +52,4 @@ const ConsultarPacientes = () => {
         </div>
       </div>
       )
-    }
-    
-    export default ConsultarPacientes;
+    };

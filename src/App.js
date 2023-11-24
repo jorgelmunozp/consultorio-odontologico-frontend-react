@@ -9,11 +9,11 @@ import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, T
 import Usuario from './Usuario';
 
 import Inicio from './home';
-import ConsultarCitas from './components/consultar/ConsultarCitas';
-import ConsultarPacientes from './components/consultar/ConsultarPacientes';
-import ConsultarTratamientos from './components/consultar/ConsultarTratamientos';
-import ConsultarDoctores from './components/consultar/ConsultarDoctores';
-import ConsultarConsultorios from './components/consultar/ConsultarConsultorios';
+import { ConsultarCitas } from './components/consultar/ConsultarCitas';
+import { ConsultarPacientes } from './components/consultar/ConsultarPacientes';
+import { ConsultarTratamientos } from './components/consultar/ConsultarTratamientos';
+import { ConsultarDoctores } from './components/consultar/ConsultarDoctores';
+import { ConsultarConsultorios } from './components/consultar/ConsultarConsultorios';
 import { CreateCita } from './components/create/CreateCita';
 import { CreatePaciente } from './components/create/CreatePaciente';
 import { CreateTratamiento } from './components/create/CreateTratamiento';
@@ -97,7 +97,6 @@ function App() {
     </div>
   );
 }
-
 
 const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios}) => {        //Componente para elegir juego a renderizar
   if(menu === 1){

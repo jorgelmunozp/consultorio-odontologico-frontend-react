@@ -4,44 +4,44 @@ import { deleteFetch } from '../../helpers/deleteFetch';
 export const DeleteCita = (cita,urlApiCitas) => {
     Swal.fire({
       title: "Eliminar Cita?",
-      html: `
-          <center>
-            <table class="swalTable" border='1'>
+        html: `
+        <center>
+          <table class="swalTable" border='1'>
             <thead>
-            <tr>
-              <th>Parámetro</th>
-              <th>Datos Paciente</th>
-            <tr>
+              <tr>
+                <th>Parámetro</th>
+                <th>Datos Paciente</th>
+              <tr>
             </thead>
             <tbody>
-            <tr>
-              <td> Código </td>
-              <td><input type="text" value=${ cita.id } class="swal2-input"></input></td>
-            <tr>
-            </tr>
-              <td> Paciente </td>
-              <td><input id="editarPaciente" type="text" value=${ cita.cita.paciente } class="swal2-input"></input></td>
-            <tr>
-            </tr>        
-              <td> Fecha </td>
-              <td><input id="editarFecha" type="text" value=${ cita.cita.fecha } class="swal2-input"></input></td>
-            <tr>
-            </tr>     
-              <td> Hora </td>
-              <td><input id="editarHora" type="text" value=${ cita.cita.hora } class="swal2-input"></input></td>
-            <tr>
-            </tr>
-              <td> Consultorio </td>
-              <td><input id="editarConsultorio" type="text" value=${ cita.cita.consultorio } class="swal2-input"></input></td>
-            <tr>
-            </tr>
-              <td> Médico </td>
-              <td><input id="editarMedico" type="text" value=${ cita.cita.medico } class="swal2-input"></input></td>
-            <tr>
-            </tr>
-              <td> Tratamiento </td>
-              <td><input id="editarTratamiento" type="text" value=${ cita.cita.tratamiento } class="swal2-input"></input></td>
-            </tr>
+              <tr>
+                <td> Código </td>
+                <td>${ cita.id }</td>
+              <tr>
+              </tr>
+                <td> Paciente </td>
+                <td>${ cita.cita.paciente }</td>
+              <tr>
+              </tr>        
+                <td> Fecha </td>
+                <td>${ cita.cita.fecha }</td>
+              <tr>
+              </tr>     
+                <td> Hora </td>
+                <td>${ cita.cita.hora }</td>
+              <tr>
+              </tr>
+                <td> Consultorio </td>
+                <td>${ cita.cita.consultorio }</td>
+              <tr>
+              </tr>
+                <td> Médico </td>
+                <td>${ cita.cita.medico }</td>
+              <tr>
+              </tr>
+                <td> Tratamiento </td>
+                <td>${ cita.cita.tratamiento }</td>
+              </tr>
             </tbody>
           </table>
         </center>

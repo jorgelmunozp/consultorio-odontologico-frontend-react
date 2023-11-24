@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { updateFetch } from '../../helpers/updateFetch';
+import React, { useState } from 'react';
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
@@ -10,13 +10,14 @@ await fetch(urlApiCitas)                      //API REST para consumo de la tabl
         .then(response => response.json())
         .then(data => citas = data);
 
-const ConsultarCitas = ({
+export const ConsultarCitas = ({
   urlApiCitas,
   pacientes,
   tratamientos,
   doctores,
-  consultorios,
+  consultorios
 }) => {
+
   return(
       <div className="App">
         <div id="contenidoCitas">  
@@ -50,7 +51,7 @@ const ConsultarCitas = ({
                       <td>{ cita.cita.medico }</td>
                       <td>{ cita.cita.tratamiento }</td>
                       <td><button className='App-body-boton-vistas' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
-                      <td><button className='App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas) }>&#x270D;</button></td>
+                      <td><button className='App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
                       <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas) }>&#x1F7AE;</button></td>
                     </tr>
                   ))
@@ -61,6 +62,4 @@ const ConsultarCitas = ({
         </div>
       </div>
     )
-  }
-
-  export default ConsultarCitas;
+  };

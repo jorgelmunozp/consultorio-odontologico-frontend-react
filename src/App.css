@@ -191,17 +191,16 @@ input[type='number']::-webkit-outer-spin-button {
   display: none;
 }
 input[type='date'] {
-  width: 100%;
-  height: 8vh;
-  min-width: 29vw!important;
   color: var(--darkgray-color)!important;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 input[type='time'] {
-  width: 100%;
-  height: 8vh;
-  min-width: 29vw!important;
   color: var(--darkgray-color)!important;
+  width: 100%;
+  height: 100%;
+  border: none;
   cursor: pointer;
 }
 input[type="date"]::-webkit-calendar-picker-indicator ,
@@ -212,21 +211,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 select {
-  font-size: 1.6vw;
+  background-color: var(--white-color);
+  font-size: inherit;
   font-family: inherit;
   color: var(--darkgray-color);
-  min-width: 29vw!important;
-  width: 30.1vw;
-  height: 8vh;
-  background-color: var(--lightgray-color);
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 30px;
-  padding-inline-start: 1vw;
+  padding-inline-start: 1vmin;
   cursor: pointer;
 }
-select::-ms-expand {
-  display: none;
-}
+select::-ms-expand { display: none; }
+
+.dateSelector { padding: 0 0 0 1.25vmin !important; }
+.timeSelector { padding: 0 0 0 1.25vmin !important; }
 
 /****** selector  *******/
 .selector {
