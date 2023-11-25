@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import React, { useState }  from "react";
 import { TextField } from "@mui/material";
 import { FaClinicMedical } from "react-icons/fa";
@@ -14,7 +15,18 @@ export const CreateConsultorio = ({
     },
   })`
 
-  const [alertMessage, setAlertMessage] = useState("");
+  const [responseStatus, setResponseStatus] = useState("");
+
+  if(200 <= responseStatus && responseStatus <= 299){
+    Swal.fire("Consultorio Registrado", "", "success");
+    setResponseStatus(0);
+  } else if(400 <= responseStatus && responseStatus <= 499){
+    Swal.fire("Consultorio No Registrado", "", "error");
+    setResponseStatus(0);
+  } else if(500 <= responseStatus && responseStatus <= 599){
+    Swal.fire("Consultorio No Registrado", "", "error");
+    setResponseStatus(0);
+  }
 
   return (
     <div className="App">
@@ -54,12 +66,7 @@ export const CreateConsultorio = ({
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setAlertMessage={setAlertMessage}></BotonGuardar>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                      <p className="alertMessage">{ alertMessage }</p>
+                  <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus}></BotonGuardar>
                 </td>
               </tr>
             </tbody>

@@ -51,11 +51,7 @@ export const DeletePaciente = (paciente,urlApiPacientes) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiPacientes,paciente.id);
-        Swal.fire({
-          title: "Paciente Eliminado",
-          text: "El paciente fue eliminado con éxito",
-          icon: "success"
-        });
+        Swal.fire({ title: "Paciente Eliminado", icon: "success" });
       }
     });
 };

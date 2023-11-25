@@ -39,11 +39,7 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiConsultorios,consultorio.id);
-        Swal.fire({
-          title: "Consultorio Eliminado",
-          text: "El consultorio fue eliminado con éxito",
-          icon: "success"
-        });
+        Swal.fire({ title: "Consultorio Eliminado", icon: "success" });
       }
     });
 };

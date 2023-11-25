@@ -43,11 +43,7 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiTratamientos,tratamiento.id);
-        Swal.fire({
-          title: "Tratamiento Eliminado",
-          text: "El tratamiento fue eliminado con éxito",
-          icon: "success"
-        });
+        Swal.fire({ title: "Tratamiento Eliminado", icon: "success" });
       }
     });
 };

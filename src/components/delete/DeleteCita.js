@@ -55,11 +55,7 @@ export const DeleteCita = (cita,urlApiCitas) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiCitas,cita.id);
-        Swal.fire({
-          title: "Cita Eliminada",
-          text: "La cita fue eliminada con éxito",
-          icon: "success"
-        });
+        Swal.fire({ title: "Cita Eliminada", icon: "success" });
       }
     });
 };

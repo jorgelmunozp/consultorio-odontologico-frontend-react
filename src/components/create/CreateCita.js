@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
@@ -43,8 +44,18 @@ export const CreateCita = ({
     setConsultorio(event.target.value);
   };
 
-  const [alertMessage, setAlertMessage] = useState("");
+  const [responseStatus, setResponseStatus] = useState(0);
 
+  if(200 <= responseStatus && responseStatus <= 299){
+    Swal.fire("Cita Registrada", "", "success");
+    setResponseStatus(0);
+  } else if(400 <= responseStatus && responseStatus <= 499){
+    Swal.fire("Cita No Registrada", "", "error");
+    setResponseStatus(0);
+  } else if(500 <= responseStatus && responseStatus <= 599){
+    Swal.fire("Cita No Registrada", "", "error");
+    setResponseStatus(0);
+  }
   return (
     <div className="App">
       <div id="body">
@@ -201,12 +212,7 @@ export const CreateCita = ({
                 <br></br>
                 <tr>
                   <td colSpan={2}>
-                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setAlertMessage={setAlertMessage}></BotonGuardar>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>
-                        <p className="alertMessage">{ alertMessage }</p>
+                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus}></BotonGuardar>
                   </td>
                 </tr>
               </tbody>

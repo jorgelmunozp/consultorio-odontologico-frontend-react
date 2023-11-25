@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import React, { useState }  from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaStethoscope } from "react-icons/fa";
@@ -26,7 +27,18 @@ export const CreateTratamiento = ({
     setDoctor(event.target.value);
   };
 
-  const [alertMessage, setAlertMessage] = useState("");
+  const [responseStatus, setResponseStatus] = useState("");
+
+  if(200 <= responseStatus && responseStatus <= 299){
+    Swal.fire("Tratamiento Registrado", "", "success");
+    setResponseStatus(0);
+  } else if(400 <= responseStatus && responseStatus <= 499){
+    Swal.fire("Tratamiento No Registrado", "", "error");
+    setResponseStatus(0);
+  } else if(500 <= responseStatus && responseStatus <= 599){
+    Swal.fire("Tratamiento No Registrado", "", "error");
+    setResponseStatus(0);
+  }
 
   return (
     <div className="App">
@@ -101,12 +113,7 @@ export const CreateTratamiento = ({
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setAlertMessage={setAlertMessage}></BotonGuardar>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={2}>
-                      <p className="alertMessage">{ alertMessage }</p>
+                  <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus}></BotonGuardar>
                 </td>
               </tr>
             </tbody>

@@ -43,11 +43,7 @@ export const DeleteDoctor = (doctor,urlApiDoctores) => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiDoctores,doctor.id);
-        Swal.fire({
-          title: "Doctor Eliminado",
-          text: "El doctor fue eliminado con éxito",
-          icon: "success"
-        });
+        Swal.fire({ title: "Doctor Eliminado", icon: "success" });
       }
     });
 };
