@@ -31,6 +31,8 @@ export const CreateTratamiento = ({
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Tratamiento Registrado", "", "success");
+    setConsultorio("");
+    setDoctor("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     Swal.fire("Tratamiento No Registrado", "", "error");

@@ -32,6 +32,8 @@ export const CreatePaciente = ({
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Paciente Registrado", "", "success");
+    setGenero("");
+    setEps("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     Swal.fire("Paciente No Registrado", "", "error");

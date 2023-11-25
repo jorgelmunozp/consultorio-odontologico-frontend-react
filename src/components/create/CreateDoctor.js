@@ -25,6 +25,7 @@ export const CreateDoctor = ({
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Doctor Registrado", "", "success");
+    setEspecialidad("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     Swal.fire("Doctor No Registrado", "", "error");

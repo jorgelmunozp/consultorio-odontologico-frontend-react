@@ -27,19 +27,19 @@ export const CreateCita = ({
   let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
   let [hora, setHora] = useState(getTime);
 
-  const [paciente, setPaciente] = useState(""); //Select
+  const [paciente, setPaciente] = useState("");
   const handleChangePaciente = (event) => {
     setPaciente(event.target.value);
   };
-  const [tratamiento, setTratamiento] = useState(""); //Select
+  const [tratamiento, setTratamiento] = useState("");
   const handleChangeTratamiento = (event) => {
     setTratamiento(event.target.value);
   };
-  const [doctor, setDoctor] = useState(""); //Select
+  const [doctor, setDoctor] = useState("");
   const handleChangeDoctor = (event) => {
     setDoctor(event.target.value);
   };
-  const [consultorio, setConsultorio] = useState(""); //Select
+  const [consultorio, setConsultorio] = useState("");
   const handleChangeConsultorio = (event) => {
     setConsultorio(event.target.value);
   };
@@ -47,7 +47,12 @@ export const CreateCita = ({
   const [responseStatus, setResponseStatus] = useState(0);
 
   if(200 <= responseStatus && responseStatus <= 299){
+
     Swal.fire("Cita Registrada", "", "success");
+    setPaciente("");
+    setTratamiento("");
+    setConsultorio("");
+    setDoctor("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     Swal.fire("Cita No Registrada", "", "error");
@@ -159,7 +164,7 @@ export const CreateCita = ({
                         id="registroDoctor-label"
                         className="select"
                       >
-                        Médico
+                        Doctor
                       </InputLabel>
                       <Select
                         labelId="registroDoctor-label"
