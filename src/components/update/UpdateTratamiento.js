@@ -83,7 +83,9 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
       const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
       fetchResponse.then(
         function(value) {
-          if(200 <= value && value <= 299) { Swal.fire("Cita Actualizada", "", "success"); } 
+          if(200 <= value && value <= 299) { 
+            Swal.fire("Tratamiento Actualizado", "", "success"); 
+          }
           else { Swal.fire("Error en la actualización", "", "error"); }
         },
         function(error) { Swal.fire("Error en la actualización", "", "error"); }
