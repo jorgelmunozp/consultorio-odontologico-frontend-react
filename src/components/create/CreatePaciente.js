@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import React, { useState }  from "react";
+import ReactDOM from 'react-dom/client';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
@@ -31,6 +32,10 @@ export const CreatePaciente = ({
   const [responseStatus, setResponseStatus] = useState("");
 
   if(200 <= responseStatus && responseStatus <= 299){
+    // const root = ReactDOM.createRoot(
+    //   document.getElementById("nombrePaciente").innerHTML = ""
+    // );
+
     Swal.fire("Paciente Registrado", "", "success");
     setGenero("");
     setEps("");
@@ -56,35 +61,22 @@ export const CreatePaciente = ({
               <tr>
                 <td colSpan={2}>
                   <TextField
-                    id="cedulaPaciente"
-                    label="Cédula"
-                    type="number"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="cedulaPaciente" label="Cédula" type="number" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
               <tr>
                 <td>
                   <TextField
-                    id="nombrePaciente"
-                    label="Nombre"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="nombrePaciente" label="Nombre" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
                 <td>
                   <TextField
-                    id="apellidoPaciente"
-                    label="Apellido"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="apellidoPaciente" label="Apellido" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>

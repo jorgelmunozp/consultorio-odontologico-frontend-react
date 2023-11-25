@@ -55,12 +55,8 @@ export const CreateTratamiento = ({
               <tr>
                 <td colSpan={2}>
                   <TextField
-                    id="nombreTratamiento"
-                    label="Nombre"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="nombreTratamiento" label="Nombre" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>

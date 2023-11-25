@@ -75,10 +75,7 @@ export const CreateCita = ({
                 <tr>
                   <td>
                     <FormControl fullWidth margin="dense">
-                      <InputLabel
-                        id="registroPaciente-label"
-                        className="select"
-                      >
+                      <InputLabel id="registroPaciente-label" className="select">
                         Paciente
                       </InputLabel>
                       <Select
@@ -103,10 +100,7 @@ export const CreateCita = ({
                   </td>
                   <td>
                     <FormControl fullWidth margin="dense">
-                      <InputLabel
-                        id="registroTratamiento-label"
-                        className="select"
-                      >
+                      <InputLabel id="registroTratamiento-label" className="select">
                         Tratamiento
                       </InputLabel>
                       <Select
@@ -160,10 +154,7 @@ export const CreateCita = ({
                 <tr>
                   <td>
                     <FormControl fullWidth margin="dense">
-                      <InputLabel
-                        id="registroDoctor-label"
-                        className="select"
-                      >
+                      <InputLabel id="registroDoctor-label" className="select">
                         Doctor
                       </InputLabel>
                       <Select
@@ -187,10 +178,7 @@ export const CreateCita = ({
                   </td>
                   <td>
                     <FormControl fullWidth margin="dense">
-                      <InputLabel
-                        id="registroConsultorio-label"
-                        className="select"
-                      >
+                      <InputLabel id="registroConsultorio-label" className="select">
                         Consultorio
                       </InputLabel>
                       <Select

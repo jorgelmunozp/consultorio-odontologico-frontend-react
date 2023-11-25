@@ -41,25 +41,16 @@ export const CreateConsultorio = ({
               <tr>
                 <td>
                   <TextField
-                    id="ConsultoriosNumero"
-                    label="Número"
-                    type="number"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="ConsultoriosNumero" label="Número" type="number" variant="outlined" 
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
               <tr>
                 <td>
                   <TextField
-                    id="ConsultoriosNombre"
-                    label="Nombre"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="ConsultoriosNombre" label="Nombre" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>

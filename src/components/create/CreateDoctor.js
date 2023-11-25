@@ -48,24 +48,16 @@ export const CreateDoctor = ({
                 {/* Codigo de la persona o cedula para registrarse */}
                 <td>
                   <TextField
-                    id="nombreDoctor"
-                    label="Nombre"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="nombreDoctor" label="Nombre" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
               <tr>
                 <td>
                   <TextField
-                    id="apellidoDoctor"
-                    label="Apellido"
-                    variant="outlined"
-                    className="textField"
-                    margin="dense"
-                    autoComplete="off"
+                    id="apellidoDoctor" label="Apellido" variant="outlined"
+                    className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
