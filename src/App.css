@@ -184,6 +184,9 @@ label, .MuiSelect-select {
   text-align: left;
   margin-left: -1vmin !important;
 }
+input {
+  padding: 0 0 0 0.75vmin !important;
+}
 input[type='number'] {
   color: var(--darkgray-color)!important;
 }
