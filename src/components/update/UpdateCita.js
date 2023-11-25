@@ -2,9 +2,6 @@ import Swal from 'sweetalert2';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,consultorios) => {
-  console.log(cita.cita.paciente.split(" ")[0])
-  console.log(cita.cita.paciente.split(" ")[1])
-
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -23,7 +20,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
           <tbody>
           <tr>
             <td> Código </td>
-            <td><p id="editarId" class="swal2-input idText"> ${ cita.id } </p></td>
+            <td><p class="swal2-input idText"> ${ cita.id } </p></td>
           <tr>
           </tr>
             <td> Paciente </td>
@@ -123,9 +120,14 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
           },
           "id": ${cita.id}
       }`;
-      console.log(contenidoCita)
-      updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
-      Swal.fire("Cita Actualizada", "", "success");
+      const fetchResponse = updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
+      fetchResponse.then(
+        function(value) {
+          if(200 <= value && value <= 299) { Swal.fire("Cita Actualizada", "", "success"); } 
+          else { Swal.fire("Error en la actualización", "", "error"); }
+        },
+        function(error) { Swal.fire("Error en la actualización", "", "error"); }
+      )
     }
   });
 };

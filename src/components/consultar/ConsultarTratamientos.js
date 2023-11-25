@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { ReadTratamiento } from '../read/ReadTratamiento';
 import { UpdateTratamiento } from '../update/UpdateTratamiento';
@@ -9,7 +8,7 @@ await fetch(urlApiTratamientos)                      //API REST para consumo de 
         .then(response => response.json())
         .then(data => tratamientos = data);
 
-export const ConsultarTratamientos = ({urlApiTratamientos,doctores,consultorios}) => {
+export const ConsultarTratamientos = ({ doctores,consultorios }) => {
       return(
         <div className="App">
           <div id="contenidoTratamientos">  

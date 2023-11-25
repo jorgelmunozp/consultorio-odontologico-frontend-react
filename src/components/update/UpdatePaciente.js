@@ -20,7 +20,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes) => {
           <tbody>
             <tr>
               <td> Código </td>
-              <td><p id="editarId" class="swal2-input idText"> ${ paciente.id } </p></td>
+              <td><p class="swal2-input idText"> ${ paciente.id } </p></td>
             <tr>
             </tr>
               <td> Identificación </td>
@@ -59,12 +59,18 @@ export const UpdatePaciente = (paciente,urlApiPacientes) => {
             "nombre": "${document.getElementById('editarNombre').value}",
             "apellido": "${document.getElementById('editarApellido').value}",
             "genero": "${document.getElementById('editarGenero').value}",
-            "eps": "${document.getElementById('editarEps').value}",
+            "eps": "${document.getElementById('editarEps').value}"
           },
           "id": ${paciente.id}
       }`;
-      updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
-      Swal.fire("Paciente Actualizado", "", "success");
+      const fetchResponse = updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
+      fetchResponse.then(
+        function(value) {
+          if(200 <= value && value <= 299) { Swal.fire("Cita Actualizada", "", "success"); } 
+          else { Swal.fire("Error en la actualización", "", "error"); }
+        },
+        function(error) { Swal.fire("Error en la actualización", "", "error"); }
+      )
     }
   });
 };

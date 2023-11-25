@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { ReadPaciente } from '../read/ReadPaciente';
 import { UpdatePaciente } from '../update/UpdatePaciente';

@@ -20,11 +20,11 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
         <tbody>
           <tr>
             <td> Código </td>
-            <td><p id="editarId" class="swal2-input idText"> ${ tratamiento.id } </p></td>
+            <td><p class="swal2-input idText"> ${ tratamiento.id } </p></td>
           <tr>
           </tr>
             <td> Nombre </td>
-            <td><input type="text" value=${ tratamiento.tratamiento.tipo } class="swal2-input"></input></td>
+            <td><input id="editarNombre" type="text" value=${ tratamiento.tratamiento.nombre } class="swal2-input"></input></td>
           <tr>
           </tr>        
             <td> Consultorio </td>
@@ -47,12 +47,12 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
             <td> Doctor </td>
             <td>
               <form>
-                <select id="editarMedico">
+                <select id="editarDoctor">
                   <option value=${ tratamiento.tratamiento.doctor }>${ tratamiento.tratamiento.doctor }</option>
                   ${ 
                     doctores.map( (doctores) => {
                       return(
-                        `<option value=${doctores.doctor.nombre + " " + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
+                        `<option value=${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}>${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}</option>`
                       )
                     })            
                   }
@@ -69,5 +69,25 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
   cancelButtonColor: "#d33",
   confirmButtonText: "Guardar",
   cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const contenidoTratamiento = `{
+          "tratamiento": {
+            "nombre": "${document.getElementById('editarNombre').value}",
+            "consultorio": "${document.getElementById('editarConsultorio').value}",
+            "doctor": "${document.getElementById('editarDoctor').value}"
+          },
+          "id": ${tratamiento.id}
+      }`;
+      console.log("urlApiTratamientos 2: ",urlApiTratamientos)
+      const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
+      fetchResponse.then(
+        function(value) {
+          if(200 <= value && value <= 299) { Swal.fire("Cita Actualizada", "", "success"); } 
+          else { Swal.fire("Error en la actualización", "", "error"); }
+        },
+        function(error) { Swal.fire("Error en la actualización", "", "error"); }
+      )
+    }
   });    
 };

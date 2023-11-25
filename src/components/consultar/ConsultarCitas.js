@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2';
-import React, { useState } from 'react';
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
@@ -10,14 +8,7 @@ await fetch(urlApiCitas)                      //API REST para consumo de la tabl
         .then(response => response.json())
         .then(data => citas = data);
 
-export const ConsultarCitas = ({
-  urlApiCitas,
-  pacientes,
-  tratamientos,
-  doctores,
-  consultorios
-}) => {
-
+export const ConsultarCitas = ({ pacientes,tratamientos,doctores,consultorios }) => {
   return(
       <div className="App">
         <div id="contenidoCitas">  
