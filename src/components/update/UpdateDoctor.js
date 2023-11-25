@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
+import { ReadDoctor } from '../read/ReadDoctor';
+import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdateDoctor = (doctor,urlApiDoctores) => {
@@ -56,8 +58,51 @@ export const UpdateDoctor = (doctor,urlApiDoctores) => {
       }`;
       const fetchResponse = updateFetch(urlApiDoctores,JSON.stringify(contenidoDoctor),doctor.id);
       fetchResponse.then(
-        function(value) {
+        async function(value) {
           if(200 <= value && value <= 299) {
+            let doctores;
+            await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
+                .then(response => response.json())
+                .then(data => doctores = data);
+
+            const root = ReactDOM.createRoot(
+              document.getElementById('contenidoDoctores')
+            );
+            const element =    
+              <center>
+                <hr/>
+                <h4> Doctores Disponibles </h4>
+                <hr/>
+                <br/><br/>
+                <table className="table" border='1'>
+                  <thead>
+                    <tr>
+                      <th> Código </th>
+                      <th> Nombre </th>
+                      <th> Apellido </th>
+                      <th> Especialidad </th>
+                      <th colSpan='3'> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      doctores.map( doctor => (
+                        <tr>
+                          <td>{ doctor.id }</td>
+                          <td>{ doctor.doctor.nombre }</td>
+                          <td>{ doctor.doctor.apellido }</td>
+                          <td>{ doctor.doctor.especialidad }</td>
+                          <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
+                          <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores) }>&#x270D;</button></td>
+                          <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+              </center>;
+            root.render(element);
+
             Swal.fire("Doctor Actualizado", "", "success"); 
           } 
           else { Swal.fire("Error en la actualización", "", "error"); }

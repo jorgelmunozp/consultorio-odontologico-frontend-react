@@ -89,6 +89,7 @@ export const DeleteDoctor = (doctor,urlApiDoctores) => {
             </table>
           </center>;
         root.render(element);
+        
         Swal.fire({ title: "Doctor Eliminado", icon: "success" });
       }
     });

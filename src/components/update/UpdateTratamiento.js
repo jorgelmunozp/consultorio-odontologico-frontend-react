@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
+import { ReadTratamiento } from '../read/ReadTratamiento';
+import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consultorios) => {
@@ -82,8 +84,51 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
       }`;
       const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
       fetchResponse.then(
-        function(value) {
-          if(200 <= value && value <= 299) { 
+        async function(value) {
+          if(200 <= value && value <= 299) {
+            let tratamientos;
+            await fetch(urlApiTratamientos)                      //API REST para consumo de la tabla Tratamientos de la base de datos
+                .then(response => response.json())
+                .then(data => tratamientos = data);
+                
+            const root = ReactDOM.createRoot(
+              document.getElementById('contenidoTratamientos')
+            );
+            const element =    
+              <center>
+                <hr/>
+                <h4> Tratamientos Autorizados </h4>
+                <hr/>
+                <br/><br/>
+                <table className="table" border='1'>
+                  <thead>
+                    <tr>
+                      <th> Código </th>
+                      <th> Nombre </th>
+                      <th> Consultorio </th>
+                      <th> Doctor </th>
+                      <th colSpan='3'> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      tratamientos.map( tratamiento => (
+                        <tr>
+                          <td>{ tratamiento.id }</td>
+                          <td>{ tratamiento.tratamiento.nombre }</td>
+                          <td>{ tratamiento.tratamiento.consultorio }</td>
+                          <td>{ tratamiento.tratamiento.doctor }</td>
+                          <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
+                          <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
+                          <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+              </center>
+            root.render(element);       
+
             Swal.fire("Tratamiento Actualizado", "", "success"); 
           }
           else { Swal.fire("Error en la actualización", "", "error"); }

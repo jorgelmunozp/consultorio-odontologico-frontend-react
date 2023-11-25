@@ -89,6 +89,7 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
           </table>
         </center>;
         root.render(element);
+        
         Swal.fire({ title: "Tratamiento Eliminado", icon: "success" });
       }
     });
