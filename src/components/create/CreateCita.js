@@ -106,7 +106,7 @@ export const CreateCita = ({
                               value={tratamientos.id}
                               className="select-item"
                             >
-                              {tratamientos.tratamiento.tipo}
+                              {tratamientos.tratamiento.nombre}
                             </MenuItem>
                           );
                         })}

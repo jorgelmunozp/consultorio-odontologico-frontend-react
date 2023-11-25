@@ -23,7 +23,7 @@ export const ReadTratamiento= (tratamiento) => {
             <tr>
             </tr>
               <td> Nombre </td>
-              <td>${ tratamiento.tratamiento.tipo }</td>
+              <td>${ tratamiento.tratamiento.nombre }</td>
             <tr>
             </tr>        
               <td> Consultorio </td>

@@ -11,7 +11,7 @@ export const CreateTratamiento = ({
 
   const contenidoTratamientos = `JSON.stringify({
     "tratamiento": {
-      "tipo": document.getElementById("nombreTratamiento").value,
+      "nombre": document.getElementById("nombreTratamiento").value,
       "consultorio": document.getElementById("consultorioTratamiento").innerText,
       "doctor": document.getElementById("doctorTratamiento").innerText,
     },
@@ -53,7 +53,7 @@ export const CreateTratamiento = ({
               <tr>
                 <td>
                   <FormControl fullWidth margin="dense">
-                    <InputLabel id="tipoTratamiento-label" className="select">
+                    <InputLabel id="nombreTratamiento-label" className="select">
                       Consultorio
                     </InputLabel>
                     <Select

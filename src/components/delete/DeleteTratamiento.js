@@ -20,7 +20,7 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos) => {
               <tr>
               </tr>
                 <td> Nombre </td>
-                <td>${ tratamiento.tratamiento.tipo }</td>
+                <td>${ tratamiento.tratamiento.nombre }</td>
               <tr>
               </tr>        
                 <td> Consultorio </td>
