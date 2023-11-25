@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import ReactDOM from 'react-dom/client';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consultorios) => {

@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import ReactDOM from 'react-dom/client';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdatePaciente = (paciente,urlApiPacientes) => {
@@ -66,7 +67,9 @@ export const UpdatePaciente = (paciente,urlApiPacientes) => {
       const fetchResponse = updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
       fetchResponse.then(
         function(value) {
-          if(200 <= value && value <= 299) { Swal.fire("Cita Actualizada", "", "success"); } 
+          if(200 <= value && value <= 299) { 
+            Swal.fire("Paciente Actualizado", "", "success"); 
+          } 
           else { Swal.fire("Error en la actualización", "", "error"); }
         },
         function(error) { Swal.fire("Error en la actualización", "", "error"); }
