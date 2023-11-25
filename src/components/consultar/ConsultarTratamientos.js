@@ -32,7 +32,7 @@ export const ConsultarTratamientos = ({ doctores,consultorios }) => {
                     tratamientos.map( tratamiento => (
                       <tr>
                         <td>{ tratamiento.id }</td>
-                        <td>{ tratamiento.tratamiento.tipo }</td>
+                        <td>{ tratamiento.tratamiento.nombre }</td>
                         <td>{ tratamiento.tratamiento.consultorio }</td>
                         <td>{ tratamiento.tratamiento.doctor }</td>
                         <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>

@@ -79,7 +79,6 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
           },
           "id": ${tratamiento.id}
       }`;
-      console.log("urlApiTratamientos 2: ",urlApiTratamientos)
       const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
       fetchResponse.then(
         function(value) {
