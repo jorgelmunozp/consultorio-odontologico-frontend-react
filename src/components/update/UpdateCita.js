@@ -1,9 +1,5 @@
-import React, { useState } from "react";
 import Swal from 'sweetalert2';
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { updateFetch } from '../../helpers/updateFetch';
-import { getTime } from '../../helpers/getTime';
-import { getDate } from '../../helpers/getDate';
 
 export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,consultorios) => {
   console.log(cita.cita.paciente.split(" ")[0])
@@ -38,7 +34,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
                   ${ 
                     pacientes.map( (pacientes) => {
                       return(
-                        `<option value=${pacientes.paciente.nombre + " " + pacientes.paciente.apellido}>${pacientes.paciente.nombre + " " + pacientes.paciente.apellido}</option>`
+                        `<option value=${pacientes.paciente.nombre + "\&nbsp;" + pacientes.paciente.apellido}>${pacientes.paciente.nombre + " " + pacientes.paciente.apellido}</option>`
                       )
                     })            
                   }
@@ -80,7 +76,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
                   ${ 
                     doctores.map( (doctores) => {
                       return(
-                        `<option value=${doctores.doctor.nombre + " " + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
+                        `<option value=${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
                       )
                     })            
                   }
@@ -127,6 +123,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
           },
           "id": ${cita.id}
       }`;
+      console.log(contenidoCita)
       updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
       Swal.fire("Cita Actualizada", "", "success");
     }
