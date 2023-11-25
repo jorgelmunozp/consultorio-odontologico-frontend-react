@@ -37,7 +37,7 @@ export const ConsultarTratamientos = ({ doctores,consultorios }) => {
                         <td>{ tratamiento.tratamiento.doctor }</td>
                         <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
                         <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos) }>&#x1F7AE;</button></td>
+                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
                       </tr>
                     ))
                   }

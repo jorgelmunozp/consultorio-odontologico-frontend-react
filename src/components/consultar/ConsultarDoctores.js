@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
@@ -43,9 +42,9 @@ export const ConsultarDoctores = () => {
                 ))
               }
             </tbody>
-            </table>
-          </center>
-        </div>
+          </table>
+        </center>
       </div>
+    </div>
   )
 };

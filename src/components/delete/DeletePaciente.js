@@ -101,6 +101,7 @@ export const DeletePaciente = (paciente,urlApiPacientes) => {
             </table>
           </center>;
         root.render(element);
+        
         Swal.fire({ title: "Paciente Eliminado", icon: "success" });
       }
     });

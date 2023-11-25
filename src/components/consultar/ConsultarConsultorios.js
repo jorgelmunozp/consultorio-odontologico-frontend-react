@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
