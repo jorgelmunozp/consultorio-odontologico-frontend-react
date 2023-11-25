@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import ReactDOM from 'react-dom/client';
 import { deleteFetch } from '../../helpers/deleteFetch';
 
 export const DeleteDoctor = (doctor,urlApiDoctores) => {
@@ -40,9 +41,19 @@ export const DeleteDoctor = (doctor,urlApiDoctores) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar"
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiDoctores,doctor.id);
+
+        let doctores;
+        await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
+            .then(response => response.json())
+            .then(data => doctores = data);
+
+        const root = ReactDOM.createRoot(
+          document.getElementById('contenidoDoctores')
+        );
+
         Swal.fire({ title: "Doctor Eliminado", icon: "success" });
       }
     });

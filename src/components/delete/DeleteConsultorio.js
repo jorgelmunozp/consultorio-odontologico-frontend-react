@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import ReactDOM from 'react-dom/client';
 import { deleteFetch } from '../../helpers/deleteFetch';
 
 export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
@@ -36,9 +37,19 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar"
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         deleteFetch(urlApiConsultorios,consultorio.id);
+
+        let consultorios;
+        await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Consultorios de la base de datos
+            .then(response => response.json())
+            .then(data => consultorios = data);
+  
+        const root = ReactDOM.createRoot(
+          document.getElementById('contenidoConsultorios')
+        );
+
         Swal.fire({ title: "Consultorio Eliminado", icon: "success" });
       }
     });
