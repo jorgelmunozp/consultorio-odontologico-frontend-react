@@ -142,23 +142,30 @@ hr { opacity: 0.5; }
   background-color: transparent;
   padding: 0;
   float: right;
+  /* margin-left: auto;
+  margin-right: auto; */
+  width: 100%;
   line-height: 0;
 }
 .tableSort tr {
   background-color: transparent;
   padding: 0;
 }
+.tableSort th {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
 .tableSort td {
   background-color: transparent;
   padding: 0;
 }
-.tableSort tr:nth-child(even) { background-color:#0f0; padding: 0; }
-.tableSort tr:nth-child(odd) { background-color: #f00; padding: 0; }
+.tableSort tr:nth-child(even) { background-color:transparent; padding: 0; }
+.tableSort tr:nth-child(odd) { background-color:transparent; padding: 0; }
 .buttonSort {
   background-color: var(--main-color);
   color: var(--white-color);
   border: none;
-  top: 0;
   padding: 0;
   padding-inline: 0;
 }
