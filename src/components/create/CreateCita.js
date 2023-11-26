@@ -79,11 +79,8 @@ export const CreateCita = ({
                         Paciente
                       </InputLabel>
                       <Select
-                        labelId="registroPaciente-label"
-                        id="registroPaciente" label="registroPaciente"
-                        value={paciente}
-
-                        onChange={handleChangePaciente}
+                        id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label"
+                        value={paciente} onChange={handleChangePaciente}
                       >
                         {pacientes.map((pacientes) => {
                           return (
@@ -101,10 +98,8 @@ export const CreateCita = ({
                         Tratamiento
                       </InputLabel>
                       <Select
-                        labelId="registroTratamiento-label"
-                        id="registroTratamiento" label="registroTratamiento"
-                        value={tratamiento}
-                        onChange={handleChangeTratamiento}
+                        id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label"
+                        value={tratamiento} onChange={handleChangeTratamiento}
                       >
                         {tratamientos.map((tratamientos) => {
                           return (
@@ -141,10 +136,8 @@ export const CreateCita = ({
                         Doctor
                       </InputLabel>
                       <Select
-                        labelId="registroDoctor-label"
-                        id="registroDoctor" label="Especialidad"
-                        value={doctor}
-                        onChange={handleChangeDoctor}
+                        id="registroDoctor" label="Especialidad" labelId="registroDoctor-label"
+                        value={doctor} onChange={handleChangeDoctor}
                       >
                         {doctores.map((doctores) => {
                           return (
@@ -162,17 +155,12 @@ export const CreateCita = ({
                         Consultorio
                       </InputLabel>
                       <Select
-                        labelId="registroConsultorio-label"
-                        id="registroConsultorio" label="registroConsultorio"
-                        value={consultorio}
-                        onChange={handleChangeConsultorio}
+                        id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label"
+                        value={consultorio} onChange={handleChangeConsultorio}
                       >
                         {consultorios.map((consultorios) => {
                           return (
-                            <MenuItem
-                              value={consultorios.id}
-                              className="select-item"
-                            >
+                            <MenuItem value={consultorios.id} className="select-item">
                               {consultorios.consultorio.numero}
                             </MenuItem>
                           );

@@ -5,6 +5,14 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
+const urlApiEpss = process.env.REACT_APP_API_EPSS;
+
+let epss;
+await fetch(urlApiEpss)                      //API REST para consumo de la tabla Citas de la base de datos
+    .then(response => response.json())
+    .then(data => epss = data);
+console.log(epss)
+
 export const CreatePaciente = ({ 
   urlApiPacientes
  }) => {
@@ -87,11 +95,8 @@ export const CreatePaciente = ({
                       Género
                     </InputLabel>
                     <Select
-                      labelId="generoPaciente-label"
-                      id="generoPaciente"
-                      value={genero}
-                      label="generoPaciente"
-                      onChange={handleChangeGenero}
+                      id="generoPaciente" label="generoPaciente" labelId="generoPaciente-label"
+                      value={genero} onChange={handleChangeGenero}
                     >
                       <MenuItem value={10} className="select-item">
                         Masculino
@@ -100,7 +105,7 @@ export const CreatePaciente = ({
                         Femenino
                       </MenuItem>
                       <MenuItem value={30} className="select-item">
-                        Indefinido
+                        No binario
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -111,11 +116,8 @@ export const CreatePaciente = ({
                       Eps
                     </InputLabel>
                     <Select
-                      labelId="epsPaciente-label"
-                      id="epsPaciente"
-                      value={eps}
-                      label="epsPaciente"
-                      onChange={handleChangeEps}
+                      id="epsPaciente" label="epsPaciente" labelId="epsPaciente-label"
+                      value={eps} onChange={handleChangeEps}
                     >
                       <MenuItem value={10} className="select-item">
                         Nueva Eps

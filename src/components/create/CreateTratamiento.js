@@ -67,11 +67,8 @@ export const CreateTratamiento = ({
                       Consultorio
                     </InputLabel>
                     <Select
-                      labelId="consultorioTratamiento-label"
-                      id="consultorioTratamiento"
-                      value={consultorio}
-                      label="consultorioTratamiento"
-                      onChange={handleChangeConsultorio}
+                      id="consultorioTratamiento" label="consultorioTratamiento" labelId="consultorioTratamiento-label"
+                      value={consultorio} onChange={handleChangeConsultorio}
                     >
                       {consultorios.map((consultorios) => {
                         return (
@@ -89,18 +86,13 @@ export const CreateTratamiento = ({
                       Médico
                     </InputLabel>
                     <Select
-                      labelId="doctorTratamiento-label"
-                      id="doctorTratamiento"
-                      value={doctor}
-                      label="doctorTratamiento"
-                      onChange={handleChangeDoctor}
+                      id="doctorTratamiento" label="doctorTratamiento" labelId="doctorTratamiento-label"
+                      value={doctor} onChange={handleChangeDoctor}
                     >
                       {doctores.map((doctores) => {
                         return (
                           <MenuItem value={doctores.id} className="select-item">
-                            {doctores.doctor.nombre +
-                              " " +
-                              doctores.doctor.apellido}
+                            {doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}
                           </MenuItem>
                         );
                       })}

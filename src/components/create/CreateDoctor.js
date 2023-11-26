@@ -45,7 +45,6 @@ export const CreateDoctor = ({
             <br/>
             <table className="tableRegistrar">
               <tr>
-                {/* Codigo de la persona o cedula para registrarse */}
                 <td>
                   <TextField
                     id="nombreDoctor" label="Nombre" variant="outlined"
@@ -68,11 +67,8 @@ export const CreateDoctor = ({
                       Especialidad
                     </InputLabel>
                     <Select
-                      labelId="especialidadDoctor-label"
-                      id="especialidadDoctor"
-                      value={especialidad}
-                      label="Especialidad"
-                      onChange={handleChange}
+                      id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label"
+                      value={especialidad} onChange={handleChange}
                     >
                       <MenuItem value={10} className="select-item">
                         Blanqueamiento
