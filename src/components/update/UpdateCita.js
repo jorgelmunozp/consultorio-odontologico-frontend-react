@@ -8,8 +8,8 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
+    imageWidth: 30,
+    imageHeight: 30,
     imageAlt: "🦷",
     html: `
       <center>

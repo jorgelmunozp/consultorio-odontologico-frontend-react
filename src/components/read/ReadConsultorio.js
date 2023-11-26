@@ -4,8 +4,8 @@ export const ReadConsultorio = (consultorio) => {
   Swal.fire({
     title: "Consultorio",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
-    imageWidth: 40,
-    imageHeight: 40,
+    imageWidth: 30,
+    imageHeight: 30,
     imageAlt: "🦷",
     html: `
       <center>
