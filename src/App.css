@@ -255,7 +255,7 @@ select::-ms-expand { display: none; }
 }
 .swal2-title {
   color: var(--main-color);
-  font-size: 3.5vmin;
+  font-size: 3vmin;
   font-weight: normal;
   padding: 0em 1em 0;
 }
