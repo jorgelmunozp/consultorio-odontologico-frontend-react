@@ -80,18 +80,15 @@ export const CreateCita = ({
                       </InputLabel>
                       <Select
                         labelId="registroPaciente-label"
-                        id="registroPaciente"
+                        id="registroPaciente" label="registroPaciente"
                         value={paciente}
-                        label="registroPaciente"
+
                         onChange={handleChangePaciente}
                       >
                         {pacientes.map((pacientes) => {
                           return (
-                            <MenuItem
-                              value={pacientes.id}
-                              className="select-item"
-                            >
-                              {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
+                            <MenuItem value={pacientes.id} className="select-item">
+                              {pacientes.paciente.nombre + "\&nbsp;" + pacientes.paciente.apellido}
                             </MenuItem>
                           );
                         })}
@@ -105,17 +102,13 @@ export const CreateCita = ({
                       </InputLabel>
                       <Select
                         labelId="registroTratamiento-label"
-                        id="registroTratamiento"
+                        id="registroTratamiento" label="registroTratamiento"
                         value={tratamiento}
-                        label="registroTratamiento"
                         onChange={handleChangeTratamiento}
                       >
                         {tratamientos.map((tratamientos) => {
                           return (
-                            <MenuItem
-                              value={tratamientos.id}
-                              className="select-item"
-                            >
+                            <MenuItem value={tratamientos.id} className="select-item">
                               {tratamientos.tratamiento.nombre}
                             </MenuItem>
                           );
@@ -127,27 +120,17 @@ export const CreateCita = ({
                 <tr>
                   <td>
                     <TextField
-                      id="registroFecha"
-                      type="date"
-                      defaultValue={fecha}
-                      onChange={() => setFecha(fecha)}
-                      label="Fecha"
-                      variant="outlined"
-                      className="textField"
-                      margin="dense"
+                      id="registroFecha" type="date" label="Fecha"
+                      defaultValue={fecha} onChange={() => setFecha(fecha)}
+                      variant="outlined" className="textField" margin="dense"
                     />
                   </td>
 
                   <td>
                     <TextField
-                      id="registroHora"
-                      type="time"
-                      defaultValue={hora}
-                      onChange={() => setHora(hora)}
-                      label="Hora"
-                      variant="outlined"
-                      className="textField"
-                      margin="dense"
+                      id="registroHora" type="time" label="Hora"
+                      defaultValue={hora} onChange={() => setHora(hora)}
+                      variant="outlined" className="textField" margin="dense"
                     />
                   </td>
                 </tr>
@@ -159,17 +142,14 @@ export const CreateCita = ({
                       </InputLabel>
                       <Select
                         labelId="registroDoctor-label"
-                        id="registroDoctor"
+                        id="registroDoctor" label="Especialidad"
                         value={doctor}
-                        label="Especialidad"
                         onChange={handleChangeDoctor}
                       >
                         {doctores.map((doctores) => {
                           return (
                             <MenuItem value={doctores.id} className="select-item">
-                              {doctores.doctor.nombre +
-                                " " +
-                                doctores.doctor.apellido}
+                              {doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}
                             </MenuItem>
                           );
                         })}
@@ -183,9 +163,8 @@ export const CreateCita = ({
                       </InputLabel>
                       <Select
                         labelId="registroConsultorio-label"
-                        id="registroConsultorio"
+                        id="registroConsultorio" label="registroConsultorio"
                         value={consultorio}
-                        label="registroConsultorio"
                         onChange={handleChangeConsultorio}
                       >
                         {consultorios.map((consultorios) => {

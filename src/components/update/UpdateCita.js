@@ -76,7 +76,7 @@ export const UpdateCita = (cita,urlApiCitas,pacientes,tratamientos,doctores,cons
                   ${ 
                     doctores.map( (doctores) => {
                       return(
-                        `<option value=${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
+                        `<option value=${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}>${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}</option>`
                       )
                     })            
                   }
