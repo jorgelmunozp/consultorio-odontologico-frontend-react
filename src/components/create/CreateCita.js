@@ -85,7 +85,7 @@ export const CreateCita = ({
                         {pacientes.map((pacientes) => {
                           return (
                             <MenuItem value={pacientes.id} className="select-item">
-                              {pacientes.paciente.nombre + "\&nbsp;" + pacientes.paciente.apellido}
+                              {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
                             </MenuItem>
                           );
                         })}
@@ -142,7 +142,7 @@ export const CreateCita = ({
                         {doctores.map((doctores) => {
                           return (
                             <MenuItem value={doctores.id} className="select-item">
-                              {doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}
+                              {doctores.doctor.nombre + " " + doctores.doctor.apellido}
                             </MenuItem>
                           );
                         })}

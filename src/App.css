@@ -178,7 +178,7 @@ label, .MuiSelect-select {
   font-size: 1.6vmin;
   font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
   color: var(--darkgray-color)!important;
-  min-width: 20vmin!important;
+  min-width: 30vmin!important;
 }
 .idText {
   text-align: left;

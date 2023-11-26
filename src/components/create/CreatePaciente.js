@@ -11,7 +11,6 @@ let epss;
 await fetch(urlApiEpss)                      //API REST para consumo de la tabla Citas de la base de datos
     .then(response => response.json())
     .then(data => epss = data);
-console.log(epss)
 
 export const CreatePaciente = ({ 
   urlApiPacientes
@@ -27,24 +26,28 @@ export const CreatePaciente = ({
     },
   })`
 
-  const [genero, setGenero] = React.useState(""); //Select Género
-  const handleChangeGenero = (event) => {
-    setGenero(event.target.value);
-  };
+  const [cedula, setCedula] = React.useState("");         //Input Cedula
+  const handleChangeCedula = (event) => { setCedula(event.target.value); };
 
-  const [eps, setEps] = React.useState(""); //Select Eps
-  const handleChangeEps = (event) => {
-    setEps(event.target.value);
-  };
+  const [nombre, setNombre] = React.useState("");         //Input Nombre
+  const handleChangeNombre = (event) => { setNombre(event.target.value); };
+
+  const [apellido, setApellido] = React.useState("");     //Input Apellido
+  const handleChangeApellido = (event) => { setApellido(event.target.value); };
+
+  const [genero, setGenero] = React.useState("");          //Select Género
+  const handleChangeGenero = (event) => { setGenero(event.target.value); };
+
+  const [eps, setEps] = React.useState("");                 //Select Eps
+  const handleChangeEps = (event) => { setEps(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState("");
 
   if(200 <= responseStatus && responseStatus <= 299){
-    // const root = ReactDOM.createRoot(
-    //   document.getElementById("nombrePaciente").innerHTML = ""
-    // );
-
     Swal.fire("Paciente Registrado", "", "success");
+    setCedula("");
+    setNombre("");
+    setApellido("");
     setGenero("");
     setEps("");
     setResponseStatus(0);
@@ -68,7 +71,7 @@ export const CreatePaciente = ({
             <tbody>
               <tr>
                 <td colSpan={2}>
-                  <TextField
+                  <TextField value={cedula} onChange={handleChangeCedula}
                     id="cedulaPaciente" label="Cédula" type="number" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -76,13 +79,13 @@ export const CreatePaciente = ({
               </tr>
               <tr>
                 <td>
-                  <TextField
+                  <TextField value={nombre} onChange={handleChangeNombre}
                     id="nombrePaciente" label="Nombre" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
                 </td>
                 <td>
-                  <TextField
+                  <TextField value={apellido} onChange={handleChangeApellido}
                     id="apellidoPaciente" label="Apellido" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -119,15 +122,13 @@ export const CreatePaciente = ({
                       id="epsPaciente" label="epsPaciente" labelId="epsPaciente-label"
                       value={eps} onChange={handleChangeEps}
                     >
-                      <MenuItem value={10} className="select-item">
-                        Nueva Eps
-                      </MenuItem>
-                      <MenuItem value={20} className="select-item">
-                        EPS Sanitas
-                      </MenuItem>
-                      <MenuItem value={30} className="select-item">
-                        Saludcoop
-                      </MenuItem>
+                      {epss.map((epss) => {
+                        return (
+                          <MenuItem value={epss.id} className="select-item">
+                            {epss.eps.nombre}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 </td>

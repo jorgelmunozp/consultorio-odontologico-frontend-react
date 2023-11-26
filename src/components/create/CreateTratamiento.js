@@ -18,19 +18,20 @@ export const CreateTratamiento = ({
     },
   })`
 
-  const [consultorio, setConsultorio] = React.useState(""); //Select
-  const handleChangeConsultorio = (event) => {
-    setConsultorio(event.target.value);
-  };
-  const [doctor, setDoctor] = React.useState(""); //Select
-  const handleChangeDoctor = (event) => {
-    setDoctor(event.target.value);
-  };
+  const [nombre, setNombre] = React.useState("");           //Input Nombre
+  const handleChangeNombre = (event) => { setNombre(event.target.value); };
+
+  const [consultorio, setConsultorio] = React.useState(""); //Select Consultorio
+  const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
+  
+  const [doctor, setDoctor] = React.useState("");           //Select Doctor
+  const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState("");
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Tratamiento Registrado", "", "success");
+    setNombre("");
     setConsultorio("");
     setDoctor("");
     setResponseStatus(0);
@@ -54,7 +55,7 @@ export const CreateTratamiento = ({
             <tbody>
               <tr>
                 <td colSpan={2}>
-                  <TextField
+                  <TextField value={nombre} onChange={handleChangeNombre}
                     id="nombreTratamiento" label="Nombre" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -92,7 +93,7 @@ export const CreateTratamiento = ({
                       {doctores.map((doctores) => {
                         return (
                           <MenuItem value={doctores.id} className="select-item">
-                            {doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}
+                            {doctores.doctor.nombre + " " + doctores.doctor.apellido}
                           </MenuItem>
                         );
                       })}
