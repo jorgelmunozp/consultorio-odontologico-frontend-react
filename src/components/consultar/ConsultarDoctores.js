@@ -1,6 +1,8 @@
+import ReactDOM from 'react-dom/client';
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
+import { Arrows } from '../../atoms/arrows/Arrows';
 
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 let doctores;

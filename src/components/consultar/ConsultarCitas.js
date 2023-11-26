@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
+import { Arrows } from '../../atoms/arrows/Arrows';
 
 const urlApiCitas = process.env.REACT_APP_API_CITAS;
 let citas;
@@ -9,8 +10,6 @@ await fetch(urlApiCitas)                      //API REST para consumo de la tabl
         .then(response => response.json())
         .then(data => citas = data);
 
-const iconUp = '▴'; 
-const iconDown = '▾'; 
 const element = (pacientes,tratamientos,doctores,consultorios) =>  
         <center>
           <hr/>
@@ -20,13 +19,13 @@ const element = (pacientes,tratamientos,doctores,consultorios) =>
           <table className="table" border='1'>
             <thead>
               <tr>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortByCode("up",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortByCode("down",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Paciente&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","fecha",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","fecha",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Fecha&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","hora",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","hora",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Hora&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","paciente",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","paciente",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Consultorio&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","consultorio",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","consultorio",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Doctor&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","doctor",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","doctor",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
-                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Tratamiento&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","tratamiento",pacientes,tratamientos,doctores,consultorios)}>{ iconUp }</button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","tratamiento",pacientes,tratamientos,doctores,consultorios)}>{ iconDown }</button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Paciente&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","paciente",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","paciente",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Fecha&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","fecha",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","fecha",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Hora&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","hora",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","hora",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Consultorio&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Doctor&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+                <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Tratamiento&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","tratamiento",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","tratamiento",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
                 <th colSpan='3'></th>
               </tr>
             </thead>
@@ -54,7 +53,7 @@ const element = (pacientes,tratamientos,doctores,consultorios) =>
 const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consultorios) => {
   if(dir==="up"){
     if(parameter==="id") {
-
+      citas.sort((a, b) => (a.id > b.id) ? 1 : -1);
     } else if(parameter==="paciente") { 
       citas.sort((a, b) => (a.cita.paciente > b.cita.paciente) ? 1 : -1); 
     } else if(parameter==="fecha") {
@@ -64,14 +63,14 @@ const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consul
     } else if(parameter==="consultorio") { 
       citas.sort((a, b) => (a.cita.consultorio > b.cita.consultorio) ? 1 : -1);
     } else if(parameter==="doctor") { 
-      citas.sort((a, b) => (a.cita.doctor > b.cita.doctor) ? 1 : -1)
+      citas.sort((a, b) => (a.cita.doctor > b.cita.doctor) ? 1 : -1);
     } else if(parameter==="tratamiento") { 
-      citas.sort((a, b) => (a.cita.tratamiento > b.cita.tratamiento) ? 1 : -1)
+      citas.sort((a, b) => (a.cita.tratamiento > b.cita.tratamiento) ? 1 : -1);
     }
   } 
   else if(dir==="down"){ 
     if(parameter==="id") {
-
+      citas.sort((a, b) => (a.id < b.id) ? 1 : -1);
     } else if(parameter==="paciente") { 
       citas.sort((a, b) => (a.cita.paciente < b.cita.paciente) ? 1 : -1); 
     } else if(parameter==="fecha") {
@@ -79,19 +78,13 @@ const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consul
     } else if(parameter==="hora") {
       citas.sort((a, b) => (a.cita.hora < b.cita.hora) ? 1 : -1); 
     }else if(parameter==="consultorio") { 
-      citas.sort((a, b) => (a.cita.consultorio < b.cita.consultorio) ? 1 : -1)
+      citas.sort((a, b) => (a.cita.consultorio < b.cita.consultorio) ? 1 : -1);
     } else if(parameter==="doctor") { 
-      citas.sort((a, b) => (a.cita.doctor < b.cita.doctor) ? 1 : -1)
+      citas.sort((a, b) => (a.cita.doctor < b.cita.doctor) ? 1 : -1);
     } else if(parameter==="tratamiento") { 
-      citas.sort((a, b) => (a.cita.tratamiento < b.cita.tratamiento) ? 1 : -1)
+      citas.sort((a, b) => (a.cita.tratamiento < b.cita.tratamiento) ? 1 : -1);
     }
   }
-  renderContent(pacientes,tratamientos,doctores,consultorios);
-}
-
-const handleSortByCode = async (dir,pacientes,tratamientos,doctores,consultorios) => {
-  if(dir==="up"){ citas.sort((a, b) => (a.id > b.id) ? 1 : -1); } 
-  else if(dir==="down"){ citas.sort((a, b) => (a.id < b.id) ? 1 : -1); }
   renderContent(pacientes,tratamientos,doctores,consultorios);
 }
 
