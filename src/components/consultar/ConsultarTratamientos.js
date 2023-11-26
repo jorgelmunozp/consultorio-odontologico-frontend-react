@@ -10,42 +10,76 @@ await fetch(urlApiTratamientos)                      //API REST para consumo de 
         .then(response => response.json())
         .then(data => tratamientos = data);
 
-export const ConsultarTratamientos = ({ doctores,consultorios }) => {
+const element = (pacientes,tratamientos,doctores,consultorios) =>  
+  <center>
+    <hr/>
+    <h4> Tratamientos Autorizados </h4>
+    <hr/>
+    <br/><br/>
+    <table className="table" border='1'>
+      <thead>
+        <tr>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Nombre&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","nombre",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","nombre",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Consultorio&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Doctor&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th colSpan='3'></th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          tratamientos.map( tratamiento => (
+            <tr>
+              <td>{ tratamiento.id }</td>
+              <td>{ tratamiento.tratamiento.nombre }</td>
+              <td>{ tratamiento.tratamiento.consultorio }</td>
+              <td>{ tratamiento.tratamiento.doctor }</td>
+              <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </center>;
+
+const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consultorios) => {
+  if(dir==="up"){
+    if(parameter==="id") {
+      tratamientos.sort((a, b) => (a.id > b.id) ? 1 : -1);
+    } else if(parameter==="nombre") { 
+      tratamientos.sort((a, b) => (a.tratamiento.nombre > b.tratamiento.nombre) ? 1 : -1); 
+    } else if(parameter==="consultorio") {
+      tratamientos.sort((a, b) => (a.tratamiento.consultorio > b.tratamiento.consultorio) ? 1 : -1);
+    } else if(parameter==="doctor") {
+      tratamientos.sort((a, b) => (a.tratamiento.doctor > b.tratamiento.doctor) ? 1 : -1);
+    } 
+  } 
+  else if(dir==="down"){ 
+    if(parameter==="id") {
+      tratamientos.sort((a, b) => (a.id < b.id) ? 1 : -1);
+    } else if(parameter==="nombre") { 
+      tratamientos.sort((a, b) => (a.tratamiento.nombre < b.tratamiento.nombre) ? 1 : -1); 
+    } else if(parameter==="consultorio") {
+      tratamientos.sort((a, b) => (a.tratamiento.consultorio < b.tratamiento.consultorio) ? 1 : -1); 
+    } else if(parameter==="doctor") {
+      tratamientos.sort((a, b) => (a.tratamiento.doctor < b.tratamiento.doctor) ? 1 : -1); 
+    }
+  }
+  renderContent(pacientes,tratamientos,doctores,consultorios);
+}
+
+const renderContent = (pacientes,tratamientos,doctores,consultorios) => {
+  const root = ReactDOM.createRoot(document.getElementById('contenidoTratamientos'));
+  root.render(element(pacientes,tratamientos,doctores,consultorios));
+}
+
+export const ConsultarTratamientos = ({ pacientes,tratamientos,doctores,consultorios }) => {
   return(
     <div className="App">
       <div id="contenidoTratamientos">  
-        <center>
-          <hr/>
-          <h4> Tratamientos Autorizados </h4>
-          <hr/>
-          <br/><br/>
-          <table className="table" border='1'>
-            <thead>
-              <tr>
-                <th> Código </th>
-                <th> Nombre </th>
-                <th> Consultorio </th>
-                <th> Doctor </th>
-                <th colSpan='3'> </th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                tratamientos.map( tratamiento => (
-                  <tr>
-                    <td>{ tratamiento.id }</td>
-                    <td>{ tratamiento.tratamiento.nombre }</td>
-                    <td>{ tratamiento.tratamiento.consultorio }</td>
-                    <td>{ tratamiento.tratamiento.doctor }</td>
-                    <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
-                    <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                    <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </center>
+        { element(pacientes,tratamientos,doctores,consultorios) }
       </div>
     </div>
   )
