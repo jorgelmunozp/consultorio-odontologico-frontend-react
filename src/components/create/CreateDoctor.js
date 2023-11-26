@@ -16,15 +16,19 @@ export const CreateDoctor = ({
     },
   })`
 
-  const [especialidad, setEspecialidad] = React.useState(""); //Select
-  const handleChange = (event) => {
-    setEspecialidad(event.target.value);
-  };
+  const [nombre, setNombre] = React.useState("");                 //Input Nombre
+  const handleChangeNombre = (event) => { setNombre(event.target.value); };
+  const [apellido, setApellido] = React.useState("");             //Input Apellido
+  const handleChangeApellido = (event) => { setApellido(event.target.value); };
+  const [especialidad, setEspecialidad] = React.useState("");     //Select Especialidad
+  const handleChange = (event) => { setEspecialidad(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState("");
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Doctor Registrado", "", "success");
+    setNombre("");
+    setApellido("");
     setEspecialidad("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
@@ -46,7 +50,7 @@ export const CreateDoctor = ({
             <table className="tableRegistrar">
               <tr>
                 <td>
-                  <TextField
+                  <TextField value={nombre} onChange={handleChangeNombre}
                     id="nombreDoctor" label="Nombre" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -54,7 +58,7 @@ export const CreateDoctor = ({
               </tr>
               <tr>
                 <td>
-                  <TextField
+                  <TextField value={apellido} onChange={handleChangeApellido}
                     id="apellidoDoctor" label="Apellido" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />

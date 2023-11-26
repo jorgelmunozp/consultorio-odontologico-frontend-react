@@ -20,10 +20,8 @@ export const CreateTratamiento = ({
 
   const [nombre, setNombre] = React.useState("");           //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
-
   const [consultorio, setConsultorio] = React.useState(""); //Select Consultorio
   const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
-  
   const [doctor, setDoctor] = React.useState("");           //Select Doctor
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
 

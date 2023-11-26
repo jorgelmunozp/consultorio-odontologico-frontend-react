@@ -15,10 +15,16 @@ export const CreateConsultorio = ({
     },
   })`
 
+  const [numero, setNumero] = React.useState("");         //Input Número
+  const handleChangeNumero = (event) => { setNumero(event.target.value); };
+  const [nombre, setNombre] = React.useState("");         //Input Nombre
+  const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Consultorio Registrado", "", "success");
+    setNumero("");
+    setNombre("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     Swal.fire("Consultorio No Registrado", "", "error");
@@ -40,7 +46,7 @@ export const CreateConsultorio = ({
             <tbody>
               <tr>
                 <td>
-                  <TextField
+                  <TextField value={numero} onChange={handleChangeNumero}
                     id="ConsultoriosNumero" label="Número" type="number" variant="outlined" 
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -48,7 +54,7 @@ export const CreateConsultorio = ({
               </tr>
               <tr>
                 <td>
-                  <TextField
+                  <TextField value={nombre} onChange={handleChangeNombre}
                     id="ConsultoriosNombre" label="Nombre" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />

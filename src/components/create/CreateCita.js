@@ -27,22 +27,14 @@ export const CreateCita = ({
   let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
   let [hora, setHora] = useState(getTime);
 
-  const [paciente, setPaciente] = useState("");
-  const handleChangePaciente = (event) => {
-    setPaciente(event.target.value);
-  };
-  const [tratamiento, setTratamiento] = useState("");
-  const handleChangeTratamiento = (event) => {
-    setTratamiento(event.target.value);
-  };
-  const [doctor, setDoctor] = useState("");
-  const handleChangeDoctor = (event) => {
-    setDoctor(event.target.value);
-  };
-  const [consultorio, setConsultorio] = useState("");
-  const handleChangeConsultorio = (event) => {
-    setConsultorio(event.target.value);
-  };
+  const [paciente, setPaciente] = useState("");             //Select Paciente
+  const handleChangePaciente = (event) => { setPaciente(event.target.value); };
+  const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento
+  const handleChangeTratamiento = (event) => { setTratamiento(event.target.value); };
+  const [doctor, setDoctor] = useState("");                 //Select Doctor
+  const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
+  const [consultorio, setConsultorio] = useState("");       //Select Consultorio
+  const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState(0);
 
