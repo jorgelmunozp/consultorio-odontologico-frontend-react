@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
-  console.log(generos)
   Swal.fire({
     title: "Paciente",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -38,10 +37,9 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
             <tr>
             </tr>
               <td> Género </td>
-              <td><input id="editarGenero" type="text" value=${ paciente.paciente.genero } class="swal2-input"></input></td>
               <td>
                 <form>
-                  <select id="editarEps">
+                  <select id="editarGenero">
                     <option value=${ paciente.paciente.genero }>${ paciente.paciente.genero }</option>
                     ${ 
                       generos.map( (generos) => {
@@ -104,7 +102,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
             const root = ReactDOM.createRoot(
               document.getElementById('contenidoPacientes')
             );
-            root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios));
+            root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
 
 
             Swal.fire("Paciente Actualizado", "", "success"); 

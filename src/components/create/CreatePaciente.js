@@ -93,15 +93,6 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                           </MenuItem>
                         );
                       })}
-                      <MenuItem value={10} className="select-item">
-                        Masculino
-                      </MenuItem>
-                      <MenuItem value={20} className="select-item">
-                        Femenino
-                      </MenuItem>
-                      <MenuItem value={30} className="select-item">
-                        No binario
-                      </MenuItem>
                     </Select>
                   </FormControl>
                 </td>

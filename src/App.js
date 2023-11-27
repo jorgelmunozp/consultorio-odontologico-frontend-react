@@ -132,5 +132,4 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
 }
 }
 
-
 export default App;
