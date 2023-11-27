@@ -1,7 +1,5 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { ReadCita } from '../read/ReadCita';
-import { UpdateCita } from '../update/UpdateCita';
 import { deleteFetch } from '../../helpers/deleteFetch';
 
   export const DeleteCita = async (cita,urlApiCitas,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {

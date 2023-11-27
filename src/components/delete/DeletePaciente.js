@@ -1,7 +1,5 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { ReadPaciente } from '../read/ReadPaciente';
-import { UpdatePaciente } from '../update/UpdatePaciente';
 import { deleteFetch } from '../../helpers/deleteFetch';
 
 export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
