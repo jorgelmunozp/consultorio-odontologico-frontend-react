@@ -15,15 +15,15 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
     },
   })`
 
-  const [cedula, setCedula] = React.useState("");         //Input Cedula
+  const [cedula, setCedula] = useState("");         //Input Cedula
   const handleChangeCedula = (event) => { setCedula(event.target.value); };
-  const [nombre, setNombre] = React.useState("");         //Input Nombre
+  const [nombre, setNombre] = useState("");         //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
-  const [apellido, setApellido] = React.useState("");     //Input Apellido
+  const [apellido, setApellido] = useState("");     //Input Apellido
   const handleChangeApellido = (event) => { setApellido(event.target.value); };
-  const [genero, setGenero] = React.useState("");          //Select Género
+  const [genero, setGenero] = useState("");          //Select Género
   const handleChangeGenero = (event) => { setGenero(event.target.value); };
-  const [eps, setEps] = React.useState("");                 //Select Eps
+  const [eps, setEps] = useState("");                 //Select Eps
   const handleChangeEps = (event) => { setEps(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState("");

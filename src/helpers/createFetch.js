@@ -1,4 +1,5 @@
-export const createFetch = ( urlApi,contenidoApi,setResponseStatus ) => {
+export const createFetch = ( urlApi,contenidoApi,setResponseStatus,createFlag ) => {
+  if(createFlag === true){
     fetch(urlApi, {
       method: "POST",
       body: eval(contenidoApi),
@@ -25,3 +26,4 @@ export const createFetch = ( urlApi,contenidoApi,setResponseStatus ) => {
       }     
     });
   }
+}

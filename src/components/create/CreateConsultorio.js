@@ -13,16 +13,29 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
   }`;
   const contenidoConsultorios = `JSON.stringify(` + itemConsultorio  + `)`;
 
-  const [numero, setNumero] = React.useState("");         //Input Número
+  const [numero, setNumero] = useState("");         //Input Número
   const handleChangeNumero = (event) => { setNumero(event.target.value); };
-  const [nombre, setNombre] = React.useState("");         //Input Nombre
+  const [nombre, setNombre] = useState("");         //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
+  // const [create, setCreate] = useState(false);
+
+  let createFlag = false;
+  if(numero !== "" && nombre !== ""){
+    createFlag = true;
+    console.log(createFlag)
+  }
+  // if(numero !== "" && nombre !== "") {
+  //   setCreate(true);
+  //   console.log(createFlag)
+  // }
+
   if(200 <= responseStatus && responseStatus <= 299){
     // consultorios.push(itemConsultorio);
-    console.log("consultorios: ",consultorios)
     Swal.fire("Consultorio Registrado", "", "success");
+    createFlag = false;
+    console.log(createFlag)
     setNumero("");
     setNombre("");
     setResponseStatus(0);
@@ -63,7 +76,7 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                 </td>
               </tr>
             </tbody>

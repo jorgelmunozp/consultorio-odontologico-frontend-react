@@ -25,7 +25,7 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
             <tr>
             </tr>
               <td> Número </td>
-              <td><input id="editarNumero" type="text" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
+              <td><input id="editarNumero" type="number" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
             <tr>
             </tr>        
               <td> Nombre </td>

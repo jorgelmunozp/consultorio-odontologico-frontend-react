@@ -13,11 +13,11 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
     },
   })`
 
-  const [nombre, setNombre] = React.useState("");                 //Input Nombre
+  const [nombre, setNombre] = useState("");                 //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
-  const [apellido, setApellido] = React.useState("");             //Input Apellido
+  const [apellido, setApellido] = useState("");             //Input Apellido
   const handleChangeApellido = (event) => { setApellido(event.target.value); };
-  const [especialidad, setEspecialidad] = React.useState("");     //Select Especialidad
+  const [especialidad, setEspecialidad] = useState("");     //Select Especialidad
   const handleChange = (event) => { setEspecialidad(event.target.value); };
 
   const [responseStatus, setResponseStatus] = useState("");
