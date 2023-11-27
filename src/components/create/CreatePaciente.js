@@ -4,7 +4,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-export const CreatePaciente = ({ urlApiPacientes,epss }) => {
+export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
   const contenidoPacientes = `JSON.stringify({
     "paciente": {
       "nombre": document.getElementById("nombrePaciente").value,
@@ -86,6 +86,13 @@ export const CreatePaciente = ({ urlApiPacientes,epss }) => {
                       id="generoPaciente" label="generoPaciente" labelId="generoPaciente-label"
                       value={genero} onChange={handleChangeGenero}
                     >
+                      {generos.map((generos) => {
+                        return (
+                          <MenuItem value={generos.id} className="select-item">
+                            {generos.genero.nombre}
+                          </MenuItem>
+                        );
+                      })}
                       <MenuItem value={10} className="select-item">
                         Masculino
                       </MenuItem>

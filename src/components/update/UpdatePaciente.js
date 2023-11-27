@@ -2,7 +2,8 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss) => {
+export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
+  console.log(generos)
   Swal.fire({
     title: "Paciente",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -38,6 +39,20 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
             </tr>
               <td> Género </td>
               <td><input id="editarGenero" type="text" value=${ paciente.paciente.genero } class="swal2-input"></input></td>
+              <td>
+                <form>
+                  <select id="editarEps">
+                    <option value=${ paciente.paciente.genero }>${ paciente.paciente.genero }</option>
+                    ${ 
+                      generos.map( (generos) => {
+                        return(
+                          `<option value=${generos.genero.nombre}>${generos.genero.nombre}</option>`
+                        )
+                      })            
+                    }
+                  </select>
+                </form>
+              </td>
             <tr>
             </tr>
               <td> Eps </td>

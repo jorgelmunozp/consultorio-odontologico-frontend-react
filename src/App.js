@@ -45,6 +45,10 @@ function App() {
   const epss  = useFetch(urlApiEpss).data;
   let [setEpss]= useState('');
 
+  const urlApiGeneros = process.env.REACT_APP_API_GENEROS;
+  const generos  = useFetch(urlApiGeneros).data;
+  let [setGeneros]= useState('');
+
   return (
     <div className="App">
       <header className="App-header">
@@ -92,6 +96,7 @@ function App() {
                 doctores={doctores} setDoctores={setDoctores}
                 consultorios={consultorios} setConsultorios={setConsultorios}
                 epss={epss} setEpss={setEpss}
+                generos={generos} setGeneros={setGeneros}
           />
         </div>
       </body>
@@ -99,7 +104,7 @@ function App() {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,setCitas,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss}) => {        //Componente para elegir juego a renderizar
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,setCitas,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss,generos,setGeneros}) => {        //Componente para elegir juego a renderizar
   if(menu === 1){
     return <Inicio />;
   }else if(menu === 2){
@@ -107,9 +112,9 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 3){
     return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
-    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
+    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />;
   }else if(menu === 5){
-    return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss}/>;
+    return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss} generos={generos} />;
   }else if(menu === 6){
     return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 7){

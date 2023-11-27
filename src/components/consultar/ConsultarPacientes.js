@@ -4,7 +4,7 @@ import { ReadPaciente } from '../read/ReadPaciente';
 import { UpdatePaciente } from '../update/UpdatePaciente';
 import { Arrows } from '../../atoms/arrows/Arrows';
 
-const elementHtml = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss) =>  
+const elementHtml = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) =>  
   <center>
     <hr/>
     <h4> Pacientes Afiliados </h4>
@@ -33,7 +33,7 @@ const elementHtml = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consu
               <td>{ paciente.paciente.genero }</td>
               <td>{ paciente.paciente.eps }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
-              <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
               <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
             </tr>
           ))
@@ -42,7 +42,7 @@ const elementHtml = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consu
     </table>
   </center>;
 
-const handleSortBy = async (dir,parameter,urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss) => {
+const handleSortBy = async (dir,parameter,urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
 if(dir==="up"){
   if(parameter==="id") {
     pacientes.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -73,19 +73,19 @@ else if(dir==="down"){
     pacientes.sort((a, b) => (a.paciente.eps < b.paciente.eps) ? 1 : -1);
   } 
 }
-renderContent(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss);
+renderContent(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos);
 }
 
-const renderContent = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss) => {
+const renderContent = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
 const root = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
-root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss));
+root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
 }
 
-export const ConsultarPacientes = ({ urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss }) => {
+export const ConsultarPacientes = ({ urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos }) => {
   return(
     <div className="App">
       <div id="contenidoPacientes">  
-        { elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss) }
+        { elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }
     </div>
   </div>
   )
