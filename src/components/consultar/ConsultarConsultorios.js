@@ -27,8 +27,8 @@ const elementHtml = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,co
               <td>{ consultorio.consultorio.nombre }</td>
               <td>{ consultorio.consultorio.numero }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadConsultorio(consultorio) }>&#128270;</button></td>
-              <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(urlApiConsultorios,elementHtml,consultorio,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios) }>&#x1F7AE;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
             </tr>
           ))
         }

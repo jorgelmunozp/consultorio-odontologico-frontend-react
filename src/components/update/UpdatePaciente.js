@@ -25,7 +25,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
             <tr>
             </tr>
               <td> Identificación </td>
-              <td><input id="editarIdentificacion" type="text" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
+              <td><input id="editarIdentificacion" type="number" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
             <tr>
             </tr>        
               <td> Nombre </td>

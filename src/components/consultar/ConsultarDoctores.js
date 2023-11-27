@@ -30,7 +30,7 @@ const elementHtml = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consul
               <td>{ doctor.doctor.especialidad }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
               <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
             </tr>
           ))
         }

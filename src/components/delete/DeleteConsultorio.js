@@ -4,7 +4,7 @@ import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { deleteFetch } from '../../helpers/deleteFetch';
 
-export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
+export const DeleteConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
     Swal.fire({
       title: "Eliminar Consultorio?",
       html: `
@@ -51,39 +51,7 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios) => {
         const root = ReactDOM.createRoot(
           document.getElementById('contenidoConsultorios')
         );
-        const element =    
-            <center>
-              <hr/>
-              <h4> Consultorios Disponibles </h4>
-              <hr/>
-              <br/><br/>
-              <table className="table" border='1'>
-                <thead>
-                  <tr>
-                    <th> Código </th>
-                    <th> Número </th>
-                    <th> Consultorio </th>
-                    <th colSpan='3'> </th>
-                    <th colSpan='3'> </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    consultorios.map( consultorio => (
-                      <tr>
-                        <td>{ consultorio.id }</td>
-                        <td>{ consultorio.consultorio.numero }</td>
-                        <td>{ consultorio.consultorio.nombre }</td>
-                        <td><button className='App-body-boton-vistas' onClick={ () => ReadConsultorio(consultorio) }>&#128270;</button></td>
-                        <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios) }>&#x270D;</button></td>
-                        <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios) }>&#x1F7AE;</button></td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-            </center>;
-        root.render(element);
+        root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
 
         Swal.fire({ title: "Consultorio Eliminado", icon: "success" });
       }

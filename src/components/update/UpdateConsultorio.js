@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdateConsultorio = (urlApiConsultorios,elementHtml,consultorio,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Consultorio",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",

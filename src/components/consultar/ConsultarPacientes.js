@@ -34,7 +34,7 @@ const elementHtml = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consu
               <td>{ paciente.paciente.eps }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
               <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
-              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x1F7AE;</button></td>
             </tr>
           ))
         }
