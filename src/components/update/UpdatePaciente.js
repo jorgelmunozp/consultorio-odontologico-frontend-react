@@ -4,7 +4,7 @@ import { ReadPaciente } from '../read/ReadPaciente';
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdatePaciente = (paciente,urlApiPacientes) => {
+export const UpdatePaciente = (paciente,urlApiPacientes,epss) => {
   Swal.fire({
     title: "Paciente",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -43,7 +43,20 @@ export const UpdatePaciente = (paciente,urlApiPacientes) => {
             <tr>
             </tr>
               <td> Eps </td>
-              <td><input id="editarEps" type="text" value=${ paciente.paciente.eps } class="swal2-input"></input></td>
+              <td>
+                <form>
+                  <select id="editarEps">
+                    <option value=${ paciente.paciente.eps }>${ paciente.paciente.eps }</option>
+                    ${ 
+                      epss.map( (epss) => {
+                        return(
+                          `<option value=${epss.eps.nombre}>${epss.eps.nombre}</option>`
+                        )
+                      })            
+                    }
+                  </select>
+                </form>
+              </td>
             <tr>
           </tbody>
         </table>
@@ -107,7 +120,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes) => {
                           <td>{ paciente.paciente.genero }</td>
                           <td>{ paciente.paciente.eps }</td>
                           <td><button className='App-body-boton-vistas' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
-                          <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes) }>&#x270D;</button></td>
+                          <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,epss) }>&#x270D;</button></td>
                           <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes) }>&#x1F7AE;</button></td>
                         </tr>
                       ))

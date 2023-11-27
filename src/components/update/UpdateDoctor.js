@@ -4,7 +4,7 @@ import { ReadDoctor } from '../read/ReadDoctor';
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdateDoctor = (doctor,urlApiDoctores) => {
+export const UpdateDoctor = (doctor,urlApiDoctores,tratamientos) => {
   Swal.fire({
     title: "Doctor",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -35,7 +35,20 @@ export const UpdateDoctor = (doctor,urlApiDoctores) => {
             <tr>
             </tr>
               <td> Especialidad </td>
-              <td><input id="editarEspecialidad" type="text" value=${ doctor.doctor.especialidad } class="swal2-input"></input></td>
+              <td>
+                <form>
+                  <select id="editarEspecialidad">
+                    <option value=${ doctor.doctor.especialidad }>${ doctor.doctor.especialidad }</option>
+                    ${ 
+                      tratamientos.map( (tratamiento) => {
+                        return(
+                          `<option value=${ tratamiento.tratamiento.nombre }>${ tratamiento.tratamiento.nombre }</option>`
+                        )
+                      })            
+                    }
+                  </select>
+                </form>
+              </td>
             <tr>
           </tbody>
         </table>

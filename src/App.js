@@ -2,12 +2,9 @@ import logo from './images/logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import { useFetch } from "./hooks/useFetch";
-
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
-
 import Usuario from './Usuario';
-
 import Inicio from './home';
 import { ConsultarCitas } from './components/consultar/ConsultarCitas';
 import { ConsultarPacientes } from './components/consultar/ConsultarPacientes';
@@ -44,6 +41,10 @@ function App() {
   const tratamientos  = useFetch(urlApiTratamientos).data;
   let [setTratamientos]= useState('');
 
+  const urlApiEpss = process.env.REACT_APP_API_EPSS;
+  const epss  = useFetch(urlApiEpss).data;
+  let [setEpss]= useState('');
+
   return (
     <div className="App">
       <header className="App-header">
@@ -56,7 +57,6 @@ function App() {
           </tbody>
         </table>
       </header>
-
       <aside className='App-aside'>
         <nav>
           <button className="App-menu-item" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome className='App-menu-icono'/></button>
@@ -91,6 +91,7 @@ function App() {
                 tratamientos={tratamientos} setTratamientos={setTratamientos}
                 doctores={doctores} setDoctores={setDoctores}
                 consultorios={consultorios} setConsultorios={setConsultorios}
+                epss={epss} setEpss={setEpss}
           />
         </div>
       </body>
@@ -98,7 +99,7 @@ function App() {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios}) => {        //Componente para elegir juego a renderizar
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss}) => {        //Componente para elegir juego a renderizar
   if(menu === 1){
     return <Inicio />;
   }else if(menu === 2){
@@ -106,7 +107,7 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 3){
     return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
-    return <ConsultarPacientes />;
+    return <ConsultarPacientes pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
   }else if(menu === 5){
     return <CreatePaciente urlApiPacientes={urlApiPacientes} />;
   }else if(menu === 6){
@@ -114,7 +115,7 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 7){
     return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){
-    return <ConsultarDoctores />;
+    return <ConsultarDoctores pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 9){
     return <CreateDoctor urlApiDoctores={urlApiDoctores} />;
   }else if(menu === 10){
