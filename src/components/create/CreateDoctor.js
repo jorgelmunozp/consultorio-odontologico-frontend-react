@@ -4,7 +4,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaUserMd } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-export const CreateDoctor = ({ urlApiDoctores }) => {
+export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
   const contenidoDoctores = `JSON.stringify({
     "doctor": {
       "nombre": document.getElementById("nombreDoctor").value,
@@ -71,27 +71,13 @@ export const CreateDoctor = ({ urlApiDoctores }) => {
                       id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label"
                       value={especialidad} onChange={handleChange}
                     >
-                      <MenuItem value={10} className="select-item">
-                        Blanqueamiento
-                      </MenuItem>
-                      <MenuItem value={20} className="select-item">
-                        Diseño Sonrisa
-                      </MenuItem>
-                      <MenuItem value={30} className="select-item">
-                        Ortodoncia
-                      </MenuItem>
-                      <MenuItem value={40} className="select-item">
-                        Periodoncia
-                      </MenuItem>
-                      <MenuItem value={50} className="select-item">
-                        Prótesis
-                      </MenuItem>
-                      <MenuItem value={60} className="select-item">
-                        Higiene
-                      </MenuItem>
-                      <MenuItem value={70} className="select-item">
-                        Detartraje
-                      </MenuItem>
+                        {tratamientos.map((tratamientos) => {
+                          return (
+                            <MenuItem value={tratamientos.id} className="select-item">
+                              {tratamientos.tratamiento.nombre}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 </td>

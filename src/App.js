@@ -117,7 +117,7 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 8){
     return <ConsultarDoctores urlApiDoctores={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 9){
-    return <CreateDoctor urlApiDoctores={urlApiDoctores} />;
+    return <CreateDoctor urlApiDoctores={urlApiDoctores} tratamientos={tratamientos} />;
   }else if(menu === 10){
     return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 11){
