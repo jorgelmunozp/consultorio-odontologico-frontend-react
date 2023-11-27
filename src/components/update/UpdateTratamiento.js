@@ -72,34 +72,38 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoTratamiento = `{
+      if(document.getElementById('editarNombre').value!== "" &&
+      document.getElementById('editarConsultorio').value!== "" &&
+      document.getElementById('editarDoctor').value!== "" ) {
+        const contenidoTratamiento = `{
           "tratamiento": {
             "nombre": "${document.getElementById('editarNombre').value}",
             "consultorio": "${document.getElementById('editarConsultorio').value}",
             "doctor": "${document.getElementById('editarDoctor').value}"
           },
           "id": ${tratamiento.id}
-      }`;
-      const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
-      fetchResponse.then(
-        async function(value) {
-          if(200 <= value && value <= 299) {
-            let tratamientos;
-            await fetch(urlApiTratamientos)                      //API REST para consumo de la tabla Tratamientos de la base de datos
-                .then(response => response.json())
-                .then(data => tratamientos = data);
-                
-            const root = ReactDOM.createRoot(
-              document.getElementById('contenidoTratamientos')
-            );
-            root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
+        }`;
+        const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) {
+              let tratamientos;
+              await fetch(urlApiTratamientos)                      //API REST para consumo de la tabla Tratamientos de la base de datos
+                  .then(response => response.json())
+                  .then(data => tratamientos = data);
+                  
+              const root = ReactDOM.createRoot(
+                document.getElementById('contenidoTratamientos')
+              );
+              root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
 
-            Swal.fire("Tratamiento Actualizado", "", "success"); 
-          }
-          else { Swal.fire("Error en la actualización", "", "error"); }
-        },
-        function(error) { Swal.fire("Error en la actualización", "", "error"); }
-      )
+              Swal.fire("Tratamiento Actualizado", "", "success"); 
+            }
+            else { Swal.fire("Error en la actualización", "", "error"); }
+          },
+          function(error) { Swal.fire("Error en la actualización", "", "error"); }
+        )
+      }
     }
   });    
 };

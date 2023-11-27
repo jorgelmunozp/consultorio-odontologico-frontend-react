@@ -80,37 +80,43 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoPaciente = `{
-          "paciente": {
-            "identificacion": "${document.getElementById('editarIdentificacion').value}",
-            "nombre": "${document.getElementById('editarNombre').value}",
-            "apellido": "${document.getElementById('editarApellido').value}",
-            "genero": "${document.getElementById('editarGenero').value}",
-            "eps": "${document.getElementById('editarEps').value}"
+      if(document.getElementById('editarIdentificacion').value!== "" &&
+      document.getElementById('editarNombre').value!== "" &&
+      document.getElementById('editarApellido').value!== "" &&
+      document.getElementById('editarGenero').value!== "" &&
+      document.getElementById('editarEps').value!== "" ) {
+        const contenidoPaciente = `{
+            "paciente": {
+              "identificacion": "${document.getElementById('editarIdentificacion').value}",
+              "nombre": "${document.getElementById('editarNombre').value}",
+              "apellido": "${document.getElementById('editarApellido').value}",
+              "genero": "${document.getElementById('editarGenero').value}",
+              "eps": "${document.getElementById('editarEps').value}"
+            },
+            "id": ${paciente.id}
+        }`;
+        const fetchResponse = updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) {
+              let pacientes;
+              await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Pacientes de la base de datos
+                  .then(response => response.json())
+                  .then(data => pacientes = data);            
+              
+              const root = ReactDOM.createRoot(
+                document.getElementById('contenidoPacientes')
+              );
+              root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
+
+
+              Swal.fire("Paciente Actualizado", "", "success"); 
+            } 
+            else { Swal.fire("Error en la actualización", "", "error"); }
           },
-          "id": ${paciente.id}
-      }`;
-      const fetchResponse = updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
-      fetchResponse.then(
-        async function(value) {
-          if(200 <= value && value <= 299) {
-            let pacientes;
-            await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Pacientes de la base de datos
-                .then(response => response.json())
-                .then(data => pacientes = data);            
-            
-            const root = ReactDOM.createRoot(
-              document.getElementById('contenidoPacientes')
-            );
-            root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
-
-
-            Swal.fire("Paciente Actualizado", "", "success"); 
-          } 
-          else { Swal.fire("Error en la actualización", "", "error"); }
-        },
-        function(error) { Swal.fire("Error en la actualización", "", "error"); }
-      )
+          function(error) { Swal.fire("Error en la actualización", "", "error"); }
+        )
+      }
     }
   });
 };

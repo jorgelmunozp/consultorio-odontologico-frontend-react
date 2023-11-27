@@ -42,34 +42,37 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoConsultorios = `{
+      if(document.getElementById('editarNumero').value!== "" &&
+      document.getElementById('editarNombre').value!== "" ) {
+        const contenidoConsultorios = `{
           "consultorio": {
             "numero": "${document.getElementById('editarNumero').value}",
             "nombre": "${document.getElementById('editarNombre').value}"
           },
           "id": ${consultorio.id}
-      }`;
-      const fetchResponse = updateFetch(urlApiConsultorios,JSON.stringify(contenidoConsultorios),consultorio.id);
-      fetchResponse.then(
-        async function(value) {
-          if(200 <= value && value <= 299) { 
-            let consultorios;
-            await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Consultorios de la base de datos
-                .then(response => response.json())
-                .then(data => consultorios = data);
-      
-            const root = ReactDOM.createRoot(
-              document.getElementById('contenidoConsultorios')
-            );
-            root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
-
+        }`;
+        const fetchResponse = updateFetch(urlApiConsultorios,JSON.stringify(contenidoConsultorios),consultorio.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) { 
+              let consultorios;
+              await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Consultorios de la base de datos
+                  .then(response => response.json())
+                  .then(data => consultorios = data);
         
-            Swal.fire("Consultorio Actualizado", "", "success"); 
-          } 
-          else { Swal.fire("Error en la actualización", "", "error"); }
-        },
-        function(error) { Swal.fire("Error en la actualización", "", "error"); }
-      )
+              const root = ReactDOM.createRoot(
+                document.getElementById('contenidoConsultorios')
+              );
+              root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
+
+          
+              Swal.fire("Consultorio Actualizado", "", "success"); 
+            } 
+            else { Swal.fire("Error en la actualización", "", "error"); }
+          },
+          function(error) { Swal.fire("Error en la actualización", "", "error"); }
+        )
+      }
     }
   });
 };

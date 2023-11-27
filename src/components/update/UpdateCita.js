@@ -69,7 +69,7 @@ export const UpdateCita = (cita,urlApiCitas,elementHtml,citas,pacientes,tratamie
             <td> Médico </td>
             <td>
               <form>
-                <select id="editarMedico">
+                <select id="editarDoctor">
                   <option value=${ cita.cita.doctor }>${ cita.cita.doctor }</option>
                   ${ 
                     doctores.map( (doctores) => {
@@ -110,37 +110,44 @@ export const UpdateCita = (cita,urlApiCitas,elementHtml,citas,pacientes,tratamie
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoCita = `{
+      if(document.getElementById('editarPaciente').value!== "" &&
+      document.getElementById('editarFecha').value!== "" &&
+      document.getElementById('editarHora').value!== "" &&
+      document.getElementById('editarConsultorio').value!== "" &&
+      document.getElementById('editarDoctor').value!== "" &&
+      document.getElementById('editarTratamiento').value!== "" ) {
+        const contenidoCita = `{
           "cita": {
             "paciente": "${document.getElementById('editarPaciente').value}",
             "fecha": "${document.getElementById('editarFecha').value}",
             "hora": "${document.getElementById('editarHora').value}",
             "consultorio": "${document.getElementById('editarConsultorio').value}",
-            "doctor": "${document.getElementById('editarMedico').value}",
+            "doctor": "${document.getElementById('editarDoctor').value}",
             "tratamiento": "${document.getElementById('editarTratamiento').value}"
           },
           "id": ${cita.id}
-      }`;
-      const fetchResponse = updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
-      fetchResponse.then(
-        async function(value) {
-          if(200 <= value && value <= 299) {
-            let citas;
-            await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
-                .then(response => response.json())
-                .then(data => citas = data);
+        }`;
+        const fetchResponse = updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) {
+              let citas;
+              await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
+                  .then(response => response.json())
+                  .then(data => citas = data);
 
-            const root = ReactDOM.createRoot(
-              document.getElementById('contenidoCitas')
-            );
-            root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
+              const root = ReactDOM.createRoot(
+                document.getElementById('contenidoCitas')
+              );
+              root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 
-            Swal.fire("Cita Actualizada", "", "success"); 
-          } 
-          else { Swal.fire("Error en la actualización", "", "error"); }
-        },
-        function(error) { Swal.fire("Error en la actualización", "", "error"); }
-      )
+              Swal.fire("Cita Actualizada", "", "success"); 
+            } 
+            else { Swal.fire("Error en la actualización", "", "error"); }
+          },
+          function(error) { Swal.fire("Error en la actualización", "", "error"); }
+        )
+      }
     }
   });
 };

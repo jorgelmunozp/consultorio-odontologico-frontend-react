@@ -59,35 +59,39 @@ export const UpdateDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,t
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      const contenidoDoctor = `{
+      if(document.getElementById('editarNombre').value!== "" &&
+      document.getElementById('editarApellido').value!== "" &&
+      document.getElementById('editarEspecialidad').value!== "" ) {
+        const contenidoDoctor = `{
           "doctor": {
             "nombre": "${document.getElementById('editarNombre').value}",
             "apellido": "${document.getElementById('editarApellido').value}",
             "especialidad": "${document.getElementById('editarEspecialidad').value}"
           },
           "id": ${doctor.id}
-      }`;
-      const fetchResponse = updateFetch(urlApiDoctores,JSON.stringify(contenidoDoctor),doctor.id);
-      fetchResponse.then(
-        async function(value) {
-          if(200 <= value && value <= 299) {
-            let doctores;
-            await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
-                .then(response => response.json())
-                .then(data => doctores = data);
+        }`;
+        const fetchResponse = updateFetch(urlApiDoctores,JSON.stringify(contenidoDoctor),doctor.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) {
+              let doctores;
+              await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
+                  .then(response => response.json())
+                  .then(data => doctores = data);
 
-            const root = ReactDOM.createRoot(
-              document.getElementById('contenidoDoctores')
-            );
-            root.render(elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
+              const root = ReactDOM.createRoot(
+                document.getElementById('contenidoDoctores')
+              );
+              root.render(elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
 
 
-            Swal.fire("Doctor Actualizado", "", "success"); 
-          } 
-          else { Swal.fire("Error en la actualización", "", "error"); }
-        },
-        function(error) { Swal.fire("Error en la actualización", "", "error"); }
-      )
+              Swal.fire("Doctor Actualizado", "", "success"); 
+            } 
+            else { Swal.fire("Error en la actualización", "", "error"); }
+          },
+          function(error) { Swal.fire("Error en la actualización", "", "error"); }
+        )
+      }
     }
   }); 
 };
