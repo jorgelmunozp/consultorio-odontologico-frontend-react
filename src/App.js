@@ -23,31 +23,31 @@ function App() {
 
   const urlApiCitas = process.env.REACT_APP_API_CITAS;
   const citas = useFetch(urlApiCitas).data;
-  let [setCitas]= useState('');
+  let [setCitas] = useState('');
 
   const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
   const pacientes = useFetch(urlApiPacientes).data;
-  let [setPacientes]= useState('');
+  let [setPacientes] = useState('');
 
   const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
   const doctores = useFetch(urlApiDoctores).data;
-  let [setDoctores]= useState('');
+  let [setDoctores] = useState('');
 
   const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
-  const consultorios  = useFetch(urlApiConsultorios).data;
-  let [setConsultorios]= useState('');
+  const consultorios = useFetch(urlApiConsultorios).data;
+  let [setConsultorios] = useState('');
 
   const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
-  const tratamientos  = useFetch(urlApiTratamientos).data;
-  let [setTratamientos]= useState('');
+  const tratamientos = useFetch(urlApiTratamientos).data;
+  let [setTratamientos] = useState('');
 
   const urlApiEpss = process.env.REACT_APP_API_EPSS;
-  const epss  = useFetch(urlApiEpss).data;
-  let [setEpss]= useState('');
+  const epss = useFetch(urlApiEpss).data;
+  let [setEpss] = useState('');
 
   const urlApiGeneros = process.env.REACT_APP_API_GENEROS;
   const generos  = useFetch(urlApiGeneros).data;
-  let [setGeneros]= useState('');
+  let [setGeneros] = useState('');
 
   return (
     <div className="App">

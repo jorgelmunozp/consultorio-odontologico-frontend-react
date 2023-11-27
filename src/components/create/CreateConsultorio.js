@@ -19,17 +19,8 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
-  // const [create, setCreate] = useState(false);
-
   let createFlag = false;
-  if(numero !== "" && nombre !== ""){
-    createFlag = true;
-    console.log(createFlag)
-  }
-  // if(numero !== "" && nombre !== "") {
-  //   setCreate(true);
-  //   console.log(createFlag)
-  // }
+  if(numero!=="" && nombre!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
     // consultorios.push(itemConsultorio);

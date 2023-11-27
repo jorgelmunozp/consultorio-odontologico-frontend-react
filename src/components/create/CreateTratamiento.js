@@ -19,8 +19,10 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
   const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
   const [doctor, setDoctor] = useState("");           //Select Doctor
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
-
   const [responseStatus, setResponseStatus] = useState("");
+
+  let createFlag = false;
+  if(nombre!=="" && consultorio!=="" && doctor!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Tratamiento Registrado", "", "success");
@@ -97,7 +99,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                 </td>
               </tr>
             </tbody>

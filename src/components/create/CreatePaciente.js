@@ -15,8 +15,8 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
     },
   })`
 
-  const [cedula, setCedula] = useState("");         //Input Cedula
-  const handleChangeCedula = (event) => { setCedula(event.target.value); };
+  const [identificacion, setIdentificacion] = useState();         //Input Identificacion
+  const handleChangeCedula = (event) => { setIdentificacion(event.target.value); };
   const [nombre, setNombre] = useState("");         //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [apellido, setApellido] = useState("");     //Input Apellido
@@ -25,12 +25,14 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
   const handleChangeGenero = (event) => { setGenero(event.target.value); };
   const [eps, setEps] = useState("");                 //Select Eps
   const handleChangeEps = (event) => { setEps(event.target.value); };
-
   const [responseStatus, setResponseStatus] = useState("");
+
+  let createFlag = false;
+  if(identificacion!=="" && nombre!=="" && apellido!=="" && genero!=="" && eps!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Paciente Registrado", "", "success");
-    setCedula("");
+    setIdentificacion("");
     setNombre("");
     setApellido("");
     setGenero("");
@@ -56,7 +58,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
             <tbody>
               <tr>
                 <td colSpan={2}>
-                  <TextField value={cedula} onChange={handleChangeCedula}
+                  <TextField value={identificacion} onChange={handleChangeCedula}
                     id="cedulaPaciente" label="Cédula" type="number" variant="outlined"
                     className="textField" margin="dense" autoComplete="off"
                   />
@@ -119,7 +121,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
               <br></br>
               <tr>
                 <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApiPacientes} contenidoApi={contenidoPacientes} setResponseStatus={setResponseStatus}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApiPacientes} contenidoApi={contenidoPacientes} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                 </td>
               </tr>
             </tbody>

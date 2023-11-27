@@ -18,9 +18,6 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
     },
   })`
 
-  let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
-  let [hora, setHora] = useState(getTime);
-
   const [paciente, setPaciente] = useState("");             //Select Paciente
   const handleChangePaciente = (event) => { setPaciente(event.target.value); };
   const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento
@@ -29,8 +26,14 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
   const [consultorio, setConsultorio] = useState("");       //Select Consultorio
   const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
-
   const [responseStatus, setResponseStatus] = useState(0);
+  let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
+  const handleChangeFecha = (event) => { setFecha(event.target.value); };
+  let [hora, setHora] = useState(getTime);
+  const handleChangeHora = (event) => { setHora(event.target.value); };
+
+  let createFlag = false;
+  if(paciente!=="" && fecha!=="" && hora!=="" && tratamiento!=="" && doctor!=="" && consultorio!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
 
@@ -102,7 +105,9 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                   <td>
                     <TextField
                       id="registroFecha" type="date" label="Fecha"
-                      defaultValue={fecha} onChange={() => setFecha(fecha)}
+                      // defaultValue={fecha} onChange={() => setFecha(fecha)}
+                      defaultValue={fecha} onChange={handleChangeFecha}
+                      
                       variant="outlined" className="textField" margin="dense"
                     />
                   </td>
@@ -110,7 +115,8 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                   <td>
                     <TextField
                       id="registroHora" type="time" label="Hora"
-                      defaultValue={hora} onChange={() => setHora(hora)}
+                      // defaultValue={hora} onChange={() => setHora(hora)}
+                      defaultValue={hora} onChange={handleChangeHora}
                       variant="outlined" className="textField" margin="dense"
                     />
                   </td>
@@ -158,7 +164,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                 <br></br>
                 <tr>
                   <td colSpan={2}>
-                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus}></BotonGuardar>
+                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                   </td>
                 </tr>
               </tbody>
