@@ -1,21 +1,10 @@
 import Swal from 'sweetalert2';
 import React, { useState }  from "react";
-import ReactDOM from 'react-dom/client';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-const urlApiEpss = process.env.REACT_APP_API_EPSS;
-
-let epss;
-await fetch(urlApiEpss)                      //API REST para consumo de la tabla Citas de la base de datos
-    .then(response => response.json())
-    .then(data => epss = data);
-
-export const CreatePaciente = ({ 
-  urlApiPacientes
- }) => {
-
+export const CreatePaciente = ({ urlApiPacientes,epss }) => {
   const contenidoPacientes = `JSON.stringify({
     "paciente": {
       "nombre": document.getElementById("nombrePaciente").value,

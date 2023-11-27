@@ -10,7 +10,7 @@ await fetch(urlApiPacientes)                      //API REST para consumo de la 
         .then(response => response.json())
         .then(data => pacientes = data);
 
-const element = (pacientes,tratamientos,doctores,consultorios,epss) =>  
+const elementHtml = (urlApiPacientes,pacientes,tratamientos,doctores,consultorios,epss) =>  
 <center>
   <hr/>
   <h4> Pacientes Afiliados </h4>
@@ -84,14 +84,14 @@ renderContent(pacientes,tratamientos,doctores,consultorios);
 
 const renderContent = (pacientes,tratamientos,doctores,consultorios) => {
 const root = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
-root.render(element(pacientes,tratamientos,doctores,consultorios));
+root.render(elementHtml(pacientes,tratamientos,doctores,consultorios));
 }
 
 export const ConsultarPacientes = ({ pacientes,tratamientos,doctores,consultorios,epss }) => {
   return(
     <div className="App">
       <div id="contenidoPacientes">  
-        { element(pacientes,tratamientos,doctores,consultorios,epss) }
+        { elementHtml(pacientes,tratamientos,doctores,consultorios,epss) }
     </div>
   </div>
   )

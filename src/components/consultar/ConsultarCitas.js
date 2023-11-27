@@ -4,13 +4,7 @@ import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
 import { Arrows } from '../../atoms/arrows/Arrows';
 
-const urlApiCitas = process.env.REACT_APP_API_CITAS;
-let citas;
-await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
-        .then(response => response.json())
-        .then(data => citas = data);
-
-const element = (pacientes,tratamientos,doctores,consultorios) =>  
+const elementHtml = (urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) =>  
   <center>
     <hr/>
     <h4> Citas Registradas </h4>
@@ -19,13 +13,13 @@ const element = (pacientes,tratamientos,doctores,consultorios) =>
     <table className="table" border='1'>
       <thead>
         <tr>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Paciente&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","paciente",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","paciente",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Fecha&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","fecha",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","fecha",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Hora&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","hora",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","hora",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Consultorio&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","consultorio",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Doctor&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","doctor",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Tratamiento&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","tratamiento",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","tratamiento",pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Paciente&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","paciente",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","paciente",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Fecha&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","fecha",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","fecha",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Hora&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","hora",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","hora",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Consultorio&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","consultorio",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","consultorio",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Doctor&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","doctor",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","doctor",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;</th><th rowSpan='2'>Tratamiento&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","tratamiento",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","tratamiento",urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
           <th colSpan='3'></th>
         </tr>
       </thead>
@@ -50,7 +44,7 @@ const element = (pacientes,tratamientos,doctores,consultorios) =>
     </table>
   </center>;
 
-const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consultorios) => {
+const handleSortBy = (dir,parameter,urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) => {
   if(dir==="up"){
     if(parameter==="id") {
       citas.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -85,19 +79,19 @@ const handleSortBy = async (dir,parameter,pacientes,tratamientos,doctores,consul
       citas.sort((a, b) => (a.cita.tratamiento < b.cita.tratamiento) ? 1 : -1);
     }
   }
-  renderContent(pacientes,tratamientos,doctores,consultorios);
+  renderContent(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios);
 }
 
-const renderContent = (pacientes,tratamientos,doctores,consultorios) => {
+const renderContent = (urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) => {
   const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
-  root.render(element(pacientes,tratamientos,doctores,consultorios));
+  root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 }
 
-export const ConsultarCitas = ({ pacientes,tratamientos,doctores,consultorios }) => {
+export const ConsultarCitas = ({ urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios }) => {
   return(
     <div className="App">
       <div id="contenidoCitas">
-        { element(pacientes,tratamientos,doctores,consultorios) }
+        { elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) }
       </div>
     </div>
   )

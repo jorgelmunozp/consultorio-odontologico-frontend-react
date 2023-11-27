@@ -10,7 +10,7 @@ await fetch(urlApiDoctores)                      //API REST para consumo de la t
         .then(response => response.json())
         .then(data => doctores = data);
 
-const element = (pacientes,tratamientos,doctores,consultorios) =>  
+const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios) =>  
   <center>
     <hr/>
     <h4> Doctores Disponibles </h4>
@@ -67,19 +67,19 @@ const element = (pacientes,tratamientos,doctores,consultorios) =>
       doctores.sort((a, b) => (a.doctor.especialidad < b.doctor.especialidad) ? 1 : -1); 
     }
   }
-  renderContent(pacientes,tratamientos,doctores,consultorios);
+  renderContent(urlApiDoctores,pacientes,tratamientos,doctores,consultorios);
   }
 
-  const renderContent = (pacientes,tratamientos,doctores,consultorios) => {
+  const renderContent = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios) => {
     const root = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-    root.render(element(pacientes,tratamientos,doctores,consultorios));
+    root.render(elementHtml(urlApiDoctores,pacientes,tratamientos,doctores,consultorios));
   }
 
-export const ConsultarDoctores = ({ pacientes,tratamientos,doctores,consultorios }) => {
+export const ConsultarDoctores = ({ urlApiDoctores,pacientes,tratamientos,doctores,consultorios }) => {
   return (
     <div className="App">
       <div id="contenidoDoctores">
-        { element(pacientes,tratamientos,doctores,consultorios) }
+        { elementHtml(urlApiDoctores,pacientes,tratamientos,doctores,consultorios) }
       </div>
     </div>
   )

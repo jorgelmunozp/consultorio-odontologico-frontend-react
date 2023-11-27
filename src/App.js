@@ -99,29 +99,29 @@ function App() {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss}) => {        //Componente para elegir juego a renderizar
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,setCitas,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss}) => {        //Componente para elegir juego a renderizar
   if(menu === 1){
     return <Inicio />;
   }else if(menu === 2){
-    return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    return <ConsultarCitas urlApiCitas={urlApiCitas} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 3){
     return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
-    return <ConsultarPacientes pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
+    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
   }else if(menu === 5){
-    return <CreatePaciente urlApiPacientes={urlApiPacientes} />;
+    return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss}/>;
   }else if(menu === 6){
-    return <ConsultarTratamientos pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 7){
     return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){
-    return <ConsultarDoctores pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
+    return <ConsultarDoctores urlApiDoctores={urlApiDoctores} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 9){
     return <CreateDoctor urlApiDoctores={urlApiDoctores} />;
   }else if(menu === 10){
-    return <ConsultarConsultorios pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
+    return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 11){
-    return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} />;
+    return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} />;
   }else if(menu === 14){
     return <Usuario />;
 }

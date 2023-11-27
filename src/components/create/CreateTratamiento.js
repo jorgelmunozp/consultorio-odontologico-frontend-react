@@ -4,12 +4,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaStethoscope } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 
-export const CreateTratamiento = ({
-  urlApiTratamientos,
-  consultorios,
-  doctores
-}) => {
-
+export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) => {
   const contenidoTratamientos = `JSON.stringify({
     "tratamiento": {
       "nombre": document.getElementById("nombreTratamiento").value,
