@@ -4,7 +4,7 @@ import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
 import { Arrows } from '../../atoms/arrows/Arrows';
 
-const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios) =>  
+const elementHtml = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) =>  
   <center>
     <hr/>
     <h4> Doctores Disponibles </h4>
@@ -13,10 +13,10 @@ const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios
     <table className="table" border='1'>
       <thead>
         <tr>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Nombre&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","nombre",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","nombre",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Apellido&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","apellido",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","apellido",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Especialidad&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","especialidad",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","especialidad",urlApiDoctores,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Nombre&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","nombre",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","nombre",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Apellido&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","apellido",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","apellido",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+          <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Especialidad&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","especialidad",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","especialidad",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
           <th colSpan='3'></th>
         </tr>
       </thead>
@@ -29,7 +29,7 @@ const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios
               <td>{ doctor.doctor.apellido }</td>
               <td>{ doctor.doctor.especialidad }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
-              <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,tratamientos) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
               <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
             </tr>
           ))
@@ -38,7 +38,7 @@ const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios
     </table>
   </center>;
 
-  const handleSortBy = async (dir,parameter,urlApiDoctores,pacientes,tratamientos,doctores,consultorios) => {
+  const handleSortBy = async (dir,parameter,urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) => {
   if(dir==="up"){
     if(parameter==="id") {
       doctores.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -61,19 +61,19 @@ const elementHtml = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios
       doctores.sort((a, b) => (a.doctor.especialidad < b.doctor.especialidad) ? 1 : -1); 
     }
   }
-  renderContent(urlApiDoctores,pacientes,tratamientos,doctores,consultorios);
+  renderContent(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios);
   }
 
-  const renderContent = (urlApiDoctores,pacientes,tratamientos,doctores,consultorios) => {
+  const renderContent = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) => {
     const root = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-    root.render(elementHtml(urlApiDoctores,pacientes,tratamientos,doctores,consultorios));
+    root.render(elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
   }
 
-export const ConsultarDoctores = ({ urlApiDoctores,pacientes,tratamientos,doctores,consultorios }) => {
+export const ConsultarDoctores = ({ urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios }) => {
   return (
     <div className="App">
       <div id="contenidoDoctores">
-        { elementHtml(urlApiDoctores,pacientes,tratamientos,doctores,consultorios) }
+        { elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) }
       </div>
     </div>
   )

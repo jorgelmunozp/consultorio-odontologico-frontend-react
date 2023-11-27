@@ -4,7 +4,7 @@ import { ReadDoctor } from '../read/ReadDoctor';
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdateDoctor = (doctor,urlApiDoctores,tratamientos) => {
+export const UpdateDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Doctor",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -81,40 +81,42 @@ export const UpdateDoctor = (doctor,urlApiDoctores,tratamientos) => {
             const root = ReactDOM.createRoot(
               document.getElementById('contenidoDoctores')
             );
-            const element =    
-              <center>
-                <hr/>
-                <h4> Doctores Disponibles </h4>
-                <hr/>
-                <br/><br/>
-                <table className="table" border='1'>
-                  <thead>
-                    <tr>
-                      <th> Código </th>
-                      <th> Nombre </th>
-                      <th> Apellido </th>
-                      <th> Especialidad </th>
-                      <th colSpan='3'> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      doctores.map( doctor => (
-                        <tr>
-                          <td>{ doctor.id }</td>
-                          <td>{ doctor.doctor.nombre }</td>
-                          <td>{ doctor.doctor.apellido }</td>
-                          <td>{ doctor.doctor.especialidad }</td>
-                          <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
-                          <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores) }>&#x270D;</button></td>
-                          <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
-              </center>;
-            root.render(element);
+            // const element =    
+            //   <center>
+            //     <hr/>
+            //     <h4> Doctores Disponibles </h4>
+            //     <hr/>
+            //     <br/><br/>
+            //     <table className="table" border='1'>
+            //       <thead>
+            //         <tr>
+            //           <th> Código </th>
+            //           <th> Nombre </th>
+            //           <th> Apellido </th>
+            //           <th> Especialidad </th>
+            //           <th colSpan='3'> </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody>
+            //         {
+            //           doctores.map( doctor => (
+            //             <tr>
+            //               <td>{ doctor.id }</td>
+            //               <td>{ doctor.doctor.nombre }</td>
+            //               <td>{ doctor.doctor.apellido }</td>
+            //               <td>{ doctor.doctor.especialidad }</td>
+            //               <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
+            //               <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores) }>&#x270D;</button></td>
+            //               <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores) }>&#x1F7AE;</button></td>
+            //             </tr>
+            //           ))
+            //         }
+            //       </tbody>
+            //     </table>
+            //   </center>;
+            // root.render(element);
+            root.render(elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
+
 
             Swal.fire("Doctor Actualizado", "", "success"); 
           } 

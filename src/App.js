@@ -107,19 +107,19 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   }else if(menu === 3){
     return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 4){
-    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
+    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} />;
   }else if(menu === 5){
     return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss}/>;
   }else if(menu === 6){
-    return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }else if(menu === 7){
     return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
   }else if(menu === 8){
-    return <ConsultarDoctores urlApiDoctores={urlApiDoctores} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
+    return <ConsultarDoctores urlApiDoctores={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 9){
     return <CreateDoctor urlApiDoctores={urlApiDoctores} />;
   }else if(menu === 10){
-    return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
+    return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}/>;
   }else if(menu === 11){
     return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} />;
   }else if(menu === 14){

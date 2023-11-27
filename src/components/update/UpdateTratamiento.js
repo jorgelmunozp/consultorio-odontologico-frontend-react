@@ -4,7 +4,7 @@ import { ReadTratamiento } from '../read/ReadTratamiento';
 import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { updateFetch } from '../../helpers/updateFetch';
 
-export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consultorios) => {
+export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Tratamiento",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -94,40 +94,42 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,doctores,consul
             const root = ReactDOM.createRoot(
               document.getElementById('contenidoTratamientos')
             );
-            const element =    
-              <center>
-                <hr/>
-                <h4> Tratamientos Autorizados </h4>
-                <hr/>
-                <br/><br/>
-                <table className="table" border='1'>
-                  <thead>
-                    <tr>
-                      <th> Código </th>
-                      <th> Nombre </th>
-                      <th> Consultorio </th>
-                      <th> Doctor </th>
-                      <th colSpan='3'> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      tratamientos.map( tratamiento => (
-                        <tr>
-                          <td>{ tratamiento.id }</td>
-                          <td>{ tratamiento.tratamiento.nombre }</td>
-                          <td>{ tratamiento.tratamiento.consultorio }</td>
-                          <td>{ tratamiento.tratamiento.doctor }</td>
-                          <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
-                          <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                          <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
-              </center>
-            root.render(element);       
+            // const element =    
+            //   <center>
+            //     <hr/>
+            //     <h4> Tratamientos Autorizados </h4>
+            //     <hr/>
+            //     <br/><br/>
+            //     <table className="table" border='1'>
+            //       <thead>
+            //         <tr>
+            //           <th> Código </th>
+            //           <th> Nombre </th>
+            //           <th> Consultorio </th>
+            //           <th> Doctor </th>
+            //           <th colSpan='3'> </th>
+            //         </tr>
+            //       </thead>
+            //       <tbody>
+            //         {
+            //           tratamientos.map( tratamiento => (
+            //             <tr>
+            //               <td>{ tratamiento.id }</td>
+            //               <td>{ tratamiento.tratamiento.nombre }</td>
+            //               <td>{ tratamiento.tratamiento.consultorio }</td>
+            //               <td>{ tratamiento.tratamiento.doctor }</td>
+            //               <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
+            //               <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x270D;</button></td>
+            //               <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+            //             </tr>
+            //           ))
+            //         }
+            //       </tbody>
+            //     </table>
+            //   </center>
+            // root.render(element);       
+
+            root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
 
             Swal.fire("Tratamiento Actualizado", "", "success"); 
           }
