@@ -1,7 +1,5 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { ReadConsultorio } from '../read/ReadConsultorio';
-import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { updateFetch } from '../../helpers/updateFetch';
 
 export const UpdateConsultorio = (urlApiConsultorios,elementHtml,consultorio,citas,pacientes,tratamientos,doctores,consultorios) => {
