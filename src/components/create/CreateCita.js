@@ -5,9 +5,8 @@ import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 import { getTime } from '../../helpers/getTime';
 import { getDate } from '../../helpers/getDate';
-import { fetchCreate } from '../../helpers/fetchCreate.js';
 
-export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consultorios }) => {
+export const CreateCita = ({ urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios }) => {
   const contenidoCitas = `JSON.stringify({
     "cita": {
       "paciente": document.getElementById("registroPaciente").innerText,
@@ -37,11 +36,8 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
   if(paciente!=="" && fecha!=="" && hora!=="" && tratamiento!=="" && doctor!=="" && consultorio!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
-    const fetchResponse = fetchCreate(urlApiCitas);
     setResponseStatus(0);
-    console.log("fetchResponse: ", fetchResponse)
-
-        Swal.fire("Cita Registrada", "", "success");
+    Swal.fire("Cita Registrada", "", "success");
     setPaciente("");
     setTratamiento("");
     setConsultorio("");

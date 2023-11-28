@@ -7,13 +7,13 @@ export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus,createFlag ) 
     }).then((response) => {
       response.json();
       if(200 <= response.status && response.status <= 299){
-        console.log(response.status +' Registro exitoso')
+        console.log('POST ' + response.status + ' Registro exitoso')
         setResponseStatus(response.status);
       } else if(400 <= response.status && response.status <= 499){
-        console.log(response.status +' Registro fallido: ' + 'Error en el envío de datos')
+        console.log('POST ' + response.status + ' Registro fallido: ' + 'Error en el envío de datos')
         setResponseStatus(response.status);
       } else if(500 <= response.status && response.status <= 599){
-        console.log(response.status +' Registro fallido: ' + 'Error en el servidor remoto')
+        console.log('POST ' + response.status + ' Registro fallido: ' + 'Error en el servidor remoto')
         setResponseStatus(response.status);
       }
     }).catch((error) => {

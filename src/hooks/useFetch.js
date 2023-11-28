@@ -8,7 +8,7 @@ export const useFetch = ( urlApi ) => {
         data: [],
     });
 
-    useEffect( (  ) => {
+    useEffect( () => {
          getData( urlApi )
             .then( datos => {
                 setState({

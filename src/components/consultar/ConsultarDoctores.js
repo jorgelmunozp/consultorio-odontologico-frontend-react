@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { useFetch } from "../../hooks/useFetch";
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
@@ -69,7 +70,8 @@ const elementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
     root.render(elementRender(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
   }
 
-export const ConsultarDoctores = ({ urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios }) => {
+export const ConsultarDoctores = ({ urlApiDoctores,citas,pacientes,tratamientos,consultorios }) => {
+  const doctores = useFetch(urlApiDoctores).data;
   return (
     <div className="App">
       <div id="contenidoDoctores">

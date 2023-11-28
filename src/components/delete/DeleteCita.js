@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
+import { useFetch } from "../../hooks/useFetch";
 import { fetchDelete } from '../../helpers/fetchDelete';
 
   export const DeleteCita = async (cita,urlApiCitas,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
@@ -55,17 +56,25 @@ import { fetchDelete } from '../../helpers/fetchDelete';
       cancelButtonText: "Cancelar"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        fetchDelete(urlApiCitas,cita.id);
-        
-        let citas;
-        await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
-            .then(response => response.json())
-            .then(data => citas = data);
-
-        const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
-        root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
-
-        Swal.fire({ title: "Cita Eliminada", icon: "success" });
+        const fetchResponse = fetchDelete(urlApiCitas,cita.id);
+        fetchResponse.then(
+          async function(value) {
+            if(200 <= value && value <= 299) {
+              let citas;
+              await fetch(urlApiCitas)                      
+                  .then(response => response.json())
+                  .then(data => citas = data);
+              // const citas = useFetch(urlApiCitas).data; //API REST para consumo de la tabla Citas de la base de datos
+      
+              const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
+              root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
+      
+              Swal.fire({ title: "Cita Eliminada", icon: "success" });
+            }
+            else { Swal.fire("Error en la eliminación", "", "error"); }
+          },
+          function(error) { Swal.fire("Error en la eliminación", "", "error"); }
+        )
       }
     });
 

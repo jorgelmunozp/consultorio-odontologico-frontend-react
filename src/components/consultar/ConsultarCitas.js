@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import { useFetch } from "../../hooks/useFetch";
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
@@ -87,7 +88,8 @@ const renderContent = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
   root.render(elementRender(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 }
 
-export const ConsultarCitas = ({ urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios }) => {
+export const ConsultarCitas = ({ urlApiCitas,pacientes,tratamientos,doctores,consultorios }) => {
+  const citas = useFetch(urlApiCitas).data;
   return(
     <div className="App">
       <div id="contenidoCitas">

@@ -33,5 +33,4 @@ export const handleSortBy = (dir,parameter,urlApiCitas,citas,pacientes,tratamien
         citas.sort((a, b) => (a.cita.tratamiento < b.cita.tratamiento) ? 1 : -1);
       }
     }
-    console.log(citas)
 };

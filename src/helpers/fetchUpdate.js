@@ -7,11 +7,11 @@ export const fetchUpdate = async ( urlApi,contenidoApi,id ) => {
     });
     response.json();
     if (200 <= response.status && response.status <= 299) {
-      console.log(response.status + ' Registro exitoso');
+      console.log('PUT ' + response.status + ' Actualización exitosa');
     } else if (400 <= response.status && response.status <= 499) {
-      console.log(response.status + ' Registro fallido: ' + 'Error en el envío de datos');
+      console.log('PUT ' + response.status + ' Actualización fallida: ' + 'Error en el envío de datos');
     } else if (500 <= response.status && response.status <= 599) {
-      console.log(response.status + ' Registro fallido: ' + 'Error en el servidor remoto');
+      console.log('PUT ' + response.status + ' Actualización fallida: ' + 'Error en el servidor remoto');
     }
     return response.status;
   } catch (error) {

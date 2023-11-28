@@ -92,9 +92,7 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementRender,c
                   .then(response => response.json())
                   .then(data => tratamientos = data);
                   
-              const root = ReactDOM.createRoot(
-                document.getElementById('contenidoTratamientos')
-              );
+              const root = ReactDOM.createRoot(document.getElementById('contenidoTratamientos'));
               root.render(elementRender(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
 
               Swal.fire("Tratamiento Actualizado", "", "success"); 

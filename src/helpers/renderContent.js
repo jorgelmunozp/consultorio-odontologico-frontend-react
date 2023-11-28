@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import { elementRender } from '../helpers/elementRender';
-import { ConsultarCitas } from '../components/consultar/ConsultarCitas';
 
 export const renderContent = (urlApi,citas,pacientes,tratamientos,doctores,consultorios) => {
     const cloneUrlApi = urlApi;

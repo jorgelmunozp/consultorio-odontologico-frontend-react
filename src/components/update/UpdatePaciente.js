@@ -104,9 +104,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,paci
                   .then(response => response.json())
                   .then(data => pacientes = data);            
               
-              const root = ReactDOM.createRoot(
-                document.getElementById('contenidoPacientes')
-              );
+              const root = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
               root.render(elementRender(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
 
               Swal.fire("Paciente Actualizado", "", "success"); 

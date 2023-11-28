@@ -60,9 +60,7 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
                   .then(response => response.json())
                   .then(data => consultorios = data);
         
-              const root = ReactDOM.createRoot(
-                document.getElementById('contenidoConsultorios')
-              );
+              const root = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
               root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
           
               Swal.fire("Consultorio Actualizado", "", "success"); 

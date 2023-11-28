@@ -136,9 +136,7 @@ export const UpdateCita = (cita,urlApiCitas,elementRender,citas,pacientes,tratam
                   .then(response => response.json())
                   .then(data => citas = data);
 
-              const root = ReactDOM.createRoot(
-                document.getElementById('contenidoCitas')
-              );
+              const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
               root.render(elementRender(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 
               Swal.fire("Cita Actualizada", "", "success"); 

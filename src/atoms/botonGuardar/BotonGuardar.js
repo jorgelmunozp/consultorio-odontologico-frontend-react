@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material';
-import { fetchCreate } from '../../helpers/fetchCreate.js';
+import { fetchCreate } from '../../helpers/fetchCreate';
 
 export const BotonGuardar = ({ endIcon,titulo,urlApi,contenidoApi,setResponseStatus,createFlag }) => {
   return (

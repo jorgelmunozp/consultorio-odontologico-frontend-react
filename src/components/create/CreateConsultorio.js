@@ -23,10 +23,8 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
   if(numero!=="" && nombre!==""){ createFlag = true; }
 
   if(200 <= responseStatus && responseStatus <= 299){
-    // consultorios.push(itemConsultorio);
     Swal.fire("Consultorio Registrado", "", "success");
     createFlag = false;
-    console.log(createFlag)
     setNumero("");
     setNombre("");
     setResponseStatus(0);
