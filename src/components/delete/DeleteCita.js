@@ -64,7 +64,6 @@ import { fetchDelete } from '../../helpers/fetchDelete';
               await fetch(urlApiCitas)                      
                   .then(response => response.json())
                   .then(data => citas = data);
-              // const citas = useFetch(urlApiCitas).data; //API REST para consumo de la tabla Citas de la base de datos
       
               const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
               root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
