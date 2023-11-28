@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../helpers/fetchDelete';
 
-export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const DeleteTratamiento = (root,tratamiento,urlApiTratamientos,elementRender,citas,pacientes,doctores,consultorios) => {
   Swal.fire({
     title: "Eliminar Tratamiento?",
     html: `
@@ -51,9 +51,9 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
             await fetch(urlApiTratamientos)                      //API REST para consumo de la tabla Tratamientos de la base de datos
                 .then(response => response.json())
                 .then(data => tratamientos = data);
-
-            const root = ReactDOM.createRoot(document.getElementById('contenidoTratamientos'));
-            root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
+            
+            const root = ReactDOM.createRoot(document.getElementById('contenido'));
+            root.render(elementRender(root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
             
             Swal.fire({ title: "Tratamiento Eliminado", icon: "success" });
           }

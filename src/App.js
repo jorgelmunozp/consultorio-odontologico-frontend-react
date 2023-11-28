@@ -81,10 +81,10 @@ function App() {
           <button className="App-menu-item" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='App-menu-icono'/></button>
         </nav>
       </aside>
-
       <body className='App-body'>
-        <div className='contenidoBody'>
-          <Menu menu={menu} 
+        <div id='contenidoBody' className='contenidoBody'>
+          <div id="App" className="App"> 
+              <Menu menu={menu} 
                 urlApiCitas={urlApiCitas} 
                 urlApiPacientes={urlApiPacientes}
                 urlApiTratamientos={urlApiTratamientos}
@@ -97,7 +97,8 @@ function App() {
                 consultorios={consultorios} setConsultorios={setConsultorios}
                 epss={epss} setEpss={setEpss}
                 generos={generos} setGeneros={setGeneros}
-          />
+              />
+          </div>
         </div>
       </body>
     </div>
