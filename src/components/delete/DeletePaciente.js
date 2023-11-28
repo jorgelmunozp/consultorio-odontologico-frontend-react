@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { deleteFetch } from '../../helpers/deleteFetch';
+import { fetchDelete } from '../../helpers/fetchDelete';
 
 export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
     Swal.fire({
@@ -51,7 +51,7 @@ export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
       cancelButtonText: "Cancelar"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        deleteFetch(urlApiPacientes,paciente.id);
+        fetchDelete(urlApiPacientes,paciente.id);
         
         let pacientes;
         await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Pacientes de la base de datos

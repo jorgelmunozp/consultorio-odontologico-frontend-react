@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { updateFetch } from '../../helpers/updateFetch';
+import { fetchUpdate } from '../../helpers/fetchUpdate';
 
 export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
@@ -51,7 +51,7 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
           },
           "id": ${consultorio.id}
         }`;
-        const fetchResponse = updateFetch(urlApiConsultorios,JSON.stringify(contenidoConsultorios),consultorio.id);
+        const fetchResponse = fetchUpdate(urlApiConsultorios,JSON.stringify(contenidoConsultorios),consultorio.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) { 
@@ -64,7 +64,6 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
                 document.getElementById('contenidoConsultorios')
               );
               root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
-
           
               Swal.fire("Consultorio Actualizado", "", "success"); 
             } 

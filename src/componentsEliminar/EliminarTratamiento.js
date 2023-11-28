@@ -1,8 +1,7 @@
 import Swal from 'sweetalert2';
-import ReactDOM from 'react-dom/client';
-import { fetchDelete } from '../../helpers/fetchDelete';
+import { deleteFetch } from '../helpers/fetchDelete';
 
-export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const EliminarTratamiento = (tratamiento,urlApiTratamientos) => {
     Swal.fire({
       title: "Eliminar Tratamiento?",
       html: `
@@ -21,7 +20,7 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
               <tr>
               </tr>
                 <td> Nombre </td>
-                <td>${ tratamiento.tratamiento.nombre }</td>
+                <td>${ tratamiento.tratamiento.tipo }</td>
               <tr>
               </tr>        
                 <td> Consultorio </td>
@@ -41,21 +40,14 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
       cancelButtonColor: "#d33",
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar"
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        fetchDelete(urlApiTratamientos,tratamiento.id);
-
-        let tratamientos;
-        await fetch(urlApiTratamientos)                      //API REST para consumo de la tabla Tratamientos de la base de datos
-            .then(response => response.json())
-            .then(data => tratamientos = data);
-
-        const root = ReactDOM.createRoot(
-          document.getElementById('contenidoTratamientos')
-        );
-        root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
-        
-        Swal.fire({ title: "Tratamiento Eliminado", icon: "success" });
+        deleteFetch(urlApiTratamientos,tratamiento.id);
+        Swal.fire({
+          title: "Tratamiento Eliminado",
+          text: "El tratamiento fue eliminado con éxito",
+          icon: "success"
+        });
       }
     });
 };

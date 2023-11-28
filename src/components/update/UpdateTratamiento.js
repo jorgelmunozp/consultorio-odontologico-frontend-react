@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { updateFetch } from '../../helpers/updateFetch';
+import { fetchUpdate } from '../../helpers/fetchUpdate';
 
-export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementRender,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Tratamiento",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -83,7 +83,7 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
           },
           "id": ${tratamiento.id}
         }`;
-        const fetchResponse = updateFetch(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
+        const fetchResponse = fetchUpdate(urlApiTratamientos,JSON.stringify(contenidoTratamiento),tratamiento.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
@@ -95,7 +95,7 @@ export const UpdateTratamiento = (tratamiento,urlApiTratamientos,elementHtml,cit
               const root = ReactDOM.createRoot(
                 document.getElementById('contenidoTratamientos')
               );
-              root.render(elementHtml(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
+              root.render(elementRender(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
 
               Swal.fire("Tratamiento Actualizado", "", "success"); 
             }

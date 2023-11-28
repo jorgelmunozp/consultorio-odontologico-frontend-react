@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { deleteFetch } from '../../helpers/deleteFetch';
+import { fetchDelete } from '../../helpers/fetchDelete';
 
   export const DeleteCita = async (cita,urlApiCitas,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
     Swal.fire({
@@ -55,16 +55,14 @@ import { deleteFetch } from '../../helpers/deleteFetch';
       cancelButtonText: "Cancelar"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        deleteFetch(urlApiCitas,cita.id);
+        fetchDelete(urlApiCitas,cita.id);
         
         let citas;
         await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
             .then(response => response.json())
             .then(data => citas = data);
 
-        const root = ReactDOM.createRoot(
-          document.getElementById('contenidoCitas')
-        );
+        const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
         root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 
         Swal.fire({ title: "Cita Eliminada", icon: "success" });

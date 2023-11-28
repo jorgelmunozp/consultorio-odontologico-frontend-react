@@ -1,4 +1,4 @@
-export const updateFetch = async ( urlApi,contenidoApi,id ) => {
+export const fetchUpdate = async ( urlApi,contenidoApi,id ) => {
   try {
     const response = await fetch(urlApi + "/" + id, {
       method: "PUT",

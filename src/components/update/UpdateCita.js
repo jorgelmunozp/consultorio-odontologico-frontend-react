@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { updateFetch } from '../../helpers/updateFetch';
+import { fetchUpdate } from '../../helpers/fetchUpdate';
 
-export const UpdateCita = (cita,urlApiCitas,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateCita = (cita,urlApiCitas,elementRender,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -127,7 +127,7 @@ export const UpdateCita = (cita,urlApiCitas,elementHtml,citas,pacientes,tratamie
           },
           "id": ${cita.id}
         }`;
-        const fetchResponse = updateFetch(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
+        const fetchResponse = fetchUpdate(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
@@ -139,7 +139,7 @@ export const UpdateCita = (cita,urlApiCitas,elementHtml,citas,pacientes,tratamie
               const root = ReactDOM.createRoot(
                 document.getElementById('contenidoCitas')
               );
-              root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
+              root.render(elementRender(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
 
               Swal.fire("Cita Actualizada", "", "success"); 
             } 

@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
-import { updateFetch } from '../../helpers/updateFetch';
+import { fetchUpdate } from '../../helpers/fetchUpdate';
 
-export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
+export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
   Swal.fire({
     title: "Paciente",
     imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
@@ -95,7 +95,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
             },
             "id": ${paciente.id}
         }`;
-        const fetchResponse = updateFetch(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
+        const fetchResponse = fetchUpdate(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
@@ -107,8 +107,7 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
               const root = ReactDOM.createRoot(
                 document.getElementById('contenidoPacientes')
               );
-              root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
-
+              root.render(elementRender(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
 
               Swal.fire("Paciente Actualizado", "", "success"); 
             } 

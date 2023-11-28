@@ -4,7 +4,7 @@ import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { Arrows } from '../../atoms/arrows/Arrows';
 
-const elementHtml = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) =>  
+const elementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) =>  
   <center>
     <hr/>
     <h4> Consultorios Disponibles </h4>
@@ -27,8 +27,8 @@ const elementHtml = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,co
               <td>{ consultorio.consultorio.numero }</td>
               <td>{ consultorio.consultorio.nombre }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadConsultorio(consultorio) }>&#128270;</button></td>
-              <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,elementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,elementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
             </tr>
           ))
         }
@@ -60,14 +60,14 @@ const handleSortBy = async (dir,parameter,urlApiConsultorios,citas,pacientes,tra
 
 const renderContent = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) => {
   const root = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
-  root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
+  root.render(elementRender(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
 }
 
 export const ConsultarConsultorios = ({ urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios }) => {
   return (
     <div className="App">
       <div id="contenidoConsultorios">
-        { elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) }
+        { elementRender(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) }
       </div>
     </div>
   );

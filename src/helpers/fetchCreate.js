@@ -1,4 +1,4 @@
-export const createFetch = ( urlApi,contenidoApi,setResponseStatus,createFlag ) => {
+export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus,createFlag ) => {
   if(createFlag === true){
     fetch(urlApi, {
       method: "POST",
