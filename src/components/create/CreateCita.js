@@ -6,7 +6,7 @@ import { BotonGuardar } from "../../atoms/botonGuardar/BotonGuardar";
 import { getTime } from '../../helpers/getTime';
 import { getDate } from '../../helpers/getDate';
 
-export const CreateCita = ({ urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios }) => {
+export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consultorios }) => {
   const contenidoCitas = `JSON.stringify({
     "cita": {
       "paciente": document.getElementById("registroPaciente").innerText,

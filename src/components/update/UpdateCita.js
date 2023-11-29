@@ -2,10 +2,10 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
 
-export const UpdateCita = (cita,urlApiCitas,elementRender,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateCita = (cita,urlApiCitas,elementRender,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Editar Cita Médica",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
+    imageUrl: "./logo192.png",
     imageWidth: 30,
     imageHeight: 30,
     imageAlt: "🦷",

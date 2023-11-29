@@ -36,8 +36,8 @@ const elementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
               <td>{ cita.cita.doctor }</td>
               <td>{ cita.cita.tratamiento }</td>
               <td><button className='App-body-boton-vistas' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
-              <td><button className='App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas,elementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,elementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+              <td><button className='App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas,elementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+              <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,elementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
             </tr>
           ))
         }

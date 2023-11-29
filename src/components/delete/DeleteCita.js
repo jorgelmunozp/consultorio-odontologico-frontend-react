@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { useFetch } from "../../hooks/useFetch";
 import { fetchDelete } from '../../helpers/fetchDelete';
 
-  export const DeleteCita = async (cita,urlApiCitas,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+  export const DeleteCita = async (cita,urlApiCitas,elementHtml,pacientes,tratamientos,doctores,consultorios) => {
     Swal.fire({
       title: "Eliminar Cita?",
         html: `

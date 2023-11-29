@@ -5,7 +5,7 @@ import { fetchUpdate } from '../../helpers/fetchUpdate';
 export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Consultorio",
-    imageUrl: "./consultorio-odontologico-frontend-react/logo192.png",
+    imageUrl: "./logo192.png",
     imageWidth: 30,
     imageHeight: 30,
     imageAlt: "🦷",
