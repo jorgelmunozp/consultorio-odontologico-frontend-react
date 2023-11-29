@@ -16,7 +16,7 @@ export const Inicio = () => {
         <table className='contentHome'>
           <thead>
             <tr>
-              <th colSpan={3}><h3> Consultorio Odontológico </h3></th>
+              <th colSpan={3}><h3> Servicios Odontológicos </h3></th>
             </tr>
           </thead>
           <tbody>
