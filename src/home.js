@@ -23,6 +23,20 @@ export const Inicio = () => {
               <center>
                 <tr>
                   <td className='App-body-icono'>
+                    <TbDental size={iconSize}/>
+                    <p>Extracción</p>
+                  </td>
+                  <td className='App-body-icono'>
+                    <TbDentalBroken size={iconSize}/>
+                    <p>Endodoncia</p>
+                  </td>
+                  <td className='App-body-icono'>
+                    <TbDentalOff size={iconSize}/>
+                    <p>Extracción</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className='App-body-icono'>
                     <LiaToothSolid size={iconSize}/>
                     <p>Blanqueamiento</p>
                   </td>
@@ -61,20 +75,6 @@ export const Inicio = () => {
                   <td className='App-body-icono'>
                     <FaTeethOpen size={iconSize}/>
                     <p>Diseño de Sonrisa</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td className='App-body-icono'>
-                    <TbDental size={iconSize}/>
-                    <p>Extracción</p>
-                  </td>
-                  <td className='App-body-icono'>
-                    <TbDentalBroken size={iconSize}/>
-                    <p>Endodoncia</p>
-                  </td>
-                  <td className='App-body-icono'>
-                    <TbDentalOff size={iconSize}/>
-                    <p>Extracción</p>
                   </td>
                 </tr>
               </center>
