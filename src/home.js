@@ -23,57 +23,57 @@ export const Inicio = () => {
             <tr>
               <td className='App-body-icono'>
                 <TbDental size={iconSize}/>
-                <p>Blanqueamiento</p>
+                <p className='labelHome'>Blanqueamiento</p>
               </td>
               <td className='App-body-icono'>
                 <TbDentalBroken size={iconSize}/>
-                <p>Endodoncia</p>
+                <p className='labelHome'>Endodoncia</p>
               </td>
               <td className='App-body-icono'>
                 <TbDentalOff size={iconSize}/>
-                <p>Cirugía</p>
+                <p className='labelHome'>Cirugía</p>
               </td>
             </tr>
             <tr>
               <td className='App-body-icono'>
                 <LiaToothSolid size={iconSize}/>
-                <p>Odontopediatría</p>
+                <p className='labelHome'>Odontopediatría</p>
               </td>
               <td className='App-body-icono'>
                 <PiTooth size={iconSize}/>
-                <p>Ortodoncia</p>
+                <p className='labelHome'>Ortodoncia</p>
               </td>
               <td className='App-body-icono'>
                 <LiaTeethSolid size={iconSize}/>
-                <p>Periodoncia</p>
+                <p className='labelHome'>Periodoncia</p>
               </td>
             </tr>
             <tr>
               <td className='App-body-icono'>
                 <FaTeeth size={iconSize}/>
-                <p>Radiología</p>
+                <p className='labelHome'>Radiología</p>
               </td>
               <td className='App-body-icono'>
                 <GiTooth size={iconSize}/>
-                <p>Prostodoncia</p>
+                <p className='labelHome'>Prostodoncia</p>
               </td>
               <td className='App-body-icono'>
                 <FaTooth size={iconSize}/>
-                <p>Odontología</p>
+                <p className='labelHome'>Odontología</p>
               </td>
             </tr>
             <tr>
               <td className='App-body-icono'>
                 <LiaTeethOpenSolid size={iconSize}/>
-                <p>Diseño Sonrisa</p>
+                <p className='labelHome'>Diseño Sonrisa</p>
               </td>
               <td className='App-body-icono'>
                 <PiToothFill size={iconSize}/>
-                <p>Patología</p>
+                <p className='labelHome'>Patología</p>
               </td>
               <td className='App-body-icono'>
                 <FaTeethOpen size={iconSize}/>
-                <p>Profilaxis</p>
+                <p className='labelHome'>Profilaxis</p>
               </td>
             </tr>
           </tbody>

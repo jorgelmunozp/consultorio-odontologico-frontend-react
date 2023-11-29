@@ -340,3 +340,6 @@ select::-ms-expand { display: none; }
   width: 30%;
   text-align: center;
 }
+.labelHome {
+  color: var(--darkgray-color);
+}
