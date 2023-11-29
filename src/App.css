@@ -285,7 +285,7 @@ select::-ms-expand { display: none; }
 }
 
 
-/*************************** SWEET ALERTS **************************/
+/*************************** Sweet Alerts **************************/
 .swalTable {
   border-collapse: collapse;
   border-color: var(--lightgray-color);
@@ -330,4 +330,13 @@ select::-ms-expand { display: none; }
 .swal2-cancel {
   font-family: inherit;
   font-size: 2vmin !important;
+}
+
+/*************************** HOME.JS **************************/
+.contentHome {
+  width: 80%;
+}
+.contentHome td {
+  width: 30%;
+  text-align: center;
 }
