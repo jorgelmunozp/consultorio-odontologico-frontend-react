@@ -16,7 +16,7 @@ export const Inicio = () => {
         <table>
             <thead>
               <tr>
-                <td><h3>Sistema de Información Consultorio Odontológico</h3></td>
+                <td><h3> Consultorio Odontológico </h3></td>
               </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@ export const Inicio = () => {
                 <tr>
                   <td className='App-body-icono'>
                     <TbDental size={iconSize}/>
-                    <p>Extracción</p>
+                    <p>Blanqueamiento</p>
                   </td>
                   <td className='App-body-icono'>
                     <TbDentalBroken size={iconSize}/>
@@ -32,13 +32,13 @@ export const Inicio = () => {
                   </td>
                   <td className='App-body-icono'>
                     <TbDentalOff size={iconSize}/>
-                    <p>Extracción</p>
+                    <p>Cirugía</p>
                   </td>
                 </tr>
                 <tr>
                   <td className='App-body-icono'>
                     <LiaToothSolid size={iconSize}/>
-                    <p>Blanqueamiento</p>
+                    <p>Odontopediatría</p>
                   </td>
                   <td className='App-body-icono'>
                     <PiTooth size={iconSize}/>
@@ -52,15 +52,15 @@ export const Inicio = () => {
                 <tr>
                   <td className='App-body-icono'>
                     <FaTeeth size={iconSize}/>
-                    <p>Periodoncia</p>
+                    <p>Radiología</p>
                   </td>
                   <td className='App-body-icono'>
                     <GiTooth size={iconSize}/>
-                    <p>Periodoncia</p>
+                    <p>Prostodoncia</p>
                   </td>
                   <td className='App-body-icono'>
                     <FaTooth size={iconSize}/>
-                    <p>Implantes</p>
+                    <p>Odontología</p>
                   </td>
                 </tr>
                 <tr>
@@ -70,11 +70,11 @@ export const Inicio = () => {
                   </td>
                   <td className='App-body-icono'>
                     <PiToothFill size={iconSize}/>
-                    <p>Diseño de Sonrisa</p>
+                    <p>Patología</p>
                   </td>
                   <td className='App-body-icono'>
                     <FaTeethOpen size={iconSize}/>
-                    <p>Diseño de Sonrisa</p>
+                    <p>Profilaxis</p>
                   </td>
                 </tr>
               </center>
