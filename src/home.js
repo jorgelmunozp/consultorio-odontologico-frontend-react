@@ -76,8 +76,8 @@ const services = [
 export const Inicio = () => {
   return (
     <div className="App">
-        <center><h5 className='main-color pt-2 pt-sm-4'>Servicios Odontológicos</h5></center> 
-        <div className="container-fluid bg-light pt-2 pt-sm-3 px-0">
+        <center><h5 className='main-color fs-sm-2 pt-2 pt-sm-4 pb-2 pb-sm-3'>Servicios Odontológicos</h5></center> 
+        <div className="container-fluid bg-light px-0">
           <div className="row">   
             {
               services.map((service) => {

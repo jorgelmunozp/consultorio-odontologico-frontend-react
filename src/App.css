@@ -25,7 +25,8 @@
 .fs-sm-2 {}
 @media (max-width: 576px) { 
   .fs-sm-1 { font-size: 0.8rem !important;} 
-  .fs-sm-2 { font-size: 1.2rem !important;} 
+  .fs-sm-2 { font-size: 1.0rem !important;} 
+  .fs-sm-3 { font-size: 1.2rem !important;} 
 }
 
 
@@ -38,16 +39,7 @@ hr { opacity: 0.5; }
 .bg-main-color { background-color: var(--main-color); }
 .bg-dark-color { background-color: var(--dark-color); }
 
-/*************************** HEADER **************************/
-.App-header {
-  pointer-events: none;
-}
-
 /*************************** MENU NAV **************************/
-.App-aside {
-  float: left;
-  height: max-content;
-}
 .App-menu-subtitulo {
   background-color:  var(--dark-color);
   color: var(--main-color);

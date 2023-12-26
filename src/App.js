@@ -60,11 +60,11 @@ function App() {
         <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
           <div className="container-fluid">
             {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
-            <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></a>
+            <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2'>{ myTitle }</span></a>
           </div>
         </nav>
       </header>
-      <aside className='App-aside pt-5'>
+      <aside className='float-start pt-5'>
         <nav>
           <button className="App-menu-item" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaCalendarPlus className='App-menu-icono2'/></span>
