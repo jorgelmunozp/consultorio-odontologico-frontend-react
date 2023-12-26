@@ -1,5 +1,6 @@
 import logo from './images/logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useFetch } from "./hooks/useFetch";
@@ -7,7 +8,7 @@ import { Logo } from './components/icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
 import Usuario from './Usuario';
-import Inicio from './home';
+import { Inicio } from './home';
 import { ConsultarCitas } from './components/consultar/ConsultarCitas';
 import { ConsultarPacientes } from './components/consultar/ConsultarPacientes';
 import { ConsultarTratamientos } from './components/consultar/ConsultarTratamientos';
@@ -54,16 +55,16 @@ function App() {
   let [setGeneros] = useState('');
 
   return (
-    <div className="App">
+    <div className="App user-select-none">
       <header className="fixed-top shadow-lg">
-    <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
-      <div className="container-fluid">
-        {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
-        <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></a>
-      </div>
-    </nav>
+        <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
+          <div className="container-fluid">
+            {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
+            <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></a>
+          </div>
+        </nav>
       </header>
-      <aside className='App-aside'>
+      <aside className='App-aside pt-5'>
         <nav>
           <button className="App-menu-item" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome className='App-menu-icono'/></button>
           <span className="App-menu-subtitulo"><FaCalendarPlus className='App-menu-icono2'/></span>
@@ -83,7 +84,7 @@ function App() {
           <button className="App-menu-item" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='App-menu-icono'/></button>
         </nav>
       </aside>
-      <body className='App-body'>
+      <body className='App-body pt-5'>
         <div id='contenidoBody' className='contenidoBody'>
           <div id="App" className="App"> 
               <Menu menu={menu} 

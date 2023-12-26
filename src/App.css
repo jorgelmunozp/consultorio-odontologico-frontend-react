@@ -13,9 +13,7 @@
 }
 .color-rojo { color: var(--red-color) }
 
-.App {
-  font: 2.5vmin 'CenturyGothic', 'Century Gothic', Arial, sans-serif;
-}
+.App { font: 2.5vmin 'CenturyGothic', 'Century Gothic'; }
 @font-face {
   font-family: "CenturyGothic";
   font-style: normal;
@@ -23,13 +21,14 @@
   src: url("./assets/fonts/CenturyGothic.ttf") format("truetype");
 }
 
-h1,h2,h3 {	
-  color: var(--white-color);
-  font-weight: normal;
+.fs-sm-1 {}
+.fs-sm-2 {}
+@media (max-width: 576px) { 
+  .fs-sm-1 { font-size: 0.8rem !important;} 
+  .fs-sm-2 { font-size: 1.2rem !important;} 
 }
-h4 {	
-  color: var(--main-color);
-}
+
+
 hr { opacity: 0.5; }
 
 .App-link {
@@ -41,10 +40,7 @@ hr { opacity: 0.5; }
 
 /*************************** HEADER **************************/
 .App-header {
-  /* background-color: var(--dark-color); */
-  height: 10vmin;
   pointer-events: none;
-  user-select: none;
 }
 
 /*************************** MENU NAV **************************/
@@ -86,7 +82,6 @@ hr { opacity: 0.5; }
 /*************************** BODY **************************/
 .App-body {
   display: flex;
-  font-size: 2vmin;
   background-color: #fdfdfd;
 }
 .App-body h3 {
@@ -107,7 +102,7 @@ hr { opacity: 0.5; }
 }
 .table th  {
   background-color:var(--main-color);
-  color: var(--white-color);
+  color: var(--dark-color);
   font-size: 2vmin;
   font-weight: normal;
   padding: 0.75vmin 1vmin;
