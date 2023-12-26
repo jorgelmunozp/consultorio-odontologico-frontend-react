@@ -58,7 +58,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
             <h4>Asignar Cita</h4>
             <hr/>
             <br/>
-            <table className="tableRegistrar">
+            <table className="w-100">
               <tbody>
                 <tr>
                   <td>

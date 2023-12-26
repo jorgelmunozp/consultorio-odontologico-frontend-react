@@ -1,15 +1,17 @@
-:root{
+:root {
   --dark-color: #212529;
   --darkgray-color:#555;
+  --dark-transparent-color: rgba(33,37,41, 0.25);
+  --gray-color: #aaaaaa;  
   --icon-color:#ffffff;
   --lightgray-color: #dddddd;
-  --main-color:#5285c5;
+  --lightgray-transparent-color: rgba(221,221,221, 0.25);
+  --main-color: #5285c5;
   --main-transparent-color: rgba(82, 133, 197, 0.25);
+  --red-color: #ff0000;
   --white-color: #ffffff;
 }
-.color-rojo {
-  color: #f00;
-}
+.color-rojo { color: var(--red-color) }
 
 .App {
   font: 2.5vmin 'CenturyGothic', 'Century Gothic', Arial, sans-serif;
@@ -27,31 +29,22 @@ h1,h2,h3 {
 }
 h4 {	
   color: var(--main-color);
-  font-weight: normal;
 }
 hr { opacity: 0.5; }
 
 .App-link {
   color: var(--main-color);
 }
+.main-color { color: var(--main-color); }
+.bg-main-color { background-color: var(--main-color); }
+.bg-dark-color { background-color: var(--dark-color); }
+
 /*************************** HEADER **************************/
 .App-header {
-  background-color: var(--dark-color);
-  height: 10vmin; 
-  width: 100%;
-  color: var(--white-color);
-}
-.App-slogan, .App-slogan td {
-  border: none;
-  padding-left: 1.6vmin;
-}
-.App-logo{
-  height: 5vmin;
+  /* background-color: var(--dark-color); */
+  height: 10vmin;
   pointer-events: none;
-}
-.App-Title {
-  margin-top: 2.25vmin;
-  padding-left: 0.75vmin;
+  user-select: none;
 }
 
 /*************************** MENU NAV **************************/
@@ -72,7 +65,7 @@ hr { opacity: 0.5; }
 .App-menu-item {
   background-color: var(--dark-color);
   color: var(--icon-color);
-  padding: 10px 45px 10px 30px;
+  padding: 10px 30px;
   font-size: 2.5vmin;
   text-align: center;
   text-decoration: none; 
@@ -86,12 +79,8 @@ hr { opacity: 0.5; }
   color: var(--white-color);
 }
 
-.App-menu-icono {
-}
 .App-menu-icono:hover {
   color: var(--main-color);
-}
-.App-menu-icono2 {
 }
 
 /*************************** BODY **************************/
@@ -113,7 +102,6 @@ hr { opacity: 0.5; }
 .table {
   border-collapse: collapse;
   position: relative;
-  top: -6vmin;
   border-color: var(--lightgray-color);
   width: 100%;
 }
@@ -170,16 +158,7 @@ hr { opacity: 0.5; }
   padding-inline: 0;
 }
 .buttonSort:hover {
-  /* background-color: var(--dark-color); */
   color: var(--dark-color);
-}
-
-.tableRegistrar {
-  width: 100%;
-}
-
-.App-body-icono {
-  color: var(--main-color);
 }
 
 .App-body-boton-vistas {

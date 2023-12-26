@@ -54,7 +54,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
           <h4>Registrar Paciente</h4>
           <hr/>
           <br/>
-          <table className="tableRegistrar">
+          <table className="w-100">
             <tbody>
               <tr>
                 <td colSpan={2}>

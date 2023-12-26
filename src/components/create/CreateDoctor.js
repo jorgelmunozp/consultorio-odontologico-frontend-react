@@ -46,7 +46,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
             <h4>Registrar Doctor</h4>
             <hr/>
             <br/>
-            <table className="tableRegistrar">
+            <table className="w-100">
               <tr>
                 <td>
                   <TextField value={nombre} onChange={handleChangeNombre}

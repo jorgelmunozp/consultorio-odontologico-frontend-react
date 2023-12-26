@@ -1,7 +1,9 @@
 import logo from './images/logo.svg';
 import './App.css';
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useFetch } from "./hooks/useFetch";
+import { Logo } from './components/icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
 import Usuario from './Usuario';
@@ -18,6 +20,8 @@ import { CreateDoctor } from './components/create/CreateDoctor';
 import { CreateConsultorio } from './components/create/CreateConsultorio';
 
 function App() {
+  const myColor = '#5285c5';
+  const myTitle = 'Consultorio Odontológico';
   const menuOpcion = 1;
   const [menu, setMenu] = useState(menuOpcion);
 
@@ -51,15 +55,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <table className='App-slogan'>
-          <tbody>
-            <tr>
-              <td><img src={logo} className="App-logo" alt="🦷" /></td>
-              <td><h3 className='App-Title'>Consultorio Odontológico</h3></td>
-            </tr>
-          </tbody>
-        </table>
+      <header className="fixed-top shadow-lg">
+    <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
+      <div className="container-fluid">
+        {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
+        <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></a>
+      </div>
+    </nav>
       </header>
       <aside className='App-aside'>
         <nav>

@@ -46,7 +46,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
           <h4>Registrar Tratamiento</h4>
           <hr/>
           <br/>
-          <table className="tableRegistrar">
+          <table className="w-100">
             <tbody>
               <tr>
                 <td colSpan={2}>
