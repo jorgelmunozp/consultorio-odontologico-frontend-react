@@ -11,7 +11,6 @@
   --red-color: #ff0000;
   --white-color: #ffffff;
 }
-.color-rojo { color: var(--red-color) }
 
 .App { font: 2.5vmin 'CenturyGothic', 'Century Gothic'; }
 @font-face {
@@ -30,18 +29,17 @@
   .fs-sm-3 { font-size: 1.2rem !important;} 
 }
 
-
 hr { opacity: 0.5; }
 
-.App-link {
-  color: var(--main-color);
-}
 .main-color { color: var(--main-color); }
 .bg-main-color { background-color: var(--main-color); }
 .bg-dark-color { background-color: var(--dark-color); }
+.main-color-hover:hover { color: var(--main-color); }
+.color-rojo { color: var(--red-color) }
+
 
 /*************************** MENU NAV **************************/
-.App-menu-subtitulo {
+/* .App-menu-subtitulo {
   background-color:  var(--dark-color);
   color: var(--main-color);
   padding: 10px 30px;
@@ -50,8 +48,8 @@ hr { opacity: 0.5; }
   text-decoration: none;
   width: 15px;
   display: block;
-}
-.App-menu-item {
+} */
+/* .App-menu-item {
   background-color: var(--dark-color);
   color: var(--icon-color);
   padding: 10px 30px;
@@ -66,11 +64,8 @@ hr { opacity: 0.5; }
 .App-menu-item:hover {
   background-color: var(--dark-color);
   color: var(--white-color);
-}
+} */
 
-.App-menu-icono:hover {
-  color: var(--main-color);
-}
 
 /*************************** BODY **************************/
 .App-body {
@@ -300,7 +295,7 @@ select::-ms-expand { display: none; }
 }
 
 /*************************** HOME.JS **************************/
-.contentHome {
+/* .contentHome {
   width: 80%;
 }
 .contentHome td {
@@ -309,4 +304,4 @@ select::-ms-expand { display: none; }
 }
 .labelHome {
   color: var(--darkgray-color);
-}
+} */
