@@ -52,8 +52,58 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar Paciente</h5>
         </center>
+        <div className='container-fluid mt-2 mt-sm-5'>
+          <div className='row'>
+            <div className='col'>
+              <TextField value={identificacion} onChange={handleChangeCedula} id="cedulaPaciente" label="Cédula" type="number" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+              <TextField value={nombre} onChange={handleChangeNombre} id="nombrePaciente" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off" fullWidth/>
+            </div>
+            <div className='col'>
+              <TextField value={apellido} onChange={handleChangeApellido} id="apellidoPaciente" label="Apellido" variant="outlined" className="textField" margin="dense" autoComplete="off" fullWidth/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="generoPaciente-label" className="select">Género</InputLabel>
+                <Select value={genero} onChange={handleChangeGenero} id="generoPaciente" label="generoPaciente" labelId="generoPaciente-label">
+                  {generos.map((generos) => {
+                    return (
+                      <MenuItem value={generos.id} className="select-item">
+                        {generos.genero.nombre}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+            <div className='col'>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="epsPaciente-label" className="select">Eps</InputLabel>
+                <Select value={eps} onChange={handleChangeEps} id="epsPaciente" label="epsPaciente" labelId="epsPaciente-label">
+                  {epss.map((epss) => {
+                    return (
+                      <MenuItem value={epss.id} className="select-item">
+                        {epss.eps.nombre}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </div> 
+          <div className='row mt-4 mt-sm-5'>
+            <div className='col'>
+              <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApiPacientes} contenidoApi={contenidoPacientes} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+            </div>
+          </div>      
+			  </div>
 
-          <table className="w-100">
+          {/* <table className="w-100">
             <tbody>
               <tr>
                 <td colSpan={2}>
@@ -124,7 +174,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
 
       </body>
     </div>

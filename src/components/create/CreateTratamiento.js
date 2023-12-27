@@ -44,8 +44,50 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar Tratamiento</h5>
         </center>
-        
-          <table className="w-100">
+        <div className='container-fluid mt-2 mt-sm-5'>
+          <div className='row'>
+            <div className='col'>
+              <TextField value={nombre} onChange={handleChangeNombre} id="nombreTratamiento" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="nombreTratamiento-label" className="select">Consultorio</InputLabel>
+                <Select value={consultorio} onChange={handleChangeConsultorio} id="consultorioTratamiento" label="consultorioTratamiento" labelId="consultorioTratamiento-label">
+                  {consultorios.map((consultorios) => {
+                    return (
+                      <MenuItem value={consultorios.id} className="select-item">
+                        {consultorios.consultorio.numero}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+            <div className='col'>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="doctorTratamiento-label" className="select">Médico</InputLabel>
+                <Select value={doctor} onChange={handleChangeDoctor} id="doctorTratamiento" label="doctorTratamiento" labelId="doctorTratamiento-label">
+                  {doctores.map((doctores) => {
+                    return (
+                      <MenuItem value={doctores.id} className="select-item">
+                        {doctores.doctor.nombre + " " + doctores.doctor.apellido}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className='row mt-4 mt-sm-5'>
+            <div className='col'>
+              <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+            </div>
+          </div>              
+			</div>
+
+          {/* <table className="w-100">
             <tbody>
               <tr>
                 <td colSpan={2}>
@@ -102,7 +144,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
         
       </body>
     </div>

@@ -44,7 +44,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
           <center>
             <h5 className='century-gothic main-color fs-sm-2'>Registrar Doctor</h5>
           </center>
-          <div className='container'>
+          <div className='container-fluid mt-2 mt-sm-5'>
               <div className='row'>
                 <div className='col'>
                   <TextField value={nombre} onChange={handleChangeNombre} id="nombreDoctor" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
