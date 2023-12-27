@@ -40,13 +40,44 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
 
   return (
     <div className="App">
-        <body>
+        <body className='mt-3 mt-sm-5'>
           <center>
-            <hr/>
-            <h4>Registrar Doctor</h4>
-            <hr/>
-            <br/>
-            <table className="w-100">
+            <h5 className='century-gothic main-color fs-sm-2'>Registrar Doctor</h5>
+          </center>
+          <div className='container'>
+              <div className='row'>
+                <div className='col'>
+                  <TextField value={nombre} onChange={handleChangeNombre} id="nombreDoctor" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col'>
+                  <TextField value={apellido} onChange={handleChangeApellido} id="apellidoDoctor" label="Apellido" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col'>
+                <FormControl fullWidth margin="dense">
+                    <InputLabel id="especialidadDoctor-label" className="select">Especialidad</InputLabel>
+                    <Select value={especialidad} onChange={handleChange} id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label">
+                        {tratamientos.map((tratamientos) => {
+                          return (
+                            <MenuItem value={tratamientos.id} className="select-item">
+                              {tratamientos.tratamiento.nombre}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+              <div className='row mt-4 mt-sm-5'>
+                <div className='col'>
+                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApiDoctores} contenidoApi={contenidoDoctores} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+                </div>
+              </div>                
+			    </div>
+            {/* <table className="w-100">
               <tr>
                 <td>
                   <TextField value={nombre} onChange={handleChangeNombre}
@@ -90,8 +121,8 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                   <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApiDoctores} contenidoApi={contenidoDoctores} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                 </td>
               </tr>
-            </table>
-          </center>
+            </table> */}
+
         </body>
       </div>
   );

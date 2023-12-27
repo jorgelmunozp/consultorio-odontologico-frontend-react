@@ -48,12 +48,11 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
 
   return (
     <div className="App">
-      <body>
+      <body className='mt-3 mt-sm-5'>
         <center>
-          <hr/>
-          <h4>Registrar Paciente</h4>
-          <hr/>
-          <br/>
+          <h5 className='century-gothic main-color fs-sm-2'>Registrar Paciente</h5>
+        </center>
+
           <table className="w-100">
             <tbody>
               <tr>
@@ -126,7 +125,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
               </tr>
             </tbody>
           </table>
-        </center>
+
       </body>
     </div>
   );

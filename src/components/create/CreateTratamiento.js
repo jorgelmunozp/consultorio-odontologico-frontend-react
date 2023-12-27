@@ -40,12 +40,11 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
 
   return (
     <div className="App">
-      <body>
+      <body className='mt-3 mt-sm-5'>
         <center>
-          <hr/>
-          <h4>Registrar Tratamiento</h4>
-          <hr/>
-          <br/>
+          <h5 className='century-gothic main-color fs-sm-2'>Registrar Tratamiento</h5>
+        </center>
+        
           <table className="w-100">
             <tbody>
               <tr>
@@ -104,7 +103,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
               </tr>
             </tbody>
           </table>
-        </center>
+        
       </body>
     </div>
   );

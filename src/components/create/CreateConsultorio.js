@@ -38,13 +38,29 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
 
   return (
     <div className="App">
-      <body>
+      <body className='mt-3 mt-sm-5'>
         <center>
-          <hr/>
-          <h4>Registrar Consultorio</h4>
-          <hr/>
-          <br/>
-          <table className="w-100">
+          <h5 className='century-gothic main-color fs-sm-2'>Registrar Consultorio</h5>
+        </center>
+        <div className='container-fluid mt-2 mt-sm-5'>
+          <div className='row'>
+            <div className='col'>
+              <TextField value={numero} onChange={handleChangeNumero} id="ConsultoriosNumero" label="Número" type="number" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+              <TextField value={nombre} onChange={handleChangeNombre} id="ConsultoriosNombre" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+            </div>
+          </div>
+          <div className='row mt-4 mt-sm-5'>
+            <div className='col'>
+              <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+            </div>
+          </div>
+        </div>
+
+          {/* <table className="w-100">
             <tbody>
               <tr>
                 <td>
@@ -69,8 +85,8 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
                 </td>
               </tr>
             </tbody>
-          </table>
-        </center>
+          </table> */}
+
       </body>
     </div>
   );

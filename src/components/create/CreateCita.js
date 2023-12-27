@@ -51,57 +51,156 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
   }
   return (
     <div className="App">
-      <div id="body" className='mt-3 mt-sm-5'>
-        <body>
-          <center>
-            {/* <hr/> */}
-            <h4>Asignar Cita</h4>
-            {/* <hr/> */}
-          </center>
-          <div className='container-fluid mt-2 mt-sm-5'>
-            <div className='row'>
-              <div className='col'>
-                <FormControl fullWidth margin="dense">
-                  <InputLabel id="registroPaciente-label" className="select">Paciente</InputLabel>
-                  <Select value={paciente} onChange={handleChangePaciente} id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label">
-                    {pacientes.map((pacientes) => {
-                      return (
-                        <MenuItem value={pacientes.id} className="select-item">
-                          {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className='col'>
-                <FormControl fullWidth margin="dense">
-                  <InputLabel id="registroTratamiento-label" className="select">Tratamiento</InputLabel>
-                  <Select value={tratamiento} onChange={handleChangeTratamiento} id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label">
-                    {tratamientos.map((tratamientos) => {
-                      return (
-                        <MenuItem value={tratamientos.id} className="select-item">
-                          {tratamientos.tratamiento.nombre}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col'>
-                <TextField defaultValue={fecha} onChange={handleChangeFecha} id="registroFecha" type="date" label="Fecha" variant="outlined" className="textField" fullWidth margin="dense"/>
-              </div>
-              <div className='col'>
-                <TextField defaultValue={hora} onChange={handleChangeHora} id="registroHora" type="time" label="Hora" variant="outlined" className="textField" margin="dense"/>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col'>
+      <body className='mt-3 mt-sm-5'>
+        <center>
+          <h5 className='century-gothic main-color fs-sm-2'>Asignar Cita</h5>
+        </center>
+        <div className='container-fluid mt-2 mt-sm-5'>
+          <div className='row'>
+            <div className='col'>
               <FormControl fullWidth margin="dense">
-                    <InputLabel id="registroDoctor-label" className="select">Doctor</InputLabel>
-                    <Select value={doctor} onChange={handleChangeDoctor} id="registroDoctor" label="Especialidad" labelId="registroDoctor-label">
+                <InputLabel id="registroPaciente-label" className="select">Paciente</InputLabel>
+                <Select value={paciente} onChange={handleChangePaciente} id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label">
+                  {pacientes.map((pacientes) => {
+                    return (
+                      <MenuItem value={pacientes.id} className="select-item">
+                        {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+            <div className='col'>
+              <FormControl fullWidth margin="dense">
+                <InputLabel id="registroTratamiento-label" className="select">Tratamiento</InputLabel>
+                <Select value={tratamiento} onChange={handleChangeTratamiento} id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label">
+                  {tratamientos.map((tratamientos) => {
+                    return (
+                      <MenuItem value={tratamientos.id} className="select-item">
+                        {tratamientos.tratamiento.nombre}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+              <TextField defaultValue={fecha} onChange={handleChangeFecha} id="registroFecha" type="date" label="Fecha" variant="outlined" className="textField" fullWidth margin="dense"/>
+            </div>
+            <div className='col'>
+              <TextField defaultValue={hora} onChange={handleChangeHora} id="registroHora" type="time" label="Hora" variant="outlined" className="textField" margin="dense"/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+            <FormControl fullWidth margin="dense">
+                  <InputLabel id="registroDoctor-label" className="select">Doctor</InputLabel>
+                  <Select value={doctor} onChange={handleChangeDoctor} id="registroDoctor" label="Especialidad" labelId="registroDoctor-label">
+                    {doctores.map((doctores) => {
+                      return (
+                        <MenuItem value={doctores.id} className="select-item">
+                          {doctores.doctor.nombre + " " + doctores.doctor.apellido}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+            </div>
+            <div className='col'>
+            <FormControl fullWidth margin="dense">
+                  <InputLabel id="registroConsultorio-label" className="select">Consultorio</InputLabel>
+                  <Select value={consultorio} onChange={handleChangeConsultorio} id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label">
+                    {consultorios.map((consultorios) => {
+                      return (
+                        <MenuItem value={consultorios.id} className="select-item">
+                          {consultorios.consultorio.numero}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+            </div>
+          </div>
+          <div className='row mt-2 mt-sm-5'>
+            <div className='col'>
+              <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+            </div>
+          </div>   
+        </div>
+
+          {/* <table className="w-100">
+            <tbody>
+              <tr>
+                <td>
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="registroPaciente-label" className="select">
+                      Paciente
+                    </InputLabel>
+                    <Select
+                      id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label"
+                      value={paciente} onChange={handleChangePaciente}
+                    >
+                      {pacientes.map((pacientes) => {
+                        return (
+                          <MenuItem value={pacientes.id} className="select-item">
+                            {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </td>
+                <td>
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="registroTratamiento-label" className="select">
+                      Tratamiento
+                    </InputLabel>
+                    <Select
+                      id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label"
+                      value={tratamiento} onChange={handleChangeTratamiento}
+                    >
+                      {tratamientos.map((tratamientos) => {
+                        return (
+                          <MenuItem value={tratamientos.id} className="select-item">
+                            {tratamientos.tratamiento.nombre}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <TextField
+                    id="registroFecha" type="date" label="Fecha"
+                    // defaultValue={fecha} onChange={() => setFecha(fecha)}
+                    defaultValue={fecha} onChange={handleChangeFecha} variant="outlined" className="textField" margin="dense"
+                  />
+                </td>
+
+                <td>
+                  <TextField
+                    id="registroHora" type="time" label="Hora"
+                    // defaultValue={hora} onChange={() => setHora(hora)}
+                    defaultValue={hora} onChange={handleChangeHora}
+                    variant="outlined" className="textField" margin="dense"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="registroDoctor-label" className="select">
+                      Doctor
+                    </InputLabel>
+                    <Select
+                      id="registroDoctor" label="Especialidad" labelId="registroDoctor-label"
+                      value={doctor} onChange={handleChangeDoctor}
+                    >
                       {doctores.map((doctores) => {
                         return (
                           <MenuItem value={doctores.id} className="select-item">
@@ -111,11 +210,16 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                       })}
                     </Select>
                   </FormControl>
-              </div>
-              <div className='col'>
-              <FormControl fullWidth margin="dense">
-                    <InputLabel id="registroConsultorio-label" className="select">Consultorio</InputLabel>
-                    <Select value={consultorio} onChange={handleChangeConsultorio} id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label">
+                </td>
+                <td>
+                  <FormControl fullWidth margin="dense">
+                    <InputLabel id="registroConsultorio-label" className="select">
+                      Consultorio
+                    </InputLabel>
+                    <Select
+                      id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label"
+                      value={consultorio} onChange={handleChangeConsultorio}
+                    >
                       {consultorios.map((consultorios) => {
                         return (
                           <MenuItem value={consultorios.id} className="select-item">
@@ -125,125 +229,17 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                       })}
                     </Select>
                   </FormControl>
-              </div>
-            </div>
-            <div className='row mt-2 mt-sm-5'>
-              <div className='col'>
-                <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
-              </div>
-            </div>   
-          </div>
-
-            {/* <table className="w-100">
-              <tbody>
-                <tr>
-                  <td>
-                    <FormControl fullWidth margin="dense">
-                      <InputLabel id="registroPaciente-label" className="select">
-                        Paciente
-                      </InputLabel>
-                      <Select
-                        id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label"
-                        value={paciente} onChange={handleChangePaciente}
-                      >
-                        {pacientes.map((pacientes) => {
-                          return (
-                            <MenuItem value={pacientes.id} className="select-item">
-                              {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </td>
-                  <td>
-                    <FormControl fullWidth margin="dense">
-                      <InputLabel id="registroTratamiento-label" className="select">
-                        Tratamiento
-                      </InputLabel>
-                      <Select
-                        id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label"
-                        value={tratamiento} onChange={handleChangeTratamiento}
-                      >
-                        {tratamientos.map((tratamientos) => {
-                          return (
-                            <MenuItem value={tratamientos.id} className="select-item">
-                              {tratamientos.tratamiento.nombre}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <TextField
-                      id="registroFecha" type="date" label="Fecha"
-                      // defaultValue={fecha} onChange={() => setFecha(fecha)}
-                      defaultValue={fecha} onChange={handleChangeFecha} variant="outlined" className="textField" margin="dense"
-                    />
-                  </td>
-
-                  <td>
-                    <TextField
-                      id="registroHora" type="time" label="Hora"
-                      // defaultValue={hora} onChange={() => setHora(hora)}
-                      defaultValue={hora} onChange={handleChangeHora}
-                      variant="outlined" className="textField" margin="dense"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <FormControl fullWidth margin="dense">
-                      <InputLabel id="registroDoctor-label" className="select">
-                        Doctor
-                      </InputLabel>
-                      <Select
-                        id="registroDoctor" label="Especialidad" labelId="registroDoctor-label"
-                        value={doctor} onChange={handleChangeDoctor}
-                      >
-                        {doctores.map((doctores) => {
-                          return (
-                            <MenuItem value={doctores.id} className="select-item">
-                              {doctores.doctor.nombre + " " + doctores.doctor.apellido}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </td>
-                  <td>
-                    <FormControl fullWidth margin="dense">
-                      <InputLabel id="registroConsultorio-label" className="select">
-                        Consultorio
-                      </InputLabel>
-                      <Select
-                        id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label"
-                        value={consultorio} onChange={handleChangeConsultorio}
-                      >
-                        {consultorios.map((consultorios) => {
-                          return (
-                            <MenuItem value={consultorios.id} className="select-item">
-                              {consultorios.consultorio.numero}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </FormControl>
-                  </td>
-                </tr>
-                <br></br>
-                <tr>
-                  <td colSpan={2}>
-                    <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
-                  </td>
-                </tr>
-              </tbody>
-            </table> */}
-        </body>
-      </div>
+                </td>
+              </tr>
+              <br></br>
+              <tr>
+                <td colSpan={2}>
+                  <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+                </td>
+              </tr>
+            </tbody>
+          </table> */}
+      </body>
     </div>
   );
 };
