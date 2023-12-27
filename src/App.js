@@ -93,7 +93,7 @@ function App() {
                 <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome size={iconSize} className='main-color-hover'/></button>
               </li>
               <li className="nav-item">
-                <span className="nav-link"><FaCalendarPlus size={iconSize} className=''/></span>
+                <span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch size={iconSize} className='main-color-hover'/></button>
@@ -102,7 +102,7 @@ function App() {
                 <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus size={iconSize} className='main-color-hover'/></button>
               </li>
               <li className="nav-item">
-                <span className="nav-link"><FaUserInjured size={iconSize} className=''/></span>
+                <span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch size={iconSize} className='main-color-hover'/></button>
@@ -111,7 +111,7 @@ function App() {
                 <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserEdit size={iconSize} className='main-color-hover'/></button>
               </li>
               <li className="nav-item">
-                <span className="nav-link"><FaStethoscope size={iconSize} className=''/> </span>
+                <span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbVirusSearch size={iconSize} className='main-color-hover'/></button>
@@ -120,7 +120,7 @@ function App() {
                 <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterEdit size={iconSize} className='main-color-hover'/></button>
               </li>
               <li className="nav-item">
-                <span className="nav-link"><FaUserMd size={iconSize} className=''/></span>
+                <span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch size={iconSize} className='main-color-hover'/> </button>
@@ -129,7 +129,7 @@ function App() {
                 <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserEdit size={iconSize} className='main-color-hover'/></button>
               </li>
               <li className="nav-item">
-                <span className="nav-link"><FaClinicMedical size={iconSize} className=''/></span>
+                <span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span>
               </li>
               <li className="nav-item">
                 <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch size={iconSize} className='main-color-hover'/></button>
