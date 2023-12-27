@@ -86,7 +86,7 @@ export const Inicio = () => {
                     <div className="card border-0 shadow rounded-xs pt-0">
                       <div className="card-body"> 
                         <i className="text-secondary">{ service.icon }</i>
-                        <h6 className="main-color fs-sm-1 mt-0 mb-0 mb-sm-2 text-nowrap">{ service.title }</h6>
+                        <h6 className="main-color fs-sm-1 mt-0 mb-0 mb-sm-2 text-nowrap text-truncate">{ service.title }</h6>
                         {/* <p className='text-muted text-justify'>{ service.content }</p> */}
                       </div>
                     </div>

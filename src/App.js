@@ -83,6 +83,62 @@ function App() {
           <button className="App-menu-item" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch className='App-menu-icono'/></button>
           <button className="App-menu-item" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='App-menu-icono'/></button>
         </nav>
+
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 3</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 4</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 5</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 6</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 7</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 8</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 9</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 10</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 11</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 12</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 13</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 14</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 15</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 16</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
       </aside>
       <body className='App-body pt-5'>
         <div id='contenidoBody' className='contenidoBody'>
