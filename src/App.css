@@ -2,7 +2,7 @@
   --dark-color: #212529;
   --darkgray-color:#555;
   --dark-transparent-color: rgba(33,37,41, 0.25);
-  --gray-color: #aaaaaa;  
+  --gray-color: #aaaaaa;
   --icon-color:#ffffff;
   --lightgray-color: #dddddd;
   --lightgray-transparent-color: rgba(221,221,221, 0.25);
@@ -23,10 +23,10 @@
 
 .fs-sm-1 {}
 .fs-sm-2 {}
-@media (max-width: 576px) { 
-  .fs-sm-1 { font-size: 0.8rem !important;} 
-  .fs-sm-2 { font-size: 1.0rem !important;} 
-  .fs-sm-3 { font-size: 1.2rem !important;} 
+@media (max-width: 576px) {
+  .fs-sm-1 { font-size: 0.8rem !important;}
+  .fs-sm-2 { font-size: 1.0rem !important;}
+  .fs-sm-3 { font-size: 1.2rem !important;}
 }
 
 hr { opacity: 0.5; }
@@ -55,7 +55,7 @@ hr { opacity: 0.5; }
   padding: 10px 30px;
   font-size: 2.5vmin;
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
   width: 20px;
   display: block;
   border: none;
@@ -89,23 +89,29 @@ hr { opacity: 0.5; }
   width: 100%;
 }
 .table th  {
-  background-color:var(--main-color);
-  color: var(--dark-color);
+  background-color:var(--main-color) !important;
+  color: var(--white-color);
   font-size: 2vmin;
   font-weight: normal;
-  padding: 0.75vmin 1vmin;
+  padding: 1vmin 1vmin;
   border-bottom: 1px solid var(--dark-color);
 }
 .table td {
+  background-color: transparent !important;
   color: var(--dark-color);
   font-size: 2.5vmin;
   text-align: center;
   padding: 1vmin 1vmin;
 }
 .table tr:nth-child(even) { background-color:var(--white-color); }
-.table tr:nth-child(odd) { background-color: #f1f1f1; }
+.table tr:nth-child(odd) { background-color: #f7f7f7 !important; }
 .table tr:nth-child(even):hover { background-color:var(--main-transparent-color); }
 .table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
+
+.row-color:nth-child(even) { background-color:var(--white-color); }
+.row-color:nth-child(odd) { background-color: #f7f7f7; }
+.row-color:nth-child(even):hover { background-color:var(--main-transparent-color); }
+.row-color:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 /*************************** Sort **************************/
 .tableSort {
@@ -113,32 +119,26 @@ hr { opacity: 0.5; }
   background-color: transparent;
   padding: 0;
   float: right;
-  /* margin-left: auto;
-  margin-right: auto; */
   width: 100%;
   line-height: 0;
 }
 .tableSort tr {
-  background-color: transparent;
   padding: 0;
 }
 .tableSort th {
-  background-color: transparent;
   padding: 0;
   border: none;
 }
 .tableSort td {
-  background-color: transparent;
   padding: 0;
 }
 .tableSort tr:nth-child(even) { background-color:transparent; padding: 0; }
 .tableSort tr:nth-child(odd) { background-color:transparent; padding: 0; }
 .buttonSort {
-  background-color: var(--main-color);
-  color: var(--white-color);
+  color: greenyellow;
   border: none;
   padding: 0;
-  padding-inline: 0;
+  cursor: pointer;
 }
 .buttonSort:hover {
   color: var(--dark-color);
@@ -188,8 +188,8 @@ label, .MuiSelect-select {
 input[type='number'] {
   color: var(--darkgray-color)!important;
 }
-input[type='number']::-webkit-inner-spin-button, 
-input[type='number']::-webkit-outer-spin-button { 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   background-color: var(--white-color);
   font-size: inherit;
   opacity: 0;
@@ -230,14 +230,14 @@ select {
 }
 select::-ms-expand { display: none; }
 
-.dateSelector { 
-  padding: 0 0 0 0.75vmin !important; 
-  border:none; 
+.dateSelector {
+  padding: 0 0 0 0.75vmin !important;
+  border:none;
   box-shadow: none;
 }
-.timeSelector { 
-  padding: 0 0 0 0.75vmin !important; 
-  border:none; 
+.timeSelector {
+  padding: 0 0 0 0.75vmin !important;
+  border:none;
   box-shadow: none;
 }
 
@@ -252,6 +252,7 @@ select::-ms-expand { display: none; }
   border-collapse: collapse;
   border-color: var(--lightgray-color);
   width: 90%;
+  /* font-family: inherit; */
 }
 .swal2-title {
   color: var(--main-color);

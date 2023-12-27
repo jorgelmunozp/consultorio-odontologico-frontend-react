@@ -9,16 +9,16 @@ import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} fr
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
 import Usuario from './Usuario';
 import { Inicio } from './home';
-import { ConsultarCitas } from './components/consultar/ConsultarCitas';
-import { ConsultarPacientes } from './components/consultar/ConsultarPacientes';
-import { ConsultarTratamientos } from './components/consultar/ConsultarTratamientos';
-import { ConsultarDoctores } from './components/consultar/ConsultarDoctores';
-import { ConsultarConsultorios } from './components/consultar/ConsultarConsultorios';
-import { CreateCita } from './components/create/CreateCita';
-import { CreatePaciente } from './components/create/CreatePaciente';
-import { CreateTratamiento } from './components/create/CreateTratamiento';
-import { CreateDoctor } from './components/create/CreateDoctor';
-import { CreateConsultorio } from './components/create/CreateConsultorio';
+import { ConsultarCitas } from './components/crud/consultar/ConsultarCitas';
+import { ConsultarPacientes } from './components/crud/consultar/ConsultarPacientes';
+import { ConsultarTratamientos } from './components/crud/consultar/ConsultarTratamientos';
+import { ConsultarDoctores } from './components/crud/consultar/ConsultarDoctores';
+import { ConsultarConsultorios } from './components/crud/consultar/ConsultarConsultorios';
+import { CreateCita } from './components/crud/create/CreateCita';
+import { CreatePaciente } from './components/crud/create/CreatePaciente';
+import { CreateTratamiento } from './components/crud/create/CreateTratamiento';
+import { CreateDoctor } from './components/crud/create/CreateDoctor';
+import { CreateConsultorio } from './components/crud/create/CreateConsultorio';
 
 function App() {
   const myColor = '#5285c5';
