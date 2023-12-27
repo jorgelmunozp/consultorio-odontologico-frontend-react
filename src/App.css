@@ -293,15 +293,3 @@ select::-ms-expand { display: none; }
   font-family: inherit;
   font-size: 2vmin !important;
 }
-
-/*************************** HOME.JS **************************/
-/* .contentHome {
-  width: 80%;
-}
-.contentHome td {
-  width: 30%;
-  text-align: center;
-}
-.labelHome {
-  color: var(--darkgray-color);
-} */

@@ -23,6 +23,8 @@ import { CreateConsultorio } from './components/create/CreateConsultorio';
 function App() {
   const myColor = '#5285c5';
   const myTitle = 'Consultorio Odontológico';
+  const iconSize = 20;
+
   const menuOpcion = 1;
   const [menu, setMenu] = useState(menuOpcion);
 
@@ -84,60 +86,60 @@ function App() {
           <button className="App-menu-item" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='main-color-hover'/></button>
         </nav> */}
 
-<nav className="navbar bg-light">
-  <div className="container-fluid">
-    <ul className="navbar-nav">
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link"><FaCalendarPlus className='App-menu-icono2'/></span>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link"><FaUserInjured className='App-menu-icono2'/></span>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserEdit className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link"><FaStethoscope className='App-menu-icono2'/> </span>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbVirusSearch className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterEdit className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link"><FaUserMd className='App-menu-icono2'/></span>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch className='main-color-hover'/> </button>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserEdit className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link"><FaClinicMedical className='App-menu-icono2'/></span>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch className='main-color-hover'/></button>
-      </li>
-      <li className="nav-item">
-        <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit className='main-color-hover'/></button>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <nav className="navbar bg-light">
+          <div className="container-fluid">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link"><FaCalendarPlus size={iconSize} className=''/></span>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link"><FaUserInjured size={iconSize} className=''/></span>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserEdit size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link"><FaStethoscope size={iconSize} className=''/> </span>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbVirusSearch size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterEdit size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link"><FaUserMd size={iconSize} className=''/></span>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch size={iconSize} className='main-color-hover'/> </button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserEdit size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link"><FaClinicMedical size={iconSize} className=''/></span>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch size={iconSize} className='main-color-hover'/></button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomeEdit size={iconSize} className='main-color-hover'/></button>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
       </aside>
       <body className='App-body pt-5'>
