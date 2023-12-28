@@ -51,7 +51,7 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
   function sortByTreatmentDown(a, b) { return b.cita.tratamiento.localeCompare(a.cita.tratamiento); }
 
   return (
-    <center className='mt-3 mt-sm-5'>
+    <center className='mt-3 mt-sm-5' data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right">
       <h5 className='main-color fs-sm-2 mb-4'> Citas Registradas</h5>
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
@@ -85,11 +85,11 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
                                                 : sortByIdUp
                  )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
               <tr key={ cita.id }>
-                <td className='ps-4 text-nowrap'>{ cita.id }</td>
+                <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.consultorio }</td>
+                <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
                 <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>

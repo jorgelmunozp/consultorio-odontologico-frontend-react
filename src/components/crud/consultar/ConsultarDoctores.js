@@ -71,7 +71,7 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
                               : sortByIdUp
                  )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
                 <tr key={ doctor.id }>
-                  <td className='ps-4 text-nowrap'>{ doctor.id }</td>
+                  <td className='ps-4 ps-sm-5 text-nowrap'>{ doctor.id }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.apellido }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.especialidad }</td>

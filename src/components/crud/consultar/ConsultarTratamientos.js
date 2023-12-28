@@ -6,7 +6,7 @@ import { UpdateTratamiento } from '../update/UpdateTratamiento';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
-import { TbSearch, TbTrashX, TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
+import { TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
 
 const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
   /* Query */
@@ -71,9 +71,9 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
                               : sortByIdUp
                   )))))))).slice(indexPage[0],indexPage[1]).map( tratamiento => (
                 <tr key={ tratamiento.id }>
-                  <td className='ps-4 text-nowrap'>{ tratamiento.id }</td>
+                  <td className='ps-4 ps-sm-5 text-nowrap'>{ tratamiento.id }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.nombre }</td>
-                  <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.consultorio }</td>
+                  <td className='ps-4 ps-sm-5 text-nowrap'>{ tratamiento.tratamiento.consultorio }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.doctor }</td>
                   <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }><TbFilterSearch className='text-secondary'/></button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
