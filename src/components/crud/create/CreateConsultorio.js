@@ -45,12 +45,12 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
         <div className='container-fluid mt-2 mt-sm-5'>
           <div className='row'>
             <div className='col'>
-              <TextField value={numero} onChange={handleChangeNumero} id="ConsultoriosNumero" label="Número" type="number" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+              <TextField value={numero} onChange={handleChangeNumero} id="ConsultoriosNumero" label="Número" type="number" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
           <div className='row'>
             <div className='col'>
-              <TextField value={nombre} onChange={handleChangeNombre} id="ConsultoriosNombre" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+              <TextField value={nombre} onChange={handleChangeNombre} id="ConsultoriosNombre" label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
           <div className='row mt-4 mt-sm-5'>
@@ -66,7 +66,7 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
                 <td>
                   <TextField value={numero} onChange={handleChangeNumero}
                     id="ConsultoriosNumero" label="Número" type="number" variant="outlined" 
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
@@ -74,7 +74,7 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
                 <td>
                   <TextField value={nombre} onChange={handleChangeNombre}
                     id="ConsultoriosNombre" label="Nombre" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>

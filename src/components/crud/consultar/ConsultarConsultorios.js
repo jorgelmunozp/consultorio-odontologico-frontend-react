@@ -6,6 +6,8 @@ import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
+import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
+
 const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) => { 
   /* Query */
   let query = '';
@@ -67,9 +69,9 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
                   <td className='ps-4 text-nowrap'>{ consultorio.id }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ consultorio.consultorio.numero }</td>
                   <td className='ps-2 ps-sm-3 text-nowrap'>{ consultorio.consultorio.nombre }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(consultorio) }>&#x1F50E;</button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x274C;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(consultorio) }><TbHomeSearch className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeEdit className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeX className='text-secondary'/></button></td>
                 </tr>
               ))
             }

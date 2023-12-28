@@ -47,12 +47,12 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
           <div className='container-fluid mt-2 mt-sm-5'>
               <div className='row'>
                 <div className='col'>
-                  <TextField value={nombre} onChange={handleChangeNombre} id="nombreDoctor" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+                  <TextField value={nombre} onChange={handleChangeNombre} id="nombreDoctor" label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
                 </div>
               </div>
               <div className='row'>
                 <div className='col'>
-                  <TextField value={apellido} onChange={handleChangeApellido} id="apellidoDoctor" label="Apellido" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+                  <TextField value={apellido} onChange={handleChangeApellido} id="apellidoDoctor" label="Apellido" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
                 </div>
               </div>
               <div className='row'>
@@ -62,7 +62,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                     <Select value={especialidad} onChange={handleChange} id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label">
                         {tratamientos.map((tratamientos) => {
                           return (
-                            <MenuItem value={tratamientos.id} className="select-item">
+                            <MenuItem value={tratamientos.id} key={tratamientos.id}>
                               {tratamientos.tratamiento.nombre}
                             </MenuItem>
                           );
@@ -82,7 +82,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                 <td>
                   <TextField value={nombre} onChange={handleChangeNombre}
                     id="nombreDoctor" label="Nombre" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
@@ -90,7 +90,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                 <td>
                   <TextField value={apellido} onChange={handleChangeApellido}
                     id="apellidoDoctor" label="Apellido" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
@@ -106,7 +106,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                     >
                         {tratamientos.map((tratamientos) => {
                           return (
-                            <MenuItem value={tratamientos.id} className="select-item">
+                            <MenuItem value={tratamientos.id}>
                               {tratamientos.tratamiento.nombre}
                             </MenuItem>
                           );

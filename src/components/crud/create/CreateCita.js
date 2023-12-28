@@ -63,7 +63,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                 <Select value={paciente} onChange={handleChangePaciente} id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label">
                   {pacientes.map((pacientes) => {
                     return (
-                      <MenuItem value={pacientes.id} className="select-item">
+                      <MenuItem value={pacientes.id} key={pacientes.id}>
                         {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
                       </MenuItem>
                     );
@@ -77,7 +77,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                 <Select value={tratamiento} onChange={handleChangeTratamiento} id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label">
                   {tratamientos.map((tratamientos) => {
                     return (
-                      <MenuItem value={tratamientos.id} className="select-item">
+                      <MenuItem value={tratamientos.id} key={tratamientos.id}>
                         {tratamientos.tratamiento.nombre}
                       </MenuItem>
                     );
@@ -88,10 +88,10 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
           </div>
           <div className='row'>
             <div className='col'>
-              <TextField defaultValue={fecha} onChange={handleChangeFecha} id="registroFecha" type="date" label="Fecha" variant="outlined" className="textField" fullWidth margin="dense"/>
+              <TextField defaultValue={fecha} onChange={handleChangeFecha} id="registroFecha" type="date" label="Fecha" variant="outlined" fullWidth margin="dense"/>
             </div>
             <div className='col'>
-              <TextField defaultValue={hora} onChange={handleChangeHora} id="registroHora" type="time" label="Hora" variant="outlined" className="textField" margin="dense"/>
+              <TextField defaultValue={hora} onChange={handleChangeHora} id="registroHora" type="time" label="Hora" variant="outlined" fullWidth margin="dense"/>
             </div>
           </div>
           <div className='row'>
@@ -101,7 +101,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                   <Select value={doctor} onChange={handleChangeDoctor} id="registroDoctor" label="Especialidad" labelId="registroDoctor-label">
                     {doctores.map((doctores) => {
                       return (
-                        <MenuItem value={doctores.id} className="select-item">
+                        <MenuItem value={doctores.id} key={doctores.id}>
                           {doctores.doctor.nombre + " " + doctores.doctor.apellido}
                         </MenuItem>
                       );
@@ -115,7 +115,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                   <Select value={consultorio} onChange={handleChangeConsultorio} id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label">
                     {consultorios.map((consultorios) => {
                       return (
-                        <MenuItem value={consultorios.id} className="select-item">
+                        <MenuItem value={consultorios.id} key={consultorios.id}>
                           {consultorios.consultorio.numero}
                         </MenuItem>
                       );
@@ -145,7 +145,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                     >
                       {pacientes.map((pacientes) => {
                         return (
-                          <MenuItem value={pacientes.id} className="select-item">
+                          <MenuItem value={pacientes.id}>
                             {pacientes.paciente.nombre + " " + pacientes.paciente.apellido}
                           </MenuItem>
                         );
@@ -164,7 +164,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                     >
                       {tratamientos.map((tratamientos) => {
                         return (
-                          <MenuItem value={tratamientos.id} className="select-item">
+                          <MenuItem value={tratamientos.id}>
                             {tratamientos.tratamiento.nombre}
                           </MenuItem>
                         );
@@ -178,7 +178,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                   <TextField
                     id="registroFecha" type="date" label="Fecha"
                     // defaultValue={fecha} onChange={() => setFecha(fecha)}
-                    defaultValue={fecha} onChange={handleChangeFecha} variant="outlined" className="textField" margin="dense"
+                    defaultValue={fecha} onChange={handleChangeFecha} variant="outlined" margin="dense"
                   />
                 </td>
 
@@ -187,7 +187,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                     id="registroHora" type="time" label="Hora"
                     // defaultValue={hora} onChange={() => setHora(hora)}
                     defaultValue={hora} onChange={handleChangeHora}
-                    variant="outlined" className="textField" margin="dense"
+                    variant="outlined" margin="dense"
                   />
                 </td>
               </tr>
@@ -203,7 +203,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                     >
                       {doctores.map((doctores) => {
                         return (
-                          <MenuItem value={doctores.id} className="select-item">
+                          <MenuItem value={doctores.id}>
                             {doctores.doctor.nombre + " " + doctores.doctor.apellido}
                           </MenuItem>
                         );
@@ -222,7 +222,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                     >
                       {consultorios.map((consultorios) => {
                         return (
-                          <MenuItem value={consultorios.id} className="select-item">
+                          <MenuItem value={consultorios.id}>
                             {consultorios.consultorio.numero}
                           </MenuItem>
                         );

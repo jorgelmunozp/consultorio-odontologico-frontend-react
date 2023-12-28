@@ -6,6 +6,8 @@ import { UpdateDoctor } from '../update/UpdateDoctor';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
+import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
+
 const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
   let query = '';
@@ -73,9 +75,9 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.apellido }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.especialidad }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }>&#x1F50E;</button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x274C;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }><TbUserSearch className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserEdit className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserX className='text-secondary'/></button></td>
                 </tr>
               ))
             }

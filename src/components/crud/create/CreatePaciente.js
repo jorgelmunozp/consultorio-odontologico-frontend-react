@@ -55,15 +55,15 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
         <div className='container-fluid mt-2 mt-sm-5'>
           <div className='row'>
             <div className='col'>
-              <TextField value={identificacion} onChange={handleChangeCedula} id="cedulaPaciente" label="Cédula" type="number" variant="outlined" className="textField" margin="dense" autoComplete="off"/>
+              <TextField value={identificacion} onChange={handleChangeCedula} id="cedulaPaciente" label="Cédula" type="number" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
           <div className='row'>
             <div className='col'>
-              <TextField value={nombre} onChange={handleChangeNombre} id="nombrePaciente" label="Nombre" variant="outlined" className="textField" margin="dense" autoComplete="off" fullWidth/>
+              <TextField value={nombre} onChange={handleChangeNombre} id="nombrePaciente" label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
             <div className='col'>
-              <TextField value={apellido} onChange={handleChangeApellido} id="apellidoPaciente" label="Apellido" variant="outlined" className="textField" margin="dense" autoComplete="off" fullWidth/>
+              <TextField value={apellido} onChange={handleChangeApellido} id="apellidoPaciente" label="Apellido" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
           <div className='row'>
@@ -73,7 +73,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                 <Select value={genero} onChange={handleChangeGenero} id="generoPaciente" label="generoPaciente" labelId="generoPaciente-label">
                   {generos.map((generos) => {
                     return (
-                      <MenuItem value={generos.id} className="select-item">
+                      <MenuItem value={generos.id} key={generos.id}>
                         {generos.genero.nombre}
                       </MenuItem>
                     );
@@ -87,7 +87,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                 <Select value={eps} onChange={handleChangeEps} id="epsPaciente" label="epsPaciente" labelId="epsPaciente-label">
                   {epss.map((epss) => {
                     return (
-                      <MenuItem value={epss.id} className="select-item">
+                      <MenuItem value={epss.id} key={epss.id}>
                         {epss.eps.nombre}
                       </MenuItem>
                     );
@@ -109,7 +109,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                 <td colSpan={2}>
                   <TextField value={identificacion} onChange={handleChangeCedula}
                     id="cedulaPaciente" label="Cédula" type="number" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
@@ -117,13 +117,13 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                 <td>
                   <TextField value={nombre} onChange={handleChangeNombre}
                     id="nombrePaciente" label="Nombre" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
                 <td>
                   <TextField value={apellido} onChange={handleChangeApellido}
                     id="apellidoPaciente" label="Apellido" variant="outlined"
-                    className="textField" margin="dense" autoComplete="off"
+                    margin="dense" autoComplete="off"
                   />
                 </td>
               </tr>
@@ -139,7 +139,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                     >
                       {generos.map((generos) => {
                         return (
-                          <MenuItem value={generos.id} className="select-item">
+                          <MenuItem value={generos.id}>
                             {generos.genero.nombre}
                           </MenuItem>
                         );
@@ -158,7 +158,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
                     >
                       {epss.map((epss) => {
                         return (
-                          <MenuItem value={epss.id} className="select-item">
+                          <MenuItem value={epss.id}>
                             {epss.eps.nombre}
                           </MenuItem>
                         );

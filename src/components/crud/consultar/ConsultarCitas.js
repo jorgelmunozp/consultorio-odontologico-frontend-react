@@ -6,6 +6,8 @@ import { UpdateCita } from '../update/UpdateCita';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
+import { TbCalendarSearch, TbCalendarTime, TbCalendarX } from "react-icons/tb";
+
 const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
   let query = '';
@@ -90,9 +92,9 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.consultorio }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
-                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#x1F50E;</button></td>
-                <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x274C;</button></td>
+                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
+                <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
+                <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
               </tr>
             ))
           }

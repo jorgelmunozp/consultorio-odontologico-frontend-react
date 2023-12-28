@@ -37,24 +37,12 @@ hr { opacity: 0.5; }
 .bg-dark-color { background-color: var(--dark-color); }
 .dark-color-hover:hover { color: var(--dark-color); }
 .main-color-hover:hover { color: var(--main-color); }
-.color-rojo { color: var(--red-color) }
 .white-color { color: var(--white-color) }
 
 /*************************** BODY **************************/
-.App-body {
-  display: flex;
-  background-color: #fdfdfd;
-}
-.App-body h3 {
-  text-align: center;
-  color: var(--main-color);
-}
+.contenidoBody { width: 90%; }
+@media (max-width: 576px) { .contenidoBody { width: 100%; }}
 
-.contenidoBody {
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
 .table {
   border-collapse: collapse;
   border-color: var(--lightgray-color);
@@ -91,12 +79,10 @@ hr { opacity: 0.5; }
 }
 
 .textField{
-  width: 100%;
-  font-family: 'Century Gothic','centuryGothic'!important;
+  /* width: 100%; */
+  /* font-family: 'Century Gothic','centuryGothic'!important; */
 }
-.select, .select-item{
-  font-family: 'Century Gothic','centuryGothic'!important;
-}
+
 .button{
   font-family: 'Century Gothic','centuryGothic'!important;
   background-color: var(--main-color)!important;
@@ -181,10 +167,10 @@ select::-ms-expand { display: none; }
   box-shadow: none;
 }
 
-.responseStatus {
+/* .responseStatus {
   font-size: 2.5vmin;
   color: var(--darkgray-color);
-}
+} */
 
 
 /*************************** Sweet Alerts **************************/

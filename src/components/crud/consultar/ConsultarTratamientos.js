@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { ReadTratamiento } from '../read/ReadTratamiento';
 import { UpdateTratamiento } from '../update/UpdateTratamiento';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
+
+import { TbSearch, TbTrashX, TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
 
 const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
   /* Query */
@@ -74,9 +75,9 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.nombre }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.consultorio }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.doctor }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }>&#x1F50E;</button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x274C;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }><TbFilterSearch className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }><TbFilterX className='text-secondary'/></button></td>
                 </tr>
               ))
             }

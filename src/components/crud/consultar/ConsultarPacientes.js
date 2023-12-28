@@ -6,6 +6,8 @@ import { UpdatePaciente } from '../update/UpdatePaciente';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
+import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
+
 const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => { 
   /* Query */
   let query = '';
@@ -85,9 +87,9 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.apellido }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.genero }</td>
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.eps }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }>&#x1F50E;</button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x274C;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }><TbUserSearch className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserEdit className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserX className='text-secondary'/></button></td>
                 </tr>
               ))
             }
