@@ -12,7 +12,10 @@
   --white-color: #ffffff;
 }
 
-.App { font: 2.5vmin 'CenturyGothic', 'Century Gothic'; }
+.App { font: 3vmin 'CenturyGothic', 'Century Gothic'; }
+@media (max-width: 576px) {
+.App { font: 3.5vmin 'CenturyGothic', 'Century Gothic'; }
+}
 @font-face {
   font-family: "CenturyGothic";
   font-style: normal;
@@ -38,36 +41,6 @@ hr { opacity: 0.5; }
 .main-color-hover:hover { color: var(--main-color); }
 .color-rojo { color: var(--red-color) }
 .white-color { color: var(--white-color) }
-
-
-/*************************** MENU NAV **************************/
-/* .App-menu-subtitulo {
-  background-color:  var(--dark-color);
-  color: var(--main-color);
-  padding: 10px 30px;
-  font-size: 2.5vmin;
-  text-align: center;
-  text-decoration: none;
-  width: 15px;
-  display: block;
-} */
-/* .App-menu-item {
-  background-color: var(--dark-color);
-  color: var(--icon-color);
-  padding: 10px 30px;
-  font-size: 2.5vmin;
-  text-align: center;
-  text-decoration: none;
-  width: 20px;
-  display: block;
-  border: none;
-  cursor: pointer;
-}
-.App-menu-item:hover {
-  background-color: var(--dark-color);
-  color: var(--white-color);
-} */
-
 
 /*************************** BODY **************************/
 .App-body {
