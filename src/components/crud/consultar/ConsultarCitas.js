@@ -81,9 +81,9 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
               <div className='col-4 col-md-2 text-nowrap'>{ cita.cita.tratamiento }</div>
               <div className='col-6 col-md-2'>
                 <div className='row flex-nowrap bg-transparent'>
-                  <div className='col-auto'><button className='col App-body-boton-vistas' onClick={ () => ReadCita(cita) }>&#128270;</button></div>
-                  <div className='col-auto'><button className='col App-body-boton-vistas' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></div>
-                  <div className='col-auto'><button className='col App-body-boton-vistas color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></div>
+                  <div className='col-auto'><button className='col border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#128270;</button></div>
+                  <div className='col-auto'><button className='col border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></div>
+                  <div className='col-auto'><button className='col border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></div>
                 </div>
               </div>
             </div>

@@ -50,11 +50,11 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
         <table className="table" border='1'>
           <thead>
             <tr>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Especialidad</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th colSpan='3'></th>
+              <th className='border-0 p-0 ps-1 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Especialidad</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3' colSpan='3'></th>
             </tr>
           </thead>
           <tbody className='row-color'>
@@ -70,13 +70,13 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
                               : sortByIdUp
                  )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
                 <tr key={ doctor.id }>
-                  <td>{ doctor.id }</td>
-                  <td>{ doctor.doctor.nombre }</td>
-                  <td>{ doctor.doctor.apellido }</td>
-                  <td>{ doctor.doctor.especialidad }</td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+                  <td className='ps-4'>{ doctor.id }</td>
+                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.nombre }</td>
+                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.apellido }</td>
+                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.especialidad }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
                 </tr>
               ))
             }

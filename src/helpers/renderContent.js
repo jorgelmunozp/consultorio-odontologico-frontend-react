@@ -19,6 +19,5 @@ export const renderContent = (urlApi,citas,pacientes,tratamientos,doctores,consu
         root = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
     }
 
-    // root.render(elementRender(urlApi,citas,pacientes,tratamientos,doctores,consultorios,api==="pacientes" ? epss : '',api==="pacientes" ? generos : ''));
-    root.render(elementRender(urlApi,citas,pacientes,tratamientos,doctores,consultorios));
+   root.render(elementRender(urlApi,citas,pacientes,tratamientos,doctores,consultorios));
 }

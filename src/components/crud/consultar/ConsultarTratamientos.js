@@ -50,11 +50,11 @@ const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doct
         <table className="table" border='1'>
           <thead>
             <tr>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Consultorio</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Doctor</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th colSpan='3'></th>
+              <th className='border-0 p-0 ps-1 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Consultorio</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Doctor</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'colSpan='3'></th>
             </tr>
           </thead>
           <tbody>
@@ -70,13 +70,13 @@ const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doct
                               : sortByIdUp
                   )))))))).slice(indexPage[0],indexPage[1]).map( tratamiento => (
                 <tr key={ tratamiento.id }>
-                  <td>{ tratamiento.id }</td>
-                  <td>{ tratamiento.tratamiento.nombre }</td>
-                  <td>{ tratamiento.tratamiento.consultorio }</td>
-                  <td>{ tratamiento.tratamiento.doctor }</td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteTratamiento(root,tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x1F7AE;</button></td>
+                  <td className='ps-4'>{ tratamiento.id }</td>
+                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.nombre }</td>
+                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.consultorio }</td>
+                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.doctor }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(root,tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x1F7AE;</button></td>
                 </tr>
               ))
             }

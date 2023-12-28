@@ -86,24 +86,20 @@ hr { opacity: 0.5; }
 }
 .table {
   border-collapse: collapse;
-  position: relative;
   border-color: var(--lightgray-color);
   width: 100%;
 }
 .table th  {
   background-color:var(--main-color) !important;
   color: var(--white-color);
-  font-size: 2vmin;
   font-weight: normal;
-  padding: 1vmin 1vmin;
-  border-bottom: 1px solid var(--dark-color);
+}
+.table th tr  {
+  background-color:var(--main-color) !important;
 }
 .table td {
   background-color: transparent !important;
   color: var(--dark-color);
-  font-size: 2.5vmin;
-  text-align: center;
-  padding: 1vmin 1vmin;
 }
 .table tr:nth-child(even) { background-color:var(--white-color); }
 .table tr:nth-child(odd) { background-color: #f7f7f7 !important; }
@@ -120,33 +116,18 @@ hr { opacity: 0.5; }
   border-collapse: collapse;
   background-color: transparent;
   padding: 0;
-  /* float: right; */
-  width: 100%;
   line-height: 0;
-}
-.tableSort tr:nth-child(even) { background-color:transparent; padding: 0; }
-.tableSort tr:nth-child(odd) { background-color:transparent; padding: 0; }
-.buttonSort {
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.App-body-boton-vistas {
-  background-color: transparent;
-  border: 1px solid transparent;
-  cursor: pointer;
 }
 
 .textField{
   width: 100%;
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  font-family: 'Century Gothic','centuryGothic'!important;
 }
 .select, .select-item{
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  font-family: 'Century Gothic','centuryGothic'!important;
 }
 .button{
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  font-family: 'Century Gothic','centuryGothic'!important;
   background-color: var(--main-color)!important;
   color: var(--icon-color);
   width: 100%;
@@ -155,7 +136,7 @@ hr { opacity: 0.5; }
 
 input {
   font-size: 1.6vmin;
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  font-family: 'Century Gothic', 'centuryGothic'!important;
   color: var(--darkgray-color);
   width: 100%;
   height: 3vmin !important;
@@ -164,7 +145,7 @@ input {
 }
 label, .MuiSelect-select {
   font-size: 1.6vmin;
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif!important;
+  font-family: 'Century Gothic', 'centuryGothic'!important;
   color: var(--darkgray-color)!important;
   min-width: 30vmin!important;
 }
@@ -240,7 +221,6 @@ select::-ms-expand { display: none; }
   border-collapse: collapse;
   border-color: var(--lightgray-color);
   width: 90%;
-  /* font-family: inherit; */
 }
 .swal2-title {
   color: var(--main-color);
@@ -251,34 +231,26 @@ select::-ms-expand { display: none; }
 .swalTable th  {
   background-color:var(--main-color);
   color: var(--white-color);
-  font-size: 1.8vmin;
+  font-size: 2.2vmin;
   font-weight: normal;
+  text-align: center;
   padding: 0.75vmin 1vmin;
   border-bottom: 1px solid var(--dark-color);
 }
 .swalTable td {
   color: var(--dark-color);
-  font-size: 2.2vmin;
+  font-size: 2.5vmin;
   text-align: center;
   padding: 1vmin 0.75vmin;
 }
 .swalTable td:nth-child(even){background-color:var(--white-color);}
 .swalTable td:nth-child(odd){background-color: #f1f1f1;}
 
-
 .swal2-input {
   background-color:var(--white-color);
   height: 4vmin !important;
-  font-size: 2.2vmin;
+  font-size: 2.5vmin;
   margin: 0;
   width: 100%;
 }
-.swal2-confirm.swal2-styled {
-  background-color: var(--main-color);
-  font-family: inherit;
-  font-size: 2vmin;
-}
-.swal2-cancel {
-  font-family: inherit;
-  font-size: 2vmin !important;
-}
+.swal2-confirm.swal2-styled, .swal2-cancel { font-size: 2.2vmin !important; }

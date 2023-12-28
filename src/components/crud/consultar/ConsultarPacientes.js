@@ -54,13 +54,13 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
         <table className="table" border='1'>
           <thead>
             <tr>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Identificacion</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Genero</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(9)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(10)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2'></th><th rowSpan='2' className="border-0">Eps</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(11)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(12)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th colSpan='3'></th>
+              <th className='border-0 p-0 ps-1 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Identificación</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Género</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(9)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(10)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Eps</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(11)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(12)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3' colSpan='3'></th>
             </tr>
           </thead>
           <tbody>
@@ -80,15 +80,15 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
                                       : sortByIdUp
                   )))))))))))).slice(indexPage[0],indexPage[1]).map( paciente => (
                 <tr key={ paciente.id }>
-                  <td>{ paciente.id }</td>
-                  <td>{ paciente.paciente.identificacion }</td>
-                  <td>{ paciente.paciente.nombre }</td>
-                  <td>{ paciente.paciente.apellido }</td>
-                  <td>{ paciente.paciente.genero }</td>
-                  <td>{ paciente.paciente.eps }</td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
-                  <td><button className='App-body-boton-vistas' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
-                  <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x1F7AE;</button></td>
+                  <td className='ps-4'>{ paciente.id }</td>
+                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.identificacion }</td>
+                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.nombre }</td>
+                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.apellido }</td>
+                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.genero }</td>
+                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.eps }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x1F7AE;</button></td>
                 </tr>
               ))
             }
