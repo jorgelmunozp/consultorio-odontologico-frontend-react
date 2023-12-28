@@ -80,7 +80,7 @@ hr { opacity: 0.5; }
 .table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 .row-color:nth-child(even) { background-color:var(--white-color); }
-.row-color:nth-child(odd) { background-color: #f7f7f7; }
+.row-color:nth-child(odd) { background-color: #f7f7f7;}
 .row-color:nth-child(even):hover { background-color:var(--main-transparent-color); }
 .row-color:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 

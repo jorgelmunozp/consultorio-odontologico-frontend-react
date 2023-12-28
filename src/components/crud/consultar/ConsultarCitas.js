@@ -54,8 +54,21 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
     <center className='mt-3 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Citas Registradas</h5>
       <div className='container-fluid overflow-auto'>
-        <SortingCitasBar setSortBy={setSortBy} Arrows={Arrows} />
-        {   citas.sort(sortBy === 1 ? sortByIdUp 
+        <table className="table" border='1'>
+          <thead>
+            <tr>
+              <th className='border-0 p-0 ps-1 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Paciente</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Fecha</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Hora</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Consultorio</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(9)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(10)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Médico</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(11)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(12)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Tratamiento</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(13)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(14)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3' colSpan='3'></th>
+            </tr>
+          </thead>
+          <tbody>
+          {   citas.sort(sortBy === 1 ? sortByIdUp 
                       : ( sortBy === 2 ? sortByIdDown 
                         : ( sortBy === 3 ? sortByPatientUp 
                           : ( sortBy === 4 ? sortByPatientDown 
@@ -71,24 +84,22 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
                                               : ( sortBy === 14 ? sortByTreatmentDown 
                                                 : sortByIdUp
                  )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
-            <div className='row flex-nowrap border row-color py-2' key={ cita.id }>
-              <div className='col-3 col-md-1'>{ cita.id }</div>
-              <div className='col-4 col-md-2 text-nowrap'>{ cita.cita.paciente }</div>
-              <div className='col-4 col-md-2 text-nowrap'>{ cita.cita.fecha }</div>
-              <div className='col-2 col-md-1 text-nowrap'>{ cita.cita.hora }</div>
-              <div className='col-2 col-md-1 text-nowrap'>{ cita.cita.consultorio }</div>
-              <div className='col-4 col-md-2 text-nowrap'>{ cita.cita.doctor }</div>
-              <div className='col-4 col-md-2 text-nowrap'>{ cita.cita.tratamiento }</div>
-              <div className='col-6 col-md-2'>
-                <div className='row flex-nowrap bg-transparent'>
-                  <div className='col-auto'><button className='col border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#128270;</button></div>
-                  <div className='col-auto'><button className='col border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></div>
-                  <div className='col-auto'><button className='col border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></div>
-                </div>
-              </div>
-            </div>
-          ))
-        }
+              <tr key={ cita.id }>
+                <td className='ps-4 text-nowrap'>{ cita.id }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.consultorio }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
+                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
+                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
+                <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+                <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+              </tr>
+            ))
+          }
+          </tbody>
+        </table>
       </div>
       <PaginationBar query={query} array={citas} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>  

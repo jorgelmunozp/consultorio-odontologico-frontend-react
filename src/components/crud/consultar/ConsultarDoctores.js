@@ -70,10 +70,10 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
                               : sortByIdUp
                  )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
                 <tr key={ doctor.id }>
-                  <td className='ps-4'>{ doctor.id }</td>
-                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.nombre }</td>
-                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.apellido }</td>
-                  <td className='ps-1 ps-sm-3'>{ doctor.doctor.especialidad }</td>
+                  <td className='ps-4 text-nowrap'>{ doctor.id }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.apellido }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ doctor.doctor.especialidad }</td>
                   <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
                   <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>

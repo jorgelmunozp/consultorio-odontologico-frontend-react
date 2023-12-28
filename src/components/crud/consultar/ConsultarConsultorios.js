@@ -59,9 +59,9 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
                           : sortByIdUp
               )))))).slice(indexPage[0],indexPage[1]).map( consultorio => (
                 <tr key={ consultorio.id }>
-                  <td className='ps-4'>{ consultorio.id }</td>
-                  <td className='ps-1 ps-sm-3'>{ consultorio.consultorio.numero }</td>
-                  <td className='ps-2 ps-sm-3'>{ consultorio.consultorio.nombre }</td>
+                  <td className='ps-4 text-nowrap'>{ consultorio.id }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ consultorio.consultorio.numero }</td>
+                  <td className='ps-2 ps-sm-3 text-nowrap'>{ consultorio.consultorio.nombre }</td>
                   <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(consultorio) }>&#128270;</button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
                   <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
