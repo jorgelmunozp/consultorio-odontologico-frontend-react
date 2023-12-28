@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeleteTratamiento = (root,tratamiento,urlApiTratamientos,elementRender,citas,pacientes,doctores,consultorios) => {
+export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementRender,citas,pacientes,doctores,consultorios) => {
   Swal.fire({
     title: "Eliminar Tratamiento?",
     html: `

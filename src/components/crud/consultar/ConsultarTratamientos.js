@@ -7,7 +7,7 @@ import { UpdateTratamiento } from '../update/UpdateTratamiento';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
 
-const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
+const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
   /* Query */
   let query = '';
   const tratamientosFiltered = [];
@@ -76,7 +76,7 @@ const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doct
                   <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.doctor }</td>
                   <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }>&#x1F50E;</button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(root,tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x274C;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x274C;</button></td>
                 </tr>
               ))
             }
@@ -87,42 +87,12 @@ const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doct
     </center>
   )};
 
-const handleSortBy = async (root,dir,parameter,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
-  if(dir==="up"){
-    if(parameter==="id") {
-      tratamientos.sort((a, b) => (a.id > b.id) ? 1 : -1);
-    } else if(parameter==="nombre") { 
-      tratamientos.sort((a, b) => (a.tratamiento.nombre > b.tratamiento.nombre) ? 1 : -1); 
-    } else if(parameter==="consultorio") {
-      tratamientos.sort((a, b) => (a.tratamiento.consultorio > b.tratamiento.consultorio) ? 1 : -1);
-    } else if(parameter==="doctor") {
-      tratamientos.sort((a, b) => (a.tratamiento.doctor > b.tratamiento.doctor) ? 1 : -1);
-    } 
-  } 
-  else if(dir==="down"){ 
-    if(parameter==="id") {
-      tratamientos.sort((a, b) => (a.id < b.id) ? 1 : -1);
-    } else if(parameter==="nombre") { 
-      tratamientos.sort((a, b) => (a.tratamiento.nombre < b.tratamiento.nombre) ? 1 : -1); 
-    } else if(parameter==="consultorio") {
-      tratamientos.sort((a, b) => (a.tratamiento.consultorio < b.tratamiento.consultorio) ? 1 : -1); 
-    } else if(parameter==="doctor") {
-      tratamientos.sort((a, b) => (a.tratamiento.doctor < b.tratamiento.doctor) ? 1 : -1); 
-    }
-  }
-  renderContent(root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios);
-}
-
-const renderContent = (root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
-  root.render(ElementRender(root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios));
-}
 
 export const ConsultarTratamientos = ({ urlApiTratamientos,citas,pacientes,doctores,consultorios }) => {
   const tratamientos = useFetch(urlApiTratamientos).data;
-  const root = ReactDOM.createRoot(document.getElementById('App'));
   return(
     <div id="contenido"> 
-      { ElementRender(root,urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) }
+      { ElementRender(urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) }
     </div>
   )
 };

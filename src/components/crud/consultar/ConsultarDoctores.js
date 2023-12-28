@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
-import  { SortingConsultoriosBar } from '../../sort/SortingConsultoriosBar';
 
 const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) => { 
   /* Query */
@@ -47,7 +45,14 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
       <h5 className='main-color fs-sm-2 mb-4'> Consultorios Disponibles </h5>
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
-          <SortingConsultoriosBar setSortBy={setSortBy} Arrows={Arrows}/>
+          <thead>
+            <tr className="">
+              <th className='border-0 p-0 ps-1 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Número</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 p-0 ps-0 ps-sm-3'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='p-0' colSpan='3'></th>
+            </tr>
+          </thead>
           <tbody className='row-color'>
             {
               consultorios.sort(sortBy === 1 ? sortByIdUp 

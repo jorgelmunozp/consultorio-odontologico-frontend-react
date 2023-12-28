@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
 import { Arrows } from '../../../atoms/arrows/Arrows';
 import { PaginationBar } from '../../pagination/PaginationBar';
-import { SortingCitasBar } from '../../sort/SortingCitasBar';
 
 const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
