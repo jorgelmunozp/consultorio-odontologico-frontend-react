@@ -92,9 +92,9 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.consultorio }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
                 <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
-                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#128270;</button></td>
+                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }>&#x1F50E;</button></td>
                 <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+                <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }>&#x274C;</button></td>
               </tr>
             ))
           }

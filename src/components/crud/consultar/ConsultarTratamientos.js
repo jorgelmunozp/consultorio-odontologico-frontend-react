@@ -70,13 +70,13 @@ const ElementRender = (root,urlApiTratamientos,citas,pacientes,tratamientos,doct
                               : sortByIdUp
                   )))))))).slice(indexPage[0],indexPage[1]).map( tratamiento => (
                 <tr key={ tratamiento.id }>
-                  <td className='ps-4'>{ tratamiento.id }</td>
-                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.nombre }</td>
-                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.consultorio }</td>
-                  <td className='ps-1 ps-sm-3'>{ tratamiento.tratamiento.doctor }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }>&#128270;</button></td>
+                  <td className='ps-4 text-nowrap'>{ tratamiento.id }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.nombre }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.consultorio }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ tratamiento.tratamiento.doctor }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }>&#x1F50E;</button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(root,tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x1F7AE;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeleteTratamiento(root,tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }>&#x274C;</button></td>
                 </tr>
               ))
             }

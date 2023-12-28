@@ -81,14 +81,14 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
                   )))))))))))).slice(indexPage[0],indexPage[1]).map( paciente => (
                 <tr key={ paciente.id }>
                   <td className='ps-4 text-nowrap'>{ paciente.id }</td>
-                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.identificacion }</td>
-                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.nombre }</td>
-                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.apellido }</td>
-                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.genero }</td>
-                  <td className='ps-1 ps-sm-3'>{ paciente.paciente.eps }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }>&#128270;</button></td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.identificacion }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.nombre }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.apellido }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.genero }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ paciente.paciente.eps }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }>&#x1F50E;</button></td>
                   <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x270D;</button></td>
-                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x1F7AE;</button></td>
+                  <td><button className='border-0 bg-transparent color-rojo' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }>&#x274C;</button></td>
                 </tr>
               ))
             }
