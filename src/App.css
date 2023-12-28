@@ -14,6 +14,7 @@
 
 .App { font: 3vmin 'CenturyGothic', 'Century Gothic'; }
 @media (max-width: 576px) { .App { font: 4vmin 'CenturyGothic', 'Century Gothic'; }}
+@media (max-width: 768px) { .App { font: 3.5vmin 'CenturyGothic', 'Century Gothic'; }}
 @font-face {
   font-family: "CenturyGothic";
   font-style: normal;
