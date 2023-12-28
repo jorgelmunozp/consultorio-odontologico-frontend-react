@@ -10,14 +10,13 @@ import { PaginationBar } from '../../pagination/PaginationBar';
 const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
   let query = '';
-  const inmueblesFiltered = [];
+  const doctoresFiltered = [];
 
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = ((query === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(inmueblesFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = ((query === '') ? citas.length%itemPerPage : inmueblesFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-
+  const numPages = ((query === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(doctoresFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const resPages = ((query === '') ? citas.length%itemPerPage : doctoresFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
   let indexPages = [];
   let activePage = [true];                                            // [true]
   if(resPages !== 0 ){
@@ -31,76 +30,62 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
       if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
     }
   }
-
   const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
 
+    /* Sort */
+    const [sortBy, setSortBy] = useState(0);
+    function sortByIdUp(a, b) { return a.id - b.id; }
+    function sortByIdDown(a, b) { return b.id - a.id; }
+    function sortByNameUp(a, b) { return a.doctor.nombre.localeCompare(b.doctor.nombre); }
+    function sortByNameDown(a, b) { return b.doctor.nombre.localeCompare(a.doctor.nombre); }
+    function sortByLastnameUp(a, b) { return a.doctor.apellido.localeCompare(b.doctor.apellido); }
+    function sortByLastnameDown(a, b) { return b.doctor.apellido.localeCompare(a.doctor.apellido); }
+    function sortBySpecialityUp(a, b) { return a.doctor.especialidad.localeCompare(b.doctor.especialidad); }
+    function sortBySpecialityDown(a, b) { return b.doctor.especialidad.localeCompare(a.doctor.especialidad); }
+  
   return (
-    <center>
-      <hr/>
-      <h4> Doctores Disponibles </h4>
-      <hr/>
-      <br/><br/>
-      <table className="table" border='1'>
-        <thead>
-          <tr>
-            <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Código&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","id",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","id",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-            <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Nombre&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","nombre",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","nombre",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-            <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Apellido&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","apellido",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","apellido",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-            <th><table className='tableSort'><thead><tr><th rowSpan='2'>&nbsp;&nbsp;&nbsp;</th><th rowSpan='2'>Especialidad&nbsp;</th><th><button className='buttonSort' onClick={()=>handleSortBy("up","especialidad",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"up"}/></button></th></tr><tr><th><button className='buttonSort' onClick={()=>handleSortBy("down","especialidad",urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-            <th colSpan='3'></th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            doctores.slice(indexPage[0],indexPage[1]).map( doctor => (
-              <tr>
-                <td>{ doctor.id }</td>
-                <td>{ doctor.doctor.nombre }</td>
-                <td>{ doctor.doctor.apellido }</td>
-                <td>{ doctor.doctor.especialidad }</td>
-                <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
-                <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
-                <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <center className='mt-3 mt-sm-5'>
+      <h5 className='main-color fs-sm-2 mb-4'> Doctores Disponibles </h5>
+      <div className='container-fluid overflow-auto'>
+        <table className="table" border='1'>
+          <thead>
+            <tr>
+              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='py-0 text-center'><table className='lh-1 w-100'><thead><tr><th rowSpan='2' className="border-0">Especialidad</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr><th className='p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 p-0' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th colSpan='3'></th>
+            </tr>
+          </thead>
+          <tbody className='row-color'>
+            {
+              doctores.sort(sortBy === 1 ? sortByIdUp 
+                : ( sortBy === 2 ? sortByIdDown 
+                  : ( sortBy === 3 ? sortByNameUp 
+                    : ( sortBy === 4 ? sortByNameDown 
+                      : ( sortBy === 5 ? sortByLastnameUp 
+                        : ( sortBy === 6 ? sortByLastnameDown
+                          : ( sortBy === 7 ? sortBySpecialityUp 
+                            : ( sortBy === 8 ? sortBySpecialityDown 
+                              : sortByIdUp
+                 )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
+                <tr key={ doctor.id }>
+                  <td>{ doctor.id }</td>
+                  <td>{ doctor.doctor.nombre }</td>
+                  <td>{ doctor.doctor.apellido }</td>
+                  <td>{ doctor.doctor.especialidad }</td>
+                  <td><button className='App-body-boton-vistas' onClick={ () => ReadDoctor(doctor) }>&#128270;</button></td>
+                  <td><button className='App-body-boton-vistas' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x270D;</button></td>
+                  <td><button className='App-body-boton-vistas color-rojo' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }>&#x1F7AE;</button></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
       <PaginationBar query={query} array={doctores} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>
   )};
-
-
-  const handleSortBy = async (dir,parameter,urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) => {
-  if(dir==="up"){
-    if(parameter==="id") {
-      doctores.sort((a, b) => (a.id > b.id) ? 1 : -1);
-    } else if(parameter==="nombre") { 
-      doctores.sort((a, b) => (a.doctor.nombre > b.doctor.nombre) ? 1 : -1); 
-    } else if(parameter==="apellido") {
-      doctores.sort((a, b) => (a.doctor.apellido > b.doctor.apellido) ? 1 : -1);
-    } else if(parameter==="especialidad") {
-      doctores.sort((a, b) => (a.doctor.especialidad > b.doctor.especialidad) ? 1 : -1);
-    } 
-  } 
-  else if(dir==="down"){ 
-    if(parameter==="id") {
-      doctores.sort((a, b) => (a.id < b.id) ? 1 : -1);
-    } else if(parameter==="nombre") { 
-      doctores.sort((a, b) => (a.doctor.nombre < b.doctor.nombre) ? 1 : -1); 
-    } else if(parameter==="apellido") {
-      doctores.sort((a, b) => (a.doctor.apellido < b.doctor.apellido) ? 1 : -1); 
-    } else if(parameter==="especialidad") {
-      doctores.sort((a, b) => (a.doctor.especialidad < b.doctor.especialidad) ? 1 : -1); 
-    }
-  }
-  renderContent(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios);
-  }
-
-  const renderContent = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) => {
-    const root = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-    root.render(ElementRender(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
-  }
 
 export const ConsultarDoctores = ({ urlApiDoctores,citas,pacientes,tratamientos,consultorios }) => {
   const doctores = useFetch(urlApiDoctores).data;

@@ -2,7 +2,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
   return (
     <div className='row flex-nowrap bg-main-color text-white border'>
 
-      <div className='col-3 col-md-1'>
+      <div className='col-3 col-md-1 bg-main-color'>
         <small className='row flex-nowrap align-items-center justify-content-around'>
           <div className='col'><span className=''>Código</span></div>
           <div className='col-1'>
@@ -20,7 +20,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>
       </div>
 
-      <div className='col-4 col-md-2'>
+      <div className='col-4 col-md-2 bg-main-color'>
         <small className='row flex-nowrap align-items-center justify-content-around'>
           <div className='col-1'><span className=''>Paciente</span></div>
           <div className='col-1'>
@@ -38,7 +38,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>   
       </div>
       
-      <div className='col-4 col-md-2'>
+      <div className='col-4 col-md-2 bg-main-color'>
         <small className='row flex-nowrap align-items-center justify-content-around'>
           <div className='col'><span className=''>Fecha</span></div>
           <div className='col-1'>
@@ -56,7 +56,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>   
       </div>
 
-      <div className='col-2 col-md-1'>
+      <div className='col-2 col-md-1 bg-main-color'>
         <small className='row flex-nowrap align-items-center  justify-content-around'>
           <div className='col'><span className='justify-content-center'>Hora</span></div>
           <div className='col-1'>
@@ -74,7 +74,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>   
       </div>
 
-      <div className='col-2 col-md-1'>
+      <div className='col-2 col-md-1 bg-main-color'>
         <small className='row flex-nowrap align-items-center  justify-content-around'>
           <div className='col'>Consultorio</div>
           <div className='col-1'>
@@ -92,7 +92,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>   
       </div>
 
-      <div className='col-4 col-md-2'>
+      <div className='col-4 col-md-2 bg-main-color'>
         <small className='row flex-nowrap align-items-center  justify-content-around'>
           <div className='col'>Médico</div>
           <div className='col-1'>
@@ -110,7 +110,7 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
         </small>   
       </div>
       
-      <div className='col-4 col-md-2'>
+      <div className='col-4 col-md-2 bg-main-color'>
         <small className='row flex-nowrap align-items-center  justify-content-around'>
           <div className='col'>Tratamiento</div>
           <div className='col-1'>
@@ -127,6 +127,13 @@ export const SortingCitasBar = ({ setSortBy,Arrows }) => {
           </div>
         </small>   
       </div>
+
+      <div className='col-6 col-md-2 bg-main-color'>
+        <small className='row flex-nowrap align-items-center justify-content-around'>
+          <div className='col'></div>
+        </small>   
+      </div>
+
     </div>
   )
 }

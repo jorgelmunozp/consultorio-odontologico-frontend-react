@@ -34,8 +34,10 @@ hr { opacity: 0.5; }
 .main-color { color: var(--main-color); }
 .bg-main-color { background-color: var(--main-color); }
 .bg-dark-color { background-color: var(--dark-color); }
+.dark-color-hover:hover { color: var(--dark-color); }
 .main-color-hover:hover { color: var(--main-color); }
 .color-rojo { color: var(--red-color) }
+.white-color { color: var(--white-color) }
 
 
 /*************************** MENU NAV **************************/
@@ -118,30 +120,16 @@ hr { opacity: 0.5; }
   border-collapse: collapse;
   background-color: transparent;
   padding: 0;
-  float: right;
+  /* float: right; */
   width: 100%;
   line-height: 0;
-}
-.tableSort tr {
-  padding: 0;
-}
-.tableSort th {
-  padding: 0;
-  border: none;
-}
-.tableSort td {
-  padding: 0;
 }
 .tableSort tr:nth-child(even) { background-color:transparent; padding: 0; }
 .tableSort tr:nth-child(odd) { background-color:transparent; padding: 0; }
 .buttonSort {
-  color: greenyellow;
   border: none;
   padding: 0;
   cursor: pointer;
-}
-.buttonSort:hover {
-  color: var(--dark-color);
 }
 
 .App-body-boton-vistas {
