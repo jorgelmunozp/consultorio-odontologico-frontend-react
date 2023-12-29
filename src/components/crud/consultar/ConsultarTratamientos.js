@@ -16,8 +16,8 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = ((query === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(tratamientosFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = ((query === '') ? citas.length%itemPerPage : tratamientosFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const numPages = ((query === '') ? Math.floor(tratamientos.length/itemPerPage) : Math.floor(tratamientosFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const resPages = ((query === '') ? tratamientos.length%itemPerPage : tratamientosFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
   let indexPages = [];
   let activePage = [true];                                            // [true]
   if(resPages !== 0 ){
