@@ -81,11 +81,6 @@ hr { opacity: 0.5; }
   line-height: 0;
 }
 
-.textField{
-  /* width: 100%; */
-  /* font-family: 'Century Gothic','centuryGothic'!important; */
-}
-
 .button{
   font-family: 'Century Gothic','centuryGothic'!important;
   background-color: var(--main-color)!important;
@@ -170,11 +165,6 @@ select::-ms-expand { display: none; }
   box-shadow: none;
 }
 
-/* .responseStatus {
-  font-size: 2.5vmin;
-  color: var(--darkgray-color);
-} */
-
 
 /*************************** Sweet Alerts **************************/
 .swalTable {
@@ -184,14 +174,14 @@ select::-ms-expand { display: none; }
 }
 .swal2-title {
   color: var(--main-color);
-  font-size: 3vmin;
+  font-size: 3.5vmin;
   font-weight: normal;
   padding: 0em 1em 0;
 }
 .swalTable th  {
   background-color:var(--main-color);
   color: var(--white-color);
-  font-size: 2.2vmin;
+  font-size: 2.5vmin;
   font-weight: normal;
   text-align: center;
   padding: 0.75vmin 1vmin;
@@ -199,8 +189,7 @@ select::-ms-expand { display: none; }
 }
 .swalTable td {
   color: var(--dark-color);
-  font-size: 2.5vmin;
-  text-align: center;
+  font-size: 3vmin;
   padding: 1vmin 0.75vmin;
 }
 .swalTable td:nth-child(even){background-color:var(--white-color);}
@@ -209,8 +198,8 @@ select::-ms-expand { display: none; }
 .swal2-input {
   background-color:var(--white-color);
   height: 4vmin !important;
-  font-size: 2.5vmin;
+  font-size: 3vmin;
   margin: 0;
   width: 100%;
 }
-.swal2-confirm.swal2-styled, .swal2-cancel { font-size: 2.2vmin !important; }
+.swal2-confirm.swal2-styled, .swal2-cancel { font-size: 2.5vmin !important; }
