@@ -1,4 +1,4 @@
-import logo from './images/logo.svg';
+import logo from './assets/images/logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
@@ -7,7 +7,6 @@ import { useFetch } from "./hooks/useFetch";
 import { Logo } from './components/icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbFilterSearch, TbUserPlus, TbHomePlus, TbFilterPlus, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
-import Usuario from './Usuario';
 import { Inicio } from './home';
 import { ConsultarCitas } from './components/crud/consultar/ConsultarCitas';
 import { ConsultarPacientes } from './components/crud/consultar/ConsultarPacientes';
@@ -170,8 +169,8 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
     return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} />;
   }else if(menu === 11){
     return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} />;
-  }else if(menu === 14){
-    return <Usuario />;
+  }else{
+    return <Inicio />;
   }
 }
 
