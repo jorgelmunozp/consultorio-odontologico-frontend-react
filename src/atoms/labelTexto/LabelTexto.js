@@ -13,6 +13,5 @@ export const LabelTexto = ({ type, text, className }) => {
 
   return (
     <fragment dangerouslySetInnerHTML={{ __html: labelTexto}}></fragment>
-    
   )
 }

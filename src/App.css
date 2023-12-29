@@ -40,6 +40,8 @@ hr { opacity: 0.5; }
 .main-color-hover:hover { color: var(--main-color); }
 .white-color { color: var(--white-color) }
 
+.lh-0 { line-height: 0.5; }
+
 /*************************** BODY **************************/
 .contenidoBody { width: 90%; }
 @media (max-width: 576px) { .contenidoBody { width: 100%; }}

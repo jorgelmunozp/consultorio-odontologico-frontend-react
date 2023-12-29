@@ -10,9 +10,7 @@ export const Boton = ({ className, style, title, type, children, functionClick }
           (type === 4 && `${className}`)||
           (type === 5 && `${className}`)
         }
-        style={style}
-        onClick={ functionClick }
-      >
+        style={style} onClick={ functionClick }>
         {children || title}
       </button>
     );

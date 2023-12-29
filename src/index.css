@@ -5,6 +5,4 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: 'Century Gothic', Helvetica, Arial, sans-serif;
-}
+code { font-family: 'Century Gothic', Helvetica, Arial, sans-serif; }
