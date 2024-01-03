@@ -64,14 +64,9 @@ hr { opacity: 0.5; }
   color: var(--dark-color);
 }
 .table tr:nth-child(even) { background-color:var(--white-color); }
-.table tr:nth-child(odd) { background-color: #f7f7f7 !important; }
+.table tr:nth-child(odd) { background-color: #f7f7f7; }
 .table tr:nth-child(even):hover { background-color:var(--main-transparent-color); }
 .table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
-
-.row-color:nth-child(even) { background-color:var(--white-color); }
-.row-color:nth-child(odd) { background-color: #f7f7f7;}
-.row-color:nth-child(even):hover { background-color:var(--main-transparent-color); }
-.row-color:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 /*************************** Sort **************************/
 .tableSort {
@@ -165,6 +160,10 @@ select::-ms-expand { display: none; }
   box-shadow: none;
 }
 
+
+.offcanvas { width: 60px !important; }
+.offcanvas-header { padding-bottom: 0 !important; }
+.offcanvas-body { padding-top: 0 !important; }
 
 /*************************** Sweet Alerts **************************/
 .swalTable {

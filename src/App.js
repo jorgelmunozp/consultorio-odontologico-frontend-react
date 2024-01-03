@@ -55,13 +55,16 @@ function App() {
   const generos  = useFetch(urlApiGeneros).data;
   let [setGeneros] = useState('');
 
+  const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
+
   return (
     <div className="App user-select-none">
       <header className="fixed-top shadow-lg">
         <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
           <div className="container-fluid">
-            {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
-            <a className={'navbar-brand nav-item nav-link'}  href={"/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2'>{ myTitle }</span></a>
+            {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
+            <a className={'navbar-brand nav-item nav-link'} href={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2'>{ myTitle }</span></a>
+            <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">⌂</button>
           </div>
         </nav>
       </header>
@@ -71,69 +74,65 @@ function App() {
 {/* <a className="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasBody" role="button" aria-controls="offcanvasBody">
   ⌂
 </a> */}
-<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+{/* <button className="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
   ⌂
-</button>
-<div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
+</button> */}
+<div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
   <div className="offcanvas-header">
     <h5 className="offcanvas-title" id="offcanvasBodyLabel">⌂</h5>
     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div className="offcanvas-body">
-    <div>
-    <div className="container-fluid">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserPlus size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbFilterSearch size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterPlus size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch size={iconSize} className='text-secondary main-color-hover'/> </button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserPlus size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomePlus size={iconSize} className='text-secondary main-color-hover'/></button>
-              </li>
-            </ul>
-          </div>
-    </div>
+    <ul className="navbar-nav">
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><TbHome size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><TbCalendarSearch size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><TbCalendarPlus size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><TbUserSearch size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><TbUserPlus size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><TbFilterSearch size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><TbFilterPlus size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><TbUserSearch size={iconSize} className='text-secondary main-color-hover'/> </button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><TbUserPlus size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><TbHomeSearch size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><TbHomePlus size={iconSize} className='text-secondary main-color-hover'/></button>
+      </li>
+    </ul>
   </div>
 </div>
 
