@@ -72,7 +72,7 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
           <tbody className='row-color'>
             {
               (queryCode === '' && queryNumber === '' && queryName === '')
-              ? consultorios.sort(sortBy === 1 ? sortByIdUp 
+                ? consultorios.sort(sortBy === 1 ? sortByIdUp 
                   : ( sortBy === 2 ? sortByIdDown 
                     : ( sortBy === 3 ? sortByNumberUp 
                       : ( sortBy === 4 ? sortByNumberDown 

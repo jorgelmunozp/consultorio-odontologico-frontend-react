@@ -75,7 +75,28 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
           </thead>
           <tbody>
             {
-              tratamientos.sort(sortBy === 1 ? sortByIdUp 
+              (queryCode === '' && queryName === '' && queryConsultoryRoom === '' && queryDoctor === '')
+                ? tratamientos.sort(sortBy === 1 ? sortByIdUp 
+                  : ( sortBy === 2 ? sortByIdDown 
+                    : ( sortBy === 3 ? sortByNameUp 
+                      : ( sortBy === 4 ? sortByNameDown 
+                        : ( sortBy === 5 ? sortByConsultingRoomUp 
+                          : ( sortBy === 6 ? sortByConsultingRoomDown
+                            : ( sortBy === 7 ? sortByDoctorUp 
+                              : ( sortBy === 8 ? sortByDoctorDown 
+                                : sortByIdUp
+                    )))))))).slice(indexPage[0],indexPage[1]).map( tratamiento => (
+                  <tr key={ tratamiento.id }>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ tratamiento.id }</td>
+                    <td className='px-2 px-sm-4 text-nowrap'>{ tratamiento.tratamiento.nombre }</td>
+                    <td className='ps-5 ps-sm-5 text-nowrap'>{ tratamiento.tratamiento.consultorio }</td>
+                    <td className='px-2 px-sm-4 text-nowrap'>{ tratamiento.tratamiento.doctor }</td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(tratamiento) }><TbFilterSearch className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteTratamiento(tratamiento,urlApiTratamientos,ElementRender,citas,pacientes,doctores,consultorios) }><TbFilterX className='text-secondary'/></button></td>
+                  </tr>
+                ))
+              : tratamientosFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByNameUp 
                     : ( sortBy === 4 ? sortByNameDown 
