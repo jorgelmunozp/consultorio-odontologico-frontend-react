@@ -36,6 +36,7 @@ export const DeleteDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,t
       </center>
     `,
     icon: "warning",
+    customClass: "century-gothic",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

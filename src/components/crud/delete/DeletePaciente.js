@@ -44,6 +44,7 @@ export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
       </center>
     `,
     icon: "warning",
+    customClass: "century-gothic",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

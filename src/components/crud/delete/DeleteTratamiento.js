@@ -36,6 +36,7 @@ export const DeleteTratamiento = (tratamiento,urlApiTratamientos,elementRender,c
       </center>
     `,
     icon: "warning",
+    customClass: "century-gothic",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

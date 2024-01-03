@@ -32,6 +32,7 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
       </center>
     `,
     icon: "warning",
+    customClass: "century-gothic",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",

@@ -48,6 +48,7 @@ import { fetchDelete } from '../../../helpers/fetchDelete';
         </center>
       `,
       icon: "warning",
+      customClass: "century-gothic",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
