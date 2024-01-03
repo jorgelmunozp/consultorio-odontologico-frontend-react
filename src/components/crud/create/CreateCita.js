@@ -51,7 +51,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
   }
   return (
     <div className="App" data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right">
-      <body className='mt-3 mt-sm-5'>
+      <body className='mt-4 mt-sm-5'>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Asignar Cita</h5>
         </center>

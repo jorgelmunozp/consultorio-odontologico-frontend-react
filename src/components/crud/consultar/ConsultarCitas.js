@@ -67,7 +67,7 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
   function sortByTreatmentDown(a, b) { return b.cita.tratamiento.localeCompare(a.cita.tratamiento); }
 
   return (
-    <center className='mt-3 mt-sm-5' data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right">
+    <center className='mt-4 mt-sm-5' data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right">
       <h5 className='main-color fs-sm-2 mb-4'> Citas Registradas</h5>
       <SearchBar icon={<TbCalendarSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
 

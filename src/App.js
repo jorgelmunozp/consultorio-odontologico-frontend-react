@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useFetch } from "./hooks/useFetch";
 import { Logo } from './components/icons/logo/Logo';
+import { Home } from './components/icons/home/Home';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
 import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbFilterSearch, TbUserPlus, TbHomePlus, TbFilterPlus, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
 import { Inicio } from './home';
@@ -64,7 +65,7 @@ function App() {
           <div className="container-fluid">
             {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color'>{ myTitle }</span></NavLink> */}
             <a className={'navbar-brand nav-item nav-link'} href={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2'>{ myTitle }</span></a>
-            <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">⌂</button>
+            <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.5} width={1.5}/></button>
           </div>
         </nav>
       </header>

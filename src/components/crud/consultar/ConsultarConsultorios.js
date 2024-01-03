@@ -55,7 +55,7 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
   function sortByNameDown(a, b) { return b.consultorio.nombre.localeCompare(a.consultorio.nombre); }
 
   return (
-    <center className='mt-3 mt-sm-5'>
+    <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Consultorios Disponibles </h5>
       <SearchBar icon={<TbHomeSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
       

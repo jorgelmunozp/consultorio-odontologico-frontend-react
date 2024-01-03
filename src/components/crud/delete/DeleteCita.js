@@ -75,7 +75,4 @@ import { fetchDelete } from '../../../helpers/fetchDelete';
         )
       }
     });
-
-
-
 };

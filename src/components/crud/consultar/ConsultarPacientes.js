@@ -64,7 +64,7 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
   function sortByEpsDown(a, b) { return b.paciente.eps.localeCompare(a.paciente.eps); }
     
   return (
-    <center className='mt-3 mt-sm-5'>
+    <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Pacientes Afiliados </h5>
       <SearchBar icon={<TbUserSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
       

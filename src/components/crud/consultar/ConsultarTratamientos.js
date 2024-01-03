@@ -58,7 +58,7 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
   function sortByDoctorDown(a, b) { return b.tratamiento.doctor.localeCompare(a.tratamiento.doctor); }
       
   return (
-    <center className='mt-3 mt-sm-5'>
+    <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Tratamientos Autorizados </h5>
       <SearchBar icon={<TbFilterSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
       
