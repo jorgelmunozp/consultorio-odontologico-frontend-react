@@ -56,7 +56,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
           <h5 className='century-gothic main-color fs-sm-2'>Asignar Cita</h5>
         </center>
         <div className='container-fluid mt-2 mt-sm-5'>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
                 <InputLabel id="registroPaciente-label" className="select">Paciente</InputLabel>
@@ -86,7 +86,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
               </FormControl>
             </div>
           </div>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <TextField defaultValue={fecha} onChange={handleChangeFecha} id="registroFecha" type="date" label="Fecha" variant="outlined" fullWidth margin="dense"/>
             </div>
@@ -94,7 +94,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
               <TextField defaultValue={hora} onChange={handleChangeHora} id="registroHora" type="time" label="Hora" variant="outlined" fullWidth margin="dense"/>
             </div>
           </div>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
                   <InputLabel id="registroDoctor-label" className="select">Doctor</InputLabel>

@@ -58,7 +58,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
               <TextField value={identificacion} onChange={handleChangeCedula} id="cedulaPaciente" label="Cédula" type="number" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <TextField value={nombre} onChange={handleChangeNombre} id="nombrePaciente" label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
@@ -66,7 +66,7 @@ export const CreatePaciente = ({ urlApiPacientes,epss,generos }) => {
               <TextField value={apellido} onChange={handleChangeApellido} id="apellidoPaciente" label="Apellido" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
                 <InputLabel id="generoPaciente-label" className="select">Género</InputLabel>

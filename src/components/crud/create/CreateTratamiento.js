@@ -50,7 +50,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
               <TextField value={nombre} onChange={handleChangeNombre} id="nombreTratamiento" label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/>
             </div>
           </div>
-          <div className='row'>
+          <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
                 <InputLabel id="nombreTratamiento-label" className="select">Consultorio</InputLabel>
