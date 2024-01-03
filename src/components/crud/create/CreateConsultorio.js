@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import React, { useState }  from "react";
 import { TextField } from "@mui/material";
 import { FaClinicMedical } from "react-icons/fa";
-import { BotonGuardar } from "../../../atoms/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
   const itemConsultorio = `{

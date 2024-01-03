@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { ReadTratamiento } from '../read/ReadTratamiento';
 import { UpdateTratamiento } from '../update/UpdateTratamiento';
-import { Arrows } from '../../../atoms/arrows/Arrows';
+import { Arrows } from '../../../forms/arrows/Arrows';
+import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
+import { getTratamientosFiltered } from '../../selectors/getTratamientosFiltered';
 
 import { TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
 
 const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,consultorios) => {
   /* Query */
-  let query = '';
-  const tratamientosFiltered = [];
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryName, setQueryName ] = useState('');
+  let [ queryConsultoryRoom, setQueryConsultoryRoom ] = useState('');
+  let [ queryDoctor, setQueryDoctor ] = useState('');
 
+  let [ query, setQuery ] = useState('');
+
+  const tratamientosFiltered = useMemo( () => getTratamientosFiltered(tratamientos,queryCode,queryName,queryConsultoryRoom,queryDoctor), [tratamientos,queryCode,queryName,queryConsultoryRoom,queryDoctor] );
+
+  const titles = ['Código','Nombre','Consultorio','Doctor'];
+  const queries = [queryCode,queryName,queryConsultoryRoom,queryDoctor];
+  const setQueries = [setQueryCode,setQueryName,setQueryConsultoryRoom,setQueryDoctor];
+  
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
@@ -47,6 +60,8 @@ const ElementRender = (urlApiTratamientos,citas,pacientes,tratamientos,doctores,
   return (
     <center className='mt-3 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Tratamientos Autorizados </h5>
+      <SearchBar icon={<TbFilterSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+      
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>

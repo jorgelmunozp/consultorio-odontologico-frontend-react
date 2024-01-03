@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { ReadPaciente } from '../read/ReadPaciente';
 import { UpdatePaciente } from '../update/UpdatePaciente';
-import { Arrows } from '../../../atoms/arrows/Arrows';
+import { Arrows } from '../../../forms/arrows/Arrows';
+import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
+import { getPacientesFiltered } from '../../selectors/getPacientesFiltered';
 
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
 
 const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => { 
   /* Query */
-  let query = '';
-  const pacientesFiltered = [];
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryIdentification, setQueryIdentification ] = useState('');
+  let [ queryName, setQueryName ] = useState('');
+  let [ queryLastname, setQueryLastname ] = useState('');
+  let [ queryGender, setQueryGender ] = useState('');
+  let [ queryEps, setQueryEps ] = useState('');
 
+  let [ query, setQuery ] = useState('');
+
+  const pacientesFiltered = useMemo( () => getPacientesFiltered(pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
+
+  const titles = ['Código','identificacion','Nombre','Apellido','Género','Eps'];
+  const queries = [queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps];
+  const setQueries = [setQueryCode,setQueryIdentification,setQueryName,setQueryLastname,setQueryGender,setQueryEps];
+  
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
@@ -51,6 +66,8 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
   return (
     <center className='mt-3 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Pacientes Afiliados </h5>
+      <SearchBar icon={<TbUserSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+      
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>

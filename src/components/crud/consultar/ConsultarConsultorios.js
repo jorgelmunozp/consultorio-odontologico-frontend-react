@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
-import { Arrows } from '../../../atoms/arrows/Arrows';
+import { Arrows } from '../../../forms/arrows/Arrows';
+import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
+import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
 
 const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios) => { 
   /* Query */
-  let query = '';
-  const consultoriosFiltered = [];
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryNumber, setQueryNumber ] = useState('');
+  let [ queryName, setQueryName ] = useState('');
 
+  let [ query, setQuery ] = useState('');
+
+  const consultoriosFiltered = useMemo( () => getConsultoriosFiltered(consultorios,queryCode,queryNumber,queryName), [consultorios,queryCode,queryNumber,queryName] );
+
+  const titles = ['Código','Número','Nombre'];
+  const queries = [queryCode,queryNumber,];
+  const setQueries = [setQueryCode,setQueryNumber,setQueryName];
+  
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
@@ -32,9 +44,6 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
     }
   }
   const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
-  
-  console.log("numPages: ",numPages)
-  console.log("resPages: ",resPages)
 
   /* Sort */
   const [sortBy, setSortBy] = useState(0);
@@ -48,6 +57,8 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
   return (
     <center className='mt-3 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Consultorios Disponibles </h5>
+      <SearchBar icon={<TbHomeSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+      
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>
@@ -60,7 +71,25 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
           </thead>
           <tbody className='row-color'>
             {
-              consultorios.sort(sortBy === 1 ? sortByIdUp 
+              (queryCode === '' && queryNumber === '' && queryName === '')
+              ? consultorios.sort(sortBy === 1 ? sortByIdUp 
+                  : ( sortBy === 2 ? sortByIdDown 
+                    : ( sortBy === 3 ? sortByNumberUp 
+                      : ( sortBy === 4 ? sortByNumberDown 
+                        : ( sortBy === 5 ? sortByNameUp 
+                          : ( sortBy === 6 ? sortByNameDown
+                            : sortByIdUp
+                )))))).slice(indexPage[0],indexPage[1]).map( consultorio => (
+                  <tr key={ consultorio.id }>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ consultorio.id }</td>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ consultorio.consultorio.numero }</td>
+                    <td className='ps-2 ps-sm-5 text-nowrap'>{ consultorio.consultorio.nombre }</td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(consultorio) }><TbHomeSearch className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeEdit className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeX className='text-secondary'/></button></td>
+                  </tr>
+                ))
+              : consultoriosFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByNumberUp 
                     : ( sortBy === 4 ? sortByNumberDown 

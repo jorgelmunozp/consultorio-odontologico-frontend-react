@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
-import { Arrows } from '../../../atoms/arrows/Arrows';
+import { Arrows } from '../../../forms/arrows/Arrows';
+import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
+import { getDoctoresFiltered } from '../../selectors/getDoctoresFiltered';
 
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
 
 const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
-  let query = '';
-  const doctoresFiltered = [];
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryName, setQueryName ] = useState('');
+  let [ queryLastname, setQueryLastname ] = useState('');
+  let [ querySpeciality, setQuerySpeciality ] = useState('');
 
+  let [ query, setQuery ] = useState('');
+
+  const doctoresFiltered = useMemo( () => getDoctoresFiltered(doctores,queryCode,queryName,queryLastname,querySpeciality), [doctores,queryCode,queryName,queryLastname,querySpeciality] );
+
+  const titles = ['Código','Nombre','Apellido','Especialidad'];
+  const queries = [queryCode,queryName,queryLastname,querySpeciality];
+  const setQueries = [setQueryCode,setQueryName,setQueryLastname,setQuerySpeciality];
+  
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
@@ -33,20 +46,22 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
   }
   const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
 
-    /* Sort */
-    const [sortBy, setSortBy] = useState(0);
-    function sortByIdUp(a, b) { return a.id - b.id; }
-    function sortByIdDown(a, b) { return b.id - a.id; }
-    function sortByNameUp(a, b) { return a.doctor.nombre.localeCompare(b.doctor.nombre); }
-    function sortByNameDown(a, b) { return b.doctor.nombre.localeCompare(a.doctor.nombre); }
-    function sortByLastnameUp(a, b) { return a.doctor.apellido.localeCompare(b.doctor.apellido); }
-    function sortByLastnameDown(a, b) { return b.doctor.apellido.localeCompare(a.doctor.apellido); }
-    function sortBySpecialityUp(a, b) { return a.doctor.especialidad.localeCompare(b.doctor.especialidad); }
-    function sortBySpecialityDown(a, b) { return b.doctor.especialidad.localeCompare(a.doctor.especialidad); }
+  /* Sort */
+  const [sortBy, setSortBy] = useState(0);
+  function sortByIdUp(a, b) { return a.id - b.id; }
+  function sortByIdDown(a, b) { return b.id - a.id; }
+  function sortByNameUp(a, b) { return a.doctor.nombre.localeCompare(b.doctor.nombre); }
+  function sortByNameDown(a, b) { return b.doctor.nombre.localeCompare(a.doctor.nombre); }
+  function sortByLastnameUp(a, b) { return a.doctor.apellido.localeCompare(b.doctor.apellido); }
+  function sortByLastnameDown(a, b) { return b.doctor.apellido.localeCompare(a.doctor.apellido); }
+  function sortBySpecialityUp(a, b) { return a.doctor.especialidad.localeCompare(b.doctor.especialidad); }
+  function sortBySpecialityDown(a, b) { return b.doctor.especialidad.localeCompare(a.doctor.especialidad); }
   
   return (
     <center className='mt-3 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Doctores Disponibles </h5>
+      <SearchBar icon={<TbUserSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>
@@ -60,7 +75,28 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
           </thead>
           <tbody className='row-color'>
             {
-              doctores.sort(sortBy === 1 ? sortByIdUp 
+              (queryCode === '' && queryName === '' && queryLastname === '' && querySpeciality === '')
+              ? doctores.sort(sortBy === 1 ? sortByIdUp 
+                  : ( sortBy === 2 ? sortByIdDown 
+                    : ( sortBy === 3 ? sortByNameUp 
+                      : ( sortBy === 4 ? sortByNameDown 
+                        : ( sortBy === 5 ? sortByLastnameUp 
+                          : ( sortBy === 6 ? sortByLastnameDown
+                            : ( sortBy === 7 ? sortBySpecialityUp 
+                              : ( sortBy === 8 ? sortBySpecialityDown 
+                                : sortByIdUp
+                  )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
+                  <tr key={ doctor.id }>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ doctor.id }</td>
+                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>
+                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.apellido }</td>
+                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.especialidad }</td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }><TbUserSearch className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserEdit className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserX className='text-secondary'/></button></td>
+                  </tr>
+                ))
+              : doctoresFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByNameUp 
                     : ( sortBy === 4 ? sortByNameDown 
@@ -69,7 +105,7 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
                           : ( sortBy === 7 ? sortBySpecialityUp 
                             : ( sortBy === 8 ? sortBySpecialityDown 
                               : sortByIdUp
-                 )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
+                )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
                 <tr key={ doctor.id }>
                   <td className='ps-4 ps-sm-5 text-nowrap'>{ doctor.id }</td>
                   <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>

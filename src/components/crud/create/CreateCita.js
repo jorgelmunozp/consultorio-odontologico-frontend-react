@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
-import { BotonGuardar } from "../../../atoms/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 import { getTime } from '../../../helpers/getTime';
 import { getDate } from '../../../helpers/getDate';
 
@@ -96,7 +96,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
           </div>
           <div className='row'>
             <div className='col'>
-            <FormControl fullWidth margin="dense">
+              <FormControl fullWidth margin="dense">
                   <InputLabel id="registroDoctor-label" className="select">Doctor</InputLabel>
                   <Select value={doctor} onChange={handleChangeDoctor} id="registroDoctor" label="Especialidad" labelId="registroDoctor-label">
                     {doctores.map((doctores) => {
@@ -110,7 +110,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
                 </FormControl>
             </div>
             <div className='col'>
-            <FormControl fullWidth margin="dense">
+              <FormControl fullWidth margin="dense">
                   <InputLabel id="registroConsultorio-label" className="select">Consultorio</InputLabel>
                   <Select value={consultorio} onChange={handleChangeConsultorio} id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label">
                     {consultorios.map((consultorios) => {

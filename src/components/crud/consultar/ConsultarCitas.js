@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
-import { Arrows } from '../../../atoms/arrows/Arrows';
+import { Arrows } from '../../../forms/arrows/Arrows';
+import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
+import { getCitasFiltered } from '../../selectors/getCitasFiltered';
 
 import { TbCalendarSearch, TbCalendarTime, TbCalendarX } from "react-icons/tb";
 
 const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios) =>  { 
   /* Query */
-  let query = '';
-  const citasFiltered = [];
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryPatient, setQueryPatient ] = useState('');
+  let [ queryDate, setQueryDate ] = useState('');
+  let [ queryTime, setQueryTime ] = useState('');
+  let [ queryConsultoryRoom, setQueryConsultoryRoom ] = useState('');
+  let [ queryDoctor, setQueryDoctor ] = useState('');
+  let [ queryTreatment, setQueryTreatment ] = useState('');
 
+  let [ query, setQuery ] = useState('');
+
+  const citasFiltered = useMemo( () => getCitasFiltered(citas,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment), [citas,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment] );
+
+  const titles = ['Código','Paciente','Fecha','Hora','Consultorio','Médico','Tratamiento'];
+  const queries = [queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment];
+  const setQueries = [setQueryCode,setQueryPatient,setQueryDate,setQueryTime,setQueryConsultoryRoom,setQueryDoctor,setQueryTreatment];
+  
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = ((query === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(citasFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = ((query === '') ? citas.length%itemPerPage : citasFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const numPages = ((queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(citasFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const resPages = ((queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '') ? citas.length%itemPerPage : citasFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
   let indexPages = [];
   let activePage = [true];                                            // [true]
   if(resPages !== 0 ){
@@ -53,6 +69,8 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
   return (
     <center className='mt-3 mt-sm-5' data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right">
       <h5 className='main-color fs-sm-2 mb-4'> Citas Registradas</h5>
+      <SearchBar icon={<TbCalendarSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>
@@ -68,7 +86,9 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
             </tr>
           </thead>
           <tbody>
-          {   citas.sort(sortBy === 1 ? sortByIdUp 
+            {
+              (queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '')
+                ? citas.sort(sortBy === 1 ? sortByIdUp 
                       : ( sortBy === 2 ? sortByIdDown 
                         : ( sortBy === 3 ? sortByPatientUp 
                           : ( sortBy === 4 ? sortByPatientDown 
@@ -83,25 +103,54 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
                                             : ( sortBy === 13 ? sortByTreatmentUp 
                                               : ( sortBy === 14 ? sortByTreatmentDown 
                                                 : sortByIdUp
-                 )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
-              <tr key={ cita.id }>
-                <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
-                <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
-                <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
-                <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
-                <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
-                <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
-              </tr>
-            ))
-          }
+                  )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
+                    <tr key={ cita.id }>
+                      <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
+                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
+                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
+                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
+                      <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
+                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
+                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
+                      <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
+                      <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
+                      <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
+                    </tr>
+                  ))
+                : citasFiltered.sort(sortBy === 1 ? sortByIdUp 
+                    : ( sortBy === 2 ? sortByIdDown 
+                      : ( sortBy === 3 ? sortByPatientUp 
+                        : ( sortBy === 4 ? sortByPatientDown 
+                          : ( sortBy === 5 ? sortByDateUp 
+                            : ( sortBy === 6 ? sortByDateDown 
+                              : ( sortBy === 7 ? sortByTimeUp 
+                                : ( sortBy === 8 ? sortByTimeDown 
+                                  : ( sortBy === 9 ? sortByConsultingRoomUp 
+                                    : ( sortBy === 10 ? sortByConsultingRoomDown 
+                                      : ( sortBy === 11 ? sortByDoctorUp 
+                                        : ( sortBy === 12 ? sortByDoctorDown 
+                                          : ( sortBy === 13 ? sortByTreatmentUp 
+                                            : ( sortBy === 14 ? sortByTreatmentDown 
+                                              : sortByIdUp
+                )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
+                  <tr key={ cita.id }>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
+                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
+                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
+                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
+                    <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
+                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
+                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
+                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
+                  </tr>
+                ))
+            }
           </tbody>
         </table>
       </div>
-      <PaginationBar query={query} array={citas} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
+      <PaginationBar query={query} array={citas} arrayFiltered={citasFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>  
   )};
 

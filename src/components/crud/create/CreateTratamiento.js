@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import React, { useState }  from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaStethoscope } from "react-icons/fa";
-import { BotonGuardar } from "../../../atoms/botonGuardar/BotonGuardar";
+import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) => {
   const contenidoTratamientos = `JSON.stringify({

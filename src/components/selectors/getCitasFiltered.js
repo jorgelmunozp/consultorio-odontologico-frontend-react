@@ -1,0 +1,3 @@
+export const getCitasFiltered = ( array,code='',patient='',date='',time='',consultoryRoom='',doctor='',treatment='' ) => {
+    return array.filter( item => item.id.toString().includes(code) && item.cita.paciente.toLowerCase().includes(patient.toLowerCase()) && item.cita.fecha.toLowerCase().includes(date.toLowerCase()) && item.cita.hora.toLowerCase().includes(time.toLowerCase()) && item.cita.consultorio.toLowerCase().includes(consultoryRoom.toLowerCase()) && item.cita.doctor.toLowerCase().includes(doctor.toLowerCase()) && item.cita.tratamiento.toLowerCase().includes(treatment.toLowerCase()) );
+}
