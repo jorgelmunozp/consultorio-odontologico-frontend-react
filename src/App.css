@@ -43,6 +43,9 @@ hr { opacity: 0.5; }
 
 .lh-0 { line-height: 0.5; }
 
+/*************************** Menú **************************/
+#offcanvasBodyLabel { display: none; }
+
 /*************************** BODY **************************/
 .contenidoBody { width: 90%; }
 @media (max-width: 576px) { .contenidoBody { width: 100%; }}
