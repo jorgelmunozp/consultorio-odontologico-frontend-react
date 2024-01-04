@@ -65,7 +65,7 @@ function IndexScreen() {
       <header className="fixed-top shadow-lg">
         <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
           <div className="container-fluid">
-            <NavLink className={'navbar-brand nav-item nav-link w-75'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /><span className='main-color fs-sm-2 ps-5 ps-sm-2'>{ myTitle }</span></NavLink>
+            <NavLink className={'navbar-brand nav-item nav-link w-75'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} className='ms-4 ms-sm-2' /><span className='main-color fs-sm-2 ms-4 ms-sm-2'>{ myTitle }</span></NavLink>
             <div className="nav-item nav-link justify-content-end">
               <button className="btn btn-light main-color end-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.5} width={1.5}/></button>
             </div>
