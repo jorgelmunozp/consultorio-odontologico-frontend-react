@@ -1,13 +1,6 @@
 
-
-import logo from '../../../assets/images/logo.svg';
-import '../../../App.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useFetch } from "../../../hooks/useFetch";
-import { Logo } from '../../icons/logo/Logo';
-import { Home } from '../../icons/home/Home';
 import { Navbar } from '../../menu/Navbar';
 import { Inicio } from './IndexContent';
 import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas';
@@ -21,7 +14,9 @@ import { CreateTratamiento } from '../../crud/create/CreateTratamiento';
 import { CreateDoctor } from '../../crud/create/CreateDoctor';
 import { CreateConsultorio } from '../../crud/create/CreateConsultorio';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
-import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbVirusSearch, TbFilterSearch, TbUserPlus, TbHomePlus, TbFilterPlus, TbUserEdit, TbHomeEdit, TbFilterEdit } from "react-icons/tb";
+import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbFilterSearch, TbUserPlus, TbHomePlus, TbFilterPlus } from "react-icons/tb";
+import 'bootstrap/dist/css/bootstrap.css';
+import '../../../App.css';
 
 function IndexScreen() {
   const myColor = '#5285c5';
@@ -64,14 +59,6 @@ function IndexScreen() {
   return (
     <div className="App user-select-none">
       <header className="fixed-top shadow-lg">
-        {/* <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
-          <div className="container-fluid">
-            <NavLink className={'navbar-brand nav-item nav-link w-75'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} className='ms-4 ms-sm-2' /><span className='main-color fs-sm-2 ms-4 ms-sm-2'>{ myTitle }</span></NavLink>
-            <div className="nav-item nav-link justify-content-end">
-              <button className="btn btn-light main-color end-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.5} width={1.5}/></button>
-            </div>
-          </div>
-        </nav> */}
         <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
       </header>
       <aside className='float-start pt-5'>
