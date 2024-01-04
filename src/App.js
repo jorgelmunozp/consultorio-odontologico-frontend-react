@@ -64,7 +64,8 @@ function App() {
         <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg">
           <div className="container-fluid">
             {/* <NavLink className={'active navbar-brand nav-item nav-link'}  to={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2 ps-5 ps-sm-0'>{ myTitle }</span></NavLink> */}
-            <a className={'navbar-brand nav-item nav-link'} href={"/" + urlBaseFrontend + "/index"}><Logo color={myColor} /> <span className='main-color fs-sm-2 ps-4 ps-sm-0'>{ myTitle }</span></a>
+            <a className={'navbar-brand nav-item nav-link'} href={"/" + urlBaseFrontend + "/index"}><Logo color={myColor}/></a>
+            <a className={'navbar-brand nav-item nav-link'} href={"/" + urlBaseFrontend + "/index"}><span className='main-color fs-sm-2'>{ myTitle }</span></a>
             <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.5} width={1.5}/></button>
           </div>
         </nav>
