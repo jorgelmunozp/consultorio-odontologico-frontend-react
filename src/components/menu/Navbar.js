@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
-import { Logo } from '../icons/logo/Logo';
+import { Logo } from '../icons/logo/LogoThick';
 import { Home } from '../icons/home/Home';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
@@ -25,7 +25,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                     </div>
                 </div>
-                <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.3} width={1.3}/></button>
+                <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.3} width={1.3} strokeWidth={2}/></button>
             </div>
         </nav>
     )

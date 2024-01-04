@@ -30,7 +30,7 @@ import '../../../App.css';
 function IndexScreen() {
   const iconHeight = 1.25;
   const iconWidth = 1.25;
-  const iconStrokeWidth = 1.25;
+  const iconStrokeWidth = 1.5;
   const iconSize = 17.5;
 
   const menuOpcion = 1;
