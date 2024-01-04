@@ -15,7 +15,7 @@ export const AppRouter = () => {
 
       <div className="container user-select-none">
         <Routes>
-          <Route path={"/index"} element={
+          <Route path={"/" + urlBaseFrontend + "/index"} element={
             <PublicRoute>
               <IndexScreen />
             </PublicRoute>
