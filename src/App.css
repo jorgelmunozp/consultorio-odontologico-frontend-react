@@ -2,7 +2,7 @@
   --dark-color: #212529;
   --darkgray-color:#555;
   --dark-transparent-color: rgba(33,37,41, 0.25);
-  --gray-color: #aaaaaa;
+  --gray-color: #999999;
   --icon-color:#ffffff;
   --lightgray-color: #dddddd;
   --lightgray-transparent-color: rgba(221,221,221, 0.25);
@@ -33,6 +33,7 @@
 
 hr { opacity: 0.5; }
 
+.gray-color { color: var(--gray-color) !important; }
 .main-color { color: var(--main-color) !important; }
 .bg-main-color { background-color: var(--main-color) !important; }
 .bg-dark-color { background-color: var(--dark-color) !important; }
