@@ -14,7 +14,6 @@ import { CreateTratamiento } from '../../crud/create/CreateTratamiento';
 import { CreateDoctor } from '../../crud/create/CreateDoctor';
 import { CreateConsultorio } from '../../crud/create/CreateConsultorio';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
-import { TbHome, TbCalendarPlus, TbCalendarSearch, TbUserSearch, TbHomeSearch, TbFilterSearch, TbUserPlus, TbHomePlus, TbFilterPlus } from "react-icons/tb";
 import { HomeIndex } from '../../icons/home/HomeIndex';
 import { HomePlus } from '../../icons/home/HomePlus';
 import { HomeSearch } from '../../icons/home/HomeSearch';
@@ -30,7 +29,10 @@ import '../../../App.css';
 function IndexScreen() {
   const myColor = '#5285c5';
   const myTitle = 'El Consultorio';
-  const iconSize = 20;
+  const iconHeight = 1.25;
+  const iconWidth = 1.25;
+  const iconStrokeWidth = 1.25;
+  const iconSize = 17.5;
 
   const menuOpcion = 1;
   const [menu, setMenu] = useState(menuOpcion);
@@ -80,52 +82,52 @@ function IndexScreen() {
             <div className="offcanvas-body">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><HomeIndex height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><CalendarSearch height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><CalendarPlus height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><UserSearch height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><UserPlus height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><FilterSearch height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><FilterPlus height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><UserSearch height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/> </button>
+                  <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/> </button>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><UserPlus height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><HomeSearch height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><HomePlus height={1.25} width={1.25} strokeWidth={1} className='text-secondary main-color-hover'/></button>
+                  <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-secondary main-color-hover'/></button>
                 </li>
               </ul>
             </div>
