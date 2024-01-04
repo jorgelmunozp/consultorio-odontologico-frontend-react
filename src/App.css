@@ -33,12 +33,12 @@
 
 hr { opacity: 0.5; }
 
-.main-color { color: var(--main-color); }
-.bg-main-color { background-color: var(--main-color); }
-.bg-dark-color { background-color: var(--dark-color); }
-.dark-color-hover:hover { color: var(--dark-color); }
-.main-color-hover:hover { color: var(--main-color); }
-.white-color { color: var(--white-color) }
+.main-color { color: var(--main-color) !important; }
+.bg-main-color { background-color: var(--main-color) !important; }
+.bg-dark-color { background-color: var(--dark-color) !important; }
+.dark-color-hover:hover { color: var(--dark-color) !important; }
+.main-color-hover:hover { color: var(--main-color) !important; }
+.white-color { color: var(--white-color) !important }
 
 .lh-0 { line-height: 0.5; }
 
