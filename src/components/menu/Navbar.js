@@ -20,7 +20,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
         <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
             <div className="container-fluid">
                 <Logo color={myColor} height={1.5} width={1.5} className='navbar-brand ms-3 me-0'/>
-                <Link className="navbar-brand main-color ms-2 ms-sm-0" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</Link>
+                <Link className="navbar-brand main-color ms-3 ms-sm-0" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</Link>
                 <div className="navbar-collapse d-none"  id="navbarContent">
                     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                     </div>
