@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/consultorio-odontologico-frontend-react/static/css/main.adf518b7.css",
-    "main.js": "/consultorio-odontologico-frontend-react/static/js/main.ae14c8d2.js",
+    "main.js": "/consultorio-odontologico-frontend-react/static/js/main.1e51c46f.js",
     "static/media/CenturyGothic.ttf": "/consultorio-odontologico-frontend-react/static/media/CenturyGothic.b1b792bab1bff8f27ba7.ttf",
     "index.html": "/consultorio-odontologico-frontend-react/index.html",
     "main.adf518b7.css.map": "/consultorio-odontologico-frontend-react/static/css/main.adf518b7.css.map",
-    "main.ae14c8d2.js.map": "/consultorio-odontologico-frontend-react/static/js/main.ae14c8d2.js.map"
+    "main.1e51c46f.js.map": "/consultorio-odontologico-frontend-react/static/js/main.1e51c46f.js.map"
   },
   "entrypoints": [
     "static/css/main.adf518b7.css",
-    "static/js/main.ae14c8d2.js"
+    "static/js/main.1e51c46f.js"
   ]
 }
