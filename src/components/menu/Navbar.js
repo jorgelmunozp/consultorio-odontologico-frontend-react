@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
-import { Logo } from '../icons/logo/LogoThick';
+import { Logo } from '../icons/logo/Logo';
 import { Home } from '../icons/home/Home';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
