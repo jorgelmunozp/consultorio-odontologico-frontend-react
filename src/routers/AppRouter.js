@@ -2,7 +2,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DashboardRoutes } from "./DashboardRoutes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-// import { Navbar } from "../components/menu/Navbar";
 import IndexScreen from '../components/views/index/IndexScreen';
 // import { LoginScreen } from "../components/login/LoginScreen";
 
@@ -27,7 +26,7 @@ export const AppRouter = () => {
 
           <Route path="/*" element={
               <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
-                  <DashboardRoutes />
+                  <DashboardRoutes urlBaseFrontend={urlBaseFrontend} />
               </PrivateRoute>
           } />
 
