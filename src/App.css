@@ -45,7 +45,12 @@ hr { opacity: 0.5; }
 
 /*************************** Menú **************************/
 #offcanvasBodyLabel { display: none; }
-
+.offcanvas-header {
+  padding-left: 0.75em;
+}
+.offcanvas-header .btn-close {
+  margin-left: 0; margin-right: 0;  
+}
 /*************************** BODY **************************/
 .contenidoBody { width: 90%; }
 @media (max-width: 576px) { .contenidoBody { width: 100%; }}
