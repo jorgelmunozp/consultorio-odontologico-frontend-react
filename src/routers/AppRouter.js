@@ -16,19 +16,19 @@ export const AppRouter = () => {
       <div className="container user-select-none">
         <Routes>
           <Route path={"/" + urlBaseFrontend + "/index"} element={
-            <PublicRoute>
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <IndexScreen />
             </PublicRoute>
           } />
 
           {/* <Route path={urlBaseFrontend + "/login"} element={
-              <PublicRoute>
+              <PublicRoute urlBaseFrontend={urlBaseFrontend}>
                   <LoginScreen />
               </PublicRoute>
           } /> */}
 
           <Route path="/*" element={
-              <PrivateRoute>
+              <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
                   <DashboardRoutes />
               </PrivateRoute>
           } />
