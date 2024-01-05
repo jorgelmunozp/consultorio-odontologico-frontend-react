@@ -19,37 +19,23 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
-<Route path={"/" + urlBaseFrontend + "/*"} element={
-            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
-            </PublicRoute>
-          } />
-
-<Route path={"/" + urlBaseFrontend + "/"} element={
-            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
-            </PublicRoute>
-          } />
-
-<Route path={"/" + urlBaseFrontend} element={
-            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
-            </PublicRoute>
-          } />
-
           {/* <Route path={urlBaseFrontend + "/login"} element={
               <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-                  <LoginScreen />
+                <LoginScreen />
               </PublicRoute>
           } /> */}
+
+          <Route path='*' element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <NotFound />
+            </PublicRoute>
+          }/>
 
           <Route path="/*" element={
               <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
                   <DashboardRoutes urlBaseFrontend={urlBaseFrontend} />
               </PrivateRoute>
           } />
-
-<Route path='*' element={<NotFound />}/>
 
         </Routes>
       </div>
