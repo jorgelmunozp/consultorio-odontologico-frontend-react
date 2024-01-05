@@ -11,8 +11,6 @@ export const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      {/* <Navbar urlBaseFrontend={urlBaseFrontend} /> */}
-
       <div className="container user-select-none">
         <Routes>
           <Route path={"/" + urlBaseFrontend + "/index"} element={
