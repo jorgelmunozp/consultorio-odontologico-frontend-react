@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
-import { Logo } from '../icons/logo/Logo';
+import { Logo } from '../icons/logo/LogoThick';
 import { Home } from '../icons/home/Home';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
@@ -19,7 +19,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
             <div className="container-fluid">
-                <Logo color={myColor} height={1.3} width={1.3} className='ms-3'/>
+                <Logo color={myColor} height={1.3} width={1.3} className='navbar-brand ms-3'/>
                 <Link className="navbar-brand main-color ps-2" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</Link>
                 <div className="navbar-collapse d-none"  id="navbarContent">
                     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
