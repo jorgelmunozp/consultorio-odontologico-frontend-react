@@ -4,6 +4,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import IndexScreen from '../components/views/index/IndexScreen';
 import { NotFound } from '../components/views/404/NotFound';
+import { myColor, myTitle } from "../global";
 // import { LoginScreen } from "../components/login/LoginScreen";
 
 export const AppRouter = () => {
@@ -19,6 +20,12 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
+          <Route path={"/" + urlBaseFrontend} element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <IndexScreen />
+            </PublicRoute>
+          } />
+
           {/* <Route path={urlBaseFrontend + "/login"} element={
               <PublicRoute urlBaseFrontend={urlBaseFrontend}>
                 <LoginScreen />
@@ -27,7 +34,7 @@ export const AppRouter = () => {
 
           <Route path='*' element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <NotFound />
+              <NotFound urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
             </PublicRoute>
           }/>
 
