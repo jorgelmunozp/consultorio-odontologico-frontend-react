@@ -5,5 +5,5 @@ import { AuthContext } from '../auth/authContext'
 export const PublicRoute = ({ children,urlBaseFrontend }) => {
     const { user } = useContext(AuthContext);
 
-    return user.logged ? <Navigate to={"/" + urlBaseFrontend + "/index"} /> : children
+    return user.logged ? <Navigate to={"/" + urlBaseFrontend} /> : children
 }
