@@ -1,8 +1,8 @@
 export const Logo = ({ color='currentColor', className='', strokeWidth='0', width='1', height='1'}) => {
     return (
         <span>
-            <svg className={className} version="1.0" xmlns="http://www.w3.org/2000/svg" height={height + 'em'} width={width + 'em'} viewBox="0 0 10.000000 10.000000" preserveAspectRatio="xMidYMid meet">
-                <g transform="translate(0.000000,10) scale(0.001953,-0.001953)" fill={color} stroke="none">
+            <svg className={className} version="1.0" xmlns="http://www.w3.org/2000/svg" height={height + 'em'} width={width + 'em'} viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,512) scale(0.100000,-0.100000)" fill={color} stroke="none">
                     <path d="M1210 5044 c-237 -27 -391 -107 -589 -304 -299 -297 -431 -588 -431
                     -952 0 -243 44 -450 175 -823 197 -562 193 -544 205 -885 5 -146 12 -285 14
                     -310 3 -25 10 -99 16 -165 37 -409 133 -816 249 -1060 70 -147 113 -210 215
