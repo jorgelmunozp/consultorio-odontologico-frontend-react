@@ -18,6 +18,18 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
+<Route path={"/" + urlBaseFrontend + "/*"} element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <IndexScreen />
+            </PublicRoute>
+          } />
+
+<Route path={"/" + urlBaseFrontend} element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <IndexScreen />
+            </PublicRoute>
+          } />
+
           {/* <Route path={urlBaseFrontend + "/login"} element={
               <PublicRoute urlBaseFrontend={urlBaseFrontend}>
                   <LoginScreen />
