@@ -1,7 +1,6 @@
 import { NumericFormat } from 'react-number-format';
 
 export const InputNumber = ({ limit,value,name,onInputChange }) => { 
-    console.log(value)
     return (
         <>
             <NumericFormat value={ value } name={ name } placeholder={ 'Precio ' + limit } 
