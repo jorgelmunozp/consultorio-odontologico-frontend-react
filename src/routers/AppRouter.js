@@ -3,6 +3,7 @@ import { DashboardRoutes } from "./DashboardRoutes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import IndexScreen from '../components/views/index/IndexScreen';
+import { NotFound } from '../components/views/404/NotFound';
 // import { LoginScreen } from "../components/login/LoginScreen";
 
 export const AppRouter = () => {
@@ -19,6 +20,12 @@ export const AppRouter = () => {
           } />
 
 <Route path={"/" + urlBaseFrontend + "/*"} element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <IndexScreen />
+            </PublicRoute>
+          } />
+
+<Route path={"/" + urlBaseFrontend + "/"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <IndexScreen />
             </PublicRoute>
@@ -41,6 +48,8 @@ export const AppRouter = () => {
                   <DashboardRoutes urlBaseFrontend={urlBaseFrontend} />
               </PrivateRoute>
           } />
+
+<Route path='*' element={<NotFound />}/>
 
         </Routes>
       </div>
