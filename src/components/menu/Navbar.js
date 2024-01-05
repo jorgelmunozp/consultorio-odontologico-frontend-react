@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
 import { Logo } from '../icons/logo/LogoThick';
-import { Home } from '../icons/home/Home';
+import { HomeMenu } from '../icons/home/HomeMenu';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
 
@@ -26,7 +26,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                     </div>
                 </div>
                 <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
-                    <Home color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
+                    <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
                 </button>
             </div>
         </nav>

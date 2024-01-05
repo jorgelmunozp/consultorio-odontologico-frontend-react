@@ -1,4 +1,4 @@
-export const Home = ({ color='currentColor', className='', strokeWidth='0', width='1', height='1'}) => {
+export const HomeMenu = ({ color='currentColor', className='', strokeWidth='0', width='1', height='1'}) => {
     return (
         <span>
             <svg className={className} stroke={color} fill={color} strokeWidth={strokeWidth} viewBox="0 0 256 256" height={height + 'em'} width={width + 'em'} xmlns="http://www.w3.org/2000/svg">
