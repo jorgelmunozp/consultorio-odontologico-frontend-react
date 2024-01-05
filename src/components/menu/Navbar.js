@@ -25,7 +25,9 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                     </div>
                 </div>
-                <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody"><Home color={myColor} height={1.3} width={1.3} strokeWidth={2}/></button>
+                <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+                    <Home color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
+                </button>
             </div>
         </nav>
     )
