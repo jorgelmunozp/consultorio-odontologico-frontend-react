@@ -26,7 +26,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
             <p className="mt-4">Regresa a nuestro portal</p>
             <Link className="main-color text-decoration-none" to={'/' + urlBaseFrontend}>Inicio</Link>
             <br></br>
-            <Link className="main-color text-decoration-none" to={'/' + urlBaseFrontend}><HomeMenu/></Link>
+            <Link className="main-color text-decoration-none" to={'/' + urlBaseFrontend}><HomeMenu strokeWidth={20}/></Link>
           </div>
         </div>
       </body>
