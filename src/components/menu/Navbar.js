@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
@@ -20,7 +20,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
         <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
             <div className="container-fluid">
                 <Logo color={myColor} height={1.5} width={1.5} className='navbar-brand ms-3 me-0'/>
-                <Link className="navbar-brand main-color ms-4 ms-sm-0" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</Link>
+                <NavLink className="navbar-brand main-color ms-4 ms-sm-0" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</NavLink>
                 <div className="navbar-collapse d-none"  id="navbarContent">
                     <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                     </div>
