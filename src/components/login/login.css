@@ -5,7 +5,7 @@
     --lightgray-color: #dddddd;
     --lightgray-transparent-color: rgba(221,221,221, 0.25);
     --main-color: #5285c5;
-    --main-transparent-color: rgba(82, 133, 197, 0.25);
+    --main-dark-color: rgb(63, 110, 167);
     --red-color: #f00;
     --white-color: #fff;
 }
@@ -15,14 +15,8 @@
     border-color: var(--gray-color)!important;
 }
 
-.btn-login {
-    color: var(--main-color);
-    border-color: var(--main-color)!important;
-}
-.btn-login:hover {
-    color: var(--white-color);
-    background-color: var(--main-color);
-}
+.btn-login { background-color: var(--main-color) !important; border-color: var(--main-color) !important; }
+.btn-login:hover { background-color: var(--main-dark-color) !important; }
 
 input::placeholder { color: var(--gray-color); }
 

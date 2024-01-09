@@ -68,10 +68,7 @@ function IndexScreen() {
 
   return (
     <div className="App user-select-none">
-      <header className="fixed-top shadow-lg">
-        <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
-      </header>
-      <aside className='float-start pt-5'>
+      <aside className='float-start pt-5'>    {/** Menu lateral */}
         <nav className="navbar bg-light">
           <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
             <div className="offcanvas-header">

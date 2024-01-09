@@ -5,7 +5,7 @@ import { PublicRoute } from "./PublicRoute";
 import { HomeScreen } from "../components/views/home/HomeScreen";
 import { Navbar } from "../components/menu/Navbar";
 import IndexScreen from '../components/views/index/IndexScreen';
-import { LoginScreen } from "../components/login/LoginScreen";
+// import { LoginScreen } from "../components/login/LoginScreen";
 import { NotFound } from '../components/views/404/NotFound';
 import { myColor, myTitle } from "../global";
 
@@ -36,12 +36,6 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
-          <Route path={urlBaseFrontend + "/login"} element={
-              <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-                <LoginScreen myColor={myColor} myTitle={myTitle} />
-              </PublicRoute>
-          } />
-
           <Route path='*' element={
             // <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <NotFound urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
@@ -49,6 +43,12 @@ export const AppRouter = () => {
           }/>
 
           <Route path={urlBaseFrontend + "/home"} element={
+              <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
+                  <HomeScreen />
+              </PrivateRoute>
+          } />
+
+          <Route path={urlBaseFrontend} element={
               <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
                   <HomeScreen />
               </PrivateRoute>

@@ -7,6 +7,8 @@ export const DashboardRoutes = ({ urlBaseFrontend }) => {
       <Routes>
           <Route path={urlBaseFrontend + "/home"} element={<HomeScreen />} />
           <Route path={"/" + urlBaseFrontend} element={<HomeScreen />} />
+          <Route path={"/*"} element={<HomeScreen />} />
+          <Route path={"/"} element={<HomeScreen />} />
       </Routes>
     </div>
   )

@@ -1,16 +1,51 @@
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/authContext';
+import { types } from '../../types/types';
 import { InputText } from '../forms/inputs/InputText';
 import { InputPassword } from '../forms/inputs/InputPassword';
 
-export const LoginForm = ({ userInput,passwordInput,alertMessage,setUserInput,setPasswordInput,setAlertMessage,handleLogin,placeholderUser,placeholderPassword,buttonTitle }) => {
+const superuser = process.env.REACT_APP_SUPERUSER;
+const password = process.env.REACT_APP_PASSWORD;
+const username = process.env.REACT_APP_USERNAME;
+
+export const LoginForm = ({ }) => {
+
+  const [ userInput,setUserInput ] = useState("");
+  const [ passwordInput,setPasswordInput ] = useState("");
+  const [ alertMessage,setAlertMessage ] = useState("");
+
+  const navigate = useNavigate();
+  const { dispatch } = useContext(AuthContext);
+
+  const handleLogin = () => {
+    if( userInput === superuser && passwordInput === password ) {
+      setAlertMessage("");
+      const action = {
+        type: types.login,
+        payload: { name: username }
+      }
+      dispatch(action);
+  
+      const lastPath = localStorage.getItem('lastPath') || '/';
+      navigate(lastPath, { replace: true });
+    } else if( userInput === "" && passwordInput === "" ) {
+      setAlertMessage("Ingrese usuario y contraseña");
+    } else {
+      setUserInput("");
+      setPasswordInput("");
+      setAlertMessage("Usuario o contraseña no válidos");
+    }
+  }
+
   return (
-    <div className='container-fluid mt-1 text-center user-select-none'>
-        <div className="d-grid gap-2 col-5 mx-auto w-50 w-sm-100">
+    <div className='container mt-1 text-center user-select-none'>
+        <div className="d-grid gap-2 col mx-auto w-100 w-sm-100">
           <InputText placeholder={'Usuario'} inputText={userInput} onInputChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           <InputPassword placeholder={'Contraseña'} inputText={passwordInput} onInputChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
-     
-          <button className='btn-login btn btn-md btn-outline-primary border border-2 my-1 py-3 rounded fw-bolder shadow-sm' onClick={ handleLogin }>
-            { buttonTitle }
-          </button>
+          
+          <button className='btn btn-login text-white border border-2 my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" onClick={ handleLogin }>Ingresar</button>
+          <button type="button" className="btn btn-danger py-3 shadow-sm" data-bs-dismiss="modal">Cancelar</button>
           <p className='alertMessage'>{ alertMessage }</p>
         </div>
     </div>

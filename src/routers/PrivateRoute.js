@@ -8,5 +8,5 @@ export const PrivateRoute = ({ children,urlBaseFrontend }) => {
 
   localStorage.setItem( 'lastPath', pathname + search );
 
-  return user.logged ? children : <Navigate to={"/" + urlBaseFrontend + "/index"} /> 
+  return user.logged ? children : <Navigate to={"/" + urlBaseFrontend} /> 
 }
