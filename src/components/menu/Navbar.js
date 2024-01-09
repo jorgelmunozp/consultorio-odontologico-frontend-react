@@ -22,34 +22,28 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
         <>
             <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
                 <div className="container-fluid">
-                    <NavLink to={"/" + urlBaseFrontend}>
-                        <Logo color={myColor} width={1.5} height={1.5} strokeWidth={1.5} className='navbar-brand ms-3 me-0'/>
-                    </NavLink>
                     <NavLink className="navbar-brand" to={"/" + urlBaseFrontend}>
+                        <Logo color={myColor} width={1.35} height={1.35} strokeWidth={1.5} className='navbar-brand ms-3 me-0'/>
                         <span className='main-color'>{ myTitle }</span>
                     </NavLink>
                     {
                         (user.logged)
-                            ? <></>
-                            :   <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
-                                    <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
-                                </NavLink>
-                    }
-                    {
-                        (user.logged)
-                            ? <></>
-                            :   <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
-                                    <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
-                                </NavLink>
-                    }
-                    {
-                        (user.logged)
-                            ?   <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') }
-                                    onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
-                            : <></>
+                            ?   <>
+                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') }
+                                        onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
+                                </>
+                            :   <>
+                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
+                                        <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
+                                    </NavLink>
+                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+                                        <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
+                                    </NavLink>
+                                </>
                     }
                 </div>
             </nav>
+            {/** Modal Login */}
             <center>
                 <div className="modal fade align-self-auto" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
