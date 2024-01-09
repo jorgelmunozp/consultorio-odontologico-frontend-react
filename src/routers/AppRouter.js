@@ -2,17 +2,21 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DashboardRoutes } from "./DashboardRoutes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { HomeScreen } from "../components/views/home/HomeScreen";
+import { Navbar } from "../components/menu/Navbar";
 import IndexScreen from '../components/views/index/IndexScreen';
+import { LoginScreen } from "../components/login/LoginScreen";
 import { NotFound } from '../components/views/404/NotFound';
 import { myColor, myTitle } from "../global";
-// import { LoginScreen } from "../components/login/LoginScreen";
 
 export const AppRouter = () => {
   const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
   return (
     <BrowserRouter>
-      <div className="container user-select-none">
+      <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
+
+      <div className="container mt-5 text-center user-select-none">
         <Routes>
           <Route path={urlBaseFrontend + "/index"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
@@ -32,17 +36,23 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
-          {/* <Route path={urlBaseFrontend + "/login"} element={
+          <Route path={urlBaseFrontend + "/login"} element={
               <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-                <LoginScreen />
+                <LoginScreen myColor={myColor} myTitle={myTitle} />
               </PublicRoute>
-          } /> */}
+          } />
 
           <Route path='*' element={
-            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+            // <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <NotFound urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
-            </PublicRoute>
+            // </PublicRoute>
           }/>
+
+          <Route path={urlBaseFrontend + "/home"} element={
+              <PrivateRoute urlBaseFrontend={urlBaseFrontend}>
+                  <HomeScreen />
+              </PrivateRoute>
+          } />
 
           <Route path="/*" element={
               <PrivateRoute urlBaseFrontend={urlBaseFrontend}>

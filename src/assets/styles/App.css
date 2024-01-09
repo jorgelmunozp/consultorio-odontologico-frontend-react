@@ -19,7 +19,7 @@
   font-family: "CenturyGothic";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/CenturyGothic.ttf") format("truetype");
+  src: url("../fonts/CenturyGothic.ttf") format("truetype");
 }
 .century-gothic { font-family: 'CenturyGothic', 'Century Gothic' !important;}
 

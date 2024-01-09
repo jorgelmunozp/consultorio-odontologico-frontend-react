@@ -25,7 +25,7 @@ import { FilterSearch } from '../../icons/filter/FilterSearch';
 import { FilterPlus } from '../../icons/filter/FilterPlus';
 import { myColor, myTitle } from '../../../global';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../../App.css';
+import '../../../assets/styles/App.css';
 
 function IndexScreen() {
   const iconHeight = 1.25;
@@ -133,7 +133,7 @@ function IndexScreen() {
           </div>
         </nav>
       </aside>
-      <body className='App-body d-flex bg-white pt-5'>
+      <body className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
               <Menu menu={menu} 

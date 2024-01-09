@@ -7,24 +7,24 @@ import { Logo } from '../icons/logo/LogoThick';
 import { HomeMenu } from '../icons/home/HomeMenu';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
-
     const { user, dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch({ type: types.logout });
-        navigate('/index', { replace: true });
+        navigate((urlBaseFrontend + '/index'), { replace: true });
     }
 
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
             <div className="container-fluid">
-                <Logo color={myColor} height={1.5} width={1.5} className='navbar-brand ms-3 me-0'/>
-                <NavLink className="navbar-brand main-color ms-4 ms-sm-0" to={"/" + urlBaseFrontend + "/index"} >{ myTitle }</NavLink>
-                <div className="navbar-collapse d-none"  id="navbarContent">
-                    <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
-                    </div>
-                </div>
+                <NavLink to={"/" + urlBaseFrontend + "/index"}>
+                    <Logo color={myColor} width={1.5} height={1.5} strokeWidth={1.5} className='navbar-brand ms-3 me-0'/>
+                </NavLink>
+                <NavLink className="navbar-brand" to={"/" + urlBaseFrontend + "/index"}>
+                    <span className='main-color'>{ myTitle }</span>
+                </NavLink>
+
                 <button className="btn btn-light main-color" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
                     <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
                 </button>
