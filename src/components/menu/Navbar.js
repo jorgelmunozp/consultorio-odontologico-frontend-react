@@ -33,12 +33,18 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                                         onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
                                 </>
                             :   <>
-                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
-                                        <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
-                                    </NavLink>
-                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
-                                        <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
-                                    </NavLink>
+                                    <div className="row justify-content-end me-2">
+                                        <ul className="navbar-nav col">
+                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
+                                                <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
+                                            </NavLink>
+                                        </ul>
+                                        <ul className="navbar-nav col">
+                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+                                                <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
+                                            </NavLink>
+                                        </ul>
+                                    </div>
                                 </>
                     }
                 </div>
