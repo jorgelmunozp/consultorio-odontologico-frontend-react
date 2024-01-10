@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
+import { getDate } from '../../helpers/getDate';
+import { getTime } from '../../helpers/getTime';
 import { LoginForm } from '../login/LoginForm';
 import { Error } from '../icons/error/Error';
 import { Logo } from '../icons/logo/LogoThick';
@@ -14,6 +16,9 @@ import '../login/login.css';
 export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
     const [ alertType,setAlertType ] = useState("");
+
+    let fecha = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
+    let hora = useState(getTime);
 
     const { user, dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -81,7 +86,10 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
                                                 <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
                                                     <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
                                                 </button>
-                                                <p className='text-muted mt-4'>Agenda del día</p>
+                                                <div className="container">
+                                                <p className="text-muted mt-4">Fecha: { fecha } Hora: { hora }</p>
+                                                <p className="text-muted mt-4">Agenda del día</p>
+                                                </div>
                                             </>
                                         : ( alertType === "warning" )
                                             ? <Warning color={"#ffc107"} height={5} width={5} strokeWidth={0}/> 
