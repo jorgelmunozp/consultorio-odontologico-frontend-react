@@ -80,12 +80,23 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                                 </button>
                             </div> */}
                             <div className="modal-body mt-5 mx-auto w-100 pt-1">
-                                { user.logged ? 'Bienvenid@' : (alertType === "warning" ? <Warning color={"#ffc107"} height={5} width={5} strokeWidth={0}/> : <Error color={"#dc3545"} height={5} width={5} strokeWidth={0}/> ) }
+                                { 
+                                    (user.logged) 
+                                        ?   <>
+                                                <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
+                                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
+                                                </button>
+                                                <p className='text-muted mt-4'>Agenda del día</p>
+                                            </>
+                                        : (alertType === "warning")
+                                            ? <Warning color={"#ffc107"} height={5} width={5} strokeWidth={0}/> 
+                                            : <Error color={"#dc3545"} height={5} width={5} strokeWidth={0}/>
+                                }
                                 <p className='text-muted mt-3 pb-4'>{ user.logged ? '' : alertMessage }</p>
                                 {
                                     user.logged
                                     ?   <>
-                                            <button type="button" className="btn btn-login py-3 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
+                                            <button type="button" className="btn btn-login mb-3 p-3 w-100 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
                                         </>
                                     :   <div className='container pb-3'>
                                             <button className='btn btn-login my-1 p-3 w-100 shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">Reintentar</button>
