@@ -11,7 +11,7 @@ import { User } from '../icons/user/User';
 import { Warning } from '../icons/warning/Warning';
 import '../login/login.css';
 
-export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
+export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
     const [ alertType,setAlertType ] = useState("");
 
@@ -32,7 +32,7 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                         <span className='main-color'>{ myTitle }</span>
                     </NavLink>
                     {
-                        (user.logged)
+                        ( user.logged )
                             ?   <>
                                     <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '') }
                                         onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
@@ -74,27 +74,22 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                 <div className="modal fade align-self-auto" id="loginModalFail" tabIndex="-1" aria-labelledby="loginModalLabelFail" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
-                            {/* <div className="modal-header mx-auto border-0 mt-4 pb-1">
-                                <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
-                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
-                                </button>
-                            </div> */}
                             <div className="modal-body mt-5 mx-auto w-100 pt-1">
                                 { 
-                                    (user.logged) 
+                                    ( user.logged ) 
                                         ?   <>
                                                 <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
                                                     <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
                                                 </button>
                                                 <p className='text-muted mt-4'>Agenda del día</p>
                                             </>
-                                        : (alertType === "warning")
+                                        : ( alertType === "warning" )
                                             ? <Warning color={"#ffc107"} height={5} width={5} strokeWidth={0}/> 
                                             : <Error color={"#dc3545"} height={5} width={5} strokeWidth={0}/>
                                 }
                                 <p className='text-muted mt-3 pb-4'>{ user.logged ? '' : alertMessage }</p>
                                 {
-                                    user.logged
+                                    ( user.logged )
                                     ?   <>
                                             <button type="button" className="btn btn-login mb-3 p-3 w-100 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
                                         </>
