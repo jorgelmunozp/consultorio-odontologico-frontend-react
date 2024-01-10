@@ -30,7 +30,7 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
-          <Route path={"/"} element={
+          <Route path={"/*"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <IndexScreen />
             </PublicRoute>

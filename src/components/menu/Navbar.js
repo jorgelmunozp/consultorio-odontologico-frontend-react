@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
 import { LoginForm } from '../login/LoginForm';
+import { Error } from '../icons/error/Error';
 import { Logo } from '../icons/logo/LogoThick';
 import { HomeMenu } from '../icons/home/HomeMenu';
 import { User } from '../icons/user/User';
+import { Warning } from '../icons/warning/Warning';
 import '../login/login.css';
 
 export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
+    const [ alertMessage,setAlertMessage ] = useState("");
+    const [ alertType,setAlertType ] = useState("");
+
     const { user, dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -49,7 +54,6 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                     }
                 </div>
             </nav>
-            {/** Modal Login */}
             <center>
                 <div className="modal fade align-self-auto" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
@@ -61,7 +65,33 @@ export const Navbar = ({urlBaseFrontend, myColor, myTitle}) => {
                             </div>
                             <div className="modal-body mx-auto w-100 pt-1">
                                 <h1 className="modal-title main-color fs-5 pb-4" id="loginModalLabel">{ myTitle }</h1>
-                                <LoginForm />
+                                <LoginForm setAlertMessage={setAlertMessage} setAlertType={setAlertType} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/** Modal Login */}
+                <div className="modal fade align-self-auto" id="loginModalFail" tabIndex="-1" aria-labelledby="loginModalLabelFail" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            {/* <div className="modal-header mx-auto border-0 mt-4 pb-1">
+                                <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
+                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
+                                </button>
+                            </div> */}
+                            <div className="modal-body mt-5 mx-auto w-100 pt-1">
+                                { user.logged ? 'Bienvenid@' : (alertType === "warning" ? <Warning color={"#ffc107"} height={5} width={5} strokeWidth={0}/> : <Error color={"#dc3545"} height={5} width={5} strokeWidth={0}/> ) }
+                                <p className='text-muted mt-3 pb-4'>{ user.logged ? '' : alertMessage }</p>
+                                {
+                                    user.logged
+                                    ?   <>
+                                            <button type="button" className="btn btn-login py-3 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
+                                        </>
+                                    :   <div className='container pb-3'>
+                                            <button className='btn btn-login my-1 p-3 w-100 shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">Reintentar</button>
+                                            <button type="button" className="btn btn-outline-danger p-3 w-100 shadow-sm" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                }
                             </div>
                         </div>
                     </div>

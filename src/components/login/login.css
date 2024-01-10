@@ -15,8 +15,8 @@
     border-color: var(--gray-color)!important;
 }
 
-.btn-login { background-color: var(--main-color) !important; border-color: var(--main-color) !important; }
-.btn-login:hover { background-color: var(--main-dark-color) !important; }
+.btn-login { background-color: var(--white-color) !important; border-color: var(--main-color) !important; color: var(--main-color) !important;}
+.btn-login:hover { background-color: var(--main-dark-color) !important; color: var(--white-color) !important; }
 
 input::placeholder { color: var(--gray-color); }
 
