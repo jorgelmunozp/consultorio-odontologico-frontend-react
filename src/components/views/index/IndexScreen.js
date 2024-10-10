@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { useFetch } from "../../../hooks/useFetch";
-import { Navbar } from '../../menu/Navbar';
 import { Inicio } from './IndexContent';
 import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas';
 import { ConsultarPacientes } from '../../crud/consultar/ConsultarPacientes';
@@ -23,7 +22,6 @@ import { UserSearch } from '../../icons/user/UserSearch';
 import { UserPlus } from '../../icons/user/UserPlus';
 import { FilterSearch } from '../../icons/filter/FilterSearch';
 import { FilterPlus } from '../../icons/filter/FilterPlus';
-import { myColor, myTitle } from '../../../global';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../../assets/styles/App.css';
 
@@ -38,33 +36,24 @@ function IndexScreen() {
 
   const urlApiCitas = process.env.REACT_APP_API_CITAS;
   const citas = useFetch(urlApiCitas).data;
-  let [setCitas] = useState('');
 
   const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
   const pacientes = useFetch(urlApiPacientes).data;
-  let [setPacientes] = useState('');
 
   const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
   const doctores = useFetch(urlApiDoctores).data;
-  let [setDoctores] = useState('');
 
   const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
   const consultorios = useFetch(urlApiConsultorios).data;
-  let [setConsultorios] = useState('');
 
   const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
   const tratamientos = useFetch(urlApiTratamientos).data;
-  let [setTratamientos] = useState('');
 
   const urlApiEpss = process.env.REACT_APP_API_EPSS;
   const epss = useFetch(urlApiEpss).data;
-  let [setEpss] = useState('');
 
   const urlApiGeneros = process.env.REACT_APP_API_GENEROS;
   const generos  = useFetch(urlApiGeneros).data;
-  let [setGeneros] = useState('');
-
-  const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
   return (
     <div className="App user-select-none">
@@ -77,54 +66,22 @@ function IndexScreen() {
             </div>
             <div className="offcanvas-body">
               <ul className="navbar-nav">
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(1); <Inicio/>}}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(2); <ConsultarCitas/>}}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(3); <CreateCita/>}}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(4); <ConsultarPacientes/>}}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(5); <CreatePaciente/>}}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(6); <ConsultarTratamientos/>}}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(7); <CreateTratamiento/>}}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(8); <ConsultarDoctores/>}}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(9); <CreateDoctor/>}}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(10); <ConsultarConsultorios/>}}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link" onClick={()=>{setMenu(11); <CreateConsultorio/>}}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button>
-                </li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
               </ul>
             </div>
           </div>
@@ -133,19 +90,11 @@ function IndexScreen() {
       <body className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <Menu menu={menu} 
-                urlApiCitas={urlApiCitas} 
-                urlApiPacientes={urlApiPacientes}
-                urlApiTratamientos={urlApiTratamientos}
-                urlApiDoctores={urlApiDoctores} 
-                urlApiConsultorios={ urlApiConsultorios}  
-                citas={citas} setCitas={setCitas}
-                pacientes={pacientes} setPacientes={setPacientes}
-                tratamientos={tratamientos} setTratamientos={setTratamientos}
-                doctores={doctores} setDoctores={setDoctores}
-                consultorios={consultorios} setConsultorios={setConsultorios}
-                epss={epss} setEpss={setEpss}
-                generos={generos} setGeneros={setGeneros}
+              <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes}
+                urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} 
+                urlApiConsultorios={ urlApiConsultorios} citas={citas} pacientes={pacientes}
+                tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}
+                epss={epss} generos={generos}
               />
           </div>
         </div>
@@ -154,32 +103,19 @@ function IndexScreen() {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,setCitas,pacientes,setPacientes,tratamientos,setTratamientos,doctores,setDoctores,consultorios,setConsultorios,epss,setEpss,generos,setGeneros}) => {        //Componente para elegir juego a renderizar
-  if(menu === 1){
-    return <Inicio />;
-  }else if(menu === 2){
-    return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
-  }else if(menu === 3){
-    return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
-  }else if(menu === 4){
-    return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />;
-  }else if(menu === 5){
-    return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss} generos={generos} />;
-  }else if(menu === 6){
-    return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} />;
-  }else if(menu === 7){
-    return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />;
-  }else if(menu === 8){
-    return <ConsultarDoctores urlApiDoctores={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} />;
-  }else if(menu === 9){
-    return <CreateDoctor urlApiDoctores={urlApiDoctores} tratamientos={tratamientos} />;
-  }else if(menu === 10){
-    return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} />;
-  }else if(menu === 11){
-    return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} />;
-  }else{
-    return <Inicio />;
-  }
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
+  if(menu === 1){ return <Inicio /> }
+  else if(menu === 2){ return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
+  else if(menu === 3){ return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
+  else if(menu === 4){ return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} /> }
+  else if(menu === 5){ return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss} generos={generos} /> }
+  else if(menu === 6){ return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} /> }
+  else if(menu === 7){ return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />; }
+  else if(menu === 8){ return <ConsultarDoctores urlApiDoctores={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} /> }
+  else if(menu === 9){ return <CreateDoctor urlApiDoctores={urlApiDoctores} tratamientos={tratamientos} /> }
+  else if(menu === 10){ return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} /> }
+  else if(menu === 11){ return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} /> }
+  else{ return <Inicio /> }
 }
 
 export default IndexScreen;

@@ -87,65 +87,35 @@ const ElementRender = (urlApiCitas,citas,pacientes,tratamientos,doctores,consult
           </thead>
           <tbody>
             {
-              (queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '')
-                ? citas.sort(sortBy === 1 ? sortByIdUp 
-                      : ( sortBy === 2 ? sortByIdDown 
-                        : ( sortBy === 3 ? sortByPatientUp 
-                          : ( sortBy === 4 ? sortByPatientDown 
-                            : ( sortBy === 5 ? sortByDateUp 
-                              : ( sortBy === 6 ? sortByDateDown 
-                                : ( sortBy === 7 ? sortByTimeUp 
-                                  : ( sortBy === 8 ? sortByTimeDown 
-                                    : ( sortBy === 9 ? sortByConsultingRoomUp 
-                                      : ( sortBy === 10 ? sortByConsultingRoomDown 
-                                        : ( sortBy === 11 ? sortByDoctorUp 
-                                          : ( sortBy === 12 ? sortByDoctorDown 
-                                            : ( sortBy === 13 ? sortByTreatmentUp 
-                                              : ( sortBy === 14 ? sortByTreatmentDown 
-                                                : sortByIdUp
-                  )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
-                    <tr key={ cita.id }>
-                      <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
-                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
-                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
-                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
-                      <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
-                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
-                      <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
-                      <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
-                      <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
-                      <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
-                    </tr>
-                  ))
-                : citasFiltered.sort(sortBy === 1 ? sortByIdUp 
-                    : ( sortBy === 2 ? sortByIdDown 
-                      : ( sortBy === 3 ? sortByPatientUp 
-                        : ( sortBy === 4 ? sortByPatientDown 
-                          : ( sortBy === 5 ? sortByDateUp 
-                            : ( sortBy === 6 ? sortByDateDown 
-                              : ( sortBy === 7 ? sortByTimeUp 
-                                : ( sortBy === 8 ? sortByTimeDown 
-                                  : ( sortBy === 9 ? sortByConsultingRoomUp 
-                                    : ( sortBy === 10 ? sortByConsultingRoomDown 
-                                      : ( sortBy === 11 ? sortByDoctorUp 
-                                        : ( sortBy === 12 ? sortByDoctorDown 
-                                          : ( sortBy === 13 ? sortByTreatmentUp 
-                                            : ( sortBy === 14 ? sortByTreatmentDown 
-                                              : sortByIdUp
-                )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
-                  <tr key={ cita.id }>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
-                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
-                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
-                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
-                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
-                    <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
-                  </tr>
-                ))
+              citasFiltered.sort(sortBy === 1 ? sortByIdUp 
+                : ( sortBy === 2 ? sortByIdDown 
+                  : ( sortBy === 3 ? sortByPatientUp 
+                    : ( sortBy === 4 ? sortByPatientDown 
+                      : ( sortBy === 5 ? sortByDateUp 
+                        : ( sortBy === 6 ? sortByDateDown 
+                          : ( sortBy === 7 ? sortByTimeUp 
+                            : ( sortBy === 8 ? sortByTimeDown 
+                              : ( sortBy === 9 ? sortByConsultingRoomUp 
+                                : ( sortBy === 10 ? sortByConsultingRoomDown 
+                                  : ( sortBy === 11 ? sortByDoctorUp 
+                                    : ( sortBy === 12 ? sortByDoctorDown 
+                                      : ( sortBy === 13 ? sortByTreatmentUp 
+                                        : ( sortBy === 14 ? sortByTreatmentDown 
+                                          : sortByIdUp
+              )))))))))))))).slice(indexPage[0],indexPage[1]).map( cita => (
+                <tr key={ cita.id }>
+                  <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.id }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.paciente }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.fecha }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.hora }</td>
+                  <td className='ps-4 ps-sm-5 text-nowrap'>{ cita.cita.consultorio }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.doctor }</td>
+                  <td className='ps-1 ps-sm-3 text-nowrap'>{ cita.cita.tratamiento }</td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(cita) }><TbCalendarSearch className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
+                  <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(cita,urlApiCitas,ElementRender,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
+                </tr>
+              ))
             }
           </tbody>
         </table>

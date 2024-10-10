@@ -75,28 +75,7 @@ const ElementRender = (urlApiDoctores,citas,pacientes,tratamientos,doctores,cons
           </thead>
           <tbody>
             {
-              (queryCode === '' && queryName === '' && queryLastname === '' && querySpeciality === '')
-                ? doctores.sort(sortBy === 1 ? sortByIdUp 
-                  : ( sortBy === 2 ? sortByIdDown 
-                    : ( sortBy === 3 ? sortByNameUp 
-                      : ( sortBy === 4 ? sortByNameDown 
-                        : ( sortBy === 5 ? sortByLastnameUp 
-                          : ( sortBy === 6 ? sortByLastnameDown
-                            : ( sortBy === 7 ? sortBySpecialityUp 
-                              : ( sortBy === 8 ? sortBySpecialityDown 
-                                : sortByIdUp
-                  )))))))).slice(indexPage[0],indexPage[1]).map( doctor => (
-                  <tr key={ doctor.id }>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ doctor.id }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.nombre }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.apellido }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ doctor.doctor.especialidad }</td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(doctor) }><TbUserSearch className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserEdit className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteDoctor(doctor,urlApiDoctores,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbUserX className='text-secondary'/></button></td>
-                  </tr>
-                ))
-              : doctoresFiltered.sort(sortBy === 1 ? sortByIdUp 
+              doctoresFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByNameUp 
                     : ( sortBy === 4 ? sortByNameDown 

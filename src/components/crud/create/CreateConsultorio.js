@@ -59,34 +59,6 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
             </div>
           </div>
         </div>
-
-          {/* <table className="w-100">
-            <tbody>
-              <tr>
-                <td>
-                  <TextField value={numero} onChange={handleChangeNumero}
-                    id="ConsultoriosNumero" label="Número" type="number" variant="outlined" 
-                    margin="dense" autoComplete="off"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <TextField value={nombre} onChange={handleChangeNombre}
-                    id="ConsultoriosNombre" label="Nombre" variant="outlined"
-                    margin="dense" autoComplete="off"
-                  />
-                </td>
-              </tr>
-              <br></br>
-              <tr>
-                <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
-                </td>
-              </tr>
-            </tbody>
-          </table> */}
-
       </body>
     </div>
   );

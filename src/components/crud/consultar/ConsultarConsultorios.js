@@ -71,25 +71,7 @@ const ElementRender = (urlApiConsultorios,citas,pacientes,tratamientos,doctores,
           </thead>
           <tbody>
             {
-              (queryCode === '' && queryNumber === '' && queryName === '')
-                ? consultorios.sort(sortBy === 1 ? sortByIdUp 
-                  : ( sortBy === 2 ? sortByIdDown 
-                    : ( sortBy === 3 ? sortByNumberUp 
-                      : ( sortBy === 4 ? sortByNumberDown 
-                        : ( sortBy === 5 ? sortByNameUp 
-                          : ( sortBy === 6 ? sortByNameDown
-                            : sortByIdUp
-                )))))).slice(indexPage[0],indexPage[1]).map( consultorio => (
-                  <tr key={ consultorio.id }>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ consultorio.id }</td>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ consultorio.consultorio.numero }</td>
-                    <td className='ps-2 ps-sm-5 text-nowrap'>{ consultorio.consultorio.nombre }</td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(consultorio) }><TbHomeSearch className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeEdit className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(consultorio,urlApiConsultorios,ElementRender,citas,pacientes,tratamientos,doctores,consultorios) }><TbHomeX className='text-secondary'/></button></td>
-                  </tr>
-                ))
-              : consultoriosFiltered.sort(sortBy === 1 ? sortByIdUp 
+              consultoriosFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByNumberUp 
                     : ( sortBy === 4 ? sortByNumberDown 

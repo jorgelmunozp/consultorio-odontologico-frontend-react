@@ -85,67 +85,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
               <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
             </div>
           </div>              
-			</div>
-
-          {/* <table className="w-100">
-            <tbody>
-              <tr>
-                <td colSpan={2}>
-                  <TextField value={nombre} onChange={handleChangeNombre}
-                    id="nombreTratamiento" label="Nombre" variant="outlined"
-                    margin="dense" autoComplete="off"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <FormControl fullWidth margin="dense">
-                    <InputLabel id="nombreTratamiento-label" className="select">
-                      Consultorio
-                    </InputLabel>
-                    <Select
-                      id="consultorioTratamiento" label="consultorioTratamiento" labelId="consultorioTratamiento-label"
-                      value={consultorio} onChange={handleChangeConsultorio}
-                    >
-                      {consultorios.map((consultorios) => {
-                        return (
-                          <MenuItem value={consultorios.id}>
-                            {consultorios.consultorio.numero}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </td>
-                <td>
-                  <FormControl fullWidth margin="dense">
-                    <InputLabel id="doctorTratamiento-label" className="select">
-                      Médico
-                    </InputLabel>
-                    <Select
-                      id="doctorTratamiento" label="doctorTratamiento" labelId="doctorTratamiento-label"
-                      value={doctor} onChange={handleChangeDoctor}
-                    >
-                      {doctores.map((doctores) => {
-                        return (
-                          <MenuItem value={doctores.id}>
-                            {doctores.doctor.nombre + " " + doctores.doctor.apellido}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </td>
-              </tr>
-              <br></br>
-              <tr>
-                <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
-                </td>
-              </tr>
-            </tbody>
-          </table> */}
-        
+			  </div>
       </body>
     </div>
   );

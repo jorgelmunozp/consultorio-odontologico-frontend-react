@@ -77,53 +77,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
                 </div>
               </div>                
 			    </div>
-            {/* <table className="w-100">
-              <tr>
-                <td>
-                  <TextField value={nombre} onChange={handleChangeNombre}
-                    id="nombreDoctor" label="Nombre" variant="outlined"
-                    margin="dense" autoComplete="off"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <TextField value={apellido} onChange={handleChangeApellido}
-                    id="apellidoDoctor" label="Apellido" variant="outlined"
-                    margin="dense" autoComplete="off"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <FormControl fullWidth margin="dense">
-                    <InputLabel id="especialidadDoctor-label" className="select">
-                      Especialidad
-                    </InputLabel>
-                    <Select
-                      id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label"
-                      value={especialidad} onChange={handleChange}
-                    >
-                        {tratamientos.map((tratamientos) => {
-                          return (
-                            <MenuItem value={tratamientos.id}>
-                              {tratamientos.tratamiento.nombre}
-                            </MenuItem>
-                          );
-                        })}
-                    </Select>
-                  </FormControl>
-                </td>
-              </tr>
-              <br></br>
-              <tr>
-                <td colSpan={2}>
-                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApiDoctores} contenidoApi={contenidoDoctores} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
-                </td>
-              </tr>
-            </table> */}
-
-        </body>
+         </body>
       </div>
   );
 };

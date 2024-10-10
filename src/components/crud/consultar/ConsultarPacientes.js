@@ -83,34 +83,7 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
           </thead>
           <tbody>
             {
-              (queryCode === '' && queryIdentification === '' && queryName === '' && queryLastname === '' && queryGender === '' && queryEps === '' )
-                ? pacientes.sort(sortBy === 1 ? sortByIdUp 
-                  : ( sortBy === 2 ? sortByIdDown 
-                    : ( sortBy === 3 ? sortByIdentificationUp 
-                      : ( sortBy === 4 ? sortByIdentificationDown 
-                        : ( sortBy === 5 ? sortByNameUp 
-                          : ( sortBy === 6 ? sortByNameDown
-                            : ( sortBy === 7 ? sortByLastnameUp 
-                              : ( sortBy === 8 ? sortByLastnameDown 
-                                : ( sortBy === 9 ? sortByGenderUp 
-                                  : ( sortBy === 10 ? sortByGenderDown 
-                                    : ( sortBy === 11 ? sortByEpsUp 
-                                      : ( sortBy === 12 ? sortByEpsDown 
-                                        : sortByIdUp
-                    )))))))))))).slice(indexPage[0],indexPage[1]).map( paciente => (
-                  <tr key={ paciente.id }>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ paciente.id }</td>
-                    <td className='ps-4 ps-sm-5 text-nowrap'>{ paciente.paciente.identificacion }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.nombre }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.apellido }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.genero }</td>
-                    <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.eps }</td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }><TbUserSearch className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserEdit className='text-secondary'/></button></td>
-                    <td><button className='border-0 bg-transparent' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserX className='text-secondary'/></button></td>
-                  </tr>
-                ))
-              : pacientesFiltered.sort(sortBy === 1 ? sortByIdUp 
+              pacientesFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByIdentificationUp 
                     : ( sortBy === 4 ? sortByIdentificationDown 
