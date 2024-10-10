@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateDoctor = (item,urlApi,Row,citas,pacientes,tratamientos,consultorios) => {
+export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
   Swal.fire({
     title: "Doctor",
     imageUrl: "./logo192.png",
@@ -63,7 +63,7 @@ export const UpdateDoctor = (item,urlApi,Row,citas,pacientes,tratamientos,consul
       if(document.getElementById('editarNombre').value!== "" &&
       document.getElementById('editarApellido').value!== "" &&
       document.getElementById('editarEspecialidad').value!== "" ) {
-        const contenidoDoctor = `{
+        const itemUpdated = `{
           "doctor": {
             "nombre": "${document.getElementById('editarNombre').value}",
             "apellido": "${document.getElementById('editarApellido').value}",
@@ -71,17 +71,17 @@ export const UpdateDoctor = (item,urlApi,Row,citas,pacientes,tratamientos,consul
           },
           "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoDoctor),item.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
-              let doctores;
+              let arrayResponse;
               await fetch(urlApi)                      //API REST para consumo de la tabla Doctores de la base de datos
                   .then(response => response.json())
-                  .then(data => doctores = data);
+                  .then(data => arrayResponse = data);
 
-              const row = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-              row.render(<Row item={item} urlApi={urlApi} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} />);
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} tratamientos={tratamientos} />);
 
               Swal.fire("Doctor Actualizado", "", "success"); 
             } 

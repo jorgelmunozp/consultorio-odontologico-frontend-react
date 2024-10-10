@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateTratamiento = (item,urlApi,Row,citas,pacientes,doctores,consultorios) => {
+export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
   Swal.fire({
     title: "Tratamiento",
     imageUrl: "./logo192.png",
@@ -76,7 +76,7 @@ export const UpdateTratamiento = (item,urlApi,Row,citas,pacientes,doctores,consu
       if(document.getElementById('editarNombre').value!== "" &&
       document.getElementById('editarConsultorio').value!== "" &&
       document.getElementById('editarDoctor').value!== "" ) {
-        const contenidoTratamiento = `{
+        const itemUpdated = `{
           "tratamiento": {
             "nombre": "${document.getElementById('editarNombre').value}",
             "consultorio": "${document.getElementById('editarConsultorio').value}",
@@ -84,7 +84,7 @@ export const UpdateTratamiento = (item,urlApi,Row,citas,pacientes,doctores,consu
           },
           "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoTratamiento),item.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
@@ -93,8 +93,8 @@ export const UpdateTratamiento = (item,urlApi,Row,citas,pacientes,doctores,consu
                   .then(response => response.json())
                   .then(data => arrayResponse = data);
                   
-              const row = ReactDOM.createRoot(document.getElementById('contenidoTratamientos'));
-              row.render(<Row item={item} urlApi={urlApi} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} />);
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} doctores={doctores} consultorios={consultorios} />);
 
               Swal.fire("Tratamiento Actualizado", "", "success"); 
             }

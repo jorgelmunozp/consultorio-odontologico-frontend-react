@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateConsultorio = (item,urlApi,Row,pacientes,tratamientos,doctores) => {
+export const UpdateConsultorio = (item,urlApi,Row) => {
   Swal.fire({
     title: "Consultorio",
     imageUrl: "./logo192.png",
@@ -45,24 +45,24 @@ export const UpdateConsultorio = (item,urlApi,Row,pacientes,tratamientos,doctore
     if (result.isConfirmed) {
       if(document.getElementById('editarNumero').value!== "" &&
       document.getElementById('editarNombre').value!== "" ) {
-        const contenidoConsultorios = `{
+        const itemUpdated = `{
           "consultorio": {
             "numero": "${document.getElementById('editarNumero').value}",
             "nombre": "${document.getElementById('editarNombre').value}"
           },
           "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoConsultorios),item.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) { 
-              let consultorios;
+              let arrayResponse;
               await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
                   .then(response => response.json())
-                  .then(data => consultorios = data);
+                  .then(data => arrayResponse = data);
         
-              const row = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
-              row.render(<Row item={item} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} />);
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} />);
           
               Swal.fire("Consultorio Actualizado", "", "success"); 
             } 

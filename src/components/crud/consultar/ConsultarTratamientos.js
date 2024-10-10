@@ -10,7 +10,7 @@ import { PaginationBar } from '../../pagination/PaginationBar';
 import { getTratamientosFiltered } from '../../selectors/getTratamientosFiltered';
 import { TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
 
-const Row = ({ item,urlApi,citas,pacientes,tratamientos,doctores,consultorios }) => {
+const Row = ({ item,urlApi,doctores,consultorios }) => {
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
@@ -18,14 +18,14 @@ const Row = ({ item,urlApi,citas,pacientes,tratamientos,doctores,consultorios })
             <td className='ps-5 ps-sm-5 text-nowrap'>{ item.tratamiento.consultorio }</td>
             <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.doctor }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(item) }><TbFilterSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(item,urlApi,Row,citas,pacientes,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(item,urlApi,Row,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => DeleteTratamiento(item,urlApi) }><TbFilterX className='text-secondary'/></button></td>
           </>
         )
     };
 
 
-export const ConsultarTratamientos = ({ urlApi,citas,pacientes,doctores,consultorios }) => {
+export const ConsultarTratamientos = ({ urlApi,doctores,consultorios }) => {
   const tratamientos = useFetch(urlApi).data;
 
     /* Query */
@@ -101,7 +101,7 @@ export const ConsultarTratamientos = ({ urlApi,citas,pacientes,doctores,consulto
                               : sortByIdUp
                   )))))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                     <tr id={ 'row'+item.id } key={ item.id }>
-                      <Row item={item} urlApi={urlApi} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} />
+                      <Row item={item} urlApi={urlApi} doctores={doctores} consultorios={consultorios} />
                     </tr>
               )})
             }

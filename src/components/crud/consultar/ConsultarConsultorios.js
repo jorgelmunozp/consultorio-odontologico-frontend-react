@@ -10,20 +10,20 @@ import { PaginationBar } from '../../pagination/PaginationBar';
 import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
 
-const Row = ({ item,urlApi,citas,pacientes,tratamientos,doctores }) => { 
+const Row = ({ item,urlApi }) => { 
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
             <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(item) }><TbHomeSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(item,urlApi,Row,pacientes,tratamientos,doctores) }><TbHomeEdit className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(item,urlApi,Row) }><TbHomeEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(item,urlApi) }><TbHomeX className='text-secondary'/></button></td>
           </>
         )
   }; 
 
-export const ConsultarConsultorios = ({ urlApi,pacientes,tratamientos,doctores }) => {
+export const ConsultarConsultorios = ({ urlApi }) => {
   const consultorios = useFetch(urlApi).data;
 
     /* Query */
@@ -94,7 +94,7 @@ export const ConsultarConsultorios = ({ urlApi,pacientes,tratamientos,doctores }
                           : sortByIdUp
               )))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                 <tr id={ 'row'+item.id } key={ item.id }>
-                  <Row item={item} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} />
+                  <Row item={item} urlApi={urlApi} />
                 </tr>
               )})
             }

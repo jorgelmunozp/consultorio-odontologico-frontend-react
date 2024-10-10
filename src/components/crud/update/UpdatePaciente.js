@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdatePaciente = (item,urlApi,Row,citas,tratamientos,doctores,consultorios,epss,generos) => {
+export const UpdatePaciente = (item,urlApi,Row,epss,generos) => {
   Swal.fire({
     title: "Paciente",
     imageUrl: "./logo192.png",
@@ -86,7 +86,7 @@ export const UpdatePaciente = (item,urlApi,Row,citas,tratamientos,doctores,consu
       document.getElementById('editarApellido').value!== "" &&
       document.getElementById('editarGenero').value!== "" &&
       document.getElementById('editarEps').value!== "" ) {
-        const contenidoPaciente = `{
+        const itemUpdated = `{
             "paciente": {
               "identificacion": "${document.getElementById('editarIdentificacion').value}",
               "nombre": "${document.getElementById('editarNombre').value}",
@@ -96,7 +96,7 @@ export const UpdatePaciente = (item,urlApi,Row,citas,tratamientos,doctores,consu
             },
             "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoPaciente),item.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
@@ -105,8 +105,8 @@ export const UpdatePaciente = (item,urlApi,Row,citas,tratamientos,doctores,consu
                   .then(response => response.json())
                   .then(data => arrayResponse = data);            
               
-              const row = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
-              row.render(<Row item={item} urlApi={urlApi} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />);
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} epss={epss} generos={generos} />);
 
               Swal.fire("Paciente Actualizado", "", "success"); 
             } 

@@ -35,7 +35,7 @@ export const TemplateScreen = () => {
   const [menu, setMenu] = useState(menuOpcion);
 
   const urlApiCitas = process.env.REACT_APP_API_CITAS;
-  const citas = useFetch(urlApiCitas).data;
+  // const citas = useFetch(urlApiCitas).data;
 
   const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
   const pacientes = useFetch(urlApiPacientes).data;
@@ -92,7 +92,7 @@ export const TemplateScreen = () => {
           <div id="App" className="App"> 
               <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes}
                 urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} 
-                urlApiConsultorios={ urlApiConsultorios} citas={citas} pacientes={pacientes}
+                urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes}
                 tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}
                 epss={epss} generos={generos}
               />
@@ -103,17 +103,17 @@ export const TemplateScreen = () => {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
+const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
   if(menu === 1){ return <IndexScreen urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
   else if(menu === 2){ return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
   else if(menu === 3){ return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 4){ return <ConsultarPacientes urlApi={urlApiPacientes} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} /> }
+  else if(menu === 4){ return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} /> }
   else if(menu === 5){ return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} /> }
-  else if(menu === 6){ return <ConsultarTratamientos urlApi={urlApiTratamientos} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 7){ return <CreateTratamiento urlApi={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />; }
-  else if(menu === 8){ return <ConsultarDoctores urlApi={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} /> }
+  else if(menu === 6){ return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} /> }
+  else if(menu === 7){ return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />; }
+  else if(menu === 8){ return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} /> }
   else if(menu === 9){ return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} /> }
-  else if(menu === 10){ return <ConsultarConsultorios urlApi={urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} /> }
+  else if(menu === 10){ return <ConsultarConsultorios urlApi={urlApiConsultorios} /> }
   else if(menu === 11){ return <CreateConsultorio urlApi={urlApiConsultorios} consultorios={consultorios} /> }
   else{ return <IndexScreen urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
 }

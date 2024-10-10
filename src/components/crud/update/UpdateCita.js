@@ -31,9 +31,9 @@ export const UpdateCita = (item,urlApi,Row,pacientes,tratamientos,doctores,consu
                 <select id="editarPaciente">
                   <option value=${ item.cita.paciente }>${ item.cita.paciente }</option>
                   ${ 
-                    pacientes.map( (pacientes) => {
+                    pacientes.map((item) => {
                       return(
-                        `<option value=${pacientes.paciente.nombre + "\&nbsp;" + pacientes.paciente.apellido}>${pacientes.paciente.nombre + "\&nbsp;" + pacientes.paciente.apellido}</option>`
+                        `<option value=${item.paciente.nombre + "\&nbsp;" + item.paciente.apellido}>${item.paciente.nombre + "\&nbsp;" + item.paciente.apellido}</option>`
                       )
                     })            
                   }
@@ -117,7 +117,7 @@ export const UpdateCita = (item,urlApi,Row,pacientes,tratamientos,doctores,consu
       document.getElementById('editarConsultorio').value!== "" &&
       document.getElementById('editarDoctor').value!== "" &&
       document.getElementById('editarTratamiento').value!== "" ) {
-        const contenidoCita = `{
+        const itemUpdated = `{
           "cita": {
             "paciente": "${document.getElementById('editarPaciente').value}",
             "fecha": "${document.getElementById('editarFecha').value}",
@@ -128,7 +128,7 @@ export const UpdateCita = (item,urlApi,Row,pacientes,tratamientos,doctores,consu
           },
           "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoCita),item.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
