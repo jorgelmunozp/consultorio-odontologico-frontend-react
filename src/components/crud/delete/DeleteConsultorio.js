@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeleteConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const DeleteConsultorio = (item,urlApi) => {
   Swal.fire({
     title: "Eliminar Consultorio?",
     html: `
@@ -11,21 +11,21 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Consultorio</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>
             <tr>
               <td> Código </td>
-              <td>${ consultorio.id }</td>
+              <td>${ item.id }</td>
             <tr>
             </tr>
               <td> Número </td>
-              <td>${ consultorio.consultorio.numero }</td>
+              <td>${ item.consultorio.numero }</td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td>${ consultorio.consultorio.nombre }</td>
+              <td>${ item.consultorio.nombre }</td>
             <tr>
           </tbody>
         </table>
@@ -40,17 +40,17 @@ export const DeleteConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
     cancelButtonText: "Cancelar"
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const fetchResponse = fetchDelete(urlApiConsultorios,consultorio.id);
+      const fetchResponse = fetchDelete(urlApi,item.id);
       fetchResponse.then(
         async function(value) {
           if(200 <= value && value <= 299) {
-            let consultorios;
-            await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Consultorios de la base de datos
+            let arrayResponse;
+            await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
                 .then(response => response.json())
-                .then(data => consultorios = data);
+                .then(data => arrayResponse = data);
       
-            const root = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
-            root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
+            const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+            row.render();
 
             Swal.fire({ title: "Consultorio Eliminado", icon: "success" });
           }

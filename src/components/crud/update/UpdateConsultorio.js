@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateConsultorio = (item,urlApi,Row,pacientes,tratamientos,doctores) => {
   Swal.fire({
     title: "Consultorio",
     imageUrl: "./logo192.png",
@@ -22,15 +22,15 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
           <tbody>
             <tr>
               <td> Código </td>
-              <td><p class="swal2-input idText"> ${ consultorio.id } </p></td>
+              <td><p class="swal2-input idText"> ${ item.id } </p></td>
             <tr>
             </tr>
               <td> Número </td>
-              <td><input id="editarNumero" type="number" value=${ consultorio.consultorio.numero } class="swal2-input"></input></td>
+              <td><input id="editarNumero" type="number" value=${ item.consultorio.numero } class="swal2-input"></input></td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td><input id="editarNombre" type="text" value=${ consultorio.consultorio.nombre } class="swal2-input"></input></td>
+              <td><input id="editarNombre" type="text" value=${ item.consultorio.nombre } class="swal2-input"></input></td>
             <tr>
           </tbody>
         </table>
@@ -50,19 +50,19 @@ export const UpdateConsultorio = (consultorio,urlApiConsultorios,elementHtml,cit
             "numero": "${document.getElementById('editarNumero').value}",
             "nombre": "${document.getElementById('editarNombre').value}"
           },
-          "id": ${consultorio.id}
+          "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApiConsultorios,JSON.stringify(contenidoConsultorios),consultorio.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoConsultorios),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) { 
               let consultorios;
-              await fetch(urlApiConsultorios)                      //API REST para consumo de la tabla Consultorios de la base de datos
+              await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
                   .then(response => response.json())
                   .then(data => consultorios = data);
         
-              const root = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
-              root.render(elementHtml(urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios));
+              const row = ReactDOM.createRoot(document.getElementById('contenidoConsultorios'));
+              row.render(<Row item={item} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} />);
           
               Swal.fire("Consultorio Actualizado", "", "success"); 
             } 

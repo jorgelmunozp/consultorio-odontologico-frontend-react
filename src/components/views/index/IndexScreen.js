@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas'
 import { FaTooth } from 'react-icons/fa';
 import { LiaToothSolid } from "react-icons/lia";
 import { PiTooth, PiToothFill } from "react-icons/pi";
@@ -12,9 +11,9 @@ const iconSize = 30;
 
 const services = [
   {
-      "title":"Blanqueamiento",
+      "title":"Citas",
       "icon":<TbDental size={iconSize}/>,
-      "content":"Blanqueamiento"
+      "content":"Citas"
   },
   {
       "title":"Endodoncia",
@@ -73,7 +72,7 @@ const services = [
   }                   
 ];
 
-export const IndexScreen = () => {
+export const IndexScreen = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
   return (
     <div className="App">
         <center><h5 className='main-color fs-sm-2 pt-4 pt-sm-5 pb-2 pb-sm-3'>Servicios Odontológicos</h5></center> 
@@ -95,6 +94,8 @@ export const IndexScreen = () => {
               })
             }
           </div>
+
+          <ConsultarCitas urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />
         </div>
     </div>
   )

@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeleteDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const DeleteDoctor = (item,urlApi) => {
   Swal.fire({
     title: "Eliminar Doctor?",
     html: `
@@ -11,25 +11,25 @@ export const DeleteDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,t
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Doctor</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>
             <tr>
               <td> Código </td>
-              <td>${ doctor.id }</td>
+              <td>${ item.id }</td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td>${ doctor.doctor.nombre }</td>
+              <td>${ item.doctor.nombre }</td>
             <tr>
             </tr>     
               <td> Apellido </td>
-              <td>${ doctor.doctor.apellido }</td>
+              <td>${ item.doctor.apellido }</td>
             <tr>
             </tr>
               <td> Especialidad </td>
-              <td>${ doctor.doctor.especialidad }</td>
+              <td>${ item.doctor.especialidad }</td>
             <tr>
           </tbody>
         </table>
@@ -44,17 +44,17 @@ export const DeleteDoctor = (doctor,urlApiDoctores,elementHtml,citas,pacientes,t
     cancelButtonText: "Cancelar"
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const fetchResponse = fetchDelete(urlApiDoctores,doctor.id);
+      const fetchResponse = fetchDelete(urlApi,item.id);
       fetchResponse.then(
         async function(value) {
           if(200 <= value && value <= 299) {
-            let doctores;
-            await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
+            let arrayResponse;
+            await fetch(urlApi)                      //API REST para consumo de la tabla Doctores de la base de datos
                 .then(response => response.json())
-                .then(data => doctores = data);
+                .then(data => arrayResponse = data);
 
-            const root = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-            root.render(elementHtml(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
+            const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+            row.render();
             
             Swal.fire({ title: "Doctor Eliminado", icon: "success" });
           }

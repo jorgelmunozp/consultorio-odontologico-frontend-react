@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateCita = (item,urlApi,Row,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./logo192.png",
@@ -22,14 +22,14 @@ export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,
           <tbody>
           <tr>
             <td> Código </td>
-            <td><p class="swal2-input idText"> ${ cita.id } </p></td>
+            <td><p class="swal2-input idText"> ${ item.id } </p></td>
           <tr>
           </tr>
             <td> Paciente </td>
             <td>
               <form>
                 <select id="editarPaciente">
-                  <option value=${ cita.cita.paciente }>${ cita.cita.paciente }</option>
+                  <option value=${ item.cita.paciente }>${ item.cita.paciente }</option>
                   ${ 
                     pacientes.map( (pacientes) => {
                       return(
@@ -43,22 +43,22 @@ export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,
           <tr>
           </tr>        
             <td> Fecha </td>
-            <td><input id="editarFecha" type="date" value=${ cita.cita.fecha } class="swal2-input dateSelector"></input></td>
+            <td><input id="editarFecha" type="date" value=${ item.cita.fecha } class="swal2-input dateSelector"></input></td>
           <tr>
           </tr>     
             <td> Hora </td>
-            <td><input id="editarHora" type="time" value=${ cita.cita.hora } class="swal2-input timeSelector"></input></td>
+            <td><input id="editarHora" type="time" value=${ item.cita.hora } class="swal2-input timeSelector"></input></td>
           <tr>
           </tr>
             <td> Consultorio </td>
             <td>
               <form>
                 <select id="editarConsultorio">
-                  <option value=${ cita.cita.consultorio }>${ cita.cita.consultorio }</option>
+                  <option value=${ item.cita.consultorio }>${ item.cita.consultorio }</option>
                   ${ 
-                    consultorios.map( (consultorios) => {
+                    consultorios.map((item) => {
                       return(
-                        `<option value=${consultorios.consultorio.numero}>${consultorios.consultorio.numero + " - " + consultorios.consultorio.nombre}</option>`
+                        `<option value=${item.consultorio.numero}>${item.consultorio.numero + " - " + item.consultorio.nombre}</option>`
                       )
                     })            
                   }
@@ -71,11 +71,11 @@ export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,
             <td>
               <form>
                 <select id="editarDoctor">
-                  <option value=${ cita.cita.doctor }>${ cita.cita.doctor }</option>
+                  <option value=${ item.cita.doctor }>${ item.cita.doctor }</option>
                   ${ 
-                    doctores.map( (doctores) => {
+                    doctores.map((item) => {
                       return(
-                        `<option value=${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}>${doctores.doctor.nombre + "\&nbsp;" + doctores.doctor.apellido}</option>`
+                        `<option value=${item.doctor.nombre + "\&nbsp;" + item.doctor.apellido}>${item.doctor.nombre + "\&nbsp;" + item.doctor.apellido}</option>`
                       )
                     })            
                   }
@@ -88,11 +88,11 @@ export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,
             <td>
               <form>
                 <select id="editarTratamiento">
-                  <option value=${ cita.cita.tratamiento }>${ cita.cita.tratamiento }</option>
+                  <option value=${ item.cita.tratamiento }>${ item.cita.tratamiento }</option>
                   ${ 
-                    tratamientos.map( (tratamientos) => {
+                    tratamientos.map((item) => {
                       return(
-                        `<option value=${tratamientos.tratamiento.nombre}>${tratamientos.tratamiento.nombre}</option>`
+                        `<option value=${item.tratamiento.nombre}>${item.tratamiento.nombre}</option>`
                       )
                     })            
                   }
@@ -126,20 +126,19 @@ export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,
             "doctor": "${document.getElementById('editarDoctor').value}",
             "tratamiento": "${document.getElementById('editarTratamiento').value}"
           },
-          "id": ${cita.id}
+          "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApiCitas,JSON.stringify(contenidoCita),cita.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoCita),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
-              let citasResponse;
-              await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
+              let arrayResponse;
+              await fetch(urlApi)                      //API REST para consumo de la tabla Citas de la base de datos
                   .then(response => response.json())
-                  .then(data => citasResponse = data);
+                  .then(data => arrayResponse = data);
 
-              console.log(citasResponse[cita.id-1])
-              const row = ReactDOM.createRoot(document.getElementById( 'row'+cita.id ));
-              row.render(<Row item={citasResponse[cita.id-1]} urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />);
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />);
 
               Swal.fire("Cita Actualizada", "", "success"); 
             } 

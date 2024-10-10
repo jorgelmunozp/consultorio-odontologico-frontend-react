@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeletePaciente } from '../delete/DeletePaciente';
@@ -8,63 +8,80 @@ import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getPacientesFiltered } from '../../selectors/getPacientesFiltered';
-
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
 
-const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => { 
-  /* Query */
-  let [ queryCode, setQueryCode ] = useState('');
-  let [ queryIdentification, setQueryIdentification ] = useState('');
-  let [ queryName, setQueryName ] = useState('');
-  let [ queryLastname, setQueryLastname ] = useState('');
-  let [ queryGender, setQueryGender ] = useState('');
-  let [ queryEps, setQueryEps ] = useState('');
- 
-  let [ query, setQuery ] = useState('');
-
-  const pacientesFiltered = useMemo( () => getPacientesFiltered(pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
-
-  const titles = ['Código','identificacion','Nombre','Apellido','Género','Eps'];
-  const queries = [queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps];
-  const setQueries = [setQueryCode,setQueryIdentification,setQueryName,setQueryLastname,setQueryGender,setQueryEps];
-  
-  /* Pagination */
-  const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
-  const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = ((query === '') ? Math.floor(pacientes.length/itemPerPage) : Math.floor(pacientesFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = ((query === '') ? pacientes.length%itemPerPage : pacientesFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-  let indexPages = [];
-  let activePage = [true];                                            // [true]
-  if(resPages !== 0 ){
-    for(let i = 0; i <= numPages; i++) { 
-      indexPages.push(i);                                             // [0,1,2,3]
-      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-    }
-  } else if(resPages === 0 ){
-    for(let i = 0; i < numPages; i++) { 
-      indexPages.push(i);                                             // [0,1,2,3]
-      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
-
-  /* Sort */
-  const [sortBy, setSortBy] = useState(0);
-  function sortByIdUp(a, b) { return a.id - b.id; }
-  function sortByIdDown(a, b) { return b.id - a.id; }
-  function sortByIdentificationUp(a, b) { return a.paciente.identificacion.localeCompare(b.paciente.identificacion); }
-  function sortByIdentificationDown(a, b) { return b.paciente.identificacion.localeCompare(a.paciente.identificacion); }
-  function sortByNameUp(a, b) { return a.paciente.nombre.localeCompare(b.paciente.nombre); }
-  function sortByNameDown(a, b) { return b.paciente.nombre.localeCompare(a.paciente.nombre); }
-  function sortByLastnameUp(a, b) { return a.paciente.apellido.localeCompare(b.paciente.apellido); }
-  function sortByLastnameDown(a, b) { return b.paciente.apellido.localeCompare(a.paciente.apellido); }
-  function sortByGenderUp(a, b) { return a.paciente.genero.localeCompare(b.paciente.genero); }
-  function sortByGenderDown(a, b) { return b.paciente.genero.localeCompare(a.paciente.genero); }
-  function sortByEpsUp(a, b) { return a.paciente.eps.localeCompare(b.paciente.eps); }
-  function sortByEpsDown(a, b) { return b.paciente.eps.localeCompare(a.paciente.eps); }
-    
+const Row = ({ item,urlApi,citas,pacientes,tratamientos,doctores,consultorios,epss,generos }) => { 
   return (
-    <center className='mt-4 mt-sm-5'>
+          <>
+            <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
+            <td className='ps-4 ps-sm-5 text-nowrap'>{ item.paciente.identificacion }</td>
+            <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.nombre }</td>
+            <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.apellido }</td>
+            <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.genero }</td>
+            <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.eps }</td>
+            <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(item) }><TbUserSearch className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(item,urlApi,Row,citas,tratamientos,doctores,consultorios,epss,generos) }><TbUserEdit className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => DeletePaciente(item,urlApi) }><TbUserX className='text-secondary'/></button></td>
+          </>
+        )
+  };
+
+export const ConsultarPacientes = ({ urlApi,citas,tratamientos,doctores,consultorios,epss,generos }) => {
+  const pacientes = useFetch(urlApi).data;
+
+    /* Query */
+    let [ queryCode, setQueryCode ] = useState('');
+    let [ queryIdentification, setQueryIdentification ] = useState('');
+    let [ queryName, setQueryName ] = useState('');
+    let [ queryLastname, setQueryLastname ] = useState('');
+    let [ queryGender, setQueryGender ] = useState('');
+    let [ queryEps, setQueryEps ] = useState('');
+   
+    const arrayFiltered = useMemo( () => getPacientesFiltered(pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
+  
+    const titles = ['Código','identificacion','Nombre','Apellido','Género','Eps'];
+    const queries = [queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps];
+    const setQueries = [setQueryCode,setQueryIdentification,setQueryName,setQueryLastname,setQueryGender,setQueryEps];
+    
+    /* Pagination */
+    const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
+    const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+    const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
+    const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+    let indexPages = [];
+    let activePage = [true];                                            // [true]
+    if(resPages !== 0 ){
+      for(let i = 0; i <= numPages; i++) { 
+        indexPages.push(i);                                             // [0,1,2,3]
+        if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+      }
+    } else if(resPages === 0 ){
+      for(let i = 0; i < numPages; i++) { 
+        indexPages.push(i);                                             // [0,1,2,3]
+        if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+      }
+    }
+    const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+  
+    /* Sort */
+    const [sortBy, setSortBy] = useState(0);
+    function sortByIdUp(a, b) { return a.id - b.id; }
+    function sortByIdDown(a, b) { return b.id - a.id; }
+    function sortByIdentificationUp(a, b) { return a.paciente.identificacion.localeCompare(b.paciente.identificacion); }
+    function sortByIdentificationDown(a, b) { return b.paciente.identificacion.localeCompare(a.paciente.identificacion); }
+    function sortByNameUp(a, b) { return a.paciente.nombre.localeCompare(b.paciente.nombre); }
+    function sortByNameDown(a, b) { return b.paciente.nombre.localeCompare(a.paciente.nombre); }
+    function sortByLastnameUp(a, b) { return a.paciente.apellido.localeCompare(b.paciente.apellido); }
+    function sortByLastnameDown(a, b) { return b.paciente.apellido.localeCompare(a.paciente.apellido); }
+    function sortByGenderUp(a, b) { return a.paciente.genero.localeCompare(b.paciente.genero); }
+    function sortByGenderDown(a, b) { return b.paciente.genero.localeCompare(a.paciente.genero); }
+    function sortByEpsUp(a, b) { return a.paciente.eps.localeCompare(b.paciente.eps); }
+    function sortByEpsDown(a, b) { return b.paciente.eps.localeCompare(a.paciente.eps); }
+      
+  return(
+    <div className="App">
+      <div id="contenidoPacientes">  
+      <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Pacientes Afiliados </h5>
       <SearchBar icon={<TbUserSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
       
@@ -83,7 +100,7 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
           </thead>
           <tbody>
             {
-              pacientesFiltered.sort(sortBy === 1 ? sortByIdUp 
+              arrayFiltered.sort(sortBy === 1 ? sortByIdUp 
                 : ( sortBy === 2 ? sortByIdDown 
                   : ( sortBy === 3 ? sortByIdentificationUp 
                     : ( sortBy === 4 ? sortByIdentificationDown 
@@ -96,33 +113,17 @@ const ElementRender = (urlApiPacientes,citas,pacientes,tratamientos,doctores,con
                                   : ( sortBy === 11 ? sortByEpsUp 
                                     : ( sortBy === 12 ? sortByEpsDown 
                                       : sortByIdUp
-                  )))))))))))).slice(indexPage[0],indexPage[1]).map( paciente => (
-                <tr key={ paciente.id }>
-                  <td className='ps-4 ps-sm-5 text-nowrap'>{ paciente.id }</td>
-                  <td className='ps-4 ps-sm-5 text-nowrap'>{ paciente.paciente.identificacion }</td>
-                  <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.nombre }</td>
-                  <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.apellido }</td>
-                  <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.genero }</td>
-                  <td className='px-2 px-sm-3 text-nowrap'>{ paciente.paciente.eps }</td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => ReadPaciente(paciente) }><TbUserSearch className='text-secondary'/></button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserEdit className='text-secondary'/></button></td>
-                  <td><button className='border-0 bg-transparent' onClick={ () => DeletePaciente(paciente,urlApiPacientes,ElementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }><TbUserX className='text-secondary'/></button></td>
-                </tr>
-              ))
+                  )))))))))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
+                    <tr id={ 'row'+item.id } key={ item.id }>
+                      <Row item={item} urlApi={urlApi} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />
+                    </tr>
+              )})
             }
           </tbody>
         </table>
       </div>
-      <PaginationBar query={query} array={pacientes} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
+      <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>
-  )};
-
-export const ConsultarPacientes = ({ urlApiPacientes,citas,tratamientos,doctores,consultorios,epss,generos }) => {
-  const pacientes = useFetch(urlApiPacientes).data;
-  return(
-    <div className="App">
-      <div id="contenidoPacientes">  
-        { ElementRender(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) }
     </div>
   </div>
   )

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-// import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
@@ -8,10 +8,9 @@ import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getCitasFiltered } from '../../selectors/getCitasFiltered';
-
 import { TbCalendarSearch, TbCalendarTime, TbCalendarX } from "react-icons/tb";
 
-const Row = ({ item,urlApiCitas,pacientes,tratamientos,doctores,consultorios }) =>  { 
+const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => { 
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
@@ -22,14 +21,14 @@ const Row = ({ item,urlApiCitas,pacientes,tratamientos,doctores,consultorios }) 
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.doctor }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.tratamiento }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(item) }><TbCalendarSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(item,urlApiCitas,Row,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(item,urlApiCitas,Row,pacientes,tratamientos,doctores,consultorios) }><TbCalendarX className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(item,urlApi,Row,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(item,urlApi) }><TbCalendarX className='text-secondary'/></button></td>
           </>
         )
       };
 
-  export const ConsultarCitas = ({ urlApiCitas,pacientes,tratamientos,doctores,consultorios }) => {
-    const citas = useFetch(urlApiCitas).data;
+  export const ConsultarCitas = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
+    const array = useFetch(urlApi).data;
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');
@@ -40,19 +39,17 @@ const Row = ({ item,urlApiCitas,pacientes,tratamientos,doctores,consultorios }) 
     let [ queryDoctor, setQueryDoctor ] = useState('');
     let [ queryTreatment, setQueryTreatment ] = useState('');
   
-    let [ query, setQuery ] = useState('');
-  
-    const citasFiltered = useMemo( () => getCitasFiltered(citas,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment), [citas,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment] );
+    const arrayFiltered = useMemo( () => getCitasFiltered(array,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment), [array,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment] );
   
     const titles = ['Código','Paciente','Fecha','Hora','Consultorio','Médico','Tratamiento'];
     const queries = [queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment];
     const setQueries = [setQueryCode,setQueryPatient,setQueryDate,setQueryTime,setQueryConsultoryRoom,setQueryDoctor,setQueryTreatment];
     
     /* Pagination */
-    const [itemPerPage, setItemPerPage ] = useState(10);                 // Se define el número de items por página
+    const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
     const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-    const numPages = ((queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '') ? Math.floor(citas.length/itemPerPage) : Math.floor(citasFiltered.length/itemPerPage));                   // Se calcula la cantidad de páginas = cantidad de items/item por página
-    const resPages = ((queryCode === '' && queryPatient === '' && queryDate === '' && queryTime === '' && queryConsultoryRoom === '' && queryDoctor === '' && queryTreatment === '') ? citas.length%itemPerPage : citasFiltered.length%itemPerPage);                   // Se calcula la cantidad de páginas = cantidad de items/item por página
+    const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
+    const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
     let indexPages = [];
     let activePage = [true];                                            // [true]
     if(resPages !== 0 ){
@@ -108,7 +105,7 @@ const Row = ({ item,urlApiCitas,pacientes,tratamientos,doctores,consultorios }) 
             </thead>
             <tbody>
               {
-                citasFiltered.sort(sortBy === 1 ? sortByIdUp 
+                arrayFiltered.sort(sortBy === 1 ? sortByIdUp 
                   : ( sortBy === 2 ? sortByIdDown 
                     : ( sortBy === 3 ? sortByPatientUp 
                       : ( sortBy === 4 ? sortByPatientDown 
@@ -125,14 +122,14 @@ const Row = ({ item,urlApiCitas,pacientes,tratamientos,doctores,consultorios }) 
                                             : sortByIdUp
                 )))))))))))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                   <tr id={ 'row'+item.id } key={ item.id }>
-                    <Row item={item} urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />
+                    <Row item={item} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />
                   </tr>
                 )})
               }
             </tbody>
           </table>
         </div>
-        <PaginationBar query={query} array={citas} arrayFiltered={citasFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
+        <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
         </center>  
       </div>
     </div>

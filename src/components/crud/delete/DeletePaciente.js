@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
+export const DeletePaciente = (item,urlApi) => {
   Swal.fire({
     title: "Eliminar Paciente?",
     html: `
@@ -11,33 +11,33 @@ export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Paciente</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>
             <tr>
               <td> Código </td>
-              <td>${ paciente.id }</td>
+              <td>${ item.id }</td>
             <tr>
             </tr>
               <td> Identificación </td>
-              <td>${ paciente.paciente.identificacion }</td>
+              <td>${ item.paciente.identificacion }</td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td>${ paciente.paciente.nombre }</td>
+              <td>${ item.paciente.nombre }</td>
             <tr>
             </tr>     
               <td> Apellido </td>
-              <td>${ paciente.paciente.apellido }</td>
+              <td>${ item.paciente.apellido }</td>
             <tr>
             </tr>
               <td> Género </td>
-              <td>${ paciente.paciente.genero }</td>
+              <td>${ item.paciente.genero }</td>
             <tr>
             </tr>
               <td> Eps </td>
-              <td>${ paciente.paciente.eps }</td>
+              <td>${ item.paciente.eps }</td>
             <tr>
           </tbody>
         </table>
@@ -52,17 +52,17 @@ export const DeletePaciente = (paciente,urlApiPacientes,elementHtml,citas,pacien
     cancelButtonText: "Cancelar"
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const fetchResponse = fetchDelete(urlApiPacientes,paciente.id);
+      const fetchResponse = fetchDelete(urlApi,item.id);
       fetchResponse.then(
         async function(value) {
           if(200 <= value && value <= 299) {
-            let pacientes;
-            await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Pacientes de la base de datos
+            let arrayResponse;
+            await fetch(urlApi)                      //API REST para consumo de la tabla Pacientes de la base de datos
                 .then(response => response.json())
-                .then(data => pacientes = data);
+                .then(data => arrayResponse = data);
 
-            const root = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
-            root.render(elementHtml(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
+            const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+            row.render();
             
             Swal.fire({ title: "Paciente Eliminado", icon: "success" });
           }

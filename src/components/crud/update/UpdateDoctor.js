@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateDoctor = (doctor,urlApiDoctores,elementRender,citas,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateDoctor = (item,urlApi,Row,citas,pacientes,tratamientos,consultorios) => {
   Swal.fire({
     title: "Doctor",
     imageUrl: "./logo192.png",
@@ -22,26 +22,26 @@ export const UpdateDoctor = (doctor,urlApiDoctores,elementRender,citas,pacientes
           <tbody>
             <tr>
               <td> Código </td>
-              <td><p class="swal2-input idText"> ${ doctor.id } </p></td>
+              <td><p class="swal2-input idText"> ${ item.id } </p></td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td><input id="editarNombre" type="text" value=${ doctor.doctor.nombre } class="swal2-input"></input></td>
+              <td><input id="editarNombre" type="text" value=${ item.doctor.nombre } class="swal2-input"></input></td>
             <tr>
             </tr>     
               <td> Apellido </td>
-              <td><input id="editarApellido" type="text" value=${ doctor.doctor.apellido } class="swal2-input"></input></td>
+              <td><input id="editarApellido" type="text" value=${ item.doctor.apellido } class="swal2-input"></input></td>
             <tr>
             </tr>
               <td> Especialidad </td>
               <td>
                 <form>
                   <select id="editarEspecialidad">
-                    <option value=${ doctor.doctor.especialidad }>${ doctor.doctor.especialidad }</option>
+                    <option value=${ item.doctor.especialidad }>${ item.doctor.especialidad }</option>
                     ${ 
-                      tratamientos.map( (tratamiento) => {
+                      tratamientos.map((item) => {
                         return(
-                          `<option value=${ tratamiento.tratamiento.nombre }>${ tratamiento.tratamiento.nombre }</option>`
+                          `<option value=${item.tratamiento.nombre}>${item.tratamiento.nombre}</option>`
                         )
                       })            
                     }
@@ -69,19 +69,19 @@ export const UpdateDoctor = (doctor,urlApiDoctores,elementRender,citas,pacientes
             "apellido": "${document.getElementById('editarApellido').value}",
             "especialidad": "${document.getElementById('editarEspecialidad').value}"
           },
-          "id": ${doctor.id}
+          "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApiDoctores,JSON.stringify(contenidoDoctor),doctor.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoDoctor),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
               let doctores;
-              await fetch(urlApiDoctores)                      //API REST para consumo de la tabla Doctores de la base de datos
+              await fetch(urlApi)                      //API REST para consumo de la tabla Doctores de la base de datos
                   .then(response => response.json())
                   .then(data => doctores = data);
 
-              const root = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
-              root.render(elementRender(urlApiDoctores,citas,pacientes,tratamientos,doctores,consultorios));
+              const row = ReactDOM.createRoot(document.getElementById('contenidoDoctores'));
+              row.render(<Row item={item} urlApi={urlApi} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} />);
 
               Swal.fire("Doctor Actualizado", "", "success"); 
             } 

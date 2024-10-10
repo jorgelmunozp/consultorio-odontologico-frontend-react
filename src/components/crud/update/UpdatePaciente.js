@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,pacientes,tratamientos,doctores,consultorios,epss,generos) => {
+export const UpdatePaciente = (item,urlApi,Row,citas,tratamientos,doctores,consultorios,epss,generos) => {
   Swal.fire({
     title: "Paciente",
     imageUrl: "./logo192.png",
@@ -22,30 +22,30 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,paci
           <tbody>
             <tr>
               <td> Código </td>
-              <td><p class="swal2-input idText"> ${ paciente.id } </p></td>
+              <td><p class="swal2-input idText"> ${ item.id } </p></td>
             <tr>
             </tr>
               <td> Identificación </td>
-              <td><input id="editarIdentificacion" type="number" value=${ paciente.paciente.identificacion } class="swal2-input"></input></td>
+              <td><input id="editarIdentificacion" type="number" value=${ item.paciente.identificacion } class="swal2-input"></input></td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td><input id="editarNombre" type="text" value=${ paciente.paciente.nombre } class="swal2-input"></input></td>
+              <td><input id="editarNombre" type="text" value=${ item.paciente.nombre } class="swal2-input"></input></td>
             <tr>
             </tr>     
               <td> Apellido </td>
-              <td><input id="editarApellido" type="text" value=${ paciente.paciente.apellido } class="swal2-input"></input></td>
+              <td><input id="editarApellido" type="text" value=${ item.paciente.apellido } class="swal2-input"></input></td>
             <tr>
             </tr>
               <td> Género </td>
               <td>
                 <form>
                   <select id="editarGenero">
-                    <option value=${ paciente.paciente.genero }>${ paciente.paciente.genero }</option>
+                    <option value=${ item.paciente.genero }>${ item.paciente.genero }</option>
                     ${ 
-                      generos.map( (generos) => {
+                      generos.map((item) => {
                         return(
-                          `<option value=${generos.genero.nombre}>${generos.genero.nombre}</option>`
+                          `<option value=${item.genero.nombre}>${item.genero.nombre}</option>`
                         )
                       })            
                     }
@@ -58,11 +58,11 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,paci
               <td>
                 <form>
                   <select id="editarEps">
-                    <option value=${ paciente.paciente.eps }>${ paciente.paciente.eps }</option>
+                    <option value=${ item.paciente.eps }>${ item.paciente.eps }</option>
                     ${ 
-                      epss.map( (epss) => {
+                      epss.map((item) => {
                         return(
-                          `<option value=${epss.eps.nombre}>${epss.eps.nombre}</option>`
+                          `<option value=${item.eps.nombre}>${item.eps.nombre}</option>`
                         )
                       })            
                     }
@@ -94,19 +94,19 @@ export const UpdatePaciente = (paciente,urlApiPacientes,elementRender,citas,paci
               "genero": "${document.getElementById('editarGenero').value}",
               "eps": "${document.getElementById('editarEps').value}"
             },
-            "id": ${paciente.id}
+            "id": ${item.id}
         }`;
-        const fetchResponse = fetchUpdate(urlApiPacientes,JSON.stringify(contenidoPaciente),paciente.id);
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(contenidoPaciente),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
-              let pacientes;
-              await fetch(urlApiPacientes)                      //API REST para consumo de la tabla Pacientes de la base de datos
+              let arrayResponse;
+              await fetch(urlApi)                      //API REST para consumo de la tabla Pacientes de la base de datos
                   .then(response => response.json())
-                  .then(data => pacientes = data);            
+                  .then(data => arrayResponse = data);            
               
-              const root = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
-              root.render(elementRender(urlApiPacientes,citas,pacientes,tratamientos,doctores,consultorios,epss,generos));
+              const row = ReactDOM.createRoot(document.getElementById('contenidoPacientes'));
+              row.render(<Row item={item} urlApi={urlApi} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />);
 
               Swal.fire("Paciente Actualizado", "", "success"); 
             } 
