@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateCita = (cita,urlApiCitas,elementRender,pacientes,tratamientos,doctores,consultorios) => {
+export const UpdateCita = (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,consultorios) => {
   Swal.fire({
     title: "Editar Cita Médica",
     imageUrl: "./logo192.png",
@@ -132,13 +132,14 @@ export const UpdateCita = (cita,urlApiCitas,elementRender,pacientes,tratamientos
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
-              let citas;
+              let citasResponse;
               await fetch(urlApiCitas)                      //API REST para consumo de la tabla Citas de la base de datos
                   .then(response => response.json())
-                  .then(data => citas = data);
+                  .then(data => citasResponse = data);
 
-              const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
-              root.render(elementRender(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
+              console.log(citasResponse[cita.id-1])
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+cita.id ));
+              row.render(<Row item={citasResponse[cita.id-1]} urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />);
 
               Swal.fire("Cita Actualizada", "", "success"); 
             } 

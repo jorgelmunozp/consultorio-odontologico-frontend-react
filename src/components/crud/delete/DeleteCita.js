@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-  export const DeleteCita = async (cita,urlApiCitas,elementHtml,pacientes,tratamientos,doctores,consultorios) => {
+  export const DeleteCita = async (cita,urlApiCitas,Row,pacientes,tratamientos,doctores,consultorios) => {
     Swal.fire({
       title: "Eliminar Cita?",
         html: `
@@ -60,13 +60,13 @@ import { fetchDelete } from '../../../helpers/fetchDelete';
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) {
-              let citas;
+              let citasResponse;
               await fetch(urlApiCitas)                      
                   .then(response => response.json())
-                  .then(data => citas = data);
+                  .then(data => citasResponse = data);
       
-              const root = ReactDOM.createRoot(document.getElementById('contenidoCitas'));
-              root.render(elementHtml(urlApiCitas,citas,pacientes,tratamientos,doctores,consultorios));
+              const row = ReactDOM.createRoot(document.getElementById( 'row'+cita.id ));
+              row.render();
       
               Swal.fire({ title: "Cita Eliminada", icon: "success" });
             }

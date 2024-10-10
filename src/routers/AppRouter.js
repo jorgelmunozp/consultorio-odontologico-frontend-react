@@ -2,10 +2,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DashboardRoutes } from "./DashboardRoutes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-import { HomeScreen } from "../components/views/home/HomeScreen";
+import { TemplateScreen } from '../components/views/TemplateScreen';
 import { Navbar } from "../components/menu/Navbar";
-import IndexScreen from '../components/views/index/IndexScreen';
 // import { LoginScreen } from "../components/login/LoginScreen";
+import { HomeScreen } from "../components/views/home/HomeScreen";
 import { NotFound } from '../components/views/404/NotFound';
 import { myColor, myTitle } from "../global";
 
@@ -20,19 +20,19 @@ export const AppRouter = () => {
         <Routes>
           <Route path={urlBaseFrontend + "/index"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
+              <TemplateScreen />
             </PublicRoute>
           } />
 
           <Route path={"/" + urlBaseFrontend} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
+              <TemplateScreen />
             </PublicRoute>
           } />
 
           <Route path={"/*"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <IndexScreen />
+              <TemplateScreen />
             </PublicRoute>
           } />
 

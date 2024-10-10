@@ -1,121 +1,101 @@
+import React from 'react'
 
-import React, { useState } from 'react';
-import { useFetch } from "../../../hooks/useFetch";
-import { Inicio } from './IndexContent';
-import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas';
-import { ConsultarPacientes } from '../../crud/consultar/ConsultarPacientes';
-import { ConsultarTratamientos } from '../../crud/consultar/ConsultarTratamientos';
-import { ConsultarDoctores } from '../../crud/consultar/ConsultarDoctores';
-import { ConsultarConsultorios } from '../../crud/consultar/ConsultarConsultorios';
-import { CreateCita } from '../../crud/create/CreateCita';
-import { CreatePaciente } from '../../crud/create/CreatePaciente';
-import { CreateTratamiento } from '../../crud/create/CreateTratamiento';
-import { CreateDoctor } from '../../crud/create/CreateDoctor';
-import { CreateConsultorio } from '../../crud/create/CreateConsultorio';
-import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
-import { HomeIndex } from '../../icons/home/HomeIndex';
-import { HomePlus } from '../../icons/home/HomePlus';
-import { HomeSearch } from '../../icons/home/HomeSearch';
-import { CalendarSearch } from '../../icons/calendar/CalendarSearch';
-import { CalendarPlus } from '../../icons/calendar/CalendarPlus';
-import { UserSearch } from '../../icons/user/UserSearch';
-import { UserPlus } from '../../icons/user/UserPlus';
-import { FilterSearch } from '../../icons/filter/FilterSearch';
-import { FilterPlus } from '../../icons/filter/FilterPlus';
-import 'bootstrap/dist/css/bootstrap.css';
-import '../../../assets/styles/App.css';
+import { FaTooth } from 'react-icons/fa';
+import { LiaToothSolid } from "react-icons/lia";
+import { PiTooth, PiToothFill } from "react-icons/pi";
+import { GiTooth } from "react-icons/gi";
+import { LiaTeethSolid, LiaTeethOpenSolid } from "react-icons/lia";
+import { FaTeeth, FaTeethOpen } from "react-icons/fa";
+import { TbDental, TbDentalBroken, TbDentalOff } from "react-icons/tb";
 
-function IndexScreen() {
-  const iconHeight = 1.25;
-  const iconWidth = 1.25;
-  const iconStrokeWidth = 1.5;
-  const iconSize = 17.5;
+const iconSize = 30;
 
-  const menuOpcion = 1;
-  const [menu, setMenu] = useState(menuOpcion);
+const services = [
+  {
+      "title":"Blanqueamiento",
+      "icon":<TbDental size={iconSize}/>,
+      "content":"Blanqueamiento"
+  },
+  {
+      "title":"Endodoncia",
+      "icon":<TbDentalBroken size={iconSize}/>,
+      "content":"Endodoncia"
+  },    
+  {
+      "title":"Cirugía",
+      "icon":<TbDentalOff size={iconSize}/>,
+      "content":"Cirugía"
+  },
+  {
+      "title":"Pediatría",
+      "icon":<LiaToothSolid size={iconSize}/>,
+      "content":"Pediatría"
+  },  
+  {
+    "title":"Ortodoncia",
+    "icon":<PiTooth size={iconSize}/>,
+    "content":"Ortodoncia"
+  },
+  {
+    "title":"Periodoncia",
+    "icon":<LiaTeethSolid size={iconSize}/>,
+    "content":"Periodoncia"
+  },    
+  {
+    "title":"Radiología",
+    "icon":<FaTeeth size={iconSize}/>,
+    "content":"Radiología"
+  },
+  {
+    "title":"Prostodoncia",
+    "icon":<GiTooth size={iconSize}/>,
+    "content":"Prostodoncia"
+  },
+  {
+    "title":"Odontología",
+    "icon":<FaTooth size={iconSize}/>,
+    "content":"Odontología"
+  },
+  {
+    "title":"Diseño Sonrisa",
+    "icon":<LiaTeethOpenSolid size={iconSize}/>,
+    "content":"Diseño Sonrisa"
+  },
+  {
+    "title":"Patología",
+    "icon":<PiToothFill size={iconSize}/>,
+    "content":"Patología"
+  },
+  {
+    "title":"Profilaxis",
+    "icon":<FaTeethOpen size={iconSize}/>,
+    "content":"Profilaxis"
+  }                   
+];
 
-  const urlApiCitas = process.env.REACT_APP_API_CITAS;
-  const citas = useFetch(urlApiCitas).data;
-
-  const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
-  const pacientes = useFetch(urlApiPacientes).data;
-
-  const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
-  const doctores = useFetch(urlApiDoctores).data;
-
-  const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
-  const consultorios = useFetch(urlApiConsultorios).data;
-
-  const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
-  const tratamientos = useFetch(urlApiTratamientos).data;
-
-  const urlApiEpss = process.env.REACT_APP_API_EPSS;
-  const epss = useFetch(urlApiEpss).data;
-
-  const urlApiGeneros = process.env.REACT_APP_API_GENEROS;
-  const generos  = useFetch(urlApiGeneros).data;
-
+export const IndexScreen = () => {
   return (
-    <div className="App user-select-none">
-      <aside className='float-start pt-5'>    {/** Menu lateral */}
-        <nav className="navbar bg-light">
-          <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
-            <div className="offcanvas-header">
-              <h5 className="offcanvas-title" id="offcanvasBodyLabel">⌂</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div className="offcanvas-body">
-              <ul className="navbar-nav">
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </aside>
-      <body className='App-body d-flex bg-white'>
-        <div id='contenidoBody' className='contenidoBody mx-auto'>
-          <div id="App" className="App"> 
-              <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes}
-                urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} 
-                urlApiConsultorios={ urlApiConsultorios} citas={citas} pacientes={pacientes}
-                tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}
-                epss={epss} generos={generos}
-              />
+    <div className="App">
+        <center><h5 className='main-color fs-sm-2 pt-4 pt-sm-5 pb-2 pb-sm-3'>Servicios Odontológicos</h5></center> 
+        <div className="container-fluid bg-light px-0">
+          <div className="row">   
+            {
+              services.map((service) => {
+                return (
+                  <div key={ service.title } className="col-lg-4 col-sm-6 col-6 mb-1 mb-sm-2 text-center">
+                    <div className="card border-0 shadow rounded-xs pt-0">
+                      <div className="card-body"> 
+                        <i className="main-color">{ service.icon }</i>
+                        <h6 className="text-secondary fs-sm-1 mt-0 mb-0 mb-sm-2 text-nowrap text-truncate">{ service.title }</h6>
+                        {/* <p className='text-muted text-justify'>{ service.content }</p> */}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
-      </body>
     </div>
-  );
+  )
 }
-
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,citas,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
-  if(menu === 1){ return <Inicio /> }
-  else if(menu === 2){ return <ConsultarCitas urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 3){ return <CreateCita urlApiCitas={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 4){ return <ConsultarPacientes urlApiPacientes={urlApiPacientes} citas={citas} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} /> }
-  else if(menu === 5){ return <CreatePaciente urlApiPacientes={urlApiPacientes} epss={epss} generos={generos} /> }
-  else if(menu === 6){ return <ConsultarTratamientos urlApiTratamientos={urlApiTratamientos} citas={citas} pacientes={pacientes} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 7){ return <CreateTratamiento urlApiTratamientos={urlApiTratamientos} consultorios={consultorios} doctores={doctores} />; }
-  else if(menu === 8){ return <ConsultarDoctores urlApiDoctores={urlApiDoctores} citas={citas} pacientes={pacientes} tratamientos={tratamientos} consultorios={consultorios} /> }
-  else if(menu === 9){ return <CreateDoctor urlApiDoctores={urlApiDoctores} tratamientos={tratamientos} /> }
-  else if(menu === 10){ return <ConsultarConsultorios urlApiConsultorios={urlApiConsultorios} citas={citas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} /> }
-  else if(menu === 11){ return <CreateConsultorio urlApiConsultorios={urlApiConsultorios} consultorios={consultorios} /> }
-  else{ return <Inicio /> }
-}
-
-export default IndexScreen;
