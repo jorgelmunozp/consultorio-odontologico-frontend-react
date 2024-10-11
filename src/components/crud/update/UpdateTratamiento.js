@@ -35,9 +35,9 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
                 <select id="editarConsultorio">
                   <option value=${ item.tratamiento.consultorio }>${ item.tratamiento.consultorio }</option>
                   ${ 
-                    consultorios.map((item) => {
+                    consultorios.map((consultorios) => {
                       return(
-                        `<option value=${item.consultorio.numero}>${item.consultorio.numero + " - " + item.consultorio.nombre}</option>`
+                        `<option value=${consultorios.consultorio.numero}>${consultorios.consultorio.numero + " - " + consultorios.consultorio.nombre}</option>`
                       )
                     })            
                   }
@@ -52,9 +52,9 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
                 <select id="editarDoctor">
                   <option value=${ item.tratamiento.doctor }>${ item.tratamiento.doctor }</option>
                   ${ 
-                    doctores.map((item) => {
+                    doctores.map((doctores) => {
                       return(
-                        `<option value=${item.doctor.nombre + "\&nbsp;" + item.doctor.apellido}>${item.doctor.nombre + "\&nbsp;" + item.doctor.apellido}</option>`
+                        `<option value=${doctores.doctor.nombre + " " + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
                       )
                     })            
                   }

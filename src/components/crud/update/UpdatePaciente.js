@@ -43,9 +43,9 @@ export const UpdatePaciente = (item,urlApi,Row,epss,generos) => {
                   <select id="editarGenero">
                     <option value=${ item.paciente.genero }>${ item.paciente.genero }</option>
                     ${ 
-                      generos.map((item) => {
+                      generos.map((generos) => {
                         return(
-                          `<option value=${item.genero.nombre}>${item.genero.nombre}</option>`
+                          `<option value=${generos.genero.nombre}>${generos.genero.nombre}</option>`
                         )
                       })            
                     }
@@ -60,9 +60,9 @@ export const UpdatePaciente = (item,urlApi,Row,epss,generos) => {
                   <select id="editarEps">
                     <option value=${ item.paciente.eps }>${ item.paciente.eps }</option>
                     ${ 
-                      epss.map((item) => {
+                      epss.map((epss) => {
                         return(
-                          `<option value=${item.eps.nombre}>${item.eps.nombre}</option>`
+                          `<option value=${epss.eps.nombre}>${epss.eps.nombre}</option>`
                         )
                       })            
                     }

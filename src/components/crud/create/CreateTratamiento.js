@@ -4,8 +4,8 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaStethoscope } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
-export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) => {
-  const contenidoTratamientos = `JSON.stringify({
+export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
+  const itemUpdated = `JSON.stringify({
     "tratamiento": {
       "nombre": document.getElementById("nombreTratamiento").value,
       "consultorio": document.getElementById("consultorioTratamiento").innerText,
@@ -82,7 +82,7 @@ export const CreateTratamiento = ({ urlApiTratamientos,consultorios,doctores }) 
           </div>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApiTratamientos}  contenidoApi={contenidoTratamientos} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
             </div>
           </div>              
 			  </div>

@@ -39,9 +39,9 @@ export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
                   <select id="editarEspecialidad">
                     <option value=${ item.doctor.especialidad }>${ item.doctor.especialidad }</option>
                     ${ 
-                      tratamientos.map((item) => {
+                      tratamientos.map((tratamientos) => {
                         return(
-                          `<option value=${item.tratamiento.nombre}>${item.tratamiento.nombre}</option>`
+                          `<option value=${tratamientos.tratamiento.nombre}>${tratamientos.tratamiento.nombre}</option>`
                         )
                       })            
                     }

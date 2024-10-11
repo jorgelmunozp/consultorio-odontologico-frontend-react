@@ -4,8 +4,8 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { FaUserMd } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
-export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
-  const contenidoDoctores = `JSON.stringify({
+export const CreateDoctor = ({ urlApi,tratamientos }) => {
+  const itemUpdated = `JSON.stringify({
     "doctor": {
       "nombre": document.getElementById("nombreDoctor").value,
       "apellido": document.getElementById("apellidoDoctor").value,
@@ -73,7 +73,7 @@ export const CreateDoctor = ({ urlApiDoctores,tratamientos }) => {
               </div>
               <div className='row mt-4 mt-sm-5'>
                 <div className='col'>
-                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApiDoctores} contenidoApi={contenidoDoctores} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
                 </div>
               </div>                
 			    </div>

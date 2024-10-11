@@ -6,8 +6,8 @@ import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 import { getTime } from '../../../helpers/getTime';
 import { getDate } from '../../../helpers/getDate';
 
-export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consultorios }) => {
-  const contenidoCitas = `JSON.stringify({
+export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
+  const itemUpdated = `JSON.stringify({
     "cita": {
       "paciente": document.getElementById("registroPaciente").innerText,
       "fecha": document.getElementById("registroFecha").value,
@@ -126,7 +126,7 @@ export const CreateCita = ({ urlApiCitas,pacientes,tratamientos,doctores,consult
           </div>
           <div className='row mt-2 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApiCitas} contenidoApi={contenidoCitas} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApi} contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
             </div>
           </div>   
         </div>

@@ -4,14 +4,14 @@ import { TextField } from "@mui/material";
 import { FaClinicMedical } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
-export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
-  const itemConsultorio = `{
+export const CreateConsultorio = ({ urlApi }) => {
+  const itemUpdated = `{
     "consultorio": {
       "nombre": document.getElementById("ConsultoriosNombre").value,
       "numero": document.getElementById("ConsultoriosNumero").value
     },
   }`;
-  const contenidoConsultorios = `JSON.stringify(` + itemConsultorio  + `)`;
+  const contenidoConsultorios = `JSON.stringify(` + itemUpdated  + `)`;
 
   const [numero, setNumero] = useState("");         //Input Número
   const handleChangeNumero = (event) => { setNumero(event.target.value); };
@@ -55,7 +55,7 @@ export const CreateConsultorio = ({ urlApiConsultorios,consultorios }) => {
           </div>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApiConsultorios} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
             </div>
           </div>
         </div>
