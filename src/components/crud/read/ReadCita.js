@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
+import { Logo } from '../../icons/logo/Logo'
 
-export const ReadCita = (cita) => {
+export const ReadCita = (item) => {
   Swal.fire({
     title: "Cita Médica",
     imageUrl: "./logo192.png",
@@ -20,31 +21,31 @@ export const ReadCita = (cita) => {
           <tbody>
             <tr>
               <td> Código </td>
-              <td>${ cita.id }</td>
+              <td>${ item.id }</td>
             <tr>
             </tr>
               <td> Paciente </td>
-              <td>${ cita.cita.paciente }</td>
+              <td>${ item.cita.paciente }</td>
             <tr>
             </tr>        
               <td> Fecha </td>
-              <td>${ cita.cita.fecha }</td>
+              <td>${ item.cita.fecha }</td>
             <tr>
             </tr>     
               <td> Hora </td>
-              <td>${ cita.cita.hora }</td>
+              <td>${ item.cita.hora }</td>
             <tr>
             </tr>
               <td> Consultorio </td>
-              <td>${ cita.cita.consultorio }</td>
+              <td>${ item.cita.consultorio }</td>
             <tr>
             </tr>
               <td> Médico </td>
-              <td>${ cita.cita.doctor }</td>
+              <td>${ item.cita.doctor }</td>
             <tr>
             </tr>
               <td> Tratamiento </td>
-              <td>${ cita.cita.tratamiento }</td>
+              <td>${ item.cita.tratamiento }</td>
             </tr>
           </tbody>
         </table>

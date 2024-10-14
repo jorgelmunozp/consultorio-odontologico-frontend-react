@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
+export const UpdateDoctor = (item,urlApi,Row,tratamientos,generos) => {
   Swal.fire({
     title: "Doctor",
     imageUrl: "./logo192.png",
@@ -25,12 +25,33 @@ export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
               <td><p class="swal2-input idText"> ${ item.id } </p></td>
             <tr>
             </tr>        
+              <td> Identificacion </td>
+              <td><input id="editarIdentificacion" type="number" value=${ item.doctor.identificacion } class="swal2-input"></input></td>
+            <tr>
+            </tr>        
               <td> Nombre </td>
               <td><input id="editarNombre" type="text" value=${ item.doctor.nombre } class="swal2-input"></input></td>
             <tr>
             </tr>     
               <td> Apellido </td>
               <td><input id="editarApellido" type="text" value=${ item.doctor.apellido } class="swal2-input"></input></td>
+            <tr>
+            </tr>        
+              <td> Género </td>
+              <td>
+                  <form>
+                    <select id="editarGenero">
+                      <option value=${ item.doctor.genero }>${ item.doctor.genero }</option>
+                      ${ 
+                        generos.map((generos) => {
+                          return(
+                            `<option value=${generos.genero.nombre}>${generos.genero.nombre}</option>`
+                          )
+                        })            
+                      }
+                    </select>
+                  </form>
+                </td>
             <tr>
             </tr>
               <td> Especialidad </td>
@@ -60,13 +81,17 @@ export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
   cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {
-      if(document.getElementById('editarNombre').value!== "" &&
+      if(document.getElementById('editarIdentificacion').value!== "" &&
+      document.getElementById('editarNombre').value!== "" &&
       document.getElementById('editarApellido').value!== "" &&
+      document.getElementById('editarGenero').value!== "" &&
       document.getElementById('editarEspecialidad').value!== "" ) {
         const itemUpdated = `{
           "doctor": {
+            "identificacion": "${document.getElementById('editarIdentificacion').value}",
             "nombre": "${document.getElementById('editarNombre').value}",
             "apellido": "${document.getElementById('editarApellido').value}",
+            "genero": "${document.getElementById('editarGenero').value}",
             "especialidad": "${document.getElementById('editarEspecialidad').value}"
           },
           "id": ${item.id}
@@ -81,7 +106,7 @@ export const UpdateDoctor = (item,urlApi,Row,tratamientos) => {
                   .then(data => arrayResponse = data);
 
               const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
-              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} tratamientos={tratamientos} />);
+              row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} tratamientos={tratamientos} generos={generos} />);
 
               Swal.fire("Doctor Actualizado", "", "success"); 
             } 

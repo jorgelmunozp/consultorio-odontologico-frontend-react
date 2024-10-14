@@ -106,7 +106,8 @@ label, .MuiSelect-select {
   font-size: 1.6vmin;
   font-family: 'Century Gothic', 'centuryGothic'!important;
   color: var(--darkgray-color)!important;
-  min-width: 30vmin!important;
+  min-width: 10vmin!important;
+  text-align: left;
 }
 .idText {
   text-align: left;
@@ -144,7 +145,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color-scheme: inherit;
   cursor: pointer;
 }
-select {
+select {                                  /* Select Swal views */      
   background-color: var(--white-color);
   font-size: inherit;
   font-family: inherit;
@@ -199,6 +200,7 @@ select::-ms-expand { display: none; }
   color: var(--dark-color);
   font-size: 3.5vmin;
   padding: 1vmin 0.75vmin;
+  text-wrap: nowrap;
 }
 .swalTable td:nth-child(even){background-color:var(--white-color);}
 .swalTable td:nth-child(odd){background-color: #f1f1f1;}

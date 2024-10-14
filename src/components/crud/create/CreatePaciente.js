@@ -69,7 +69,7 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
           <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="generoPaciente-label" className="select">Género</InputLabel>
+                <InputLabel id="generoPaciente-label" >Género</InputLabel>
                 <Select value={genero} onChange={handleChangeGenero} id="generoPaciente" label="generoPaciente" labelId="generoPaciente-label">
                   {generos.map((generos) => {
                     return (
@@ -83,7 +83,7 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
             </div>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="epsPaciente-label" className="select">Eps</InputLabel>
+                <InputLabel id="epsPaciente-label" >Eps</InputLabel>
                 <Select value={eps} onChange={handleChangeEps} id="epsPaciente" label="epsPaciente" labelId="epsPaciente-label">
                   {epss.map((epss) => {
                     return (

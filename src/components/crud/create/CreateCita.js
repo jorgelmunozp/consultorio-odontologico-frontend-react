@@ -59,7 +59,7 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
           <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="registroPaciente-label" className="select">Paciente</InputLabel>
+                <InputLabel id="registroPaciente-label">Paciente</InputLabel>
                 <Select value={paciente} onChange={handleChangePaciente} id="registroPaciente" label="registroPaciente" labelId="registroPaciente-label">
                   {pacientes.map((pacientes) => {
                     return (
@@ -73,7 +73,7 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
             </div>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="registroTratamiento-label" className="select">Tratamiento</InputLabel>
+                <InputLabel id="registroTratamiento-label" >Tratamiento</InputLabel>
                 <Select value={tratamiento} onChange={handleChangeTratamiento} id="registroTratamiento" label="registroTratamiento" labelId="registroTratamiento-label">
                   {tratamientos.map((tratamientos) => {
                     return (
@@ -97,7 +97,7 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
           <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                  <InputLabel id="registroDoctor-label" className="select">Doctor</InputLabel>
+                  <InputLabel id="registroDoctor-label" >Doctor</InputLabel>
                   <Select value={doctor} onChange={handleChangeDoctor} id="registroDoctor" label="Especialidad" labelId="registroDoctor-label">
                     {doctores.map((doctores) => {
                       return (
@@ -111,7 +111,7 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
             </div>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                  <InputLabel id="registroConsultorio-label" className="select">Consultorio</InputLabel>
+                  <InputLabel id="registroConsultorio-label" >Consultorio</InputLabel>
                   <Select value={consultorio} onChange={handleChangeConsultorio} id="registroConsultorio" label="registroConsultorio" labelId="registroConsultorio-label">
                     {consultorios.map((consultorios) => {
                       return (

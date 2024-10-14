@@ -53,7 +53,7 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
           <div className='row d-block d-sm-flex'>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="nombreTratamiento-label" className="select">Consultorio</InputLabel>
+                <InputLabel id="nombreTratamiento-label" >Consultorio</InputLabel>
                 <Select value={consultorio} onChange={handleChangeConsultorio} id="consultorioTratamiento" label="consultorioTratamiento" labelId="consultorioTratamiento-label">
                   {consultorios.map((consultorios) => {
                     return (
@@ -67,7 +67,7 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
             </div>
             <div className='col'>
               <FormControl fullWidth margin="dense">
-                <InputLabel id="doctorTratamiento-label" className="select">Médico</InputLabel>
+                <InputLabel id="doctorTratamiento-label" >Médico</InputLabel>
                 <Select value={doctor} onChange={handleChangeDoctor} id="doctorTratamiento" label="doctorTratamiento" labelId="doctorTratamiento-label">
                   {doctores.map((doctores) => {
                     return (

@@ -111,8 +111,8 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   else if(menu === 5){ return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} /> }
   else if(menu === 6){ return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} /> }
   else if(menu === 7){ return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />; }
-  else if(menu === 8){ return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} /> }
-  else if(menu === 9){ return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} /> }
+  else if(menu === 8){ return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} /> }
+  else if(menu === 9){ return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} /> }
   else if(menu === 10){ return <ConsultarConsultorios urlApi={urlApiConsultorios} /> }
   else if(menu === 11){ return <CreateConsultorio urlApi={urlApiConsultorios} consultorios={consultorios} /> }
   else{ return <IndexScreen urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }

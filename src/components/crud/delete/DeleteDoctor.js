@@ -20,12 +20,20 @@ export const DeleteDoctor = (item,urlApi) => {
               <td>${ item.id }</td>
             <tr>
             </tr>        
+              <td> Identificacion </td>
+              <td>${ item.doctor.identificacion }</td>
+            <tr>
+            </tr>        
               <td> Nombre </td>
               <td>${ item.doctor.nombre }</td>
             <tr>
             </tr>     
               <td> Apellido </td>
               <td>${ item.doctor.apellido }</td>
+            <tr>
+            </tr>        
+              <td> Género </td>
+              <td>${ item.doctor.genero }</td>
             <tr>
             </tr>
               <td> Especialidad </td>
