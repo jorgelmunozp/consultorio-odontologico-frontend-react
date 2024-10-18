@@ -1,29 +1,19 @@
-import '../../modal/modal.css';
-import { Logo } from '../../icons/logo/Logo';
-import { myColor } from '../../../global';
+import './modal.css';
+import { myColor } from '../../global';
 
-export const ReadConsultorio = ({ item, title, buttons, setOpen }) => {
+export const Modal = ({ Icon, setOpen, title, content, buttons }) => {
     return (
         <>
           <div className={'darkBackground'} onClick={() => setOpen(false)} >
             <div className={'centered'}>
               <div className={'modalBox'}>
                 <div className={'modalHeader'}>
-                  <center><Logo color={myColor} height={2} width={2} className={'center'} /></center>
+                  <center><Icon color={myColor} height={2} width={2} className={'center'} /></center>
                   <h4 className={'heading main-color'}>{title}</h4>
                 </div>
                 <div className={'modalContent'}>
                   <center>
-                    <table class="swalTable" border='1'>
-                      <thead>
-                        <tr><th>Parámetro</th><th>Datos</th></tr>
-                      </thead>
-                      <tbody>
-                        <tr><td> Código </td><td>{ item.id }</td></tr>
-                        <tr><td> Número </td><td>{ item.consultorio.numero }</td></tr>
-                        <tr><td> Nombre </td><td>{ item.consultorio.nombre }</td></tr>
-                      </tbody>
-                    </table>
+                    <h3>{content}</h3>
                   </center>
                 </div>
                 <div className={'modalActions'}>

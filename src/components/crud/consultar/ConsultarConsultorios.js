@@ -5,11 +5,15 @@ import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { useFetch } from "../../../hooks/useFetch";
+import { Modal } from '../../modal/Modal';
+import ReactDOM from 'react-dom/client';
+import { fetchDelete } from '../../../helpers/fetchDelete';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
+import { Logo } from '../../icons/logo/Logo';
 
 const Row = ({ item,urlApi }) => {
   const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
@@ -19,64 +23,76 @@ const Row = ({ item,urlApi }) => {
   const [responseStatus, setResponseStatus] = useState("");
 
   const [readOpen, setReadOpen] = useState(false);
-    readOpen ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const [alert, setAlert] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(false);
+  const [alertWarning, setAlertWarning] = useState(false);
+  const [alertError, setAlertError] = useState(false);
   
-    return (
-          <>
-      { readOpen && <ReadConsultorio item={item} setReadOpen={setReadOpen} title={'Consultorio'} buttons={1} /> }
-            <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
-            <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
-            <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
-            {/* <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(item) }><TbHomeSearch className='text-secondary'/></button></td> */}
-            <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) }><TbHomeEdit className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(item,urlApi) }><TbHomeX className='text-secondary'/></button></td>
-          </>
-        )
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  
+  return (
+        <>
+          <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
+          <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
+          <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
+          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
+          { readOpen && <ReadConsultorio item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
+          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => UpdateConsultorio(item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) }><TbHomeEdit className='text-secondary'/></button></td>
+          { updateOpen }
+          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
+          { deleteOpen && <DeleteConsultorio item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+          
+          { alert === 'success' && <Modal Icon={Logo} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'error' && <Modal Icon={Logo} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+        </>
+      )
   }; 
 
 export const ConsultarConsultorios = ({ urlApi }) => {
   const consultorios = useFetch(urlApi).data;
 
-    /* Query */
-    let [ queryCode, setQueryCode ] = useState('');
-    let [ queryNumber, setQueryNumber ] = useState('');
-    let [ queryName, setQueryName ] = useState('');
+  /* Query */
+  let [ queryCode, setQueryCode ] = useState('');
+  let [ queryNumber, setQueryNumber ] = useState('');
+  let [ queryName, setQueryName ] = useState('');
+
+  const arrayFiltered = useMemo( () => getConsultoriosFiltered(consultorios,queryCode,queryNumber,queryName), [consultorios,queryCode,queryNumber,queryName] );
+
+  const titles = ['Código','Número','Nombre'];
+  const queries = [queryCode,queryNumber,queryName];
+  const setQueries = [setQueryCode,setQueryNumber,setQueryName];
   
-    const arrayFiltered = useMemo( () => getConsultoriosFiltered(consultorios,queryCode,queryNumber,queryName), [consultorios,queryCode,queryNumber,queryName] );
-  
-    const titles = ['Código','Número','Nombre'];
-    const queries = [queryCode,queryNumber,queryName];
-    const setQueries = [setQueryCode,setQueryNumber,setQueryName];
-    
-    /* Pagination */
-    const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
-    const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-    const numPages = Math.floor(arrayFiltered.length/itemPerPage);     // Se calcula la cantidad de páginas = cantidad de items/item por página
-    const resPages = arrayFiltered.length%itemPerPage;                 // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
-    let indexPages = [];
-    let activePage = [true];                                            // [true]
-    if(resPages !== 0 ){
-      for(let i = 0; i <= numPages; i++) { 
-        indexPages.push(i);                                             // [0,1,2,3]
-        if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-      }
-    } else if(resPages === 0 ){
-      for(let i = 0; i < numPages; i++) { 
-        indexPages.push(i);                                             // [0,1,2,3]
-        if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-      }
+  /* Pagination */
+  const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
+  const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+  const numPages = Math.floor(arrayFiltered.length/itemPerPage);     // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const resPages = arrayFiltered.length%itemPerPage;                 // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+  let indexPages = [];
+  let activePage = [true];                                            // [true]
+  if(resPages !== 0 ){
+    for(let i = 0; i <= numPages; i++) { 
+      indexPages.push(i);                                             // [0,1,2,3]
+      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
     }
-    const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
-  
-    /* Sort */
-    const [sortBy, setSortBy] = useState(0);
-    function sortByIdUp(a, b) { return a.id - b.id; }
-    function sortByIdDown(a, b) { return b.id - a.id; }
-    function sortByNumberUp(a, b) { return a.consultorio.numero - b.consultorio.numero; }
-    function sortByNumberDown(a, b) { return b.consultorio.numero - a.consultorio.numero; }
-    function sortByNameUp(a, b) { return a.consultorio.nombre.localeCompare(b.consultorio.nombre); }
-    function sortByNameDown(a, b) { return b.consultorio.nombre.localeCompare(a.consultorio.nombre); }
+  } else if(resPages === 0 ){
+    for(let i = 0; i < numPages; i++) { 
+      indexPages.push(i);                                             // [0,1,2,3]
+      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+    }
+  }
+  const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+
+  /* Sort */
+  const [sortBy, setSortBy] = useState(0);
+  function sortByIdUp(a, b) { return a.id - b.id; }
+  function sortByIdDown(a, b) { return b.id - a.id; }
+  function sortByNumberUp(a, b) { return a.consultorio.numero - b.consultorio.numero; }
+  function sortByNumberDown(a, b) { return b.consultorio.numero - a.consultorio.numero; }
+  function sortByNameUp(a, b) { return a.consultorio.nombre.localeCompare(b.consultorio.nombre); }
+  function sortByNameDown(a, b) { return b.consultorio.nombre.localeCompare(a.consultorio.nombre); }
   
   return (
     <div className="App">
