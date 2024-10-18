@@ -35,14 +35,13 @@ const Row = ({ item,urlApi }) => {
           <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
           <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
-          { readOpen && <ReadConsultorio item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => UpdateConsultorio(item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) }><TbHomeEdit className='text-secondary'/></button></td>
-          { updateOpen }
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
+          { readOpen && <ReadConsultorio item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
+          { updateOpen }
           { deleteOpen && <DeleteConsultorio item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          
-          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} iconAnimation={'iconAnimation'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
-          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} iconAnimation={'iconAnimation'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
         </>
       )
   }; 

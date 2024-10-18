@@ -1,6 +1,6 @@
 import './modal.css';
 
-export const Modal = ({ Icon, iconColor, iconAnimation, setOpen, title, content, buttons }) => {
+export const Modal = ({ Icon, iconColor, setOpen, title, content, buttons }) => {
     return (
         <>
           <div className={'darkBackground'} onClick={() => setOpen(false)} >
