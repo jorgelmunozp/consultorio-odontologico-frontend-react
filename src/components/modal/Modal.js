@@ -1,13 +1,13 @@
 import './modal.css';
 
-export const Modal = ({ Icon, iconColor, setOpen, title, content, buttons }) => {
+export const Modal = ({ Icon, iconColor, iconAnimation, setOpen, title, content, buttons }) => {
     return (
         <>
           <div className={'darkBackground'} onClick={() => setOpen(false)} >
             <div className={'centered'}>
               <div className={'modalBox'}>
                 <div className={'modalHeader'}>
-                  <center><Icon color={iconColor} height={5.5} width={5.5} className={'center'} /></center>
+                  <center><Icon color={iconColor} height={5.5} width={5.5} className={'modalIcon center mt-4'} /></center>
                   <h3 className={'modalTitle main-color pt-3'}>{title}</h3>
                 </div>
                   {

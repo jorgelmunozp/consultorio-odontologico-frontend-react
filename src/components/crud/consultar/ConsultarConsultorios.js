@@ -41,8 +41,8 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           { deleteOpen && <DeleteConsultorio item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           
-          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
-          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} iconAnimation={'iconAnimation'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} iconAnimation={'iconAnimation'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
         </>
       )
   }; 
