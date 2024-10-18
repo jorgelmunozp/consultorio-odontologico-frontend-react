@@ -1,21 +1,23 @@
 import './modal.css';
-import { myColor } from '../../global';
 
-export const Modal = ({ Icon, setOpen, title, content, buttons }) => {
+export const Modal = ({ Icon, iconColor, setOpen, title, content, buttons }) => {
     return (
         <>
           <div className={'darkBackground'} onClick={() => setOpen(false)} >
             <div className={'centered'}>
               <div className={'modalBox'}>
                 <div className={'modalHeader'}>
-                  <center><Icon color={myColor} height={2} width={2} className={'center'} /></center>
-                  <h4 className={'heading main-color'}>{title}</h4>
+                  <center><Icon color={iconColor} height={5.5} width={5.5} className={'center'} /></center>
+                  <h3 className={'modalTitle main-color pt-3'}>{title}</h3>
                 </div>
-                <div className={'modalContent'}>
-                  <center>
-                    <h3>{content}</h3>
-                  </center>
-                </div>
+                  {
+                    content ? <div className={'modalContent'}>
+                                <center>
+                                  <h3>{content}</h3>
+                                </center>
+                              </div>
+                            : ''
+                  }
                 <div className={'modalActions'}>
                   <div className={'actionsContainer'}>
                       {

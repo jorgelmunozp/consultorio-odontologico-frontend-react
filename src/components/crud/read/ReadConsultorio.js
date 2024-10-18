@@ -10,7 +10,7 @@ export const ReadConsultorio = ({ item, title, buttons, setOpen }) => {
               <div className={'modalBox'}>
                 <div className={'modalHeader'}>
                   <center><Logo color={myColor} height={2} width={2} className={'center'} /></center>
-                  <h4 className={'heading main-color'}>{title}</h4>
+                  <h4 className={'modalTitle main-color'}>{title}</h4>
                 </div>
                 <div className={'modalContent'}>
                   <center>

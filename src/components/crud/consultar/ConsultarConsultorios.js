@@ -6,14 +6,15 @@ import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
 import { useFetch } from "../../../hooks/useFetch";
 import { Modal } from '../../modal/Modal';
-import ReactDOM from 'react-dom/client';
-import { fetchDelete } from '../../../helpers/fetchDelete';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
 import { Logo } from '../../icons/logo/Logo';
+import { Success } from '../../icons/success/Success';
+import { Warning } from '../../icons/warning/Warning';
+import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi }) => {
   const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
@@ -25,12 +26,7 @@ const Row = ({ item,urlApi }) => {
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-
-  const [alert, setAlert] = useState(false);
-  const [alertSuccess, setAlertSuccess] = useState(false);
-  const [alertWarning, setAlertWarning] = useState(false);
-  const [alertError, setAlertError] = useState(false);
-  
+  const [alert, setAlert] = useState(false); 
   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
   
   return (
@@ -45,8 +41,8 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           { deleteOpen && <DeleteConsultorio item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           
-          { alert === 'success' && <Modal Icon={Logo} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
-          { alert === 'error' && <Modal Icon={Logo} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
         </>
       )
   }; 
