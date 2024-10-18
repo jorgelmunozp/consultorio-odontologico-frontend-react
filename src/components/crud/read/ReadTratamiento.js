@@ -14,26 +14,34 @@ export const ReadTratamiento= (item) => {
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Tratamiento</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>
             <tr>
               <td> Código </td>
               <td>${ item.id }</td>
-            <tr>
             </tr>
+            <tr>
               <td> Nombre </td>
               <td>${ item.tratamiento.nombre }</td>
-            <tr>
-            </tr>        
+            </tr>
+            <tr>        
               <td> Consultorio </td>
-              <td>${ item.tratamiento.consultorio }</td>
-            <tr>
-            </tr>        
+              <td>${ item.tratamiento.consultorio.numero }</td>
+            </tr>
+            <tr>        
+              <td> </td>
+              <td>${ item.tratamiento.consultorio.nombre }</td>
+            </tr>
+            <tr>        
               <td> Doctor </td>
-              <td>${ item.tratamiento.doctor }</td>
-            <tr>
+              <td>${ item.tratamiento.doctor.nombre +" "+ item.tratamiento.doctor.apellido }</td>
+            </tr>
+            <tr>        
+              <td> </td>
+              <td>${ item.tratamiento.doctor.especialidad }</td>
+            </tr>
           </tbody>
         </table>
       </center>

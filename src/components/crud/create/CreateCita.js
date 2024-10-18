@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
-import React, { useState } from "react";
+import { useState } from "react";
+import { Cita } from '../../../classes/Cita'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
@@ -7,17 +8,7 @@ import { getTime } from '../../../helpers/getTime';
 import { getDate } from '../../../helpers/getDate';
 
 export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
-  const itemUpdated = `JSON.stringify({
-    "cita": {
-      "paciente": document.getElementById("registroPaciente").innerText,
-      "fecha": document.getElementById("registroFecha").value,
-      "hora": document.getElementById("registroHora").value,
-      "consultorio": document.getElementById("registroConsultorio").innerText,
-      "doctor": document.getElementById("registroDoctor").innerText,
-      "tratamiento": document.getElementById("registroTratamiento").innerText,
-    },
-  })`
-
+  let item = "";
   const [paciente, setPaciente] = useState("");             //Select Paciente
   const handleChangePaciente = (event) => { setPaciente(event.target.value); };
   const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento
@@ -32,8 +23,18 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
   let [hora, setHora] = useState(getTime);
   const handleChangeHora = (event) => { setHora(event.target.value); };
 
-  let createFlag = false;
-  if(paciente!=="" && fecha!=="" && hora!=="" && tratamiento!=="" && doctor!=="" && consultorio!==""){ createFlag = true; }
+  if(paciente!=="" && fecha!=="" && hora!=="" && tratamiento!=="" && doctor!=="" && consultorio!==""){ 
+    item = `JSON.stringify({
+      "cita": {
+        "paciente": document.getElementById("registroPaciente").innerText,
+        "fecha": document.getElementById("registroFecha").value,
+        "hora": document.getElementById("registroHora").value,
+        "consultorio": document.getElementById("registroConsultorio").innerText,
+        "doctor": document.getElementById("registroDoctor").innerText,
+        "tratamiento": document.getElementById("registroTratamiento").innerText,
+      },
+    })`;
+  }
 
   if(200 <= responseStatus && responseStatus <= 299){
     setResponseStatus(0);
@@ -126,7 +127,7 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
           </div>
           <div className='row mt-2 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApi} contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaCalendarPlus />} titulo={'Asignar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonGuardar>
             </div>
           </div>   
         </div>

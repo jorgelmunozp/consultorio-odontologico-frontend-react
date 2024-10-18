@@ -1,18 +1,11 @@
 import Swal from 'sweetalert2';
-import React, { useState }  from "react";
+import { useState }  from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserMd } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
-  const itemUpdated = `JSON.stringify({
-    "doctor": {
-      "nombre": document.getElementById("nombreDoctor").value,
-      "apellido": document.getElementById("apellidoDoctor").value,
-      "especialidad": document.getElementById("especialidadDoctor").innerText,
-    },
-  })`
-
+  let item = "";
   const [identificacion, setIdentificacion] = useState(""); //Input Identificacion
   const handleChangeIdentificacion = (event) => { setIdentificacion(event.target.value); };
   const [nombre, setNombre] = useState("");                 //Input Nombre
@@ -25,8 +18,15 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
   const handleChange = (event) => { setEspecialidad(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
-  let createFlag = false;
-  if(identificacion!=="" &&  nombre!=="" && apellido!=="" && genero!=="" && especialidad!==""){ createFlag = true; }
+  if(identificacion!=="" &&  nombre!=="" && apellido!=="" && genero!=="" && especialidad!==""){ 
+    item = `JSON.stringify({
+      "doctor": {
+        "nombre": document.getElementById("nombreDoctor").value,
+        "apellido": document.getElementById("apellidoDoctor").value,
+        "especialidad": document.getElementById("especialidadDoctor").innerText,
+      },
+    })`;
+  }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Doctor Registrado", "", "success");
@@ -96,7 +96,7 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
               </div>
               <div className='row mt-4 mt-sm-5'>
                 <div className='col'>
-                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+                  <BotonGuardar endIcon={<FaUserMd />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonGuardar>
                 </div>
               </div>                
 			    </div>

@@ -16,7 +16,7 @@ export const UpdateCita = (item,urlApi,Row,pacientes,tratamientos,doctores,consu
           <thead>
           <tr>
             <th>Parámetro</th>
-            <th>Datos Paciente</th>
+            <th>Datos</th>
           <tr>
           </thead>
           <tbody>

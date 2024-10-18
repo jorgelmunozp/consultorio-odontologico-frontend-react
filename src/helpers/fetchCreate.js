@@ -1,5 +1,4 @@
-export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus,createFlag ) => {
-  if(createFlag === true){
+export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus ) => {
     fetch(urlApi, {
       method: "POST",
       body: eval(contenidoApi),
@@ -25,5 +24,4 @@ export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus,createFlag ) 
         setResponseStatus('Registro fallido: ' + errorMessage);
       }     
     });
-  }
 }

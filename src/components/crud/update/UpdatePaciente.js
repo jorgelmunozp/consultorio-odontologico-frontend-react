@@ -16,7 +16,7 @@ export const UpdatePaciente = (item,urlApi,Row,epss,generos) => {
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Paciente</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>

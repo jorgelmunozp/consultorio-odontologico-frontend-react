@@ -16,7 +16,7 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
         <thead>
           <tr>
             <th>Parámetro</th>
-            <th>Datos Tratamiento</th>
+            <th>Datos</th>
           <tr>
         </thead>
         <tbody>
@@ -33,11 +33,11 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
             <td>
               <form>
                 <select id="editarConsultorio">
-                  <option value=${ item.tratamiento.consultorio }>${ item.tratamiento.consultorio }</option>
+                  <option value=${ item.tratamiento.consultorio.numero + " - " + item.tratamiento.consultorio.nombre }>${ item.tratamiento.consultorio.numero + " - " + item.tratamiento.consultorio.nombre }</option>
                   ${ 
                     consultorios.map((consultorios) => {
                       return(
-                        `<option value=${consultorios.consultorio.numero}>${consultorios.consultorio.numero + " - " + consultorios.consultorio.nombre}</option>`
+                        `<option value=${consultorios.consultorio}>${consultorios.consultorio.numero + " - " + consultorios.consultorio.nombre}</option>`
                       )
                     })            
                   }
@@ -50,11 +50,11 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
             <td>
               <form>
                 <select id="editarDoctor">
-                  <option value=${ item.tratamiento.doctor }>${ item.tratamiento.doctor }</option>
+                  <option value=${ item.tratamiento.doctor }>${ item.tratamiento.doctor.nombre + " " + item.tratamiento.doctor.apellido }</option>
                   ${ 
                     doctores.map((doctores) => {
                       return(
-                        `<option value=${doctores.doctor.nombre + " " + doctores.doctor.apellido}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
+                        `<option value=${doctores.doctor}>${doctores.doctor.nombre + " " + doctores.doctor.apellido}</option>`
                       )
                     })            
                   }
@@ -84,6 +84,14 @@ export const UpdateTratamiento = (item,urlApi,Row,doctores,consultorios) => {
           },
           "id": ${item.id}
         }`;
+        console.log("itemUpdated: ", itemUpdated)
+
+        console.log("editarDoctor.value: ", document.getElementById('editarDoctor').value)
+        console.log("editarConsultorio.value: ", document.getElementById('editarConsultorio').value)
+        console.log("item: ", item)
+        console.log("item.tratamiento.doctor: ", item.tratamiento.doctor)
+        console.log("item.tratamiento.consultorio: ", item.tratamiento.consultorio)
+
         const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
         fetchResponse.then(
           async function(value) {

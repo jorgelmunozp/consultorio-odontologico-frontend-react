@@ -2,7 +2,8 @@ export const fetchUpdate = async ( urlApi,contenidoApi,id ) => {
   try {
     const response = await fetch(urlApi + "/" + id, {
       method: "PUT",
-      body: eval(contenidoApi),
+      // body: eval(contenidoApi),
+      body: contenidoApi,
       headers: { "Content-type": "application/json" }
     });
     response.json();

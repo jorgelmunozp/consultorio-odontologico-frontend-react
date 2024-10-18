@@ -1,0 +1,114 @@
+.darkBackground {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+  }
+
+  .noScroll {
+    overflow: hidden;
+  }
+  
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .modalBox {
+    width: 40vw;
+    min-height: 50vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+    padding: 2em;
+  }
+  @media (max-width: 768px) { .modalBox { width: 90vw; }}
+
+
+  .modalHeader {
+    height: 100px;
+    background: #fff;;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  
+  .heading {
+    margin: 0;
+    padding: 10px;
+    color: #2c3e50;
+    font-weight: 500;
+    text-align: center;
+    font-size: inherit;
+  }
+  
+  .modalContent {
+    padding: 10px;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  .modalActions {
+    width: 100%;
+  }
+  
+  .actionsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    padding-top: 1em;
+  }
+   
+  .aceptBtn {
+    cursor: pointer;
+    font-weight: 500;
+    margin: .3125em;
+    padding: .725em 1.25em;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background: rgb(82, 133, 197);
+    transition: all 0.25s ease;
+  }
+  .aceptBtn:hover {
+    box-shadow: 0 10px 20px -10px rgba(82, 133, 197);
+    transform: translateY(-5px);
+    background: rgb(82, 133, 197);
+  }
+  .cancelBtn {
+    cursor: pointer;
+    font-weight: 500;
+    margin: .3125em;
+    padding: .625em 1.1em;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background: rgb(221, 51, 51);
+    transition: all 0.25s ease;
+  }
+  .cancelBtn:hover {
+    box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+    transform: translateY(-5px);
+    background: #ff3e4e;
+  }
+
+  .primaryBtn {
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0 12px;
+    border-radius: 15px;
+    border: none;
+    transition: all 0.25s ease;
+  }
+  .primaryBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
+  }

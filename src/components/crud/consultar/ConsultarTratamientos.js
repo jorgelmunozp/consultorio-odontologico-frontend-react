@@ -15,8 +15,8 @@ const Row = ({ item,urlApi,doctores,consultorios }) => {
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
             <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.nombre }</td>
-            <td className='ps-5 ps-sm-5 text-nowrap'>{ item.tratamiento.consultorio }</td>
-            <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.doctor }</td>
+            <td className='ps-5 ps-sm-5 text-nowrap'>{ item.tratamiento.consultorio.numero }</td>
+            <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.doctor.nombre +" "+ item.tratamiento.doctor.apellido }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(item) }><TbFilterSearch className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(item,urlApi,Row,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => DeleteTratamiento(item,urlApi) }><TbFilterX className='text-secondary'/></button></td>
@@ -68,8 +68,8 @@ export const ConsultarTratamientos = ({ urlApi,doctores,consultorios }) => {
     function sortByNameDown(a, b) { return b.tratamiento.nombre.localeCompare(a.tratamiento.nombre); }
     function sortByConsultingRoomUp(a, b) { return a.tratamiento.consultorio.localeCompare(b.tratamiento.consultorio); }
     function sortByConsultingRoomDown(a, b) { return b.tratamiento.consultorio.localeCompare(a.tratamiento.consultorio); }
-    function sortByDoctorUp(a, b) { return a.tratamiento.doctor.localeCompare(b.tratamiento.doctor); }
-    function sortByDoctorDown(a, b) { return b.tratamiento.doctor.localeCompare(a.tratamiento.doctor); }
+    function sortByDoctorUp(a, b) { return a.tratamiento.doctor.nombre.localeCompare(b.tratamiento.doctor.nombre); }
+    function sortByDoctorDown(a, b) { return b.tratamiento.doctor.nombre.localeCompare(a.tratamiento.doctor.nombre); }
         
   return(
     <div id="contenido">

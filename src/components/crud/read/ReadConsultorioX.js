@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2';
 
-export const ReadDoctor = (item) => {
+export const ReadConsultorio = (item) => {
   Swal.fire({
-    title: "Doctor",
+    title: "Consultorio",
     imageUrl: "./logo192.png",
     imageWidth: 30,
     imageHeight: 30,
@@ -22,25 +22,13 @@ export const ReadDoctor = (item) => {
               <td> Código </td>
               <td>${ item.id }</td>
             <tr>
-            </tr>        
-              <td> Identificacion </td>
-              <td>${ item.doctor.identificacion }</td>
+            </tr>
+              <td> Número </td>
+              <td>${ item.consultorio.numero }</td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td>${ item.doctor.nombre }</td>
-            <tr>
-            </tr>     
-              <td> Apellido </td>
-              <td>${ item.doctor.apellido }</td>
-            <tr>
-            </tr>        
-              <td> Género </td>
-              <td>${ item.doctor.genero }</td>
-            <tr>
-            </tr>
-              <td> Especialidad </td>
-              <td>${ item.doctor.especialidad }</td>
+              <td>${ item.consultorio.nombre }</td>
             <tr>
           </tbody>
         </table>

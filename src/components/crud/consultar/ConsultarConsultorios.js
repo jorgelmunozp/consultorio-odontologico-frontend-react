@@ -1,23 +1,35 @@
 import { useState, useMemo } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import { useFetch } from "../../../hooks/useFetch";
+import { Consultorio } from '../../../classes/Consultorio';
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
+import { useFetch } from "../../../hooks/useFetch";
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
 
-const Row = ({ item,urlApi }) => { 
-  return (
+const Row = ({ item,urlApi }) => {
+  const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
+  const handleChangeNumero = (event) => { setNumero(event.target.value); };
+  const [nombre, setNombre] = useState(item.consultorio.nombre);               //Input Nombre
+  const handleChangeNombre = (event) => { setNombre(event.target.value); };
+  const [responseStatus, setResponseStatus] = useState("");
+
+  const [readOpen, setReadOpen] = useState(false);
+    readOpen ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  
+    return (
           <>
+      { readOpen && <ReadConsultorio item={item} setReadOpen={setReadOpen} title={'Consultorio'} buttons={1} /> }
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
             <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
-            <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(item) }><TbHomeSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(item,urlApi,Row) }><TbHomeEdit className='text-secondary'/></button></td>
+            {/* <td><button className='border-0 bg-transparent' onClick={ () => ReadConsultorio(item) }><TbHomeSearch className='text-secondary'/></button></td> */}
+            <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => UpdateConsultorio(item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) }><TbHomeEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => DeleteConsultorio(item,urlApi) }><TbHomeX className='text-secondary'/></button></td>
           </>
         )

@@ -1,30 +1,27 @@
 import Swal from 'sweetalert2';
-import React, { useState }  from "react";
+import { useState }  from "react";
+import { Consultorio } from '../../../classes/Consultorio';
 import { TextField } from "@mui/material";
 import { FaClinicMedical } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreateConsultorio = ({ urlApi }) => {
-  const itemUpdated = `{
-    "consultorio": {
-      "nombre": document.getElementById("ConsultoriosNombre").value,
-      "numero": document.getElementById("ConsultoriosNumero").value
-    },
-  }`;
-  const contenidoConsultorios = `JSON.stringify(` + itemUpdated  + `)`;
-
-  const [numero, setNumero] = useState("");         //Input Número
+  let item = "";
+  const [numero, setNumero] = useState("");               //Input Número
   const handleChangeNumero = (event) => { setNumero(event.target.value); };
-  const [nombre, setNombre] = useState("");         //Input Nombre
+  const [nombre, setNombre] = useState("");               //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
-
-  let createFlag = false;
-  if(numero!=="" && nombre!==""){ createFlag = true; }
+  
+  if(numero!=="" && nombre!=="") { 
+    const objectClass = new Consultorio(numero,nombre);   //Object from Class
+    item = `JSON.stringify({                              
+      ${Consultorio.name.toLowerCase()}: ${JSON.stringify(objectClass)}
+    })`;                                                  //JSON Object from Object Class
+  }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Consultorio Registrado", "", "success");
-    createFlag = false;
     setNumero("");
     setNombre("");
     setResponseStatus(0);
@@ -55,7 +52,7 @@ export const CreateConsultorio = ({ urlApi }) => {
           </div>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={contenidoConsultorios} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaClinicMedical />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus}></BotonGuardar>
             </div>
           </div>
         </div>

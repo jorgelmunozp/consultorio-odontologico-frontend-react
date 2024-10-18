@@ -1,20 +1,11 @@
 import Swal from 'sweetalert2';
-import React, { useState }  from "react";
+import { useState }  from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserInjured } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreatePaciente = ({ urlApi,epss,generos }) => {
-  const itemUpdated = `JSON.stringify({
-    "paciente": {
-      "nombre": document.getElementById("nombrePaciente").value,
-      "apellido": document.getElementById("apellidoPaciente").value,
-      "identificacion": document.getElementById("cedulaPaciente").value,
-      "genero": document.getElementById("generoPaciente").innerText,
-      "eps": document.getElementById("epsPaciente").innerText,
-    },
-  })`
-
+  let item = "";
   const [identificacion, setIdentificacion] = useState();         //Input Identificacion
   const handleChangeCedula = (event) => { setIdentificacion(event.target.value); };
   const [nombre, setNombre] = useState("");         //Input Nombre
@@ -27,8 +18,17 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
   const handleChangeEps = (event) => { setEps(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
-  let createFlag = false;
-  if(identificacion!=="" && nombre!=="" && apellido!=="" && genero!=="" && eps!==""){ createFlag = true; }
+  if(identificacion!=="" && nombre!=="" && apellido!=="" && genero!=="" && eps!==""){ 
+    item = `JSON.stringify({
+      "paciente": {
+        "nombre": document.getElementById("nombrePaciente").value,
+        "apellido": document.getElementById("apellidoPaciente").value,
+        "identificacion": document.getElementById("cedulaPaciente").value,
+        "genero": document.getElementById("generoPaciente").innerText,
+        "eps": document.getElementById("epsPaciente").innerText,
+      },
+    })`;
+  }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Paciente Registrado", "", "success");
@@ -98,7 +98,7 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
           </div> 
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaUserInjured />} titulo={'Registrar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonGuardar>
             </div>
           </div>      
 			  </div>

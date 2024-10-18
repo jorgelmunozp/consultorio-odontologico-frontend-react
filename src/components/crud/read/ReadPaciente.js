@@ -14,7 +14,7 @@ export const ReadPaciente = (item) => {
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Paciente</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>

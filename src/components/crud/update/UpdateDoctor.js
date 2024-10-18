@@ -16,7 +16,7 @@ export const UpdateDoctor = (item,urlApi,Row,tratamientos,generos) => {
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Doctor</th>
+              <th>Datos</th>
             <tr>
           </thead>
           <tbody>

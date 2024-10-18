@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 
-export const UpdateConsultorio = (item,urlApi,Row) => {
+export const UpdateConsultorio = (item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) => { 
   Swal.fire({
     title: "Consultorio",
     imageUrl: "./logo192.png",
@@ -16,22 +16,22 @@ export const UpdateConsultorio = (item,urlApi,Row) => {
           <thead>
             <tr>
               <th>Parámetro</th>
-              <th>Datos Consultorio</th>
-            <tr>
+              <th>Datos</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
               <td> Código </td>
               <td><p class="swal2-input idText"> ${ item.id } </p></td>
-            <tr>
             </tr>
+            <tr>
               <td> Número </td>
               <td><input id="editarNumero" type="number" value=${ item.consultorio.numero } class="swal2-input"></input></td>
-            <tr>
-            </tr>        
+            </tr>
+            <tr>        
               <td> Nombre </td>
               <td><input id="editarNombre" type="text" value=${ item.consultorio.nombre } class="swal2-input"></input></td>
-            <tr>
+            </tr>
           </tbody>
         </table>
       </center>
@@ -40,19 +40,15 @@ export const UpdateConsultorio = (item,urlApi,Row) => {
   confirmButtonColor: "#5285c5",
   cancelButtonColor: "#d33",
   confirmButtonText: "Guardar",
-  cancelButtonText: "Cancelar"
+  cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       if(document.getElementById('editarNumero').value!== "" &&
       document.getElementById('editarNombre').value!== "" ) {
-        const itemUpdated = `{
-          "consultorio": {
-            "numero": "${document.getElementById('editarNumero').value}",
-            "nombre": "${document.getElementById('editarNombre').value}"
-          },
-          "id": ${item.id}
-        }`;
-        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(itemUpdated),item.id);
+        item.consultorio.numero = document.getElementById('editarNumero').value
+        item.consultorio.nombre = document.getElementById('editarNombre').value
+
+        const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);
         fetchResponse.then(
           async function(value) {
             if(200 <= value && value <= 299) { 

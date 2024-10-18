@@ -1,4 +1,3 @@
-import React from 'react'
 import './labelTexto.css';
 
 export const LabelTexto = ({ type, text, className }) => {

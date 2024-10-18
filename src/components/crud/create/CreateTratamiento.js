@@ -1,18 +1,12 @@
 import Swal from 'sweetalert2';
-import React, { useState }  from "react";
+import { useState }  from "react";
+import { Tratamiento } from '../../../classes/Tratamiento';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaStethoscope } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 
 export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
-  const itemUpdated = `JSON.stringify({
-    "tratamiento": {
-      "nombre": document.getElementById("nombreTratamiento").value,
-      "consultorio": document.getElementById("consultorioTratamiento").innerText,
-      "doctor": document.getElementById("doctorTratamiento").innerText,
-    },
-  })`
-
+  let item = "";
   const [nombre, setNombre] = useState("");           //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [consultorio, setConsultorio] = useState(""); //Select Consultorio
@@ -21,8 +15,12 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
 
-  let createFlag = false;
-  if(nombre!=="" && consultorio!=="" && doctor!==""){ createFlag = true; }
+  if(nombre!=="" && consultorio!=="" && doctor!==""){ 
+    const objectClass = new Tratamiento(nombre,consultorio,doctor);   //Object from Class
+    item = `JSON.stringify({                              
+      ${Tratamiento.name.toLowerCase()}: ${JSON.stringify(objectClass)}
+    })`; 
+   }
 
   if(200 <= responseStatus && responseStatus <= 299){
     Swal.fire("Tratamiento Registrado", "", "success");
@@ -57,7 +55,7 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
                 <Select value={consultorio} onChange={handleChangeConsultorio} id="consultorioTratamiento" label="consultorioTratamiento" labelId="consultorioTratamiento-label">
                   {consultorios.map((consultorios) => {
                     return (
-                      <MenuItem value={consultorios.id} key={consultorios.id}>
+                      <MenuItem value={consultorios.consultorio} key={consultorios.id}>
                         {consultorios.consultorio.numero}
                       </MenuItem>
                     );
@@ -71,7 +69,7 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
                 <Select value={doctor} onChange={handleChangeDoctor} id="doctorTratamiento" label="doctorTratamiento" labelId="doctorTratamiento-label">
                   {doctores.map((doctores) => {
                     return (
-                      <MenuItem value={doctores.id} key={doctores.id}>
+                      <MenuItem value={doctores.doctor} key={doctores.id}>
                         {doctores.doctor.nombre + " " + doctores.doctor.apellido}
                       </MenuItem>
                     );
@@ -82,7 +80,7 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
           </div>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={itemUpdated} setResponseStatus={setResponseStatus} createFlag={createFlag}></BotonGuardar>
+              <BotonGuardar endIcon={<FaStethoscope />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonGuardar>
             </div>
           </div>              
 			  </div>

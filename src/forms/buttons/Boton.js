@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Boton = ({ className, style, title, type, children, functionClick }) => {
     return (
       <button

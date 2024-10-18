@@ -14,5 +14,4 @@ export class Cita {
         this.doctor = new Doctor(doctor.identificacion, doctor.nombre, doctor.apellido, doctor.genero, doctor.doctor);
         this.tratamiento = new Tratamiento(tratamiento.nombre, tratamiento.consultorio, tratamiento.doctor);
     }
-
 }
