@@ -61,7 +61,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
             </nav>
             <center>
                 <div className="modal fade align-self-auto" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-dialog modal-dialog-modalContainer">
                         <div className="modal-content">
                             <div className="modal-header mx-auto border-0 mt-4 pb-1">
                                 <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
@@ -77,7 +77,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
                 </div>
             {/** Modal Login */}
                 <div className="modal fade align-self-auto" id="loginModalFail" tabIndex="-1" aria-labelledby="loginModalLabelFail" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-dialog modal-dialog-modalContainer">
                         <div className="modal-content">
                             <div className="modal-body mt-5 mx-auto w-100 pt-1">
                                 { 

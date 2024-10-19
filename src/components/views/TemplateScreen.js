@@ -12,7 +12,7 @@ import { CreatePaciente } from '../crud/create/CreatePaciente';
 import { CreateTratamiento } from '../crud/create/CreateTratamiento';
 import { CreateDoctor } from '../crud/create/CreateDoctor';
 import { CreateConsultorio } from '../crud/create/CreateConsultorio';
-import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus} from 'react-icons/fa';
+import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { HomeIndex } from '../icons/home/HomeIndex';
 import { HomePlus } from '../icons/home/HomePlus';
 import { HomeSearch } from '../icons/home/HomeSearch';
@@ -35,7 +35,6 @@ export const TemplateScreen = () => {
   const [menu, setMenu] = useState(menuOpcion);
 
   const urlApiCitas = process.env.REACT_APP_API_CITAS;
-  // const citas = useFetch(urlApiCitas).data;
 
   const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
   const pacientes = useFetch(urlApiPacientes).data;
@@ -90,12 +89,7 @@ export const TemplateScreen = () => {
       <body className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes}
-                urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} 
-                urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes}
-                tratamientos={tratamientos} doctores={doctores} consultorios={consultorios}
-                epss={epss} generos={generos}
-              />
+              <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />
           </div>
         </div>
       </body>
@@ -104,16 +98,18 @@ export const TemplateScreen = () => {
 }
 
 const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
-  if(menu === 1){ return <IndexScreen urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 2){ return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 3){ return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 4){ return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} /> }
-  else if(menu === 5){ return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} /> }
-  else if(menu === 6){ return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} /> }
-  else if(menu === 7){ return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />; }
-  else if(menu === 8){ return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} /> }
-  else if(menu === 9){ return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} /> }
-  else if(menu === 10){ return <ConsultarConsultorios urlApi={urlApiConsultorios} /> }
-  else if(menu === 11){ return <CreateConsultorio urlApi={urlApiConsultorios} consultorios={consultorios} /> }
-  else{ return <IndexScreen urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} /> }
+  switch (menu) {
+    case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 2: return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 3: return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 4: return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} />;
+    case 5: return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} />;
+    case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 7: return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 8: return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
+    case 9: return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
+    case 10: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
+    case 11: return <CreateConsultorio urlApi={urlApiConsultorios} consultorios={consultorios} />;
+    default: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+  }
 }

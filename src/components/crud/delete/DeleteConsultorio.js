@@ -4,7 +4,7 @@ import { fetchDelete } from '../../../helpers/fetchDelete';
 import { Logo } from '../../icons/logo/Logo';
 import { myColor } from '../../../global';
 
-export const DeleteConsultorio = ({ item, urlApi, title, buttons, setOpen, setAlert }) => {
+export const DeleteConsultorio = ({ Icon,item, urlApi, title, buttons, setOpen, setAlert }) => {
   const handleDelete = () => {
     const fetchResponse = fetchDelete(urlApi,item.id);
     fetchResponse.then(
@@ -18,7 +18,7 @@ export const DeleteConsultorio = ({ item, urlApi, title, buttons, setOpen, setAl
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
           row.render();
 
-          setAlert('success')
+          setAlert('successDelete')
         }
         else { setAlert('error') }
       },
@@ -28,42 +28,41 @@ export const DeleteConsultorio = ({ item, urlApi, title, buttons, setOpen, setAl
  
     return (
         <>
-          <div className={'darkBackground'} onClick={() => setOpen(false)} >
-            <div className={'centered'}>
-              <div className={'modalBox'}>
-                <div className={'modalHeader'}>
-                  <center><Logo color={myColor} height={2} width={2} className={'center'} /></center>
-                  <h4 className={'modalTitle main-color'}>{title}</h4>
-                </div>
-                <div className={'modalContent'}>
-                  <center>
-                    <table class="swalTable" border='1'>
-                      <thead>
-                        <tr><th>Parámetro</th><th>Datos</th></tr>
-                      </thead>
-                      <tbody>
-                        <tr><td> Código </td><td>{ item.id }</td></tr>
-                        <tr><td> Número </td><td>{ item.consultorio.numero }</td></tr>
-                        <tr><td> Nombre </td><td>{ item.consultorio.nombre }</td></tr>
-                      </tbody>
-                    </table>
-                  </center>
-                </div>
-                <div className={'modalActions'}>
-                  <div className={'actionsContainer'}>
-                      {
-                          buttons === 1 ? <button className={'aceptBtn'} onClick={() => setOpen(false)}>Aceptar</button>
-                        : buttons === 2 ? <>
-                                            <button className={'aceptBtn'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
-                                            <button className={'cancelBtn'} onClick={() => setOpen(false)}>Cancel</button>
-                                          </>
-                        : ""
-                      }
-                  </div>
+          <div className={'modalContainer'}>
+            <div className={'modalBox'}>
+              <div className={'modalHeader'}>
+                <center><Icon color={'#f8bb86'} height={5.5} width={5.5} className={'center'} /></center>
+                <h4 className={'modalTitle main-color'}>{title}</h4>
+              </div>
+              <div className={'modalContent'}>
+                <center>
+                  <table class="swalTable" border='1'>
+                    <thead>
+                      <tr><th>Parámetro</th><th>Datos</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td> Código </td><td>{ item.id }</td></tr>
+                      <tr><td> Número </td><td>{ item.consultorio.numero }</td></tr>
+                      <tr><td> Nombre </td><td>{ item.consultorio.nombre }</td></tr>
+                    </tbody>
+                  </table>
+                </center>
+              </div>
+              <div className={'modalFooter'}>
+                <div className={'modalButtons'}>
+                    {
+                        buttons === 1 ? <button className={'aceptBtn'} onClick={() => setOpen(false)}>Aceptar</button>
+                      : buttons === 2 ? <>
+                                          <button className={'aceptBtn'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
+                                          <button className={'cancelBtn'} onClick={() => setOpen(false)}>Cancel</button>
+                                        </>
+                      : ""
+                    }
                 </div>
               </div>
             </div>
           </div>
+          <div className={'darkBackground'} onClick={() => setOpen(false)}></div>
         </>
       )
 };

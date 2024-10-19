@@ -15,13 +15,13 @@ import { Logo } from '../../icons/logo/Logo';
 import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
+import { HomeEdit } from '../../icons/home/HomeEdit';
 
 const Row = ({ item,urlApi }) => {
   const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
   const handleChangeNumero = (event) => { setNumero(event.target.value); };
   const [nombre, setNombre] = useState(item.consultorio.nombre);               //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
-  const [responseStatus, setResponseStatus] = useState("");
 
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
@@ -35,12 +35,14 @@ const Row = ({ item,urlApi }) => {
           <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
           <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
-          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => UpdateConsultorio(item,urlApi,Row,Consultorio,numero,nombre,setNumero,handleChangeNumero) }><TbHomeEdit className='text-secondary'/></button></td>
+          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
+          
           { readOpen && <ReadConsultorio item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
-          { updateOpen }
-          { deleteOpen && <DeleteConsultorio item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { updateOpen && <UpdateConsultorio Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} Class={Consultorio} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> }
+          { deleteOpen && <DeleteConsultorio Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+          { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Actualizado'} buttons={1} />  }
           { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
         </>
       )
@@ -95,7 +97,7 @@ export const ConsultarConsultorios = ({ urlApi }) => {
       <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'> Consultorios Disponibles </h5>
       <SearchBar icon={<TbHomeSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
-      
+
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>
           <thead>
