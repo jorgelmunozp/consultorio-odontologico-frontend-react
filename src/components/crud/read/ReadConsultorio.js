@@ -1,15 +1,14 @@
 import '../../modal/modal.css';
-import { Logo } from '../../icons/logo/Logo';
 import { myColor } from '../../../global';
 
-export const ReadConsultorio = ({ item, title, buttons, setOpen }) => {
+export const ReadConsultorio = ({ Icon, item, title, buttons, setOpen }) => {
     return (
         <>
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Logo color={myColor} height={4} width={4} strokeWidth={0.5} className={'center'} /></center>
-                <h4 className={'modalTitle main-color'}>{title}</h4>
+                <center><Icon color={myColor} height={5} width={5} strokeWidth={0.6} className={'center'} /></center>
+                <h4 className={'modalTitle main-color pt-3'}>{title}</h4>
               </div>
               <div className={'modalContent'}>
                 <center>

@@ -23,9 +23,9 @@ export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen,
 
             setAlert('successUpdate')
           }
-          else { setAlert('error') }
+          else { setAlert('errorUpdate') }
         },
-        function(error) { setAlert('error'); console.log("Error en la actualización: ",error) }
+        function(error) { setAlert('errorUpdate'); console.log("Error en la actualización: ",error) }
       )
     }
   };
@@ -35,8 +35,8 @@ export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen,
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Icon color={myColor} height={5} width={5} strokeWidth={0.55} className={'center'} /></center>
-                <h4 className={'modalTitle main-color'}>{title}</h4>
+                <center><Icon color={myColor} height={5} width={5} strokeWidth={0.6} className={'center'} /></center>
+                <h4 className={'modalTitle main-color pt-3'}>{title}</h4>
               </div>
               <div className={'modalContent'}>
                 <center>

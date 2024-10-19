@@ -1,6 +1,8 @@
 export const getData = async( urlApi ) => {
-    const response = await fetch( urlApi );
-    const responseReturn = await response.json();
-
+    let responseReturn = [];
+    await fetch( urlApi )
+        .then(response => response.json())
+        .then(data => responseReturn = data)
+        .catch((error) => console.log("Error getData: " + error.message));
     return responseReturn;
 }

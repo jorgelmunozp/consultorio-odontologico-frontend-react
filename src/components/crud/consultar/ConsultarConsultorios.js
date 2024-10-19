@@ -1,21 +1,21 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import { useFetch } from "../../../hooks/useFetch";
 import { Consultorio } from '../../../classes/Consultorio';
 import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
 import { UpdateConsultorio } from '../update/UpdateConsultorio';
-import { useFetch } from "../../../hooks/useFetch";
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getConsultoriosFiltered } from '../../selectors/getConsultoriosFiltered';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
-import { Logo } from '../../icons/logo/Logo';
+import { HomeIndex } from '../../icons/home/HomeIndex';
+import { HomeEdit } from '../../icons/home/HomeEdit';
 import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
-import { HomeEdit } from '../../icons/home/HomeEdit';
 
 const Row = ({ item,urlApi }) => {
   const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
@@ -38,25 +38,31 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
-          { readOpen && <ReadConsultorio item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
+          { readOpen && <ReadConsultorio Icon={HomeIndex} item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateConsultorio Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} Class={Consultorio} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> }
           { deleteOpen && <DeleteConsultorio Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
           { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Actualizado'} buttons={1} />  }
-          { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+          { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
+          { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+          { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
         </>
       )
   }; 
 
 export const ConsultarConsultorios = ({ urlApi }) => {
-  const consultorios = useFetch(urlApi).data;
+  /* Fetch */
+  let array = [];
+  let [ alertFetch, setAlertFetch ] = useState(false);
+  const arrayFetch = useFetch(urlApi);
+  useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
+  if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
 
   /* Query */
   let [ queryCode, setQueryCode ] = useState('');
   let [ queryNumber, setQueryNumber ] = useState('');
   let [ queryName, setQueryName ] = useState('');
 
-  const arrayFiltered = useMemo( () => getConsultoriosFiltered(consultorios,queryCode,queryNumber,queryName), [consultorios,queryCode,queryNumber,queryName] );
+  const arrayFiltered = useMemo( () => getConsultoriosFiltered(array,queryCode,queryNumber,queryName), [array,queryCode,queryNumber,queryName] );
 
   const titles = ['Código','Número','Nombre'];
   const queries = [queryCode,queryNumber,queryName];
@@ -129,6 +135,7 @@ export const ConsultarConsultorios = ({ urlApi }) => {
         <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
         </center>
       </div>
+      { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
     </div>
   );
 };

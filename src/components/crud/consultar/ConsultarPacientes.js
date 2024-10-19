@@ -1,14 +1,18 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { ReadPaciente } from '../read/ReadPaciente';
 import { UpdatePaciente } from '../update/UpdatePaciente';
+import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getPacientesFiltered } from '../../selectors/getPacientesFiltered';
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
+import { Success } from '../../icons/success/Success';
+import { Warning } from '../../icons/warning/Warning';
+import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi,epss,generos }) => { 
   return (
@@ -27,7 +31,12 @@ const Row = ({ item,urlApi,epss,generos }) => {
   };
 
 export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
-  const pacientes = useFetch(urlApi).data;
+    /* Fetch */
+    let array = [];
+    let [ alertFetch, setAlertFetch ] = useState(false);
+    const arrayFetch = useFetch(urlApi);
+    useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
+    if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');
@@ -37,7 +46,7 @@ export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
     let [ queryGender, setQueryGender ] = useState('');
     let [ queryEps, setQueryEps ] = useState('');
    
-    const arrayFiltered = useMemo( () => getPacientesFiltered(pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [pacientes,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
+    const arrayFiltered = useMemo( () => getPacientesFiltered(array,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [array,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
   
     const titles = ['Código','identificacion','Nombre','Apellido','Género','Eps'];
     const queries = [queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps];
@@ -125,6 +134,7 @@ export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
       <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>
     </div>
+    { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
   </div>
   )
 };

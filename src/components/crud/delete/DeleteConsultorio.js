@@ -20,9 +20,9 @@ export const DeleteConsultorio = ({ Icon,item, urlApi, title, buttons, setOpen, 
 
           setAlert('successDelete')
         }
-        else { setAlert('error') }
+        else { setAlert('errorDelete') }
       },
-      function(error) { setAlert('error'); console.log("Error en la eliminación: ",error) }
+      function(error) { setAlert('errorDelete'); console.log("Error en la eliminación: ",error) }
     )
   };
  

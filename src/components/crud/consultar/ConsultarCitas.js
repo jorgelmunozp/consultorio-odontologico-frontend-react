@@ -1,14 +1,18 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
 import { UpdateCita } from '../update/UpdateCita';
+import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getCitasFiltered } from '../../selectors/getCitasFiltered';
 import { TbCalendarSearch, TbCalendarTime, TbCalendarX } from "react-icons/tb";
+import { Success } from '../../icons/success/Success';
+import { Warning } from '../../icons/warning/Warning';
+import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => { 
   return (
@@ -28,7 +32,14 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
       };
 
   export const ConsultarCitas = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
-    const array = useFetch(urlApi).data;
+    // const array = useFetch(urlApi).data;
+
+    /* Fetch */
+    let array = [];
+    let [ alertFetch, setAlertFetch ] = useState(false);
+    const arrayFetch = useFetch(urlApi);
+    useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
+    if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');
@@ -132,6 +143,7 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
         <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
         </center>  
       </div>
+      { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
     </div>
   )
 };

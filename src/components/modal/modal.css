@@ -28,6 +28,7 @@
     max-height: 100vh;
     background: #fff;
     padding: 2em;
+    align-content: center;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     animation: popup 0.25s ease;
   }

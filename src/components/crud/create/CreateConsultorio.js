@@ -1,9 +1,11 @@
-import Swal from 'sweetalert2';
 import { useState }  from "react";
 import { Consultorio } from '../../../classes/Consultorio';
+import { Modal } from '../../modal/Modal';
 import { TextField } from "@mui/material";
-import { FaClinicMedical } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
+import { FaClinicMedical } from "react-icons/fa";
+import { Success } from '../../icons/success/Success';
+import { Error } from '../../icons/error/Error';
 
 export const CreateConsultorio = ({ urlApi }) => {
   let item = "";
@@ -12,7 +14,8 @@ export const CreateConsultorio = ({ urlApi }) => {
   const [nombre, setNombre] = useState("");               //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
   const [responseStatus, setResponseStatus] = useState("");
-  
+  const [alert, setAlert] = useState(false); 
+
   if(numero!=="" && nombre!=="") { 
     const objectClass = new Consultorio(numero,nombre);   //Object from Class
     item = `JSON.stringify({                              
@@ -21,21 +24,21 @@ export const CreateConsultorio = ({ urlApi }) => {
   }
 
   if(200 <= responseStatus && responseStatus <= 299){
-    Swal.fire("Consultorio Registrado", "", "success");
+    setAlert("success");
     setNumero("");
     setNombre("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
-    Swal.fire("Consultorio No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   } else if(500 <= responseStatus && responseStatus <= 599){
-    Swal.fire("Consultorio No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   }
 
   return (
     <div className="App">
-      <body className='mt-4 mt-sm-5'>
+      <div className='mt-4 mt-sm-5'>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar Consultorio</h5>
         </center>
@@ -56,7 +59,9 @@ export const CreateConsultorio = ({ urlApi }) => {
             </div>
           </div>
         </div>
-      </body>
+      </div>
+      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Registrado'} buttons={1} />  }
+      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Consultorio No Registrado'} buttons={1} />  }
     </div>
   );
 };

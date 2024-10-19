@@ -1,14 +1,18 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
+import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getDoctoresFiltered } from '../../selectors/getDoctoresFiltered';
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
+import { Success } from '../../icons/success/Success';
+import { Warning } from '../../icons/warning/Warning';
+import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi,tratamientos,generos }) =>  { 
   return (
@@ -25,7 +29,12 @@ const Row = ({ item,urlApi,tratamientos,generos }) =>  {
   };
 
 export const ConsultarDoctores = ({ urlApi,tratamientos,generos }) => {
-  const doctores = useFetch(urlApi).data;
+    /* Fetch */
+    let array = [];
+    let [ alertFetch, setAlertFetch ] = useState(false);
+    const arrayFetch = useFetch(urlApi);
+    useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
+    if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');
@@ -33,7 +42,7 @@ export const ConsultarDoctores = ({ urlApi,tratamientos,generos }) => {
     let [ queryLastname, setQueryLastname ] = useState('');
     let [ querySpeciality, setQuerySpeciality ] = useState('');
   
-    const arrayFiltered = useMemo( () => getDoctoresFiltered(doctores,queryCode,queryName,queryLastname,querySpeciality), [doctores,queryCode,queryName,queryLastname,querySpeciality] );
+    const arrayFiltered = useMemo( () => getDoctoresFiltered(array,queryCode,queryName,queryLastname,querySpeciality), [array,queryCode,queryName,queryLastname,querySpeciality] );
   
     const titles = ['Código','Nombre','Apellido','Especialidad'];
     const queries = [queryCode,queryName,queryLastname,querySpeciality];
@@ -111,6 +120,7 @@ export const ConsultarDoctores = ({ urlApi,tratamientos,generos }) => {
       <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>
       </div>
+      { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
     </div>
   )
 };
