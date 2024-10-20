@@ -32,14 +32,12 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
       };
 
   export const ConsultarCitas = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
-    // const array = useFetch(urlApi).data;
-
     /* Fetch */
     let array = [];
     let [ alertFetch, setAlertFetch ] = useState(false);
     const arrayFetch = useFetch(urlApi);
-    useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
-    if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
+    useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+    if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data; }
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');
@@ -51,7 +49,7 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
     let [ queryTreatment, setQueryTreatment ] = useState('');
   
     const arrayFiltered = useMemo( () => getCitasFiltered(array,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment), [array,queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment] );
-  
+
     const titles = ['Código','Paciente','Fecha','Hora','Consultorio','Médico','Tratamiento'];
     const queries = [queryCode,queryPatient,queryDate,queryTime,queryConsultoryRoom,queryDoctor,queryTreatment];
     const setQueries = [setQueryCode,setQueryPatient,setQueryDate,setQueryTime,setQueryConsultoryRoom,setQueryDoctor,setQueryTreatment];

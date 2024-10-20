@@ -25,7 +25,7 @@ const View = ({ view,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctor
     case 2: return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} />;
     case 3: return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
     case 4: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
-    case 5: return <div className="App"><h5 className='main-color fs-sm-2 mt-4 mt-sm-5 mb-4'>Contacto</h5><Logo size={60} strokeWidth={1} className='main-color'/><h3 className='main-color'>El Consultorio</h3></div>;
+    case 5: return <div className="App"><h5 className='main-color fs-sm-2 mt-4 mt-sm-5 mb-4'>Contacto</h5><Logo height={2.5} width={2.5} strokeWidth={1} className='main-color'/><h3 className='main-color'>El Consultorio</h3></div>;
     default: return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }
 }

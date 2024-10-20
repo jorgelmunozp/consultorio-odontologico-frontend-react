@@ -35,8 +35,8 @@ export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
     let array = [];
     let [ alertFetch, setAlertFetch ] = useState(false);
     const arrayFetch = useFetch(urlApi);
-    useEffect(() => { if(arrayFetch.data.length === 0) { setAlertFetch(true) } },[arrayFetch]);
-    if(arrayFetch.data.length !== 0) { array = arrayFetch.data }
+    useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+    if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
     /* Query */
     let [ queryCode, setQueryCode ] = useState('');

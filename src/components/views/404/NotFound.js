@@ -17,7 +17,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
           </div>
         </nav>
       </header>
-      <body className='App-body d-flex bg-white mt-5'>
+      <div className='App-body d-flex bg-white mt-5'>
         <div id='contenidoBody' className='contenidoBody mt-5 mx-auto'>
           <div className="container-fluid text-center">
             <h1 className="text-muted mt-4"><Warning height={2} width={2}/></h1>
@@ -29,7 +29,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
             <Link className="main-color text-decoration-none" to={'/' + urlBaseFrontend}><HomeMenu strokeWidth={20}/></Link>
           </div>
         </div>
-      </body>
+      </div>
     </div>
   )
 }

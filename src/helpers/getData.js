@@ -1,8 +1,11 @@
 export const getData = async( urlApi ) => {
-    let responseReturn = [];
+    let responseFetch = { data: {}, status: 0 };
     await fetch( urlApi )
-        .then(response => response.json())
-        .then(data => responseReturn = data)
-        .catch((error) => console.log("Error getData: " + error.message));
-    return responseReturn;
+        .then(response => { console.log("response getData: ", response); responseFetch.status = response.status; return response.json()})
+        .then(data => responseFetch.data = data)
+        .catch((error) =>{ console.log("error.message: ",error.message)
+            if(error.message === 'Failed to fetch') { responseFetch.status = 500 }
+        });
+    
+    return responseFetch;
 }

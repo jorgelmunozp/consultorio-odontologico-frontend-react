@@ -48,7 +48,7 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
 
   return (
     <div className="App">
-      <body className='mt-4 mt-sm-5'>
+      <div className='mt-4 mt-sm-5'>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar Paciente</h5>
         </center>
@@ -102,7 +102,7 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
             </div>
           </div>      
 			  </div>
-      </body>
+      </div>
     </div>
   );
 };

@@ -86,13 +86,13 @@ export const TemplateScreen = () => {
           </div>
         </nav>
       </aside>
-      <body className='App-body d-flex bg-white'>
+      <div className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
               <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />
           </div>
         </div>
-      </body>
+      </div>
     </div>
   );
 }

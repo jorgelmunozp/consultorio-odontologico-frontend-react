@@ -46,7 +46,7 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
 
   return (
     <div className="App">
-        <body className='mt-4 mt-sm-5'>
+        <div className='mt-4 mt-sm-5'>
           <center>
             <h5 className='century-gothic main-color fs-sm-2'>Registrar Doctor</h5>
           </center>
@@ -100,7 +100,7 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
                 </div>
               </div>                
 			    </div>
-         </body>
+         </div>
       </div>
   );
 };
