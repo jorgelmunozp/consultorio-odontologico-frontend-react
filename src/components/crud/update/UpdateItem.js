@@ -5,8 +5,8 @@ import { fetchUpdate } from '../../../helpers/fetchUpdate';
 import { useFetch } from '../../../hooks/useFetch';
 import { myColor } from '../../../global';
 
-export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAlert, Row, states }) => {
-  const objectName = Object.keys(item)[0];                                      // Obtiene el nombre del objeto para saber su tipo
+export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAlert, Row, state }) => {
+  const objectClass = Object.keys(item)[0];                                      // Obtiene el nombre del objeto para saber su Classe
   let statesData = [];
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;
@@ -15,43 +15,45 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
   const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
   const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
   const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-  let [array, setArray] = useState([]);
 
-  const handleSelect = (event) => {
-      switch( event.target.id ) {
-        case 'paciente': setArray(pacientes); break;
-        case 'doctor': setArray(doctores); break;
-        case 'consultorio': setArray(consultorios); break;
-        case 'tratamiento': setArray(tratamientos); break;
-        case 'eps': setArray(epss); break;
-        case 'genero': setArray(generos); break;
-      }
-  };
-
-  
+  const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);
+  const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
+  const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
+  const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
+  const [epssDropdown, setEpssDropdown] = useState(epss);
+  const [generosDropdown, setGenerosDropdown] = useState(generos);
+  const statesDropdown = [
+    { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
+    { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
+    { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
+    { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
+    { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
+    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) }
+  ]
+ 
   const handleUpdate = () => {
-    states.forEach(state => { statesData.push(Object.values(state)[0]) });      // Arreglo con los datos de cada parámetro
+    state.forEach(state => { statesData.push(Object.values(state)[0]) });      // Arreglo con los valores de los datos de cada parámetro del objeto
 
     if(statesData.filter(state => state === '').length === 0) {                 // Verifica que no hayan campos vacios
-      Object.keys(item[objectName]).forEach((parameter,index) => { item[objectName][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item
+      Object.keys(item[objectClass]).forEach((parameter,index) => { item[objectClass][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item
       
       const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);
       fetchResponse.then(
         async function(value) {
           if(200 <= value && value <= 299) { 
-            let arrayResponse;
+            // let arrayResponse;
             await fetch(urlApi)                                                 //API Restful para consumo de las tablas de la base de datos
                 .then(response => response.json())
-                .then(data => arrayResponse = data);
+                // .then(data => arrayResponse = data);
       
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
-            row.render(<Row item={arrayResponse[item.id-1]} urlApi={urlApi} />);
+            row.render(<Row item={ item } urlApi={urlApi} />);
 
             setAlert('successUpdate')
           }
           else { setAlert('errorUpdate') }
         },
-        function(error) { setAlert('errorUpdate') }
+        function(error) { setAlert('Error Update: ', error) }
       )
     }
   };
@@ -71,30 +73,20 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
                     <tbody>
                       <tr><td> Código </td><td><input type="number" value={ item.id } className="modalInput pe-none" disabled></input></td></tr>
                       {
-                        states.map((state,index)=>{ return(
+                        state.map((parameter,index)=>{ 
+                          console.log("state: ",state);
+                          console.log("parameter: ",parameter);
+
+                           return(
                           <tr key={index}>
-                            <td>{ Object.keys(item[objectName])[index].charAt(0).toUpperCase() + Object.keys(item[objectName])[index].slice(1) }</td>
-                            {
-                              eval(JSON.stringify(Object.values(state)[1])) === 'dropdown' 
-                                                              ? <td>
-                                                                  <select id={ Object.keys(states[index])[0] } onFocus={ handleSelect } onChange={ Object.values(states[index])[2] }>
-                                                                    <option value={ states[index][Object.keys(states[index])[0]] }>{ states[index][Object.keys(states[index])[0]] }</option>
-                                                                    { 
-                                                                      array.map((item) => { 
-                                                                        switch( Object.keys(item)[0] ) {
-                                                                          case 'paciente': return( <option value={item.paciente.nombre + " " + item.paciente.apellido}>{item.paciente.nombre + " " + item.paciente.apellido}</option> );
-                                                                          case 'doctor': return( <option value={item.doctor.nombre + " " + item.doctor.apellido}>{item.doctor.nombre + " " + item.doctor.apellido}</option> );
-                                                                          case 'consultorio': return( <option value={item.consultorio.numero}>{item.consultorio.numero + " - " + item.consultorio.nombre}</option> );
-                                                                          case 'tratamiento': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
-                                                                          case 'eps': return( <option value={item.eps.nombre}>{item.eps.nombre}</option> );
-                                                                          case 'genero': return( <option value={item.genero.nombre}>{item.genero.nombre}</option> );
-                                                                        }
-                                                                      })          
-                                                                    }
-                                                                  </select>
-                                                                </td>
-                                                              : <td><input type={ eval(JSON.stringify(Object.values(state)[1])) } value={ eval(JSON.stringify(Object.values(state)[0])) } onChange={ Object.values(states[index])[2] } className="modalInput"></input></td>
-                            }
+                            <td>{ Object.keys(item[objectClass])[index].charAt(0).toUpperCase() + Object.keys(item[objectClass])[index].slice(1) }</td>
+                            <td>
+                              {
+                                eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown' 
+                                                              ? <Dropdown parameter={parameter} statesDropdown={statesDropdown} />
+                                                              : <input type={ eval(JSON.stringify(Object.values(parameter)[1])) } value={ eval(JSON.stringify(Object.values(parameter)[0])) } onChange={ Object.values(parameter)[2] } className="modalInput"></input>
+                              }
+                            </td>
                           </tr>
                         )})
                       }
@@ -120,3 +112,34 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
         </>
       )
 };
+
+const Dropdown = ({ parameter, statesDropdown }) => {
+  const clase = Object.keys(parameter)[0];
+  let index = "";
+  switch (clase) {
+    case 'paciente': index = 0; break;
+    case 'doctor': index = 1; break;
+    case 'consultorio': index = 2; break;
+    case 'tratamiento': index = 3; break;
+    case 'eps': index = 4; break;
+    case 'genero': index = 5; break;
+  }
+
+  return (
+    <select key={ Object.keys(parameter)[0] } id={ Object.keys(parameter)[0] } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(parameter)[2] }>
+      <option value={ Object.values(parameter)[0] }>{ Object.values(parameter)[0] }</option>
+      { 
+        Object.values(statesDropdown[index])[0].map((item) => {
+          switch( Object.keys(item)[0] ) {
+            case 'paciente': return( <option value={item.paciente.nombre + " " + item.paciente.apellido}>{item.paciente.nombre + " " + item.paciente.apellido}</option> );
+            case 'doctor': return( <option value={item.doctor.nombre + " " + item.doctor.apellido}>{item.doctor.nombre + " " + item.doctor.apellido}</option> );
+            case 'consultorio': return( <option value={item.consultorio.numero}>{item.consultorio.numero + " " + item.consultorio.nombre}</option> );
+            case 'tratamiento': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
+            case 'eps': return( <option value={item.eps.nombre}>{item.eps.nombre}</option> );
+            case 'genero': return( <option value={item.genero.nombre}>{item.genero.nombre}</option> );
+          }
+        })          
+      }
+    </select>
+  )
+}

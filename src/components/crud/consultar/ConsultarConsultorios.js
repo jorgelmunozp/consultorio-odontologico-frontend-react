@@ -19,7 +19,7 @@ import { Error } from '../../icons/error/Error';
 const Row = ({ item,urlApi }) => {
   const [numero, setNumero] = useState(item.consultorio.numero);
   const [nombre, setNombre] = useState(item.consultorio.nombre);
-  const states = [
+  const state = [
     { numero: numero, type:"number", handleChange: (event) => setNumero(event.target.value) },
     { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) }
   ]
@@ -40,7 +40,7 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
           { readOpen && <ReadConsultorio Icon={HomeIndex} item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} states={states} /> }
+          { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
           { deleteOpen && <DeleteConsultorio Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Actualizado'} buttons={1} />  }
           { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }

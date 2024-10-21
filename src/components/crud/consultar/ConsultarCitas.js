@@ -23,7 +23,7 @@ const Row = ({ item,urlApi }) => {
   const [consultorio, setConsultorio] = useState(item.cita.consultorio);
   const [doctor, setDoctor] = useState(item.cita.doctor);
   const [tratamiento, setTratamiento] = useState(item.cita.tratamiento);
-  const states = [
+  const state = [
                   { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value) },
                   { fecha: fecha, type:"date", handleChange: (event) => setFecha(event.target.value) },
                   { hora: hora, type:"time", handleChange: (event) => setHora(event.target.value) },
@@ -52,7 +52,7 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbCalendarX className='text-secondary'/></button></td>
 
             { readOpen && <ReadCita Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
-            { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} states={states} /> }
+            { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeleteCita Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
@@ -62,7 +62,7 @@ const Row = ({ item,urlApi }) => {
         )
       };
 
-  export const ConsultarCitas = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
+  export const ConsultarCitas = ({ urlApi }) => {
     /* Fetch */
     let array = [];
     let [ alertFetch, setAlertFetch ] = useState(false);
