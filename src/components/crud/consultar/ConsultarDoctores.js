@@ -1,9 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
-import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { ReadDoctor } from '../read/ReadDoctor';
 import { UpdateDoctor } from '../update/UpdateDoctor';
+import { DeleteDoctor } from '../delete/DeleteDoctor';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
@@ -15,15 +15,29 @@ import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi,tratamientos,generos }) =>  { 
+  const [readOpen, setReadOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [alert, setAlert] = useState(false); 
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
             <td className='px-2 px-sm-3 text-nowrap'>{ item.doctor.nombre }</td>
             <td className='px-2 px-sm-3 text-nowrap'>{ item.doctor.apellido }</td>
             <td className='px-2 px-sm-3 text-nowrap'>{ item.doctor.especialidad }</td>
-            <td><button className='border-0 bg-transparent' onClick={ () => ReadDoctor(item) }><TbUserSearch className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setReadOpen(true) }><TbUserSearch className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => UpdateDoctor(item,urlApi,Row,tratamientos,generos) }><TbUserEdit className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => DeleteDoctor(item,urlApi) }><TbUserX className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbUserX className='text-secondary'/></button></td>
+
+            { readOpen && <ReadDoctor Icon={TbUserX} item={item} title={'Médico'} buttons={1} setOpen={setReadOpen} /> }
+            {/* { updateOpen && <UpdateDoctor Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Médico?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> } */}
+            { deleteOpen && <DeleteDoctor Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Médico?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Médico Actualizado'} buttons={1} />  }
+            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Médico Eliminado'} buttons={1} />  }
+            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
           </>
         )
   };

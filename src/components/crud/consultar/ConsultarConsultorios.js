@@ -1,10 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
-import { Consultorio } from '../../../classes/Consultorio';
-import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { ReadConsultorio } from '../read/ReadConsultorio';
-import { UpdateConsultorio } from '../update/UpdateConsultorio';
+import { UpdateItem } from '../update/UpdateItem';
+import { DeleteConsultorio } from '../delete/DeleteConsultorio';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
@@ -18,10 +17,12 @@ import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi }) => {
-  const [numero, setNumero] = useState(item.consultorio.numero);               //Input Número
-  const handleChangeNumero = (event) => { setNumero(event.target.value); };
-  const [nombre, setNombre] = useState(item.consultorio.nombre);               //Input Nombre
-  const handleChangeNombre = (event) => { setNombre(event.target.value); };
+  const [numero, setNumero] = useState(item.consultorio.numero);
+  const [nombre, setNombre] = useState(item.consultorio.nombre);
+  const states = [
+    { numero: numero, type:"number", handleChange: (event) => setNumero(event.target.value) },
+    { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) }
+  ]
 
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
@@ -39,12 +40,12 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
           { readOpen && <ReadConsultorio Icon={HomeIndex} item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateConsultorio Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} Class={Consultorio} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> }
+          { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} states={states} /> }
           { deleteOpen && <DeleteConsultorio Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Actualizado'} buttons={1} />  }
           { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
           { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
-          { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la eliminación'} buttons={1} />  }
+          { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
         </>
       )
   }; 
@@ -71,8 +72,8 @@ export const ConsultarConsultorios = ({ urlApi }) => {
   /* Pagination */
   const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
   const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = Math.floor(arrayFiltered.length/itemPerPage);     // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = arrayFiltered.length%itemPerPage;                 // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+  const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
+  const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
   let indexPages = [];
   let activePage = [true];                                            // [true]
   if(resPages !== 0 ){

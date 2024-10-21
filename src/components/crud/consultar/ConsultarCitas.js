@@ -1,20 +1,43 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
-import { DeleteCita } from '../delete/DeleteCita';
 import { ReadCita } from '../read/ReadCita';
-import { UpdateCita } from '../update/UpdateCita';
+import { UpdateItem } from '../update/UpdateItem';
+import { DeleteCita } from '../delete/DeleteCita';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getCitasFiltered } from '../../selectors/getCitasFiltered';
 import { TbCalendarSearch, TbCalendarTime, TbCalendarX } from "react-icons/tb";
+import { CalendarSmile } from '../../icons/calendar/CalendarSmile';
+import { CalendarEdit } from '../../icons/calendar/CalendarEdit';
 import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
-const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => { 
+const Row = ({ item,urlApi }) => { 
+  const [paciente, setPaciente] = useState(item.cita.paciente);
+  const [fecha, setFecha] = useState(item.cita.fecha);
+  const [hora, setHora] = useState(item.cita.hora);
+  const [consultorio, setConsultorio] = useState(item.cita.consultorio);
+  const [doctor, setDoctor] = useState(item.cita.doctor);
+  const [tratamiento, setTratamiento] = useState(item.cita.tratamiento);
+  const states = [
+                  { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value) },
+                  { fecha: fecha, type:"date", handleChange: (event) => setFecha(event.target.value) },
+                  { hora: hora, type:"time", handleChange: (event) => setHora(event.target.value) },
+                  { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value) },
+                  { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value) },
+                  { tratamiento: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value) }
+                ]
+
+  const [readOpen, setReadOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [alert, setAlert] = useState(false); 
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
@@ -24,9 +47,17 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.cita.consultorio }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.doctor }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.tratamiento }</td>
-            <td><button className='border-0 bg-transparent' onClick={ () => ReadCita(item) }><TbCalendarSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdateCita(item,urlApi,Row,pacientes,tratamientos,doctores,consultorios) }><TbCalendarTime className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => DeleteCita(item,urlApi) }><TbCalendarX className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setReadOpen(true) }><TbCalendarSearch className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbCalendarTime className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbCalendarX className='text-secondary'/></button></td>
+
+            { readOpen && <ReadCita Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
+            { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} states={states} /> }
+            { deleteOpen && <DeleteCita Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
+            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
+            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
           </>
         )
       };
@@ -131,7 +162,7 @@ const Row = ({ item,urlApi,pacientes,tratamientos,doctores,consultorios }) => {
                                             : sortByIdUp
                 )))))))))))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                   <tr id={ 'row'+item.id } key={ item.id }>
-                    <Row item={item} urlApi={urlApi} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />
+                    <Row item={item} urlApi={urlApi} />
                   </tr>
                 )})
               }

@@ -1,8 +1,6 @@
 import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
-import { Logo } from '../../icons/logo/Logo';
-import { myColor } from '../../../global';
 
 export const DeleteConsultorio = ({ Icon,item, urlApi, title, buttons, setOpen, setAlert }) => {
   const handleDelete = () => {
@@ -36,7 +34,7 @@ export const DeleteConsultorio = ({ Icon,item, urlApi, title, buttons, setOpen, 
               </div>
               <div className={'modalContent'}>
                 <center>
-                  <table class="swalTable" border='1'>
+                  <table className="modalTable" border='1'>
                     <thead>
                       <tr><th>Parámetro</th><th>Datos</th></tr>
                     </thead>

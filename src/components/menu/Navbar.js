@@ -5,13 +5,13 @@ import { AuthContext } from '../../auth/authContext';
 import { types } from '../../types/types';
 import { getDate } from '../../helpers/getDate';
 import { getTime } from '../../helpers/getTime';
-import { LoginForm } from '../login/LoginForm';
+import { LoginScreen } from '../views/login/LoginScreen';
 import { Error } from '../icons/error/Error';
 import { Logo } from '../icons/logo/LogoThick';
 import { HomeMenu } from '../icons/home/HomeMenu';
 import { User } from '../icons/user/User';
 import { Warning } from '../icons/warning/Warning';
-import '../login/login.css';
+import '../views/login/login.css';
 
 export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
@@ -63,14 +63,12 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
                 <div className="modal fade align-self-auto" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-modalContainer">
                         <div className="modal-content">
-                            <div className="modal-header mx-auto border-0 mt-4 pb-1">
-                                <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
-                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
-                                </button>
+                            <div className="modal-header d-grid mx-auto border-0 mt-4 pb-1">
+                                <User strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
+                                <h1 className="modal-title main-color fs-5 pb-4" id="loginModalLabel">Ingresar</h1>
                             </div>
                             <div className="modal-body mx-auto w-100 pt-1">
-                                <h1 className="modal-title main-color fs-5 pb-4" id="loginModalLabel">{ myTitle }</h1>
-                                <LoginForm setAlertMessage={setAlertMessage} setAlertType={setAlertType} />
+                                <LoginScreen setAlertMessage={setAlertMessage} setAlertType={setAlertType} />
                             </div>
                         </div>
                     </div>
@@ -87,8 +85,8 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
                                                     <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
                                                 </button>
                                                 <div className="container">
-                                                <p className="text-muted mt-4">Fecha: { fecha } Hora: { hora }</p>
-                                                <p className="text-muted mt-4">Agenda del día</p>
+                                                    <p className="text-muted mt-4">Fecha: { fecha } Hora: { hora }</p>
+                                                    <p className="text-muted mt-4">Agenda del día</p>
                                                 </div>
                                             </>
                                         : ( alertType === "warning" )

@@ -1,29 +1,44 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
-import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { ReadTratamiento } from '../read/ReadTratamiento';
 import { UpdateTratamiento } from '../update/UpdateTratamiento';
+import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getTratamientosFiltered } from '../../selectors/getTratamientosFiltered';
-import { TbFilterSearch,TbFilterEdit, TbFilterX } from "react-icons/tb";
+import { TbFilterSearch,TbFilterEdit, TbFilterX, TbFilter } from "react-icons/tb";
+import  { Filter } from '../../icons/filter/Filter';
 import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
 const Row = ({ item,urlApi,doctores,consultorios }) => {
+  const [readOpen, setReadOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [alert, setAlert] = useState(false); 
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
             <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.nombre }</td>
             <td className='ps-5 ps-sm-5 text-nowrap'>{ item.tratamiento.consultorio.numero }</td>
             <td className='px-2 px-sm-4 text-nowrap'>{ item.tratamiento.doctor.nombre +" "+ item.tratamiento.doctor.apellido }</td>
-            <td><button className='border-0 bg-transparent' onClick={ () => ReadTratamiento(item) }><TbFilterSearch className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setReadOpen(true) }><TbFilterSearch className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => UpdateTratamiento(item,urlApi,Row,doctores,consultorios) }><TbFilterEdit className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => DeleteTratamiento(item,urlApi) }><TbFilterX className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbFilterX className='text-secondary'/></button></td>
+
+            { readOpen && <ReadTratamiento Icon={Filter} item={item} title={'Tratamiento'} buttons={1} setOpen={setReadOpen} /> }
+            {/* { updateOpen && <UpdateTratamiento Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Tratamiento?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> } */}
+            { deleteOpen && <DeleteTratamiento Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Tratamiento?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Tratamiento Actualizado'} buttons={1} />  }
+            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Tratamiento Eliminado'} buttons={1} />  }
+            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
           </>
         )
     };

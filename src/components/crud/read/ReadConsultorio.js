@@ -12,7 +12,7 @@ export const ReadConsultorio = ({ Icon, item, title, buttons, setOpen }) => {
               </div>
               <div className={'modalContent'}>
                 <center>
-                  <table className="swalTable" border='1'>
+                  <table className="modalTable" border='1'>
                     <thead>
                       <tr><th>Parámetro</th><th>Datos</th></tr>
                     </thead>

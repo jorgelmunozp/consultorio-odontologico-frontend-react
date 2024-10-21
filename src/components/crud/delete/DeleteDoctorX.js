@@ -2,12 +2,12 @@ import Swal from 'sweetalert2';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeleteConsultorio = (item,urlApi) => {
+export const DeleteDoctor = (item,urlApi) => {
   Swal.fire({
-    title: "Eliminar Consultorio?",
+    title: "Eliminar Doctor?",
     html: `
       <center>
-        <table class="swalTable" border='1'>
+        <table class="modalTable" border='1'>
           <thead>
             <tr>
               <th>Parámetro</th>
@@ -19,13 +19,25 @@ export const DeleteConsultorio = (item,urlApi) => {
               <td> Código </td>
               <td>${ item.id }</td>
             <tr>
-            </tr>
-              <td> Número </td>
-              <td>${ item.consultorio.numero }</td>
+            </tr>        
+              <td> Identificacion </td>
+              <td>${ item.doctor.identificacion }</td>
             <tr>
             </tr>        
               <td> Nombre </td>
-              <td>${ item.consultorio.nombre }</td>
+              <td>${ item.doctor.nombre }</td>
+            <tr>
+            </tr>     
+              <td> Apellido </td>
+              <td>${ item.doctor.apellido }</td>
+            <tr>
+            </tr>        
+              <td> Género </td>
+              <td>${ item.doctor.genero }</td>
+            <tr>
+            </tr>
+              <td> Especialidad </td>
+              <td>${ item.doctor.especialidad }</td>
             <tr>
           </tbody>
         </table>
@@ -45,14 +57,14 @@ export const DeleteConsultorio = (item,urlApi) => {
         async function(value) {
           if(200 <= value && value <= 299) {
             let arrayResponse;
-            await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
+            await fetch(urlApi)                      //API REST para consumo de la tabla Doctores de la base de datos
                 .then(response => response.json())
                 .then(data => arrayResponse = data);
-      
+
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
             row.render();
-
-            Swal.fire({ title: "Consultorio Eliminado", icon: "success" });
+            
+            Swal.fire({ title: "Doctor Eliminado", icon: "success" });
           }
           else { Swal.fire("Error en la eliminación", "", "error"); }
         },

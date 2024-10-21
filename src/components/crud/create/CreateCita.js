@@ -1,6 +1,5 @@
 import Swal from 'sweetalert2';
 import { useState } from "react";
-import { Cita } from '../../../classes/Cita'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";

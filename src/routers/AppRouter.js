@@ -4,7 +4,6 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { TemplateScreen } from '../components/views/TemplateScreen';
 import { Navbar } from "../components/menu/Navbar";
-// import { LoginScreen } from "../components/login/LoginScreen";
 import { HomeScreen } from "../components/views/home/HomeScreen";
 import { NotFound } from '../components/views/404/NotFound';
 import { myColor, myTitle } from "../global";

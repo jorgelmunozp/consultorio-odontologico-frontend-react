@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../auth/authContext';
-import { types } from '../../types/types';
-import { InputText } from '../forms/inputs/InputText';
-import { InputPassword } from '../forms/inputs/InputPassword';
+import { AuthContext } from '../../../auth/authContext';
+import { types } from '../../../types/types';
+import { InputText } from '../../forms/inputs/InputText';
+import { InputPassword } from '../../forms/inputs/InputPassword';
 
 const superuser = process.env.REACT_APP_SUPERUSER;
 const password = process.env.REACT_APP_PASSWORD;
 const username = process.env.REACT_APP_USERNAME;
 
-export const LoginForm = ({ setAlertMessage,setAlertType }) => {
+export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
   const [ userInput,setUserInput ] = useState("");
   const [ passwordInput,setPasswordInput ] = useState("");
 
@@ -20,10 +20,7 @@ export const LoginForm = ({ setAlertMessage,setAlertType }) => {
     if( userInput === superuser && passwordInput === password ) {
       setAlertMessage("");
       setAlertType("");
-      const action = {
-        type: types.login,
-        payload: { name: username }
-      }
+      const action = { type: types.login, payload: { name: username } }
       dispatch(action);
   
       const lastPath = localStorage.getItem('lastPath') || '/';

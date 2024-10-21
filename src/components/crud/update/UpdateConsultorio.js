@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 import { myColor } from '../../../global';
 
-export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen, setAlert, Row, Class, numero, nombre, handleChangeNumero, handleChangeNombre }) => {
-  const handleUpdate = () => {
-    if(numero !== "" && nombre !== "" ) {
-      item.consultorio.numero = numero;
-      item.consultorio.nombre = nombre
+export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen, setAlert, Row, states, handleChanges }) => {
+  const object = Object.keys(item)[0];
 
+  const handleUpdate = () => {
+    if(states.filter(state => state === '').length === 0) {
+      Object.keys(item[object]).forEach((parameter,index) => { item[object][parameter] = states[index] });
+      
       const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);
       fetchResponse.then(
         async function(value) {
@@ -25,7 +26,7 @@ export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen,
           }
           else { setAlert('errorUpdate') }
         },
-        function(error) { setAlert('errorUpdate'); console.log("Error en la actualización: ",error) }
+        function(error) { setAlert('errorUpdate') }
       )
     }
   };
@@ -40,14 +41,17 @@ export const UpdateConsultorio = ({ Icon, item, urlApi, title, buttons, setOpen,
               </div>
               <div className={'modalContent'}>
                 <center>
-                  <table class="swalTable" border='1'>
+                  <table className="modalTable" border='1'>
                     <thead>
                       <tr><th>Parámetro</th><th>Datos</th></tr>
                     </thead>
                     <tbody>
                       <tr><td> Código </td><td>{ item.id }</td></tr>
-                      <tr><td> Número </td><td><input id="editarNumero" type="number" value={ numero } onChange={handleChangeNumero} class="swal2-input"></input></td></tr>
-                      <tr><td> Nombre </td><td><input id="editarNombre" type="text" value={ nombre } onChange={handleChangeNombre} class="swal2-input"></input></td></tr>
+                      {
+                        states.map((state,index)=>{ return(
+                          <tr key={index}><td>{ Object.keys(item[object])[index].charAt(0).toUpperCase() + Object.keys(item[object])[index].slice(1) }</td><td><input type="text" value={ state } onChange={ handleChanges[index] } className="modalInput"></input></td></tr>
+                        )})
+                      }
                     </tbody>
                   </table>
                 </center>
