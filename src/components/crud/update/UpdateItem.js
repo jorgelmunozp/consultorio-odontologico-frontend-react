@@ -17,7 +17,7 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
   const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
   let [array, setArray] = useState([]);
 
-  const handleSelect = (event) => { 
+  const handleSelect = (event) => {
       switch( event.target.id ) {
         case 'paciente': setArray(pacientes); break;
         case 'doctor': setArray(doctores); break;
@@ -77,7 +77,7 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
                             {
                               eval(JSON.stringify(Object.values(state)[1])) === 'dropdown' 
                                                               ? <td>
-                                                                  <select id={ Object.keys(states[index])[0] } onClick={ handleSelect }>
+                                                                  <select id={ Object.keys(states[index])[0] } onFocus={ handleSelect } onChange={ Object.values(states[index])[2] }>
                                                                     <option value={ states[index][Object.keys(states[index])[0]] }>{ states[index][Object.keys(states[index])[0]] }</option>
                                                                     { 
                                                                       array.map((item) => { 
