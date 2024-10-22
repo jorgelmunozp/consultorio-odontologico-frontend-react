@@ -58,8 +58,6 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
     }
   };
 
-  console.log("state: ", state)
-
   return (
         <>
           <div className={'modalContainer'}>

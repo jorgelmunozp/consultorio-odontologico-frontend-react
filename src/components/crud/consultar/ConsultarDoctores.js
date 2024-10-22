@@ -16,7 +16,7 @@ import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
-const Row = ({ item,urlApi }) =>  {
+const Row = ({ item,urlApi }) => {
   const [identificacion, setIdentificacion] = useState(item.doctor.identificacion);
   const [nombre, setNombre] = useState(item.doctor.nombre);
   const [apellido, setApellido] = useState(item.doctor.apellido);
@@ -27,7 +27,7 @@ const Row = ({ item,urlApi }) =>  {
                   { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
                   { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value) },
                   { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value) },
-                  { especialidad: especialidad, type:"dropdown", handleChange: (event) => setEspecialidad(event.target.value) },
+                  { especialidad: especialidad, type:"text", handleChange: (event) => setEspecialidad(event.target.value) },
                 ];
 
   const [readOpen, setReadOpen] = useState(false);
