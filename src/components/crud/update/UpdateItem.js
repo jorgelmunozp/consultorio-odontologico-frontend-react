@@ -58,6 +58,8 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
     }
   };
 
+  console.log("state: ", state)
+
   return (
         <>
           <div className={'modalContainer'}>
@@ -74,21 +76,19 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
                       <tr><td> Código </td><td><input type="number" value={ item.id } className="modalInput pe-none" disabled></input></td></tr>
                       {
                         state.map((parameter,index)=>{ 
-                          console.log("state: ",state);
-                          console.log("parameter: ",parameter);
-
-                           return(
-                          <tr key={index}>
-                            <td>{ Object.keys(item[objectClass])[index].charAt(0).toUpperCase() + Object.keys(item[objectClass])[index].slice(1) }</td>
-                            <td>
-                              {
-                                eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown' 
-                                                              ? <Dropdown parameter={parameter} statesDropdown={statesDropdown} />
-                                                              : <input type={ eval(JSON.stringify(Object.values(parameter)[1])) } value={ eval(JSON.stringify(Object.values(parameter)[0])) } onChange={ Object.values(parameter)[2] } className="modalInput"></input>
-                              }
-                            </td>
-                          </tr>
-                        )})
+                          return(
+                            <tr key={index}>
+                              <td>{ Object.keys(item[objectClass])[index].charAt(0).toUpperCase() + Object.keys(item[objectClass])[index].slice(1) }</td>
+                              <td>
+                                {
+                                  eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown' 
+                                                                ? <Dropdown parameter={parameter} statesDropdown={statesDropdown} />
+                                                                : <input type={ eval(JSON.stringify(Object.values(parameter)[1])) } value={ eval(JSON.stringify(Object.values(parameter)[0])) } onChange={ Object.values(parameter)[2] } className="modalInput"></input>
+                                }
+                              </td>
+                            </tr>
+                          )
+                        })
                       }
                     </tbody>
                   </table>

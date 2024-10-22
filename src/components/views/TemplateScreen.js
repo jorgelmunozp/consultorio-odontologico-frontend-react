@@ -102,11 +102,11 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
     case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 2: return <ConsultarCitas urlApi={urlApiCitas} />;
     case 3: return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
-    case 4: return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} />;
+    case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
     case 5: return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} />;
-    case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
     case 7: return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
-    case 8: return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
+    case 8: return <ConsultarDoctores urlApi={urlApiDoctores} />;
     case 9: return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
     case 10: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
     case 11: return <CreateConsultorio urlApi={urlApiConsultorios} consultorios={consultorios} />;

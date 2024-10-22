@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { ReadPaciente } from '../read/ReadPaciente';
-import { UpdatePaciente } from '../update/UpdatePaciente';
+import { UpdateItem } from '../update/UpdateItem';
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
@@ -10,11 +10,26 @@ import { SearchBar } from '../../search/SearchBar';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import { getPacientesFiltered } from '../../selectors/getPacientesFiltered';
 import { TbUserSearch, TbUserEdit,TbUserX } from "react-icons/tb";
+import { User } from '../../icons/user/User';
+import { UserEdit } from '../../icons/user/UserEdit';
 import { Success } from '../../icons/success/Success';
 import { Warning } from '../../icons/warning/Warning';
 import { Error } from '../../icons/error/Error';
 
-const Row = ({ item,urlApi,epss,generos }) => { 
+const Row = ({ item,urlApi }) => {
+  const [identificacion, setIdentificacion] = useState(item.paciente.identificacion);
+  const [nombre, setNombre] = useState(item.paciente.nombre);
+  const [apellido, setApellido] = useState(item.paciente.apellido);
+  const [genero, setGenero] = useState(item.paciente.genero);
+  const [eps, setEps] = useState(item.paciente.eps);
+  const state = [
+                  { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value) },
+                  { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
+                  { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value) },
+                  { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value) },
+                  { eps: eps, type:"dropdown", handleChange: (event) => setEps(event.target.value) },
+                ];
+
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -30,11 +45,11 @@ const Row = ({ item,urlApi,epss,generos }) => {
             <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.genero }</td>
             <td className='px-2 px-sm-3 text-nowrap'>{ item.paciente.eps }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => setReadOpen(true) }><TbUserSearch className='text-secondary'/></button></td>
-            <td><button className='border-0 bg-transparent' onClick={ () => UpdatePaciente(item,urlApi,Row,epss,generos) }><TbUserEdit className='text-secondary'/></button></td>
+            <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbUserEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbUserX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadPaciente Icon={TbUserX} item={item} title={'Paciente'} buttons={1} setOpen={setReadOpen} /> }
-            {/* { updateOpen && <UpdatePaciente Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Paciente?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} numero={numero} nombre={nombre} handleChangeNumero={handleChangeNumero} handleChangeNombre={handleChangeNombre} /> } */}
+            { readOpen && <ReadPaciente Icon={User} item={item} title={'Paciente'} buttons={1} setOpen={setReadOpen} /> }
+            { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} title={'Actualizar Paciente?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeletePaciente Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Paciente?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Actualizado'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Eliminado'} buttons={1} />  }
@@ -44,7 +59,7 @@ const Row = ({ item,urlApi,epss,generos }) => {
         )
   };
 
-export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
+export const ConsultarPacientes = ({ urlApi }) => {
     /* Fetch */
     let array = [];
     let [ alertFetch, setAlertFetch ] = useState(false);
@@ -112,12 +127,12 @@ export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
         <table className="table" border='1'>
           <thead>
             <tr>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Código</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Identificación</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Nombre</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Apellido</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Género</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(9)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(10)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
-              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">Eps</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(11)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(12)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[0]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[1]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(3)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(4)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[2]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(5)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(6)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[3]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(7)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(8)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[4]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(9)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(10)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
+              <th className='border-0 py-0 px-2 px-sm-3px-2 px-sm-3'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{titles[5]}</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy(11)}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy(12)}><Arrows direction={"down"}/></button></th></tr></thead></table></th>
               <th className='border-0 py-0' colSpan='3'></th>
             </tr>
           </thead>
@@ -138,7 +153,7 @@ export const ConsultarPacientes = ({ urlApi,epss,generos }) => {
                                       : sortByIdUp
                   )))))))))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                     <tr id={ 'row'+item.id } key={ item.id }>
-                      <Row item={item} urlApi={urlApi} epss={epss} generos={generos} />
+                      <Row item={item} urlApi={urlApi} />
                     </tr>
               )})
             }

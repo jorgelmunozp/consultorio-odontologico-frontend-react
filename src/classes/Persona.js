@@ -14,7 +14,7 @@ export class Paciente extends Persona {
     }
   }
 
-  export class Doctor extends Persona {
+  export class DoctorFull extends Persona {
     constructor(identificacion, nombre, apellido, genero, especialidad) {
         super(identificacion, nombre, apellido, genero);
         this.especialidad = especialidad;

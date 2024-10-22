@@ -185,29 +185,6 @@ select::-ms-expand { display: none; }
   font-weight: normal;
   padding: 0em 1em 0;
 }
-.modalTable th  {
-  background-color:var(--main-color);
-  color: var(--white-color);
-  font-size: 0.85em;
-  font-weight: normal;
-  text-align: center;
-  padding: 0.75vmin 1vmin;
-  border-bottom: 1px solid var(--dark-color);
-}
-.modalTable td {
-  color: var(--dark-color);
-  font-size: 0.9em;
-  padding: 1vmin 5vmin;
-  text-wrap: nowrap;
-}
-.modalTable td:nth-child(even){background-color:var(--white-color);}
-.modalTable td:nth-child(odd){background-color: #f1f1f1;}
 
-.modalInput {
-  background-color:var(--white-color);
-  height: 4vmin !important;
-  margin: 0;
-  width: 100%;
-}
 .swal2-confirm.swal2-styled, .swal2-cancel { font-size: 3.25vmin !important; }
 
