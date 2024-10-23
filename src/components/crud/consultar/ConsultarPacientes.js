@@ -23,9 +23,9 @@ const Row = ({ item,urlApi }) => {
   const [genero, setGenero] = useState(item.paciente.genero);
   const [eps, setEps] = useState(item.paciente.eps);
   const state = [
-                  { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value) },
                   { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
                   { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value) },
+                  { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value) },
                   { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value) },
                   { eps: eps, type:"dropdown", handleChange: (event) => setEps(event.target.value) },
                 ];

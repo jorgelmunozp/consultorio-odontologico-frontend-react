@@ -22,13 +22,15 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
   const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
   const [epssDropdown, setEpssDropdown] = useState(epss);
   const [generosDropdown, setGenerosDropdown] = useState(generos);
+  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
   const statesDropdown = [
     { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
     { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
     { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
     { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
     { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
-    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) }
+    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
+    { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
   ]
  
   const handleUpdate = () => {
@@ -120,6 +122,7 @@ const Dropdown = ({ parameter, statesDropdown }) => {
                   case 'tratamiento': index = 3; break;
                   case 'eps': index = 4; break;
                   case 'genero': index = 5; break;
+                  case 'especialidad': index = 6; break;
   }
 
   let key = '';
@@ -144,6 +147,7 @@ const Dropdown = ({ parameter, statesDropdown }) => {
             case 'tratamiento': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
             case 'eps': return( <option value={item.eps.nombre}>{item.eps.nombre}</option> );
             case 'genero': return( <option value={item.genero.nombre}>{item.genero.nombre}</option> );
+            case 'especialidad': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
           }
         })          
       }

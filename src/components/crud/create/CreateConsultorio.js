@@ -13,7 +13,7 @@ export const CreateConsultorio = ({ urlApi }) => {
   const handleChangeNumero = (event) => { setNumero(event.target.value); };
   const [nombre, setNombre] = useState("");               //Input Nombre
   const handleChangeNombre = (event) => { setNombre(event.target.value); };
-  const [responseStatus, setResponseStatus] = useState("");
+  const [responseStatus, setResponseStatus] = useState(0);
   const [alert, setAlert] = useState(false); 
 
   if(numero!=="" && nombre!=="") { 

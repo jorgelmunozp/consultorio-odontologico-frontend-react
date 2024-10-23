@@ -23,11 +23,11 @@ const Row = ({ item,urlApi }) => {
   const [genero, setGenero] = useState(item.doctor.genero);
   const [especialidad, setEspecialidad] = useState(item.doctor.especialidad);
   const state = [
-                  { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value) },
                   { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
                   { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value) },
+                  { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value) },
                   { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value) },
-                  { especialidad: especialidad, type:"text", handleChange: (event) => setEspecialidad(event.target.value) },
+                  { especialidad: especialidad, type:"dropdown", handleChange: (event) => setEspecialidad(event.target.value) },
                 ];
 
   const [readOpen, setReadOpen] = useState(false);

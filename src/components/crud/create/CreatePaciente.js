@@ -1,8 +1,12 @@
 import Swal from 'sweetalert2';
 import { useState }  from "react";
+import { Paciente } from '../../../classes/User';
+import { Modal } from '../../modal/Modal';
+import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaUserInjured } from "react-icons/fa";
-import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
+import { Success } from '../../icons/success/Success';
+import { Error } from '../../icons/error/Error';
 
 export const CreatePaciente = ({ urlApi,epss,generos }) => {
   let item = "";
@@ -16,22 +20,19 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
   const handleChangeGenero = (event) => { setGenero(event.target.value); };
   const [eps, setEps] = useState("");                 //Select Eps
   const handleChangeEps = (event) => { setEps(event.target.value); };
-  const [responseStatus, setResponseStatus] = useState("");
+  const [responseStatus, setResponseStatus] = useState(0);
+  const [alert, setAlert] = useState(false); 
 
   if(identificacion!=="" && nombre!=="" && apellido!=="" && genero!=="" && eps!==""){ 
-    item = `JSON.stringify({
-      "paciente": {
-        "nombre": document.getElementById("nombrePaciente").value,
-        "apellido": document.getElementById("apellidoPaciente").value,
-        "identificacion": document.getElementById("cedulaPaciente").value,
-        "genero": document.getElementById("generoPaciente").innerText,
-        "eps": document.getElementById("epsPaciente").innerText,
-      },
-    })`;
-  }
+    const objectClass = new Paciente(nombre, apellido, identificacion, genero, eps);   //Object from Class
+    item = `JSON.stringify({                              
+      ${Paciente.name.toLowerCase()}: ${JSON.stringify(objectClass)}
+    })`;                                                  //JSON Object from Object Class
+  }    
 
   if(200 <= responseStatus && responseStatus <= 299){
-    Swal.fire("Paciente Registrado", "", "success");
+    // Swal.fire("Paciente Registrado", "", "success");
+    setAlert("success");
     setIdentificacion("");
     setNombre("");
     setApellido("");
@@ -39,10 +40,10 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
     setEps("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
-    Swal.fire("Paciente No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   } else if(500 <= responseStatus && responseStatus <= 599){
-    Swal.fire("Paciente No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   }
 
@@ -103,6 +104,8 @@ export const CreatePaciente = ({ urlApi,epss,generos }) => {
           </div>      
 			  </div>
       </div>
+      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Registrado'} buttons={1} />  }
+      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Paciente No Registrado'} buttons={1} />  }
     </div>
   );
 };

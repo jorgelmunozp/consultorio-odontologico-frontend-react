@@ -1,52 +1,51 @@
 import Swal from 'sweetalert2';
 import { useState } from "react";
+import { Cita } from '../../../classes/Cita';
+import { Modal } from '../../modal/Modal';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaCalendarPlus } from "react-icons/fa";
 import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 import { getTime } from '../../../helpers/getTime';
 import { getDate } from '../../../helpers/getDate';
+import { Success } from '../../icons/success/Success';
+import { Error } from '../../icons/error/Error';
 
 export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios }) => {
   let item = "";
   const [paciente, setPaciente] = useState("");             //Select Paciente
   const handleChangePaciente = (event) => { setPaciente(event.target.value); };
-  const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento
-  const handleChangeTratamiento = (event) => { setTratamiento(event.target.value); };
+  const [consultorio, setConsultorio] = useState("");       //Select Consultorio
+  const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };  
   const [doctor, setDoctor] = useState("");                 //Select Doctor
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
-  const [consultorio, setConsultorio] = useState("");       //Select Consultorio
-  const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
-  const [responseStatus, setResponseStatus] = useState(0);
+  const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento
+  const handleChangeTratamiento = (event) => { setTratamiento(event.target.value); };
   let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
   const handleChangeFecha = (event) => { setFecha(event.target.value); };
   let [hora, setHora] = useState(getTime);
   const handleChangeHora = (event) => { setHora(event.target.value); };
-
-  if(paciente!=="" && fecha!=="" && hora!=="" && tratamiento!=="" && doctor!=="" && consultorio!==""){ 
-    item = `JSON.stringify({
-      "cita": {
-        "paciente": document.getElementById("registroPaciente").innerText,
-        "fecha": document.getElementById("registroFecha").value,
-        "hora": document.getElementById("registroHora").value,
-        "consultorio": document.getElementById("registroConsultorio").innerText,
-        "doctor": document.getElementById("registroDoctor").innerText,
-        "tratamiento": document.getElementById("registroTratamiento").innerText,
-      },
-    })`;
+  const [responseStatus, setResponseStatus] = useState(0);
+  const [alert, setAlert] = useState(false); 
+  
+  if(paciente!=="" && fecha!=="" && hora!=="" && consultorio!=="" && doctor!=="" && tratamiento!==""){ 
+    const objectClass = new Cita(paciente, consultorio, doctor, tratamiento);   //Object from Class
+    item = `JSON.stringify({                              
+      ${Cita.name.toLowerCase()}: ${JSON.stringify(objectClass)}
+    })`;                                                                        //JSON Object from Object Class
   }
 
   if(200 <= responseStatus && responseStatus <= 299){
-    setResponseStatus(0);
-    Swal.fire("Cita Registrada", "", "success");
+    // Swal.fire("Cita Registrada", "", "success");
     setPaciente("");
     setTratamiento("");
     setConsultorio("");
     setDoctor("");
+    setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
-    Swal.fire("Cita No Registrada", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   } else if(500 <= responseStatus && responseStatus <= 599){
-    Swal.fire("Cita No Registrada", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   }
   return (
@@ -131,6 +130,8 @@ export const CreateCita = ({ urlApi,pacientes,tratamientos,doctores,consultorios
           </div>   
         </div>
       </div>
+      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Registrada'} buttons={1} />  }
+      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Cita No Registrada'} buttons={1} />  }
     </div>
   );
 };

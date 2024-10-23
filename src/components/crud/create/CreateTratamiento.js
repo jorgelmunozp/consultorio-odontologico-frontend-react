@@ -1,9 +1,11 @@
-import Swal from 'sweetalert2';
 import { useState }  from "react";
 import { Tratamiento } from '../../../classes/Tratamiento';
+import { Modal } from '../../modal/Modal';
+import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { FaStethoscope } from "react-icons/fa";
-import { BotonGuardar } from "../../../forms/buttons/BotonGuardar";
+import { Success } from '../../icons/success/Success';
+import { Error } from '../../icons/error/Error';
 
 export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
   let item = "";
@@ -13,26 +15,28 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
   const handleChangeConsultorio = (event) => { setConsultorio(event.target.value); };
   const [doctor, setDoctor] = useState("");           //Select Doctor
   const handleChangeDoctor = (event) => { setDoctor(event.target.value); };
-  const [responseStatus, setResponseStatus] = useState("");
+  const [responseStatus, setResponseStatus] = useState(0);
+  const [alert, setAlert] = useState(false);
 
   if(nombre!=="" && consultorio!=="" && doctor!==""){ 
     const objectClass = new Tratamiento(nombre,consultorio,doctor);   //Object from Class
+    console.log("objectClass: ",objectClass)
     item = `JSON.stringify({                              
       ${Tratamiento.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
    }
 
   if(200 <= responseStatus && responseStatus <= 299){
-    Swal.fire("Tratamiento Registrado", "", "success");
+    setAlert("success");
     setNombre("");
     setConsultorio("");
     setDoctor("");
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
-    Swal.fire("Tratamiento No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   } else if(500 <= responseStatus && responseStatus <= 599){
-    Swal.fire("Tratamiento No Registrado", "", "error");
+    setAlert("error");
     setResponseStatus(0);
   }
 
@@ -85,6 +89,8 @@ export const CreateTratamiento = ({ urlApi,consultorios,doctores }) => {
           </div>              
 			  </div>
       </div>
+      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Tratamiento Registrado'} buttons={1} />  }
+      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Tratamiento No Registrado'} buttons={1} />  }
     </div>
   );
 };
