@@ -6,5 +6,4 @@ export class Paciente {
         this.genero = genero;
         this.eps = eps;
     }
-
 }
