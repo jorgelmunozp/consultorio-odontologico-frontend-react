@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
-import { Doctor } from '../../../classes/User';
-import { Consultorio } from '../../../classes/Consultorio';
 import { fetchUpdate } from '../../../helpers/fetchUpdate';
 import { useFetch } from '../../../hooks/useFetch';
 import { myColor } from '../../../global';
@@ -34,29 +32,7 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
   ]
  
   const handleUpdate = () => {
-    state.forEach(parameter => {                                                // Arreglo con los valores de los datos de cada parámetro del objeto
-      console.log("parameter: ", parameter)
-      // switch( Object.keys(parameter)[0] ) { 
-      //   case 'paciente':  
-      //                    break;
-      //   case 'doctor': const doctor = new Doctor(Object.values(parameter)[0].split(" ")[0],Object.values(parameter)[0].split(" ")[1]);
-      //                  statesData.push(doctor); 
-      //                  break;
-      //   case 'consultorio': const consultorio = new Consultorio(Object.values(parameter)[0].split(" ")[0],Object.values(parameter)[0].split(" ")[1]);
-      //                       statesData.push(consultorio);
-      //                       break;
-      //   case 'tratamiento':  
-      //                       break;
-      //   case 'eps': 
-      //               break;
-      //   case 'genero':  
-      //                  break;
-      //   default: statesData.push(Object.values(parameter)[0]);
-      //            break;
-      // }
-
-      statesData.push(Object.values(parameter)[0])
-    });       
+    state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );  // Arreglo con los valores de los datos de cada parámetro del objeto
 
     if(statesData.filter(state => state === '').length === 0) {                 // Verifica que no hayan campos vacios
       Object.keys(item[objectClass]).forEach((parameter,index) => { item[objectClass][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item

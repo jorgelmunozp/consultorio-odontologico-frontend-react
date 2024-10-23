@@ -22,7 +22,7 @@ export const ReadCita = ({ Icon, item, title, buttons, setOpen }) => {
                       <tr><td> Fecha </td><td>{ item.cita.fecha }</td></tr>
                       <tr><td> Hora </td><td>{ item.cita.hora }</td></tr>
                       <tr><td> Consultorio </td><td>{ item.cita.consultorio }</td></tr>
-                      <tr><td> Médico </td><td>{ item.cita.doctor }</td></tr>
+                      <tr><td> Médico </td><td>{ item.cita.doctor.nombre + " " + item.cita.doctor.apellido }</td></tr>
                     </tbody>
                   </table>
                 </center>

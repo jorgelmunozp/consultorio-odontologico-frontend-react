@@ -1,5 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import { Paciente } from '../../../classes/User';
+import { Doctor } from '../../../classes/User';
+import { Consultorio } from '../../../classes/Consultorio';
 import { useFetch } from "../../../hooks/useFetch";
 import { ReadCita } from '../read/ReadCita';
 import { UpdateItem } from '../update/UpdateItem';
@@ -24,11 +27,11 @@ const Row = ({ item,urlApi }) => {
   const [doctor, setDoctor] = useState(item.cita.doctor);
   const [tratamiento, setTratamiento] = useState(item.cita.tratamiento);
   const state = [
-                  { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value) },
+                  { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente( new Paciente(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) },
                   { fecha: fecha, type:"date", handleChange: (event) => setFecha(event.target.value) },
                   { hora: hora, type:"time", handleChange: (event) => setHora(event.target.value) },
-                  { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value) },
-                  { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value) },
+                  { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ) },
+                  { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) },
                   { tratamiento: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value) }
                 ];
 
@@ -41,11 +44,11 @@ const Row = ({ item,urlApi }) => {
   return (
           <>
             <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
-            <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.paciente }</td>
+            <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.paciente.nombre + " " + item.cita.paciente.apellido }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.fecha }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.hora }</td>
-            <td className='ps-4 ps-sm-5 text-nowrap'>{ item.cita.consultorio }</td>
-            <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.doctor }</td>
+            <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.consultorio.numero + " " + item.cita.consultorio.nombre }</td>
+            <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.doctor.nombre + " " + item.cita.doctor.apellido }</td>
             <td className='ps-1 ps-sm-3 text-nowrap'>{ item.cita.tratamiento }</td>
             <td><button className='border-0 bg-transparent' onClick={ () => setReadOpen(true) }><TbCalendarSearch className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbCalendarTime className='text-secondary'/></button></td>
