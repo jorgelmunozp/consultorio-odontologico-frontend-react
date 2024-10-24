@@ -6,7 +6,7 @@ import { Consultorio } from '../../../classes/Consultorio';
 import { useFetch } from "../../../hooks/useFetch";
 import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';
-import { DeleteCita } from '../delete/DeleteCita';
+import { DeleteItem } from '../delete/DeleteItem';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
@@ -56,7 +56,7 @@ const Row = ({ item,urlApi }) => {
 
             { readOpen && <ReadItem Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-            { deleteOpen && <DeleteCita Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
             { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }

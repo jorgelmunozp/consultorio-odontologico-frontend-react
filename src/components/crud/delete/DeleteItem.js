@@ -2,16 +2,27 @@ import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeletePaciente = ({ Icon,item, urlApi, title, buttons, setOpen, setAlert }) => {
+export const DeleteItem = ({ Icon,item, urlApi, title, buttons, setOpen, setAlert }) => {
+  const objectClass = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
+  const keys = Object.keys(item[objectClass]);                    // Nombre de los parámetros del objeto
+  const values = Object.values(item[objectClass]);                // Valores de cada parámetro del objeto
+  let valuesData = [];
+  
+  values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto
+    if(typeof value === 'object') { 
+      valuesData.push( Object.values(value)[0] + " " + Object.values(value)[1] );
+    } else { valuesData.push( value ) }
+  }); 
+
   const handleDelete = () => {
     const fetchResponse = fetchDelete(urlApi,item.id);
     fetchResponse.then(
       async function(value) {
         if(200 <= value && value <= 299) {
-          let arrayResponse;
+          // let arrayResponse;
           await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
               .then(response => response.json())
-              .then(data => arrayResponse = data);
+              // .then(data => arrayResponse = data);
     
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
           row.render();
@@ -40,11 +51,14 @@ export const DeletePaciente = ({ Icon,item, urlApi, title, buttons, setOpen, set
                     </thead>
                     <tbody>
                       <tr><td> Código </td><td>{ item.id }</td></tr>
-                      <tr><td> Identificación </td><td>{ item.paciente.identificacion }</td></tr>
-                      <tr><td> Nombre </td><td>{ item.paciente.nombre }</td></tr>
-                      <tr><td> Apellido </td><td>{ item.paciente.apellido }</td></tr>
-                      <tr><td> Género </td><td>{ item.paciente.genero }</td></tr>
-                      <tr><td> Eps </td><td>{ item.paciente.eps }</td></tr>
+                      {
+                        valuesData.map((data,index)=>{ return(
+                            <tr key={ keys[index].toLowerCase() }>
+                              <td>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</td>
+                              <td>{ data }</td>
+                            </tr>
+                        )})
+                      }
                     </tbody>
                   </table>
                 </center>

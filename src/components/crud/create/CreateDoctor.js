@@ -72,10 +72,10 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
               <FormControl fullWidth margin="dense">
                   <InputLabel id="generoDoctor-label" >Genero</InputLabel>
                   <Select value={genero} onChange={handleChangeGenero} id="generoDoctor" label="Genero" labelId="generoDoctor-label">
-                      {generos.map((item) => {
+                      {generos.map((generos) => {
                         return (
-                          <MenuItem value={item.genero.nombre} key={item.genero.nombre}>
-                            {item.genero.nombre}
+                          <MenuItem value={generos.genero.nombre} key={generos.genero.nombre}>
+                            {generos.genero.nombre}
                           </MenuItem>
                         );
                       })}
@@ -86,10 +86,10 @@ export const CreateDoctor = ({ urlApi,tratamientos,generos }) => {
               <FormControl fullWidth margin="dense">
                   <InputLabel id="especialidadDoctor-label" >Especialidad</InputLabel>
                   <Select value={especialidad} onChange={handleChangeEspecialidad} id="especialidadDoctor" label="Especialidad" labelId="especialidadDoctor-label">
-                      {tratamientos.map((item) => {
+                      {tratamientos.map((tratamientos) => {
                         return (
-                          <MenuItem value={item.tratamiento.nombre} key={item.tratamiento.nombre}>
-                            {item.tratamiento.nombre}
+                          <MenuItem value={tratamientos.tratamiento.nombre} key={tratamientos.tratamiento.nombre}>
+                            {tratamientos.tratamiento.nombre}
                           </MenuItem>
                         );
                       })}

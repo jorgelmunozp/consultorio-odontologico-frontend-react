@@ -5,12 +5,12 @@ export const ReadItem = ({ Icon, item, title, buttons, setOpen }) => {
   const objectClass = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
   const keys = Object.keys(item[objectClass]);                    // Nombre de los parámetros del objeto
   const values = Object.values(item[objectClass]);                // Valores de cada parámetro del objeto
-  let statesData = [];
+  let valuesData = [];
   
-  values.forEach(value => {                                       // Arreglo con los valores de los datos de cada parámetro del objeto
+  values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto
     if(typeof value === 'object') { 
-      statesData.push( Object.values(value)[0] + " " + Object.values(value)[1] );
-    } else { statesData.push( value ) }
+      valuesData.push( Object.values(value)[0] + " " + Object.values(value)[1] );
+    } else { valuesData.push( value ) }
   });  
   
     return (
@@ -30,7 +30,7 @@ export const ReadItem = ({ Icon, item, title, buttons, setOpen }) => {
                     <tbody>
                       <tr><td> Código </td><td>{ item.id }</td></tr>
                       {
-                        statesData.map((data,index)=>{ return(
+                        valuesData.map((data,index)=>{ return(
                             <tr key={ keys[index].toLowerCase() }>
                               <td>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</td>
                               <td>{ data }</td>

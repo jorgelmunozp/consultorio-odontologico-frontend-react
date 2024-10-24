@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
 import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';
-import { DeletePaciente } from '../delete/DeletePaciente';
+import { DeleteItem } from '../delete/DeleteItem';
 import { Modal } from '../../modal/Modal';
 import { Arrows } from '../../../forms/arrows/Arrows';
 import { SearchBar } from '../../search/SearchBar';
@@ -50,7 +50,7 @@ const Row = ({ item,urlApi }) => {
 
             { readOpen && <ReadItem Icon={User} item={item} title={'Paciente'} buttons={1} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} title={'Actualizar Paciente?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-            { deleteOpen && <DeletePaciente Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Paciente?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Paciente?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Actualizado'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Eliminado'} buttons={1} />  }
             { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
