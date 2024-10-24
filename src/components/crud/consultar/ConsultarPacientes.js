@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { useFetch } from "../../../hooks/useFetch";
-import { ReadPaciente } from '../read/ReadPaciente';
+import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';
 import { DeletePaciente } from '../delete/DeletePaciente';
 import { Modal } from '../../modal/Modal';
@@ -48,7 +48,7 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbUserEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbUserX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadPaciente Icon={User} item={item} title={'Paciente'} buttons={1} setOpen={setReadOpen} /> }
+            { readOpen && <ReadItem Icon={User} item={item} title={'Paciente'} buttons={1} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} title={'Actualizar Paciente?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeletePaciente Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Paciente?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Actualizado'} buttons={1} />  }

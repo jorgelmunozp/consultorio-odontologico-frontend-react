@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import { Doctor } from '../../../classes/User';
 import { Consultorio } from '../../../classes/Consultorio';
 import { useFetch } from "../../../hooks/useFetch";
-import { ReadTratamiento } from '../read/ReadTratamiento';
+import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';
 import { DeleteTratamiento } from '../delete/DeleteTratamiento';
 import { Modal } from '../../modal/Modal';
@@ -44,7 +44,7 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbFilterEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbFilterX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadTratamiento Icon={Stethoscope} item={item} title={'Tratamiento'} buttons={1} setOpen={setReadOpen} /> }
+            { readOpen && <ReadItem Icon={Stethoscope} item={item} title={'Tratamiento'} buttons={1} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={FilterEdit} item={item} urlApi={urlApi} title={'Actualizar Tratamiento?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeleteTratamiento Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Tratamiento?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Tratamiento Actualizado'} buttons={1} />  }

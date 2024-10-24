@@ -4,7 +4,7 @@ import { Paciente } from '../../../classes/User';
 import { Doctor } from '../../../classes/User';
 import { Consultorio } from '../../../classes/Consultorio';
 import { useFetch } from "../../../hooks/useFetch";
-import { ReadCita } from '../read/ReadCita';
+import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';
 import { DeleteCita } from '../delete/DeleteCita';
 import { Modal } from '../../modal/Modal';
@@ -54,7 +54,7 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbCalendarTime className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbCalendarX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadCita Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
+            { readOpen && <ReadItem Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeleteCita Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
