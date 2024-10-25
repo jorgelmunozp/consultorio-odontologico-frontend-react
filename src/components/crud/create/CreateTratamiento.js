@@ -53,11 +53,11 @@ export const CreateTratamiento = ({ urlApi,Classe = Tratamiento,consultorios,doc
         </center>
         <div className='container-fluid mt-2 mt-sm-5'>
           {
-            state.map((parameter,index)=>{
+            state.map((property,index)=>{
               return(
                 <div className='row'>
                   {
-                    eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown'
+                    eval(JSON.stringify(Object.values(property)[1])) === 'dropdown'
                           ? <div className='col'><Dropdown array={ Object.values(state[index])[3] } state={state} /></div>
                           : <div className='col'><TextField value={ Object.values(state[index])[0] } onChange={ Object.values(state[index])[2] } label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
                   }

@@ -1,3 +1,4 @@
+import { useState }  from "react";
 import { Paciente } from './User';
 import { Tratamiento } from './Tratamiento';
 import { Consultorio } from './Consultorio';

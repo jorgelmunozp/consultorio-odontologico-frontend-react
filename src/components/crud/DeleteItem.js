@@ -1,6 +1,6 @@
-import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
-import { fetchDelete } from '../../../helpers/fetchDelete';
+import { fetchDelete } from '../../helpers/fetchDelete';
+import '../modal/modal.css';
 
 export const DeleteItem = ({ Icon,item, urlApi, buttons, setOpen, setAlert }) => {
   const classType = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe

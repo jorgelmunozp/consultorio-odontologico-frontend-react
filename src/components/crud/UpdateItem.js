@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
-import { fetchUpdate } from '../../../helpers/fetchUpdate';
-import { useFetch } from '../../../hooks/useFetch';
-import { myColor } from '../../../global';
+import { fetchUpdate } from '../../helpers/fetchUpdate';
+import { useFetch } from '../../hooks/useFetch';
+import { myColor } from '../../global';
+import '../modal/modal.css';
 
 export const UpdateItem = ({ Icon, item, urlApi, buttons, setOpen, setAlert, Row, state }) => {
   const classType = Object.keys(item)[0];                                         // Obtiene la Classe del objeto
-  let statesData = [];                                                          // Arreglo con los datos de cada parámetro del objeto
+  let stateValues = [];                                                          // Arreglo con los datos de cada parámetro del objeto
  
   const handleUpdate = () => {
-    state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );  // Push en el arreglo con los valores de los datos de cada parámetro del objeto
+    state.forEach(property => stateValues.push(Object.values(property)[0]) );  // Push en el arreglo con los valores de los datos de cada parámetro del objeto
 
-    if(statesData.filter(state => state === '').length === 0) {                 // Verifica que no hayan campos vacios
-      Object.keys(item[classType]).forEach((parameter,index) => { item[classType][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item
+    if(stateValues.filter(state => state === '').length === 0) {                 // Verifica que no hayan campos vacios
+      Object.keys(item[classType]).forEach((property,index) => { item[classType][property] = stateValues[index] });   // Actualiza los nuevos valores en el item
       
       const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);   // Fetch PUT para actualización de datos
       fetchResponse.then(
@@ -49,15 +49,15 @@ export const UpdateItem = ({ Icon, item, urlApi, buttons, setOpen, setAlert, Row
                     <tbody>
                       <tr><td> Código </td><td><input type="number" value={ item.id } className="modalInput pe-none" disabled></input></td></tr>
                       {
-                        state.map((parameter,index)=>{ 
+                        state.map((property,index)=>{ 
                           return(
                             <tr key={index}>
                               <td>{ Object.keys(item[classType])[index].charAt(0).toUpperCase() + Object.keys(item[classType])[index].slice(1) }</td>
                               <td>
                                 {
-                                  eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown' 
-                                                                ? <Dropdown parameter={parameter} />
-                                                                : <input type={ eval(JSON.stringify(Object.values(parameter)[1])) } value={ eval(JSON.stringify(Object.values(parameter)[0])) } onChange={ Object.values(parameter)[2] } className="modalInput"></input>
+                                  eval(JSON.stringify(Object.values(property)[1])) === 'dropdown' 
+                                                                ? <Dropdown property={property} />
+                                                                : <input type={ eval(JSON.stringify(Object.values(property)[1])) } value={ eval(JSON.stringify(Object.values(property)[0])) } onChange={ Object.values(property)[2] } className="modalInput"></input>
                                 }
                               </td>
                             </tr>
@@ -83,8 +83,8 @@ export const UpdateItem = ({ Icon, item, urlApi, buttons, setOpen, setAlert, Row
       )
 };
 
-const Dropdown = ({ parameter }) => {
-  const classType = Object.keys(parameter)[0];
+const Dropdown = ({ property }) => {
+  const classType = Object.keys(property)[0];
   let index = "";
   switch(classType) { case 'paciente': index = 0; break;
                       case 'doctor': index = 1; break;
@@ -97,12 +97,12 @@ const Dropdown = ({ parameter }) => {
 
   let key = '';
   let value = '';
-  if(typeof Object.values(parameter)[0] === 'object') {
-    key = Object.keys(Object.values(parameter)[0])[0];
-    value = Object.values(Object.values(parameter)[0])[0] + " " + Object.values(Object.values(parameter)[0])[1];
+  if(typeof Object.values(property)[0] === 'object') {
+    key = Object.keys(Object.values(property)[0])[0];
+    value = Object.values(Object.values(property)[0])[0] + " " + Object.values(Object.values(property)[0])[1];
   } else {
-    key = Object.keys(parameter)[0];
-    value = Object.values(parameter)[0];
+    key = Object.keys(property)[0];
+    value = Object.values(property)[0];
   }
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
@@ -130,7 +130,7 @@ const Dropdown = ({ parameter }) => {
   ];
 
   return (
-    <select key={ key } id={ key } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(parameter)[2] }>
+    <select key={ key } id={ key } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] }>
       <option value={ value }>{ value }</option>
       { 
         Object.values(statesDropdown[index])[0].map((item) => {

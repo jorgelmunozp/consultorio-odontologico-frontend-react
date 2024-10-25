@@ -1,5 +1,5 @@
-import '../../modal/modal.css';
-import { myColor } from '../../../global';
+import { myColor } from '../../global';
+import '../modal/modal.css';
 
 export const ReadItem = ({ Icon, item, setOpen }) => {
   const classType = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
