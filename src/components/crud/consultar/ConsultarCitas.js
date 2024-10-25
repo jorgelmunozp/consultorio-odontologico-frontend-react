@@ -54,9 +54,9 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbCalendarTime className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbCalendarX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadItem Icon={CalendarSmile} item={item} title={'Cita'} buttons={1} setOpen={setReadOpen} /> }
-            { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} title={'Actualizar Cita?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Cita?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { readOpen && <ReadItem Icon={CalendarSmile} item={item} setOpen={setReadOpen} /> }
+            { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
+            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
             { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }

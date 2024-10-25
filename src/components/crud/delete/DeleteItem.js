@@ -2,10 +2,10 @@ import '../../modal/modal.css';
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../../helpers/fetchDelete';
 
-export const DeleteItem = ({ Icon,item, urlApi, title, buttons, setOpen, setAlert }) => {
-  const objectClass = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
-  const keys = Object.keys(item[objectClass]);                    // Nombre de los parámetros del objeto
-  const values = Object.values(item[objectClass]);                // Valores de cada parámetro del objeto
+export const DeleteItem = ({ Icon,item, urlApi, buttons, setOpen, setAlert }) => {
+  const classType = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
+  const keys = Object.keys(item[classType]);                    // Nombre de los parámetros del objeto
+  const values = Object.values(item[classType]);                // Valores de cada parámetro del objeto
   let valuesData = [];
   
   values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto
@@ -19,10 +19,8 @@ export const DeleteItem = ({ Icon,item, urlApi, title, buttons, setOpen, setAler
     fetchResponse.then(
       async function(value) {
         if(200 <= value && value <= 299) {
-          // let arrayResponse;
           await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
               .then(response => response.json())
-              // .then(data => arrayResponse = data);
     
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
           row.render();
@@ -41,7 +39,7 @@ export const DeleteItem = ({ Icon,item, urlApi, title, buttons, setOpen, setAler
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
                 <center><Icon color={'#f8bb86'} height={5.5} width={5.5} className={'center'} /></center>
-                <h4 className={'modalTitle main-color'}>{title}</h4>
+                <h4 className={'modalTitle main-color'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h4>
               </div>
               <div className={'modalContent'}>
                 <center>
@@ -65,14 +63,10 @@ export const DeleteItem = ({ Icon,item, urlApi, title, buttons, setOpen, setAler
               </div>
               <div className={'modalFooter'}>
                 <div className={'modalButtons'}>
-                    {
-                        buttons === 1 ? <button className={'aceptBtn'} onClick={() => setOpen(false)}>Aceptar</button>
-                      : buttons === 2 ? <>
-                                          <button className={'aceptBtn'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
-                                          <button className={'cancelBtn'} onClick={() => setOpen(false)}>Cancel</button>
-                                        </>
-                      : ""
-                    }
+                  <>
+                    <button className={'aceptBtn'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
+                    <button className={'cancelBtn'} onClick={() => setOpen(false)}>Cancel</button>
+                  </>
                 </div>
               </div>
             </div>

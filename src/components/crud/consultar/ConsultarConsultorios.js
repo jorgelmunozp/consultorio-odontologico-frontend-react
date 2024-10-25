@@ -39,9 +39,9 @@ const Row = ({ item,urlApi }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
-          { readOpen && <ReadItem Icon={HomeIndex} item={item} title={'Consultorio'} buttons={1} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} title={'Actualizar Consultorio?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-          { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Consultorio?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+          { readOpen && <ReadItem Icon={HomeIndex} item={item} setOpen={setReadOpen} /> }
+          { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
+          { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Actualizado'} buttons={1} />  }
           { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Consultorio Eliminado'} buttons={1} />  }
           { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }

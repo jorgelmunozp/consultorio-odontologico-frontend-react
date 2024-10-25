@@ -1,4 +1,4 @@
-import { Paciente } from './Paciente';
+import { Paciente } from './User';
 import { Tratamiento } from './Tratamiento';
 import { Consultorio } from './Consultorio';
 import { Doctor } from './User';

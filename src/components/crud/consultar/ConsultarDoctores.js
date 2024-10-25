@@ -46,9 +46,9 @@ const Row = ({ item,urlApi }) => {
             <td><button className='border-0 bg-transparent' onClick={ () => setUpdateOpen(true) }><TbUserEdit className='text-secondary'/></button></td>
             <td><button className='border-0 bg-transparent' onClick={ () => setDeleteOpen(true) }><TbUserX className='text-secondary'/></button></td>
 
-            { readOpen && <ReadItem Icon={User} item={item} title={'Médico'} buttons={1} setOpen={setReadOpen} /> }
-            { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} title={'Actualizar Médico?'} buttons={2} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} title={'Eliminar Médico?'} buttons={2} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+            { readOpen && <ReadItem Icon={User} item={item} setOpen={setReadOpen} /> }
+            { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
+            { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
             { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Médico Actualizado'} buttons={1} />  }
             { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Médico Eliminado'} buttons={1} />  }
             { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }

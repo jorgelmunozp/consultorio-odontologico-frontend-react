@@ -10,55 +10,23 @@ import { FaStethoscope } from "react-icons/fa";
 import { Success } from '../../icons/success/Success';
 import { Error } from '../../icons/error/Error';
 
-export const CreateItem = ({ urlApi,Classe = Tratamiento }) => {
-  const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
-  const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
-  const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
-  const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
-  const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
-  const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-
-  const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
-  const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
-  const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
-  const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
-  const [epssDropdown, setEpssDropdown] = useState(epss);
-  const [generosDropdown, setGenerosDropdown] = useState(generos);
-  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
-  const statesDropdown = [
-    { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
-    { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
-    { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
-    { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
-    { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
-    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
-    { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
-  ];
-  
+export const CreateItem = ({ urlApi,Classe = Tratamiento }) => { 
+  let objectClass = new Classe('','','');
+  const state = objectClass.getState;
   let item = "";
-  const [nombre, setNombre] = useState("");           //Input Nombre
-  const [consultorio, setConsultorio] = useState(""); //Select Consultorio
-  const [doctor, setDoctor] = useState("");           //Select Doctor
-  const state = [
-    { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
-    { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) },
-    { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ) }
-  ];
 
   const [responseStatus, setResponseStatus] = useState(0);
   const [alert, setAlert] = useState(false);
 
   let statesData = [];                                                    // Arreglo con los datos de cada parámetro del objeto
   state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );
-  let stateParameters = [];                                                    // Arreglo con los datos de cada parámetro del objeto
-  state.forEach(parameter => stateParameters.push(Object.keys(parameter)[0]) );
-
-console.log("state: ",state)
-console.log("statesData: ",statesData)
-console.log("stateParameters: ",stateParameters)
 
   if(statesData.filter(state => state === '').length === 0) {             // Verifica que no hayan campos vacios
-    const objectClass = new Classe(nombre,consultorio,doctor);            //Object from Class
+    // objectClass = new Classe( Object.values(state[0])[0], Object.values(state[2])[0], Object.values(state[1])[0] );    //Object type Class
+    objectClass.nombre = Object.values(state[0])[0];
+    objectClass.consultorio = Object.values(state[1])[0];
+    objectClass.doctor = Object.values(state[2])[0];
+    
     item = `JSON.stringify({                           
       ${Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
@@ -66,9 +34,14 @@ console.log("stateParameters: ",stateParameters)
 
   if(200 <= responseStatus && responseStatus <= 299){
     setAlert("success");
-    setNombre("");
-    setConsultorio("");
-    setDoctor("");
+
+    // setNombre("");
+    // setConsultorio("");
+    // setDoctor("");
+    Object.values(state[0])[3]('');
+    Object.values(state[1])[3]('');
+    Object.values(state[2])[3]('');
+
     setResponseStatus(0);
   } else if(400 <= responseStatus && responseStatus <= 499){
     setAlert("error");
@@ -91,7 +64,7 @@ console.log("stateParameters: ",stateParameters)
                 <div key={'row'+index} className='row'>
                   {
                     eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown'
-                          ? <div className='col'><Dropdown parameter={parameter} statesDropdown={statesDropdown} /></div>
+                          ? <div className='col'><Dropdown parameter={parameter} /></div>
                           : <div className='col'><TextField value={ Object.values(state[index])[0] } onChange={ Object.values(state[index])[2] } label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
                   }
                 </div>
@@ -110,7 +83,7 @@ console.log("stateParameters: ",stateParameters)
   );
 };
 
-const Dropdown = ({ parameter, statesDropdown }) => {
+const Dropdown = ({ parameter }) => {
   const classType = Object.keys(parameter)[0];
   let index = "";
   switch(classType) { case 'paciente': index = 0; break;
@@ -121,6 +94,31 @@ const Dropdown = ({ parameter, statesDropdown }) => {
                       case 'genero': index = 5; break;
                       case 'especialidad': index = 6; break;
   };
+
+  const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
+  const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
+  const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
+  const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
+  const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
+  const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
+
+  const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
+  const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
+  const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
+  const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
+  const [epssDropdown, setEpssDropdown] = useState(epss);
+  const [generosDropdown, setGenerosDropdown] = useState(generos);
+  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
+  
+  const statesDropdown = [
+    { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
+    { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
+    { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
+    { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
+    { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
+    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
+    { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
+  ];
 
   return(
     <FormControl fullWidth margin="dense">
