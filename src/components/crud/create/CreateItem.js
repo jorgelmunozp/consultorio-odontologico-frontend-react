@@ -11,8 +11,8 @@ import { Success } from '../../icons/success/Success';
 import { Error } from '../../icons/error/Error';
 
 export const CreateItem = ({ urlApi,Classe = Tratamiento }) => { 
-  let objectClass = new Classe('','','');
-  const state = objectClass.getState;
+  let objectClass = new Classe('','',''); // <----- Falta esto!!!!
+  const state = objectClass.state;
   let item = "";
 
   const [responseStatus, setResponseStatus] = useState(0);
@@ -20,9 +20,11 @@ export const CreateItem = ({ urlApi,Classe = Tratamiento }) => {
 
   let statesData = [];                                                    // Arreglo con los datos de cada parámetro del objeto
   state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );
-
+console.log("state: ", state )
+console.log("state.length - 1: ", state.length - 1 )
   if(statesData.filter(state => state === '').length === 0) {             // Verifica que no hayan campos vacios
     // objectClass = new Classe( Object.values(state[0])[0], Object.values(state[2])[0], Object.values(state[1])[0] );    //Object type Class
+    
     objectClass.nombre = Object.values(state[0])[0];
     objectClass.consultorio = Object.values(state[1])[0];
     objectClass.doctor = Object.values(state[2])[0];
@@ -32,21 +34,14 @@ export const CreateItem = ({ urlApi,Classe = Tratamiento }) => {
     })`; 
    }
 
-  if(200 <= responseStatus && responseStatus <= 299){
+  if( 200 <= responseStatus && responseStatus <= 299 ) {
     setAlert("success");
-
-    // setNombre("");
-    // setConsultorio("");
-    // setDoctor("");
-    Object.values(state[0])[3]('');
-    Object.values(state[1])[3]('');
-    Object.values(state[2])[3]('');
-
+    state.forEach(parameter => Object.values(parameter)[3](''));          // Reinicia todas las variables
     setResponseStatus(0);
-  } else if(400 <= responseStatus && responseStatus <= 499){
+  } else if( 400 <= responseStatus && responseStatus <= 499 ) {
     setAlert("error");
     setResponseStatus(0);
-  } else if(500 <= responseStatus && responseStatus <= 599){
+  } else if( 500 <= responseStatus && responseStatus <= 599 ) {
     setAlert("error");
     setResponseStatus(0);
   }
@@ -59,12 +54,12 @@ export const CreateItem = ({ urlApi,Classe = Tratamiento }) => {
         </center>
         <div className='container-fluid mt-2 mt-sm-5'>
           {
-            state.map((parameter,index)=>{
+            state.map((parameter,index) => {
               return(
                 <div key={'row'+index} className='row'>
                   {
                     eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown'
-                          ? <div className='col'><Dropdown parameter={parameter} /></div>
+                          ? <div className='col'><Dropdown parameter={ parameter } /></div>
                           : <div className='col'><TextField value={ Object.values(state[index])[0] } onChange={ Object.values(state[index])[2] } label="Nombre" variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
                   }
                 </div>
@@ -123,12 +118,12 @@ const Dropdown = ({ parameter }) => {
   return(
     <FormControl fullWidth margin="dense">
       <InputLabel id={ classType+"Dropdown-label" } >{ classType.charAt(0).toUpperCase() + classType.slice(1) }</InputLabel>
-      <Select value={ Object.values(Object.values(parameter)[0]).length > 0 ? Object.values(Object.values(parameter)[0])[0] +' '+ Object.values(Object.values(parameter)[0])[1] : '' } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(parameter)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } >
+      <Select value={ Object.values(Object.values(parameter)[0]).length > 0 ? Object.values(Object.values(parameter)[0])[0] + ' ' + Object.values(Object.values(parameter)[0])[1] : '' } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(parameter)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } >
         {
           Object.values(statesDropdown[index])[0].map((item) => {
             return (
-              <MenuItem value={Object.values(item[classType])[0] + " " + Object.values(item[classType])[1]} key={item.id}>
-                {Object.values(item[classType])[0] + " " + Object.values(item[classType])[1]}
+              <MenuItem value={ Object.values(item[classType])[0] + " " + Object.values(item[classType])[1] } key={ item.id } >
+                { Object.values(item[classType])[0] + " " + Object.values(item[classType])[1] }
               </MenuItem>
             );
           })

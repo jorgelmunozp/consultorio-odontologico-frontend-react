@@ -9,10 +9,10 @@ export class Tratamiento {
         this.doctor = new Doctor(doctor.nombre, doctor.apellido).user;
     }
 
-    state = () => {                                               // Method
-        const [nombre, setNombre] = useState("");                     //Input Nombre
-        const [consultorio, setConsultorio] = useState("");           //Select Consultorio
-        const [doctor, setDoctor] = useState("");                     //Select Doctor
+    getState = () => {                                               // Method
+        const [nombre, setNombre] = useState("");                   //Input Nombre
+        const [consultorio, setConsultorio] = useState("");         //Select Consultorio
+        const [doctor, setDoctor] = useState("");                   //Select Doctor
         const state = [
           { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
           { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ), setState: setConsultorio },
@@ -20,7 +20,7 @@ export class Tratamiento {
         ];
         return( state )
     }      
-    get getState () { return this.state() }                          // Getter
+    get state () { return this.getState() }                          // Getter
 
 
 }
