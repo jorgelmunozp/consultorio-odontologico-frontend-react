@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import { Doctor } from '../../../classes/User';
 import { Consultorio } from '../../../classes/Consultorio';
+import { Doctor } from '../../../classes/User';
 import { useFetch } from "../../../hooks/useFetch";
 import { ReadItem } from '../read/ReadItem';
 import { UpdateItem } from '../update/UpdateItem';

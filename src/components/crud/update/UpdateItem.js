@@ -6,8 +6,7 @@ import { useFetch } from '../../../hooks/useFetch';
 import { myColor } from '../../../global';
 
 export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAlert, Row, state }) => {
-  const objectClass = Object.keys(item)[0];                                      // Obtiene el nombre del objeto para saber su Classe
-  let statesData = [];
+  const classType = Object.keys(item)[0];                                         // Obtiene la Classe del objeto
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
   const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
@@ -31,13 +30,15 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
     { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
     { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
     { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
-  ]
+  ];
+
+  let statesData = [];                                                          // Arreglo con los datos de cada parámetro del objeto
  
   const handleUpdate = () => {
-    state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );  // Arreglo con los valores de los datos de cada parámetro del objeto
+    state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );  // Push en el arreglo con los valores de los datos de cada parámetro del objeto
 
     if(statesData.filter(state => state === '').length === 0) {                 // Verifica que no hayan campos vacios
-      Object.keys(item[objectClass]).forEach((parameter,index) => { item[objectClass][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item
+      Object.keys(item[classType]).forEach((parameter,index) => { item[classType][parameter] = statesData[index] });   // Actualiza los nuevos valores en el item
       
       const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);   // Fetch PUT para actualización de datos
       fetchResponse.then(
@@ -78,7 +79,7 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
                         state.map((parameter,index)=>{ 
                           return(
                             <tr key={index}>
-                              <td>{ Object.keys(item[objectClass])[index].charAt(0).toUpperCase() + Object.keys(item[objectClass])[index].slice(1) }</td>
+                              <td>{ Object.keys(item[classType])[index].charAt(0).toUpperCase() + Object.keys(item[classType])[index].slice(1) }</td>
                               <td>
                                 {
                                   eval(JSON.stringify(Object.values(parameter)[1])) === 'dropdown' 
@@ -114,16 +115,16 @@ export const UpdateItem = ({ Icon, item, urlApi, title, buttons, setOpen, setAle
 };
 
 const Dropdown = ({ parameter, statesDropdown }) => {
-  const clase = Object.keys(parameter)[0];
+  const classType = Object.keys(parameter)[0];
   let index = "";
-  switch(clase) { case 'paciente': index = 0; break;
-                  case 'doctor': index = 1; break;
-                  case 'consultorio': index = 2; break;
-                  case 'tratamiento': index = 3; break;
-                  case 'eps': index = 4; break;
-                  case 'genero': index = 5; break;
-                  case 'especialidad': index = 6; break;
-  }
+  switch(classType) { case 'paciente': index = 0; break;
+                      case 'doctor': index = 1; break;
+                      case 'consultorio': index = 2; break;
+                      case 'tratamiento': index = 3; break;
+                      case 'eps': index = 4; break;
+                      case 'genero': index = 5; break;
+                      case 'especialidad': index = 6; break;
+  };
 
   let key = '';
   let value = '';

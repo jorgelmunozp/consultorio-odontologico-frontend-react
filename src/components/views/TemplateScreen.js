@@ -9,7 +9,7 @@ import { ConsultarDoctores } from '../crud/consultar/ConsultarDoctores';
 import { ConsultarConsultorios } from '../crud/consultar/ConsultarConsultorios';
 import { CreateCita } from '../crud/create/CreateCita';
 import { CreatePaciente } from '../crud/create/CreatePaciente';
-import { CreateTratamiento } from '../crud/create/CreateTratamiento';
+import { CreateItem } from '../crud/create/CreateItem';
 import { CreateDoctor } from '../crud/create/CreateDoctor';
 import { CreateConsultorio } from '../crud/create/CreateConsultorio';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
@@ -105,7 +105,8 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
     case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
     case 5: return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} />;
     case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
-    case 7: return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
+    // case 7: return <CreateTratamiento urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 7: return <CreateItem urlApi={urlApiTratamientos} />;
     case 8: return <ConsultarDoctores urlApi={urlApiDoctores} />;
     case 9: return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
     case 10: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
