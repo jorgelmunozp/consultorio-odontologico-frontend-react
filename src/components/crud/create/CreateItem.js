@@ -50,8 +50,12 @@ export const CreateItem = ({ urlApi,Classe = Tratamiento }) => {
 
   let statesData = [];                                                    // Arreglo con los datos de cada parámetro del objeto
   state.forEach(parameter => statesData.push(Object.values(parameter)[0]) );
+  let stateParameters = [];                                                    // Arreglo con los datos de cada parámetro del objeto
+  state.forEach(parameter => stateParameters.push(Object.keys(parameter)[0]) );
 
-console.log()
+console.log("state: ",state)
+console.log("statesData: ",statesData)
+console.log("stateParameters: ",stateParameters)
 
   if(statesData.filter(state => state === '').length === 0) {             // Verifica que no hayan campos vacios
     const objectClass = new Classe(nombre,consultorio,doctor);            //Object from Class
@@ -83,7 +87,6 @@ console.log()
         <div className='container-fluid mt-2 mt-sm-5'>
           {
             state.map((parameter,index)=>{
-              console.log("parameter map: ", parameter)
               return(
                 <div key={'row'+index} className='row'>
                   {
