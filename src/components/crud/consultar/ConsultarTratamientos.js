@@ -24,8 +24,8 @@ const Row = ({ item,urlApi }) => {
   const [doctor, setDoctor] = useState(item.tratamiento.doctor);
   const state = [
     { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
-    { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ) },
-    { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) }
+    { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value) },
+    { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value) }
   ];
 
   const [readOpen, setReadOpen] = useState(false);

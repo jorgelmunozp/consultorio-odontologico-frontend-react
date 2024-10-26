@@ -17,7 +17,7 @@ export const CreateTratamiento = ({ urlApi,Classe = Tratamiento,consultorios,doc
   const [doctor, setDoctor] = useState("");           //Select Doctor
   const state = [
     { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value) },
-    { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ), array: doctores },
+    { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ), array: doctores },
     { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ), array: consultorios }
   ];
 

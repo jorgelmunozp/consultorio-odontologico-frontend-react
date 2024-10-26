@@ -98,7 +98,6 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   switch (menu) {
     case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 2: return <ConsultarCitas urlApi={urlApiCitas} />;
-    // case 3: return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 3: return <CreateItem type={'cita'}  urlApi={urlApiCitas} Icon={FaCalendarPlus} />;
     case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
     case 5: return <CreateItem type={'paciente'} urlApi={urlApiPacientes} Icon={FaUserInjured} />;

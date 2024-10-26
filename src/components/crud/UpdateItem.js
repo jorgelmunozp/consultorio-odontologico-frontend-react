@@ -91,11 +91,13 @@ const Dropdown = ({ property }) => {
     case 'paciente': index = 0; (property[classType].length !== 0) ? valueItem = property[classType].nombre + " " + property[classType].apellido : valueItem = ''; break;
     case 'doctor': index = 1; (property[classType].length !== 0) ? valueItem = property[classType].nombre + " " + property[classType].apellido : valueItem = ''; break;
     case 'consultorio': index = 2; (property[classType].length !== 0) ? valueItem = property[classType].numero + " " + property[classType].nombre : valueItem = ''; break;
-    case 'tratamiento': index = 3; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
-    case 'eps': index = 4; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
-    case 'genero': index = 5; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
-    case 'especialidad': index = 6; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
+    case 'tratamiento': index = 3; (property[classType].length !== 0) ? valueItem = property[classType] : valueItem = ''; break;
+    case 'eps': index = 4; (property[classType].length !== 0) ? valueItem = property[classType] : valueItem = ''; break;
+    case 'genero': index = 5; (property[classType].length !== 0) ? valueItem = property[classType] : valueItem = ''; break;
+    case 'especialidad': index = 6; (property[classType].length !== 0) ? valueItem = property[classType] : valueItem = ''; break;
   };
+
+  console.log("property[classType] UpdateItem: ",property[classType])
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
   const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
@@ -123,11 +125,10 @@ const Dropdown = ({ property }) => {
 
   return (
     <select key={ classType+"UpdateDropdown" } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"UpdateDropdown" } >
-      <option value={ valueItem }>{ valueItem }</option>
+      {/* <option value={ valueItem }>{ valueItem }</option> */}
+      <option value={ property[classType] }>{ valueItem }</option>
       { 
         Object.values(statesDropdown[index])[0].map((item) => {
-          console.log("item[classType] UpdateItem: ",item[classType])
-
           switch( Object.keys(item)[0] ) {
             case 'paciente': return( <option value={item[classType]}>{ item[classType].nombre + " " + item[classType].apellido} </option> );
             case 'doctor': return( <option value={item[classType]}>{ item[classType].nombre + " " + item[classType].apellido }</option> );

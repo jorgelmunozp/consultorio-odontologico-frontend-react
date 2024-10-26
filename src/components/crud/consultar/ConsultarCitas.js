@@ -27,11 +27,11 @@ const Row = ({ item,urlApi }) => {
   const [doctor, setDoctor] = useState(item.cita.doctor);
   const [tratamiento, setTratamiento] = useState(item.cita.tratamiento);
   const state = [
-                  { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente( new Paciente(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) },
+                  { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value) },
                   { fecha: fecha, type:"date", handleChange: (event) => setFecha(event.target.value) },
                   { hora: hora, type:"time", handleChange: (event) => setHora(event.target.value) },
-                  { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio( new Consultorio(event.target.value.split(" ")[0], event.target.value.split(" ")[1]) ) },
-                  { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor( new Doctor(event.target.value.split(" ")[0], event.target.value.split(" ")[1]).user ) },
+                  { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value) },
+                  { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value) },
                   { tratamiento: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value) }
                 ];
 
