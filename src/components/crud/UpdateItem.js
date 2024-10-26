@@ -86,24 +86,16 @@ export const UpdateItem = ({ Icon, item, urlApi, buttons, setOpen, setAlert, Row
 const Dropdown = ({ property }) => {
   const classType = Object.keys(property)[0];
   let index = "";
-  switch(classType) { case 'paciente': index = 0; break;
-                      case 'doctor': index = 1; break;
-                      case 'consultorio': index = 2; break;
-                      case 'tratamiento': index = 3; break;
-                      case 'eps': index = 4; break;
-                      case 'genero': index = 5; break;
-                      case 'especialidad': index = 6; break;
+  let valueItem = '';
+  switch(classType) { 
+    case 'paciente': index = 0; (property[classType].length !== 0) ? valueItem = property[classType].nombre + " " + property[classType].apellido : valueItem = ''; break;
+    case 'doctor': index = 1; (property[classType].length !== 0) ? valueItem = property[classType].nombre + " " + property[classType].apellido : valueItem = ''; break;
+    case 'consultorio': index = 2; (property[classType].length !== 0) ? valueItem = property[classType].numero + " " + property[classType].nombre : valueItem = ''; break;
+    case 'tratamiento': index = 3; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
+    case 'eps': index = 4; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
+    case 'genero': index = 5; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
+    case 'especialidad': index = 6; (property[classType].length !== 0) ? valueItem = property[classType].nombre : valueItem = ''; break;
   };
-
-  let key = '';
-  let value = '';
-  if(typeof Object.values(property)[0] === 'object') {
-    key = Object.keys(Object.values(property)[0])[0];
-    value = Object.values(Object.values(property)[0])[0] + " " + Object.values(Object.values(property)[0])[1];
-  } else {
-    key = Object.keys(property)[0];
-    value = Object.values(property)[0];
-  }
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
   const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
@@ -120,28 +112,30 @@ const Dropdown = ({ property }) => {
   const [generosDropdown, setGenerosDropdown] = useState(generos);
   const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
   const statesDropdown = [
-    { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
-    { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
-    { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
-    { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
-    { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
-    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
-    { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
+    { paciente: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
+    { doctor: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
+    { consultorio: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
+    { tratamiento: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
+    { eps: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
+    { genero: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
+    { especialidad: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
   ];
 
   return (
-    <select key={ key } id={ key } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] }>
-      <option value={ value }>{ value }</option>
+    <select key={ classType+"UpdateDropdown" } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"UpdateDropdown" } >
+      <option value={ valueItem }>{ valueItem }</option>
       { 
         Object.values(statesDropdown[index])[0].map((item) => {
+          console.log("item[classType] UpdateItem: ",item[classType])
+
           switch( Object.keys(item)[0] ) {
-            case 'paciente': return( <option value={item.paciente.nombre + " " + item.paciente.apellido}>{item.paciente.nombre + " " + item.paciente.apellido}</option> );
-            case 'doctor': return( <option value={item.doctor.nombre + " " + item.doctor.apellido}>{item.doctor.nombre + " " + item.doctor.apellido}</option> );
-            case 'consultorio': return( <option value={item.consultorio.numero + " " + item.consultorio.nombre}>{item.consultorio.numero + " " + item.consultorio.nombre}</option> );
-            case 'tratamiento': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
-            case 'eps': return( <option value={item.eps.nombre}>{item.eps.nombre}</option> );
-            case 'genero': return( <option value={item.genero.nombre}>{item.genero.nombre}</option> );
-            case 'especialidad': return( <option value={item.tratamiento.nombre}>{item.tratamiento.nombre}</option> );
+            case 'paciente': return( <option value={item[classType]}>{ item[classType].nombre + " " + item[classType].apellido} </option> );
+            case 'doctor': return( <option value={item[classType]}>{ item[classType].nombre + " " + item[classType].apellido }</option> );
+            case 'consultorio': return( <option value={item[classType]}>{ item[classType].numero + " " + item[classType].nombre }</option> );
+            case 'tratamiento': return( <option value={item[classType].nombre}>{ item[classType].nombre }</option> );
+            case 'eps': return( <option value={item[classType].nombre}>{ item[classType].nombre }</option> );
+            case 'genero': return( <option value={item[classType].nombre}>{ item[classType].nombre }</option> );
+            case 'especialidad': return( <option value={item[classType].nombre}>{ item[classType].nombre }</option> );
           }
         })          
       }

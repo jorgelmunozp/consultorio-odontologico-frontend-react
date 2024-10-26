@@ -7,12 +7,32 @@ import { getDate } from '../helpers/getDate';
 import { getTime } from '../helpers/getTime';
 
 export class Cita {
-    constructor(paciente, consultorio, doctor, tratamiento) {
-        this.paciente = new Paciente(paciente.nombre, paciente.apellido).user;
+    constructor({ paciente:paciente='', consultorio:consultorio='', doctor:doctor='', tratamiento:tratamiento='' }) {
+        this.paciente = new Paciente({ paciente:{paciente} });
         this.fecha = getDate[2] + "/" + getDate[1] + "/" + getDate[0];
         this.hora = getTime;
-        this.consultorio = new Consultorio(consultorio.numero,consultorio.nombre);
-        this.doctor = new Doctor(doctor.nombre, doctor.apellido).user;
-        this.tratamiento = new Tratamiento(tratamiento.nombre, tratamiento.consultorio, tratamiento.doctor);
+        this.consultorio = new Consultorio({ consultorio:{consultorio} });
+        this.doctor = new Doctor({ doctor:{doctor} });
+        this.tratamiento = new Tratamiento({ tratamiento:{tratamiento} });
     }
+
+    getState = () => {                                            // Method
+        const [paciente, setPaciente] = useState("");             //Select Paciente
+        let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
+        let [hora, setHora] = useState(getTime);
+        const [consultorio, setConsultorio] = useState("");       //Select Consultorio
+        const [doctor, setDoctor] = useState("");                 //Select Doctor
+        const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento      
+        const state = [
+          { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value), setState: setPaciente },
+          { fecha: fecha, type:"date", handleChange: () => setFecha( getDate[2] + "-" + getDate[1] + "-" + getDate[0] ), setState: setFecha },
+          { hora: hora, type:"time", handleChange: () => setHora( getTime ), setState: setHora },
+          { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value), setState: setConsultorio },
+          { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value), setState: setDoctor },
+          { tratamiento: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value), setState: setTratamiento }
+        ];
+        return( state )
+    }      
+    get state () { return this.getState() }                        // Getter state
+
 }

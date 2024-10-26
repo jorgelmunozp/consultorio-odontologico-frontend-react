@@ -84,17 +84,14 @@ export const CreateItem = ({ type, urlApi, Icon }) => {
 const Dropdown = ({ property }) => {
   const classType = Object.keys(property)[0];
   let index = "";
-  let valueItem = '';
-  console.log("property[classType].length !!!!!!!!!!!!: ",property[classType].length)
-
   switch(classType) { 
-    case 'paciente': index = 0; ( property[classType].length !== 0 ) ? valueItem = Object.values(property[classType])[1] + " " + Object.values(property[classType])[2] : valueItem = ''; break;
-    case 'doctor': index = 1; ( property[classType].length !== 0 ) ? valueItem = Object.values(property[classType])[0] + " " + Object.values(property[classType])[1] : valueItem = ''; break;
-    case 'consultorio': index = 2; ( property[classType].length !== 0 ) ? valueItem = Object.values(property[classType])[1] + " " + Object.values(property[classType])[2] : valueItem = ''; break;
-    case 'tratamiento': index = 3; ( property[classType].length !== 0 ) ? valueItem = property[classType] : valueItem = ''; break;
-    case 'eps': index = 4; ( property[classType].length !== 0 ) ? valueItem = property[classType] : valueItem = ''; break;
-    case 'genero': index = 5; ( property[classType].length !== 0 ) ? valueItem = property[classType] : valueItem = ''; break;
-    case 'especialidad': index = 6; ( property[classType].length !== 0 ) ? valueItem = property[classType] : valueItem = ''; break;
+    case 'paciente': index = 0; break;
+    case 'doctor': index = 1; break;
+    case 'consultorio': index = 2; break;
+    case 'tratamiento': index = 3; break;
+    case 'eps': index = 4; break;
+    case 'genero': index = 5; break;
+    case 'especialidad': index = 6; break;
   };
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las Apis para obtención de los datos
@@ -111,37 +108,35 @@ const Dropdown = ({ property }) => {
   const [epssDropdown, setEpssDropdown] = useState(epss);
   const [generosDropdown, setGenerosDropdown] = useState(generos);
   const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
-  
   const statesDropdown = [
-    { paciente: pacientesDropdown, handleSelect: (event) => setPacientesDropdown(pacientes) },
-    { doctor: doctoresDropdown, handleSelect: (event) => setDoctoresDropdown(doctores) },
-    { consultorio: consultoriosDropdown, handleSelect: (event) => setConsultoriosDropdown(consultorios) },
-    { tratamiento: tratamientosDropdown, handleSelect: (event) => setTratamientosDropdown(tratamientos) },
-    { eps: epssDropdown, handleSelect: (event) => setEpssDropdown(epss) },
-    { genero: generosDropdown, handleSelect: (event) => setGenerosDropdown(generos) },
-    { especialidad: especialidadesDropdown, handleSelect: (event) => setEspecialidadesDropdown(tratamientos) }
+    { paciente: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
+    { doctor: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
+    { consultorio: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
+    { tratamiento: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
+    { eps: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
+    { genero: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
+    { especialidad: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
   ];
 
   return(
     <FormControl fullWidth margin="dense">
       <InputLabel id={ classType+"Dropdown-label" } >{ classType.charAt(0).toUpperCase() + classType.slice(1) }</InputLabel>
-      <Select value={ valueItem } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } >
-      {/* <Select value={ valueItem !== undefined ? valueItem : "" } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } > */}
+      <Select value={ property[classType] } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } >
         {
           Object.values(statesDropdown[index])[0].map((item) => {
+            let value = '';
             let valueDropdown = '';
             switch( classType ) {
-              case 'paciente': valueDropdown = Object.values(item[classType])[0] + " " + Object.values(item[classType])[1]; break;
-              case 'doctor': valueDropdown = Object.values(item[classType])[0] + " " + Object.values(item[classType])[1]; break;
-              case 'consultorio': valueDropdown = Object.values(item[classType])[0] + " " + Object.values(item[classType])[1]; break;
-              case 'tratamiento': valueDropdown = Object.values(item[classType])[0]; break;
-              case 'eps': valueDropdown = Object.values(item[classType])[0]; break;
-              case 'genero': valueDropdown = Object.values(item[classType])[0]; break;
-              case 'especialidad': valueDropdown = Object.values(item[classType])[0]; break;
+              case 'paciente': value=item[classType]; valueDropdown=item[classType].nombre+ " " + item[classType].apellido; break;
+              case 'doctor': value=item[classType]; valueDropdown=item[classType].nombre + " " + item[classType].apellido; break;
+              case 'consultorio': value=item[classType]; valueDropdown=item[classType].numero + " " + item[classType].nombre; break;
+              case 'tratamiento': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
+              case 'eps': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
+              case 'genero': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
+              case 'especialidad': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
             }
-            return (
-              <MenuItem value={ valueDropdown } key={ item.id }>{ valueDropdown }</MenuItem>
-            );
+
+            return ( <MenuItem value={ value } key={ item.id }>{ valueDropdown }</MenuItem> );
           })
         }
       </Select>

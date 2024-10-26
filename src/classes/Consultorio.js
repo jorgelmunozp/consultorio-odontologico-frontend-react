@@ -1,7 +1,7 @@
 import { useState }  from "react";
 
 export class Consultorio {
-    constructor({ numero:numero, nombre:nombre }) {
+    constructor({ numero:numero='', nombre:nombre='' }) {
         this.numero = {numero}.numero;
         this.nombre = {nombre}.nombre;
     }

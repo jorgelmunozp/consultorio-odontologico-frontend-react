@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFetch } from "../../hooks/useFetch";
 import { IndexScreen } from './index/IndexScreen';
 import { ConsultarCitas } from '../crud/consultar/ConsultarCitas';
@@ -8,10 +8,7 @@ import { ConsultarTratamientos } from '../crud/consultar/ConsultarTratamientos';
 import { ConsultarDoctores } from '../crud/consultar/ConsultarDoctores';
 import { ConsultarConsultorios } from '../crud/consultar/ConsultarConsultorios';
 import { CreateCita } from '../crud/create/CreateCita';
-import { CreatePaciente } from '../crud/create/CreatePaciente';
 import { CreateItem } from '../crud/CreateItem';
-import { CreateDoctor } from '../crud/create/CreateDoctor';
-import { CreateConsultorio } from '../crud/create/CreateConsultorio';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { HomeIndex } from '../icons/home/HomeIndex';
 import { HomePlus } from '../icons/home/HomePlus';
@@ -101,14 +98,13 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   switch (menu) {
     case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 2: return <ConsultarCitas urlApi={urlApiCitas} />;
-    case 3: return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    // case 3: return <CreateCita urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 3: return <CreateItem type={'cita'}  urlApi={urlApiCitas} Icon={FaCalendarPlus} />;
     case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
-    // case 5: return <CreatePaciente urlApi={urlApiPacientes} epss={epss} generos={generos} />;
     case 5: return <CreateItem type={'paciente'} urlApi={urlApiPacientes} Icon={FaUserInjured} />;
     case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
     case 7: return <CreateItem type={'tratamiento'} urlApi={urlApiTratamientos} Icon={FaStethoscope} />;
     case 8: return <ConsultarDoctores urlApi={urlApiDoctores} />;
-    // case 9: return <CreateDoctor urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
     case 9: return <CreateItem type={'doctor'} urlApi={urlApiDoctores} Icon={FaUserMd} />;
     case 10: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
     case 11: return <CreateItem type={'consultorio'} urlApi={urlApiConsultorios} Icon={FaClinicMedical} />;

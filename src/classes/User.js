@@ -8,7 +8,7 @@ export class User {
   }
 
 export class Paciente extends User {
-    constructor({ nombre:nombre, apellido:apellido, identificacion:identificacion, genero:genero, eps:eps }) {
+    constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', eps:eps='' }) {
         super({nombre:nombre, apellido:apellido});
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
@@ -38,7 +38,7 @@ export class Paciente extends User {
   }
 
 export class Doctor extends User {
-    constructor({ nombre:nombre, apellido:apellido, identificacion:identificacion, genero:genero, especialidad:especialidad }) {
+    constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', especialidad:especialidad='' }) {
         super({nombre:nombre, apellido:apellido});
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
