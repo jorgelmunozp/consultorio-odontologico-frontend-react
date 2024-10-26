@@ -140,8 +140,16 @@
   }
 
 /* Table */
-  .modalTable th  {
-    background-color:var(--main-color);
+.modalTable td:nth-child(even){background-color:var(--white-color);}
+.modalTable td:nth-child(odd){background-color: #f1f1f1;}
+  .modalTable { border: gray 1px solid;}
+  .modalTable .row:nth-child(even){background-color:var(--white-color);}
+  .modalTable .row:nth-child(odd){background-color: #f1f1f1;}
+  .modalTable .row:nth-child(even):hover { background-color:var(--main-transparent-color); }
+  .modalTable .row:nth-child(odd):hover { background-color:var(--main-transparent-color); }
+  
+  .modalTable th, .modalTableTitle  {
+    background-color:var(--main-color) !important;
     color: var(--white-color);
     font-size: 0.85em;
     font-weight: normal;
@@ -149,14 +157,12 @@
     padding: 0.75vmin 1vmin;
     border-bottom: 1px solid var(--dark-color);
   }
-  .modalTable td {
+  .modalTable td, .modalTableData {
     color: var(--dark-color);
     font-size: 0.9em;
     padding: 1vmin 5vmin;
     text-wrap: nowrap;
   }
-  .modalTable td:nth-child(even){background-color:var(--white-color);}
-  .modalTable td:nth-child(odd){background-color: #f1f1f1;}
   
   .modalInput {
     background-color:var(--white-color);

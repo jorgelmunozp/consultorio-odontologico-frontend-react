@@ -5,8 +5,7 @@ import { useFetch } from '../../hooks/useFetch';
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-export const UpdateItem = ({ Icon, item, urlApi, buttons, setOpen, setAlert, Row, state }) => {
-  const classType = Object.keys(item)[0];                                         // Obtiene la Classe del objeto
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => {
   let stateValues = [];                                                          // Arreglo con los datos de cada parámetro del objeto
  
   const handleUpdate = () => {

@@ -7,7 +7,7 @@ import { ConsultarPacientes } from '../crud/consultar/ConsultarPacientes';
 import { ConsultarTratamientos } from '../crud/consultar/ConsultarTratamientos';
 import { ConsultarDoctores } from '../crud/consultar/ConsultarDoctores';
 import { ConsultarConsultorios } from '../crud/consultar/ConsultarConsultorios';
-import { CreateCita } from '../crud/create/CreateCita';
+import { QueryItems } from '../crud/QueryItems';
 import { CreateItem } from '../crud/CreateItem';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { HomeIndex } from '../icons/home/HomeIndex';
@@ -98,15 +98,15 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   switch (menu) {
     case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 2: return <ConsultarCitas urlApi={urlApiCitas} />;
-    case 3: return <CreateItem type={'cita'}  urlApi={urlApiCitas} Icon={FaCalendarPlus} />;
+    case 3: return <CreateItem classType={'cita'}  urlApi={urlApiCitas} Icon={FaCalendarPlus} />;
     case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
-    case 5: return <CreateItem type={'paciente'} urlApi={urlApiPacientes} Icon={FaUserInjured} />;
+    case 5: return <CreateItem classType={'paciente'} urlApi={urlApiPacientes} Icon={FaUserInjured} />;
     case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
-    case 7: return <CreateItem type={'tratamiento'} urlApi={urlApiTratamientos} Icon={FaStethoscope} />;
+    case 7: return <CreateItem classType={'tratamiento'} urlApi={urlApiTratamientos} Icon={FaStethoscope} />;
     case 8: return <ConsultarDoctores urlApi={urlApiDoctores} />;
-    case 9: return <CreateItem type={'doctor'} urlApi={urlApiDoctores} Icon={FaUserMd} />;
-    case 10: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
-    case 11: return <CreateItem type={'consultorio'} urlApi={urlApiConsultorios} Icon={FaClinicMedical} />;
+    case 9: return <CreateItem classType={'doctor'} urlApi={urlApiDoctores} Icon={FaUserMd} />;
+    case 10: return <QueryItems classType={'consultorio'} urlApi={urlApiConsultorios} />;
+    case 11: return <CreateItem classType={'consultorio'} urlApi={urlApiConsultorios} Icon={FaClinicMedical} />;
     default: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }
 }

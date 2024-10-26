@@ -1,8 +1,7 @@
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-export const ReadItem = ({ Icon, item, setOpen }) => {
-  const classType = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
+export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   const keys = Object.keys(item[classType]);                    // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -22,24 +21,24 @@ export const ReadItem = ({ Icon, item, setOpen }) => {
                 <h4 className={'modalTitle main-color pt-3'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h4>
               </div>
               <div className={'modalContent'}>
-                <center>
-                  <table className="modalTable" border='1'>
-                    <thead>
-                      <tr><th>Parámetro</th><th>Datos</th></tr>
-                    </thead>
-                    <tbody>
-                      <tr><td> Código </td><td>{ item.id }</td></tr>
-                      {
-                        valuesData.map((data,index)=>{ return(
-                            <tr key={ keys[index].toLowerCase() }>
-                              <td>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</td>
-                              <td>{ data }</td>
-                            </tr>
-                        )})
-                      }
-                    </tbody>
-                  </table>
-                </center>
+                <div className='container-fluid modalTable mt-2'>
+                  <div className='row modalTableTitle'>
+                    <div className='col'>Parámetro</div>
+                    <div className='col'>Datos</div>
+                  </div>
+                  <div className='row'>
+                    <div className='col modalTableData'>Código</div>
+                    <div className='col modalTableData text-start'>{ item.id }</div>
+                  </div>
+                  {
+                    valuesData.map((data,index)=>{ return(
+                        <div key={ keys[index].toLowerCase() } className='row'>
+                          <div className='col modalTableData'>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</div>
+                          <div className='col modalTableData text-start'>{ data }</div>
+                        </div>
+                    )})
+                  }
+                </div>
               </div>
               <div className={'modalFooter'}>
                 <div className={'modalButtons'}>

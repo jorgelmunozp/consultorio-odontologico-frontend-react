@@ -2,8 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../helpers/fetchDelete';
 import '../modal/modal.css';
 
-export const DeleteItem = ({ Icon,item, urlApi, buttons, setOpen, setAlert }) => {
-  const classType = Object.keys(item)[0];                       // Obtiene el nombre del objeto para saber su Classe
+export const DeleteItem = ({ classType, Icon, item, urlApi, setOpen, setAlert }) => {
   const keys = Object.keys(item[classType]);                    // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                // Valores de cada parámetro del objeto
   let valuesData = [];

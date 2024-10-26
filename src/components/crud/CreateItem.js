@@ -1,18 +1,18 @@
 import { useState }  from "react";
 import { useFetch } from '../../hooks/useFetch';
-import { Tratamiento } from '../../classes/Tratamiento';
+import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Consultorio } from '../../classes/Consultorio';
-import { Cita } from '../../classes/Cita';
+import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Success } from '../icons/success/Success';
 import { Error } from '../icons/error/Error';
 
-export const CreateItem = ({ type, urlApi, Icon }) => {
+export const CreateItem = ({ classType, urlApi, Icon }) => {
   let Classe = '';
-  switch (type) { case 'cita' : Classe = Cita; break;
+  switch (classType) { case 'cita' : Classe = Cita; break;
                   case 'paciente': Classe = Paciente; break;
                   case 'doctor': Classe = Doctor; break;
                   case 'consultorio': Classe = Consultorio; break;
