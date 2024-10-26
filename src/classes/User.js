@@ -25,11 +25,11 @@ export class Paciente extends User {
       const [genero, setGenero] = useState("");                    // Select Genero state
       const [eps, setEps] = useState("");                          // Select Eps state
       const state = [
-        { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
-        { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value), setState: setApellido },
-        { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value), setState: setIdentificacion },
-        { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value), setState: setGenero },
-        { eps: eps, type:"dropdown", handleChange: (event) => setEps(event.target.value), setState: setEps }
+        { key:'nombre', value: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
+        { key:'apellido', value: apellido, type:"text", handleChange: (event) => setApellido(event.target.value), setState: setApellido },
+        { key:'identificacion', value: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value), setState: setIdentificacion },
+        { key:'genero', value: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value), setState: setGenero },
+        { key:'eps', value: eps, type:"dropdown", handleChange: (event) => setEps(event.target.value), setState: setEps }
       ];
       return( state )
     }      
@@ -55,11 +55,11 @@ export class Doctor extends User {
       const [genero, setGenero] = useState("");                    // Select Genero state
       const [especialidad, setEspecialidad] = useState("");        // Select Especialidad state
       const state = [
-        { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
-        { apellido: apellido, type:"text", handleChange: (event) => setApellido(event.target.value), setState: setApellido },
-        { identificacion: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value), setState: setIdentificacion },
-        { genero: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value), setState: setGenero },
-        { especialidad: especialidad, type:"dropdown", handleChange: (event) => setEspecialidad(event.target.value), setState: setEspecialidad }
+        { key:'nombre', value: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
+        { key:'apellido', value: apellido, type:"text", handleChange: (event) => setApellido(event.target.value), setState: setApellido },
+        { key:'identificacion', value: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value), setState: setIdentificacion },
+        { key:'genero', value: genero, type:"dropdown", handleChange: (event) => setGenero(event.target.value), setState: setGenero },
+        { key:'especialidad', value: especialidad, type:"dropdown", handleChange: (event) => setEspecialidad(event.target.value), setState: setEspecialidad }
       ];
 
       return( state )

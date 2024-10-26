@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { QueryItems } from '../../crud/QueryItems';
 import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas';
 import { ConsultarTratamientos } from '../../crud/consultar/ConsultarTratamientos';
 import { ConsultarPacientes } from '../../crud/consultar/ConsultarPacientes';

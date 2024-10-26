@@ -24,12 +24,12 @@ export class Cita {
         const [doctor, setDoctor] = useState("");                 //Select Doctor
         const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento      
         const state = [
-          { paciente: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value), setState: setPaciente },
-          { fecha: fecha, type:"date", handleChange: (event) => setFecha(event.target.value), setState: setFecha },
-          { hora: hora, type:"time", handleChange: (event) => setHora(event.target.value), setState: setHora },
-          { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value), setState: setConsultorio },
-          { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value), setState: setDoctor },
-          { tratamiento: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value), setState: setTratamiento }
+          { key:'paciente', value: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value), setState: setPaciente },
+          { key:'fecha', value: fecha, type:"date", handleChange: (event) => setFecha(event.target.value), setState: setFecha },
+          { key:'hora', value: hora, type:"time", handleChange: (event) => setHora(event.target.value), setState: setHora },
+          { key:'consultorio', value: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value), setState: setConsultorio },
+          { key:'doctor', value: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value), setState: setDoctor },
+          { key:'tratamiento', value: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value), setState: setTratamiento }
         ];
         return( state )
     }      

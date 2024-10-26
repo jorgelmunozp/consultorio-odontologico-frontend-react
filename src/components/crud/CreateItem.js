@@ -27,10 +27,10 @@ export const CreateItem = ({ classType, urlApi, Icon }) => {
   const [alert, setAlert] = useState(false);
 
   let stateValues = [];                                                    // Arreglo con los datos de cada parámetro del objeto
-  state.forEach(property => stateValues.push(Object.values(property)[0]));
+  state.forEach( property => stateValues.push(property.value) );
 
-  if(stateValues.filter(state => state === '').length === 0) {             // Verifica que no hayan campos vacios
-    state.forEach(property => objectClass[Object.keys(property)[0]] = Object.values(property)[0]);  // Carga los valores ingresados por el usuario en el objeto
+  if(stateValues.filter( state => state === '').length === 0 ) {             // Verifica que no hayan campos vacios
+    state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
       ${Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
@@ -39,7 +39,7 @@ export const CreateItem = ({ classType, urlApi, Icon }) => {
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     setAlert("success");
-    state.forEach(property => Object.values(property)[3](''));          // Reinicia todas las variables
+    state.forEach( property => property.setState('') );          // Reinicia todas las variables
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
     setAlert("error");
@@ -59,11 +59,11 @@ export const CreateItem = ({ classType, urlApi, Icon }) => {
           {
             state.map(property => {
               return(
-                <div key={'row'+Object.keys(property)[0]} className='row'>
+                <div key={'row'+property.key} className='row'>
                   {
-                    eval(JSON.stringify(Object.values(property)[1])) === 'dropdown'
+                    property.type === 'dropdown'
                           ? <div className='col'><Dropdown property={ property } /></div>
-                          : <div className='col'><TextField value={ Object.values(property)[0] } onChange={ Object.values(property)[2] } label={ Object.keys(property)[0].charAt(0).toUpperCase() + Object.keys(property)[0].slice(1) } variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
+                          : <div className='col'><TextField value={ property.value } type={ property.type } onChange={ property.handleChange } label={ property.key.charAt(0).toUpperCase() + property.key.slice(1) } variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
                   }
                 </div>
               )})
@@ -75,16 +75,16 @@ export const CreateItem = ({ classType, urlApi, Icon }) => {
           </div>              
 			  </div>
       </div>
-      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Tratamiento Registrado'} buttons={1} />  }
-      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Tratamiento No Registrado'} buttons={1} />  }
+      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />  }
+      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Datos No Registrados'} buttons={1} />  }
     </div>
   );
 };
 
 const Dropdown = ({ property }) => {
-  const classType = Object.keys(property)[0];
+  const key = property.key;
   let index = "";
-  switch(classType) { 
+  switch(key) { 
     case 'paciente': index = 0; break;
     case 'doctor': index = 1; break;
     case 'consultorio': index = 2; break;
@@ -109,31 +109,32 @@ const Dropdown = ({ property }) => {
   const [generosDropdown, setGenerosDropdown] = useState(generos);
   const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
   const statesDropdown = [
-    { paciente: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
-    { doctor: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
-    { consultorio: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
-    { tratamiento: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
-    { eps: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
-    { genero: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
-    { especialidad: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
+    { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
+    { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
+    { option: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
+    { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
+    { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
+    { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
+    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
+    
   ];
 
   return(
     <FormControl fullWidth margin="dense">
-      <InputLabel id={ classType+"Dropdown-label" } >{ classType.charAt(0).toUpperCase() + classType.slice(1) }</InputLabel>
-      <Select value={ property[classType] } onFocus={ Object.values(statesDropdown[index])[1] } onChange={ Object.values(property)[2] } id={ classType+"Dropdown"}  label={ classType+"Dropdown" } labelId={ classType+"Dropdown-label" } >
+      <InputLabel id={ key+"Dropdown-label" } >{ key.charAt(0).toUpperCase() + key.slice(1) }</InputLabel>
+      <Select value={ property[key] } onFocus={ statesDropdown[index].handleSelect } onChange={ property.handleChange } id={ key+"Dropdown"}  label={ key+"Dropdown" } labelId={ key+"Dropdown-label" } >
         {
-          Object.values(statesDropdown[index])[0].map((item) => {
+          statesDropdown[index].option.map((item) => {
             let value = '';
             let valueDropdown = '';
-            switch( classType ) {
-              case 'paciente': value=item[classType]; valueDropdown=item[classType].nombre+ " " + item[classType].apellido; break;
-              case 'doctor': value=item[classType]; valueDropdown=item[classType].nombre + " " + item[classType].apellido; break;
-              case 'consultorio': value=item[classType]; valueDropdown=item[classType].numero + " " + item[classType].nombre; break;
-              case 'tratamiento': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
-              case 'eps': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
-              case 'genero': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
-              case 'especialidad': value=item[classType].nombre; valueDropdown=item[classType].nombre; break;
+            switch( key ) {
+              case 'paciente': value=item[key]; valueDropdown=item[key].nombre+ " " + item[key].apellido; break;
+              case 'doctor': value=item[key]; valueDropdown=item[key].nombre + " " + item[key].apellido; break;
+              case 'consultorio': value=item[key]; valueDropdown=item[key].numero + " " + item[key].nombre; break;
+              case 'tratamiento': value=item[key].nombre; valueDropdown=item[key].nombre; break;
+              case 'eps': value=item[key].nombre; valueDropdown=item[key].nombre; break;
+              case 'genero': value=item[key].nombre; valueDropdown=item[key].nombre; break;
+              case 'especialidad': value=item[key].nombre; valueDropdown=item[key].nombre; break;
             }
 
             return ( <MenuItem value={ value } key={ item.id }>{ valueDropdown }</MenuItem> );

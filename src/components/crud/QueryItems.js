@@ -23,11 +23,14 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 const Row = ({ classType,item,urlApi }) => {
   let Classe = '';
   switch (classType) { case 'cita' : Classe = Cita; break;
-                  case 'paciente': Classe = Paciente; break;
-                  case 'doctor': Classe = Doctor; break;
-                  case 'consultorio': Classe = Consultorio; break;
-                  case 'tratamiento': Classe = Tratamiento; break;
+                       case 'paciente': Classe = Paciente; break;
+                       case 'doctor': Classe = Doctor; break;
+                       case 'consultorio': Classe = Consultorio; break;
+                       case 'tratamiento': Classe = Tratamiento; break;
   }
+// console.log("Classe: ", Classe)
+// console.log("classType: ", classType)
+// console.log("item[classType] QueryItems: ", item[classType])
 
   let objectClass = new Classe(item[classType]);                                         // Objecto instanciado con la Class
   const state = objectClass.state;
@@ -38,14 +41,14 @@ const Row = ({ classType,item,urlApi }) => {
   const [alert, setAlert] = useState(false); 
   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
   
-  console.log("item: ", item)
-  console.log("item[classType]: ", item[classType])
-  console.log("Object.values(item[classType]): ", Object.values(item[classType]))
+  // console.log("item: ", item)
+  // console.log("item[classType]: ", item[classType])
+  // console.log("Object.values(item[classType]): ", Object.values(item[classType]))
   return (
         <>
           <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
           {
-            Object.values(item[classType]).map((item) => {return(
+            Object.values(item[classType]).map((item) => { return(
               <td className='ps-4 ps-sm-5 text-nowrap'>{ item }</td>
             )})
           }

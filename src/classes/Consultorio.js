@@ -7,11 +7,11 @@ export class Consultorio {
     }
 
     getState = () => {                                               // Method
-        const [numero, setNumero] = useState("");                    // Input Número state
-        const [nombre, setNombre] = useState("");                    // Input Nombre state
+        const [numero, setNumero] = useState('');                    // Input Número state
+        const [nombre, setNombre] = useState('');                    // Input Nombre state
         const state = [
-          { numero: numero, type:"number", handleChange: (event) => setNumero(event.target.value), setState: setNumero },
-          { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre }
+          { key:'numero', value: numero, type:'number', setState: setNumero, handleChange: (event) => setNumero(event.target.value) },
+          { key:'nombre', value: nombre, type:'text', setState: setNombre, handleChange: (event) => setNombre(event.target.value) }
         ];
         return( state )
     }      

@@ -14,9 +14,9 @@ export class Tratamiento {
         const [consultorio, setConsultorio] = useState("");          // Select Consultorio state
         const [doctor, setDoctor] = useState("");                    // Select Doctor state
         const state = [
-          { nombre: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
-          { consultorio: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value), setState: setConsultorio },
-          { doctor: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value), setState: setDoctor }
+          { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
+          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(event.target.value) },
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(event.target.value) }
         ];
         return( state )
     }      
