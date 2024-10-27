@@ -89,4 +89,29 @@ export class Cita {
     }
     get data () { return this.getData() }                                   // Getter data
 
+    getSort = () => {                                                  // METHOD SORT
+        /* Sort */
+        const [sortBy, setSortBy] = useState(0);
+        let SortByProperty = () => {};
+        switch (sortBy) { 
+            case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by Id up
+            case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by Id down
+            case 3: SortByProperty = (a,b) => { return a.cita.paciente.localeCompare(b.cita.paciente) }; break;   // Sort by Name up
+            case 4: SortByProperty = (a,b) => { return b.cita.paciente.localeCompare(a.cita.paciente) }; break;   // Sort by Name down
+            case 5: SortByProperty = (a,b) => { return a.cita.fecha.localeCompare(b.cita.fecha) }; break;   // Sort by Name up
+            case 6: SortByProperty = (a,b) => { return b.cita.fecha.localeCompare(a.cita.fecha) }; break;   // Sort by Name down
+            case 7: SortByProperty = (a,b) => { return a.cita.hora.localeCompare(b.cita.hora) }; break;   // Sort by Name up
+            case 8: SortByProperty = (a,b) => { return b.cita.hora.localeCompare(a.cita.hora) }; break;   // Sort by Name down
+            case 9: SortByProperty = (a,b) => { return a.cita.consultorio.localeCompare(b.cita.consultorio) }; break;   // Sort by Name up
+            case 10: SortByProperty = (a,b) => { return b.cita.consultorio.localeCompare(a.cita.consultorio) }; break;   // Sort by Name down
+            case 11: SortByProperty = (a,b) => { return a.cita.doctor.localeCompare(b.cita.doctor) }; break;   // Sort by Name up
+            case 12: SortByProperty = (a,b) => { return b.cita.doctor.localeCompare(a.cita.doctor) }; break;   // Sort by Name down
+            case 13: SortByProperty = (a,b) => { return a.cita.tratamiento.localeCompare(b.cita.tratamiento) }; break;   // Sort by Name up
+            case 14: SortByProperty = (a,b) => { return b.cita.tratamiento.localeCompare(a.cita.tratamiento) }; break;   // Sort by Name down
+        }
+
+        return({ SortByProperty, setSortBy })
+    }
+    get sort () { return this.getSort() }                              // Getter data
+
 }
