@@ -9,12 +9,8 @@ export class Consultorio {
         this.nombre = {nombre}.nombre;
     }
     
-    getTitles = () => {                                              // METHOD TITLES
-        const titles = ['Código','Número','Nombre'];
-        
-        return( titles )
-    }
-    get titles () { return this.getTitles() }                        // Getter state
+    getTitles = () => { return( ['Código','Número','Nombre'] )}      // METHOD TITLES
+    get titles () { return this.getTitles() }                        // Getter titles
 
     getState = () => {                                               // METHOD STATE
         const [ numero, setNumero ] = useState('');                  // Input Número state
@@ -28,7 +24,7 @@ export class Consultorio {
     }      
     get state () { return this.getState() }                          // Getter state
 
-    getData = () => {                                             // METHOD QUERIES
+    getData = () => {                                                // METHOD DATA
         /* Fetch */
         let array = [];
         let [ alertFetch, setAlertFetch ] = useState(false);
@@ -67,6 +63,6 @@ export class Consultorio {
         
         return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
-    get data () { return this.getData() }                      // Getter state
+    get data () { return this.getData() }                              // Getter data
 
 }
