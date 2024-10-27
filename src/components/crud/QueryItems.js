@@ -69,6 +69,17 @@ export const QueryItems = ({ classType, urlApi }) => {
   useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
   if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
+  let Classe = '';
+  switch (classType) { case 'cita' : Classe = Cita; break;
+                       case 'paciente': Classe = Paciente; break;
+                       case 'doctor': Classe = Doctor; break;
+                       case 'consultorio': Classe = Consultorio; break;
+                       case 'tratamiento': Classe = Tratamiento; break;
+  }
+
+  let objectClass = new Classe('');                                         // Objeto instanciado con la Class
+  const state = objectClass.state;
+
   /* Query */
   let [ queryCode, setQueryCode ] = useState('');
   let [ queryNumber, setQueryNumber ] = useState('');
@@ -109,18 +120,6 @@ export const QueryItems = ({ classType, urlApi }) => {
   function sortByNameUp(a, b) { return a.consultorio.nombre.localeCompare(b.consultorio.nombre); }
   function sortByNameDown(a, b) { return b.consultorio.nombre.localeCompare(a.consultorio.nombre); }
   
-
-  let Classe = '';
-  switch (classType) { case 'cita' : Classe = Cita; break;
-                       case 'paciente': Classe = Paciente; break;
-                       case 'doctor': Classe = Doctor; break;
-                       case 'consultorio': Classe = Consultorio; break;
-                       case 'tratamiento': Classe = Tratamiento; break;
-  }
-
-  let objectClass = new Classe('');                                         // Objecto instanciado con la Class
-  const state = objectClass.state;
-
   return (
     <div className="App">
       <div id="contenidoConsultorios">
