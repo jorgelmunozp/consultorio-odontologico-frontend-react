@@ -128,7 +128,7 @@ export class Doctor extends User {
     getUser () { return new User(this.nombre, this.apellido) }     // METHOD USER
     get user () { return this.getUser() }                          // Getter user
 
-    getTitles = () => { return( ['Código','Nombre','Apellido','Especialidad'] )}  // METHOD TITLES
+    getTitles = () => { return( ['Código','Nombre','Apellido','Identificación','Género','Especialidad'] )}  // METHOD TITLES
     get titles () { return this.getTitles() }                      // Getter titles
 
     getState = () => {                                             // METHOD STATE
