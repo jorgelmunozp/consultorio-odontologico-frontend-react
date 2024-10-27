@@ -33,12 +33,12 @@ export class Cita {
         const [doctor, setDoctor] = useState("");                 //Select Doctor
         const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento      
         const state = [
-          { key:'paciente', value: paciente, type:"dropdown", handleChange: (event) => setPaciente(event.target.value), setState: setPaciente },
-          { key:'fecha', value: fecha, type:"date", handleChange: (event) => setFecha(event.target.value), setState: setFecha },
-          { key:'hora', value: hora, type:"time", handleChange: (event) => setHora(event.target.value), setState: setHora },
-          { key:'consultorio', value: consultorio, type:"dropdown", handleChange: (event) => setConsultorio(event.target.value), setState: setConsultorio },
-          { key:'doctor', value: doctor, type:"dropdown", handleChange: (event) => setDoctor(event.target.value), setState: setDoctor },
-          { key:'tratamiento', value: tratamiento, type:"dropdown", handleChange: (event) => setTratamiento(event.target.value), setState: setTratamiento }
+          { key:'paciente', value: paciente, type:"dropdown", setState: setPaciente , handleChange: (event) => setPaciente(JSON.parse(event.target.value))},
+          { key:'fecha', value: fecha, type:"date", setState: setFecha , handleChange: (event) => setFecha(event.target.value)},
+          { key:'hora', value: hora, type:"time", setState: setHora, handleChange: (event) => setHora(event.target.value) },
+          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(JSON.parse(event.target.value)) },
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(JSON.parse(event.target.value)) },
+          { key:'tratamiento', value: tratamiento, type:"dropdown", setState: setTratamiento, handleChange: (event) => setTratamiento(JSON.parse(event.target.value)) }
         ];
 
         return( state )

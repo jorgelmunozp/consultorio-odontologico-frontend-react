@@ -25,7 +25,7 @@ export class Tratamiento {
         const state = [
           { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
           { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(JSON.parse(event.target.value)) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => {console.log("event.target.value Tratamiento: ",JSON.parse(event.target.value)); setDoctor(JSON.parse(event.target.value)) } }
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(JSON.parse(event.target.value)) }
         ];
         
         return( state )
