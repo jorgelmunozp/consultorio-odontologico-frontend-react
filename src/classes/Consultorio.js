@@ -73,12 +73,12 @@ export class Consultorio {
         const [sortBy, setSortBy] = useState(0);
         let SortByProperty = () => {};
         switch (sortBy) { 
-            case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by Id up
-            case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by Id down
-            case 3: SortByProperty = (a,b) => { return a.consultorio.numero - b.consultorio.numero }; break;                // Sort by Number up
-            case 4: SortByProperty = (a,b) => { return b.consultorio.numero - a.consultorio.numero }; break;                // Sort by Number down
-            case 5: SortByProperty = (a,b) => { return a.consultorio.nombre.localeCompare(b.consultorio.nombre) }; break;   // Sort by Name up
-            case 6: SortByProperty = (a,b) => { return b.consultorio.nombre.localeCompare(a.consultorio.nombre) }; break;   // Sort by Name down
+            case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by id up
+            case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by id down
+            case 3: SortByProperty = (a,b) => { return a.consultorio.numero - b.consultorio.numero }; break;                // Sort by numero up
+            case 4: SortByProperty = (a,b) => { return b.consultorio.numero - a.consultorio.numero }; break;                // Sort by numero down
+            case 5: SortByProperty = (a,b) => { return a.consultorio.nombre.localeCompare(b.consultorio.nombre) }; break;   // Sort by nombre up
+            case 6: SortByProperty = (a,b) => { return b.consultorio.nombre.localeCompare(a.consultorio.nombre) }; break;   // Sort by nombre down
         }
 
         return({ SortByProperty, setSortBy })

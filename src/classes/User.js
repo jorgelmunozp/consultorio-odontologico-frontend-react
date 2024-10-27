@@ -89,6 +89,29 @@ export class Paciente extends User {
     }
     get data () { return this.getData() }                                 // Getter data
 
+    getSort = () => {                                                  // METHOD SORT
+      /* Sort */
+      const [sortBy, setSortBy] = useState(0);
+      let SortByProperty = () => {};
+      switch (sortBy) { 
+          case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                            // Sort by id up
+          case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                            // Sort by id down
+          case 3: SortByProperty = (a,b) => { return a.paciente.identificacion.localeCompare(b.paciente.identificacion) }; break;  // Sort by identificacion up
+          case 4: SortByProperty = (a,b) => { return b.paciente.identificacion.localeCompare(a.paciente.identificacion) }; break;  // Sort by identificacion down
+          case 5: SortByProperty = (a,b) => { return a.paciente.nombre.localeCompare(b.paciente.nombre) }; break;     // Sort by nombre up
+          case 6: SortByProperty = (a,b) => { return b.paciente.nombre.localeCompare(a.paciente.nombre) }; break;     // Sort by nombre down
+          case 7: SortByProperty = (a,b) => { return a.paciente.apellido.localeCompare(b.paciente.apellido) }; break; // Sort by apellido up
+          case 8: SortByProperty = (a,b) => { return b.paciente.apellido.localeCompare(a.paciente.apellido) }; break; // Sort by apellido down
+          case 9: SortByProperty = (a,b) => { return a.paciente.genero.localeCompare(b.paciente.genero) }; break;     // Sort by genero up
+          case 10: SortByProperty = (a,b) => { return b.paciente.genero.localeCompare(a.paciente.genero) }; break;    // Sort by genero down
+          case 11: SortByProperty = (a,b) => { return a.paciente.eps.localeCompare(b.paciente.eps) }; break;          // Sort by eps up
+          case 12: SortByProperty = (a,b) => { return b.paciente.eps.localeCompare(a.paciente.eps) }; break;          // Sort by eps down
+      }
+
+      return({ SortByProperty, setSortBy })
+    }
+    get sort () { return this.getSort() }                              // Getter data
+
   }
 
 export class Doctor extends User {
@@ -166,5 +189,24 @@ export class Doctor extends User {
       return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
+
+    getSort = () => {                                                  // METHOD SORT
+      /* Sort */
+      const [sortBy, setSortBy] = useState(0);
+      let SortByProperty = () => {};
+      switch (sortBy) { 
+          case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                            // Sort by id up
+          case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                            // Sort by id down
+          case 3: SortByProperty = (a,b) => { return a.doctor.nombre.localeCompare(b.doctor.nombre) }; break;         // Sort by identificacion up
+          case 4: SortByProperty = (a,b) => { return b.doctor.nombre.localeCompare(a.doctor.nombre) }; break;         // Sort by identificacion down
+          case 5: SortByProperty = (a,b) => { return a.doctor.apellido.localeCompare(b.doctor.apellido) }; break;     // Sort by nombre up
+          case 6: SortByProperty = (a,b) => { return b.doctor.apellido.localeCompare(a.doctor.apellido) }; break;     // Sort by nombre down
+          case 7: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by apellido up
+          case 8: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by apellido down
+      }
+
+      return({ SortByProperty, setSortBy })
+    }
+    get sort () { return this.getSort() }                              // Getter data
 
   }

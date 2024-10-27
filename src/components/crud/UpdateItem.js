@@ -130,13 +130,11 @@ const Dropdown = ({ property }) => {
       <option value={ property.value }>{ valueProperty }</option>
       { 
         statesDropdown[index].option.map((item,index) => {
-          // console.log("item[key] UpdateItem: ",JSON.stringify(item[key]) )
-
-            switch( key ) {
+            switch( key ) {               // Value que se envía al Backend (Falta jwt !!!!)
             case 'paciente': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
             case 'doctor': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
             case 'consultorio': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
-            case 'tratamiento': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+            case 'tratamiento': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
             case 'eps': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
             case 'genero': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
             case 'especialidad': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
