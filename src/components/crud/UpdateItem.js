@@ -8,14 +8,9 @@ import '../modal/modal.css';
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => {
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
  
-  useEffect(()=>{
-      state[0].setState(item[classType].numero)
-      state[1].setState(item[classType].nombre)
+  useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
+      state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });
   },[])
-  // console.log("item[classType]: ", item[classType])
-
-  // console.log("state: ", state)
-
 
   const handleUpdate = () => {
     state.forEach(property => stateValues.push(Object.values(property)[0]) );   // Push en el arreglo con los valores de los datos de cada parámetro del objeto
@@ -105,8 +100,6 @@ const Dropdown = ({ property }) => {
     case 'especialidad': index = 6; (property[key].length !== 0) ? valueItem = property[key] : valueItem = ''; break;
   };
 
-  console.log("property[key] UpdateItem: ",property[key])
-
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
   const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
   const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
@@ -137,7 +130,8 @@ const Dropdown = ({ property }) => {
       <option value={ property[key] }>{ valueItem }</option>
       { 
         statesDropdown[index].option.map((item) => {
-          switch( Object.keys(item)[0] ) {
+          // switch( Object.keys(item)[0] ) {
+            switch( key ) {
             case 'paciente': return( <option value={item[key]}>{ item[key].nombre + " " + item[key].apellido} </option> );
             case 'doctor': return( <option value={item[key]}>{ item[key].nombre + " " + item[key].apellido }</option> );
             case 'consultorio': return( <option value={item[key]}>{ item[key].numero + " " + item[key].nombre }</option> );

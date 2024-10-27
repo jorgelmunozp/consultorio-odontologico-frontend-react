@@ -6,7 +6,7 @@ export class Consultorio {
         this.nombre = {nombre}.nombre;
     }
 
-    getState = () => {                                               // Method
+    getState = () => {                                               // METHOD
         const [numero, setNumero] = useState('');                    // Input Número state
         const [nombre, setNombre] = useState('');                    // Input Nombre state
         const state = [
@@ -16,5 +16,10 @@ export class Consultorio {
         return( state )
     }      
     get state () { return this.getState() }                          // Getter state
+
+    getQuery = () => {                                               // METHOD
+
+    }
+    get query () { return this.getQuery() }                          // Getter state
 
 }
