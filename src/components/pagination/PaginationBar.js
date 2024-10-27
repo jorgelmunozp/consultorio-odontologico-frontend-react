@@ -1,6 +1,5 @@
 import './pagination.css'
 export const PaginationBar = ({ array,itemPerPage,indexPage,activePages,indexPages,setIndexPage,setActivePages }) => {
-
   return (
     <nav aria-label="Page navigation" className='mt-3'>
       <ul className="pagination pagination-sm justify-content-center">

@@ -62,12 +62,12 @@ const Row = ({ classType,item,urlApi,state }) => {
   }; 
 
 export const QueryItems = ({ classType, urlApi }) => {
-  /* Fetch */
-  let array = [];
+  // /* Fetch */
+  // let array = [];
   let [ alertFetch, setAlertFetch ] = useState(false);
-  const arrayFetch = useFetch(urlApi);
-  useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
-  if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
+  // const arrayFetch = useFetch(urlApi);
+  // useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+  // if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
   let Classe = '';
   switch (classType) { case 'cita' : Classe = Cita; break;
@@ -78,38 +78,42 @@ export const QueryItems = ({ classType, urlApi }) => {
   }
 
   let objectClass = new Classe('');                                         // Objeto instanciado con la Class
+  const titles = objectClass.titles;
   const state = objectClass.state;
 
+  const { queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectClass.data;
+  // const setQueries = objectClass.setQueries;
+  // const arrayFiltered = objectClass.arrayFiltered;
   /* Query */
-  let [ queryCode, setQueryCode ] = useState('');
-  let [ queryNumber, setQueryNumber ] = useState('');
-  let [ queryName, setQueryName ] = useState('');
+  // let [ queryCode, setQueryCode ] = useState('');
+  // let [ queryNumber, setQueryNumber ] = useState('');
+  // let [ queryName, setQueryName ] = useState('');
 
-  const arrayFiltered = useMemo( () => getConsultoriosFiltered(array,queryCode,queryNumber,queryName), [array,queryCode,queryNumber,queryName] );
+  // const arrayFiltered = useMemo( () => getConsultoriosFiltered(array,queryCode,queryNumber,queryName), [array,queryCode,queryNumber,queryName] );
 
-  const titles = ['Código','Número','Nombre'];
-  const queries = [queryCode,queryNumber,queryName];
-  const setQueries = [setQueryCode,setQueryNumber,setQueryName];
+  // const titles = ['Código','Número','Nombre'];
+  // const queries = [queryCode,queryNumber,queryName];
+  // const setQueries = [setQueryCode,setQueryNumber,setQueryName];
   
-  /* Pagination */
-  const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
-  const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-  const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-  const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
-  let indexPages = [];
-  let activePage = [true];                                            // [true]
-  if(resPages !== 0 ){
-    for(let i = 0; i <= numPages; i++) { 
-      indexPages.push(i);                                             // [0,1,2,3]
-      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-    }
-  } else if(resPages === 0 ){
-    for(let i = 0; i < numPages; i++) { 
-      indexPages.push(i);                                             // [0,1,2,3]
-      if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+  // /* Pagination */
+  // const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
+  // const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+  // const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
+  // const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+  // let indexPages = [];
+  // let activePage = [true];                                            // [true]
+  // if(resPages !== 0 ){
+  //   for(let i = 0; i <= numPages; i++) { 
+  //     indexPages.push(i);                                             // [0,1,2,3]
+  //     if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+  //   }
+  // } else if(resPages === 0 ){
+  //   for(let i = 0; i < numPages; i++) { 
+  //     indexPages.push(i);                                             // [0,1,2,3]
+  //     if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+  //   }
+  // }
+  // const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
 
   /* Sort */
   const [sortBy, setSortBy] = useState(0);
