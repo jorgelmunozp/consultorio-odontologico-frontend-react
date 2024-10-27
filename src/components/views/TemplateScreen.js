@@ -98,15 +98,16 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
   switch (menu) {
     case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
     case 2: return <ConsultarCitas urlApi={urlApiCitas} />;
-    case 3: return <CreateItem classType={'cita'}  urlApi={urlApiCitas} Icon={FaCalendarPlus} />;
+    case 3: return <CreateItem classType={'cita'} Icon={FaCalendarPlus} />;
     case 4: return <ConsultarPacientes urlApi={urlApiPacientes} />;
-    case 5: return <CreateItem classType={'paciente'} urlApi={urlApiPacientes} Icon={FaUserInjured} />;
-    case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
-    case 7: return <CreateItem classType={'tratamiento'} urlApi={urlApiTratamientos} Icon={FaStethoscope} />;
+    case 5: return <CreateItem classType={'paciente'} Icon={FaUserInjured} />;
+    // case 6: return <ConsultarTratamientos urlApi={urlApiTratamientos} />;
+    case 6: return <QueryItems classType={'tratamiento'} />;
+    case 7: return <CreateItem classType={'tratamiento'} Icon={FaStethoscope} />;
     case 8: return <ConsultarDoctores urlApi={urlApiDoctores} />;
-    case 9: return <CreateItem classType={'doctor'} urlApi={urlApiDoctores} Icon={FaUserMd} />;
-    case 10: return <QueryItems classType={'consultorio'} urlApi={urlApiConsultorios} />;
-    case 11: return <CreateItem classType={'consultorio'} urlApi={urlApiConsultorios} Icon={FaClinicMedical} />;
+    case 9: return <CreateItem classType={'doctor'} Icon={FaUserMd} />;
+    case 10: return <QueryItems classType={'consultorio'} />;
+    case 11: return <CreateItem classType={'consultorio'} Icon={FaClinicMedical} />;
     default: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
   }
 }

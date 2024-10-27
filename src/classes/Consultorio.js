@@ -8,7 +8,10 @@ export class Consultorio {
         this.numero = {numero}.numero;
         this.nombre = {nombre}.nombre;
     }
-    
+
+    getApi = () => { return( urlApi )}                               // METHOD API
+    get api () { return this.getApi() }                              // Getter api
+
     getTitles = () => { return( ['Código','Número','Nombre'] )}      // METHOD TITLES
     get titles () { return this.getTitles() }                        // Getter titles
 
@@ -61,8 +64,25 @@ export class Consultorio {
         }
         const [activePages, setActivePages] = useState(activePage);    // [true,false,false,false]
         
-        return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
+        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
+
+    getSort = () => {                                                  // METHOD SORT
+        /* Sort */
+        const [sortBy, setSortBy] = useState(0);
+        let SortByProperty = () => {};
+        switch (sortBy) { 
+            case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by Id up
+            case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by Id down
+            case 3: SortByProperty = (a,b) => { return a.consultorio.numero - b.consultorio.numero }; break;                // Sort by Number up
+            case 4: SortByProperty = (a,b) => { return b.consultorio.numero - a.consultorio.numero }; break;                // Sort by Number down
+            case 5: SortByProperty = (a,b) => { return a.consultorio.nombre.localeCompare(b.consultorio.nombre) }; break;   // Sort by Name up
+            case 6: SortByProperty = (a,b) => { return b.consultorio.nombre.localeCompare(a.consultorio.nombre) }; break;   // Sort by Name down
+        }
+
+        return({ SortByProperty, setSortBy })
+    }
+    get sort () { return this.getSort() }                              // Getter data
 
 }

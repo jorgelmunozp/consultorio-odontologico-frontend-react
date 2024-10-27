@@ -19,6 +19,9 @@ export class Cita {
         this.tratamiento = new Tratamiento({ tratamiento:{tratamiento} });
     }
 
+    getApi = () => { return( urlApi )}                               // METHOD API
+    get api () { return this.getApi() }                              // Getter api
+
     getTitles = () => { return( ['Código','Paciente','Fecha','Hora','Consultorio','Médico','Tratamiento'] )}  // METHOD TITLES
     get titles () { return this.getTitles() }                     // Getter titles
 
@@ -82,7 +85,7 @@ export class Cita {
         }
         const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
         
-        return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
+        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                                   // Getter data
 

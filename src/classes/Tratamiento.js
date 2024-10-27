@@ -12,6 +12,9 @@ export class Tratamiento {
         this.doctor = new Doctor({ doctor:doctor });
     }
 
+    getApi = () => { return( urlApi )}                               // METHOD API
+    get api () { return this.getApi() }                              // Getter api
+
     getTitles = () => { return( ['Código','Nombre','Consultorio','Doctor'] )}  // METHOD TITLES
     get titles () { return this.getTitles() }                        // Getter titles
 
@@ -21,8 +24,8 @@ export class Tratamiento {
         const [doctor, setDoctor] = useState("");                    // Select Doctor state
         const state = [
           { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
-          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(event.target.value) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(event.target.value) }
+          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(JSON.parse(event.target.value)) },
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => {console.log("event.target.value Tratamiento: ",JSON.parse(event.target.value)); setDoctor(JSON.parse(event.target.value)) } }
         ];
         
         return( state )
@@ -66,8 +69,27 @@ export class Tratamiento {
         }
         const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
     
-        return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
+        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
+
+    getSort = () => {                                                  // METHOD SORT
+        /* Sort */
+        const [sortBy, setSortBy] = useState(0);
+        let SortByProperty = () => {};
+        switch (sortBy) { 
+            case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by Id up
+            case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by Id down
+            case 3: SortByProperty = (a,b) => { return a.tratamiento.nombre.localeCompare(b.tratamiento.nombre) }; break;   // Sort by Name up
+            case 4: SortByProperty = (a,b) => { return b.tratamiento.nombre.localeCompare(a.tratamiento.nombre) }; break;   // Sort by Name down
+            case 5: SortByProperty = (a,b) => { return a.tratamiento.consultorio.localeCompare(b.tratamiento.consultorio) }; break;   // Sort by Name up
+            case 6: SortByProperty = (a,b) => { return b.tratamiento.consultorio.localeCompare(a.tratamiento.consultorio) }; break;   // Sort by Name down
+            case 7: SortByProperty = (a,b) => { return a.tratamiento.doctor.nombre.localeCompare(b.tratamiento.doctor.nombre) }; break;   // Sort by Name up
+            case 8: SortByProperty = (a,b) => { return b.tratamiento.doctor.nombre.localeCompare(a.tratamiento.doctor.nombre) }; break;   // Sort by Name down
+        }
+
+        return({ SortByProperty, setSortBy })
+    }
+    get sort () { return this.getSort() }                              // Getter data
 
 }

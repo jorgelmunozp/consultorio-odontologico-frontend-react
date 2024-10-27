@@ -10,18 +10,19 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 import { Success } from '../icons/success/Success';
 import { Error } from '../icons/error/Error';
 
-export const CreateItem = ({ classType, urlApi, Icon }) => {
+export const CreateItem = ({ classType, Icon }) => {
   let Classe = '';
   switch (classType) { case 'cita' : Classe = Cita; break;
-                  case 'paciente': Classe = Paciente; break;
-                  case 'doctor': Classe = Doctor; break;
-                  case 'consultorio': Classe = Consultorio; break;
-                  case 'tratamiento': Classe = Tratamiento; break;
+                       case 'paciente': Classe = Paciente; break;
+                       case 'doctor': Classe = Doctor; break;
+                       case 'consultorio': Classe = Consultorio; break;
+                       case 'tratamiento': Classe = Tratamiento; break;
   }
 
-  let objectClass = new Classe('');                                         // Objecto instanciado con la Class
+  const objectClass = new Classe('');                                         // Objecto instanciado con la Class
   const state = objectClass.state;
   let item = "";
+  const urlApi = objectClass.api;
 
   const [responseStatus, setResponseStatus] = useState(0);
   const [alert, setAlert] = useState(false);

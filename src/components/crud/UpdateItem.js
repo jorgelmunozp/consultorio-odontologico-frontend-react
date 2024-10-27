@@ -13,7 +13,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
   },[])
 
   const handleUpdate = () => {
-    state.forEach(property => stateValues.push(Object.values(property)[0]) );   // Push en el arreglo con los valores de los datos de cada parámetro del objeto
+    state.forEach(property => stateValues.push(property.value));                // Push en el arreglo con los valores de los datos de cada parámetro del objeto
 
     if(stateValues.filter(state => state === '').length === 0) {                // Verifica que no hayan campos vacios
       Object.keys(item[classType]).forEach((property,index) => { item[classType][property] = stateValues[index] });   // Actualiza los nuevos valores en el item
@@ -26,7 +26,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
                 .then(response => response.json())
       
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
-            row.render(<Row item={ item } urlApi={urlApi} />);
+            row.render(<Row classType={classType} item={item} urlApi={urlApi} state={state} />);
 
             setAlert('successUpdate')
           }
@@ -89,15 +89,16 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
 const Dropdown = ({ property }) => {
   const key = property.key;
   let index = "";
-  let valueItem = '';
+  let valueProperty = '';
+
   switch(key) { 
-    case 'paciente': index = 0; (property[key].length !== 0) ? valueItem = property[key].nombre + " " + property[key].apellido : valueItem = ''; break;
-    case 'doctor': index = 1; (property[key].length !== 0) ? valueItem = property[key].nombre + " " + property[key].apellido : valueItem = ''; break;
-    case 'consultorio': index = 2; (property[key].length !== 0) ? valueItem = property[key].numero + " " + property[key].nombre : valueItem = ''; break;
-    case 'tratamiento': index = 3; (property[key].length !== 0) ? valueItem = property[key] : valueItem = ''; break;
-    case 'eps': index = 4; (property[key].length !== 0) ? valueItem = property[key] : valueItem = ''; break;
-    case 'genero': index = 5; (property[key].length !== 0) ? valueItem = property[key] : valueItem = ''; break;
-    case 'especialidad': index = 6; (property[key].length !== 0) ? valueItem = property[key] : valueItem = ''; break;
+    case 'paciente': index = 0; valueProperty = property.value.nombre + " " + property.value.apellido; break;
+    case 'doctor': index = 1; valueProperty = property.value.nombre + " " + property.value.apellido; break;
+    case 'consultorio': index = 2; valueProperty = property.value.numero + " " + property.value.nombre; break;
+    case 'tratamiento': index = 3; valueProperty = property.value; break;
+    case 'eps': index = 4; valueProperty = property.value; break;
+    case 'genero': index = 5; valueProperty = property.value; break;
+    case 'especialidad': index = 6; valueProperty = property.value; break;
   };
 
   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
@@ -125,20 +126,20 @@ const Dropdown = ({ property }) => {
   ];
 
   return (
-    <select key={ key+"UpdateDropdown" } onFocus={ statesDropdown[index].handleSelect } onChange={ property.handleChange } id={ key+"UpdateDropdown" } >
-      {/* <option value={ valueItem }>{ valueItem }</option> */}
-      <option value={ property[key] }>{ valueItem }</option>
+    <select onFocus={ statesDropdown[index].handleSelect } onChange={ property.handleChange } id={ key+"Dropdown" } key={ key+"Dropdown" } >
+      <option value={ property.value }>{ valueProperty }</option>
       { 
-        statesDropdown[index].option.map((item) => {
-          // switch( Object.keys(item)[0] ) {
+        statesDropdown[index].option.map((item,index) => {
+          // console.log("item[key] UpdateItem: ",JSON.stringify(item[key]) )
+
             switch( key ) {
-            case 'paciente': return( <option value={item[key]}>{ item[key].nombre + " " + item[key].apellido} </option> );
-            case 'doctor': return( <option value={item[key]}>{ item[key].nombre + " " + item[key].apellido }</option> );
-            case 'consultorio': return( <option value={item[key]}>{ item[key].numero + " " + item[key].nombre }</option> );
-            case 'tratamiento': return( <option value={item[key].nombre}>{ item[key].nombre }</option> );
-            case 'eps': return( <option value={item[key].nombre}>{ item[key].nombre }</option> );
-            case 'genero': return( <option value={item[key].nombre}>{ item[key].nombre }</option> );
-            case 'especialidad': return( <option value={item[key].nombre}>{ item[key].nombre }</option> );
+            case 'paciente': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
+            case 'doctor': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
+            case 'consultorio': return( <option value={ JSON.stringify(item[key]) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
+            case 'tratamiento': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+            case 'eps': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+            case 'genero': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+            case 'especialidad': return( <option value={ item[key].nombre } key={ key+"Item"+index }>{ item[key].nombre }</option> );
           }
         })          
       }

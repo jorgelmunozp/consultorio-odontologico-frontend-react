@@ -20,6 +20,9 @@ export class Paciente extends User {
         this.eps = {eps}.eps;
     }
 
+    getApi = () => { return( urlApiPacientes )}                    // METHOD API
+    get api () { return this.getApi() }                            // Getter api
+
     getUser () { return new User( this.nombre, this.apellido ) }   // METHOD USER
     get user () { return this.getUser() }                          // Getter user
 
@@ -82,7 +85,7 @@ export class Paciente extends User {
       }
       const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
           
-      return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
+      return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                                 // Getter data
 
@@ -95,6 +98,9 @@ export class Doctor extends User {
         this.genero = {genero}.genero;
         this.especialidad = {especialidad}.especialidad;
     }
+
+    getApi = () => { return( urlApiDoctores )}                     // METHOD API
+    get api () { return this.getApi() }                            // Getter api
 
     getUser () { return new User(this.nombre, this.apellido) }     // METHOD USER
     get user () { return this.getUser() }                          // Getter user
@@ -157,7 +163,7 @@ export class Doctor extends User {
       }
       const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
         
-      return({ queries,setQueries,arrayFiltered,indexPage,itemPerPage,activePages,indexPages,setIndexPage,setActivePages })
+      return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
 
