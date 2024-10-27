@@ -36,11 +36,11 @@ export class Paciente extends User {
       const [genero, setGenero] = useState("");                    // Select Genero state
       const [eps, setEps] = useState("");                          // Select Eps state
       const state = [
-        { key:'nombre', value: nombre, type:"text", handleChange: (event) => setNombre(event.target.value), setState: setNombre },
-        { key:'apellido', value: apellido, type:"text", handleChange: (event) => setApellido(event.target.value), setState: setApellido },
-        { key:'identificacion', value: identificacion, type:"number", handleChange: (event) => setIdentificacion(event.target.value), setState: setIdentificacion },
-        { key:'genero', value: genero, type:"dropdown", handleChange: (event) => setGenero(JSON.parse(event.target.value)), setState: setGenero },
-        { key:'eps', value: eps, type:"dropdown", handleChange: (event) => setEps(JSON.parse(event.target.value)), setState: setEps }
+        { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
+        { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido(event.target.value) },
+        { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion(event.target.value) },
+        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero(JSON.parse(event.target.value)) },
+        { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps(JSON.parse(event.target.value)) }
       ];
       return( state )
     }      
