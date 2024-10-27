@@ -6,9 +6,15 @@ export class Consultorio {
         this.nombre = {nombre}.nombre;
     }
 
-    getState = () => {                                               // METHOD
-        const [numero, setNumero] = useState('');                    // Input Número state
-        const [nombre, setNombre] = useState('');                    // Input Nombre state
+    getTitles = () => {                                              // METHOD TITLES
+        const titles = ['Código','Número','Nombre'];
+        return( titles )
+    }
+    get titles () { return this.getTitles() }                        // Getter state
+
+    getState = () => {                                               // METHOD STATE
+        const [ numero, setNumero ] = useState('');                    // Input Número state
+        const [ nombre, setNombre ] = useState('');                    // Input Nombre state
         const state = [
           { key:'numero', value: numero, type:'number', setState: setNumero, handleChange: (event) => setNumero(event.target.value) },
           { key:'nombre', value: nombre, type:'text', setState: setNombre, handleChange: (event) => setNombre(event.target.value) }
@@ -17,9 +23,16 @@ export class Consultorio {
     }      
     get state () { return this.getState() }                          // Getter state
 
-    getQuery = () => {                                               // METHOD
-
+    getQueries = () => {                                             // METHOD QUERIES
+        let [ queryCode, setQueryCode ] = useState('');
+        let [ queryNumber, setQueryNumber ] = useState('');
+        let [ queryName, setQueryName ] = useState('');
+        const queries = [ queryCode,queryNumber,queryName ];
+        const setQueries = [ setQueryCode,setQueryNumber,setQueryName ];
+        // const arrayFiltered = useMemo( () => getConsultoriosFiltered(array,queryCode,queryNumber,queryName), [array,queryCode,queryNumber,queryName] );
+        // return({ queries, setQueries, arrayFiltered })
+        return({ queries, setQueries })
     }
-    get query () { return this.getQuery() }                          // Getter state
+    get queries () { return this.getQueries() }                    // Getter state
 
 }

@@ -20,17 +20,17 @@ import { Warning } from '../icons/warning/Warning';
 import { Error } from '../icons/error/Error';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
-const Row = ({ classType,item,urlApi }) => {
-  let Classe = '';
-  switch (classType) { case 'cita' : Classe = Cita; break;
-                       case 'paciente': Classe = Paciente; break;
-                       case 'doctor': Classe = Doctor; break;
-                       case 'consultorio': Classe = Consultorio; break;
-                       case 'tratamiento': Classe = Tratamiento; break;
-  }
+const Row = ({ classType,item,urlApi,state }) => {
+  // let Classe = '';
+  // switch (classType) { case 'cita' : Classe = Cita; break;
+  //                      case 'paciente': Classe = Paciente; break;
+  //                      case 'doctor': Classe = Doctor; break;
+  //                      case 'consultorio': Classe = Consultorio; break;
+  //                      case 'tratamiento': Classe = Tratamiento; break;
+  // }
 
-  let objectClass = new Classe(item[classType]);                                         // Objecto instanciado con la Class
-  const state = objectClass.state;
+  // let objectClass = new Classe(item[classType]);                                         // Objecto instanciado con la Class
+  // const state = objectClass.state;
 
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
@@ -109,6 +109,18 @@ export const QueryItems = ({ classType, urlApi }) => {
   function sortByNameUp(a, b) { return a.consultorio.nombre.localeCompare(b.consultorio.nombre); }
   function sortByNameDown(a, b) { return b.consultorio.nombre.localeCompare(a.consultorio.nombre); }
   
+
+  let Classe = '';
+  switch (classType) { case 'cita' : Classe = Cita; break;
+                       case 'paciente': Classe = Paciente; break;
+                       case 'doctor': Classe = Doctor; break;
+                       case 'consultorio': Classe = Consultorio; break;
+                       case 'tratamiento': Classe = Tratamiento; break;
+  }
+
+  let objectClass = new Classe('');                                         // Objecto instanciado con la Class
+  const state = objectClass.state;
+
   return (
     <div className="App">
       <div id="contenidoConsultorios">
@@ -137,7 +149,7 @@ export const QueryItems = ({ classType, urlApi }) => {
                           : sortByIdUp
               )))))).slice(indexPage[0],indexPage[1]).map((item)=>{return (
                 <tr id={ 'row'+item.id } key={ item.id }>
-                  <Row classType={classType} item={item} urlApi={urlApi} />
+                  <Row classType={classType} item={item} urlApi={urlApi} state={state} />
                 </tr>
               )})
             }
