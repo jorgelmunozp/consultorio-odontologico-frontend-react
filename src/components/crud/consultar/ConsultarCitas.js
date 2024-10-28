@@ -57,10 +57,10 @@ const Row = ({ item,urlApi }) => {
             { readOpen && <ReadItem Icon={CalendarSmile} item={item} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={CalendarEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
-            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
-            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
-            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
+            { alert === 'successUpdate' && <Modal type={'success'} Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Actualizada'} buttons={1} />  }
+            { alert === 'successDelete' && <Modal type={'success'} Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Cita Eliminadoa'} buttons={1} />  }
+            { alert === 'errorUpdate' && <Modal type={'error'} Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+            { alert === 'errorDelete' && <Modal type={'error'} Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
           </>
         )
       };

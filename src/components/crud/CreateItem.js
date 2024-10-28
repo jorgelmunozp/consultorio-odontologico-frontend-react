@@ -8,8 +8,6 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { Success } from '../icons/success/Success';
-import { Error } from '../icons/error/Error';
 
 export const CreateItem = ({ classType, Icon }) => {
   let Classe = '';
@@ -25,8 +23,11 @@ export const CreateItem = ({ classType, Icon }) => {
   let item = "";
   const urlApi = objectClass.api;
 
-  const alertObject = new Alert('');                                        // Objeto instanciado con la clase Alert para las alertas
-  const { alert, setAlert } = alertObject.alert;
+  const MyAlert = new Alert('');                                        // Objeto instanciado con la clase Alert para las alertas
+  const { alert, setAlert } = MyAlert.state;
+  // const { alerta, setAlertX } = MyAlert.stateAlert;
+  // const ModalAlerta = MyAlert.fire('');
+    // console.log("alerta: ", alerta)
 
   const [responseStatus, setResponseStatus] = useState(0);
   // const [alert, setAlert] = useState(false);
@@ -56,6 +57,9 @@ export const CreateItem = ({ classType, Icon }) => {
 
   return (
     <div className="App">
+      {/* <Alert /> */}
+
+
       <div className='mt-4 mt-sm-5'>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { Classe.name.charAt(0).toUpperCase() + Classe.name.slice(1) }</h5>
@@ -80,8 +84,9 @@ export const CreateItem = ({ classType, Icon }) => {
           </div>              
 			  </div>
       </div>
-      { alert === 'success' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />  }
-      { alert === 'error' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Datos No Registrados'} buttons={1} />  }
+      <Modal type={'success'} open={alert} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />
+      {/* { alert === 'success' && <Modal type={'success'} open={alert} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />  } */}
+      {/* { alert === 'error' && <Modal type={'error'} open={alert} setOpen={setAlert} title={'Datos No Registrados'} buttons={1} />  } */}
     </div>
   );
 };

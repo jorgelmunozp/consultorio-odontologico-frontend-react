@@ -13,9 +13,7 @@ import { PaginationBar } from '../pagination/PaginationBar';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
 import { HomeIndex } from '../icons/home/HomeIndex';
 import { HomeEdit } from '../icons/home/HomeEdit';
-import { Success } from '../icons/success/Success';
 import { Warning } from '../icons/warning/Warning';
-import { Error } from '../icons/error/Error';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 const Row = ({ classType,item,urlApi,state }) => {
@@ -37,13 +35,14 @@ const Row = ({ classType,item,urlApi,state }) => {
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
+          {/* Cambiar iconos por cada vista, o unos generales!!! --> */}
           { readOpen && <ReadItem classType={classType} Icon={HomeIndex} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem classType={classType} Icon={HomeEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
           { deleteOpen && <DeleteItem classType={classType} Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Actualización exitosa'} buttons={1} />  }
-          { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Eliminación exitosa'} buttons={1} />  }
-          { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
-          { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
+          { alert === 'successUpdate' && <Modal type={'success'} setOpen={setAlert} title={'Actualización exitosa'} buttons={1} />  }
+          { alert === 'successDelete' && <Modal type={'success'} setOpen={setAlert} title={'Eliminación exitosa'} buttons={1} />  }
+          { alert === 'errorUpdate' && <Modal type={'error'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
+          { alert === 'errorDelete' && <Modal type={'error'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
         </>
       )
   }; 
@@ -97,7 +96,7 @@ export const QueryItems = ({ classType }) => {
         <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
         </center>
       </div>
-      { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
+      { alertFetch && <Modal  type={'error'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
     </div>
   );
 };

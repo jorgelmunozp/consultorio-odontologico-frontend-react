@@ -1,10 +1,5 @@
 import { useState } from 'react';
 import { QueryItems } from '../../crud/QueryItems';
-import { ConsultarCitas } from '../../crud/consultar/ConsultarCitas';
-import { ConsultarTratamientos } from '../../crud/consultar/ConsultarTratamientos';
-import { ConsultarPacientes } from '../../crud/consultar/ConsultarPacientes';
-import { ConsultarDoctores } from '../../crud/consultar/ConsultarDoctores';
-import { ConsultarConsultorios } from '../../crud/consultar/ConsultarConsultorios';
 import { Logo } from '../../icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { TbDental } from "react-icons/tb";
@@ -19,19 +14,19 @@ const services = [
   { "title":"Contacto", "icon":<TbDental size={iconSize}/> }                
 ];
 
-const View = ({ view,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,tratamientos,doctores,consultorios,epss,generos }) => {
+const View = ({ view }) => {
   switch (view) {
-    case 0: return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
-    case 1: return <ConsultarTratamientos urlApi={urlApiTratamientos} doctores={doctores} consultorios={consultorios} />;
-    case 2: return <ConsultarPacientes urlApi={urlApiPacientes} epss={epss} generos={generos} />;
-    case 3: return <ConsultarDoctores urlApi={urlApiDoctores} tratamientos={tratamientos} generos={generos} />;
-    case 4: return <ConsultarConsultorios urlApi={urlApiConsultorios} />;
+    case 0: return <QueryItems classType={'cita'} />;
+    case 1: return <QueryItems classType={'tratamiento'} />;
+    case 2: return <QueryItems classType={'paciente'} />;
+    case 3: return <QueryItems classType={'doctor'} />;
+    case 4: return <QueryItems classType={'consultorio'} />;
     case 5: return <div className="App"><h5 className='main-color fs-sm-2 mt-4 mt-sm-5 mb-4'>Contacto</h5><Logo height={2.5} width={2.5} strokeWidth={1} className='main-color'/><h3 className='main-color'>El Consultorio</h3></div>;
-    default: return <ConsultarCitas urlApi={urlApiCitas} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    default: return <QueryItems classType={'cita'} />;
   }
 }
 
-export const IndexScreen = ({ urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,tratamientos,doctores,consultorios,epss,generos }) => {
+export const IndexScreen = () => {
   let [view, setView] = useState(0);
 
   return (
@@ -56,7 +51,7 @@ export const IndexScreen = ({ urlApiCitas,urlApiPacientes,urlApiTratamientos,url
             }
           </div>
 
-          <View view={view} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />
+          <View view={view} />
         </div>
     </div>
   )

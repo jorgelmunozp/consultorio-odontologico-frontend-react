@@ -1,12 +1,6 @@
 
 import { useState } from 'react';
-import { useFetch } from "../../hooks/useFetch";
 import { IndexScreen } from './index/IndexScreen';
-import { ConsultarCitas } from '../crud/consultar/ConsultarCitas';
-import { ConsultarPacientes } from '../crud/consultar/ConsultarPacientes';
-import { ConsultarTratamientos } from '../crud/consultar/ConsultarTratamientos';
-import { ConsultarDoctores } from '../crud/consultar/ConsultarDoctores';
-import { ConsultarConsultorios } from '../crud/consultar/ConsultarConsultorios';
 import { QueryItems } from '../crud/QueryItems';
 import { CreateItem } from '../crud/CreateItem';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
@@ -31,29 +25,9 @@ export const TemplateScreen = () => {
   const menuOpcion = 1;
   const [menu, setMenu] = useState(menuOpcion);
 
-  const urlApiCitas = process.env.REACT_APP_API_CITAS;
-
-  const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
-  const pacientes = useFetch(urlApiPacientes).data;
-
-  const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
-  const doctores = useFetch(urlApiDoctores).data;
-
-  const urlApiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
-  const consultorios = useFetch(urlApiConsultorios).data;
-
-  const urlApiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
-  const tratamientos = useFetch(urlApiTratamientos).data;
-
-  const urlApiEpss = process.env.REACT_APP_API_EPSS;
-  const epss = useFetch(urlApiEpss).data;
-
-  const urlApiGeneros = process.env.REACT_APP_API_GENEROS;
-  const generos  = useFetch(urlApiGeneros).data;
-
   return (
     <div className="App user-select-none">
-      <aside className='float-start pt-5'>    {/** Menu lateral */}
+      <aside className='float-start pt-5'>              {/** Menu lateral **/}
         <nav className="navbar bg-light">
           <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
             <div className="offcanvas-header">
@@ -86,7 +60,7 @@ export const TemplateScreen = () => {
       <div className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <Menu menu={menu} urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} epss={epss} generos={generos} />
+              <Menu menu={menu} />
           </div>
         </div>
       </div>
@@ -94,9 +68,9 @@ export const TemplateScreen = () => {
   );
 }
 
-const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctores,urlApiConsultorios,pacientes,tratamientos,doctores,consultorios,epss,generos}) => {        //Componente para elegir vista a renderizar
+const Menu = ({ menu }) => {                            // Componente para elegir vista a renderizar
   switch (menu) {
-    case 1: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    case 1: return <IndexScreen />;
     case 2: return <QueryItems classType={'cita'} />;
     case 3: return <CreateItem classType={'cita'} Icon={FaCalendarPlus} />;
     case 4: return <QueryItems classType={'paciente'} />;
@@ -107,6 +81,6 @@ const Menu = ({menu,urlApiCitas,urlApiPacientes,urlApiTratamientos,urlApiDoctore
     case 9: return <CreateItem classType={'doctor'} Icon={FaUserMd} />;
     case 10: return <QueryItems classType={'consultorio'} />;
     case 11: return <CreateItem classType={'consultorio'} Icon={FaClinicMedical} />;
-    default: return <IndexScreen urlApiCitas={urlApiCitas} urlApiPacientes={urlApiPacientes} urlApiTratamientos={urlApiTratamientos} urlApiDoctores={urlApiDoctores} urlApiConsultorios={ urlApiConsultorios} pacientes={pacientes} tratamientos={tratamientos} doctores={doctores} consultorios={consultorios} />;
+    default: return <IndexScreen />;
   }
 }
