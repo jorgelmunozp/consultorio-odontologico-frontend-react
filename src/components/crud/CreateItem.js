@@ -1,5 +1,6 @@
 import { useState }  from "react";
 import { useFetch } from '../../hooks/useFetch';
+import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Consultorio } from '../../classes/Consultorio';
@@ -19,18 +20,21 @@ export const CreateItem = ({ classType, Icon }) => {
                        case 'tratamiento': Classe = Tratamiento; break;
   }
 
-  const objectClass = new Classe('');                                         // Objecto instanciado con la Class
+  const objectClass = new Classe('');                                       // Objeto instanciado con la Class correspondiente
   const state = objectClass.state;
   let item = "";
   const urlApi = objectClass.api;
 
-  const [responseStatus, setResponseStatus] = useState(0);
-  const [alert, setAlert] = useState(false);
+  const alertObject = new Alert('');                                        // Objeto instanciado con la clase Alert para las alertas
+  const { alert, setAlert } = alertObject.alert;
 
-  let stateValues = [];                                                    // Arreglo con los datos de cada parámetro del objeto
+  const [responseStatus, setResponseStatus] = useState(0);
+  // const [alert, setAlert] = useState(false);
+
+  let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
   state.forEach( property => stateValues.push(property.value) );
 
-  if(stateValues.filter( state => state === '').length === 0 ) {             // Verifica que no hayan campos vacios
+  if(stateValues.filter( state => state === '').length === 0 ) {            // Verifica que no hayan campos vacios
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
@@ -40,7 +44,7 @@ export const CreateItem = ({ classType, Icon }) => {
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     setAlert("success");
-    state.forEach( property => property.setState('') );          // Reinicia todas las variables
+    state.forEach( property => property.setState('') );                     // Reinicia todas las variables
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
     setAlert("error");

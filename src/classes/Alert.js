@@ -5,4 +5,12 @@ export class Alert {
         this.message = {message}.message;
         this.buttons = {buttons}.buttons;
     }
+
+    getAlert = () => {                                               // METHOD ALERT
+        const [alert, setAlert] = useState(false);
+
+        return({ alert, setAlert })
+    }         
+    get alert () { return this.getAlert() }                          // Getter alert
+
 }
