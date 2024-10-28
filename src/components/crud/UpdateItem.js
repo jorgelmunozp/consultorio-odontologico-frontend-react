@@ -6,7 +6,6 @@ import { myColor } from '../../global';
 import '../modal/modal.css';
 
 import sign from 'jwt-encode';                                                  // Para firma con jwt
-import { jwtDecode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => { 
