@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect }  from "react";
 import { useFetch } from '../hooks/useFetch';
 import { getConsultoriosFiltered } from '../components/selectors/getConsultoriosFiltered';
+import { jwtDecode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
 export class Consultorio {
@@ -19,8 +20,8 @@ export class Consultorio {
         const [ numero, setNumero ] = useState('');                  // Input Número state
         const [ nombre, setNombre ] = useState('');                  // Input Nombre state
         const state = [
-          { key:'numero', value: numero, type:'number', setState: setNumero, handleChange: (event) => setNumero(event.target.value) },
-          { key:'nombre', value: nombre, type:'text', setState: setNombre, handleChange: (event) => setNombre(event.target.value) }
+          { key:'numero', value: numero, type:'number', setState: setNumero, handleChange: (event) => setNumero( jwtDecode(event.target.value) ) },
+          { key:'nombre', value: nombre, type:'text', setState: setNombre, handleChange: (event) => setNombre( jwtDecode(event.target.value) ) }
         ];
         
         return( state )

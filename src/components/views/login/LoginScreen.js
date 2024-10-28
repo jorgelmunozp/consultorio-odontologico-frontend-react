@@ -6,7 +6,7 @@ import { InputText } from '../../forms/inputs/InputText';
 import { InputPassword } from '../../forms/inputs/InputPassword';
 
 const superuser = process.env.REACT_APP_SUPERUSER;
-const password = process.env.REACT_APP_PASSWORD;
+const password = process.env.REACT_APP_SUPERPASSWORD;
 const username = process.env.REACT_APP_USERNAME;
 
 export const LoginScreen = ({ setAlertMessage,setAlertType }) => {

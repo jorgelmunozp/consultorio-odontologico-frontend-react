@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect }  from "react";
 import { useFetch } from '../hooks/useFetch';
 import { getPacientesFiltered } from '../components/selectors/getPacientesFiltered';
 import { getDoctoresFiltered } from '../components/selectors/getDoctoresFiltered';
+import { jwtDecode } from "jwt-decode";
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 
@@ -36,11 +37,11 @@ export class Paciente extends User {
       const [genero, setGenero] = useState("");                    // Select Genero state
       const [eps, setEps] = useState("");                          // Select Eps state
       const state = [
-        { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
-        { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido(event.target.value) },
-        { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion(event.target.value) },
-        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero(JSON.parse(event.target.value)) },
-        { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps(JSON.parse(event.target.value)) }
+        { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( jwtDecode(event.target.value) ) },
+        { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido( jwtDecode(event.target.value) ) },
+        { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion( jwtDecode(event.target.value) ) },
+        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( jwtDecode(event.target.value)) },
+        { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps( jwtDecode(event.target.value)) }
       ];
       return( state )
     }      
@@ -138,11 +139,11 @@ export class Doctor extends User {
       const [genero, setGenero] = useState("");                    // Select Genero state
       const [especialidad, setEspecialidad] = useState("");        // Select Especialidad state
       const state = [
-        { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre(event.target.value) },
-        { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido(event.target.value)},
-        { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion(event.target.value) },
-        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero(JSON.parse(event.target.value)) },
-        { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad(JSON.parse(event.target.value)) }
+        { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( jwtDecode(event.target.value) ) },
+        { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido( jwtDecode(event.target.value) ) },
+        { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion( jwtDecode(event.target.value) ) },
+        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( jwtDecode(event.target.value)) },
+        { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( jwtDecode(event.target.value)) }
       ];
 
       return( state )

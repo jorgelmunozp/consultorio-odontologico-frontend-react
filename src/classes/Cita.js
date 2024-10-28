@@ -7,6 +7,7 @@ import { Doctor } from './User';
 import { getDate } from '../helpers/getDate';
 import { getTime } from '../helpers/getTime';
 import { getCitasFiltered } from '../components/selectors/getCitasFiltered';
+import { jwtDecode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_CITAS;
 
 export class Cita {
@@ -33,12 +34,12 @@ export class Cita {
         const [doctor, setDoctor] = useState("");                 //Select Doctor
         const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento      
         const state = [
-          { key:'paciente', value: paciente, type:"dropdown", setState: setPaciente , handleChange: (event) => setPaciente(JSON.parse(event.target.value))},
-          { key:'fecha', value: fecha, type:"date", setState: setFecha , handleChange: (event) => setFecha(event.target.value)},
-          { key:'hora', value: hora, type:"time", setState: setHora, handleChange: (event) => setHora(event.target.value) },
-          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(JSON.parse(event.target.value)) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(JSON.parse(event.target.value)) },
-          { key:'tratamiento', value: tratamiento, type:"dropdown", setState: setTratamiento, handleChange: (event) => setTratamiento(JSON.parse(event.target.value)) }
+          { key:'paciente', value: paciente, type:"dropdown", setState: setPaciente , handleChange: (event) => setPaciente( jwtDecode(event.target.value) ) },
+          { key:'fecha', value: fecha, type:"date", setState: setFecha , handleChange: (event) => setFecha( jwtDecode(event.target.value) ) },
+          { key:'hora', value: hora, type:"time", setState: setHora, handleChange: (event) => setHora( jwtDecode(event.target.value) ) },
+          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( jwtDecode(event.target.value) ) },
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( jwtDecode(event.target.value) ) },
+          { key:'tratamiento', value: tratamiento, type:"dropdown", setState: setTratamiento, handleChange: (event) => setTratamiento( jwtDecode(event.target.value) ) }
         ];
 
         return( state )
