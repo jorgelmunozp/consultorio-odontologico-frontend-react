@@ -24,7 +24,7 @@ export class Tratamiento {
         const [consultorio, setConsultorio] = useState("");          // Select Consultorio state
         const [doctor, setDoctor] = useState("");                    // Select Doctor state
         const state = [
-          { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( jwtDecode(event.target.value) ) },
+          { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( event.target.value ) },
           { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( jwtDecode(event.target.value) ) },
           { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( jwtDecode(event.target.value) )  }
         ];

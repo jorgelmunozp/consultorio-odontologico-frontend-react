@@ -5,22 +5,11 @@ import { useFetch } from '../../hooks/useFetch';
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-import sign from 'jwt-encode';                                                  // Para encriptación con jwt
+import sign from 'jwt-encode';                                                  // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => {
-  // const data = {
-  //   código: '777',
-  //   doctor: 'Erika Serna',
-  //   tratamiento: 'Diseño Sonrisa'
-  // };
-  // console.log(jwtSecretKey);
-  // const token = sign(data, jwtSecretKey);
-  // console.log(token);
-  // const decoded = jwtDecode(token);
-  // console.log(decoded);
-  
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => { 
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
  
   useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
@@ -145,7 +134,7 @@ const Dropdown = ({ property }) => {
       <option value={ property.value }>{ valueProperty }</option>
       { 
         statesDropdown[index].option.map((item,index) => {
-            switch( key ) {                 // Value que se envía al Backend encriptado con jwt
+            switch( key ) {                                                       // Value que se envía al backend firmada con jwt
             case 'paciente': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
             case 'doctor': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
             case 'consultorio': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
