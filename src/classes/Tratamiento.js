@@ -44,12 +44,12 @@ export class Tratamiento {
 
         /* Query */
         let [ queryCode, setQueryCode ] = useState('');
-        let [ queryName, setQueryName ] = useState('');
+        let [ querySpecialty, setQuerySpecialty ] = useState('');
         let [ queryConsultoryRoom, setQueryConsultoryRoom ] = useState('');
         let [ queryDoctor, setQueryDoctor ] = useState('');
-        const queries = [queryCode,queryName,queryConsultoryRoom,queryDoctor];
-        const setQueries = [setQueryCode,setQueryName,setQueryConsultoryRoom,setQueryDoctor];
-        const arrayFiltered = useMemo( () => getTratamientosFiltered(array,queryCode,queryName,queryConsultoryRoom,queryDoctor), [array,queryCode,queryName,queryConsultoryRoom,queryDoctor] );
+        const queries = [queryCode,querySpecialty,queryConsultoryRoom,queryDoctor];
+        const setQueries = [setQueryCode,setQuerySpecialty,setQueryConsultoryRoom,setQueryDoctor];
+        const arrayFiltered = useMemo( () => getTratamientosFiltered(array,queryCode,querySpecialty,queryConsultoryRoom,queryDoctor), [array,queryCode,querySpecialty,queryConsultoryRoom,queryDoctor] );
         
         /* Pagination */
         const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página

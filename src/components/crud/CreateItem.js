@@ -91,7 +91,7 @@ export const CreateItem = ({ classType, Icon }) => {
           }
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonFetch endIcon={<Icon />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonFetch>
+              <BotonFetch endIcon={<Icon />} title={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} className={'button rounded border-0 py-3 shadow-sm'} ></BotonFetch>
             </div>
           </div>              
 			  </div>
