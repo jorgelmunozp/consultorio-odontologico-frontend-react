@@ -3,6 +3,7 @@
 .input:focus { border-width: 2px !important; }
 /* All forms */
 .form-floating>.form-control { padding-left: 0.75rem !important; }
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after { background-color: transparent !important; }
 
 /* Dropdown */
 .dropdown-toggle::after { 
@@ -10,6 +11,5 @@
     right: 0.75rem;
     top: 1.625rem;
 }
-.min-width-10 { min-width: 11.5rem; }
 
 

@@ -89,7 +89,7 @@
     margin: .3125em;
     padding: .75em 1.25em;
     border-radius: 5px;
-    border: 1.5px solid var(--main-color);
+    border: 1.25px solid var(--main-color);
     color: var(--main-color);
     background: var(--white-color);
     transition: all 0.25s ease;
@@ -107,7 +107,7 @@
     margin: .3125em;
     padding: .75em 1.25em;
     border-radius: 5px;
-    border: 1.5px solid rgb(221, 51, 51);
+    border: 1.25px solid rgb(221, 51, 51);
     color: rgb(221, 51, 51);
     background: var(--white-color);
     transition: all 0.25s ease;
