@@ -25,9 +25,12 @@ export class Tratamiento {
         const [consultorio, setConsultorio] = useState("");          // Select Consultorio state
         const [doctor, setDoctor] = useState("");                    // Select Doctor state
         const state = [
-          { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
-          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( jwtDecode(event.target.value) ) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( jwtDecode(event.target.value) )  }
+          { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad(event.target.value) },
+        //   { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad(event.target.name) },
+          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(event.target.value) },
+        //   { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio(event.target.name) },
+          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(event.target.value)  }
+        //   { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor(event.target.name)  }
         ];
         
         return( state )
