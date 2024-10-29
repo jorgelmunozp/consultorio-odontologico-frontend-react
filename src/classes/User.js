@@ -40,8 +40,8 @@ export class Paciente extends User {
         { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido( event.target.value ) },
         { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
-        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( jwtDecode(event.target.value)) },
-        { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps( jwtDecode(event.target.value)) }
+        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( event.target.value ) },
+        { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps( event.target.value ) }
       ];
 
       return( state )
@@ -144,8 +144,8 @@ export class Doctor extends User {
         { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value: apellido, type:"text", setState: setApellido, handleChange: (event) => setApellido( event.target.value ) },
         { key:'identificacion', value: identificacion, type:"number", setState: setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
-        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( jwtDecode(event.target.value)) },
-        { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( jwtDecode(event.target.value)) }
+        { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( event.target.value ) },
+        { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) }
       ];
 
       return( state )

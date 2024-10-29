@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 
-export const Dropdown = ({ property, states, defaultSelect='', className }) => {
+export const Dropdown = ({ property, states, defaultSelect='', sing, className }) => {
   const key = property.key;
   const placeholder = key.charAt(0).toUpperCase() + key.slice(1);
 
@@ -32,17 +32,16 @@ export const Dropdown = ({ property, states, defaultSelect='', className }) => {
       <ul id={"dropdownMenu"+key} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
         { array.option.map((item, index) => {
             switch( key ) {
-              case 'paciente': valueItem=item[key]; value=item[key].nombre+ " " + item[key].apellido; break;
-              case 'doctor': valueItem=item[key]; value=item[key].nombre + " " + item[key].apellido; break;
-              case 'consultorio': valueItem=item[key]; value=item[key].numero + " " + item[key].nombre; break;
-              case 'tratamiento': valueItem=item[key].especialidad; value=item[key].especialidad; break;
-              case 'eps': value=valueItem[key].nombre; value=item[key].nombre; break;
-              case 'genero': value=valueItem[key].nombre; value=item[key].nombre; break;
-              case 'especialidad': value=valueItem[key].nombre; value=item[key].nombre; break;
+              case 'paciente': value=item[key].nombre+ " " + item[key].apellido; break;
+              case 'doctor': value=item[key].nombre + " " + item[key].apellido; break;
+              case 'consultorio': value=item[key].numero + " " + item[key].nombre; break;
+              case 'tratamiento': value=item[key].especialidad; break;
+              case 'eps': value=item[key].nombre; break;
+              case 'genero': value=item[key].nombre; break;
+              case 'especialidad': value=item[key].nombre; break;
           }
 
-          // return (<li key={ key+'Item'+index }><button className="dropdown-item" value={ value } onClick={ (e) => { console.log("e.target.value: ",e.target.value); setValue(value); setValueItem(e.target.value); setOpen(false)} }>{ valueItem }</button></li>);
-          return (<li key={ key+'Item'+index }><button className="dropdown-item" name={ value } value={ valueItem } onClick={ (e) => { console.log("e.target.value: ",e.target.value); console.log("e.target.name: ",e.target.name); setValue(e.target.value); setOpen(false)} }>{ value }</button></li>);
+          return (<li key={ key+'Item'+index }><button className="dropdown-item" value={ value } onClick={ (e) => { setValue(e.target.value); setOpen(false); property.handleChange(e)} }>{ value }</button></li>);
         })}
       </ul>
     </div>

@@ -1,3 +1,3 @@
 export const getTratamientosFiltered = ( array,code='',specialty='',consultoryRoom='',doctor='' ) => {
-    return array.filter( item => item.id.toString().includes(code) && item.tratamiento.especialidad.toLowerCase().includes(specialty.toLowerCase()) && item.tratamiento.consultorio.numero.toLowerCase().includes(consultoryRoom.toLowerCase()) && (item.tratamiento.doctor.nombre.toLowerCase().includes(doctor.toLowerCase()) || item.tratamiento.doctor.apellido.toLowerCase().includes(doctor.toLowerCase())) );
+    return array.filter( item => item.id.toString().includes(code) && item.tratamiento.especialidad.toLowerCase().includes(specialty.toLowerCase()) && item.tratamiento.consultorio.toLowerCase().includes(consultoryRoom.toLowerCase()) && item.tratamiento.doctor.toLowerCase().includes(doctor.toLowerCase()) );
 }
