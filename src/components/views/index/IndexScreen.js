@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { QueryItems } from '../../crud/QueryItems';
+import { QueryCitas } from '../../crud/query/QueryCitas';
+import { QueryPacientes } from '../../crud/query/QueryPacientes';
+import { QueryDoctores } from '../../crud/query/QueryDoctores';
+import { QueryConsultorios } from '../../crud/query/QueryConsultorios';
+import { QueryTratamientos } from '../../crud/query/QueryTratamientos';
 import { Logo } from '../../icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { TbDental } from "react-icons/tb";
@@ -16,13 +20,13 @@ const services = [
 
 const View = ({ view }) => {
   switch (view) {
-    case 0: return <QueryItems classType={'cita'} />;
-    case 1: return <QueryItems classType={'tratamiento'} />;
-    case 2: return <QueryItems classType={'paciente'} />;
-    case 3: return <QueryItems classType={'doctor'} />;
-    case 4: return <QueryItems classType={'consultorio'} />;
+    case 0: return <QueryCitas />;
+    case 1: return <QueryPacientes />;
+    case 2: return <QueryDoctores />;
+    case 3: return <QueryConsultorios />;
+    case 4: return <QueryTratamientos />;
     case 5: return <div className="App"><h5 className='main-color fs-sm-2 mt-4 mt-sm-5 mb-4'>Contacto</h5><Logo height={2.5} width={2.5} strokeWidth={1} className='main-color'/><h3 className='main-color'>El Consultorio</h3></div>;
-    default: return <QueryItems classType={'cita'} />;
+    default: return <QueryCitas classType={'cita'} />;
   }
 }
 
