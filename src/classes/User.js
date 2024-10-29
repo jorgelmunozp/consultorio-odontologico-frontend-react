@@ -204,8 +204,12 @@ export class Doctor extends User {
           case 4: SortByProperty = (a,b) => { return b.doctor.nombre.localeCompare(a.doctor.nombre) }; break;         // Sort by nombre down
           case 5: SortByProperty = (a,b) => { return a.doctor.apellido.localeCompare(b.doctor.apellido) }; break;     // Sort by apellido up
           case 6: SortByProperty = (a,b) => { return b.doctor.apellido.localeCompare(a.doctor.apellido) }; break;     // Sort by apellido down
-          case 7: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by especialidad up
-          case 8: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by especialidad down
+          case 7: SortByProperty = (a,b) => { return a.doctor.identificacion.localeCompare(b.doctor.identificacion) }; break; // Sort by identificacion up
+          case 8: SortByProperty = (a,b) => { return b.doctor.identificacion.localeCompare(a.doctor.identificacion) }; break; // Sort by identificacion down
+          case 9: SortByProperty = (a,b) => { return a.doctor.genero.localeCompare(b.doctor.genero) }; break;              // Sort by genero up
+          case 10: SortByProperty = (a,b) => { return b.doctor.genero.localeCompare(a.doctor.genero) }; break;             // Sort by genero down
+          case 11: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by especialidad up
+          case 12: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by especialidad down
       }
 
       return({ SortByProperty, setSortBy })
