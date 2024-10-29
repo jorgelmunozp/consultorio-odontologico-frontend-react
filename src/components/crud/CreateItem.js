@@ -9,7 +9,7 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
-import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
+import { BotonFetch } from "../../forms/buttons/BotonFetch";
 
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
@@ -91,7 +91,7 @@ export const CreateItem = ({ classType, Icon }) => {
           }
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonGuardar endIcon={<Icon />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonGuardar>
+              <BotonFetch endIcon={<Icon />} titulo={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} ></BotonFetch>
             </div>
           </div>              
 			  </div>

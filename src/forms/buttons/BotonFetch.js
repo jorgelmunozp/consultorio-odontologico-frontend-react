@@ -1,9 +1,9 @@
 import { Button } from '@mui/material';
 import { fetchCreate } from '../../helpers/fetchCreate';
 
-export const BotonGuardar = ({ endIcon,titulo,urlApi,contenidoApi,setResponseStatus }) => {
+export const BotonFetch = ({ endIcon,titulo,urlApi,contenidoApi,setResponseStatus }) => {
   return (
-        <Button className="button" size="large" variant="contained" endIcon={ endIcon }
+        <Button endIcon={ endIcon } className="button" size="large" variant="contained"
             onClick={ () => fetchCreate(urlApi,contenidoApi,setResponseStatus) }
         >
             { titulo }{" "}

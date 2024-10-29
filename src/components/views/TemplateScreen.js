@@ -90,17 +90,17 @@ const Menu = ({ menu }) => {                            // Componente para elegi
   switch ( menu ) {
     case 1: return <IndexScreen />;
     case 2: return <QueryCitas />;
-    case 3: return <CreateCita Icon={FaCalendarPlus} />;
+    case 3: return <CreateCita Icon={CalendarMedical} />;
     case 4: return <QueryPacientes />;
-    case 5: return <CreatePaciente Icon={FaUserInjured} />;
+    case 5: return <CreatePaciente Icon={UserInjured} />;
     case 6: return <QueryTratamientos />;
-    case 7: return <CreateTratamiento Icon={FaStethoscope} />;
+    case 7: return <CreateTratamiento Icon={Stethoscope} />;
     case 8: return <QueryDoctores />;
-    case 9: return <CreateDoctor Icon={FaUserMd} />;
+    case 9: return <CreateDoctor Icon={UserMedical} />;
     case 10: return <QueryEspecialidades />;
-    case 11: return <CreateEspecialidad Icon={FaStethoscope} />;
+    case 11: return <CreateEspecialidad Icon={Stethoscope} />;
     case 12: return <QueryConsultorios />;
-    case 13: return <CreateConsultorio Icon={FaClinicMedical} />;
+    case 13: return <CreateConsultorio Icon={HomeMedical} />;
     default: return <IndexScreen />;
   }
 }
