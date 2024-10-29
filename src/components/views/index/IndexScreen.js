@@ -2,20 +2,19 @@ import { useState } from 'react';
 import { QueryCitas } from '../../crud/query/QueryCitas';
 import { QueryPacientes } from '../../crud/query/QueryPacientes';
 import { QueryDoctores } from '../../crud/query/QueryDoctores';
+import { QueryEspecialidades } from '../../crud/query/QueryEspecialidades';
 import { QueryConsultorios } from '../../crud/query/QueryConsultorios';
 import { QueryTratamientos } from '../../crud/query/QueryTratamientos';
-import { Logo } from '../../icons/logo/Logo';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
-import { TbDental } from "react-icons/tb";
 
 const iconSize = 20;
 const services = [
   { "title":"Citas", "icon":<FaCalendarPlus size={iconSize}/> },
-  { "title":"Tratamientos", "icon":<FaStethoscope size={iconSize}/> },    
   { "title":"Pacientes", "icon":<FaUserInjured size={iconSize}/> },
-  { "title":"Médicos", "icon":<FaUserMd size={iconSize}/> },  
+  { "title":"Doctores", "icon":<FaUserMd size={iconSize}/> },
+  { "title":"Especialidades", "icon":<FaStethoscope size={iconSize}/> },
   { "title":"Consultorios", "icon":<FaClinicMedical size={iconSize}/> },
-  { "title":"Contacto", "icon":<TbDental size={iconSize}/> }                
+  { "title":"Tratamientos", "icon":<FaStethoscope size={iconSize}/> }
 ];
 
 const View = ({ view }) => {
@@ -23,10 +22,10 @@ const View = ({ view }) => {
     case 0: return <QueryCitas />;
     case 1: return <QueryPacientes />;
     case 2: return <QueryDoctores />;
-    case 3: return <QueryConsultorios />;
-    case 4: return <QueryTratamientos />;
-    case 5: return <div className="App"><h5 className='main-color fs-sm-2 mt-4 mt-sm-5 mb-4'>Contacto</h5><Logo height={2.5} width={2.5} strokeWidth={1} className='main-color'/><h3 className='main-color'>El Consultorio</h3></div>;
-    default: return <QueryCitas classType={'cita'} />;
+    case 3: return <QueryEspecialidades />;
+    case 4: return <QueryConsultorios />;
+    case 5: return <QueryTratamientos />;
+    default: return <QueryCitas />;
   }
 }
 
