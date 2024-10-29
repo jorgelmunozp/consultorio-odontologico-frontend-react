@@ -82,12 +82,12 @@ export class Tratamiento {
         switch (sortBy) { 
             case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by id up
             case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by id down
-            case 3: SortByProperty = (a,b) => { return a.tratamiento.nombre.localeCompare(b.tratamiento.nombre) }; break;   // Sort by nombre up
-            case 4: SortByProperty = (a,b) => { return b.tratamiento.nombre.localeCompare(a.tratamiento.nombre) }; break;   // Sort by nombre down
+            case 3: SortByProperty = (a,b) => { return a.tratamiento.especialidad.localeCompare(b.tratamiento.especialidad) }; break; // Sort by especialidad up
+            case 4: SortByProperty = (a,b) => { return b.tratamiento.especialidad.localeCompare(a.tratamiento.especialidad) }; break; // Sort by especialidad down
             case 5: SortByProperty = (a,b) => { return a.tratamiento.consultorio.localeCompare(b.tratamiento.consultorio) }; break;   // Sort by consultorio up
             case 6: SortByProperty = (a,b) => { return b.tratamiento.consultorio.localeCompare(a.tratamiento.consultorio) }; break;   // Sort by consultorio down
-            case 7: SortByProperty = (a,b) => { return a.tratamiento.doctor.nombre.localeCompare(b.tratamiento.doctor.nombre) }; break;   // Sort by doctor name up
-            case 8: SortByProperty = (a,b) => { return b.tratamiento.doctor.nombre.localeCompare(a.tratamiento.doctor.nombre) }; break;   // Sort by doctor name down
+            case 7: SortByProperty = (a,b) => { return a.tratamiento.doctor.localeCompare(b.tratamiento.doctor) }; break;   // Sort by doctor name up
+            case 8: SortByProperty = (a,b) => { return b.tratamiento.doctor.localeCompare(a.tratamiento.doctor) }; break;   // Sort by doctor name down
         }
 
         return({ SortByProperty, setSortBy })

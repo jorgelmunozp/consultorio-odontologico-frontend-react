@@ -200,12 +200,12 @@ export class Doctor extends User {
       switch (sortBy) { 
           case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                            // Sort by id up
           case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                            // Sort by id down
-          case 3: SortByProperty = (a,b) => { return a.doctor.nombre.localeCompare(b.doctor.nombre) }; break;         // Sort by identificacion up
-          case 4: SortByProperty = (a,b) => { return b.doctor.nombre.localeCompare(a.doctor.nombre) }; break;         // Sort by identificacion down
-          case 5: SortByProperty = (a,b) => { return a.doctor.apellido.localeCompare(b.doctor.apellido) }; break;     // Sort by nombre up
-          case 6: SortByProperty = (a,b) => { return b.doctor.apellido.localeCompare(a.doctor.apellido) }; break;     // Sort by nombre down
-          case 7: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by apellido up
-          case 8: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by apellido down
+          case 3: SortByProperty = (a,b) => { return a.doctor.nombre.localeCompare(b.doctor.nombre) }; break;         // Sort by nombre up
+          case 4: SortByProperty = (a,b) => { return b.doctor.nombre.localeCompare(a.doctor.nombre) }; break;         // Sort by nombre down
+          case 5: SortByProperty = (a,b) => { return a.doctor.apellido.localeCompare(b.doctor.apellido) }; break;     // Sort by apellido up
+          case 6: SortByProperty = (a,b) => { return b.doctor.apellido.localeCompare(a.doctor.apellido) }; break;     // Sort by apellido down
+          case 7: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by especialidad up
+          case 8: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by especialidad down
       }
 
       return({ SortByProperty, setSortBy })
