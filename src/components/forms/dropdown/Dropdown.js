@@ -1,11 +1,11 @@
 import { useState,useEffect } from 'react';
+import '../forms.css';
 
-export const Dropdown = ({ property, states, defaultSelect='', sing, className }) => {
+export const Dropdown = ({ property, states, defaultSelect='', className }) => {
   const key = property.key;
   const placeholder = key.charAt(0).toUpperCase() + key.slice(1);
 
   let [value, setValue] = useState('');
-  let [valueItem, setValueItem] = useState('');
   const [open, setOpen] = useState(false)
 
   let array = [];
@@ -26,7 +26,7 @@ export const Dropdown = ({ property, states, defaultSelect='', sing, className }
 
   return(
     <div className="dropdown form-floating w-100 min-width-10 py-sm-0" onFocus={ array.handleSelect }>
-      <button onClick={ () => setOpen(true) } onChange={ property.handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+key} aria-controls={"dropdownMenu"+key} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
+      <button onClick={ () => open === false ? setOpen(true):setOpen(false) } onChange={ property.handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+key} aria-controls={"dropdownMenu"+key} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
       <label htmlFor="selectButton" className="form-label text-muted text-nowrap text-truncate">{ value.length === 0 ? '' : placeholder }</label>
 
       <ul id={"dropdownMenu"+key} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">

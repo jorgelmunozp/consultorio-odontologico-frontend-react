@@ -21,9 +21,9 @@ export class Tratamiento {
     get titles () { return this.getTitles() }                        // Getter titles
 
     getState = () => {                                               // Method
-        const [especialidad, setEspecialidad] = useState("");                    // Input Nombre state
-        const [consultorio, setConsultorio] = useState("");          // Select Consultorio state
-        const [doctor, setDoctor] = useState("");                    // Select Doctor state
+        const [especialidad, setEspecialidad] = useState("");        // Input especialidad state
+        const [consultorio, setConsultorio] = useState("");          // Select consultorio state
+        const [doctor, setDoctor] = useState("");                    // Select doctor state
         const state = [
           { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
           { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },

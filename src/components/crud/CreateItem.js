@@ -1,6 +1,7 @@
 import { useState, useEffect }  from "react";
 import { useFetch } from '../../hooks/useFetch';
 import { Alert } from '../../classes/Alert';
+import { DropdownClass } from '../../classes/Dropdown';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
@@ -9,9 +10,8 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
-import '../forms/forms.css';
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
@@ -28,41 +28,15 @@ export const CreateItem = ({ classType, Icon }) => {
                        case 'especialidad': Classe = Especialidad; break;
   }
 
+  // --- Clase Item
   const objectClass = new Classe('');                                       // Objeto instanciado con la Class correspondiente
   const state = objectClass.state;
-  let item = "";
   const urlApi = objectClass.api;
-
-  // console.log(" objectClass: ",objectClass)
-  // console.log(" state: ",state)
-  // console.log(" urlApi: ",urlApi)
+  let item = "";
 
   // --- Dropdown
-  const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las Apis para obtención de los datos
-  const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
-  const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
-  const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
-  const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
-  const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-  const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
-
-  const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
-  const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
-  const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
-  const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
-  const [epssDropdown, setEpssDropdown] = useState(epss);
-  const [generosDropdown, setGenerosDropdown] = useState(generos);
-  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(especialidades);
-  const statesDropdown = [
-    { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
-    { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
-    { option: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
-    { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
-    { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
-    { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
-    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(especialidades) }
-  ];
-  // --- Dropdown
+  const myDropdown = new DropdownClass();
+  const statesDropdown = myDropdown.state;
 
   // --- Alert
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
@@ -76,9 +50,6 @@ export const CreateItem = ({ classType, Icon }) => {
 
   let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
   state.forEach( property => stateValues.push(property.value) );
-
-  console.log(" stateValues CreateItem: ",stateValues)
-
 
   if(stateValues.filter( state => state === '').length === 0 ) {            // Verifica que no hayan campos vacios
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
@@ -112,8 +83,8 @@ export const CreateItem = ({ classType, Icon }) => {
               return(
                 <div key={'row'+property.key} className='row'>
                   { property.type === 'dropdown'
-                          ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                          : <div className='col'><TextField value={ property.value } type={ property.type } onChange={ property.handleChange } label={ property.key.charAt(0).toUpperCase() + property.key.slice(1) } variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
+                      ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+                      : <div className='col'><TextField value={ property.value } type={ property.type } onChange={ property.handleChange } label={ property.key.charAt(0).toUpperCase() + property.key.slice(1) } variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
                   }
                 </div>
               )})
