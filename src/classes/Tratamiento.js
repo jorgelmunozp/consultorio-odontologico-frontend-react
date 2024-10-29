@@ -20,11 +20,13 @@ export class Tratamiento {
     get titles () { return this.getTitles() }                        // Getter titles
 
     getState = () => {                                               // Method
-        const [nombre, setNombre] = useState("");                    // Input Nombre state
+        // const [nombre, setNombre] = useState("");                    // Input Nombre state
+        const [especialidad, setEspecialidad] = useState("");                    // Input Nombre state
         const [consultorio, setConsultorio] = useState("");          // Select Consultorio state
         const [doctor, setDoctor] = useState("");                    // Select Doctor state
         const state = [
-          { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( event.target.value ) },
+        //   { key:'nombre', value: nombre, type:"text", setState: setNombre, handleChange: (event) => setNombre( event.target.value ) },
+          { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
           { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( jwtDecode(event.target.value) ) },
           { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( jwtDecode(event.target.value) )  }
         ];

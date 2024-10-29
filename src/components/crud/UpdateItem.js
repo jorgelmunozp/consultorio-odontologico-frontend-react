@@ -110,6 +110,7 @@ const Dropdown = ({ property }) => {
   const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
   const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
   const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
+  const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
 
   const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
   const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
@@ -117,7 +118,7 @@ const Dropdown = ({ property }) => {
   const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
   const [epssDropdown, setEpssDropdown] = useState(epss);
   const [generosDropdown, setGenerosDropdown] = useState(generos);
-  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
+  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(especialidades);
   const statesDropdown = [
     { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
     { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
@@ -125,7 +126,7 @@ const Dropdown = ({ property }) => {
     { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
     { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
     { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
-    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
+    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(especialidades) }
   ];
 
   return (
@@ -137,7 +138,7 @@ const Dropdown = ({ property }) => {
             case 'paciente': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
             case 'doctor': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
             case 'consultorio': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
-            case 'tratamiento': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+            case 'tratamiento': return( <option value={ sign( item[key].especialidad,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].especialidad }</option> );
             case 'eps': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
             case 'genero': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
             case 'especialidad': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );

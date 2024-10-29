@@ -1,4 +1,4 @@
-import { useState, useEffect }  from "react";
+import { useState }  from "react";
 import { useFetch } from '../../hooks/useFetch';
 import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
@@ -38,8 +38,6 @@ export const CreateItem = ({ classType, Icon }) => {
 
   let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
   state.forEach( property => stateValues.push(property.value) );
-
-  console.log("State: ", state)
 
   if(stateValues.filter( state => state === '').length === 0 ) {            // Verifica que no hayan campos vacios
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
@@ -113,6 +111,7 @@ const Dropdown = ({ property }) => {
   const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
   const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
   const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
+  const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
 
   const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
   const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
@@ -120,7 +119,7 @@ const Dropdown = ({ property }) => {
   const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
   const [epssDropdown, setEpssDropdown] = useState(epss);
   const [generosDropdown, setGenerosDropdown] = useState(generos);
-  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(tratamientos);
+  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(especialidades);
   const statesDropdown = [
     { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
     { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
@@ -128,7 +127,7 @@ const Dropdown = ({ property }) => {
     { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
     { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
     { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
-    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(tratamientos) }
+    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(especialidades) }
     
   ];
 
@@ -144,7 +143,7 @@ const Dropdown = ({ property }) => {
               case 'paciente': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].nombre+ " " + item[key].apellido; break;
               case 'doctor': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].nombre + " " + item[key].apellido; break;
               case 'consultorio': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].numero + " " + item[key].nombre; break;
-              case 'tratamiento': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
+              case 'tratamiento': sign( value=item[key].especialidad,jwtSecretKey ); valueDropdown=item[key].especialidad; break;
               case 'eps': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
               case 'genero': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
               case 'especialidad': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;

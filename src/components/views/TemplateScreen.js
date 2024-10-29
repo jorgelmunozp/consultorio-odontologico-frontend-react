@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { IndexScreen } from './index/IndexScreen';
-import { QueryItems } from '../crud/QueryItems';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
 import { QueryDoctores } from '../crud/query/QueryDoctores';
