@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
+import { Especialidad } from '../../classes/Especialidad';
 import { Consultorio } from '../../classes/Consultorio';
 import { Tratamiento } from '../../classes/Tratamiento';
 import { ReadItem } from './ReadItem';
@@ -62,6 +63,7 @@ export const QueryItems = ({ classType }) => {
                        case 'doctor': Classe = Doctor; break;
                        case 'consultorio': Classe = Consultorio; break;
                        case 'tratamiento': Classe = Tratamiento; break;
+                       case 'especialidad': Classe = Especialidad; break;
   }
 
   const objectClass = new Classe('');                                         // Objeto instanciado con la Class

@@ -4,11 +4,13 @@ import { IndexScreen } from './index/IndexScreen';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
 import { QueryDoctores } from '../crud/query/QueryDoctores';
+import { QueryEspecialidades } from '../crud/query/QueryEspecialidades';
 import { QueryConsultorios } from '../crud/query/QueryConsultorios';
 import { QueryTratamientos } from '../crud/query/QueryTratamientos';
 import { CreateCita } from '../crud/create/CreateCita';
 import { CreatePaciente } from '../crud/create/CreatePaciente';
 import { CreateDoctor } from '../crud/create/CreateDoctor';
+import { CreateEspecialidad } from '../crud/create/CreateEspecialidad';
 import { CreateConsultorio } from '../crud/create/CreateConsultorio';
 import { CreateTratamiento } from '../crud/create/CreateTratamiento';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
@@ -57,9 +59,13 @@ export const TemplateScreen = () => {
                 <li className="nav-item"><span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+
+                <li className="nav-item"><span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
               </ul>
             </div>
           </div>
@@ -87,8 +93,10 @@ const Menu = ({ menu }) => {                            // Componente para elegi
     case 7: return <CreateTratamiento Icon={FaStethoscope} />;
     case 8: return <QueryDoctores />;
     case 9: return <CreateDoctor Icon={FaUserMd} />;
-    case 10: return <QueryConsultorios />;
-    case 11: return <CreateConsultorio Icon={FaClinicMedical} />;
+    case 10: return <QueryEspecialidades />;
+    case 11: return <CreateEspecialidad Icon={FaStethoscope} />;
+    case 12: return <QueryConsultorios />;
+    case 13: return <CreateConsultorio Icon={FaClinicMedical} />;
     default: return <IndexScreen />;
   }
 }
