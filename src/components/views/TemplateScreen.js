@@ -14,6 +14,11 @@ import { CreateEspecialidad } from '../crud/create/CreateEspecialidad';
 import { CreateConsultorio } from '../crud/create/CreateConsultorio';
 import { CreateTratamiento } from '../crud/create/CreateTratamiento';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
+import { CalendarMedical } from '../icons/calendar/CalendarMedical';
+import { UserInjured } from '../icons/user/UserInjured';
+import { UserMedical } from '../icons/user/UserMedical';
+import { Stethoscope } from '../icons/medical/Stethoscope';
+import { HomeMedical } from '../icons/home/HomeMedical';
 import { HomeIndex } from '../icons/home/HomeIndex';
 import { HomePlus } from '../icons/home/HomePlus';
 import { HomeSearch } from '../icons/home/HomeSearch';
@@ -47,23 +52,22 @@ export const TemplateScreen = () => {
             <div className="offcanvas-body">
               <ul className="navbar-nav">
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaCalendarPlus size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><CalendarMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaUserInjured size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><UserInjured height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/> </span></li>
+                <li className="nav-item"><span className="nav-link"><Stethoscope height={iconHeight} width={iconWidth} className='main-color'/> </span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaUserMd size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><UserMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><FaStethoscope size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><Stethoscope height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-
-                <li className="nav-item"><span className="nav-link"><FaClinicMedical size={iconSize} className=' main-color'/></span></li>
+                <li className="nav-item"><span className="nav-link"><HomeMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
               </ul>
