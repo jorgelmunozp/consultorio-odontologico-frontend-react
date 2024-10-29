@@ -51,7 +51,7 @@ export class Alert {
     //                         : ''
     //                 }
     //             <div className={'modalFooter'}>
-    //                 <div className={'modalButtons'}>
+    //                 <div className={'d-grid w-100'}>
     //                     {
     //                         buttons === 1 ? <button className={'aceptBtn'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
     //                     : buttons === 2 ? <>

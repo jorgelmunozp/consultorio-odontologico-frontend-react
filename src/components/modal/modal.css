@@ -82,30 +82,23 @@
   }
   
   .modalFooter { width: 100%; }
-  
-  .modalButtons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0;
-    padding-top: 1em;
-  }
-   
+    
   .aceptBtn {
     cursor: pointer;
     font-weight: 500;
     margin: .3125em;
     padding: .75em 1.25em;
     border-radius: 5px;
-    border: none;
-    color: var(--white-color);
-    background: var(--main-color);
+    border: 1.5px solid var(--main-color);
+    color: var(--main-color);
+    background: var(--white-color);
     transition: all 0.25s ease;
   }
   .aceptBtn:hover {
     box-shadow: 0 10px 20px -10px var(--main-color);
     transform: translateY(-5px);
     background: var(--main-color);
+    color: var(--white-color);
   }
 
   .cancelBtn {
@@ -114,15 +107,16 @@
     margin: .3125em;
     padding: .75em 1.25em;
     border-radius: 5px;
-    border: none;
-    color: var(--white-color);
-    background: rgb(221, 51, 51);
+    border: 1.5px solid rgb(221, 51, 51);
+    color: rgb(221, 51, 51);
+    background: var(--white-color);
     transition: all 0.25s ease;
   }
   .cancelBtn:hover {
     box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
     transform: translateY(-5px);
     background: #ff3e4e;
+    color: var(--white-color);
   }
 
   /** Botones vista Consultar **/

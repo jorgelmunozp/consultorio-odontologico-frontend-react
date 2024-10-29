@@ -11,9 +11,9 @@ import sign from 'jwt-encode';                                                  
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => { 
-    // --- Dropdown
-    const myDropdown = new DropdownClass();
-    const statesDropdown = myDropdown.state;
+  // --- Dropdown
+  const myDropdown = new DropdownClass();
+  const statesDropdown = myDropdown.state;
   
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
  
@@ -51,7 +51,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Icon color={myColor} height={5} width={5} strokeWidth={0.6} className={'center'} /></center>
+                <center><Icon color={myColor} height={3} width={3} strokeWidth={0.6} className={'center'} /></center>
                 <h4 className={'modalTitle main-color pt-3'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h4>
               </div>
               <div className={'modalContent'}>
@@ -83,7 +83,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
                 </div>
               </div>
               <div className={'modalFooter'}>
-                <div className={'modalButtons'}>
+                <div className={'d-grid mt-3 w-100'}>
                   <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setAlert(true); setOpen(false) }}>Actualizar</button>
                   <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>

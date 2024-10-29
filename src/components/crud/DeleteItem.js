@@ -37,7 +37,7 @@ export const DeleteItem = ({ classType, Icon, item, urlApi, setOpen, setAlert })
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Icon color={'#f8bb86'} height={5.5} width={5.5} className={'center'} /></center>
+                <center><Icon color={'#f8bb86'} height={3.5} width={3.5} className={'center'} /></center>
                 <h4 className={'modalTitle main-color'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h4>
               </div>
               <div className={'modalContent'}>
@@ -61,7 +61,7 @@ export const DeleteItem = ({ classType, Icon, item, urlApi, setOpen, setAlert })
                 </div>
               </div>
               <div className={'modalFooter'}>
-                <div className={'modalButtons'}>
+                <div className={'d-grid mt-3 w-100'}>
                     <button className={'aceptBtn w-100'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
                     <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>
