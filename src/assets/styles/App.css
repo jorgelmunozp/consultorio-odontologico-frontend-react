@@ -101,7 +101,7 @@ input {
   background-color: var(--lightgray-color);
   border: none;
 }
-label, .MuiSelect-select {
+.MuiSelect-select {
   font-size: 1.6vmin;
   font-family: 'Century Gothic', 'centuryGothic'!important;
   color: var(--darkgray-color)!important;

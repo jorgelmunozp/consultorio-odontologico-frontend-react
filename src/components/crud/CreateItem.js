@@ -8,8 +8,8 @@ import { Consultorio } from '../../classes/Consultorio';
 import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
+import { Input } from '../forms/inputs/Input';
 import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
-import { TextField } from "@mui/material";
 
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
@@ -79,11 +79,12 @@ export const CreateItem = ({ classType, Icon }) => {
         <div className='container-fluid mt-2 mt-sm-5'>
           {
             state.map(property => {
+    console.log('property.type CreateItem: ', property.type)
+
               return(
                 <div key={'row'+property.key} className='row'>
-                  { property.type === 'dropdown'
-                      ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                      : <div className='col'><TextField value={ property.value } type={ property.type } onChange={ property.handleChange } label={ property.key.charAt(0).toUpperCase() + property.key.slice(1) } variant="outlined" fullWidth margin="dense" autoComplete="off"/></div>
+                  {   property.type === 'dropdown' ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+                                                   : <div className='col'><Input property={ property } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})

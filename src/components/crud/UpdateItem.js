@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
-import { useFetch } from '../../hooks/useFetch';
 import { Dropdown } from '../forms/dropdown/Dropdown';
+import { Input } from '../forms/inputs/Input';
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
@@ -57,23 +57,20 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
                   <div className='row modalTableTitle'>
-                    <div className='col'>Parámetro</div>
                     <div className='col'>Datos</div>
                   </div>
                   <div className='row'>
-                    <div className='col modalTableData'>Código</div>
-                    <div className='col modalTableData text-start'><input type="number" value={ item.id } className="modalInput pe-none" disabled></input></div>
+                    <div className='col modalTableData text-start'>
+                      <Input property={ {key:'código', value:item.id, type:'number'} }  className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} /></div>
                   </div>
                   {
                     state.map((property,index)=>{ 
                       return(
                         <div key={index} className='row'>
-                          <div className='col modalTableData'>{ Object.keys(item[classType])[index].charAt(0).toUpperCase() + Object.keys(item[classType])[index].slice(1) }</div>
                           <div className='col modalTableData text-start'>
-                            {
-                              property.type === 'dropdown' 
-                                    ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
-                                    : <input type={ property.type } value={ property.value } onChange={ property.handleChange } className="modalInput"></input>
+                            { property.type === 'dropdown' 
+                                  ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
+                                  : <Input property={ property } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                             }
                           </div>
                         </div>

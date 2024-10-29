@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../auth/authContext';
 import { types } from '../../../types/types';
-import { InputText } from '../../forms/inputs/InputText';
+import { Input } from '../../forms/inputs/Input';
 import { InputPassword } from '../../forms/inputs/InputPassword';
 
 const superuser = process.env.REACT_APP_SUPERUSER;
@@ -38,7 +38,7 @@ export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
   return (
     <div className='container mt-1 text-center user-select-none'>
         <div className="d-grid gap-2 col mx-auto pb-3 w-100">
-          <InputText placeholder={'Usuario'} inputText={userInput} onInputChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
+          <Input placeholder={'Usuario'} inputText={userInput} onInputChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           <InputPassword placeholder={'Contraseña'} inputText={passwordInput} onInputChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           
           <button className='btn btn-login my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user.logged ? "" : "#loginModalFail"} aria-controls="modalBody" onClick={ handleLogin }>Ingresar</button>
