@@ -1,5 +1,4 @@
-import { useState, useEffect }  from "react";
-import { useFetch } from '../../hooks/useFetch';
+import { useState }  from "react";
 import { Alert } from '../../classes/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { Cita } from '../../classes/Cita';

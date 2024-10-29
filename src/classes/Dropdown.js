@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { useFetch } from '../hooks/useFetch';
 
-// const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las Apis para obtención de los datos
-// const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
-// const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
-// const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
-// const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
-// const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-// const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
+const apiPacientes = process.env.REACT_APP_API_PACIENTES;           // Consume las Apis para obtención de los datos
+const apiDoctores = process.env.REACT_APP_API_DOCTORES;
+const apiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
+const apiTratamientos = process.env.REACT_APP_API_TRATAMIENTOS;
+const apiEpss = process.env.REACT_APP_API_EPSS;
+const apiGeneros  = process.env.REACT_APP_API_GENEROS;
+const apiEspecialidades  = process.env.REACT_APP_API_ESPECIALIDADES;
 
 export class DropdownClass {
     constructor() { }
 
     getState = () => {          
-        const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las Apis para obtención de los datos
-        const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
-        const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
-        const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
-        const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
-        const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-        const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;                                                        // METHOD STATE
+        const pacientes = useFetch(apiPacientes).data;           // Consume las Apis para obtención de los datos
+        const doctores = useFetch(apiDoctores).data;
+        const consultorios = useFetch(apiConsultorios).data;
+        const tratamientos = useFetch(apiTratamientos).data;
+        const epss = useFetch(apiEpss).data;
+        const generos  = useFetch(apiGeneros).data;
+        const especialidades  = useFetch(apiEspecialidades).data;                                                        // METHOD STATE
 
         const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
         const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);

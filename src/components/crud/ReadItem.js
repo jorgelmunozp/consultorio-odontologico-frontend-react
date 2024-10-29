@@ -42,7 +42,7 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
               </div>
               <div className={'modalFooter'}>
                 <div className={'modalButtons'}>
-                  <button className={'aceptBtn'} onClick={(event) => setOpen(false)}>Aceptar</button>
+                  <button className={'aceptBtn w-100'} onClick={(event) => setOpen(false)}>Aceptar</button>
                 </div>
               </div>
             </div>

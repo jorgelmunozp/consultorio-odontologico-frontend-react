@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
 import { useFetch } from '../../hooks/useFetch';
+import { Dropdown } from '../forms/dropdown/Dropdown';
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
@@ -9,6 +11,10 @@ import sign from 'jwt-encode';                                                  
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => { 
+    // --- Dropdown
+    const myDropdown = new DropdownClass();
+    const statesDropdown = myDropdown.state;
+  
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
  
   useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
@@ -66,7 +72,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
                           <div className='col modalTableData text-start'>
                             {
                               property.type === 'dropdown' 
-                                    ? <Dropdown property={property} />
+                                    ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
                                     : <input type={ property.type } value={ property.value } onChange={ property.handleChange } className="modalInput"></input>
                             }
                           </div>
@@ -78,8 +84,8 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
               </div>
               <div className={'modalFooter'}>
                 <div className={'modalButtons'}>
-                  <button className={'aceptBtn'} onClick={() => { handleUpdate(); setAlert(true); setOpen(false) }}>Actualizar</button>
-                  <button className={'cancelBtn'} onClick={() => setOpen(false)}>Cancel</button>
+                  <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setAlert(true); setOpen(false) }}>Actualizar</button>
+                  <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>
               </div>
             </div>
@@ -89,62 +95,62 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
       )
 };
 
-const Dropdown = ({ property }) => {
-  const key = property.key;
-  let index = "";
-  let valueProperty = '';
+// const Dropdown = ({ property }) => {
+//   const key = property.key;
+//   let index = "";
+//   let valueProperty = '';
 
-  switch(key) { 
-    case 'paciente': index = 0; valueProperty = property.value.nombre + " " + property.value.apellido; break;
-    case 'doctor': index = 1; valueProperty = property.value.nombre + " " + property.value.apellido; break;
-    case 'consultorio': index = 2; valueProperty = property.value.numero + " " + property.value.nombre; break;
-    case 'tratamiento': index = 3; valueProperty = property.value; break;
-    case 'eps': index = 4; valueProperty = property.value; break;
-    case 'genero': index = 5; valueProperty = property.value; break;
-    case 'especialidad': index = 6; valueProperty = property.value; break;
-  };
+//   switch(key) { 
+//     case 'paciente': index = 0; valueProperty = property.value.nombre + " " + property.value.apellido; break;
+//     case 'doctor': index = 1; valueProperty = property.value.nombre + " " + property.value.apellido; break;
+//     case 'consultorio': index = 2; valueProperty = property.value.numero + " " + property.value.nombre; break;
+//     case 'tratamiento': index = 3; valueProperty = property.value; break;
+//     case 'eps': index = 4; valueProperty = property.value; break;
+//     case 'genero': index = 5; valueProperty = property.value; break;
+//     case 'especialidad': index = 6; valueProperty = property.value; break;
+//   };
 
-  const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
-  const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
-  const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
-  const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
-  const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
-  const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
-  const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
+//   const pacientes = useFetch(process.env.REACT_APP_API_PACIENTES).data;           // Consume las aPI para obtención de los datos
+//   const doctores = useFetch(process.env.REACT_APP_API_DOCTORES).data;
+//   const consultorios = useFetch(process.env.REACT_APP_API_CONSULTORIOS).data;
+//   const tratamientos = useFetch(process.env.REACT_APP_API_TRATAMIENTOS).data;
+//   const epss = useFetch(process.env.REACT_APP_API_EPSS).data;
+//   const generos  = useFetch(process.env.REACT_APP_API_GENEROS).data;
+//   const especialidades  = useFetch(process.env.REACT_APP_API_ESPECIALIDADES).data;
 
-  const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
-  const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
-  const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
-  const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
-  const [epssDropdown, setEpssDropdown] = useState(epss);
-  const [generosDropdown, setGenerosDropdown] = useState(generos);
-  const [especialidadesDropdown, setEspecialidadesDropdown] = useState(especialidades);
-  const statesDropdown = [
-    { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
-    { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
-    { option: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
-    { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
-    { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
-    { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
-    { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(especialidades) }
-  ];
+//   const [pacientesDropdown, setPacientesDropdown] = useState(pacientes);          // Variables de estado para el manejo de lños Dropdowns
+//   const [doctoresDropdown, setDoctoresDropdown] = useState(doctores);
+//   const [consultoriosDropdown, setConsultoriosDropdown] = useState(consultorios);
+//   const [tratamientosDropdown, setTratamientosDropdown] = useState(tratamientos);
+//   const [epssDropdown, setEpssDropdown] = useState(epss);
+//   const [generosDropdown, setGenerosDropdown] = useState(generos);
+//   const [especialidadesDropdown, setEspecialidadesDropdown] = useState(especialidades);
+//   const statesDropdown = [
+//     { option: pacientesDropdown, handleSelect: () => setPacientesDropdown(pacientes) },
+//     { option: doctoresDropdown, handleSelect: () => setDoctoresDropdown(doctores) },
+//     { option: consultoriosDropdown, handleSelect: () => setConsultoriosDropdown(consultorios) },
+//     { option: tratamientosDropdown, handleSelect: () => setTratamientosDropdown(tratamientos) },
+//     { option: epssDropdown, handleSelect: () => setEpssDropdown(epss) },
+//     { option: generosDropdown, handleSelect: () => setGenerosDropdown(generos) },
+//     { option: especialidadesDropdown, handleSelect: () => setEspecialidadesDropdown(especialidades) }
+//   ];
 
-  return (
-    <select onFocus={ statesDropdown[index].handleSelect } onChange={ property.handleChange } id={ key+"Dropdown" } key={ key+"Dropdown" } >
-      <option value={ property.value }>{ valueProperty }</option>
-      { 
-        statesDropdown[index].option.map((item,index) => {
-            switch( key ) {                                                       // Value que se envía al backend firmada con jwt
-            case 'paciente': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
-            case 'doctor': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
-            case 'consultorio': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
-            case 'tratamiento': return( <option value={ sign( item[key].especialidad,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].especialidad }</option> );
-            case 'eps': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
-            case 'genero': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
-            case 'especialidad': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
-          }
-        })          
-      }
-    </select>
-  )
-}
+//   return (
+//     <select onFocus={ statesDropdown[index].handleSelect } onChange={ property.handleChange } id={ key+"Dropdown" } key={ key+"Dropdown" } >
+//       <option value={ property.value }>{ valueProperty }</option>
+//       { 
+//         statesDropdown[index].option.map((item,index) => {
+//             switch( key ) {                                                       // Value que se envía al backend firmada con jwt
+//             case 'paciente': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido} </option> );
+//             case 'doctor': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre + " " + item[key].apellido }</option> );
+//             case 'consultorio': return( <option value={ sign( item[key],jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].numero + " " + item[key].nombre }</option> );
+//             case 'tratamiento': return( <option value={ sign( item[key].especialidad,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].especialidad }</option> );
+//             case 'eps': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+//             case 'genero': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+//             case 'especialidad': return( <option value={ sign( item[key].nombre,jwtSecretKey ) } key={ key+"Item"+index }>{ item[key].nombre }</option> );
+//           }
+//         })          
+//       }
+//     </select>
+//   )
+// }
