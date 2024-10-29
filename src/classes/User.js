@@ -43,7 +43,9 @@ export class Paciente extends User {
         { key:'genero', value: genero, type:"dropdown", setState: setGenero, handleChange: (event) => setGenero( jwtDecode(event.target.value)) },
         { key:'eps', value: eps, type:"dropdown", setState: setEps, handleChange: (event) => setEps( jwtDecode(event.target.value)) }
       ];
+
       return( state )
+
     }      
     get state () { return this.getState() }                        // Getter state
 
@@ -52,7 +54,7 @@ export class Paciente extends User {
       let array = [];
       let [ alertFetch, setAlertFetch ] = useState(false);
       const arrayFetch = useFetch(urlApiPacientes);
-      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
       if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
       /* Query */
@@ -155,7 +157,7 @@ export class Doctor extends User {
       let array = [];
       let [ alertFetch, setAlertFetch ] = useState(false);
       const arrayFetch = useFetch(urlApiDoctores);
-      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
       if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
   
       /* Query */

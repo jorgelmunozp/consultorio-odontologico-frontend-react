@@ -51,10 +51,10 @@ const Row = ({ item,urlApi }) => {
             { readOpen && <ReadItem Icon={User} item={item} setOpen={setReadOpen} /> }
             { updateOpen && <UpdateItem Icon={UserEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
             { deleteOpen && <DeleteItem Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Actualizado'} buttons={1} />  }
-            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Eliminado'} buttons={1} />  }
-            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
-            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
+            { alert === 'successUpdate' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Actualizado'} />  }
+            { alert === 'successDelete' && <Modal Icon={Success} iconColor={'#0f0'} setOpen={setAlert} title={'Paciente Eliminado'} />  }
+            { alert === 'errorUpdate' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Actualización'} />  }
+            { alert === 'errorDelete' && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlert} title={'Error en la Eliminación'} />  }
           </>
         )
   };
@@ -64,7 +64,7 @@ export const ConsultarPacientes = ({ urlApi }) => {
     let array = [];
     let [ alertFetch, setAlertFetch ] = useState(false);
     const arrayFetch = useFetch(urlApi);
-    useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+    useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
     if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
     /* Query */
@@ -163,7 +163,7 @@ export const ConsultarPacientes = ({ urlApi }) => {
       <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
     </center>
     </div>
-    { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
+    { alertFetch && <Modal Icon={Error} iconColor={'#f00'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} /> }
   </div>
   )
 };

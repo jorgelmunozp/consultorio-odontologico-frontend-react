@@ -2,7 +2,16 @@
 import { useState } from 'react';
 import { IndexScreen } from './index/IndexScreen';
 import { QueryItems } from '../crud/QueryItems';
-import { CreateItem } from '../crud/CreateItem';
+import { QueryCitas } from '../crud/query/QueryCitas';
+import { QueryPacientes } from '../crud/query/QueryPacientes';
+import { QueryDoctores } from '../crud/query/QueryDoctores';
+import { QueryConsultorios } from '../crud/query/QueryConsultorios';
+import { QueryTratamientos } from '../crud/query/QueryTratamientos';
+import { CreateCita } from '../crud/create/CreateCita';
+import { CreatePaciente } from '../crud/create/CreatePaciente';
+import { CreateDoctor } from '../crud/create/CreateDoctor';
+import { CreateConsultorio } from '../crud/create/CreateConsultorio';
+import { CreateTratamiento } from '../crud/create/CreateTratamiento';
 import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
 import { HomeIndex } from '../icons/home/HomeIndex';
 import { HomePlus } from '../icons/home/HomePlus';
@@ -60,7 +69,7 @@ export const TemplateScreen = () => {
       <div className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <Menu menu={menu} />
+              <Menu menu={ menu } />
           </div>
         </div>
       </div>
@@ -69,18 +78,18 @@ export const TemplateScreen = () => {
 }
 
 const Menu = ({ menu }) => {                            // Componente para elegir vista a renderizar
-  switch (menu) {
+  switch ( menu ) {
     case 1: return <IndexScreen />;
-    case 2: return <QueryItems classType={'cita'} />;
-    case 3: return <CreateItem classType={'cita'} Icon={FaCalendarPlus} />;
-    case 4: return <QueryItems classType={'paciente'} />;
-    case 5: return <CreateItem classType={'paciente'} Icon={FaUserInjured} />;
-    case 6: return <QueryItems classType={'tratamiento'} />;
-    case 7: return <CreateItem classType={'tratamiento'} Icon={FaStethoscope} />;
-    case 8: return <QueryItems classType={'doctor'} />;
-    case 9: return <CreateItem classType={'doctor'} Icon={FaUserMd} />;
-    case 10: return <QueryItems classType={'consultorio'} />;
-    case 11: return <CreateItem classType={'consultorio'} Icon={FaClinicMedical} />;
+    case 2: return <QueryCitas />;
+    case 3: return <CreateCita Icon={FaCalendarPlus} />;
+    case 4: return <QueryPacientes />;
+    case 5: return <CreatePaciente Icon={FaUserInjured} />;
+    case 6: return <QueryTratamientos />;
+    case 7: return <CreateTratamiento Icon={FaStethoscope} />;
+    case 8: return <QueryDoctores />;
+    case 9: return <CreateDoctor Icon={FaUserMd} />;
+    case 10: return <QueryConsultorios />;
+    case 11: return <CreateConsultorio Icon={FaClinicMedical} />;
     default: return <IndexScreen />;
   }
 }

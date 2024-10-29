@@ -35,11 +35,11 @@ export const AppRouter = () => {
             </PublicRoute>
           } />
 
-          <Route path='*' element={
+          {/* <Route path='*' element={
             // <PublicRoute urlBaseFrontend={urlBaseFrontend}>
               <NotFound urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
             // </PublicRoute>
-          }/>
+          }/> */}
 
           <Route path={urlBaseFrontend + "/home"} element={
               <PrivateRoute urlBaseFrontend={urlBaseFrontend}>

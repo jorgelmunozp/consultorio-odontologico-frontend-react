@@ -1,4 +1,4 @@
-import { useState }  from "react";
+import { useState, useEffect }  from "react";
 import { useFetch } from '../../hooks/useFetch';
 import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
@@ -9,7 +9,12 @@ import { Modal } from '../modal/Modal';
 import { BotonGuardar } from "../../forms/buttons/BotonGuardar";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
+import sign from 'jwt-encode';                                                  // Para firma con jwt
+const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
+
 export const CreateItem = ({ classType, Icon }) => {
+  const [responseStatus, setResponseStatus] = useState(0);
+  
   let Classe = '';
   switch (classType) { case 'cita' : Classe = Cita; break;
                        case 'paciente': Classe = Paciente; break;
@@ -23,17 +28,18 @@ export const CreateItem = ({ classType, Icon }) => {
   let item = "";
   const urlApi = objectClass.api;
 
-  const MyAlert = new Alert('');                                        // Objeto instanciado con la clase Alert para las alertas
+  const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
   const { alert, setAlert } = MyAlert.state;
   // const { alerta, setAlertX } = MyAlert.stateAlert;
   // const ModalAlerta = MyAlert.fire('');
     // console.log("alerta: ", alerta)
 
-  const [responseStatus, setResponseStatus] = useState(0);
   // const [alert, setAlert] = useState(false);
 
   let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
   state.forEach( property => stateValues.push(property.value) );
+
+  console.log("State: ", state)
 
   if(stateValues.filter( state => state === '').length === 0 ) {            // Verifica que no hayan campos vacios
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
@@ -44,22 +50,19 @@ export const CreateItem = ({ classType, Icon }) => {
    }
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
-    setAlert("success");
+    setAlert('successCreate');
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
-    setAlert("error");
+    setAlert('errorCreate');
     setResponseStatus(0);
   } else if( 500 <= responseStatus && responseStatus <= 599 ) {
-    setAlert("error");
+    setAlert('errorCreate');
     setResponseStatus(0);
   }
 
   return (
     <div className="App">
-      {/* <Alert /> */}
-
-
       <div className='mt-4 mt-sm-5'>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { Classe.name.charAt(0).toUpperCase() + Classe.name.slice(1) }</h5>
@@ -84,9 +87,9 @@ export const CreateItem = ({ classType, Icon }) => {
           </div>              
 			  </div>
       </div>
-      <Modal type={'success'} open={alert} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />
-      {/* { alert === 'success' && <Modal type={'success'} open={alert} setOpen={setAlert} title={'Registro exitoso'} buttons={1} />  } */}
-      {/* { alert === 'error' && <Modal type={'error'} open={alert} setOpen={setAlert} title={'Datos No Registrados'} buttons={1} />  } */}
+      <Modal open={alert} setOpen={setAlert} />
+      {/* <Modal type={'successCreate'} open={alert} setOpen={setAlert} title={'Registro exitoso'} /> */}
+      {/* <Modal type={'errorCreate'} open={alert} setOpen={setAlert} title={'Datos No Registrados'} /> */}
     </div>
   );
 };
@@ -138,13 +141,13 @@ const Dropdown = ({ property }) => {
             let value = '';
             let valueDropdown = '';
             switch( key ) {
-              case 'paciente': value=item[key]; valueDropdown=item[key].nombre+ " " + item[key].apellido; break;
-              case 'doctor': value=item[key]; valueDropdown=item[key].nombre + " " + item[key].apellido; break;
-              case 'consultorio': value=item[key]; valueDropdown=item[key].numero + " " + item[key].nombre; break;
-              case 'tratamiento': value=item[key].nombre; valueDropdown=item[key].nombre; break;
-              case 'eps': value=item[key].nombre; valueDropdown=item[key].nombre; break;
-              case 'genero': value=item[key].nombre; valueDropdown=item[key].nombre; break;
-              case 'especialidad': value=item[key].nombre; valueDropdown=item[key].nombre; break;
+              case 'paciente': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].nombre+ " " + item[key].apellido; break;
+              case 'doctor': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].nombre + " " + item[key].apellido; break;
+              case 'consultorio': sign( value=item[key],jwtSecretKey ); valueDropdown=item[key].numero + " " + item[key].nombre; break;
+              case 'tratamiento': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
+              case 'eps': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
+              case 'genero': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
+              case 'especialidad': sign( value=item[key].nombre,jwtSecretKey ); valueDropdown=item[key].nombre; break;
             }
 
             return ( <MenuItem value={ value } key={ item.id }>{ valueDropdown }</MenuItem> );

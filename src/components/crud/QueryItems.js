@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Consultorio } from '../../classes/Consultorio';
@@ -20,7 +21,11 @@ const Row = ({ classType,item,urlApi,state }) => {
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [alert, setAlert] = useState(false); 
+
+  const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
+  const { alert, setAlert } = MyAlert.state;
+  // const [alert, setAlert] = useState(false); 
+
   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
   
   return (
@@ -39,10 +44,12 @@ const Row = ({ classType,item,urlApi,state }) => {
           { readOpen && <ReadItem classType={classType} Icon={HomeIndex} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem classType={classType} Icon={HomeEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
           { deleteOpen && <DeleteItem classType={classType} Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          { alert === 'successUpdate' && <Modal type={'success'} setOpen={setAlert} title={'Actualización exitosa'} buttons={1} />  }
-          { alert === 'successDelete' && <Modal type={'success'} setOpen={setAlert} title={'Eliminación exitosa'} buttons={1} />  }
-          { alert === 'errorUpdate' && <Modal type={'error'} setOpen={setAlert} title={'Error en la Actualización'} buttons={1} />  }
-          { alert === 'errorDelete' && <Modal type={'error'} setOpen={setAlert} title={'Error en la Eliminación'} buttons={1} />  }
+          {/* { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  } */}
+          { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
+          { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
+          { alert === 'errorDelete' && <Modal open={alert} setOpen={setAlert} />  }
+          
+          <Modal open={alert} setOpen={setAlert} />
         </>
       )
   }; 
@@ -96,7 +103,7 @@ export const QueryItems = ({ classType }) => {
         <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
         </center>
       </div>
-      { alertFetch && <Modal  type={'error'} setOpen={setAlertFetch} title={'Error en la conexión con el servidor'} buttons={1} /> }
+      <Modal open={alertFetch} setOpen={setAlertFetch} />
     </div>
   );
 };

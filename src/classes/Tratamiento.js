@@ -38,7 +38,7 @@ export class Tratamiento {
         let array = [];
         let [ alertFetch, setAlertFetch ] = useState(false);
         const arrayFetch = useFetch(urlApi);
-        useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch(true) } },[arrayFetch]);
+        useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
         if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
         /* Query */
