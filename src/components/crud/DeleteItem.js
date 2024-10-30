@@ -39,8 +39,8 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Icon color={'#f8bb86'} height={3.5} width={3.5} className={'center'} /></center>
-                <h4 className={'modalTitle main-color'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h4>
+                <center><Icon color={'#f8bb86'} height={3} width={3} className={'center'} /></center>
+                <h5 className={'modalTitle main-color pt-3'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h5>
               </div>
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>

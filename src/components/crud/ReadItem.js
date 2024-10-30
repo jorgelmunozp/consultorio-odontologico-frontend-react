@@ -31,8 +31,8 @@ export const ReadItem = ({ classType, item, setOpen }) => {
           <div className={'modalContainer'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
-                <center><Icon color={myColor} height={3} width={3} strokeWidth={0.6} className={'center'} /></center>
-                <h4 className={'modalTitle main-color pt-3'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h4>
+                <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
+                <h5 className={'modalTitle main-color pt-3'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
               </div>
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>

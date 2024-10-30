@@ -13,7 +13,7 @@ import { CreateDoctor } from '../crud/create/CreateDoctor';
 import { CreateEspecialidad } from '../crud/create/CreateEspecialidad';
 import { CreateConsultorio } from '../crud/create/CreateConsultorio';
 import { CreateTratamiento } from '../crud/create/CreateTratamiento';
-import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
+import { Menu } from '../icons/menu/Menu';
 import { CalendarMedical } from '../icons/calendar/CalendarMedical';
 import { UserInjured } from '../icons/user/UserInjured';
 import { UserMedical } from '../icons/user/UserMedical';
@@ -41,9 +41,9 @@ export const TemplateScreen = () => {
       <aside className='float-start pt-5'>              {/** Menu lateral **/}
         <nav className="navbar bg-light">
           <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
-            <div className="offcanvas-header">
+            <div className="offcanvas-header shadow-sm">
               <h5 className="offcanvas-title" id="offcanvasBodyLabel">⌂</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <button type="button" className="bg-transparent center border-0 pb-2" data-bs-dismiss="offcanvas" aria-label="Close"><Menu height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'} /></button>
             </div>
             <div className="offcanvas-body">
               <ul className="navbar-nav">
@@ -74,7 +74,7 @@ export const TemplateScreen = () => {
       <div className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <Menu menu={ menu } />
+              <MenuView menu={ menu } />
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@ export const TemplateScreen = () => {
   );
 }
 
-const Menu = ({ menu }) => {                            // Componente para elegir vista a renderizar
+const MenuView = ({ menu }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen />;
     case 2: return <QueryCitas />;
