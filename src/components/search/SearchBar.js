@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
+import { Input } from '../forms/inputs/Input';
 
-export const SearchBar = ({ icon='🔎',titles,queries,setQueries }) => {
+export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries }) => {
     return (
         <div>
             <p>
@@ -13,9 +14,10 @@ export const SearchBar = ({ icon='🔎',titles,queries,setQueries }) => {
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
                             {
-                                titles.map((title, index)=>{
+                                placeholders.map((title, index)=>{
                                     return (
                                         <TextField key={title} id={title} defaultValue={queries[index]} onChange={(target) => setQueries[index](target.target.value)} label={title} variant='outlined' margin='dense' fullWidth className='col' />
+                                        // <Input />
                                     )
                                 })
                             }

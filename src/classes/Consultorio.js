@@ -13,15 +13,28 @@ export class Consultorio {
     getApi = () => { return( urlApi )}                               // METHOD API
     get api () { return this.getApi() }                              // Getter api
 
-    getTitles = () => { return( ['Código','Número','Nombre'] )}      // METHOD TITLES
-    get titles () { return this.getTitles() }                        // Getter titles
+    getTitles = () => {                                           // METHOD TITLES
+        let titles = [];
+        this.state.forEach((parameter, index) => { 
+            titles[index] = { 
+                title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1), 
+                type:parameter.type 
+            }
+        });
+
+        let placeholders = ['Código'];
+        titles.forEach(item => { placeholders.push(item.title) } );
+
+        return({ titles, placeholders })
+    }                          
+    get titles () { return this.getTitles() }                     // Getter titles
 
     getState = () => {                                               // METHOD STATE
         const [ numero, setNumero ] = useState('');                  // Input Número state
         const [ nombre, setNombre ] = useState('');                  // Input Nombre state
         const state = [
-          { key:'numero', value: numero, type:'number', setState: setNumero, handleChange: (event) => setNumero( event.target.value ) },
-          { key:'nombre', value: nombre, type:'text', setState: setNombre, handleChange: (event) => setNombre( event.target.value ) }
+          { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (event) => setNumero( event.target.value ) },
+          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => setNombre( event.target.value ) }
         ];
         
         return( state )

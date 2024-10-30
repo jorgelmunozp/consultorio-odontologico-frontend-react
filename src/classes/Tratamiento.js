@@ -17,17 +17,30 @@ export class Tratamiento {
     getApi = () => { return( urlApi )}                               // METHOD API
     get api () { return this.getApi() }                              // Getter api
 
-    getTitles = () => { return( ['Código','Especialidad','Consultorio','Doctor'] )}  // METHOD TITLES
-    get titles () { return this.getTitles() }                        // Getter titles
+    getTitles = () => {                                           // METHOD TITLES
+        let titles = [];
+        this.state.forEach((parameter, index) => { 
+            titles[index] = { 
+                title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1), 
+                type:parameter.type 
+            }
+        });
+
+        let placeholders = ['Código'];
+        titles.forEach(item => { placeholders.push(item.title) } );
+
+        return({ titles, placeholders })
+    }                          
+    get titles () { return this.getTitles() }                     // Getter titles
 
     getState = () => {                                               // Method
         const [especialidad, setEspecialidad] = useState("");        // Input especialidad state
         const [consultorio, setConsultorio] = useState("");          // Select consultorio state
         const [doctor, setDoctor] = useState("");                    // Select doctor state
         const state = [
-          { key:'especialidad', value: especialidad, type:"dropdown", setState: setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
-          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( event.target.value ) }
+          { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
+          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
+          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) }
         ];
         
         return( state )

@@ -23,7 +23,20 @@ export class Cita {
     getApi = () => { return( urlApi )}                            // METHOD API
     get api () { return this.getApi() }                           // Getter api
 
-    getTitles = () => { return( ['Código','Paciente','Fecha','Hora','Consultorio','Doctor','Tratamiento'] )}  // METHOD TITLES
+    getTitles = () => {                                           // METHOD TITLES
+        let titles = [];
+        this.state.forEach((parameter, index) => { 
+            titles[index] = { 
+                title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1), 
+                type:parameter.type 
+            }
+        });
+
+        let placeholders = ['Código'];
+        titles.forEach(item => { placeholders.push(item.title) } );
+
+        return({ titles, placeholders })
+    }                          
     get titles () { return this.getTitles() }                     // Getter titles
 
     getState = () => {                                            // Method
@@ -34,12 +47,12 @@ export class Cita {
         const [doctor, setDoctor] = useState("");                 // Select doctor
         const [tratamiento, setTratamiento] = useState("");       // Select tratamiento      
         const state = [
-          { key:'paciente', value: paciente, type:"dropdown", setState: setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
-          { key:'fecha', value: fecha, type:"date", setState: setFecha , handleChange: (event) => setFecha( event.target.value ) },
-          { key:'hora', value: hora, type:"time", setState: setHora, handleChange: (event) => setHora( event.target.value ) },
-          { key:'consultorio', value: consultorio, type:"dropdown", setState: setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
-          { key:'doctor', value: doctor, type:"dropdown", setState: setDoctor, handleChange: (event) => setDoctor( event.target.value ) },
-          { key:'tratamiento', value: tratamiento, type:"dropdown", setState: setTratamiento, handleChange: (event) => setTratamiento( event.target.value ) }
+          { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
+          { key:'fecha', value:fecha, type:"date", setState:setFecha , handleChange: (event) => setFecha( event.target.value ) },
+          { key:'hora', value:hora, type:"time", setState:setHora, handleChange: (event) => setHora( event.target.value ) },
+          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
+          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) },
+          { key:'tratamiento', value:tratamiento, type:"dropdown", setState:setTratamiento, handleChange: (event) => setTratamiento( event.target.value ) }
         ];
 
         return( state )
