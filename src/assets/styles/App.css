@@ -26,9 +26,9 @@
 .fs-sm-1 {}
 .fs-sm-2 {}
 @media (max-width: 576px) {
-  .fs-sm-1 { font-size: 0.8rem !important;}
-  .fs-sm-2 { font-size: 1.0rem !important;}
-  .fs-sm-3 { font-size: 1.2rem !important;}
+  .fs-sm-1 { font-size: 0.6rem !important;}
+  .fs-sm-2 { font-size: 0.8rem !important;}
+  .fs-sm-3 { font-size: 1.0rem !important;}
 }
 
 hr { opacity: 0.5; }
@@ -42,15 +42,13 @@ hr { opacity: 0.5; }
 .white-color { color: var(--white-color) !important }
 
 .lh-0 { line-height: 0.5; }
+.z-10000 { z-index: 10000 !important;}
 
 /*************************** Menú **************************/
-#offcanvasBodyLabel { display: none; }
-.offcanvas-header {
-  padding-left: 0.75em;
-}
-.offcanvas-header .btn-close {
-  margin-left: 0; margin-right: 0;  
-}
+.offcanvas { width: 4em !important; }
+.offcanvas-header { padding-bottom: 0 !important;  }
+.offcanvas-body { padding-top: 0 !important; }
+
 /*************************** BODY **************************/
 .contenidoBody { width: 90%; }
 @media (max-width: 576px) { .contenidoBody { width: 100%; }}
@@ -175,22 +173,8 @@ select::-ms-expand { display: none; }
   box-shadow: none;
 }
 
-/*************************** Menú **************************/
-.offcanvas { width: 60px !important; }
-.offcanvas-header { padding-bottom: 0 !important; }
-.offcanvas-body { padding-top: 0 !important; }
-
-/*************************** Sweet Alerts **************************/
+/*************************** Modal Alerts **************************/
 .modalTable {
   border-collapse: collapse;
   border-color: var(--lightgray-color);
 }
-.swal2-title {
-  color: var(--main-color);
-  font-size: 4vmin;
-  font-weight: normal;
-  padding: 0em 1em 0;
-}
-
-.swal2-confirm.swal2-styled, .swal2-cancel { font-size: 3.25vmin !important; }
-

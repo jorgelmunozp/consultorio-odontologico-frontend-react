@@ -18,6 +18,9 @@ import { UserDelete } from '../icons/user/UserDelete';
 import { HomeSearch } from '../icons/home/HomeSearch';
 import { HomeEdit } from '../icons/home/HomeEdit';
 import { HomeDelete } from '../icons/home/HomeDelete';
+import { HearthSearch } from '../icons/hearth/HearthSearch';
+import { HearthEdit } from '../icons/hearth/HearthEdit';
+import { HearthDelete } from '../icons/hearth/HearthDelete';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterEdit } from '../icons/filter/FilterEdit';
 import { FilterDelete } from '../icons/filter/FilterDelete';
@@ -40,7 +43,7 @@ const Row = ({ classType,item,urlApi,state }) => {
                        case 'doctor': IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
                        case 'consultorio': IconSearch= HomeSearch; IconEdit= HomeEdit; IconDelete= HomeDelete;  break;
                        case 'tratamiento': IconSearch= FilterSearch; IconEdit= FilterEdit; IconDelete= FilterDelete;  break;
-                       case 'especialidad': IconSearch= FilterSearch; IconEdit= FilterEdit; IconDelete= FilterDelete;  break;
+                       case 'especialidad': IconSearch= HearthSearch; IconEdit= HearthEdit; IconDelete= HearthDelete;  break;
   }
 
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
@@ -81,7 +84,7 @@ export const QueryItems = ({ classType }) => {
                        case 'doctor': Classe= Doctor; IconSearch= UserSearch; break;
                        case 'consultorio': Classe= Consultorio; IconSearch= HomeSearch; break;
                        case 'tratamiento': Classe= Tratamiento; IconSearch= FilterSearch; break;
-                       case 'especialidad': Classe= Especialidad; IconSearch= FilterSearch; break;
+                       case 'especialidad': Classe= Especialidad; IconSearch= HearthSearch; break;
   }
 
   const objectClass = new Classe('');                                       // Objeto instanciado con la Class

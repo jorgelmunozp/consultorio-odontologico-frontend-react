@@ -1,6 +1,7 @@
 import { CalendarSmile } from '../icons/calendar/CalendarSmile';
 import { User } from '../icons/user/User';
 import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
+import { SyringeLight } from '../icons/medical/SyringeLight';
 import { HomeIndex } from '../icons/home/HomeIndex';
 
 import { myColor } from '../../global';
@@ -12,7 +13,7 @@ export const ReadItem = ({ classType, item, setOpen }) => {
                        case 'paciente': Icon = User; break;
                        case 'doctor': Icon = User; break;
                        case 'consultorio': Icon = HomeIndex; break;
-                       case 'tratamiento': Icon = StethoscopeLight; break;
+                       case 'tratamiento': Icon = SyringeLight; break;
                        case 'especialidad': Icon = StethoscopeLight; break;
   }
   

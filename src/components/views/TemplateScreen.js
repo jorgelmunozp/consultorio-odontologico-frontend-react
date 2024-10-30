@@ -27,6 +27,8 @@ import { CalendarSearch } from '../icons/calendar/CalendarSearch';
 import { CalendarPlus } from '../icons/calendar/CalendarPlus';
 import { UserSearch } from '../icons/user/UserSearch';
 import { UserPlus } from '../icons/user/UserPlus';
+import { HearthSearch } from '../icons/hearth/HearthSearch';
+import { HearthPlus } from '../icons/hearth/HearthPlus';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterPlus } from '../icons/filter/FilterPlus';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -42,12 +44,13 @@ export const TemplateScreen = () => {
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
         <nav className="navbar bg-light">
           <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
-            <div className="offcanvas-header shadow-sm">
-              <h5 className="offcanvas-title" id="offcanvasBodyLabel">⌂</h5>
-              <button type="button" className="bg-transparent center border-0 pb-2" data-bs-dismiss="offcanvas" aria-label="Close"><Menu height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth + 0.5} className={'main-color'} /></button>
+            <div className="offcanvas-header justify-content-center align-self-center align-items-center mx-auto w-100 shadow-sm">
+              <h5 className="offcanvas-title nav-item">
+                <button type="button" className="btn-menu bg-transparent border-0" data-bs-dismiss="offcanvas" aria-label="Close"><Menu height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth + 0.5} className={'main-color'} /></button>
+              </h5>
             </div>
-            <div className="offcanvas-body">
-              <ul className="navbar-nav">
+            <div className="offcanvas-body mt-2">
+              <ul className="navbar-nav align-items-center">
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><span className="nav-link"><CalendarMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
@@ -62,8 +65,8 @@ export const TemplateScreen = () => {
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><span className="nav-link"><Stethoscope height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HearthSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HearthPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><span className="nav-link"><HomeMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
