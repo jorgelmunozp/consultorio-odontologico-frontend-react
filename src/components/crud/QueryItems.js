@@ -24,7 +24,7 @@ import { FilterDelete } from '../icons/filter/FilterDelete';
 import { Arrows } from '../../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
-import { TbHomeSearch } from "react-icons/tb";
+import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 const Row = ({ classType,item,urlApi,state }) => {
@@ -75,12 +75,13 @@ const Row = ({ classType,item,urlApi,state }) => {
 
 export const QueryItems = ({ classType }) => {
   let Classe = '';
-  switch (classType) { case 'cita' : Classe= Cita; break;
-                       case 'paciente': Classe= Paciente;  break;
-                       case 'doctor': Classe= Doctor; break;
-                       case 'consultorio': Classe= Consultorio; break;
-                       case 'tratamiento': Classe= Tratamiento; break;
-                       case 'especialidad': Classe= Especialidad; break;
+  let IconSearch = '';                                                      // Selección de icono search
+  switch (classType) { case 'cita': Classe= Cita; IconSearch= CalendarSearch; break;
+                       case 'paciente': Classe= Paciente; IconSearch= UserSearch; break;
+                       case 'doctor': Classe= Doctor; IconSearch= UserSearch; break;
+                       case 'consultorio': Classe= Consultorio; IconSearch= HomeSearch; break;
+                       case 'tratamiento': Classe= Tratamiento; IconSearch= FilterSearch; break;
+                       case 'especialidad': Classe= Especialidad; IconSearch= FilterSearch; break;
   }
 
   const objectClass = new Classe('');                                       // Objeto instanciado con la Class
@@ -96,7 +97,7 @@ export const QueryItems = ({ classType }) => {
       <div id="contenidoConsultorios">
       <center className='mt-4 mt-sm-5'>
       <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + "s" }</h5>
-      <SearchBar icon={<TbHomeSearch className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+      <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
 
       <div className='container-fluid overflow-auto'>
         <table className="table" border='1'>

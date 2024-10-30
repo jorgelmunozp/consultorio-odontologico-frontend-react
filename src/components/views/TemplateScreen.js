@@ -30,13 +30,9 @@ import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterPlus } from '../icons/filter/FilterPlus';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../assets/styles/App.css';
+import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
 export const TemplateScreen = () => {
-  const iconHeight = 1.25;
-  const iconWidth = 1.25;
-  const iconStrokeWidth = 1.5;
-  const iconSize = 17.5;
-
   const menuOpcion = 1;
   const [menu, setMenu] = useState(menuOpcion);
 

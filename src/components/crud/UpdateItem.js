@@ -5,6 +5,7 @@ import { fetchUpdate } from '../../helpers/fetchUpdate';
 import { CalendarEdit } from '../icons/calendar/CalendarEdit';
 import { UserEdit } from '../icons/user/UserEdit';
 import { HomeEdit } from '../icons/home/HomeEdit';
+import { FilterEdit } from '../icons/filter/FilterEdit';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { myColor } from '../../global';
@@ -19,8 +20,8 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                        case 'paciente': Icon = UserEdit; break;
                        case 'doctor': Icon = UserEdit; break;
                        case 'consultorio': Icon = HomeEdit; break;
-                       case 'tratamiento': Icon = HomeEdit; break;
-                       case 'especialidad': Icon = HomeEdit; break;
+                       case 'tratamiento': Icon = FilterEdit; break;
+                       case 'especialidad': Icon = FilterEdit; break;
   }
   
   // --- Dropdown
