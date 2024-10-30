@@ -2,24 +2,35 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { DashboardRoutes } from "./DashboardRoutes";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-import { TemplateScreen } from '../components/views/TemplateScreen';
 import { Navbar } from "../components/menu/Navbar";
+import { TemplateScreen } from '../components/views/TemplateScreen';
+import { IndexScreen } from '../components/views/index/IndexScreen';
 import { HomeScreen } from "../components/views/home/HomeScreen";
 import { NotFound } from '../components/views/404/NotFound';
 import { myColor, myTitle } from "../global";
 
+import { useState } from 'react';
+
 export const AppRouter = () => {
   const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
+  const [menu, setMenu] = useState(1);
+
   return (
     <BrowserRouter>
-      <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} />
+      <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} setMenu={setMenu} />
 
-      <div className="container mt-5 text-center user-select-none">
+      <div className="container-fluid mt-5 text-center user-select-none">
         <Routes>
-          <Route path={urlBaseFrontend + "/index"} element={
+          {/* <Route path={urlBaseFrontend + "/index"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <TemplateScreen />
+              <TemplateScreen menu={menu} setMenu={setMenu} />
+            </PublicRoute>
+          } /> */}
+
+        <Route path={urlBaseFrontend} element={
+            <PublicRoute urlBaseFrontend={urlBaseFrontend}>
+              <TemplateScreen menu={menu} setMenu={setMenu} />
             </PublicRoute>
           } />
 

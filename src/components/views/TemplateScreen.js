@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import { IndexScreen } from './index/IndexScreen';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
@@ -35,9 +33,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../../assets/styles/App.css';
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
-export const TemplateScreen = () => {
-  const menuOpcion = 1;
-  const [menu, setMenu] = useState(menuOpcion);
+export const TemplateScreen = ({ menu, setMenu }) => {
+  // const menuOpcion = 1;
+  // const [menu, setMenu] = useState(menuOpcion);
 
   return (
     <div className="App user-select-none">

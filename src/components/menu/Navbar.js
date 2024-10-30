@@ -13,7 +13,7 @@ import { User } from '../icons/user/User';
 import { Warning } from '../icons/warning/Warning';
 import '../views/login/login.css';
 
-export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
+export const Navbar = ({ urlBaseFrontend, myColor, myTitle, setMenu }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
     const [ alertType,setAlertType ] = useState("");
 
@@ -32,7 +32,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle }) => {
         <>
             <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none z-10000">
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand main-color d-flex" to={"/" + urlBaseFrontend}>
+                    <NavLink className="navbar-brand main-color d-flex" to={"/" + urlBaseFrontend} onClick={() => setMenu(1)}>
                         <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-3 ms-sm-4 me-2 mt-logo'/>
                         <span className='main-color'>{ myTitle }</span>
                     </NavLink>

@@ -56,7 +56,7 @@ export const IndexScreen = () => {
                       <button onClick={() => setView(index)} className="border-0">
                         <div className="card-body">
                           <i className="main-color">{ service.icon }</i>
-                          <h6 className="text-secondary fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2 text-nowrap text-truncate">{ service.title }</h6>
+                          <h6 className="text-secondary d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2">{ service.title }</h6>
                         </div>
                       </button>
                     </div>

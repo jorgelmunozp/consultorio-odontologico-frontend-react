@@ -35,8 +35,8 @@ export const Modal = ({ open, setOpen, content='', buttons=1 }) => {
                           }
                           <div className={'modalFooter'}>
                             <div className={'d-grid mt-3 w-100'}>
-                                {   buttons === 1 ? <button className={'aceptBtn'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
-                                  : buttons === 2 ? <><button className={'aceptBtn'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button> <button className={'cancelBtn'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Cancel</button></>
+                                {   buttons === 1 ? <button className={'aceptBtn w-50'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
+                                  : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button> <button className={'cancelBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Cancel</button></>
                                   : ""}
                             </div>
                           </div>
