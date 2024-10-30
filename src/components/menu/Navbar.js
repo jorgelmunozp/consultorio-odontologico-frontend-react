@@ -13,7 +13,7 @@ import { User } from '../icons/user/User';
 import { Warning } from '../icons/warning/Warning';
 import '../views/login/login.css';
 
-export const Navbar = ({ urlBaseFrontend, myColor, myTitle, setMenu }) => {
+export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu, setIsMenuOpen }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
     const [ alertType,setAlertType ] = useState("");
 
@@ -28,6 +28,8 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, setMenu }) => {
         navigate((urlBaseFrontend), { replace: true });
     }
 
+    const handleClick = () => { isMenuOpen === false ? setIsMenuOpen(true) : setIsMenuOpen(false) }
+
     return (
         <>
             <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none z-10000">
@@ -39,7 +41,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, setMenu }) => {
                     {
                         ( user.logged )
                             ?   <>
-                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active':'') }
+                                    <NavLink is className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active':'') }
                                         onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
                                 </>
                             :   <>
@@ -50,7 +52,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, setMenu }) => {
                                             </NavLink>
                                         </ul>
                                         <ul className="navbar-nav col">
-                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active':'') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+                                            <NavLink onClick={ handleClick } className={ ({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active':'') } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
                                                 <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
                                             </NavLink>
                                         </ul>

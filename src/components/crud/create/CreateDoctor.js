@@ -1,5 +1,5 @@
 import { CreateItem } from '../CreateItem';
 
-export const CreateDoctor = ({ Icon }) => {
-  return ( <CreateItem classType={'doctor'} Icon={Icon} /> )
+export const CreateDoctor = ({ Icon, isMenuOpen }) => {
+  return ( <CreateItem classType={'doctor'} Icon={Icon} isMenuOpen={isMenuOpen} /> )
 }

@@ -1,5 +1,5 @@
 import { CreateItem } from '../CreateItem';
 
-export const CreateCita = ({ Icon }) => {
-  return ( <CreateItem classType={'cita'} Icon={Icon} /> )
+export const CreateCita = ({ Icon, isMenuOpen }) => {
+  return ( <CreateItem classType={'cita'} Icon={Icon} isMenuOpen={isMenuOpen} /> )
 }

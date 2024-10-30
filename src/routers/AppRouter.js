@@ -15,22 +15,25 @@ export const AppRouter = () => {
   const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
   const [menu, setMenu] = useState(1);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  console.log("isMenuOpen: ",isMenuOpen)
 
   return (
     <BrowserRouter>
-      <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} setMenu={setMenu} />
+      <Navbar urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} isMenuOpen={isMenuOpen} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} />
 
       <div className="container-fluid mt-5 text-center user-select-none">
         <Routes>
           {/* <Route path={urlBaseFrontend + "/index"} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <TemplateScreen menu={menu} setMenu={setMenu} />
+              <TemplateScreen isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} />
             </PublicRoute>
           } /> */}
 
         <Route path={urlBaseFrontend} element={
             <PublicRoute urlBaseFrontend={urlBaseFrontend}>
-              <TemplateScreen menu={menu} setMenu={setMenu} />
+              <TemplateScreen isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} />
             </PublicRoute>
           } />
 

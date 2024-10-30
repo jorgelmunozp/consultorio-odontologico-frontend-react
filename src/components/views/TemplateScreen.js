@@ -33,7 +33,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../../assets/styles/App.css';
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
-export const TemplateScreen = ({ menu, setMenu }) => {
+export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
   // const menuOpcion = 1;
   // const [menu, setMenu] = useState(menuOpcion);
 
@@ -76,7 +76,7 @@ export const TemplateScreen = ({ menu, setMenu }) => {
       <div className='App-body d-flex bg-white'>
         <div id='contenidoBody' className='contenidoBody mx-auto'>
           <div id="App" className="App"> 
-              <MenuView menu={ menu } />
+              <MenuView menu={ menu } isMenuOpen={ isMenuOpen } />
           </div>
         </div>
       </div>
@@ -84,21 +84,21 @@ export const TemplateScreen = ({ menu, setMenu }) => {
   );
 }
 
-const MenuView = ({ menu }) => {                            // Componente para elegir vista a renderizar
+const MenuView = ({ menu, isMenuOpen }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen />;
     case 2: return <QueryCitas />;
-    case 3: return <CreateCita Icon={CalendarMedical} />;
+    case 3: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
     case 4: return <QueryPacientes />;
-    case 5: return <CreatePaciente Icon={UserInjured} />;
+    case 5: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
     case 6: return <QueryTratamientos />;
-    case 7: return <CreateTratamiento Icon={Stethoscope} />;
+    case 7: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
     case 8: return <QueryDoctores />;
-    case 9: return <CreateDoctor Icon={UserMedical} />;
+    case 9: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
     case 10: return <QueryEspecialidades />;
-    case 11: return <CreateEspecialidad Icon={Stethoscope} />;
+    case 11: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
     case 12: return <QueryConsultorios />;
-    case 13: return <CreateConsultorio Icon={HomeMedical} />;
+    case 13: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen />;
   }
 }

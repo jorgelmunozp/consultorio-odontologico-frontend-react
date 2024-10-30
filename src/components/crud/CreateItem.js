@@ -15,7 +15,7 @@ import sign from 'jwt-encode';                                               // 
 import { jwtDecode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const CreateItem = ({ classType, Icon }) => {
+export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const [responseStatus, setResponseStatus] = useState(0);
   
   let Classe = '';
@@ -76,7 +76,7 @@ export const CreateItem = ({ classType, Icon }) => {
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { Classe.name.charAt(0).toUpperCase() + Classe.name.slice(1) }</h5>
         </center>
-        <div className='container-fluid mt-2 mt-sm-5 ps-5 pe-0 pe-md-5'>
+        <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 ' + (isMenuOpen ? ' ps-5':'' )}>
           {
             state.map(property => {
     console.log('property.type CreateItem: ', property.type)
