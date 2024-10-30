@@ -32,7 +32,7 @@ export const ReadItem = ({ classType, item, setOpen }) => {
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
                 <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
-                <h5 className={'modalTitle main-color pt-2'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
+                <h6 className={'modalTitle main-color pt-2'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h6>
               </div>
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
@@ -55,8 +55,8 @@ export const ReadItem = ({ classType, item, setOpen }) => {
                 </div>
               </div>
               <div className={'modalFooter'}>
-                <div className={'d-grid mt-3 w-100'}>
-                  <button className={'aceptBtn w-100'} onClick={(event) => setOpen(false)}>Aceptar</button>
+                <div className={'d-grid mt-2 w-100'}>
+                  <button className={'aceptBtn mx-auto w-50'} onClick={(event) => setOpen(false)}>Aceptar</button>
                 </div>
               </div>
             </div>

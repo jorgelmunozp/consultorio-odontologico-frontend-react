@@ -65,7 +65,7 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
                 <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
-                <h5 className={'modalTitle main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h5>
+                <h6 className={'modalTitle main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
               </div>
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
@@ -93,7 +93,7 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                 </div>
               </div>
               <div className={'modalFooter'}>
-                <div className={'d-flex mt-3 w-100'}>
+                <div className={'d-flex mt-2 w-100'}>
                   <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setAlert(true); setOpen(false) }}>Actualizar</button>
                   <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>
