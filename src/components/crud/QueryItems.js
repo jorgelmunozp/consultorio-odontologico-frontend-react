@@ -13,8 +13,10 @@ import { CalendarSearch } from '../icons/calendar/CalendarSearch';
 import { CalendarEdit } from '../icons/calendar/CalendarEdit';
 import { UserSearch } from '../icons/user/UserSearch';
 import { UserEdit } from '../icons/user/UserEdit';
+import { UserDelete } from '../icons/user/UserDelete';
 import { HomeSearch } from '../icons/home/HomeSearch';
 import { HomeEdit } from '../icons/home/HomeEdit';
+import { HomeDelete } from '../icons/home/HomeDelete';
 
 import { Arrows } from '../../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
@@ -65,8 +67,8 @@ export const QueryItems = ({ classType }) => {
   let IconEdit = '';                                                        // Selección de icono update
   let IconDelete = '';                                                      // Selección de icono delete
 
-  switch (classType) { case 'cita' : Classe= Cita; IconSearch= CalendarSearch; IconEdit= CalendarEdit; IconDelete= ''; break;
-                       case 'paciente': Classe= Paciente; IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= '';  break;
+  switch (classType) { case 'cita' : Classe= Cita; IconSearch= CalendarSearch; IconEdit= CalendarEdit; IconDelete= HomeDelete; break;
+                       case 'paciente': Classe= Paciente; IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
                        case 'doctor': Classe= Doctor; IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= '';  break;
                        case 'consultorio': Classe= Consultorio; IconSearch= HomeSearch; IconEdit= HomeEdit; IconDelete= '';  break;
                        case 'tratamiento': Classe= Tratamiento; IconSearch= ''; IconEdit= ''; IconDelete= '';  break;

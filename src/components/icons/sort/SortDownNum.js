@@ -1,6 +1,5 @@
 export const SortDownNum = ({ strokeWidth='0', width='1', height='1'}) => {
     return(
-        <span>
             <svg stroke="currentColor" fill="currentColor" strokeWidth={strokeWidth} version="1" viewBox="0 0 48 48" enableBackground="new 0 0 48 48" height={height + 'em'} width={width + 'em'} xmlns="http://www.w3.org/2000/svg">
                 <polygon fill="#546E7A" points="38.512 15.211 38.512 42.915 33.46 42.915 33.46 15.211 25.883 15.211 35.986 5.315 46.089 15.211" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"/>
                 <g fill="#5285c5">
@@ -8,6 +7,5 @@ export const SortDownNum = ({ strokeWidth='0', width='1', height='1'}) => {
                     <path d="M16.2,43h-3V31.6l-3.5,1.1v-2.4l6.2-2.2h0.3V43z"></path>
                 </g>
             </svg>
-        </span>
     )
 }

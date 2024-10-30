@@ -1,6 +1,5 @@
 export const SortUpNum = ({ strokeWidth='0', width='1', height='1'}) => {
     return(
-        <span>
             <svg stroke="currentColor" fill="currentColor" strokeWidth={strokeWidth} version="1" viewBox="0 0 48 48" enableBackground="new 0 0 48 48" height={height + 'em'} width={width + 'em'} xmlns="http://www.w3.org/2000/svg">
                 <polygon fill="#546E7A" points="38,33 38,5 34,5 34,33 28,33 36,43 44,33"></polygon>
                 <g fill="#5285c5">
@@ -8,6 +7,5 @@ export const SortUpNum = ({ strokeWidth='0', width='1', height='1'}) => {
                     <path d="M19.4,43H9.2v-2l4.8-5.1c0.4-0.4,0.7-0.8,0.9-1.1c0.2-0.3,0.5-0.6,0.6-0.9c0.2-0.3,0.3-0.5,0.3-0.8 c0.1-0.2,0.1-0.5,0.1-0.7c0-0.7-0.2-1.2-0.5-1.6c-0.3-0.4-0.8-0.6-1.4-0.6c-0.3,0-0.7,0.1-0.9,0.2c-0.3,0.1-0.5,0.3-0.7,0.5 c-0.2,0.2-0.3,0.5-0.4,0.8s-0.1,0.6-0.1,1h-3c0-0.7,0.1-1.3,0.4-1.9c0.2-0.6,0.6-1.1,1-1.6c0.5-0.4,1-0.8,1.6-1.1 c0.6-0.3,1.4-0.4,2.2-0.4c0.8,0,1.5,0.1,2.1,0.3c0.6,0.2,1.1,0.5,1.5,0.8s0.7,0.8,0.9,1.3s0.3,1.1,0.3,1.8c0,0.5-0.1,1-0.2,1.4 S18.3,34.5,18,35s-0.6,0.9-1,1.4c-0.4,0.5-0.9,1-1.4,1.5L13,40.6h6.4V43z"></path>
                 </g>
             </svg>
-        </span>
     )
 }

@@ -1,6 +1,5 @@
 export const Logo = ({ color='currentColor', className='', strokeWidth='0', width='1', height='1'}) => {
     return (
-        <span>
             <svg className={className} version="1.0" xmlns="http://www.w3.org/2000/svg" height={height + 'em'} width={width + 'em'} viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512) scale(0.100000,-0.100000)" fill={color} stroke="none">
                     <path d="M1210 5044 c-237 -27 -391 -107 -589 -304 -299 -297 -431 -588 -431
@@ -25,6 +24,5 @@ export const Logo = ({ color='currentColor', className='', strokeWidth='0', widt
                     -255 1005 0 248 70 452 226 660 130 173 257 264 424 305 76 18 231 18 331 -1z"/>
                 </g>
             </svg>
-        </span>
     );
 }
