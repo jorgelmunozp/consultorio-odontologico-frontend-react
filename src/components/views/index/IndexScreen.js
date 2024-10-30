@@ -5,16 +5,23 @@ import { QueryDoctores } from '../../crud/query/QueryDoctores';
 import { QueryEspecialidades } from '../../crud/query/QueryEspecialidades';
 import { QueryConsultorios } from '../../crud/query/QueryConsultorios';
 import { QueryTratamientos } from '../../crud/query/QueryTratamientos';
-import { FaUserMd,FaUserInjured,FaStethoscope,FaClinicMedical,FaCalendarPlus } from 'react-icons/fa';
+import { CalendarMedical } from '../../icons/calendar/CalendarMedical';
+import { UserInjured } from '../../icons/user/UserInjured';
+import { UserMedical } from '../../icons/user/UserMedical';
+import { Stethoscope } from '../../icons/medical/Stethoscope';
+import { HomeMedical } from '../../icons/home/HomeMedical';
+import { Syringe } from '../../icons/medical/Syringe';
+import { iconHeight,iconWidth } from  '../../../global';
+
 
 const iconSize = 20;
 const services = [
-  { "title":"Citas", "icon":<FaCalendarPlus size={iconSize}/> },
-  { "title":"Pacientes", "icon":<FaUserInjured size={iconSize}/> },
-  { "title":"Doctores", "icon":<FaUserMd size={iconSize}/> },
-  { "title":"Especialidades", "icon":<FaStethoscope size={iconSize}/> },
-  { "title":"Consultorios", "icon":<FaClinicMedical size={iconSize}/> },
-  { "title":"Tratamientos", "icon":<FaStethoscope size={iconSize}/> }
+  { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },
+  { "title":"Pacientes", "icon":<UserInjured height={iconHeight} width={iconWidth} /> },
+  { "title":"Doctores", "icon":<UserMedical height={iconHeight} width={iconWidth} /> },
+  { "title":"Especialidades", "icon":<Stethoscope height={iconHeight} width={iconWidth} /> },
+  { "title":"Consultorios", "icon":<HomeMedical height={iconHeight} width={iconWidth} /> },
+  { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
 ];
 
 const View = ({ view }) => {
