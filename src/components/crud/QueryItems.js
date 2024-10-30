@@ -53,7 +53,7 @@ const Row = ({ classType,item,urlApi,state }) => {
   
   return (
         <>
-          <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
+          {/* <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
           {
             Object.values(item[classType]).map((item,index) => { return(
               <td key={'item'+index} className='ps-2 ps-sm-3 text-nowrap'>{ typeof item !== 'object' ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</td>
@@ -66,6 +66,25 @@ const Row = ({ classType,item,urlApi,state }) => {
           { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
           { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+          { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
+          { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
+          { alert === 'errorDelete' && <Modal open={alert} setOpen={setAlert} />  }
+          
+          <Modal open={alert} setOpen={setAlert} /> */}
+
+          <div className='col-4 col-sm-2 ps-4 ps-sm-5 text-nowrap'>{ item.id }</div>
+          {
+            Object.values(item[classType]).map((item,index) => { return(
+              <div key={'item'+index} className='col-4 col-sm-2 ps-2 ps-sm-3 text-nowrap'>{ typeof item !== 'object' ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
+            )})
+          }
+          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
+          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
+          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
+          
+          { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
+          { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
+          { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           {/* { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  } */}
           { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
           { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
@@ -73,10 +92,12 @@ const Row = ({ classType,item,urlApi,state }) => {
           
           <Modal open={alert} setOpen={setAlert} />
         </>
+
+        
       )
   }; 
 
-export const QueryItems = ({ classType }) => {
+export const QueryItems = ({ classType, isMenuOpen }) => {
   let Classe = '';
   let IconSearch = '';                                                      // Selección de icono search
   switch (classType) { case 'cita': Classe= Cita; IconSearch= CalendarSearch; break;
@@ -97,34 +118,25 @@ export const QueryItems = ({ classType }) => {
   
   return (
     <div className="App">
-      <div id="contenidoConsultorios">
-      <center className='mt-4 mt-sm-5'>
-      <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + "s" }</h5>
-      <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+      <div className='mt-4 mt-sm-5'>
+        <center>
+          <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + "s" }</h5>
+          <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} titles={titles} queries={queries} setQueries={setQueries} />
+        </center>
 
-      <div className='container-fluid overflow-auto'>
-        <table className="table" border='1'>
-          <thead>
-            <tr className="">
-              {
-                titles.map((title,index) => { return( <th key={'title'+title} className='border-0 py-0 px-2 ps-sm-3 pe-sm-0'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{ title }</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy( 1 + index*2 )}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy( 2 + index*2 )}><Arrows direction={"down"}/></button></th></tr></thead></table></th> )})
-              }
-              <th className='p-0' colSpan='3'></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
-                <tr id={ 'row'+item.id } key={ item.id }>
+        <div className={'container-fluid border overflow-auto' + (isMenuOpen ? ' ps-5':'')}>
+          <div className='row flex-nowrap bg-main-color border-bottom border-dark white-color'>
+            { titles.map((title,index) => { return( <div className="col-4 col-sm-2 bg-main-color text-start"><th key={'title'+title} className='border-0 py-0 px-2 ps-sm-3 pe-sm-0'><table className='lh-1 w-100'><thead><tr className='lh-0'><th rowSpan='2' className="border-0">{ title }</th><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-1 pb-0' onClick={()=>setSortBy( 1 + index*2 )}><Arrows direction={"up"}/></button></th></tr><tr className='lh-0'><th className='border-0 p-0'><button className='border-0 bg-main-color dark-color-hover white-color fs-5 pt-0 pb-1' onClick={()=>setSortBy( 2 + index*2 )}><Arrows direction={"down"}/></button></th></tr></thead></table></th></div> )}) }
+            <div className='col-6 col-sm-2 bg-main-color'></div>
+          </div>
+            { arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
+                <div className='row flex-nowrap border-bottom text-start py-2' id={'row'+item.id } key={ item.id }>
                   <Row classType={classType} item={item} urlApi={urlApi} state={state} />
-                </tr>
+                </div>
               )})
             }
-          </tbody>
-        </table>
         </div>
         <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
-        </center>
       </div>
       <Modal open={alertFetch} setOpen={setAlertFetch} />
     </div>

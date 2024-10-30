@@ -1,5 +1,5 @@
 import { QueryItems } from '../QueryItems';
 
-export const QueryCitas = () => {
-  return ( <QueryItems classType={'cita'} /> )
+export const QueryCitas = ({ isMenuOpen }) => {
+  return ( <QueryItems classType={'cita'} isMenuOpen={isMenuOpen} /> )
 }

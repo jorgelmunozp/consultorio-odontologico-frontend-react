@@ -67,7 +67,7 @@ hr { opacity: 0.5; }
 .table th tr  {
   background-color:var(--main-color) !important;
 }
-.table td {
+.table td, .table {
   background-color: transparent !important;
   color: var(--dark-color);
 }

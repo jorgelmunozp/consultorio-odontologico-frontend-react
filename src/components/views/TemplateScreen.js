@@ -87,17 +87,17 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
 const MenuView = ({ menu, isMenuOpen }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen />;
-    case 2: return <QueryCitas />;
+    case 2: return <QueryCitas isMenuOpen={isMenuOpen} />;
     case 3: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
-    case 4: return <QueryPacientes />;
+    case 4: return <QueryPacientes isMenuOpen={isMenuOpen} />;
     case 5: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
-    case 6: return <QueryTratamientos />;
+    case 6: return <QueryTratamientos isMenuOpen={isMenuOpen} />;
     case 7: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 8: return <QueryDoctores />;
+    case 8: return <QueryDoctores isMenuOpen={isMenuOpen} />;
     case 9: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
-    case 10: return <QueryEspecialidades />;
+    case 10: return <QueryEspecialidades isMenuOpen={isMenuOpen} />;
     case 11: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 12: return <QueryConsultorios />;
+    case 12: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
     case 13: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen />;
   }

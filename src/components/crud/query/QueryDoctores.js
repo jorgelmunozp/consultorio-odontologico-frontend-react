@@ -1,5 +1,5 @@
 import { QueryItems } from '../QueryItems';
 
-export const QueryDoctores = () => {
-  return ( <QueryItems classType={'doctor'} /> )
+export const QueryDoctores = ({ isMenuOpen }) => {
+  return ( <QueryItems classType={'doctor'} isMenuOpen={isMenuOpen} /> )
 }
