@@ -41,6 +41,7 @@ hr { opacity: 0.5; }
 .main-color-hover:hover { color: var(--main-color) !important; }
 .white-color { color: var(--white-color) !important }
 
+.mt-logo { margin-top: 0.08em !important; }
 .lh-0 { line-height: 0.5; }
 .z-10000 { z-index: 10000 !important;}
 
