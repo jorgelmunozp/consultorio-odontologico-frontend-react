@@ -9,13 +9,17 @@ import { ReadItem } from './ReadItem';
 import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
 import { Modal } from '../modal/Modal';
+import { CalendarSearch } from '../icons/calendar/CalendarSearch';
+import { CalendarEdit } from '../icons/calendar/CalendarEdit';
+import { UserSearch } from '../icons/user/UserSearch';
+import { UserEdit } from '../icons/user/UserEdit';
+import { HomeSearch } from '../icons/home/HomeSearch';
+import { HomeEdit } from '../icons/home/HomeEdit';
+
 import { Arrows } from '../../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
 import { TbHomeSearch, TbHomeEdit, TbHomeX } from "react-icons/tb";
-import { HomeIndex } from '../icons/home/HomeIndex';
-import { HomeEdit } from '../icons/home/HomeEdit';
-import { Warning } from '../icons/warning/Warning';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 const Row = ({ classType,item,urlApi,state }) => {
@@ -25,7 +29,6 @@ const Row = ({ classType,item,urlApi,state }) => {
 
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
   const { alert, setAlert } = MyAlert.state;
-  // const [alert, setAlert] = useState(false); 
 
   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
   
@@ -37,14 +40,14 @@ const Row = ({ classType,item,urlApi,state }) => {
               <td key={'item'+index} className='ps-2 ps-sm-3 text-nowrap'>{ typeof item !== 'object' ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</td>
             )})
           }
+          {/* Cambiar iconos por cada vista, o unos generales!!! --> */}
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
           <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
-          {/* Cambiar iconos por cada vista, o unos generales!!! --> */}
-          { readOpen && <ReadItem classType={classType} Icon={HomeIndex} item={item} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem classType={classType} Icon={HomeEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-          { deleteOpen && <DeleteItem classType={classType} Icon={Warning} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
+          { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
+          { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
+          { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
           {/* { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  } */}
           { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
           { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
@@ -58,15 +61,19 @@ const Row = ({ classType,item,urlApi,state }) => {
 export const QueryItems = ({ classType }) => {
 
   let Classe = '';
-  switch (classType) { case 'cita' : Classe = Cita; break;
-                       case 'paciente': Classe = Paciente; break;
-                       case 'doctor': Classe = Doctor; break;
-                       case 'consultorio': Classe = Consultorio; break;
-                       case 'tratamiento': Classe = Tratamiento; break;
-                       case 'especialidad': Classe = Especialidad; break;
+  let IconSearch = '';                                                      // Selección de icono search
+  let IconEdit = '';                                                        // Selección de icono update
+  let IconDelete = '';                                                      // Selección de icono delete
+
+  switch (classType) { case 'cita' : Classe= Cita; IconSearch= CalendarSearch; IconEdit= CalendarEdit; IconDelete= ''; break;
+                       case 'paciente': Classe= Paciente; IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= '';  break;
+                       case 'doctor': Classe= Doctor; IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= '';  break;
+                       case 'consultorio': Classe= Consultorio; IconSearch= HomeSearch; IconEdit= HomeEdit; IconDelete= '';  break;
+                       case 'tratamiento': Classe= Tratamiento; IconSearch= ''; IconEdit= ''; IconDelete= '';  break;
+                       case 'especialidad': Classe= Especialidad; IconSearch= ''; IconEdit= ''; IconDelete= '';  break;
   }
 
-  const objectClass = new Classe('');                                         // Objeto instanciado con la Class
+  const objectClass = new Classe('');                                       // Objeto instanciado con la Class
   const urlApi = objectClass.api;
   const titles = objectClass.titles;
   const state = objectClass.state;

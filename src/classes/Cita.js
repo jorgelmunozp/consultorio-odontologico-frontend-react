@@ -23,16 +23,16 @@ export class Cita {
     getApi = () => { return( urlApi )}                            // METHOD API
     get api () { return this.getApi() }                           // Getter api
 
-    getTitles = () => { return( ['Código','Paciente','Fecha','Hora','Consultorio','Médico','Tratamiento'] )}  // METHOD TITLES
+    getTitles = () => { return( ['Código','Paciente','Fecha','Hora','Consultorio','Doctor','Tratamiento'] )}  // METHOD TITLES
     get titles () { return this.getTitles() }                     // Getter titles
 
     getState = () => {                                            // Method
-        const [paciente, setPaciente] = useState("");             //Select Paciente
+        const [paciente, setPaciente] = useState("");             // Select paciente
         let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
         let [hora, setHora] = useState(getTime);
-        const [consultorio, setConsultorio] = useState("");       //Select Consultorio
-        const [doctor, setDoctor] = useState("");                 //Select Doctor
-        const [tratamiento, setTratamiento] = useState("");       //Select Tratamiento      
+        const [consultorio, setConsultorio] = useState("");       // Select consultorio
+        const [doctor, setDoctor] = useState("");                 // Select doctor
+        const [tratamiento, setTratamiento] = useState("");       // Select tratamiento      
         const state = [
           { key:'paciente', value: paciente, type:"dropdown", setState: setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
           { key:'fecha', value: fecha, type:"date", setState: setFecha , handleChange: (event) => setFecha( event.target.value ) },

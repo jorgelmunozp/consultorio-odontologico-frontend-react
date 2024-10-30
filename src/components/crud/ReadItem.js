@@ -1,9 +1,23 @@
+import { CalendarSmile } from '../icons/calendar/CalendarSmile';
+import { User } from '../icons/user/User';
+import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
+import { HomeIndex } from '../icons/home/HomeIndex';
+
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-export const ReadItem = ({ classType, Icon, item, setOpen }) => {
-  const keys = Object.keys(item[classType]);                    // Nombre de los parámetros del objeto
-  const values = Object.values(item[classType]);                // Valores de cada parámetro del objeto
+export const ReadItem = ({ classType, item, setOpen }) => {
+  let Icon = '';                                                  // Selección de icono correspondiente
+  switch (classType) { case 'cita' : Icon = CalendarSmile; break;
+                       case 'paciente': Icon = User; break;
+                       case 'doctor': Icon = User; break;
+                       case 'consultorio': Icon = HomeIndex; break;
+                       case 'tratamiento': Icon = StethoscopeLight; break;
+                       case 'especialidad': Icon = StethoscopeLight; break;
+  }
+  
+  const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
+  const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
   
   values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto

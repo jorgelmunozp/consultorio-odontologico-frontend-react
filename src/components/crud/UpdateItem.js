@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
+import { CalendarEdit } from '../icons/calendar/CalendarEdit';
+import { UserEdit } from '../icons/user/UserEdit';
+import { HomeEdit } from '../icons/home/HomeEdit';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { myColor } from '../../global';
@@ -10,7 +13,16 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, Row, state }) => { 
+export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, state }) => { 
+  let Icon = '';                                                  // Selección de icono correspondiente
+  switch (classType) { case 'cita' : Icon = CalendarEdit; break;
+                       case 'paciente': Icon = UserEdit; break;
+                       case 'doctor': Icon = UserEdit; break;
+                       case 'consultorio': Icon = HomeEdit; break;
+                       case 'tratamiento': Icon = HomeEdit; break;
+                       case 'especialidad': Icon = HomeEdit; break;
+  }
+  
   // --- Dropdown
   const myDropdown = new DropdownClass();
   const statesDropdown = myDropdown.state;
@@ -31,7 +43,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, setAlert, R
       fetchResponse.then(
         async function(value) {
             if(200 <= value && value <= 299) { 
-            await fetch(urlApi)                                                 // API Restful para consumo de las tablas de la base de datos
+            await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
                 .then(response => response.json())
       
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));

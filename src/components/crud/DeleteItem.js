@@ -1,10 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import { fetchDelete } from '../../helpers/fetchDelete';
+import { Warning } from '../icons/warning/Warning';
 import '../modal/modal.css';
 
-export const DeleteItem = ({ classType, Icon, item, urlApi, setOpen, setAlert }) => {
-  const keys = Object.keys(item[classType]);                    // Nombre de los parámetros del objeto
-  const values = Object.values(item[classType]);                // Valores de cada parámetro del objeto
+export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
+  const Icon = Warning;                                           // Icono 
+  const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
+  const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
   
   values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto
@@ -18,7 +20,7 @@ export const DeleteItem = ({ classType, Icon, item, urlApi, setOpen, setAlert })
     fetchResponse.then(
       async function(value) {
         if(200 <= value && value <= 299) {
-          await fetch(urlApi)                      //API REST para consumo de la tabla Consultorios de la base de datos
+          await fetch(urlApi)                                     // API Restful para eliminar dato de la base de datos
               .then(response => response.json())
     
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
