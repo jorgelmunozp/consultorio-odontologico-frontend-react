@@ -43,11 +43,11 @@ export const IndexScreen = () => {
   return (
     <div className="App">
         <div className="container-fluid px-0 pt-2">
-          <div className='backgroundImage pt-5 pb-5'>
+          <div className='backgroundImage pt-5 pb-5 shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} />
             <h1 className='main-color fw-semibold'>{ myTitle }</h1>
           </div>
-          <div className="row">   
+          <div id="collapseMenu" className="row collapse">   
             {
               services.map((service,index) => {
                 return (

@@ -10,7 +10,6 @@ export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,isMenuOp
                 </a>
             </p>
             <div id="collapseContent" className="collapse pb-2">
-                {/* <div className="card card-body shadow-sm text-start"> */}
                 <div className="card card-body shadow-sm">
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>

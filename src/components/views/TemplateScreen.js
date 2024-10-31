@@ -1,3 +1,4 @@
+import '../../assets/styles/App.css';
 import { IndexScreen } from './index/IndexScreen';
 import { ViewCitas } from '../crud/views/ViewCitas';
 import { ViewPacientes } from '../crud/views/ViewPacientes';
@@ -36,7 +37,8 @@ import { HearthPlus } from '../icons/hearth/HearthPlus';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterPlus } from '../icons/filter/FilterPlus';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../assets/styles/App.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
 export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {

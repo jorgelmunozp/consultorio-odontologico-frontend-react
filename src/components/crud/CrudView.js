@@ -7,7 +7,6 @@ export const CrudView = ({ classType, Icon, services, isMenuOpen, setMenu }) => 
           <h5 className='century-gothic main-color fs-sm-2'>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
           <Icon height={4} width={4} strokeWidth={1} className='text-muted main-color'/>
         </center>
-        {/* <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 ' + (isMenuOpen ? ' ms-0 ms-sm-2 ps-5':'' )}> */}
         <div className={'container-fluid mt-2 pe-0 pe-md-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100' )}>
           <div className="container-fluid px-0 pt-2">
             <div className="row justify-content-center">   
