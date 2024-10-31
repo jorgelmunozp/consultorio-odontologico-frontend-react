@@ -9,7 +9,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
   return (
     <div className="App w-100 user-select-none">
       <header className="fixed-top shadow-lg text-center py-2">
-        <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none">
+        <nav className="navbar navbar-expand-sm navbar-light fixed-top shadow-lg user-select-none">
           <div className="container-fluid justify-content-center">
             <Link className="navbar-brand main-color" to={"/" + urlBaseFrontend + "/index"} >
               <Logo color={myColor} height={1.4} width={1.4} />
@@ -17,7 +17,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
           </div>
         </nav>
       </header>
-      <div className='App-body d-flex bg-white mt-5'>
+      <div className='App-body d-flex mt-5'>
         <div className='mt-5 mx-auto w-100'>
           <div className="container-fluid text-center">
             <h1 className="text-muted mt-4"><Warning height={2} width={2}/></h1>

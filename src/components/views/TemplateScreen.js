@@ -43,7 +43,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
   return (
     <div className="App user-select-none">
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
-        <nav className="navbar bg-light">
+        <nav className="navbar">
           <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
             <div className="offcanvas-header justify-content-center align-self-center align-items-center mx-auto w-100 shadow-sm">
               <h5 className="offcanvas-title nav-item">
@@ -76,7 +76,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
           </div>
         </nav>
       </aside>
-      <div className='App-body d-flex bg-white'>
+      <div className='App-body d-flex'>
           <div id="App" className="App mx-auto w-100"> 
               <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
           </div>

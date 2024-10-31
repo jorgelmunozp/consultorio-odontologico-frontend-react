@@ -42,7 +42,7 @@ export const IndexScreen = () => {
 
   return (
     <div className="App">
-        <div className="container-fluid bg-light px-0 pt-2">
+        <div className="container-fluid px-0 pt-2">
           <div className='backgroundImage pt-5 pb-5'>
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} />
             <h1 className='main-color fw-semibold'>{ myTitle }</h1>
@@ -53,7 +53,7 @@ export const IndexScreen = () => {
                 return (
                   <div key={ service.title + index } className="col-lg-2 col-sm-4 col-4 mb-1 mb-sm-2 text-center">
                     <div className="card border-0 rounded-xs pt-0 shadow">
-                      <button onClick={() => setView(index)} className="border-0">
+                      <button onClick={() => setView(index)} className="bg-transparent border-0">
                         <div className="card-body">
                           <i className="main-color">{ service.icon }</i>
                           <h6 className="text-secondary d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2">{ service.title }</h6>

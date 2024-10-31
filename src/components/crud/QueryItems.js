@@ -103,7 +103,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
         </center>
 
         {/* <div className='container-fluid border overflow-auto'> */}
-        <div className={'container-fluid border overflow-auto me-0' + (isMenuOpen ? ' w-responsive':' w-100') }>
+        <div className={'container-fluid border overflow-auto me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100') }>
           {/* <div className={'row flex-nowrap bg-main-color' + (isMenuOpen ? ' ms-0 ms-sm-2 ps-4 ps-sm-5':' px-0 px-sm-5')}> */}
           <div className={'row flex-nowrap bg-main-color'}>
             <span className={'col-3 col-sm-2 bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ 'Código' }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></div></div></div></span>
@@ -112,7 +112,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
           </div>
             { arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
                 // <div className={'row flex-nowrap border-bottom text-start text-nowrap py-2' + (isMenuOpen ? ' ms-0 ms-sm-2 ps-4 ps-sm-5':' px-0 px-sm-5')} id={'row'+item.id } key={ item.id }>
-                <div className={'row flex-nowrap border-bottom text-start text-nowrap py-2'} id={'row'+item.id } key={ item.id }>
+                <div className='row flex-nowrap border-bottom text-start text-nowrap py-2' id={'row'+item.id } key={ item.id }>
                   <Row classType={classType} item={item} urlApi={urlApi} state={state} />
                 </div>
               )})

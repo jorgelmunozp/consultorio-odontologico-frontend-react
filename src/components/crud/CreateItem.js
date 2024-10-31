@@ -77,7 +77,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
         </center>
         {/* <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 ' + (isMenuOpen ? ' ms-0 ms-sm-2 ps-5':' px-0 px-sm-5' )}> */}
-        <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
+        <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
           {
             state.map(property => {
               return(
