@@ -44,7 +44,8 @@ hr { opacity: 0.5; }
 .mt-logo { margin-top: 0.08em !important; }
 .lh-0 { line-height: 0.5; }
 .z-10000 { z-index: 10000 !important;}
-
+.w-responsive { width: 94% !important; }
+@media (max-width: 576px) { .w-responsive { width: 87.5% !important; } }
 /*************************** Menú **************************/
 .offcanvas { width: 4em !important; }
 .offcanvas-header { padding-bottom: 0 !important;  }

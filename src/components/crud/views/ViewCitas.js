@@ -5,8 +5,8 @@ import { CalendarPlus } from '../../icons/calendar/CalendarPlus';
 
 export const ViewCitas = ({ isMenuOpen, setMenu }) => {
   const services = [
-    { 'title':'Consultar', 'menu':3, 'icon':<CalendarSearch height={5} width={5} strokeWidth={1} className='text-muted main-color' /> },
-    { 'title':'Registrar', 'menu':4, 'icon':<CalendarPlus height={5} width={5} strokeWidth={1} className='text-muted main-color' /> },
+    { 'title':'Consultar', 'menu':3, 'icon':<CalendarSearch height={4} width={4} strokeWidth={1} className='text-muted main-color' /> },
+    { 'title':'Registrar', 'menu':4, 'icon':<CalendarPlus height={4} width={4} strokeWidth={1} className='text-muted main-color' /> },
   ];
 
   return ( <CrudView classType={'cita'} Icon={CalendarSmile} services={services} IconCreate={CalendarPlus} IconQuery={CalendarSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
