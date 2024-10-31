@@ -6,8 +6,8 @@ import { UserPlus } from '../../icons/user/UserPlus';
 
 export const ViewDoctores = ({ isMenuOpen, setMenu }) => {
   const services = [
-    { 'title':'Consultar', 'menu':12, 'icon':<UserSearch height={4} width={4} strokeWidth={1} className='text-muted main-color' /> },
-    { 'title':'Registrar', 'menu':13, 'icon':<UserPlus height={4} width={4} strokeWidth={1} className='text-muted main-color' /> },
+    { 'title':'Consultar', 'menu':12, 'Icon':UserSearch },
+    { 'title':'Registrar', 'menu':13, 'Icon':UserPlus },
   ];
 
   return ( <CrudView classType={'doctor'} Icon={User} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
