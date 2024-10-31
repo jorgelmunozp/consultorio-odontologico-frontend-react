@@ -16,8 +16,11 @@ export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries }) => {
                             {
                                 placeholders.map((title, index)=>{
                                     return (
+                                        <>
                                         <TextField key={title} id={title} defaultValue={queries[index]} onChange={(target) => setQueries[index](target.target.value)} label={title} variant='outlined' margin='dense' fullWidth className='col' />
-                                        // <Input />
+                                        <Input />
+                                        {/* <Input property={ property } className={'col input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> */}
+                                        </>
                                     )
                                 })
                             }

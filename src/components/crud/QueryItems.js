@@ -29,7 +29,6 @@ import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import { Logo } from '../icons/logo/Logo';
 
 const Row = ({ classType,item,urlApi,state }) => {
   const [readOpen, setReadOpen] = useState(false);

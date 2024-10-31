@@ -1,6 +1,6 @@
 import '../forms.css';
 
-export const Input = ({ property,className }) => {
+export const Input = ({ property, className }) => {
     if( property !== undefined ){
         return (
             <div className="form-floating text-center text-nowrap text-truncate shadow-sm" data-mdb-input-init>

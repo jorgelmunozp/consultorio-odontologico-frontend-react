@@ -50,6 +50,10 @@ hr { opacity: 0.5; }
 .offcanvas-header { padding-bottom: 0 !important;  }
 .offcanvas-body { padding-top: 0 !important; }
 
+/*************************** HEADER **************************/
+
+.backgroundImage { background: url("../images/background.svg") repeat; }
+
 /*************************** BODY **************************/
 .contenidoBody { width: 90%; }
 @media (max-width: 576px) { .contenidoBody { width: 100%; }}
