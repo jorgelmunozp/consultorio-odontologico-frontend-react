@@ -42,8 +42,8 @@ export const IndexScreen = () => {
 
   return (
     <div className="App">
-        <div className="container-fluid bg-light px-0 pt-4 pt-sm-3">
-          <div className='backgroundImage pt-3 pb-5'>
+        <div className="container-fluid bg-light px-0 pt-2">
+          <div className='backgroundImage pt-5 pb-5'>
             <Logo color={myColor} height={5} width={5} strokeWidth={0.9} />
             <h2 className='main-color fw-semibold'>{ myTitle }</h2>
           </div>

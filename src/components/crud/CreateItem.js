@@ -79,8 +79,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
         <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 ' + (isMenuOpen ? ' ps-5':'' )}>
           {
             state.map(property => {
-    console.log('property.type CreateItem: ', property.type)
-
               return(
                 <div key={'row'+property.key} className='row'>
                   {   property.type === 'dropdown' ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>

@@ -1,4 +1,10 @@
 import { IndexScreen } from './index/IndexScreen';
+import { ViewCitas } from '../crud/views/ViewCitas';
+import { ViewPacientes } from '../crud/views/ViewPacientes';
+import { ViewDoctores } from '../crud/views/ViewDoctores';
+import { ViewEspecialidades } from '../crud/views/ViewEspecialidades';
+import { ViewConsultorios } from '../crud/views/ViewConsultorios';
+import { ViewTratamientos } from '../crud/views/ViewTratamientos';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
 import { QueryDoctores } from '../crud/query/QueryDoctores';
@@ -34,9 +40,6 @@ import '../../assets/styles/App.css';
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
 export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
-  // const menuOpcion = 1;
-  // const [menu, setMenu] = useState(menuOpcion);
-
   return (
     <div className="App user-select-none">
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
@@ -50,55 +53,59 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
             <div className="offcanvas-body mt-2">
               <ul className="navbar-nav align-items-center">
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><CalendarMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><UserInjured height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><Syringe height={iconHeight} width={iconWidth} className='main-color'/> </span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><UserMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><Stethoscope height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><HearthSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><HearthPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><span className="nav-link"><HomeMedical height={iconHeight} width={iconWidth} className='main-color'/></span></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarMedical height={iconHeight} width={iconWidth} className='main-color'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserInjured height={iconHeight} width={iconWidth} className='main-color'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><Syringe height={iconHeight} width={iconWidth} className='main-color'/> </button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><UserMedical height={iconHeight} width={iconWidth} className='main-color'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/> </button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(14)}><Stethoscope height={iconHeight} width={iconWidth} className='main-color'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(15)}><HearthSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(16)}><HearthPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(17)}><HomeMedical height={iconHeight} width={iconWidth} className='main-color'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(18)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(19)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='text-muted main-color-hover'/></button></li>
               </ul>
             </div>
           </div>
         </nav>
       </aside>
       <div className='App-body d-flex bg-white'>
-        <div id='contenidoBody' className='contenidoBody mx-auto'>
-          <div id="App" className="App"> 
-              <MenuView menu={ menu } isMenuOpen={ isMenuOpen } />
+          <div id="App" className="App mx-auto w-100"> 
+              <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
           </div>
-        </div>
       </div>
     </div>
   );
 }
 
-const MenuView = ({ menu, isMenuOpen }) => {                            // Componente para elegir vista a renderizar
+const MenuView = ({ menu, isMenuOpen, setMenu }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen />;
-    case 2: return <QueryCitas isMenuOpen={isMenuOpen} />;
-    case 3: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
-    case 4: return <QueryPacientes isMenuOpen={isMenuOpen} />;
-    case 5: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
-    case 6: return <QueryTratamientos isMenuOpen={isMenuOpen} />;
-    case 7: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 8: return <QueryDoctores isMenuOpen={isMenuOpen} />;
-    case 9: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
-    case 10: return <QueryEspecialidades isMenuOpen={isMenuOpen} />;
-    case 11: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 12: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
-    case 13: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
+    case 2: return <ViewCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 3: return <QueryCitas isMenuOpen={isMenuOpen} />;
+    case 4: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
+    case 5: return <ViewPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 6: return <QueryPacientes isMenuOpen={isMenuOpen} />;
+    case 7: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
+    case 8: return <ViewTratamientos isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 9: return <QueryTratamientos isMenuOpen={isMenuOpen} />;
+    case 10: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 11: return <ViewDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 12: return <QueryDoctores isMenuOpen={isMenuOpen} />;
+    case 13: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
+    case 14: return <ViewEspecialidades isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 15: return <QueryEspecialidades isMenuOpen={isMenuOpen} />;
+    case 16: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 17: return <ViewConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 18: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
+    case 19: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen />;
   }
 }
