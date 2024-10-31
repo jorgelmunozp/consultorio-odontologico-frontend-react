@@ -55,8 +55,13 @@ const Row = ({ classType,item,urlApi,state }) => {
   return (
         <>
           <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
-          { Object.values(item[classType]).map((item,index) => { return(
-              <div key={'item'+index} className={'text-start text-nowrap' + (typeof item !== 'object' ? ' col-4 col-sm-2':' col-6 col-sm-3') }>{ (typeof item !== 'object') ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
+          {/* { Object.values(item[classType]).map((item,index) => { console.log("item: ",item.length); return(
+              // <div key={'item'+index} className={'text-start text-nowrap' + (typeof item === 'object' ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item !== 'object') ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
+              <div key={'item'+index} className={'text-start text-nowrap' + (item.length > 12 ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item !== 'object') ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
+            )})
+          } */}
+          { Object.entries(item[classType]).map((item,index) => { console.log("item: ",item[1]); return(
+              <div key={'item'+index} className={'text-start text-nowrap' + (item.length > 12 ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0] + ' ' + Object.values(item[1])[1] }</div>
             )})
           }
           <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
@@ -91,10 +96,8 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
 
   const objectClass = new Classe('');                                       // Objeto instanciado con la Class
   const urlApi = objectClass.api;
-  const {titles, placeholders} = objectClass.titles;
-  console.log(" QueryItems: ", titles)
+  const { titles, placeholders } = objectClass.titles;
   const state = objectClass.state;
-
   const { queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
   
@@ -109,7 +112,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
         <div className={'container-fluid border overflow-auto' + (isMenuOpen ? ' ps-5':'')}>
           <div className='row flex-nowrap bg-main-color'>
           <span className={'col-3 col-sm-2 bg-main-color border-bottom border-dark text-center' }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ 'Código' }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></div></div></div></span>
-            { titles.map((item,index) => { return( <span className={'bg-main-color border-bottom border-dark text-center' + (typeof item !== 'object' ? ' col-4 col-sm-2':' col-6 col-sm-3') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ item.title }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 1 + index*2 )}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 2 + index*2 )}><Arrows direction={"down"}/></button></div></div></div></span> )}) }
+            { titles.map((item,index) => { return( <span key={'title'+index} className={'bg-main-color border-bottom border-dark text-center' + ( item.type === 'dropdown' ? ' col-6 col-sm-3':' col-4 col-sm-2') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ item.title }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 1 + index*2 )}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 2 + index*2 )}><Arrows direction={"down"}/></button></div></div></div></span> )}) }
             <div className='col-8 col-sm-3 bg-main-color border-bottom border-dark'></div>        {/* header botones crud */}
           </div>
             { arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
