@@ -96,10 +96,8 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   return (
     <div className="App">
       <div className='mt-4 mt-sm-5'>
-        <>
-          <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (['doctor','especialidad'].includes(classType) ? 'es':'s') }</h5>
-          <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} placeholders={placeholders} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} />
-        </>
+        <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (['doctor','especialidad'].includes(classType) ? 'es':'s') }</h5>
+        <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} placeholders={placeholders} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
 
         <div className={'container-fluid border overflow-auto me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100') }>
           <div className={'row flex-nowrap bg-main-color'}>

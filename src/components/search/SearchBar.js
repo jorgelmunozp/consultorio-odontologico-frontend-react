@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 import { Input } from '../forms/inputs/Input';
 
-export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,isMenuOpen }) => {
+export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,className,isMenuOpen }) => {
     return (
-        <div className={'me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
+        <div className={ className }>
             <p>
                 <a className="form-control border border-muted text-center text-decoration-none shadow-sm py-0 py-sm-1 w-75" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
                     { icon }
