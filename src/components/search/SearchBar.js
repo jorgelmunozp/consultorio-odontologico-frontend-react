@@ -1,16 +1,17 @@
 import { TextField } from "@mui/material";
 import { Input } from '../forms/inputs/Input';
 
-export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries }) => {
+export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,isMenuOpen }) => {
     return (
-        <div>
+        <div className={'me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
             <p>
                 <a className="form-control border border-muted text-center text-decoration-none shadow-sm py-0 py-sm-1 w-75" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
                     { icon }
                 </a>
             </p>
             <div id="collapseContent" className="collapse pb-2">
-                <div className="card card-body shadow-sm text-start">
+                {/* <div className="card card-body shadow-sm text-start"> */}
+                <div className="card card-body shadow-sm">
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
                             {

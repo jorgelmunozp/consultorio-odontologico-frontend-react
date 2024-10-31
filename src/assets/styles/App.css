@@ -154,7 +154,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color-scheme: inherit;
   cursor: pointer;
 }
-select {                                  /* Select Swal views */      
+select {                                  /* Select views */      
   background-color: var(--white-color);
   font-size: inherit;
   font-family: inherit;
