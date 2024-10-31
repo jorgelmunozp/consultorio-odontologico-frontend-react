@@ -55,9 +55,6 @@ hr { opacity: 0.5; }
 .backgroundImage { background: url("../images/background.svg") repeat; }
 
 /*************************** BODY **************************/
-.contenidoBody { width: 90%; }
-@media (max-width: 576px) { .contenidoBody { width: 100%; }}
-
 .table {
   border-collapse: collapse;
   border-color: var(--lightgray-color);
