@@ -132,7 +132,7 @@
   }
 
 /* Table */
-  .modalTable { border: gray 1px solid;}
+  .modalTable { border: lightgray 1px solid;}
   .modalTable .row:nth-child(even){background-color:var(--white-color);}
   .modalTable .row:nth-child(odd){background-color: #f1f1f1;}
   .modalTable .row:nth-child(even):hover { background-color:var(--main-transparent-color); }

@@ -3,7 +3,6 @@ import { User } from '../../icons/user/User';
 import { UserSearch } from '../../icons/user/UserSearch';
 import { UserPlus } from '../../icons/user/UserPlus';
 
-
 export const ViewPacientes = ({ isMenuOpen, setMenu }) => {
   const services = [
     { 'title':'Consultar', 'menu':6, 'Icon':UserSearch },

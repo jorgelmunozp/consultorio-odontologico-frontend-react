@@ -3,7 +3,6 @@ import { HomeIndex } from '../../icons/home/HomeIndex';
 import { HomeSearch } from '../../icons/home/HomeSearch';
 import { HomePlus } from '../../icons/home/HomePlus';
 
-
 export const ViewConsultorios = ({ isMenuOpen, setMenu }) => {
   const services = [
     { 'title':'Consultar', 'menu':18, 'Icon':HomeSearch },

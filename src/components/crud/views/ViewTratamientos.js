@@ -3,7 +3,6 @@ import { SyringeLight } from '../../icons/medical/SyringeLight';
 import { FilterSearch } from '../../icons/filter/FilterSearch';
 import { FilterPlus } from '../../icons/filter/FilterPlus';
 
-
 export const ViewTratamientos = ({ isMenuOpen, setMenu }) => {
   const services = [
     { 'title':'Consultar', 'menu':9, 'Icon':FilterSearch },

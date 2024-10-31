@@ -73,14 +73,14 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                     <div className='col'>Datos</div>
                   </div>
                   <div className='row'>
-                    <div className='col modalTableData text-start'>
+                    <div className='col text-start'>
                       <Input property={ {key:'código', value:item.id, type:'number'} }  className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} /></div>
                   </div>
                   {
                     state.map((property,index)=>{ 
                       return(
                         <div key={index} className='row'>
-                          <div className='col modalTableData text-start'>
+                          <div className='col text-start'>
                             { property.type === 'dropdown' 
                                   ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
                                   : <Input property={ property } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
