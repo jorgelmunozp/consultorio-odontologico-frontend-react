@@ -57,9 +57,9 @@ const Row = ({ classType,item,urlApi,state }) => {
           { Object.entries(item[classType]).map((item,index) => {
             return( <div key={'item'+index} className={'text-start text-nowrap' + ( ['paciente','doctor','consultorio','tratamiento','especialidad'].includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
           }
-          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
-          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
-          <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
+          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
+          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
+          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
           
           { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }

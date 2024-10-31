@@ -35,9 +35,9 @@ const Row = ({ item,urlApi }) => {
           <td className='ps-4 ps-sm-5 text-nowrap'>{ item.id }</td>
           <td className='ps-4 ps-sm-5 text-nowrap'>{ item.consultorio.numero }</td>
           <td className='ps-2 ps-sm-5 text-nowrap'>{ item.consultorio.nombre }</td>
-          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
-          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
-          <td><button className='border-0 bg-transparent primaryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
+          <td><button className='border-0 bg-transparent queryBtn' onClick={ () => setReadOpen(true) }><TbHomeSearch className='text-secondary'/></button></td>
+          <td><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><TbHomeEdit className='text-secondary'/></button></td>
+          <td><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><TbHomeX className='text-secondary'/></button></td>
           
           { readOpen && <ReadItem Icon={HomeIndex} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem Icon={HomeEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }

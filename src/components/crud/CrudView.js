@@ -14,7 +14,7 @@ export const CrudView = ({ classType, Icon, services, isMenuOpen, setMenu }) => 
                 services.map((service,index) => {
                   return (
                     <div key={ service.title + index } className="col-6 col-sm-4 mb-1 mb-sm-2 text-center">
-                      <div className="card border-0 rounded-xs pt-0 shadow">
+                      <div className="card border-0 rounded-xs pt-0 buttonTransition shadow">
                         <button onClick={() => setMenu( service.menu )} className="border-0">
                           <div className="card-body pt-4 pt-sm-5">
                             <i className="main-color">{ service.icon }</i>
