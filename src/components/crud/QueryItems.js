@@ -96,9 +96,10 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   return (
     <div className="App">
       <div className='mt-4 mt-sm-5'>
-        <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (['doctor','especialidad'].includes(classType) ? 'es':'s') }</h5>
-        <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} placeholders={placeholders} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
-
+        <center>
+          <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (['doctor','especialidad'].includes(classType) ? 'es':'s') }</h5>
+          <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} placeholders={placeholders} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
+        </center>
         <div className={'container-fluid border overflow-auto me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100') }>
           <div className={'row flex-nowrap bg-main-color'}>
             <span className={'col-3 col-sm-2 bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ 'Código' }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></div></div></div></span>
