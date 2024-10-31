@@ -55,14 +55,8 @@ const Row = ({ classType,item,urlApi,state }) => {
   return (
         <>
           <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
-          {/* { Object.values(item[classType]).map((item,index) => { console.log("item: ",item.length); return(
-              // <div key={'item'+index} className={'text-start text-nowrap' + (typeof item === 'object' ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item !== 'object') ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
-              <div key={'item'+index} className={'text-start text-nowrap' + (item.length > 12 ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item !== 'object') ? item : Object.values(item)[0] + ' ' + Object.values(item)[1] }</div>
-            )})
-          } */}
-          { Object.entries(item[classType]).map((item,index) => { console.log("item: ",item[1]); return(
-              <div key={'item'+index} className={'text-start text-nowrap' + (item.length > 12 ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0] + ' ' + Object.values(item[1])[1] }</div>
-            )})
+          { Object.entries(item[classType]).map((item,index) => {
+            return( <div key={'item'+index} className={'text-start text-nowrap' + ( ['paciente','doctor','consultorio','tratamiento','especialidad'].includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
           }
           <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
           <div className='col'><button className='border-0 bg-transparent primaryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
