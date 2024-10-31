@@ -9,16 +9,16 @@ export const CrudView = ({ classType, Icon, services, isMenuOpen, setMenu }) => 
         </center>
         <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 ' + (isMenuOpen ? ' ps-5':'' )}>
           <div className="container-fluid bg-light px-0 pt-2">
-            <div className="row">   
+            <div className="row justify-content-center">   
               {
                 services.map((service,index) => {
                   return (
-                    <div key={ service.title + index } className="col-lg-2 col-sm-4 col-4 mb-1 mb-sm-2 text-center">
+                    <div key={ service.title + index } className="col-6 col-sm-4 mb-1 mb-sm-2 text-center">
                       <div className="card border-0 rounded-xs pt-0 shadow">
                         <button onClick={() => setMenu( service.menu )} className="border-0">
-                          <div className="card-body">
+                          <div className="card-body pt-4 pt-sm-5">
                             <i className="main-color">{ service.icon }</i>
-                            <h6 className="text-secondary d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2">{ service.title }</h6>
+                            <h4 className="text-secondary text-nowrap text-truncate fs-5 fs-sm-3 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h4>
                           </div>
                         </button>
                       </div>
