@@ -1,15 +1,12 @@
 import { useState,useEffect } from 'react';
 import '../forms.css';
 
-export const Dropdown = ({ property, states, defaultSelect='', className }) => {
-  const key = property.key;
-  const placeholder = key.charAt(0).toUpperCase() + key.slice(1);
-
+export const Dropdown = ({ classType, states, placeholder, defaultSelect='', handleChange, className }) => {
   let [value, setValue] = useState('');
   const [open, setOpen] = useState(false)
 
   let array = [];
-  switch(key) { 
+  switch(classType) { 
     case 'paciente': array = states[0]; break;
     case 'doctor': array = states[1]; break;
     case 'consultorio': array = states[2]; break;
@@ -26,22 +23,22 @@ export const Dropdown = ({ property, states, defaultSelect='', className }) => {
 
   return(
     <div className="dropdown form-floating w-100 min-width-10 py-sm-0 px-0" onFocus={ array.handleSelect }>
-      <button onClick={ () => open === false ? setOpen(true):setOpen(false) } onChange={ property.handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+key} aria-controls={"dropdownMenu"+key} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
+      <button onClick={ () => open === false ? setOpen(true):setOpen(false) } onChange={ handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+classType} aria-controls={"dropdownMenu"+classType} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
       <label htmlFor="selectButton" className="form-label text-muted text-nowrap text-truncate">{ value.length === 0 ? '' : placeholder }</label>
 
-      <ul id={"dropdownMenu"+key} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
+      <ul id={"dropdownMenu"+classType} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
         { array.option.map((item, index) => {
-            switch( key ) {
-              case 'paciente': value=item[key].nombre+ " " + item[key].apellido; break;
-              case 'doctor': value=item[key].nombre + " " + item[key].apellido; break;
-              case 'consultorio': value=item[key].numero + " " + item[key].nombre; break;
-              case 'tratamiento': value=item[key].especialidad; break;
-              case 'eps': value=item[key].nombre; break;
-              case 'genero': value=item[key].nombre; break;
-              case 'especialidad': value=item[key].nombre; break;
+            switch( classType ) {
+              case 'paciente': value=item[classType].nombre+ " " + item[classType].apellido; break;
+              case 'doctor': value=item[classType].nombre + " " + item[classType].apellido; break;
+              case 'consultorio': value=item[classType].numero + " " + item[classType].nombre; break;
+              case 'tratamiento': value=item[classType].especialidad; break;
+              case 'eps': value=item[classType].nombre; break;
+              case 'genero': value=item[classType].nombre; break;
+              case 'especialidad': value=item[classType].nombre; break;
           }
 
-          return (<li key={ key+'Item'+index }><button className="dropdown-item" value={ value } onClick={ (e) => { setValue(e.target.value); setOpen(false); property.handleChange(e)} }>{ value }</button></li>);
+          return (<li key={ classType+'Item'+index }><button className="dropdown-item" value={ value } onClick={ (event) => { setValue(event.target.value); setOpen(false); handleChange(event)} }>{ value }</button></li>);
         })}
       </ul>
     </div>

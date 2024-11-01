@@ -1,6 +1,6 @@
 import { Input } from '../forms/inputs/Input';
 
-export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,className }) => {
+export const SearchBar = ({ icon='🔎',items,queries,setQueries,className }) => {
     return (
         <div className={ className }>
             <p>
@@ -13,7 +13,8 @@ export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,classNam
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
                             {
-                                placeholders.map((item, index)=>{
+                                items.map((item, index)=>{
+                                    console.log("item SearchBar", item)
                                     return (
                                         // <Input property={{key:item.title, value:queries[index], type:item.type, handleChange:(target) => setQueries[index](target.target.value) }} className={'col input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                                         <Input key={item.type+index} value={queries[index]} type={item.type} onChange={(target) => setQueries[index](target.target.value) } placeholder={item.title.charAt(0).toUpperCase() + item.title.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />

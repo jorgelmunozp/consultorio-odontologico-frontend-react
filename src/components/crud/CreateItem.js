@@ -79,10 +79,11 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
         <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
           {
             state.map(property => {
+              console.log("property.handleChange CreateItem: ", property.handleChange)
               return(
                 <div key={'row'+property.key} className='row'>
-                  {   property.type === 'dropdown' ? <div className='col'><Dropdown property={ property } states={statesDropdown} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                   : <div className='col'><Input value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                  {   property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} states={statesDropdown} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+                                                   : <div className='col'><Input value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})
