@@ -1,4 +1,4 @@
-import { fetchCreate } from '../../helpers/fetchCreate';
+import { fetchCreate } from '../../../helpers/fetchCreate';
 
 export const BotonFetch = ({ endIcon,title,urlApi,contenidoApi,setResponseStatus,className }) => {
   return (

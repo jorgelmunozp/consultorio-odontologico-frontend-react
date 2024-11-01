@@ -17,7 +17,7 @@ export class Tratamiento {
     getApi = () => { return( urlApi )}                               // METHOD API
     get api () { return this.getApi() }                              // Getter api
 
-    getTitles = () => {                                           // METHOD TITLES
+    getTitles = () => {                                              // METHOD TITLES
         let titles = [];
         this.state.forEach((parameter, index) => { 
             titles[index] = { 
@@ -31,7 +31,7 @@ export class Tratamiento {
 
         return({ titles, placeholders })
     }                          
-    get titles () { return this.getTitles() }                     // Getter titles
+    get titles () { return this.getTitles() }                        // Getter titles
 
     getState = () => {                                               // Method
         const [especialidad, setEspecialidad] = useState("");        // Input especialidad state

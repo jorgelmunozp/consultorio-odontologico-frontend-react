@@ -9,7 +9,7 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
-import { BotonFetch } from "../../forms/buttons/BotonFetch";
+import { BotonFetch } from "../forms/buttons/BotonFetch";
 
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
