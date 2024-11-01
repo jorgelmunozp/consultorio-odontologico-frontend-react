@@ -16,7 +16,7 @@ export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,classNam
                                 placeholders.map((item, index)=>{
                                     return (
                                         // <Input property={{key:item.title, value:queries[index], type:item.type, handleChange:(target) => setQueries[index](target.target.value) }} className={'col input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
-                                        <Input property={true} value={queries[index]} type={item.type} onChange={(target) => setQueries[index](target.target.value)} placeholder={item.title.charAt(0).toUpperCase() + item.title.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                                        <Input value={queries[index]} type={item.type} onChange={(target) => setQueries[index](target.target.value)} placeholder={item.title.charAt(0).toUpperCase() + item.title.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                                     )
                                 })
                             }

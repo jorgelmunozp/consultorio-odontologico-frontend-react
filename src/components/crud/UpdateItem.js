@@ -81,7 +81,7 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                           {/* <div className='col text-start'> */}
                             { property.type === 'dropdown' 
                                   ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
-                                  : <Input property={true} value={property.value} type={property.type} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                                  : <Input property={true} value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                             }
                           {/* </div> */}
                         </div>
