@@ -81,8 +81,8 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
             state.map(property => {
               return(
                 <div key={'row'+property.key} className='row'>
-                  {   property.type === 'dropdown' ? <div className='col'><Dropdown property={ property } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                   : <div className='col'><Input property={ property } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                  {   property.type === 'dropdown' ? <div className='col'><Dropdown property={ property } states={statesDropdown} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+                                                   : <div className='col'><Input value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})

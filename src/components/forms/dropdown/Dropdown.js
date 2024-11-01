@@ -25,7 +25,7 @@ export const Dropdown = ({ property, states, defaultSelect='', className }) => {
   useEffect(() => { if(defaultSelect.length !== 0 && value.length === 0) { setValue(defaultSelect) } });
 
   return(
-    <div className="dropdown form-floating w-100 min-width-10 py-sm-0" onFocus={ array.handleSelect }>
+    <div className="dropdown form-floating w-100 min-width-10 py-sm-0 px-0" onFocus={ array.handleSelect }>
       <button onClick={ () => open === false ? setOpen(true):setOpen(false) } onChange={ property.handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+key} aria-controls={"dropdownMenu"+key} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
       <label htmlFor="selectButton" className="form-label text-muted text-nowrap text-truncate">{ value.length === 0 ? '' : placeholder }</label>
 

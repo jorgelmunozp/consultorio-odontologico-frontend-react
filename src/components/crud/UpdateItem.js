@@ -69,23 +69,21 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
               </div>
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
-                  <div className='row modalTableTitle'>
-                    <div className='col'>Datos</div>
-                  </div>
                   <div className='row'>
-                    <div className='col text-start'>
-                      <Input property={ {key:'código', value:item.id, type:'number'} }  className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} /></div>
+                    {/* <div className='col text-start'> */}
+                      <Input placeholder={'Código'} value={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
+                    {/* </div> */}
                   </div>
                   {
                     state.map((property,index)=>{ 
                       return(
                         <div key={index} className='row'>
-                          <div className='col text-start'>
+                          {/* <div className='col text-start'> */}
                             { property.type === 'dropdown' 
                                   ? <Dropdown property={ property } defaultSelect={ property.value } states={ statesDropdown } className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
-                                  : <Input property={ property } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                                  : <Input property={true} value={property.value} type={property.type} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                             }
-                          </div>
+                          {/* </div> */}
                         </div>
                       )
                     })

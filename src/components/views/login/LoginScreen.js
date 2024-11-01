@@ -38,8 +38,8 @@ export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
   return (
     <div className='container mt-1 text-center user-select-none'>
         <div className="d-grid gap-2 col mx-auto pb-3 w-100">
-          <Input placeholder={'Usuario'} inputText={userInput} onInputChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
-          <InputPassword placeholder={'Contraseña'} inputText={passwordInput} onInputChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
+          <Input placeholder={'Usuario'} value={userInput} type={'text'} onChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
+          <InputPassword placeholder={'Contraseña'} value={passwordInput} onChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           
           <button className='btn btn-login my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user.logged ? "" : "#loginModalFail"} aria-controls="modalBody" onClick={ handleLogin }>Ingresar</button>
           <button type="button" className="btn btn-outline-danger py-3 shadow-sm" data-bs-dismiss="modal">Cancelar</button>

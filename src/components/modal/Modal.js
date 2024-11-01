@@ -24,7 +24,7 @@ export const Modal = ({ open, setOpen, content='', buttons=1 }) => {
         <>
           {
             open !== false && <>
-                      <div className={'modalContainer'}>
+                      <div className={'modalContainer justify-content-center'}>
                         <div className={'modalBox'}>
                           <div className={'modalHeader'}>
                             <center><Icon color={iconColor} height={4.5} width={4.5} className={'modalIcon center mt-4'} /></center>
@@ -34,8 +34,8 @@ export const Modal = ({ open, setOpen, content='', buttons=1 }) => {
                                     : ''
                           }
                           <div className={'modalFooter'}>
-                            <div className={'d-grid mt-3 w-100'}>
-                                {   buttons === 1 ? <button className={'aceptBtn w-50'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
+                            <div className={'d-grid mt-4'}>
+                                {   buttons === 1 ? <button className={'aceptBtn'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
                                   : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button> <button className={'cancelBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Cancel</button></>
                                   : ""}
                             </div>

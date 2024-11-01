@@ -1,4 +1,3 @@
-import { TextField } from "@mui/material";
 import { Input } from '../forms/inputs/Input';
 
 export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,className,isMenuOpen }) => {
@@ -14,13 +13,10 @@ export const SearchBar = ({ icon='🔎',placeholders,queries,setQueries,classNam
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
                             {
-                                placeholders.map((title, index)=>{
+                                placeholders.map((item, index)=>{
                                     return (
-                                        <>
-                                        <TextField key={title} id={title} defaultValue={queries[index]} onChange={(target) => setQueries[index](target.target.value)} label={title} variant='outlined' margin='dense' fullWidth className='col' />
-                                        <Input />
-                                        {/* <Input property={ property } className={'col input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> */}
-                                        </>
+                                        // <Input property={{key:item.title, value:queries[index], type:item.type, handleChange:(target) => setQueries[index](target.target.value) }} className={'col input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                                        <Input property={true} value={queries[index]} type={item.type} onChange={(target) => setQueries[index](target.target.value)} placeholder={item.title.charAt(0).toUpperCase() + item.title.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                                     )
                                 })
                             }
