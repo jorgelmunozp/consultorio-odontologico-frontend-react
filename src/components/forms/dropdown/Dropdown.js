@@ -6,9 +6,6 @@ export const Dropdown = ({ classType, placeholder, array, defaultSelect='', hand
   let [value, setValue] = useState('');
   const [open, setOpen] = useState(false)
 
-  console.log("array Dropdown:",array)
-  console.log("pagination Dropdown:",pagination)
-
   const class1 = ' dropdown-toggle text-start pt-2 ps-2 ps-sm-3 pe-5 w-100';
   const class2 = ' dropdown-toggle text-center pt-4 ps-2 ps-sm-3 pe-5 w-100';
 
@@ -19,7 +16,7 @@ export const Dropdown = ({ classType, placeholder, array, defaultSelect='', hand
       <button onClick={ () => open === false ? setOpen(true):setOpen(false) } onChange={ handleChange } className={ className + (value.length === 0 ? class1 : class2) } type="button" id="selectButton" data-bs-target={"#dropdownMenu"+classType} aria-controls={"dropdownMenu"+classType} aria-expanded="false">{ value.length === 0 ? placeholder : value }</button>
       <label htmlFor="selectButton" className="form-label text-muted text-nowrap text-truncate">{ value.length === 0 ? '' : placeholder }</label>
 
-      <ul id={"dropdownMenu"+classType} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
+      <ul id={"dropdownMenu"+classType} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto smooth" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
         { array.slice(pagination.indexPage[0],pagination.indexPage[1]).map((option, index) => {
             switch( classType ) {
               case 'paciente': value=option[classType].nombre+ " " + option[classType].apellido; break;
