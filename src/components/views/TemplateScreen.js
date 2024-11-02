@@ -91,7 +91,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
 
 const MenuView = ({ menu, isMenuOpen, setMenu }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
-    case 1: return <IndexScreen />;
+    case 1: return <IndexScreen isMenuOpen={isMenuOpen} />;
     case 2: return <ViewCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 3: return <QueryCitas isMenuOpen={isMenuOpen} />;
     case 4: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
@@ -110,6 +110,6 @@ const MenuView = ({ menu, isMenuOpen, setMenu }) => {                           
     case 17: return <ViewConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 18: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
     case 19: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
-    default: return <IndexScreen />;
+    default: return <IndexScreen isMenuOpen={isMenuOpen} />;
   }
 }

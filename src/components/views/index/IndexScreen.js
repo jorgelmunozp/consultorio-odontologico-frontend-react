@@ -39,12 +39,12 @@ const services = [
 //   }
 // }
 
-export const IndexScreen = () => {
+export const IndexScreen = ({ isMenuOpen }) => {
   let [view, setView] = useState(0);
 
   return (
     <div className="App">
-        <div className="container-fluid px-0 pt-2">
+        <div className={"container-fluid px-0 pt-2 me-0 smooth" + (isMenuOpen ? ' w-responsive':' w-100')}>
           <div className='backgroundImage pt-5 pb-5 shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} />
             <h1 className='main-color fw-semibold'>{ myTitle }</h1>
