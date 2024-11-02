@@ -8,7 +8,7 @@ export const SearchBar = ({ icon='🔎',items,queries,setQueries,className }) =>
                     { icon }
                 </a>
             </p>
-            <div id="collapseContent" className="collapse pb-2">
+            <div id="collapseContent" className="collapse pb-2 slideIn smooth" >
                 <div className="card card-body shadow-sm">
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
