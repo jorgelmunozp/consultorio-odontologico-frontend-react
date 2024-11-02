@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import SwipeableViews from 'react-swipeable-views';
+
 import { QueryCitas } from '../../crud/query/QueryCitas';
 import { QueryPacientes } from '../../crud/query/QueryPacientes';
 import { QueryDoctores } from '../../crud/query/QueryDoctores';
@@ -25,17 +27,17 @@ const services = [
   { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
 ];
 
-const View = ({ view }) => {
-  switch (view) {
-    case 0: return <QueryCitas />;
-    case 1: return <QueryPacientes />;
-    case 2: return <QueryDoctores />;
-    case 3: return <QueryEspecialidades />;
-    case 4: return <QueryConsultorios />;
-    case 5: return <QueryTratamientos />;
-    default: return <QueryCitas />;
-  }
-}
+// const View = ({ view }) => {
+//   switch (view) {
+//     case 0: return <QueryCitas />;
+//     case 1: return <QueryPacientes />;
+//     case 2: return <QueryDoctores />;
+//     case 3: return <QueryEspecialidades />;
+//     case 4: return <QueryConsultorios />;
+//     case 5: return <QueryTratamientos />;
+//     default: return <QueryCitas />;
+//   }
+// }
 
 export const IndexScreen = () => {
   let [view, setView] = useState(0);
@@ -51,12 +53,12 @@ export const IndexScreen = () => {
             {
               services.map((service,index) => {
                 return (
-                  <div key={ service.title + index } className="col-lg-2 col-sm-4 col-4 mb-1 mb-sm-2 text-center">
-                    <div className="card border-0 rounded-xs pt-0 shadow">
+                  <div key={ service.title + index } className={"col-lg-2 col-sm-4 col-4 nav-item nav-link mb-1 mb-sm-2 text-center"}>
+                    <div className={"card border-0 rounded-xs pt-0 hover shadow" + (view === index ? ' bounce active':'')}>
                       <button onClick={() => setView(index)} className="bg-transparent border-0">
                         <div className="card-body">
-                          <i className="main-color">{ service.icon }</i>
-                          <h6 className="text-secondary d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2">{ service.title }</h6>
+                          <i className={(view === index ? ' gray-color':' main-color')}>{ service.icon }</i>
+                          <h6 className={"d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2" + (view === index ? ' gray-color':' text-secondary')}>{ service.title }</h6>
                         </div>
                       </button>
                     </div>
@@ -66,7 +68,15 @@ export const IndexScreen = () => {
             }
           </div>
 
-          <View view={view} />
+          {/* <View view={view} /> */}
+          <SwipeableViews index={view} onChangeIndex={(indexLatest)=>setView(indexLatest)} enableMouseEvents>
+            <QueryCitas />
+            <QueryPacientes />
+            <QueryDoctores />
+            <QueryEspecialidades />
+            <QueryConsultorios />
+            <QueryTratamientos />
+          </SwipeableViews>
         </div>
     </div>
   )

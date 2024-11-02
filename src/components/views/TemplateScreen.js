@@ -1,4 +1,6 @@
 import '../../assets/styles/App.css';
+import { Suspense, lazy } from 'react';
+
 import { IndexScreen } from './index/IndexScreen';
 import { ViewCitas } from '../crud/views/ViewCitas';
 import { ViewPacientes } from '../crud/views/ViewPacientes';
@@ -80,7 +82,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
       </aside>
       <div className='App-body d-flex'>
           <div id="App" className="App mx-auto w-100"> 
-              <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
+          <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
           </div>
       </div>
     </div>

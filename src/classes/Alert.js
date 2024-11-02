@@ -41,7 +41,7 @@ export class Alert {
     //         <div className={'modalContainer'}>
     //             <div className={'modalBox'}>
     //             <div className={'modalHeader'}>
-    //                 <center><Icon color={iconColor} height={5.5} width={5.5} className={'modalIcon center mt-4'} /></center>
+    //                 <center><Icon color={iconColor} height={5.5} width={5.5} className={'bounce center mt-4'} /></center>
     //                 <h3 className={'modalTitle main-color pt-3'}>{ title }</h3>
     //             </div>
     //                 {

@@ -27,7 +27,7 @@ export const Modal = ({ open, setOpen, content='', buttons=1 }) => {
                       <div className={'modalContainer justify-content-center'}>
                         <div className={'modalBox'}>
                           <div className={'modalHeader'}>
-                            <center><Icon color={iconColor} height={4.5} width={4.5} className={'modalIcon center mt-4'} /></center>
+                            <center><Icon color={iconColor} height={4.5} width={4.5} className={'bounce center mt-4'} /></center>
                             <h3 className={'modalTitle main-color pt-3'}>{ title }</h3>
                           </div>
                           { content ? <div className={'modalContent'}><center><h3>{ content }</h3></center></div>

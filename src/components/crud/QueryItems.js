@@ -92,9 +92,6 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   const state = objectClass.state;
   const { queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
-
-  console.log("SortByProperty: ",SortByProperty)
-  // console.log("setSortBy: ",setSortBy)
   
   return (
     <div className="App">
