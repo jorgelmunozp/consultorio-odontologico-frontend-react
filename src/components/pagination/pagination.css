@@ -12,20 +12,20 @@
 }
 .page-link {
     background-color: transparent !important;
-    color: var(--gray-color);
+    color: var(--gray-color) !important;
     padding: 0 .25rem !important;
     border: none !important;
     box-shadow: none !important;
 }
 .page-link:hover {
     background-color: transparent !important;
-    color: var(--dark-color);
+    color: var(--dark-color) !important;
     border: none !important;
     box-shadow: none !important;
 }
 .page-item.active .page-link {
     background-color: transparent !important;
-    color: var(--main-color);
+    color: var(--main-color) !important;
     border: none !important;
     box-shadow: none !important;
 }

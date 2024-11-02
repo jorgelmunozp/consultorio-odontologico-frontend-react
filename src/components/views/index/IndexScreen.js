@@ -49,16 +49,16 @@ export const IndexScreen = () => {
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} />
             <h1 className='main-color fw-semibold'>{ myTitle }</h1>
           </div>
-          <div id="collapseMenu" className="row collapse">   
+          <div id="collapseMenu" className="row bg-transparent collapse shadow">   
             {
               services.map((service,index) => {
                 return (
-                  <div key={ service.title + index } className={"col-lg-2 col-sm-4 col-4 nav-item nav-link mb-1 mb-sm-2 text-center"}>
-                    <div className={"card border-0 rounded-xs pt-0 hover shadow" + (view === index ? ' bounce active':'')}>
+                  <div key={ service.title + index } className={"col-2 nav-item nav-link text-center"}>
+                    <div className={"card border-0 rounded-0 pt-0 hover"}>
                       <button onClick={() => setView(index)} className="bg-transparent border-0">
-                        <div className="card-body">
-                          <i className={(view === index ? ' gray-color':' main-color')}>{ service.icon }</i>
-                          <h6 className={"d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2" + (view === index ? ' gray-color':' text-secondary')}>{ service.title }</h6>
+                        <div className={"card-body bg-transparent" + (view === index ? ' bounce':'')}>
+                          <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
+                          <h6 className={"d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2" + (view === index ? ' main-color':' gray-color')}>{ service.title }</h6>
                         </div>
                       </button>
                     </div>
