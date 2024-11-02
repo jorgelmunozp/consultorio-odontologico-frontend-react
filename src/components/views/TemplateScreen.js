@@ -1,6 +1,7 @@
 import '../../assets/styles/App.css';
 import { Suspense, lazy } from 'react';
 
+import { NavLink } from 'react-router-dom';
 import { IndexScreen } from './index/IndexScreen';
 import { ViewCitas } from '../crud/views/ViewCitas';
 import { ViewPacientes } from '../crud/views/ViewPacientes';
@@ -56,23 +57,24 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
             </div>
             <div className="offcanvas-body mt-2">
               <ul className="navbar-nav align-items-center">
+              <NavLink onClick={()=>setMenu(1)} >v</NavLink>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(1)}><HomeIndex height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarMedical height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(2)}><CalendarMedical height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(3)}><CalendarSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(4)}><CalendarPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserInjured height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(5)}><UserInjured height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(6)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(7)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><Syringe height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/> </button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(8)}><Syringe height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/> </button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(9)}><FilterSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(10)}><FilterPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><UserMedical height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(11)}><UserMedical height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(12)}><UserSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/> </button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(13)}><UserPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(14)}><Stethoscope height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(14)}><Stethoscope height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(15)}><HearthSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(16)}><HearthPlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
-                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(17)}><HomeMedical height={iconHeight} width={iconWidth} className='main-color gray-color-hover jumpHover'/></button></li>
+                <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(17)}><HomeMedical height={iconHeight} width={iconWidth} className='main-color dark-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(18)}><HomeSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
                 <li className="nav-item"><button className="nav-link" onClick={()=>setMenu(19)}><HomePlus height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className='gray-color main-color-hover jumpHover'/></button></li>
               </ul>

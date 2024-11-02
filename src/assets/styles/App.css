@@ -227,4 +227,5 @@ select::-ms-expand { display: none; }
   100% { transform: scale(1); }
 }
 
+.active { color: var(--main-color) !important;}
 .hover:hover { background-color: #f3f3f3 !important; }

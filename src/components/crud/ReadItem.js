@@ -29,7 +29,7 @@ export const ReadItem = ({ classType, item, setOpen }) => {
   
     return (
         <>
-          <div className={'modalContainer'}>
+          <div className={'modalContainer justify-items-center'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
                 <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>

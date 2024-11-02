@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-
 import { QueryCitas } from '../../crud/query/QueryCitas';
 import { QueryPacientes } from '../../crud/query/QueryPacientes';
 import { QueryDoctores } from '../../crud/query/QueryDoctores';
@@ -16,8 +15,6 @@ import { Syringe } from '../../icons/medical/Syringe';
 import { Logo } from '../../icons/logo/Logo';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global';
 
-
-const iconSize = 20;
 const services = [
   { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },
   { "title":"Pacientes", "icon":<UserInjured height={iconHeight} width={iconWidth} /> },
@@ -27,25 +24,13 @@ const services = [
   { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
 ];
 
-// const View = ({ view }) => {
-//   switch (view) {
-//     case 0: return <QueryCitas />;
-//     case 1: return <QueryPacientes />;
-//     case 2: return <QueryDoctores />;
-//     case 3: return <QueryEspecialidades />;
-//     case 4: return <QueryConsultorios />;
-//     case 5: return <QueryTratamientos />;
-//     default: return <QueryCitas />;
-//   }
-// }
-
 export const IndexScreen = ({ isMenuOpen }) => {
   let [view, setView] = useState(0);
 
   return (
     <div className="App">
         <div className={"container-fluid px-0 pt-2 me-0 smooth" + (isMenuOpen ? ' w-responsive':' w-100')}>
-          <div className='backgroundImage pt-5 pb-5 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
+          <div className='backgroundImage pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} />
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
           </div>

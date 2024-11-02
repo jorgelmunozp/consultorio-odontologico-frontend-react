@@ -41,7 +41,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu,
                     {
                         ( user.logged )
                             ?   <>
-                                    <NavLink is className={ ({ isActive }) => 'nav-item nav-link' }
+                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link' }
                                         onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
                                 </>
                             :   <>

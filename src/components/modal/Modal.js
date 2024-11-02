@@ -24,7 +24,7 @@ export const Modal = ({ open, setOpen, content='', buttons=1 }) => {
         <>
           {
             open !== false && <>
-                      <div className={'modalContainer justify-content-center'}>
+                      <div className={'modalContainer justify-items-center justify-content-center'}>
                         <div className={'modalBox'}>
                           <div className={'modalHeader'}>
                             <center><Icon color={iconColor} height={4.5} width={4.5} className={'bounce center mt-4'} /></center>

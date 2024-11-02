@@ -36,7 +36,7 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
  
     return (
         <>
-          <div className={'modalContainer'}>
+          <div className={'modalContainer justify-items-center'}>
             <div className={'modalBox'}>
               <div className={'modalHeader'}>
                 <center><Icon color={'#f8bb86'} height={3} width={3} className={'center'} /></center>
