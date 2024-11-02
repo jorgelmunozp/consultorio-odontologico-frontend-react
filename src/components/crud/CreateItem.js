@@ -34,9 +34,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const urlApi = objectClass.api;
   let item = "";
 
-  // --- Dropdown
-  
-
   // --- Alert
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
   const { alert, setAlert } = MyAlert.state;

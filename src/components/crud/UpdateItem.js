@@ -24,9 +24,6 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                        case 'especialidad': Icon = FilterEdit; break;
   }
   
-  // --- Dropdown
-  const myDropdown = new DropdownClass();
-  
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
    useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización
       state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });
@@ -72,7 +69,8 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
                   </div>
                   {
                     state.map((property,index)=>{
-                      const { array, pagination } = myDropdown.getData(property.key);
+                      const myDropdown = new DropdownClass({ classType:property.key });
+                      const { array, pagination } = myDropdown.getData();
 
                       return(
                         <div key={index} className='row'>
