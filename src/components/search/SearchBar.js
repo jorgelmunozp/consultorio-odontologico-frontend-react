@@ -2,12 +2,12 @@ import { Input } from '../forms/inputs/Input';
 
 export const SearchBar = ({ icon='🔎',items,queries,setQueries,className }) => {
     return (
-        <div className={ className }>
-            <p>
-                <a className="form-control border border-muted text-center text-decoration-none shadow-sm py-0 py-sm-1 w-75" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
+        <div className={ className + ' justify-items-center' }>
+            <h6 className="form-control border border-muted text-center text-decoration-none shadow-sm py-0 py-sm-1 w-75">
+                <a data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
                     { icon }
                 </a>
-            </p>
+            </h6>
             <div id="collapseContent" className="collapse pb-2 slideIn smooth" >
                 <div className="card card-body shadow-sm">
                     <div className='container-fluid'>
