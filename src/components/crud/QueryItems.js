@@ -34,9 +34,9 @@ const Row = ({ classType,item,urlApi,state }) => {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
-  let IconSearch = '';                                                      // Selección de icono search
-  let IconEdit = '';                                                        // Selección de icono update
-  let IconDelete = '';                                                      // Selección de icono delete
+  let IconSearch = '';                                                          // Selección de icono search
+  let IconEdit = '';                                                            // Selección de icono update
+  let IconDelete = '';                                                          // Selección de icono delete
   switch (classType) { case 'cita': IconSearch= CalendarSearch; IconEdit= CalendarEdit; IconDelete= CalendarDelete; break;
                        case 'paciente': IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
                        case 'doctor': IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
@@ -45,16 +45,18 @@ const Row = ({ classType,item,urlApi,state }) => {
                        case 'especialidad': IconSearch= HearthSearch; IconEdit= HearthEdit; IconDelete= HearthDelete;  break;
   }
 
-  const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
+  const MyAlert = new Alert('');                                                            // Objeto instanciado con la clase Alert para las alertas
   const { alert, setAlert } = MyAlert.state;
 
-  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';   // No scroll when alerts are open
   
+  const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad'];       // Wide columns
+
   return (
         <>
           <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
           { Object.entries(item[classType]).map((item,index) => {
-            return( <div key={'item'+index} className={'text-start text-nowrap' + ( ['paciente','doctor','consultorio','tratamiento','especialidad'].includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
+            return( <div key={'item'+index} className={'text-start text-nowrap' + ( wideItems.includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
           }
           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>

@@ -10,14 +10,16 @@ const apiGeneros  = process.env.REACT_APP_API_GENEROS;
 const apiEspecialidades  = process.env.REACT_APP_API_ESPECIALIDADES;
 
 export class DropdownClass {
-    constructor() { }
+    constructor({ classType:classType='' }) {
+        this.classType = {classType}.classType;
+    }
 
-    getData = ( key ) => {                                              // METHOD DATA
+    getData = () => {                                              // METHOD DATA
         /* Fetch */
         let array = [];
         let urlApi = '';
 
-        switch(key) { 
+        switch(this.classType) { 
           case 'paciente': urlApi= apiPacientes; break;
           case 'doctor': urlApi= apiDoctores; break;
           case 'consultorio': urlApi= apiConsultorios; break;

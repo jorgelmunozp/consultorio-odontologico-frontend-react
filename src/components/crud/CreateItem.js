@@ -35,11 +35,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   let item = "";
 
   // --- Dropdown
-  const myDropdown = new DropdownClass();
   
-  // const dataPagination = myDropdown.data;
-  // console.log("dataPagination: ",dataPagination)
-
 
   // --- Alert
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
@@ -83,7 +79,8 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
         <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
           {
             state.map((property) => {
-              const { array, pagination } = myDropdown.getData(property.key);
+              const myDropdown = new DropdownClass({ classType:property.key });
+              const { array, pagination } = myDropdown.getData();
 
               return(
                 <div key={'row'+property.key} className='row'>

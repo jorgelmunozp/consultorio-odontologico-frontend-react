@@ -19,7 +19,7 @@ export const CrudView = ({ classType, Icon, services, isMenuOpen, setMenu }) => 
                         <button onClick={() => setMenu( service.menu )} className="bg-transparent border-0">
                           <div className="card-body pt-4 pt-sm-5">
                             <service.Icon color={myColor} height={4} width={4} strokeWidth={1} className='text-muted' />
-                            <h5 className="text-secondary text-nowrap text-truncate fs-5 fs-sm-3 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h5>
+                            <h5 className="text-dark text-nowrap text-truncate fs-sm-2 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h5>
                           </div>
                         </button>
                       </div>
