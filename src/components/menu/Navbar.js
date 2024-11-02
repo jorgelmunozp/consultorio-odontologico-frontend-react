@@ -28,7 +28,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu,
         navigate((urlBaseFrontend), { replace: true });
     }
 
-    const handleClick = () => { isMenuOpen === false ? setIsMenuOpen(true) : setIsMenuOpen(false) }
+    const handleMenu = () => { isMenuOpen === false ? setIsMenuOpen(true) : setIsMenuOpen(false) }
 
     return (
         <>
@@ -52,7 +52,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu,
                                             </NavLink>
                                         </ul>
                                         <ul className="navbar-nav col">
-                                            <NavLink onClick={ handleClick } className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
+                                            <NavLink onClick={ handleMenu } className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="offcanvas" data-bs-target="#offcanvasBody" aria-controls="offcanvasBody">
                                                 <HomeMenu color={myColor} height={1.3} width={1.3} strokeWidth={5}/>
                                             </NavLink>
                                         </ul>
