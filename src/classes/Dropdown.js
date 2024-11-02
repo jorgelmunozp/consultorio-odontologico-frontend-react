@@ -48,13 +48,13 @@ export class DropdownClass {
         let urlApi = '';
 
         switch(key) { 
-          case 'paciente': urlApi = apiPacientes; break;
-          case 'doctor': urlApi = apiDoctores; break;
-          case 'consultorio': urlApi = apiConsultorios; break;
-          case 'tratamiento': urlApi = apiTratamientos; break;
-          case 'eps': urlApi = apiEpss; break;
-          case 'genero': urlApi = apiGeneros; break;
-          case 'especialidad': urlApi = apiEspecialidades; break;
+          case 'paciente': urlApi= apiPacientes; break;
+          case 'doctor': urlApi= apiDoctores; break;
+          case 'consultorio': urlApi= apiConsultorios; break;
+          case 'tratamiento': urlApi= apiTratamientos; break;
+          case 'eps': urlApi= apiEpss; break;
+          case 'genero': urlApi= apiGeneros; break;
+          case 'especialidad': urlApi= apiEspecialidades; break;
         };
 
         let [ alertFetch, setAlertFetch ] = useState(false);
@@ -81,7 +81,7 @@ export class DropdownClass {
             }
         }
         const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
-        const pagination = { indexPage:indexPage, indexPage:indexPage, activePages:activePages, indexPages:indexPages, setIndexPage:setIndexPage, setActivePages:setActivePages }
+        const pagination = { itemsPerPage:itemsPerPage, indexPage:indexPage, activePages:activePages, indexPages:indexPages, setIndexPage:setIndexPage, setActivePages:setActivePages }
 
         return({ array, pagination })
     }

@@ -20,7 +20,7 @@ export const Dropdown = ({ classType, placeholder, array, defaultSelect='', hand
       <label htmlFor="selectButton" className="form-label text-muted text-nowrap text-truncate">{ value.length === 0 ? '' : placeholder }</label>
 
       <ul id={"dropdownMenu"+classType} className={"dropdown-menu text-center shadow-sm w-100 overflow-auto" + (open ? " collapse show" : "")} style={ array.length === 0 ? {"maxHeight":"0rem"} : {"maxHeight":"12rem"} } aria-labelledby="selectButton">
-        { array.map((option, index) => {
+        { array.slice(pagination.indexPage[0],pagination.indexPage[1]).map((option, index) => {
             switch( classType ) {
               case 'paciente': value=option[classType].nombre+ " " + option[classType].apellido; break;
               case 'doctor': value=option[classType].nombre + " " + option[classType].apellido; break;
