@@ -55,10 +55,10 @@ export class Especialidad {
         const arrayFiltered = useMemo( () => getEspecialidadesFiltered(array,queryCode,queryName), [array,queryCode,queryName] );
         
         /* Pagination */
-        const [itemPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
-        const [indexPage, setIndexPage ] = useState([0,itemPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-        const numPages = Math.floor(arrayFiltered.length/itemPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-        const resPages = arrayFiltered.length%itemPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+        const [itemsPerPage, setItemsPerPage ] = useState(10);                // Se define el número de items por página
+        const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+        const numPages = Math.floor(arrayFiltered.length/itemsPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
+        const resPages = arrayFiltered.length%itemsPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
         let indexPages = [];
         let activePage = [true];                                            // [true]
         if(resPages !== 0 ){
@@ -74,7 +74,7 @@ export class Especialidad {
         }
         const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
     
-        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
+        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
 

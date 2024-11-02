@@ -26,11 +26,9 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
   
   // --- Dropdown
   const myDropdown = new DropdownClass();
-  const statesDropdown = myDropdown.state;
   
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
- 
-  useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
+   useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización
       state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });
   },[])
 
@@ -70,20 +68,18 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
                   <div className='row'>
-                    {/* <div className='col text-start'> */}
-                      <Input placeholder={'Código'} value={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
-                    {/* </div> */}
+                    <Input placeholder={'Código'} value={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
                   </div>
                   {
-                    state.map((property,index)=>{ 
+                    state.map((property,index)=>{
+                      const { array, pagination } = myDropdown.getData(property.key);
+
                       return(
                         <div key={index} className='row'>
-                          {/* <div className='col text-start'> */}
-                            { property.type === 'dropdown' 
-                                  ? <Dropdown classType={property.key} states={ statesDropdown } defaultSelect={ property.value } handleChange={ property.handleChange } placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
-                                  : <Input property={true} value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
-                            }
-                          {/* </div> */}
+                          { property.type === 'dropdown' 
+                                ? <Dropdown classType={property.key} array={array} defaultSelect={ property.value } handleChange={ property.handleChange } placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
+                                : <Input property={true} value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                          }
                         </div>
                       )
                     })

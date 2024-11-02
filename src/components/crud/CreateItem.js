@@ -10,6 +10,7 @@ import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { BotonFetch } from "../forms/buttons/BotonFetch";
+import { PaginationBar } from '../pagination/PaginationBar';
 
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
@@ -35,7 +36,10 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
 
   // --- Dropdown
   const myDropdown = new DropdownClass();
-  const statesDropdown = myDropdown.state;
+  
+  // const dataPagination = myDropdown.data;
+  // console.log("dataPagination: ",dataPagination)
+
 
   // --- Alert
   const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
@@ -78,12 +82,13 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
         </center>
         <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
           {
-            state.map(property => {
-              console.log("property.handleChange CreateItem: ", property.handleChange)
+            state.map((property) => {
+              const { array, pagination } = myDropdown.getData(property.key);
+
               return(
                 <div key={'row'+property.key} className='row'>
-                  {   property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} states={statesDropdown} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                   : <div className='col'><Input value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                  { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+                                                 : <div className='col'><Input value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})

@@ -90,7 +90,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
   const state = objectClass.state;
-  const { queries,setQueries,arrayFiltered,alertFetch,indexPage,itemPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages } = objectClass.data;
+  const { queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
   
   return (
@@ -113,7 +113,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
               )})
             }
         </div>
-        <PaginationBar array={arrayFiltered} itemPerPage={itemPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
+        <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>
       <Modal open={alertFetch} setOpen={setAlertFetch} />
     </div>
