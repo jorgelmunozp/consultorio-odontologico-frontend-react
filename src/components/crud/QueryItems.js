@@ -120,3 +120,5 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
     </div>
   );
 };
+
+export default QueryItems;
