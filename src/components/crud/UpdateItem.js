@@ -49,7 +49,7 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
           }
           else { setAlert('errorUpdate') }
         },
-        function(error) { setAlert('Error Update: ', error) }
+        function(error) { setAlert('errorUpdate'); console.log('Error Update: ', error) }
       )
     }
   };
@@ -86,7 +86,7 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
               </div>
               <div className={'modalFooter'}>
                 <div className={'d-flex mt-2 w-100'}>
-                  <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setAlert(true); setOpen(false) }}>Actualizar</button>
+                  <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setOpen(false) }}>Actualizar</button>
                   <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>
               </div>

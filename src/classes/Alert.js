@@ -1,8 +1,4 @@
-import { Component, useState } from "react";
-import { Modal } from '../components/modal/Modal';
-import { Success } from '../components/icons/success/Success';
-import { Warning } from '../components/icons/warning/Warning';
-import { Error } from '../components/icons/error/Error';
+import { useState } from "react";
 
 export class Alert {
     constructor({ type:type='',title:title='', message:message='', buttons:buttons='' }) {

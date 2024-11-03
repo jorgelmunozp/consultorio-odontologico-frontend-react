@@ -7,23 +7,23 @@ export const QueryCitas = ({ isMenuOpen }) => {
           <Suspense fallback={
           // <center><div className="loader"></div></center>
 
-          <center><div class="clock-loader"></div></center>
+          <center><div className="clock-loader"></div></center>
           
           // <center>
-          //   <div class="loader">
-          //     <div class="inner one"></div>
-          //     <div class="inner two"></div>
-          //     <div class="inner three"></div>
+          //   <div className="loader">
+          //     <div className="inner one"></div>
+          //     <div className="inner two"></div>
+          //     <div className="inner three"></div>
           //   </div>
           // </center>
 
 
-          // <div class="container">
-          //   <div class="cargando">
-          //     <div class="pelotas"></div>
-          //     <div class="pelotas"></div>
-          //     <div class="pelotas"></div>
-          //     <span class="texto-cargando">Cargando...</span>
+          // <div className="container">
+          //   <div className="cargando">
+          //     <div className="pelotas"></div>
+          //     <div className="pelotas"></div>
+          //     <div className="pelotas"></div>
+          //     <span className="texto-cargando">Cargando...</span>
           //   </div>
           // </div>
 

@@ -64,7 +64,7 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
               </div>
               <div className={'modalFooter'}>
                 <div className={'d-flex mt-2 w-100'}>
-                    <button className={'aceptBtn w-100'} onClick={() => {handleDelete();setAlert(true);setOpen(false)}}>Eliminar</button>
+                    <button className={'aceptBtn w-100'} onClick={() => {handleDelete();setOpen(false)}}>Eliminar</button>
                     <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
                 </div>
               </div>

@@ -64,7 +64,7 @@ const Row = ({ classType,item,urlApi,state }) => {
           { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
           { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
           { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          {/* { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  } */}
+          { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  }
           { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
           { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
           { alert === 'errorDelete' && <Modal open={alert} setOpen={setAlert} />  }
@@ -107,7 +107,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
             <div className='col-8 col-sm-3 bg-main-color border-bottom border-dark'></div>        {/* header botones crud */}
           </div>
             { arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
-                <div className='row flex-nowrap border-bottom text-start text-nowrap py-2' id={'row'+item.id } key={ item.id }>
+                <div id={'row'+item.id } key={ item.id } className='row flex-nowrap border-bottom text-start text-nowrap py-2' >
                   <Row classType={classType} item={item} urlApi={urlApi} state={state} />
                 </div>
               )})

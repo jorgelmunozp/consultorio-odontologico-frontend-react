@@ -1,6 +1,4 @@
 import '../../assets/styles/App.css';
-import { Suspense, lazy } from 'react';
-
 import { IndexScreen } from './index/IndexScreen';
 import { ViewCitas } from '../crud/views/ViewCitas';
 import { ViewPacientes } from '../crud/views/ViewPacientes';
