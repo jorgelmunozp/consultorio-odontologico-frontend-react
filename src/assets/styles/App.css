@@ -186,8 +186,105 @@ select::-ms-expand { display: none; }
 
 /**************************** Loader SUSPENSE ************************/
 
+.clock-loader {
+  --clock-color: var(--main-color);
+  --clock-width: 4rem;
+  --clock-radius: calc(var(--clock-width) / 2);
+  --clock-minute-length: calc(var(--clock-width) * 0.4);
+  --clock-hour-length: calc(var(--clock-width) * 0.2);
+  --clock-thickness: 0.2rem;
 
-.loader {
+  position: relative;
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--clock-width);
+  height: var(--clock-width);
+  border: 3px solid var(--clock-color);
+  border-radius: 50%;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--clock-radius) * 0.25);
+    width: var(--clock-thickness);
+    background: var(--clock-color);
+    border-radius: 10px;
+    transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
+    animation: spin infinite linear;
+  }
+
+  &::before {
+    height: var(--clock-minute-length);
+    animation-duration: 2s;
+  }
+
+  &::after {
+    top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
+    height: var(--clock-hour-length);
+    animation-duration: 15s;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+
+/********** Pelotas **********/
+.container{   
+  display: grid;
+  /* place-content: center; */
+  height: 100vh;
+  margin-top: 4em;
+}
+.cargando{
+  width: 80px;
+  height: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 auto; 
+}
+.texto-cargando{ 
+  padding-top:20px
+}
+.cargando span{
+    font-size: 16px;
+    /* text-transform: uppercase; */
+}
+.pelotas {
+    width: 20px;
+    height: 20px;
+    background-color: var(--main-color);
+    animation: salto .5s alternate
+    infinite;
+  border-radius: 50%  
+}
+.pelotas:nth-child(2) {
+    animation-delay: .18s;
+}
+.pelotas:nth-child(3) {
+    animation-delay: .37s;
+}
+@keyframes salto {
+    from {
+        transform: scaleX(1.25);
+    }
+    to{
+        transform: 
+        translateY(-50px) scaleX(1);
+    }
+}
+
+/********** Abstracto **********/
+/* .loader {
   margin-top: 1em;
   width: 80px;
   height: 80px;
@@ -249,9 +346,10 @@ select::-ms-expand { display: none; }
   100% {
     transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
-}
+} */
 
 
+/********** Giros naranjas **********/
 
 /* HTML: <div class="loader"></div> */
 /* .loader {
@@ -270,7 +368,7 @@ select::-ms-expand { display: none; }
 } */
 
 
-
+/********** Sencillo **********/
 /* .loader {
   margin-top: 20px;
   border: 5px solid #f3f3f3;
@@ -292,11 +390,11 @@ select::-ms-expand { display: none; }
 .jumpHover:hover { transform: translateY(-5px); }
 
 /**************************** Animations ********************************/ 
-.spin { animation: bounce 1s ease; }
+/* .spin { animation: bounce 1s ease; }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
+} */
 
 .bounce { animation: bounce 1s ease; }
 @keyframes bounce {
@@ -307,7 +405,7 @@ select::-ms-expand { display: none; }
 
 .slideIn { animation: slideIn 0.5s ease-out; }
 @keyframes slideIn {
-  0% { transform: scale(0.95); }
+  0% { transform: scale(0.925); }
   100% { transform: scale(1); }
 }
 

@@ -1,13 +1,14 @@
 import { Input } from '../forms/inputs/Input';
+import { SearchIcon } from './SearchIcon';
+import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
+import './search.css';
 
-export const SearchBar = ({ icon='🔎',items,queries,setQueries,className }) => {
+export const SearchBar = ({ Icon=SearchIcon,items,queries,setQueries,className }) => {
     return (
         <div className={ className + ' justify-items-center' }>
-            <h6 className="form-control border border-muted text-center text-decoration-none shadow-sm py-0 py-sm-1 w-75">
-                <a data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
-                    { icon }
-                </a>
-            </h6>
+            <button data-bs-toggle="collapse" href="#collapseContent" role="button" className="form-control border border-muted text-center text-decoration-none py-0 py-sm-1 w-75 justify-items-center box-shadow" aria-expanded="false" aria-controls="collapseContent">
+                <Icon height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color jumpHover'}/>
+            </button>
             <div id="collapseContent" className="collapse pb-2 slideIn smooth" >
                 <div className="card card-body shadow-sm">
                     <div className='container-fluid'>

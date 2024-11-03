@@ -41,7 +41,7 @@ export const IndexScreen = ({ isMenuOpen }) => {
                   <div key={ service.title + index } className={"col-2 nav-item nav-link text-center"}>
                     <div className={"card border-0 rounded-0 pt-0 hover"}>
                       <button onClick={() => setView(index)} className="bg-transparent border-0">
-                        <div className={"card-body bg-transparent" + (view === index ? ' bounce':'')}>
+                        <div className={"card-body bg-transparent jumpHover" + (view === index ? ' bounce':'')}>
                           <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
                           <h6 className={"d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2" + (view === index ? ' main-color':' gray-color')}>{ service.title }</h6>
                         </div>

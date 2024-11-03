@@ -27,7 +27,6 @@ import { FilterDelete } from '../icons/filter/FilterDelete';
 import { Arrows } from '../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
-import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
 const Row = ({ classType,item,urlApi,state }) => {
   const [readOpen, setReadOpen] = useState(false);
@@ -100,7 +99,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
-        <SearchBar icon={<IconSearch height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color'}/>} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
+        <SearchBar Icon={IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
         <div className={'container-fluid border overflow-auto px-0' }>
           <div className={'row flex-nowrap bg-main-color'}>
             <span className={'col-3 col-sm-2 bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ 'Código' }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></div></div></div></span>
