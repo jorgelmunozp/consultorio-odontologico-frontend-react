@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Alert } from '../../classes/Alert';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
@@ -28,7 +27,7 @@ import { Arrows } from '../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
 
-const Row = ({ classType,item,urlApi,state }) => {
+const Row = ({ classType, item, urlApi, state }) => {
   const [readOpen, setReadOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -44,10 +43,7 @@ const Row = ({ classType,item,urlApi,state }) => {
                        case 'especialidad': IconSearch= HearthSearch; IconEdit= HearthEdit; IconDelete= HearthDelete;  break;
   }
 
-  const MyAlert = new Alert('');                                                            // Objeto instanciado con la clase Alert para las alertas
-  const { alert, setAlert } = MyAlert.state;
-
-  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').className = 'noScroll' : document.getElementById('body').className = '';   // No scroll when alerts are open
+  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
   
   const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad'];       // Wide columns
 
@@ -62,14 +58,8 @@ const Row = ({ classType,item,urlApi,state }) => {
           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
           
           { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} setAlert={setAlert} Row={Row} state={state} /> }
-          { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} setAlert={setAlert} />  }
-          { alert === 'successUpdate' && <Modal open={alert} setOpen={setAlert} />  }
-          { alert === 'successDelete' && <Modal open={alert} setOpen={setAlert} />  }
-          { alert === 'errorUpdate' && <Modal open={alert} setOpen={setAlert} />  }
-          { alert === 'errorDelete' && <Modal open={alert} setOpen={setAlert} />  }
-          
-          <Modal open={alert} setOpen={setAlert} />
+          { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} Row={Row} state={state} /> }
+          { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} />  }
         </>
 
         

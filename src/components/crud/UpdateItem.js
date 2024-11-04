@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import { Alert } from '../alert/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
 import { CalendarEdit } from '../icons/calendar/CalendarEdit';
@@ -14,7 +15,7 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, state }) => { 
+export const UpdateItem = ({ classType, item, urlApi, setOpen, Row, state }) => { 
   let Icon = '';                                                  // Selección de icono correspondiente
   switch (classType) { case 'cita' : Icon = CalendarEdit; break;
                        case 'paciente': Icon = UserEdit; break;
@@ -45,11 +46,12 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, setAlert, Row, st
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
             row.render(<Row classType={classType} item={item} urlApi={urlApi} state={state} />);
 
-            setAlert('successUpdate')
+            Alert({ type:'success', title:'Actualización exitosa' }).fire()
+
           }
-          else { setAlert('errorUpdate') }
+          else { Alert({ type:'error', title:'Error en la actualización' }).fire() }
         },
-        function(error) { setAlert('errorUpdate'); console.log('Error Update: ', error) }
+        function(error) { Alert({ type:'error', title:'Error en la actualización' }).fire(); console.log('Error Update: ', error) }
       )
     }
   };

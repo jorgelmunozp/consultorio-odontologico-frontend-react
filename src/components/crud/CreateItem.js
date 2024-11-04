@@ -1,16 +1,14 @@
 import { useState }  from "react";
-import { Alert } from '../../classes/Alert';
+import { Alert } from '../alert/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
 import { Consultorio } from '../../classes/Consultorio';
 import { Tratamiento } from '../../classes/Tratamiento';
-import { Modal } from '../modal/Modal';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { BotonFetch } from "../forms/buttons/BotonFetch";
-import { PaginationBar } from '../pagination/PaginationBar';
 
 import sign from 'jwt-encode';                                               // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
@@ -34,16 +32,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const urlApi = objectClass.api;
   let item = "";
 
-  // --- Alert
-  const MyAlert = new Alert('');                                            // Objeto instanciado con la clase Alert para las alertas
-  const { alert, setAlert } = MyAlert.state;
-  // const { alerta, setAlertX } = MyAlert.stateAlert;
-  // const ModalAlerta = MyAlert.fire('');
-    // console.log("alerta: ", alerta)
-
-  // const [alert, setAlert] = useState(false);
- // --- Alert
-
   let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
   state.forEach( property => stateValues.push(property.value) );
 
@@ -56,14 +44,14 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
    }
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
-    setAlert('successCreate');
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables
+    Alert({ type:'success', title:'Registro exitoso' }).fire();
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
-    setAlert('errorCreate');
+    Alert({ type:'error', title:'Error en el registro' }).fire();
     setResponseStatus(0);
   } else if( 500 <= responseStatus && responseStatus <= 599 ) {
-    setAlert('errorCreate');
+    Alert({ type:'error', title:'Error en el registro' }).fire();
     setResponseStatus(0);
   }
 
@@ -94,9 +82,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
           </div>              
 			  </div>
       </div>
-      <Modal open={alert} setOpen={setAlert} />
-      {/* <Modal type={'successCreate'} open={alert} setOpen={setAlert} title={'Registro exitoso'} /> */}
-      {/* <Modal type={'errorCreate'} open={alert} setOpen={setAlert} title={'Datos No Registrados'} /> */}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import ReactDOM from 'react-dom/client';
+import { Alert } from '../alert/Alert';
 import { fetchDelete } from '../../helpers/fetchDelete';
 import { Warning } from '../icons/warning/Warning';
 import '../modal/modal.css';
 
-export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
+export const DeleteItem = ({ classType, item, urlApi, setOpen }) => {
   const Icon = Warning;                                           // Icono 
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
@@ -26,11 +27,11 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen, setAlert }) => {
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
           row.render();
 
-          setAlert('successDelete')
+          Alert({ type:'success', title:'Eliminación exitosa' }).fire()
         }
-        else { setAlert('errorDelete') }
+        else { Alert({ type:'error', title:'Error en la eliminación' }).fire() }
       },
-      function(error) { setAlert('errorDelete'); console.log("Error en la eliminación: ",error) }
+      function(error) { Alert({ type:'error', title:'Error en la eliminación' }).fire(); console.log("Error en la eliminación: ",error) }
     )
   };
  
