@@ -26,8 +26,23 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
                        case 'especialidad': Classe = Especialidad; break;
   }
 
+  const classes = {
+    cita: { Classe: Cita },
+    paciente: { Classe: Paciente },
+    doctor: { Classe: Doctor },
+    consultorio: { Classe: Consultorio },
+    tratamiento: { Classe: Tratamiento },
+    especialidad: { Classe: Especialidad },
+  }
+
   // --- Clase Item
   const objectClass = new Classe('');                                       // Objeto instanciado con la Class correspondiente
+  console.log("objectClass: ",objectClass)
+
+  const objectClass2 = new classes[classType].Classe('');                                       // Objeto instanciado con la Class correspondiente
+  console.log("objectClass 2: ",objectClass2)
+
+
   const state = objectClass.state;
   const urlApi = objectClass.api;
   let item = "";
@@ -45,13 +60,13 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables
-    Alert({ type:'success', title:'Registro exitoso' }).fire();
+    Alert({ type:'success', title:'Registro exitoso' }).launch();
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
-    Alert({ type:'error', title:'Error en el registro' }).fire();
+    Alert({ type:'error', title:'Error en el registro' }).launch();
     setResponseStatus(0);
   } else if( 500 <= responseStatus && responseStatus <= 599 ) {
-    Alert({ type:'error', title:'Error en el registro' }).fire();
+    Alert({ type:'error', title:'Error en el registro' }).launch();
     setResponseStatus(0);
   }
 

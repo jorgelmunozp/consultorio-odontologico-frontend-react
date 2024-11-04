@@ -27,11 +27,11 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen }) => {
           const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
           row.render();
 
-          Alert({ type:'success', title:'Eliminación exitosa' }).fire()
+          Alert({ type:'success', title:'Eliminación exitosa' }).launch()
         }
-        else { Alert({ type:'error', title:'Error en la eliminación' }).fire() }
+        else { Alert({ type:'error', title:'Error en la eliminación' }).launch() }
       },
-      function(error) { Alert({ type:'error', title:'Error en la eliminación' }).fire(); console.log("Error en la eliminación: ",error) }
+      function(error) { Alert({ type:'error', title:'Error en la eliminación' }).launch(); console.log("Error en la eliminación: ",error) }
     )
   };
  

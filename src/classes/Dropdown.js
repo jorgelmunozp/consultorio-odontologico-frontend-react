@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 
 const apiPacientes = process.env.REACT_APP_API_PACIENTES;               // Apis para obtención de los datos
@@ -29,9 +30,8 @@ export class DropdownClass {
           case 'especialidad': urlApi= apiEspecialidades; break;
         };
 
-        let [ alertFetch, setAlertFetch ] = useState(false);
         const arrayFetch = useFetch(urlApi);
-        useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
+        useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
         if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data; }
 
         /* Pagination */

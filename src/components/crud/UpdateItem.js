@@ -46,12 +46,12 @@ export const UpdateItem = ({ classType, item, urlApi, setOpen, Row, state }) => 
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
             row.render(<Row classType={classType} item={item} urlApi={urlApi} state={state} />);
 
-            Alert({ type:'success', title:'Actualización exitosa' }).fire()
+            Alert({ type:'success', title:'Actualización exitosa' }).launch()
 
           }
-          else { Alert({ type:'error', title:'Error en la actualización' }).fire() }
+          else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
         },
-        function(error) { Alert({ type:'error', title:'Error en la actualización' }).fire(); console.log('Error Update: ', error) }
+        function(error) { Alert({ type:'error', title:'Error en la actualización' }).launch(); console.log('Error Update: ', error) }
       )
     }
   };

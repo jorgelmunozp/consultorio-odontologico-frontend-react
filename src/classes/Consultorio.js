@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect }  from "react";
+import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 import { getConsultoriosFiltered } from '../components/selectors/getConsultoriosFiltered';
 import { jwtDecode } from "jwt-decode";
@@ -44,9 +45,8 @@ export class Consultorio {
     getData = () => {                                                // METHOD DATA
         /* Fetch */
         let array = [];
-        let [ alertFetch, setAlertFetch ] = useState(false);
         const arrayFetch = useFetch(urlApi);
-        useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
+        useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
         if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
         
         /* Query */
@@ -78,7 +78,7 @@ export class Consultorio {
         }
         const [activePages, setActivePages] = useState(activePage);    // [true,false,false,false]
         
-        return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
+        return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
 

@@ -1,13 +1,14 @@
 import './modal.css';
+import { Logo } from '../icons/logo/Logo';
 
-export const Modal = ({ Icon, iconColor, title, open, setOpen, content='', buttons=1 }) => {
-    { open !== false && document.getElementById('root').classList.add('noScroll') }
+export const Modal = ({ Icon=Logo, iconColor='#000', title='', open, setOpen, content='', buttons=1, fontFamily='' }) => {
+    { open !== false && document.getElementById('body').classList.add('noScroll') }
     
     return (
       <>
         {
           open !== false && <>
-                    <div className={'modalContainer justify-items-center justify-content-center'}>
+                    <div className={fontFamily + ' modalContainer justify-items-center justify-content-center'}>
                       <div className={'modalBox'}>
                         <div className={'modalHeader'}>
                           <center><Icon color={iconColor} height={4.5} width={4.5} className={'bounce center mt-4'} /></center>

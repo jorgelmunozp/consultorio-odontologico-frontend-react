@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Alert } from '../alert/Alert';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
@@ -81,9 +82,11 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
   const state = objectClass.state;
-  const { queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages } = objectClass.data;
+  const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
   const pluralEs = ['doctor','especialidad'];
+
+  // const { open, setOpen } = Alert.status                                    // Show or hide alert
   
   return (
     <div className="App">
@@ -105,7 +108,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
         </div>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>
-      <Modal open={alertFetch} setOpen={setAlertFetch} />
+      {/* <Modal open={open} setOpen={setOpen} /> */}
     </div>
   );
 };

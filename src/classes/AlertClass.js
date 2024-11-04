@@ -5,7 +5,6 @@ import { Success } from '../components/icons/success/Success';
 import { Warning } from '../components/icons/warning/Warning';
 import { Error } from '../components/icons/error/Error';
 
-
 export class AlertClass {
     constructor({ type:type='',title:title='', message:message='', buttons:buttons='' }) {
         this.type = {type}.type;
@@ -13,30 +12,26 @@ export class AlertClass {
         this.message = {message}.message;
         this.buttons = {buttons}.buttons;
     }
-    
+   
     getStatus = () => {                                                 // METHOD STATUS
         const [open, setOpen] = useState(false);                        // Input alert status
-        
-        return({ open, setOpen })
+        const status = { open:open, setOpen:setOpen }
+
+        return( status )
     }      
-    get status () { return this.getStatus() }                          // Getter state
+    get status () { return this.getStatus() }                           // Getter state
 
-    fire = () => {
-        let Icon = '';
-        let iconColor = '';
-        let title = '';
-        switch ( this.type ) { 
-          case 'success': Icon=Success; iconColor='#0f0'; break;
-          case 'warning': Icon=Warning; iconColor='#f8bb86'; break;
-          case 'error': Icon=Error; iconColor='#f00'; break;
-          case 'errorFetch': Icon=Error; iconColor='#f00'; title='Error en la conexión con el servidor'; break;
+    launch = () => {
+
+        const icons = {
+            success: { Icon:Success, iconColor:'#0f0' },
+            warning: { Icon:Warning, iconColor:'#f8bb86' },
+            error: { Icon:Error, iconColor:'#f00' }
         }
-        const root = createRoot(document.getElementById('root'));
-        root.render(
-            <Modal Icon={Icon} iconColor={iconColor} title={this.title} open={this.type} setOpen={''} />
-        );
-    }
-    get show () { return this.fire() }                          // Getter state
 
+        document.getElementById('body').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
+        const root = createRoot( document.getElementById('alert') );
+        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} open={this.status.open} setOpen={this.status.setOpen} fontFamily={'century-gothic'} /> );
+    }
 
 }

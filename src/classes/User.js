@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect }  from "react";
+import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 import { getPacientesFiltered } from '../components/selectors/getPacientesFiltered';
 import { getDoctoresFiltered } from '../components/selectors/getDoctoresFiltered';
@@ -65,9 +66,8 @@ export class Paciente extends User {
     getData = () => {                                              // METHOD DATA
       /* Fetch */
       let array = [];
-      let [ alertFetch, setAlertFetch ] = useState(false);
       const arrayFetch = useFetch(urlApiPacientes);
-      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
+      useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
       if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
 
       /* Query */
@@ -101,7 +101,7 @@ export class Paciente extends User {
       }
       const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
           
-      return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
+      return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                                 // Getter data
 
@@ -181,9 +181,8 @@ export class Doctor extends User {
     getData = () => {                                                // METHOD DATA
       /* Fetch */
       let array = [];
-      let [ alertFetch, setAlertFetch ] = useState(false);
       const arrayFetch = useFetch(urlApiDoctores);
-      useEffect(() => { if(arrayFetch.status >= 400) { setAlertFetch('errorFetch') } },[arrayFetch]);
+      useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
       if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
   
       /* Query */
@@ -215,7 +214,7 @@ export class Doctor extends User {
       }
       const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
         
-      return({ queries,setQueries,arrayFiltered,alertFetch,indexPage,itemsPerPage,activePages,indexPages,setAlertFetch,setIndexPage,setActivePages })
+      return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
 
