@@ -31,7 +31,7 @@ export class AlertClass {
 
         document.getElementById('body').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
         const root = createRoot( document.getElementById('alert') );
-        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} open={this.status.open} setOpen={this.status.setOpen} fontFamily={'century-gothic'} /> );
+        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} open={this.type} setOpen={''} fontFamily={'century-gothic'} /> );
     }
 
 }

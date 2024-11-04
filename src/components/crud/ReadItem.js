@@ -8,14 +8,14 @@ import { myColor } from '../../global';
 import '../modal/modal.css';
 
 export const ReadItem = ({ classType, item, setOpen }) => {
-  let Icon = '';                                                  // Selección de icono correspondiente
-  switch (classType) { case 'cita' : Icon = CalendarSmile; break;
-                       case 'paciente': Icon = User; break;
-                       case 'doctor': Icon = User; break;
-                       case 'consultorio': Icon = HomeIndex; break;
-                       case 'tratamiento': Icon = SyringeLight; break;
-                       case 'especialidad': Icon = StethoscopeLight; break;
+  const icons = { cita: { Icon: CalendarSmile },
+                  paciente: { Icon: User },
+                  doctor: { Icon:User },
+                  consultorio: { Icon: HomeIndex },
+                  tratamiento: { Icon: SyringeLight },
+                  especialidad: { Icon: StethoscopeLight }
   }
+  const Icon = icons[classType].Icon                              // Selección de icono correspondiente
   
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto

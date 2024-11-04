@@ -16,14 +16,15 @@ import sign from 'jwt-encode';                                                  
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const UpdateItem = ({ classType, item, urlApi, setOpen, Row, state }) => { 
-  let Icon = '';                                                  // Selección de icono correspondiente
-  switch (classType) { case 'cita' : Icon = CalendarEdit; break;
-                       case 'paciente': Icon = UserEdit; break;
-                       case 'doctor': Icon = UserEdit; break;
-                       case 'consultorio': Icon = HomeEdit; break;
-                       case 'tratamiento': Icon = FilterEdit; break;
-                       case 'especialidad': Icon = FilterEdit; break;
+   const icons = {  cita: { Icon: CalendarEdit },
+                    paciente: { Icon: UserEdit },
+                    doctor: { Icon:UserEdit },
+                    consultorio: { Icon: HomeEdit },
+                    tratamiento: { Icon: FilterEdit },
+                    especialidad: { Icon: FilterEdit }
   }
+  const Icon = icons[classType].Icon                                            // Selección de icono correspondiente
+
   
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
    useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización

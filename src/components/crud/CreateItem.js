@@ -17,32 +17,16 @@ const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const [responseStatus, setResponseStatus] = useState(0);
   
-  let Classe = '';
-  switch (classType) { case 'cita' : Classe = Cita; break;
-                       case 'paciente': Classe = Paciente; break;
-                       case 'doctor': Classe = Doctor; break;
-                       case 'consultorio': Classe = Consultorio; break;
-                       case 'tratamiento': Classe = Tratamiento; break;
-                       case 'especialidad': Classe = Especialidad; break;
-  }
-
-  const classes = {
-    cita: { Classe: Cita },
-    paciente: { Classe: Paciente },
-    doctor: { Classe: Doctor },
-    consultorio: { Classe: Consultorio },
-    tratamiento: { Classe: Tratamiento },
-    especialidad: { Classe: Especialidad },
+  const classes = { cita: { Classe: Cita },
+                    paciente: { Classe: Paciente },
+                    doctor: { Classe: Doctor },
+                    consultorio: { Classe: Consultorio },
+                    tratamiento: { Classe: Tratamiento },
+                    especialidad: { Classe: Especialidad }
   }
 
   // --- Clase Item
-  const objectClass = new Classe('');                                       // Objeto instanciado con la Class correspondiente
-  console.log("objectClass: ",objectClass)
-
-  const objectClass2 = new classes[classType].Classe('');                                       // Objeto instanciado con la Class correspondiente
-  console.log("objectClass 2: ",objectClass2)
-
-
+  const objectClass = new classes[classType].Classe('');                                       // Objeto instanciado con la Class correspondiente
   const state = objectClass.state;
   const urlApi = objectClass.api;
   let item = "";
@@ -54,7 +38,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
-      ${Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
+      ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
    }
 
