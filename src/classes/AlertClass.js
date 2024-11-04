@@ -31,8 +31,8 @@ export class AlertClass {
           case 'error': Icon=Error; iconColor='#f00'; break;
           case 'errorFetch': Icon=Error; iconColor='#f00'; title='Error en la conexión con el servidor'; break;
         }
-        const alert = createRoot(document.getElementById('root'));
-        alert.render(
+        const root = createRoot(document.getElementById('root'));
+        root.render(
             <Modal Icon={Icon} iconColor={iconColor} title={this.title} open={this.type} setOpen={''} />
         );
     }
