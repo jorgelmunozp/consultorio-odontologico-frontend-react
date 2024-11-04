@@ -14,12 +14,12 @@ export class AlertClass {
         this.buttons = {buttons}.buttons;
     }
     
-    getAlert = () => {                                               // METHOD STATE
-        const [alert, setAlert] = useState(false);                   // Input alert state
+    getStatus = () => {                                                 // METHOD STATUS
+        const [open, setOpen] = useState(false);                        // Input alert status
         
-        return({ alert, setAlert })
+        return({ open, setOpen })
     }      
-    get alert () { return this.getAlert() }                          // Getter state
+    get status () { return this.getStatus() }                          // Getter state
 
     fire = () => {
         let Icon = '';
