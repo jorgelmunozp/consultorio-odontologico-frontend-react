@@ -22,7 +22,6 @@ export class AlertClass {
     get status () { return this.getStatus() }                           // Getter state
 
     launch = () => {
-
         const icons = {
             success: { Icon:Success, iconColor:'#0f0' },
             warning: { Icon:Warning, iconColor:'#f8bb86' },

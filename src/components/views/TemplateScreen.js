@@ -100,7 +100,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
       </aside>
       <div className='App-body d-flex'>
         <div id="App" className="App mx-auto w-100"> 
-          <Suspense fallback={ <div className="loaderBalls"><div className="loading"><div className="balls"></div><div className="balls"></div><div className="balls"></div><span className="loadingTitle">Cargando...</span></div></div> }>
+          <Suspense fallback={ <div className="loaderBalls"><div className="loading"><div className="balls shadow"></div><div className="balls shadow"></div><div className="balls shadow"></div><span className="loadingTitle">Cargando...</span></div></div> }>
             <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
           </Suspense>
         </div>

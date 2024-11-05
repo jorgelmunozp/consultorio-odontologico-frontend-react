@@ -203,6 +203,7 @@ select::-ms-expand { display: none; }
   width: var(--balls-size);
   height: var(--balls-size);
   background-color: var(--main-color);
+  box-shadow: 0 10px 20px -10px rgba(100, 100, 100, 0.8)!important;
   animation: jump .5s alternate infinite;
   border-radius: 50%  
 }
