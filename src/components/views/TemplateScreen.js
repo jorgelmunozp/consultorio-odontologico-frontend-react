@@ -79,9 +79,9 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
         </nav>
       </aside>
       <div className='App-body d-flex'>
-          <div id="App" className="App mx-auto w-100"> 
+        <div id="App" className="App mx-auto w-100"> 
           <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
-          </div>
+        </div>
       </div>
     </div>
   );
