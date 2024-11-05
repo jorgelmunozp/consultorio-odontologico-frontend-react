@@ -189,18 +189,17 @@ select::-ms-expand { display: none; }
   height: 100vh;
 }
 .loading{
-  width: 70px;
+  width: 60px;
   height: 30px;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   margin: 0 auto; 
 }
 .loadingTitle{ padding-top:20px }
-.loading span{ font-size: 16px }
 .balls {
-  --balls-size: 16px;
+  --balls-size: 14px;
   width: var(--balls-size);
   height: var(--balls-size);
   background-color: var(--main-color);
@@ -217,7 +216,7 @@ select::-ms-expand { display: none; }
 /********** Loader Clock **********/
 .loaderClock {                                          /* Loader Clock */ 
   --clock-color: var(--main-color);
-  --clock-width: 4rem;
+  --clock-width: 2.5rem;
   --clock-radius: calc(var(--clock-width) / 2);
   --clock-minute-length: calc(var(--clock-width) * 0.4);
   --clock-hour-length: calc(var(--clock-width) * 0.2);
