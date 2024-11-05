@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Alert } from '../alert/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
-import { CalendarEdit } from '../icons/calendar/CalendarEdit';
-import { UserEdit } from '../icons/user/UserEdit';
-import { HomeEdit } from '../icons/home/HomeEdit';
-import { FilterEdit } from '../icons/filter/FilterEdit';
 import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { myColor } from '../../global';
@@ -15,17 +11,7 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, item, urlApi, setOpen, Row, state }) => { 
-   const icons = {  cita: { Icon: CalendarEdit },
-                    paciente: { Icon: UserEdit },
-                    doctor: { Icon:UserEdit },
-                    consultorio: { Icon: HomeEdit },
-                    tratamiento: { Icon: FilterEdit },
-                    especialidad: { Icon: FilterEdit }
-  }
-  const Icon = icons[classType].Icon                                            // Selección de icono correspondiente
-
-  
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Row, state }) => { 
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
    useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización
       state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });

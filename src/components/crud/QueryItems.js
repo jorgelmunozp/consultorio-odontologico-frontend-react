@@ -8,7 +8,11 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { ReadItem } from './ReadItem';
 import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
-import { Modal } from '../modal/Modal';
+import { CalendarSmile } from '../icons/calendar/CalendarSmile';
+import { User } from '../icons/user/User';
+import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
+import { SyringeLight } from '../icons/medical/SyringeLight';
+import { HomeIndex } from '../icons/home/HomeIndex';
 import { CalendarSearch } from '../icons/calendar/CalendarSearch';
 import { CalendarEdit } from '../icons/calendar/CalendarEdit';
 import { CalendarDelete } from '../icons/calendar/CalendarDelete';
@@ -33,20 +37,23 @@ const Row = ({ classType, item, urlApi, state }) => {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
-  let IconSearch = '';                                                          // Selección de icono search
-  let IconEdit = '';                                                            // Selección de icono update
-  let IconDelete = '';                                                          // Selección de icono delete
-  switch (classType) { case 'cita': IconSearch= CalendarSearch; IconEdit= CalendarEdit; IconDelete= CalendarDelete; break;
-                       case 'paciente': IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
-                       case 'doctor': IconSearch= UserSearch; IconEdit= UserEdit; IconDelete= UserDelete;  break;
-                       case 'consultorio': IconSearch= HomeSearch; IconEdit= HomeEdit; IconDelete= HomeDelete;  break;
-                       case 'tratamiento': IconSearch= FilterSearch; IconEdit= FilterEdit; IconDelete= FilterDelete;  break;
-                       case 'especialidad': IconSearch= HearthSearch; IconEdit= HearthEdit; IconDelete= HearthDelete;  break;
+  const icons = { cita: { IconSearch:CalendarSearch, IconRead:CalendarSmile, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
+                  paciente: { IconSearch:UserSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
+                  doctor: { IconSearch:UserSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
+                  consultorio: { IconSearch:HomeSearch, IconRead:HomeIndex, IconEdit:HomeEdit, IconDelete:HomeDelete },
+                  tratamiento: { IconSearch:FilterSearch, IconRead:SyringeLight, IconEdit:FilterEdit, IconDelete:FilterDelete },
+                  especialidad: { IconSearch:HearthSearch, IconRead:StethoscopeLight, IconEdit:HearthEdit, IconDelete:HearthDelete }
   }
+
+  const IconRead = icons[classType].IconRead;                                                          // Selección de icono search
+  const IconSearch = icons[classType].IconSearch;                                                          // Selección de icono search
+  const IconEdit = icons[classType].IconEdit;                                                            // Selección de icono update
+  const IconDelete = icons[classType].IconDelete;                                                          // Selección de icono delete
+
 
   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
   
-  const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad'];       // Wide columns
+  const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
 
   return (
         <>
@@ -58,8 +65,8 @@ const Row = ({ classType, item, urlApi, state }) => {
           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
           
-          { readOpen && <ReadItem classType={classType} item={item} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem classType={classType} item={item} urlApi={urlApi} setOpen={setUpdateOpen} Row={Row} state={state} /> }
+          { readOpen && <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setReadOpen} /> }
+          { updateOpen && <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} Row={Row} state={state} /> }
           { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} />  }
         </>
 
@@ -68,17 +75,16 @@ const Row = ({ classType, item, urlApi, state }) => {
   }; 
 
 export const QueryItems = ({ classType, isMenuOpen }) => {
-  let Classe = '';
-  let IconSearch = '';                                                      // Selección de icono search
-  switch (classType) { case 'cita': Classe= Cita; IconSearch= CalendarSearch; break;
-                       case 'paciente': Classe= Paciente; IconSearch= UserSearch; break;
-                       case 'doctor': Classe= Doctor; IconSearch= UserSearch; break;
-                       case 'consultorio': Classe= Consultorio; IconSearch= HomeSearch; break;
-                       case 'tratamiento': Classe= Tratamiento; IconSearch= FilterSearch; break;
-                       case 'especialidad': Classe= Especialidad; IconSearch= HearthSearch; break;
+  const classes = { cita: { Classe:Cita, IconSearch:CalendarSearch },
+                    paciente: { Classe:Paciente, IconSearch:UserSearch },
+                    doctor: { Classe:Doctor, IconSearch:UserSearch },
+                    consultorio: { Classe:Consultorio, IconSearch:HomeSearch },
+                    tratamiento: { Classe:Tratamiento, IconSearch:FilterSearch },
+                    especialidad: { Classe:Especialidad, IconSearch:HearthSearch }
   }
+  
 
-  const objectClass = new Classe('');                                       // Objeto instanciado con la Class
+  const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
   const state = objectClass.state;
@@ -86,13 +92,11 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   const { SortByProperty, setSortBy } = objectClass.sort;
   const pluralEs = ['doctor','especialidad'];
 
-  // const { open, setOpen } = Alert.status                                    // Show or hide alert
-  
   return (
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
-        <SearchBar Icon={IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
+        <SearchBar Icon={classes[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
         <div className={'container-fluid border overflow-auto px-0' }>
           <div className={'row flex-nowrap bg-main-color'}>
             <span className={'col-3 col-sm-2 bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ 'Código' }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(1)}><Arrows direction={"up"}/></button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy(2)}><Arrows direction={"down"}/></button></div></div></div></span>
@@ -108,7 +112,6 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
         </div>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>
-      {/* <Modal open={open} setOpen={setOpen} /> */}
     </div>
   );
 };

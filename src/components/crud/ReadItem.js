@@ -1,22 +1,7 @@
-import { CalendarSmile } from '../icons/calendar/CalendarSmile';
-import { User } from '../icons/user/User';
-import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
-import { SyringeLight } from '../icons/medical/SyringeLight';
-import { HomeIndex } from '../icons/home/HomeIndex';
-
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-export const ReadItem = ({ classType, item, setOpen }) => {
-  const icons = { cita: { Icon: CalendarSmile },
-                  paciente: { Icon: User },
-                  doctor: { Icon:User },
-                  consultorio: { Icon: HomeIndex },
-                  tratamiento: { Icon: SyringeLight },
-                  especialidad: { Icon: StethoscopeLight }
-  }
-  const Icon = icons[classType].Icon                              // Selección de icono correspondiente
-  
+export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
