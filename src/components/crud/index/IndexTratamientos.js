@@ -11,3 +11,5 @@ export const IndexTratamientos = ({ isMenuOpen, setMenu }) => {
 
   return ( <IndexItem classType={'tratamiento'} Icon={SyringeLight} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }
+
+export default IndexTratamientos;

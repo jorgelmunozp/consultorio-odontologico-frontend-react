@@ -11,3 +11,5 @@ export const IndexConsultorios = ({ isMenuOpen, setMenu }) => {
 
   return ( <IndexItem classType={'consultorio'} Icon={HomeIndex} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }
+
+export default IndexConsultorios;

@@ -11,3 +11,5 @@ export const IndexEspecialidades = ({ isMenuOpen, setMenu }) => {
 
   return ( <IndexItem classType={'especialidad'} Icon={StethoscopeLight} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }
+
+export default IndexEspecialidades;

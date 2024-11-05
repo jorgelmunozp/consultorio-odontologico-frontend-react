@@ -11,3 +11,5 @@ export const IndexCitas = ({ isMenuOpen, setMenu }) => {
 
   return ( <IndexItem classType={'cita'} Icon={CalendarSmile} services={services} IconCreate={CalendarPlus} IconQuery={CalendarSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }
+
+export default IndexCitas;

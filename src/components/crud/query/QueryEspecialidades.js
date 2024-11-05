@@ -7,3 +7,5 @@ export const QueryEspecialidades = ({ isMenuOpen }) => {
             </Suspense>
   )
 }
+
+export default QueryEspecialidades;

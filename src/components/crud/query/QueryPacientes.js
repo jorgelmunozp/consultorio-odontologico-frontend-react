@@ -7,3 +7,5 @@ export const QueryPacientes = ({ isMenuOpen }) => {
             </Suspense>
   )
 }
+
+export default QueryPacientes;

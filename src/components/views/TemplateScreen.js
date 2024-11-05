@@ -1,23 +1,23 @@
 import '../../assets/styles/App.css';
 // import { IndexScreen } from './index/IndexScreen';
-import { IndexCitas } from '../crud/index/IndexCitas';
-import { IndexPacientes } from '../crud/index/IndexPacientes';
-import { IndexDoctores } from '../crud/index/IndexDoctores';
-import { IndexEspecialidades } from '../crud/index/IndexEspecialidades';
-import { IndexConsultorios } from '../crud/index/IndexConsultorios';
-import { IndexTratamientos } from '../crud/index/IndexTratamientos';
-import { QueryCitas } from '../crud/query/QueryCitas';
-import { QueryPacientes } from '../crud/query/QueryPacientes';
-import { QueryDoctores } from '../crud/query/QueryDoctores';
-import { QueryEspecialidades } from '../crud/query/QueryEspecialidades';
-import { QueryConsultorios } from '../crud/query/QueryConsultorios';
-import { QueryTratamientos } from '../crud/query/QueryTratamientos';
-import { CreateCita } from '../crud/create/CreateCita';
-import { CreatePaciente } from '../crud/create/CreatePaciente';
-import { CreateDoctor } from '../crud/create/CreateDoctor';
-import { CreateEspecialidad } from '../crud/create/CreateEspecialidad';
-import { CreateConsultorio } from '../crud/create/CreateConsultorio';
-import { CreateTratamiento } from '../crud/create/CreateTratamiento';
+// import { IndexCitas } from '../crud/index/IndexCitas';
+// import { IndexPacientes } from '../crud/index/IndexPacientes';
+// import { IndexDoctores } from '../crud/index/IndexDoctores';
+// import { IndexEspecialidades } from '../crud/index/IndexEspecialidades';
+// import { IndexConsultorios } from '../crud/index/IndexConsultorios';
+// import { IndexTratamientos } from '../crud/index/IndexTratamientos';
+// import { QueryCitas } from '../crud/query/QueryCitas';
+// import { QueryPacientes } from '../crud/query/QueryPacientes';
+// import { QueryDoctores } from '../crud/query/QueryDoctores';
+// import { QueryEspecialidades } from '../crud/query/QueryEspecialidades';
+// import { QueryConsultorios } from '../crud/query/QueryConsultorios';
+// import { QueryTratamientos } from '../crud/query/QueryTratamientos';
+// import { CreateCita } from '../crud/create/CreateCita';
+// import { CreatePaciente } from '../crud/create/CreatePaciente';
+// import { CreateDoctor } from '../crud/create/CreateDoctor';
+// import { CreateEspecialidad } from '../crud/create/CreateEspecialidad';
+// import { CreateConsultorio } from '../crud/create/CreateConsultorio';
+// import { CreateTratamiento } from '../crud/create/CreateTratamiento';
 import { Menu } from '../icons/menu/Menu';
 import { CalendarMedical } from '../icons/calendar/CalendarMedical';
 import { UserInjured } from '../icons/user/UserInjured';
@@ -37,12 +37,32 @@ import { HearthPlus } from '../icons/hearth/HearthPlus';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterPlus } from '../icons/filter/FilterPlus';
 import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { Suspense, lazy } from 'react';
 const IndexScreen = lazy(() => import('./index/IndexScreen'));
 
+const IndexCitas = lazy(() => import('../crud/index/IndexCitas'));
+const IndexPacientes = lazy(() => import('../crud/index/IndexPacientes'));
+const IndexDoctores = lazy(() => import('../crud/index/IndexDoctores'));
+const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades'));
+const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios'));
+const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos'));
+
+const QueryCitas = lazy(() => import('../crud/query/QueryCitas'));
+const QueryPacientes = lazy(() => import('../crud/query/QueryPacientes'));
+const QueryDoctores = lazy(() => import('../crud/query/QueryDoctores'));
+const QueryEspecialidades = lazy(() => import('../crud/query/QueryEspecialidades'));
+const QueryConsultorios = lazy(() => import('../crud/query/QueryConsultorios'));
+const QueryTratamientos = lazy(() => import('../crud/query/QueryTratamientos'));
+
+const CreateCita = lazy(() => import('../crud/create/CreateCita'));
+const CreatePaciente = lazy(() => import('../crud/create/CreatePaciente'));
+const CreateDoctor = lazy(() => import('../crud/create/CreateDoctor'));
+const CreateEspecialidad = lazy(() => import('../crud/create/CreateEspecialidad'));
+const CreateConsultorio = lazy(() => import('../crud/create/CreateConsultorio'));
+const CreateTratamiento = lazy(() => import('../crud/create/CreateTratamiento'));
 
 export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
   return (
@@ -83,30 +103,8 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
       </aside>
       <div className='App-body d-flex'>
         <div id="App" className="App mx-auto w-100"> 
-        <Suspense fallback={
-            <>
-              <div className="loaderBalls">
-                <div className="loading">
-                  <div className="balls"></div>
-                  <div className="balls"></div>
-                  <div className="balls"></div>
-                  <span className="loadingTitle">Cargando...</span>
-                </div>
-              </div>
-
-            {/* <center>
-              <div className="loader">
-                <div className="inner one"></div>
-                <div className="inner two"></div>
-                <div className="inner three"></div>
-              </div>
-            </center> */}
-  
-  
-
-            </>
-          }>
-          <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
+          <Suspense fallback={ <div className="loaderBalls"><div className="loading"><div className="balls"></div><div className="balls"></div><div className="balls"></div><span className="loadingTitle">Cargando...</span></div></div> }>
+            <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
           </Suspense>
         </div>
       </div>

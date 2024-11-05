@@ -7,3 +7,5 @@ export const QueryTratamientos = ({ isMenuOpen }) => {
             </Suspense>
   )
 }
+
+export default QueryTratamientos;

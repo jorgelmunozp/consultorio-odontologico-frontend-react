@@ -19,3 +19,5 @@ export const App = () => {
     </AuthContext.Provider>
   )
 }
+
+export default App;

@@ -7,3 +7,5 @@ export const QueryConsultorios = ({ isMenuOpen }) => {
             </Suspense>
   )
 }
+
+export default QueryConsultorios;
