@@ -1,13 +1,9 @@
-import { useState } from 'react';
+import { Suspense, lazy } from 'react';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
 import { Consultorio } from '../../classes/Consultorio';
 import { Tratamiento } from '../../classes/Tratamiento';
-import { ReadItem } from './ReadItem';
-import { UpdateItem } from './UpdateItem';
-import { DeleteItem } from './DeleteItem';
-
 import { CalendarSmile } from '../icons/calendar/CalendarSmile';
 import { User } from '../icons/user/User';
 import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
@@ -28,12 +24,9 @@ import { HearthDelete } from '../icons/hearth/HearthDelete';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterEdit } from '../icons/filter/FilterEdit';
 import { FilterDelete } from '../icons/filter/FilterDelete';
-import { Arrows } from '../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
-// import { Item } from './Item';
-// import { ItemsTable } from './ItemsTable'
-import { Suspense, lazy } from 'react';
+
 const ItemsTable = lazy(() => import('./ItemsTable'));
 
 export const QueryItems = ({ classType, isMenuOpen }) => {

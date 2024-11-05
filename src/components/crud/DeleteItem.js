@@ -1,11 +1,10 @@
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert';
 import { fetchDelete } from '../../helpers/fetchDelete';
 import { Warning } from '../icons/warning/Warning';
 import '../modal/modal.css';
 
-export const DeleteItem = ({ classType, item, urlApi, setOpen }) => {
-  const Icon = Warning;                                           // Icono 
+export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -24,7 +23,7 @@ export const DeleteItem = ({ classType, item, urlApi, setOpen }) => {
           await fetch(urlApi)                                     // API Restful para eliminar dato de la base de datos
               .then(response => response.json())
     
-          const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+          const row = createRoot(document.getElementById( 'row'+item.id ));
           row.render();
 
           Alert({ type:'success', title:'Eliminación exitosa' }).launch()

@@ -42,21 +42,18 @@ import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 
 import { Suspense, lazy } from 'react';
 const IndexScreen = lazy(() => import('./index/IndexScreen'));
-
 const IndexCitas = lazy(() => import('../crud/index/IndexCitas'));
 const IndexPacientes = lazy(() => import('../crud/index/IndexPacientes'));
 const IndexDoctores = lazy(() => import('../crud/index/IndexDoctores'));
 const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades'));
 const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios'));
 const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos'));
-
 const QueryCitas = lazy(() => import('../crud/query/QueryCitas'));
 const QueryPacientes = lazy(() => import('../crud/query/QueryPacientes'));
 const QueryDoctores = lazy(() => import('../crud/query/QueryDoctores'));
 const QueryEspecialidades = lazy(() => import('../crud/query/QueryEspecialidades'));
 const QueryConsultorios = lazy(() => import('../crud/query/QueryConsultorios'));
 const QueryTratamientos = lazy(() => import('../crud/query/QueryTratamientos'));
-
 const CreateCita = lazy(() => import('../crud/create/CreateCita'));
 const CreatePaciente = lazy(() => import('../crud/create/CreatePaciente'));
 const CreateDoctor = lazy(() => import('../crud/create/CreateDoctor'));

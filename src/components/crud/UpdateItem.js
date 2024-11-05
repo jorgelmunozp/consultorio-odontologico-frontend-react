@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
@@ -30,7 +30,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons
             await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
                 .then(response => response.json())
       
-            const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
+            const row = createRoot(document.getElementById( 'row'+item.id ));
             row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />);
 
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
