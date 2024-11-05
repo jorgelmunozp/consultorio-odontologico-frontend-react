@@ -7,6 +7,8 @@ import { Tratamiento } from '../../classes/Tratamiento';
 import { ReadItem } from './ReadItem';
 import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
+import { Item } from './Item';
+
 import { CalendarSmile } from '../icons/calendar/CalendarSmile';
 import { User } from '../icons/user/User';
 import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
@@ -31,36 +33,36 @@ import { Arrows } from '../forms/arrows/Arrows';
 import { SearchBar } from '../search/SearchBar';
 import { PaginationBar } from '../pagination/PaginationBar';
 
-const Row = ({ classType, icons, item, urlApi, state }) => {
-  const [readOpen, setReadOpen] = useState(false);
-  const [updateOpen, setUpdateOpen] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
+// const Row = ({ classType, icons, item, urlApi, state }) => {
+//   const [readOpen, setReadOpen] = useState(false);
+//   const [updateOpen, setUpdateOpen] = useState(false);
+//   const [deleteOpen, setDeleteOpen] = useState(false);
 
-  const IconRead = icons[classType].IconRead;                                                               // Selección de icono read
-  const IconSearch = icons[classType].IconSearch;                                                           // Selección de icono search
-  const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
-  const IconDelete = icons[classType].IconDelete;                                                           // Selección de icono delete
+//   const IconRead = icons[classType].IconRead;                                                               // Selección de icono read
+//   const IconSearch = icons[classType].IconSearch;                                                           // Selección de icono search
+//   const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
+//   const IconDelete = icons[classType].IconDelete;                                                           // Selección de icono delete
 
-  (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
+//   (readOpen || updateOpen || deleteOpen) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
   
-  const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
+//   const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
  
-  return (
-        <>
-          <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
-          { Object.entries(item[classType]).map((item,index) => {
-            return( <div key={'item'+index} className={'text-start text-nowrap' + ( wideItems.includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
-          }
-          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
-          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
-          <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
+//   return (
+//         <>
+//           <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
+//           { Object.entries(item[classType]).map((item,index) => {
+//             return( <div key={'item'+index} className={'text-start text-nowrap' + ( wideItems.includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ (typeof item[1] !== 'object') ? item[1] : Object.values(item[1])[0]+' '+Object.values(item[1])[1] }</div> )})
+//           }
+//           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setReadOpen(true) }><IconSearch /></button></div>
+//           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setUpdateOpen(true) }><IconEdit /></button></div>
+//           <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setDeleteOpen(true)}><IconDelete /></button></div>
           
-          { readOpen && <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setReadOpen} /> }
-          { updateOpen && <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} Row={Row} icons={icons} state={state} /> }
-          { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} />  }
-        </>       
-      )
-  }; 
+//           { readOpen && <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setReadOpen} /> }
+//           { updateOpen && <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setUpdateOpen} Row={Row} icons={icons} state={state} /> }
+//           { deleteOpen && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setDeleteOpen} />  }
+//         </>       
+//       )
+//   }; 
 
 export const QueryItems = ({ classType, isMenuOpen }) => {
   const classes = { cita: { Classe: Cita },
@@ -79,7 +81,6 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
                   especialidad: { IconSearch:HearthSearch, IconRead:StethoscopeLight, IconEdit:HearthEdit, IconDelete:HearthDelete }
                 }
   
-
   const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
@@ -101,7 +102,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
           </div>
             { arrayFiltered.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
                 <div id={'row'+item.id } key={ item.id } className='row flex-nowrap border-bottom text-start text-nowrap py-2' >
-                  <Row classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />
+                  <Item classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />
                 </div>
               )})
             }

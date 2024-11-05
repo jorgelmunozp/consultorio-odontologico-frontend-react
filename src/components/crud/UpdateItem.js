@@ -11,7 +11,7 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Row, icons, state }) => { 
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons, state }) => { 
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
    useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización
       state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });
@@ -31,7 +31,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Row, icons,
                 .then(response => response.json())
       
             const row = ReactDOM.createRoot(document.getElementById( 'row'+item.id ));
-            row.render(<Row classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />);
+            row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />);
 
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
 
