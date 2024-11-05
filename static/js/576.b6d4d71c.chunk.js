@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkconsultorio_odontologico_frontend_react=self.webpackChunkconsultorio_odontologico_frontend_react||[]).push([[576],{576:(o,e,n)=>{n.r(e),n.d(e,{CreateDoctor:()=>r,default:()=>s});var t=n(8509),c=n(579);const r=o=>{let{Icon:e,isMenuOpen:n}=o;return(0,c.jsx)(t.i,{classType:"doctor",Icon:e,isMenuOpen:n})},s=r}}]);
+//# sourceMappingURL=576.b6d4d71c.chunk.js.map
