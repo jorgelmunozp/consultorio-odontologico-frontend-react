@@ -3,7 +3,7 @@ import { HomeIndex } from '../../icons/home/HomeIndex';
 import { HomeSearch } from '../../icons/home/HomeSearch';
 import { HomePlus } from '../../icons/home/HomePlus';
 
-export const ViewConsultorios = ({ isMenuOpen, setMenu }) => {
+export const IndexConsultorios = ({ isMenuOpen, setMenu }) => {
   const services = [
     { 'title':'Consultar', 'menu':18, 'Icon':HomeSearch },
     { 'title':'Registrar', 'menu':19, 'Icon':HomePlus },

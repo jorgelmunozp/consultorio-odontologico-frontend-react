@@ -3,7 +3,7 @@ import { CalendarSmile } from '../../icons/calendar/CalendarSmile';
 import { CalendarSearch } from '../../icons/calendar/CalendarSearch';
 import { CalendarPlus } from '../../icons/calendar/CalendarPlus';
 
-export const ViewCitas = ({ isMenuOpen, setMenu }) => {
+export const IndexCitas = ({ isMenuOpen, setMenu }) => {
   const services = [
     { 'title':'Consultar', 'menu':3, 'Icon':CalendarSearch },
     { 'title':'Registrar', 'menu':4, 'Icon':CalendarPlus },

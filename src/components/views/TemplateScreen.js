@@ -1,11 +1,11 @@
 import '../../assets/styles/App.css';
 // import { IndexScreen } from './index/IndexScreen';
-import { ViewCitas } from '../crud/index/ViewCitas';
-import { ViewPacientes } from '../crud/index/ViewPacientes';
-import { ViewDoctores } from '../crud/index/ViewDoctores';
-import { ViewEspecialidades } from '../crud/index/ViewEspecialidades';
-import { ViewConsultorios } from '../crud/index/ViewConsultorios';
-import { ViewTratamientos } from '../crud/index/ViewTratamientos';
+import { IndexCitas } from '../crud/index/IndexCitas';
+import { IndexPacientes } from '../crud/index/IndexPacientes';
+import { IndexDoctores } from '../crud/index/IndexDoctores';
+import { IndexEspecialidades } from '../crud/index/IndexEspecialidades';
+import { IndexConsultorios } from '../crud/index/IndexConsultorios';
+import { IndexTratamientos } from '../crud/index/IndexTratamientos';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
 import { QueryDoctores } from '../crud/query/QueryDoctores';
@@ -85,7 +85,15 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
         <div id="App" className="App mx-auto w-100"> 
         <Suspense fallback={
             <>
-         
+              <div className="loaderBalls">
+                <div className="loading">
+                  <div className="balls"></div>
+                  <div className="balls"></div>
+                  <div className="balls"></div>
+                  <span className="loadingTitle">Cargando...</span>
+                </div>
+              </div>
+
             {/* <center>
               <div className="loader">
                 <div className="inner one"></div>
@@ -95,14 +103,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
             </center> */}
   
   
-            <div className="loaderBalls">
-              <div className="loading">
-                <div className="balls"></div>
-                <div className="balls"></div>
-                <div className="balls"></div>
-                <span className="loadingTitle">Cargando...</span>
-              </div>
-            </div>
+
             </>
           }>
           <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
@@ -116,22 +117,22 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
 const MenuView = ({ menu, isMenuOpen, setMenu }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen isMenuOpen={isMenuOpen} />;
-    case 2: return <ViewCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 2: return <IndexCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 3: return <QueryCitas isMenuOpen={isMenuOpen} />;
     case 4: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
-    case 5: return <ViewPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 5: return <IndexPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 6: return <QueryPacientes isMenuOpen={isMenuOpen} />;
     case 7: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
-    case 8: return <ViewTratamientos isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 8: return <IndexTratamientos isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 9: return <QueryTratamientos isMenuOpen={isMenuOpen} />;
     case 10: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 11: return <ViewDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 11: return <IndexDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 12: return <QueryDoctores isMenuOpen={isMenuOpen} />;
     case 13: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
-    case 14: return <ViewEspecialidades isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 14: return <IndexEspecialidades isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 15: return <QueryEspecialidades isMenuOpen={isMenuOpen} />;
     case 16: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 17: return <ViewConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 17: return <IndexConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 18: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
     case 19: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen isMenuOpen={isMenuOpen} />;
