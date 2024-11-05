@@ -19,7 +19,6 @@ export class DropdownClass {
         /* Fetch */
         let array = [];
         let urlApi = '';
-
         switch(this.classType) { 
           case 'paciente': urlApi= apiPacientes; break;
           case 'doctor': urlApi= apiDoctores; break;
