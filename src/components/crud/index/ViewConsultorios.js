@@ -1,4 +1,4 @@
-import { CrudView } from '../CrudView';
+import { IndexItem } from '../IndexItem';
 import { HomeIndex } from '../../icons/home/HomeIndex';
 import { HomeSearch } from '../../icons/home/HomeSearch';
 import { HomePlus } from '../../icons/home/HomePlus';
@@ -9,5 +9,5 @@ export const ViewConsultorios = ({ isMenuOpen, setMenu }) => {
     { 'title':'Registrar', 'menu':19, 'Icon':HomePlus },
   ];
 
-  return ( <CrudView classType={'consultorio'} Icon={HomeIndex} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
+  return ( <IndexItem classType={'consultorio'} Icon={HomeIndex} services={services} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }

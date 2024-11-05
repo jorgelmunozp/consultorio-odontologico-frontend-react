@@ -33,3 +33,5 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
         </>       
     )
 }
+
+export default Item;

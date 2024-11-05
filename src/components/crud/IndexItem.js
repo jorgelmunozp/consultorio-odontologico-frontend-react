@@ -1,6 +1,6 @@
 
 import { myColor } from '../../global';
-export const CrudView = ({ classType, Icon, services, isMenuOpen, setMenu }) => {
+export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) => {
   return (
     <div className="App">
       <div className='mt-4 mt-sm-5'>

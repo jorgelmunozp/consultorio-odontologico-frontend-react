@@ -1,11 +1,11 @@
 import '../../assets/styles/App.css';
-import { IndexScreen } from './index/IndexScreen';
-import { ViewCitas } from '../crud/views/ViewCitas';
-import { ViewPacientes } from '../crud/views/ViewPacientes';
-import { ViewDoctores } from '../crud/views/ViewDoctores';
-import { ViewEspecialidades } from '../crud/views/ViewEspecialidades';
-import { ViewConsultorios } from '../crud/views/ViewConsultorios';
-import { ViewTratamientos } from '../crud/views/ViewTratamientos';
+// import { IndexScreen } from './index/IndexScreen';
+import { ViewCitas } from '../crud/index/ViewCitas';
+import { ViewPacientes } from '../crud/index/ViewPacientes';
+import { ViewDoctores } from '../crud/index/ViewDoctores';
+import { ViewEspecialidades } from '../crud/index/ViewEspecialidades';
+import { ViewConsultorios } from '../crud/index/ViewConsultorios';
+import { ViewTratamientos } from '../crud/index/ViewTratamientos';
 import { QueryCitas } from '../crud/query/QueryCitas';
 import { QueryPacientes } from '../crud/query/QueryPacientes';
 import { QueryDoctores } from '../crud/query/QueryDoctores';
@@ -36,10 +36,13 @@ import { HearthSearch } from '../icons/hearth/HearthSearch';
 import { HearthPlus } from '../icons/hearth/HearthPlus';
 import { FilterSearch } from '../icons/filter/FilterSearch';
 import { FilterPlus } from '../icons/filter/FilterPlus';
+import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
-import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
+import { Suspense, lazy } from 'react';
+const IndexScreen = lazy(() => import('./index/IndexScreen'));
+
 
 export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
   return (
@@ -80,7 +83,30 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
       </aside>
       <div className='App-body d-flex'>
         <div id="App" className="App mx-auto w-100"> 
+        <Suspense fallback={
+            <>
+         
+            {/* <center>
+              <div className="loader">
+                <div className="inner one"></div>
+                <div className="inner two"></div>
+                <div className="inner three"></div>
+              </div>
+            </center> */}
+  
+  
+            <div className="loaderBalls">
+              <div className="loading">
+                <div className="balls"></div>
+                <div className="balls"></div>
+                <div className="balls"></div>
+                <span className="loadingTitle">Cargando...</span>
+              </div>
+            </div>
+            </>
+          }>
           <MenuView menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
+          </Suspense>
         </div>
       </div>
     </div>

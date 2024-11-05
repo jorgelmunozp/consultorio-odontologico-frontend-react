@@ -65,3 +65,5 @@ export const IndexScreen = ({ isMenuOpen }) => {
     </div>
   )
 }
+
+export default IndexScreen;

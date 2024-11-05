@@ -1,4 +1,4 @@
-import { CrudView } from '../CrudView';
+import { IndexItem } from '../IndexItem';
 import { CalendarSmile } from '../../icons/calendar/CalendarSmile';
 import { CalendarSearch } from '../../icons/calendar/CalendarSearch';
 import { CalendarPlus } from '../../icons/calendar/CalendarPlus';
@@ -9,5 +9,5 @@ export const ViewCitas = ({ isMenuOpen, setMenu }) => {
     { 'title':'Registrar', 'menu':4, 'Icon':CalendarPlus },
   ];
 
-  return ( <CrudView classType={'cita'} Icon={CalendarSmile} services={services} IconCreate={CalendarPlus} IconQuery={CalendarSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
+  return ( <IndexItem classType={'cita'} Icon={CalendarSmile} services={services} IconCreate={CalendarPlus} IconQuery={CalendarSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }

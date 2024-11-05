@@ -82,12 +82,8 @@ hr { opacity: 0.5; }
 .table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 /*************************** Sort **************************/
-/* .tableSort {
-  border-collapse: collapse;
-  background-color: transparent;
-  padding: 0;
-  line-height: 0;
-} */
+.active { color: var(--main-color) !important;}              /* Buttons */
+.hover:hover { background-color: #f3f3f3 !important; }
 
 .button {
   font-family: 'Century Gothic','centuryGothic'!important;
@@ -153,7 +149,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color-scheme: inherit;
   cursor: pointer;
 }
-select {                                  /* Select views */      
+select {                                          /* Select views */      
   background-color: var(--white-color);
   font-size: inherit;
   font-family: inherit;
@@ -178,6 +174,7 @@ select::-ms-expand { display: none; }
   box-shadow: none;
 }
 
+
 /*************************** Modal Alerts **************************/
 .modalTable {
   border-collapse: collapse;
@@ -185,8 +182,7 @@ select::-ms-expand { display: none; }
 }
 
 /**************************** Loader SUSPENSE ************************/
-
-.clock-loader {
+.loaderClock {                                          /* Loader Clock */ 
   --clock-color: var(--main-color);
   --clock-width: 4rem;
   --clock-radius: calc(var(--clock-width) / 2);
@@ -228,23 +224,14 @@ select::-ms-expand { display: none; }
   }
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-
-
 /********** Pelotas **********/
-.container{   
+.loaderBalls {   
   display: grid;
-  /* place-content: center; */
+  place-content: center center;
   height: 100vh;
-  margin-top: 4em;
 }
-.cargando{
-  width: 80px;
+.loading{
+  width: 70px;
   height: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -252,35 +239,21 @@ select::-ms-expand { display: none; }
   justify-content: space-between;
   margin: 0 auto; 
 }
-.texto-cargando{ 
-  padding-top:20px
-}
-.cargando span{
-    font-size: 16px;
-    /* text-transform: uppercase; */
-}
-.pelotas {
-    width: 20px;
-    height: 20px;
-    background-color: var(--main-color);
-    animation: salto .5s alternate
-    infinite;
+.loadingTitle{ padding-top:20px }
+.loading span{ font-size: 16px }
+.balls {
+  --balls-size: 16px;
+  width: var(--balls-size);
+  height: var(--balls-size);
+  background-color: var(--main-color);
+  animation: jump .5s alternate infinite;
   border-radius: 50%  
 }
-.pelotas:nth-child(2) {
-    animation-delay: .18s;
-}
-.pelotas:nth-child(3) {
-    animation-delay: .37s;
-}
-@keyframes salto {
-    from {
-        transform: scaleX(1.25);
-    }
-    to{
-        transform: 
-        translateY(-50px) scaleX(1);
-    }
+.balls:nth-child(2) { animation-delay: .18s; }
+.balls:nth-child(3) { animation-delay: .37s; }
+@keyframes jump { 
+    from { transform: scaleX(1.25); } 
+    to{ transform: translateY(-50px) scaleX(1); }
 }
 
 /********** Abstracto **********/
@@ -352,20 +325,17 @@ select::-ms-expand { display: none; }
 /********** Giros naranjas **********/
 
 /* HTML: <div class="loader"></div> */
-/* .loader {
+.loaderSpin {
   margin-top: 2em;
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: 
-    radial-gradient(farthest-side,var(--main-color) 94%,#0000) top/8px 8px no-repeat,
-    conic-gradient(#0000 30%,var(--main-color));
+  background: radial-gradient(farthest-side,var(--main-color) 94%,#0000) top/8px 8px no-repeat,
+              conic-gradient(#0000 30%,var(--main-color));
   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
   animation: l13 1s infinite linear;
 }
-@keyframes l13{ 
-  100%{transform: rotate(1turn)}
-} */
+@keyframes l13{ 100%{transform: rotate(1turn)} }
 
 
 /********** Sencillo **********/
@@ -390,8 +360,9 @@ select::-ms-expand { display: none; }
 .jumpHover:hover { transform: translateY(-5px); }
 
 /**************************** Animations ********************************/ 
-/* .spin { animation: bounce 1s ease; }
-@keyframes spin {
+.spin { animation: spin 1s ease; }
+@keyframes spin { to { transform: rotate(1turn); } }
+/* @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 } */
@@ -405,10 +376,6 @@ select::-ms-expand { display: none; }
 
 .slideIn { animation: slideIn 0.5s ease-out; }
 @keyframes slideIn {
-  0% { transform: scale(0.925); }
+  0% { transform: scale(0.9); }
   100% { transform: scale(1); }
 }
-
-/*************************** Butons ********************************/
-.active { color: var(--main-color) !important;}
-.hover:hover { background-color: #f3f3f3 !important; }
