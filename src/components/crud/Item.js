@@ -4,7 +4,7 @@ import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
 
 export const Item = ({ classType, icons, item, urlApi, state }) => {
-    const [open, setOpen] = useState(false);                        // Input alert status
+    const [open, setOpen] = useState(false);                        // Input crud modal views status
 
     const IconRead = icons[classType].IconRead;                                                               // Selección de icono read
     const IconSearch = icons[classType].IconSearch;                                                           // Selección de icono search

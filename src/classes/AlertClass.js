@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createRoot } from 'react-dom/client';
 import { Modal } from '../components/modal/Modal';
 import { Success } from '../components/icons/success/Success';
@@ -13,14 +12,6 @@ export class AlertClass {
         this.buttons = {buttons}.buttons;
     }
    
-    getStatus = () => {                                                 // METHOD STATUS
-        const [open, setOpen] = useState(false);                        // Input alert status
-        const status = { open:open, setOpen:setOpen }
-
-        return( status )
-    }      
-    get status () { return this.getStatus() }                           // Getter state
-
     launch = () => {
         const icons = {
             success: { Icon:Success, iconColor:'#0f0' },
@@ -30,7 +21,7 @@ export class AlertClass {
 
         document.getElementById('body').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
         const root = createRoot( document.getElementById('alert') );
-        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} open={this.type} setOpen={''} fontFamily={'century-gothic'} /> );
+        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
     }
 
 }
