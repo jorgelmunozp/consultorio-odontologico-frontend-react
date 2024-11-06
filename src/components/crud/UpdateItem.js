@@ -23,7 +23,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, icons, stat
   
   // state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) );
 
-  // console.log("state UpdateItem: ", state)
+  console.log("state UpdateItem: ", state)
 
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);
