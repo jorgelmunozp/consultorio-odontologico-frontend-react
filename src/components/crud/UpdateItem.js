@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert';
 import { Item } from './Item';
@@ -18,10 +18,12 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, icons, stat
   // useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
   //   state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) );
   // },[])
+
+
   
   // state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) );
 
-  console.log("state: ", state)
+  // console.log("state UpdateItem: ", state)
 
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);

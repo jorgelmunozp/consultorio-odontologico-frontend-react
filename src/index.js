@@ -11,7 +11,7 @@ const App = lazy(() => import('./App'));
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-          <Suspense delayMs={0} fallback={<div style={{display:'flex', width:'100%', height:'100vh', alignItems:'center', justifyContent:'center'}}><Logo height={6} width={6} strokeWidth={1} color={myColor} /></div>}>
-            <App />
-          </Suspense>
-);
+            <Suspense delayMs={0} fallback={<div style={{display:'flex', width:'100%', height:'100vh', alignItems:'center', justifyContent:'center'}}><Logo height={6} width={6} strokeWidth={1} color={myColor} /></div>}>
+              <App />
+            </Suspense>
+          );
