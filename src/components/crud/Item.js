@@ -17,6 +17,8 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
     ( open !== false ) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
     
     let modalRoot = '';
+    let isModalOpen = false;
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
     if ( open !== false ) {
         state.forEach((property,index) =>{ property.setState( Object.values(item[classType])[index] ) });
