@@ -23,5 +23,5 @@ export class AlertClass {
         const root = createRoot( document.getElementById('alert') );
         root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
     }
-
+    
 }

@@ -26,15 +26,9 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
 
         switch (open) {
             case 'read': modal.render( <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />  ); break;
-            case 'update': modal.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} Item={Item} icons={icons} state={state} /> ); break;
+            case 'update': modal.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} icons={icons} state={state} /> ); break;
             case 'delete': modal.render( <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} /> ); break;
-        }       
-    }
-
-    if ( open === false ) {
-        if( document.getElementById('modal') ){ 
-            document.getElementById('modal').remove()
-        }
+        }            
     }
 
     return (

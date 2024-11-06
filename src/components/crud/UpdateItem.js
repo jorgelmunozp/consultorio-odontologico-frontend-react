@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert';
+import { Item } from './Item';
 import { DropdownClass } from '../../classes/Dropdown';
 import { fetchUpdate } from '../../helpers/fetchUpdate';
 import { Dropdown } from '../forms/dropdown/Dropdown';
@@ -11,11 +12,22 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons, state }) => { 
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, icons, state }) => { 
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
-   useEffect(()=>{                                                              // Carga los valores del item seleccionado en el estado para su actualización
-      state.forEach((property,index) => { property.setState( Object.values(item[classType])[index] ) });
-  },[])
+
+  // useEffect(()=>{                                                               // Carga los valores del item seleccionado en el estado para su actualización
+  //   state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) );
+  // },[])
+  
+  // state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) );
+
+  console.log("state: ", state)
+
+  const handleClose = () => {                                                   // Gestiona el cierre del modal
+    setOpen(false);
+    document.getElementById('modal').remove();
+    document.getElementById('body').classList.remove('noScroll');
+  }
 
   const handleUpdate = () => {
     state.forEach(property => stateValues.push(property.value));                // Push en el arreglo con los valores de los datos de cada parámetro del objeto
@@ -51,7 +63,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons
                 <h6 className={'modalTitle main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
               </div>
               <div className={'modalContent'}>
-                <div className='container-fluid modalTable mt-2 overflow-auto'>
+                <div className='container-fluid modalTable mt-2'>
                   <div className='row'>
                     <Input placeholder={'Código'} value={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
                   </div>
@@ -74,13 +86,13 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons
               </div>
               <div className={'modalFooter'}>
                 <div className={'d-flex mt-2 w-100'}>
-                  <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); setOpen(false) }}>Actualizar</button>
-                  <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
+                  <button className={'aceptBtn w-100'} onClick={() => { handleUpdate(); handleClose() }}>Actualizar</button>
+                  <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className={'darkBackground'} onClick={() => setOpen(false)}></div>
+          <div className={'darkBackground'} onClick={ handleClose }></div>
         </>
       )
 };

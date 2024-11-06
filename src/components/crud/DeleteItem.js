@@ -13,7 +13,13 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) =
     if(typeof value === 'object') { 
       valuesData.push( Object.values(value)[0] + " " + Object.values(value)[1] );
     } else { valuesData.push( value ) }
-  }); 
+  });
+
+  const handleClose = () => {                                     // Gestiona el cierre del modal
+    setOpen(false);
+    document.getElementById('modal').remove();
+    document.getElementById('body').classList.remove('noScroll');
+  }
 
   const handleDelete = () => {
     const fetchResponse = fetchDelete(urlApi,item.id);
@@ -64,13 +70,13 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) =
               </div>
               <div className={'modalFooter'}>
                 <div className={'d-flex mt-2 w-100'}>
-                    <button className={'aceptBtn w-100'} onClick={() => {handleDelete();setOpen(false)}}>Eliminar</button>
-                    <button className={'cancelBtn w-100'} onClick={() => setOpen(false)}>Cancel</button>
+                    <button className={'aceptBtn w-100'} onClick={() => { handleDelete(); handleClose() }}>Eliminar</button>
+                    <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className={'darkBackground'} onClick={() => setOpen(false)}></div>
+          <div className={'darkBackground'} onClick={ handleClose }></div>
         </>
       )
 };

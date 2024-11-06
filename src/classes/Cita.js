@@ -49,7 +49,7 @@ export class Cita {
         const [tratamiento, setTratamiento] = useState("");       // Select tratamiento      
         const state = [
           { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
-          { key:'fecha', value:fecha, type:"date", setState:setFecha , handleChange: (event) => setFecha( event.target.value ) },
+          { key:'fecha', value:fecha, type:"date", setState:setFecha, handleChange: (event) => setFecha( event.target.value ) },
           { key:'hora', value:hora, type:"time", setState:setHora, handleChange: (event) => setHora( event.target.value ) },
           { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
           { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) },

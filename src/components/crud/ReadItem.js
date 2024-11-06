@@ -10,7 +10,13 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
     if(typeof value === 'object') { 
       valuesData.push( Object.values(value)[0] + " " + Object.values(value)[1] );
     } else { valuesData.push( value ) }
-  });  
+  }); 
+
+  const handleClose = () => {                                     // Gestiona el cierre del modal
+    setOpen(false);
+    document.getElementById('modal').remove();
+    document.getElementById('body').classList.remove('noScroll');
+  }
   
     return (
         <>
@@ -42,12 +48,12 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
               </div>
               <div className={'modalFooter'}>
                 <div className={'d-grid mt-2 w-100'}>
-                  <button className={'aceptBtn mx-auto w-50'} onClick={(event) => setOpen(false)}>Aceptar</button>
+                  <button className={'aceptBtn mx-auto w-50'} onClick={ handleClose }>Aceptar</button>
                 </div>
               </div>
             </div>
           </div>
-          <div className={'darkBackground'} onClick={() => setOpen(false)}></div>
+          <div className={'darkBackground'} onClick={ handleClose }></div>
         </>
       )
 };

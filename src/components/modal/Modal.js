@@ -3,9 +3,15 @@ import { useState } from 'react';
 import { Logo } from '../icons/logo/Logo';
 
 export const Modal = ({ Icon=Logo, iconColor='#000', title='', openStatus=true, content='', buttons=1, fontFamily='' }) => {
-  const [open, setOpen] = useState(openStatus);                        // Input alert status
+  const [open, setOpen] = useState(openStatus);                   // Input alert status
   
   { open !== false && document.getElementById('body').classList.add('noScroll') }
+  
+  const handleClose = () => {                                     // Close the alert
+    setOpen(false);
+    document.getElementById('alert').remove();
+    document.getElementById('body').classList.remove('noScroll');
+  }
     
     return (
       <>
@@ -22,14 +28,14 @@ export const Modal = ({ Icon=Logo, iconColor='#000', title='', openStatus=true, 
                         }
                         <div className={'modalFooter justify-items-center'}>
                           <div className={'mt-4'}>
-                              {   buttons === 1 ? <button className={'aceptBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button>
-                                : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Aceptar</button> <button className={'cancelBtn w-100'} onClick={() => { setOpen(false); document.getElementById('body').classList.remove('noScroll'); }}>Cancel</button></>
+                              {   buttons === 1 ? <button className={'aceptBtn w-100'} onClick={ handleClose }>Aceptar</button>
+                                : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={ handleClose }>Aceptar</button> <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button></>
                                 : ""}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className={'darkBackground'} onClick={ () => setOpen(false) }></div>
+                    <div className={'darkBackground'} onClick={ handleClose }></div>
                   </>
         }
       </>
