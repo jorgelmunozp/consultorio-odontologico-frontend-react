@@ -19,7 +19,7 @@ export class AlertClass {
             error: { Icon:Error, iconColor:'#f00' }
         }
 
-        document.getElementById('body').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
+        document.getElementById('root').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
         const root = createRoot( document.getElementById('alert') );
         root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
     }

@@ -1,3 +1,4 @@
+import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
 import { ReadItem } from './ReadItem';
 import { UpdateItem } from './UpdateItem';
@@ -11,10 +12,42 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
     const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
     const IconDelete = icons[classType].IconDelete;                                                           // Selección de icono delete
 
+    console.log("open: ",open)
+
+    const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
+
     ( open !== false ) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
     
-    const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
- 
+    let modal = '';
+
+    if ( open !== false ) {
+        const children = document.getElementById('body').children;
+        let isModal = false;
+
+        for (let index = 0; index < children.length; index++) {
+            if( children[index].id === 'modal' ) { isModal = true }
+        }
+
+        if( isModal ) {
+            modal = createRoot( document.getElementById('modal') );
+        } else {
+            document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`);
+            modal = createRoot( document.getElementById('modal') );
+        }
+
+        switch (open) {
+            case 'read': modal.render( <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />  ); break;
+            case 'update': modal.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} Item={Item} icons={icons} state={state} /> ); break;
+            case 'delete': modal.render( <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} /> ); break;
+        }       
+    }
+
+    if ( open === false ) {
+        if( document.getElementById('modal') ){ 
+            document.getElementById('modal').remove()
+        }
+    }
+
     return (
         <>
             <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
@@ -24,9 +57,9 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
             <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('read') }><IconSearch /></button></div>
             <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('update') }><IconEdit /></button></div>
             <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('delete')}><IconDelete /></button></div>       
-            { open === 'read' && <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} /> }
-            { open === 'update' && <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} Item={Item} icons={icons} state={state} /> }
-            { open === 'delete' && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} />  }
+            {/* { open === 'read' && <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} /> } */}
+            {/* { open === 'update' && <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} Item={Item} icons={icons} state={state} /> } */}
+            {/* { open === 'delete' && <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} />  } */}
         </>       
     )
 }

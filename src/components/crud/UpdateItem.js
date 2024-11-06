@@ -34,8 +34,6 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, Item, icons
             row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />);
 
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
-            // Alert({ type:'success', title:'Actualización exitosa' })
-
           }
           else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
         },
