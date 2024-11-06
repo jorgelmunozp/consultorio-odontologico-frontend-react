@@ -221,7 +221,7 @@ select::-ms-expand { display: none; }
   --clock-radius: calc(var(--clock-width) / 2);
   --clock-minute-length: calc(var(--clock-width) * 0.4);
   --clock-hour-length: calc(var(--clock-width) * 0.2);
-  --clock-thickness: 0.2rem;
+  --clock-thickness: 0.15rem;
   position: relative;
   margin-top: 2em;
   display: flex;

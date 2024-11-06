@@ -21,20 +21,20 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
                 <h6 className={'modalTitle main-color pt-2'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h6>
               </div>
               <div className={'modalContent'}>
-                <div className='container-fluid modalTable mt-2'>
-                  <div className='row modalTableTitle'>
-                    <div className='col'>Parámetro</div>
-                    <div className='col'>Datos</div>
+                <div className='container-fluid modalTable mt-2 overflow-auto'>
+                  <div className='row modalTableTitle flex-nowrap'>
+                    <div className='col-6'>Parámetro</div>
+                    <div className='col-6'>Datos</div>
                   </div>
-                  <div className='row'>
-                    <div className='col modalTableData'>Código</div>
-                    <div className='col modalTableData text-start'>{ item.id }</div>
+                  <div className='row flex-nowrap'>
+                    <div className='col-6 modalTableData text-start'>Código</div>
+                    <div className='col-6 modalTableData text-start'>{ item.id }</div>
                   </div>
                   {
                     valuesData.map((data,index)=>{ return(
-                        <div key={ keys[index].toLowerCase() } className='row'>
-                          <div className='col modalTableData'>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</div>
-                          <div className='col modalTableData text-start'>{ data }</div>
+                        <div key={ keys[index].toLowerCase() } className='row flex-nowrap'>
+                          <div className='col-6 modalTableData text-start'>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</div>
+                          <div className='col-6 modalTableData text-start'>{ data }</div>
                         </div>
                     )})
                   }

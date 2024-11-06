@@ -8,7 +8,7 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
     const [open, setOpen] = useState(false);                        // Input crud modal views status
 
     const IconRead = icons[classType].IconRead;                                                               // Selección de icono read
-    const IconSearch = icons[classType].IconSearch;                                                           // Selección de icono search
+    const IconSearch = icons[classType].IconSearch;                                                               // Selección de icono read
     const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
     const IconDelete = icons[classType].IconDelete;                                                           // Selección de icono delete
 
@@ -21,19 +21,8 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
     let modal = '';
 
     if ( open !== false ) {
-        const children = document.getElementById('body').children;
-        let isModal = false;
-
-        for (let index = 0; index < children.length; index++) {
-            if( children[index].id === 'modal' ) { isModal = true }
-        }
-
-        if( isModal ) {
-            modal = createRoot( document.getElementById('modal') );
-        } else {
-            document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`);
-            modal = createRoot( document.getElementById('modal') );
-        }
+        document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`);
+        modal = createRoot( document.getElementById('modal') );
 
         switch (open) {
             case 'read': modal.render( <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />  ); break;
