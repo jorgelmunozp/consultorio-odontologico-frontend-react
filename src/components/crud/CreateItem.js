@@ -38,12 +38,10 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
       ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
 
-    console.log("objectClass: ",objectClass )
-    console.log("item: ",item )
-
-  } else {
-    Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch();
-  }
+  } 
+  // else {
+  //   Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch();
+  // }
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     console.log("state CreateItem: ", state)
