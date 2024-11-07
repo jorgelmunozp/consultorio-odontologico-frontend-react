@@ -20,11 +20,11 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icon
   let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
   console.log("item UpdateItem: ", item)
  
-  useEffect(()=>{                                                               
-    state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
-  },[])
+  // useEffect(()=>{                                                               
+  //   state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
+  // },[])
 
-  // state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
+  state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
 
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);
@@ -33,6 +33,10 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icon
   }
 
   const handleUpdate = () => {
+    // state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los nuevos valores seleccionados en el estado para su actualización
+
+    console.log("state UpdateItem: ", state)
+
     state.forEach(property => stateValues.push(property.value));                // Push en el arreglo con los valores de los datos de cada parámetro del objeto
 
     if(stateValues.filter(state => state === '').length === 0) {                // Verifica que no hayan campos vacios
