@@ -19,7 +19,13 @@ export class AlertClass {
             error: { Icon:Error, iconColor:'#f00' }
         }
 
-        document.getElementById('root').insertAdjacentHTML('afterend',`<div id="alert"></div>`);
+        let isAlert = false;
+        document.getElementById('body').childNodes.forEach(child => {                       // Check for any alert element in the body
+            if (child.id === 'alert' ) { isAlert = true }
+        });
+
+        if( !isAlert ) { document.getElementById('root').insertAdjacentHTML('afterend',`<div id="alert"></div>`); } // Create element Alert in the body if there's no one
+
         const root = createRoot( document.getElementById('alert') );
         root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
     }

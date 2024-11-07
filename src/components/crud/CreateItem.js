@@ -10,7 +10,7 @@ import { Dropdown } from '../forms/dropdown/Dropdown';
 import { Input } from '../forms/inputs/Input';
 import { BotonFetch } from "../forms/buttons/BotonFetch";
 
-import sign from 'jwt-encode';                                               // Para firma con jwt
+import sign from 'jwt-encode';                                              // Para firma con jwt
 import { jwtDecode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
@@ -26,24 +26,30 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   }
 
   // --- Clase Item
-  const objectClass = new classes[classType].Classe('');                                       // Objeto instanciado con la Class correspondiente
+  const objectClass = new classes[classType].Classe('');                    // Objeto instanciado con la Class correspondiente
   const state = objectClass.state;
   const urlApi = objectClass.api;
   let item = "";
-
-  let stateValues = [];                                                     // Arreglo con los datos de cada parámetro del objeto
-  state.forEach( property => stateValues.push(property.value) );
-
-  if(stateValues.filter( state => state === '').length === 0 ) {            // Verifica que no hayan campos vacios
+  
+  if(state.filter( property => property.value === '').length === 0 ) {            // Verifica que no hayan campos vacios
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
       ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
-   }
+
+    console.log("objectClass: ",objectClass )
+    console.log("item: ",item )
+
+  } else {
+    Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch();
+  }
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
+    console.log("state CreateItem: ", state)
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables  
+    state.forEach( property => property.value = '' );                     // Reinicia todas las variables  
+    
     Alert({ type:'success', title:'Registro exitoso' }).launch();
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
@@ -76,7 +82,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
           }
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonFetch endIcon={<Icon />} title={'Registrar'} urlApi={urlApi}  contenidoApi={item} setResponseStatus={setResponseStatus} className={'button rounded border-0 py-3 shadow-sm'} ></BotonFetch>
+              <BotonFetch endIcon={<Icon />} title={'Registrar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus} className={'button rounded border-0 py-3 shadow-sm'} ></BotonFetch>
             </div>
           </div>              
 			  </div>

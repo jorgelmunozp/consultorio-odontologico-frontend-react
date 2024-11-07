@@ -5,14 +5,14 @@ import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
 
 export const Item = ({ classType, icons, item, urlApi, state }) => {
-    const [open, setOpen] = useState(false);                        // Input crud modal views status
+    const [open, setOpen] = useState(false);                                                                    // Input crud modal views status
 
-    const IconRead = icons[classType].IconRead;                                                               // Selección de icono read
-    const IconSearch = icons[classType].IconSearch;                                                               // Selección de icono read
-    const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
-    const IconDelete = icons[classType].IconDelete;                                                           // Selección de icono delete
+    const IconRead = icons[classType].IconRead;                                                                 // Selección de icono read
+    const IconSearch = icons[classType].IconSearch;                                                             // Selección de icono search
+    const IconEdit = icons[classType].IconEdit;                                                                 // Selección de icono update
+    const IconDelete = icons[classType].IconDelete;                                                             // Selección de icono delete
 
-    const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];       // Wide columns
+    const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];        // Wide columns
 
     ( open !== false ) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
     
