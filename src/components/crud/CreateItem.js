@@ -31,7 +31,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const urlApi = objectClass.api;
   let item = "";
   
-  if(state.filter( property => property.value === '').length === 0 ) {            // Verifica que no hayan campos vacios
+  if(state.filter( property => property.value === '').length === 0 ) {      // Check for emtpy fields to avoid any empty item
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
@@ -39,14 +39,11 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
     })`; 
 
   } 
-  // else {
-  //   Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch();
-  // }
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     console.log("state CreateItem: ", state)
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables  
-    state.forEach( property => property.value = '' );                     // Reinicia todas las variables  
+    state.forEach( property => property.value = '' );                       // Reinicia todas las variables  
     
     Alert({ type:'success', title:'Registro exitoso' }).launch();
     setResponseStatus(0);
