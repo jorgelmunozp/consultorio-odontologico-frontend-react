@@ -223,8 +223,8 @@ select::-ms-expand { display: none; }
   --clock-hour-length: calc(var(--clock-width) * 0.2);
   --clock-thickness: 0.15rem;
   position: relative;
-  margin-top: 2em;
   display: flex;
+  margin-top: 2em;
   justify-content: center;
   align-items: center;
   width: var(--clock-width);
@@ -325,8 +325,11 @@ select::-ms-expand { display: none; }
 
 /********** Giros naranjas **********/
 .loaderSpin {
+  position: relative;
+  display: flex;
   margin-top: 2em;
   width: 50px;
+  place-self: center;
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(farthest-side,var(--main-color) 94%,#0000) top/8px 8px no-repeat,
@@ -334,25 +337,6 @@ select::-ms-expand { display: none; }
   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
   animation: spin 1s infinite linear;
 }
-/* @keyframes l13{ 100%{transform: rotate(1turn)} } */
-
-
-/********** Sencillo **********/
-/* .loader {
-  margin-top: 20px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid var(--main-color);
-  border-bottom: 5px solid var(--main-color);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  align-self: center;
-  justify-items: center;
-  animation: spin 1s linear infinite;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
-}
-@media (min-width: 768px) { .loader { width: 60px; height: 60px; } } */
 
 /**************************** Transitions *******************************/ 
 .jumpHover { transition: all 0.25s ease; }
@@ -360,7 +344,7 @@ select::-ms-expand { display: none; }
 
 /**************************** Animations ********************************/ 
 .spin { animation: spin 1s ease; }
-@keyframes spin { to { transform: rotate(1turn); } }
+@keyframes spin { 100% { transform: rotate(1turn); } }
 /* @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
