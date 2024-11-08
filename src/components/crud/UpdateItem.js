@@ -1,4 +1,3 @@
-import { useEffect, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert';
 import { Item } from './Item';
@@ -12,20 +11,13 @@ import '../modal/modal.css';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icons, wideItems }) => { 
-  const IconSearch = icons[classType].IconSearch;                                                               // Selección de icono read
-  const IconEdit = icons[classType].IconEdit;                                                               // Selección de icono update
-  const IconDelete = icons[classType].IconDelete;   
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, icons }) => { 
+  const IconSearch = icons[classType].IconSearch;                              // Selección de icono read
+  const IconEdit = icons[classType].IconEdit;                                  // Selección de icono update
+  const IconDelete = icons[classType].IconDelete;                              // Selección de icono delete
 
-  let stateValues = [];                                                         // Arreglo con los datos de cada parámetro del objeto
-  console.log("item UpdateItem: ", item)
- 
-  // useEffect(()=>{                                                               
-  //    state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
-  // },[])
-
-  // state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
-
+  const state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento });
+  
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);
     document.getElementById('modal').remove();
@@ -33,15 +25,8 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icon
   }
 
   const handleUpdate = () => {
-  state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
-
-    console.log("state UpdateItem: ", state)
-
-    state.forEach(property => stateValues.push(property.value));                // Push en el arreglo con los valores de los datos de cada parámetro del objeto
-
-    if(stateValues.filter(state => state === '').length === 0) {                // Verifica que no hayan campos vacios
-      Object.keys(item[classType]).forEach((property,index) => { item[classType][property] = stateValues[index] });   // Actualiza los nuevos valores en el item
-    console.log("Updated item !!!: ", item)
+    if(state.filter( property => property.value === '').length === 0 ) {        // Check for emtpy fields to avoid any empty item
+      state.forEach((property) => { item[classType][property.key] = property.value });   // Actualiza los nuevos valores en el item
 
       const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);   // Fetch PUT para actualización de datos
       fetchResponse.then(

@@ -49,7 +49,6 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
-  const state = objectClass.state;
   const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
   const pluralEs = ['doctor','especialidad'];
@@ -60,7 +59,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
         <SearchBar Icon={icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
         <Suspense fallback={ <center><div className="loaderClock"></div></center> }>
-          <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={arrayFiltered} objectClass={objectClass}  SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} />
+          <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={arrayFiltered} objectClass={objectClass} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} />
         </Suspense>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>

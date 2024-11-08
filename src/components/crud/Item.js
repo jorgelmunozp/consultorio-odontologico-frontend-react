@@ -18,16 +18,13 @@ export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     
     let modalRoot = '';
 
-    const state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento });
-    console.log("state Item: ",state)
-
     if ( open !== false ) {
         document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`);
         modalRoot = createRoot( document.getElementById('modal') );
 
         switch (open) {
             case 'read': modalRoot.render( <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />  ); break;
-            case 'update': modalRoot.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} state={state} icons={icons} wideItems={wideItems} /> ); break;
+            case 'update': modalRoot.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} /> ); break;
             case 'delete': modalRoot.render( <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} /> ); break;
         }
         

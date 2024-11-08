@@ -1,7 +1,7 @@
 import { Item } from './Item';
 import { Arrows } from '../forms/arrows/Arrows';
 
-export const ItemsList = ({classType, icons, titles, urlApi, array, objectClass, state, SortByProperty, setSortBy, indexPage }) => {
+export const ItemsList = ({classType, icons, titles, urlApi, array, objectClass, SortByProperty, setSortBy, indexPage }) => {
   return (
     <div className={'container-fluid border overflow-auto px-0' }>
         <div className={'row flex-nowrap bg-main-color'}>
@@ -11,7 +11,7 @@ export const ItemsList = ({classType, icons, titles, urlApi, array, objectClass,
         </div>
         { array.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
             <div id={'row'+item.id } key={ item.id } className='row flex-nowrap border-bottom text-start text-nowrap py-2' >
-              <Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} state={state} />
+              <Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />
             </div>
             )})
         }
