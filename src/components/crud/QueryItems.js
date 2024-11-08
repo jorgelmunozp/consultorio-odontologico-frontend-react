@@ -58,7 +58,7 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
         <SearchBar Icon={icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
-        <Suspense fallback={ <center><div className="loaderClock"></div></center> }>
+        <Suspense fallback={ <center><div className="loaderSpin"></div></center> }>
           <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={arrayFiltered} objectClass={objectClass} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} />
         </Suspense>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 

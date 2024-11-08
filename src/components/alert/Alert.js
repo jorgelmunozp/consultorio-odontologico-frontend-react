@@ -1,4 +1,4 @@
-import { AlertClass } from '../../classes/AlertClass';
+import { Alert as AlertClass } from '../../classes/Alert';
 import { Success } from '../icons/success/Success';
 import { Warning } from '../icons/warning/Warning';
 import { Error } from '../icons/error/Error';

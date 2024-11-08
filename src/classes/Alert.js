@@ -4,7 +4,7 @@ import { Success } from '../components/icons/success/Success';
 import { Warning } from '../components/icons/warning/Warning';
 import { Error } from '../components/icons/error/Error';
 
-export class AlertClass {
+export class Alert {
     constructor({ type:type='',title:title='', message:message='', buttons:buttons='' }) {
         this.type = {type}.type;
         this.title = {title}.title;
