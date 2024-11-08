@@ -139,7 +139,6 @@
   }
   .modalTableData {
     color: var(--dark-color);
-    font-size: 0.9em;
     padding: 1vmin 5vmin;
     text-wrap: nowrap;
   }

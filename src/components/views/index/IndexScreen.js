@@ -1,11 +1,6 @@
-import { useState } from 'react';
+import { useState, lazy } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { QueryCitas } from '../../crud/query/QueryCitas';
-import { QueryPacientes } from '../../crud/query/QueryPacientes';
-import { QueryDoctores } from '../../crud/query/QueryDoctores';
-import { QueryEspecialidades } from '../../crud/query/QueryEspecialidades';
-import { QueryConsultorios } from '../../crud/query/QueryConsultorios';
-import { QueryTratamientos } from '../../crud/query/QueryTratamientos';
 import { CalendarMedical } from '../../icons/calendar/CalendarMedical';
 import { UserInjured } from '../../icons/user/UserInjured';
 import { UserMedical } from '../../icons/user/UserMedical';
@@ -14,6 +9,12 @@ import { HomeMedical } from '../../icons/home/HomeMedical';
 import { Syringe } from '../../icons/medical/Syringe';
 import { Logo } from '../../icons/logo/Logo';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global';
+
+const QueryPacientes = lazy(() => import('../../crud/query/QueryPacientes'));
+const QueryDoctores = lazy(() => import('../../crud/query/QueryDoctores'));
+const QueryEspecialidades = lazy(() => import('../../crud/query/QueryEspecialidades'));
+const QueryConsultorios = lazy(() => import('../../crud/query/QueryConsultorios'));
+const QueryTratamientos = lazy(() => import('../../crud/query/QueryTratamientos'));
 
 const services = [
   { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },
