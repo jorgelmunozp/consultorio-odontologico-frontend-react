@@ -55,9 +55,7 @@ export class Cita {
           { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) },
           { key:'tratamiento', value:tratamiento, type:"dropdown", setState:setTratamiento, handleChange: (event) => setTratamiento( event.target.value ) }
         ];
-
-        console.log("state Cita Class: ",state)
-
+        
         return( state )
     }      
     get state () { return this.getState({ pac:'', cons:'', doc:'', trat:'' }) }                        // Getter state

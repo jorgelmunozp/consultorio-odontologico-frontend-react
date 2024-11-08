@@ -36,7 +36,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
                 .then(response => response.json())
       
             const row = createRoot(document.getElementById( 'row'+item.id ));
-            row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} state={state} />);
+            row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />);
 
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
           }
