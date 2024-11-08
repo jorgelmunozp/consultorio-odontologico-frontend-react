@@ -40,13 +40,13 @@ export class Cita {
     }                          
     get titles () { return this.getTitles() }                     // Getter titles
 
-    getState = () => {                                            // Method
-        const [paciente, setPaciente] = useState("");             // Select paciente
+    getState = ({ pac:pac='', cons:cons='', doc:doc='', trat:trat='' }) => {                             // Method
+        const [paciente, setPaciente] = useState( pac );       // Select paciente
         let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
         let [hora, setHora] = useState(getTime);
-        const [consultorio, setConsultorio] = useState("");       // Select consultorio
-        const [doctor, setDoctor] = useState("");                 // Select doctor
-        const [tratamiento, setTratamiento] = useState("");       // Select tratamiento      
+        const [consultorio, setConsultorio] = useState( cons );       // Select consultorio
+        const [doctor, setDoctor] = useState( doc );                 // Select doctor
+        const [tratamiento, setTratamiento] = useState( trat );       // Select tratamiento      
         const state = [
           { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
           { key:'fecha', value:fecha, type:"date", setState:setFecha, handleChange: (event) => setFecha( event.target.value ) },
@@ -56,9 +56,11 @@ export class Cita {
           { key:'tratamiento', value:tratamiento, type:"dropdown", setState:setTratamiento, handleChange: (event) => setTratamiento( event.target.value ) }
         ];
 
+        console.log("state Cita Class: ",state)
+
         return( state )
     }      
-    get state () { return this.getState() }                        // Getter state
+    get state () { return this.getState({ pac:'', cons:'', doc:'', trat:'' }) }                        // Getter state
 
     getData = () => {                                              // METHOD DATA
         /* Fetch */

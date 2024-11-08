@@ -4,7 +4,7 @@ import { ReadItem } from './ReadItem';
 import { UpdateItem } from './UpdateItem';
 import { DeleteItem } from './DeleteItem';
 
-export const Item = ({ classType, icons, item, urlApi, state }) => {
+export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     const [open, setOpen] = useState(false);                                                                    // Input crud modal views status
 
     const IconRead = icons[classType].IconRead;                                                                 // Selección de icono read
@@ -17,6 +17,9 @@ export const Item = ({ classType, icons, item, urlApi, state }) => {
     ( open !== false ) ? document.getElementById('body').classList.add('noScroll') : document.getElementById('body').classList.remove('noScroll')   // No scroll when alerts are open
     
     let modalRoot = '';
+
+    const state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento });
+    console.log("state Item: ",state)
 
     if ( open !== false ) {
         document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`);

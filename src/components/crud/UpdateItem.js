@@ -21,10 +21,10 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icon
   console.log("item UpdateItem: ", item)
  
   // useEffect(()=>{                                                               
-  //   state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
+  //    state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
   // },[])
 
-  state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los valores del item seleccionado en el estado para su actualización
+  // state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
 
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);
@@ -33,7 +33,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, state, icon
   }
 
   const handleUpdate = () => {
-    // state.forEach((property,index) => property.value = Object.values(item[classType])[index] ); // Carga los nuevos valores seleccionados en el estado para su actualización
+  state.forEach((property,index) => property.setState( Object.values(item[classType])[index] ) ); // Carga los valores del item seleccionado en el estado para su actualización
 
     console.log("state UpdateItem: ", state)
 
