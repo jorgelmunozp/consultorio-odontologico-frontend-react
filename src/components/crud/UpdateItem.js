@@ -42,7 +42,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
             await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
                 .then(response => response.json())
       
-            const row = createRoot(document.getElementById( 'row'+item.id ));
+            const row = createRoot(document.getElementById( 'row'+classType+item.id ));
             row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />);
 
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
