@@ -13,6 +13,7 @@
     "consultorio-odontologico-frontend-react": "file:",
     "create-cloudflare": "^2.8.4",
     "create-react-app": "^5.0.1",
+    "jose": "^5.9.6",
     "jwt-decode": "^4.0.0",
     "jwt-encode": "^1.0.1",
     "react": "^18.2.0",

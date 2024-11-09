@@ -8,7 +8,8 @@ import { Doctor } from './User';
 import { getDate } from '../helpers/getDate';
 import { getTime } from '../helpers/getTime';
 import { getCitasFiltered } from '../components/selectors/getCitasFiltered';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode as decode } from "jwt-decode";
+
 const urlApi = process.env.REACT_APP_API_CITAS;
 
 export class Cita {
@@ -48,12 +49,12 @@ export class Cita {
         const [doctor, setDoctor] = useState( doc );              // Select doctor
         const [tratamiento, setTratamiento] = useState( trat );   // Select tratamiento      
         const state = [
-          { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
+          { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( decode(event.target.value) ) },
           { key:'fecha', value:fecha, type:"date", setState:setFecha, handleChange: (event) => setFecha( event.target.value ) },
           { key:'hora', value:hora, type:"time", setState:setHora, handleChange: (event) => setHora( event.target.value ) },
-          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
-          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) },
-          { key:'tratamiento', value:tratamiento, type:"dropdown", setState:setTratamiento, handleChange: (event) => setTratamiento( event.target.value ) }
+          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( decode(event.target.value) ) },
+          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( decode(event.target.value) ) },
+          { key:'tratamiento', value:tratamiento, type:"dropdown", setState:setTratamiento, handleChange: (event) => setTratamiento( decode(event.target.value) ) }
         ];
         
         return( state )

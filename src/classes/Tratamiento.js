@@ -5,7 +5,7 @@ import { Especialidad } from './Especialidad';
 import { Consultorio } from './Consultorio';
 import { Doctor } from './User';
 import { getTratamientosFiltered } from '../components/selectors/getTratamientosFiltered';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_TRATAMIENTOS;
 
 export class Tratamiento {
@@ -39,9 +39,9 @@ export class Tratamiento {
         const [consultorio, setConsultorio] = useState( cons );      // Select consultorio state
         const [doctor, setDoctor] = useState( doc );                 // Select doctor state
         const state = [
-          { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
-          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
-          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( event.target.value ) }
+          { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( decode(event.target.value) ) },
+          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( decode(event.target.value) ) },
+          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( decode(event.target.value) ) }
         ];
         
         return( state )

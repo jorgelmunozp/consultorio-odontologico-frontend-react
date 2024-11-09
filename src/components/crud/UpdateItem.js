@@ -8,9 +8,6 @@ import { Input } from '../forms/inputs/Input';
 import { myColor } from '../../global';
 import '../modal/modal.css';
 
-import sign from 'jwt-encode';                                                  // Para firma con jwt
-const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
-
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, icons }) => { 
   const IconSearch = icons[classType].IconSearch;                              // Selección de icono read
   const IconEdit = icons[classType].IconEdit;                                  // Selección de icono update

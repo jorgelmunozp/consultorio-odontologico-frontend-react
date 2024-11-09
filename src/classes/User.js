@@ -3,7 +3,7 @@ import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 import { getPacientesFiltered } from '../components/selectors/getPacientesFiltered';
 import { getDoctoresFiltered } from '../components/selectors/getDoctoresFiltered';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode as decode } from "jwt-decode";
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 
@@ -54,8 +54,8 @@ export class Paciente extends User {
         { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
         { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
-        { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( event.target.value ) },
-        { key:'eps', value:eps, type:"dropdown", setState:setEps, handleChange: (event) => setEps( event.target.value ) }
+        { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( decode(event.target.value) ) },
+        { key:'eps', value:eps, type:"dropdown", setState:setEps, handleChange: (event) => setEps( decode(event.target.value) ) }
       ];
 
       return( state )
@@ -170,8 +170,8 @@ export class Doctor extends User {
         { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
         { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
-        { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( event.target.value ) },
-        { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) }
+        { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( decode(event.target.value) ) },
+        { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( decode(event.target.value) ) }
       ];
 
       return( state )

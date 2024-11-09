@@ -42,9 +42,12 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     console.log("state CreateItem: ", state)
+    console.log("objectClass CreateItem: ", objectClass)
+
+//************ NO FUNCIONA: -->
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables  
-    state.forEach( property => property.value = '' );                       // Reinicia todas las variables  
-    
+        state.forEach(property => objectClass[property.key] = '');          // Reinicia los valores ingresados por el usuario en el objeto
+
     Alert({ type:'success', title:'Registro exitoso' }).launch();
     setResponseStatus(0);
   } else if( 400 <= responseStatus && responseStatus <= 499 ) {
