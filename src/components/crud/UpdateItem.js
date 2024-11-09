@@ -62,7 +62,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
               <div className={'modalContent'}>
                 <div className='container-fluid modalTable mt-2'>
                   <div className='row'>
-                    <Input placeholder={'Código'} value={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
+                    <Input placeholder={'Código'} defaultValue={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
                   </div>
                   {
                     state.map((property,index)=>{
