@@ -54,7 +54,7 @@ export const IndexScreen = ({ isMenuOpen }) => {
             }
           </div>
 
-          <SwipeableViews index={view} onChangeIndex={(indexLatest)=>setView(indexLatest)} enableMouseEvents>
+          <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
             <QueryCitas />
             <QueryPacientes />
             <QueryDoctores />
