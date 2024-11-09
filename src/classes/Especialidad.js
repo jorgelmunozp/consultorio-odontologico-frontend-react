@@ -2,8 +2,8 @@ import { useState, useMemo, useEffect }  from "react";
 import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 import { getEspecialidadesFiltered } from '../components/selectors/getEspecialidadesFiltered';
+import { jwtDecode as decode } from "jwt-decode";
 
-import { jwtDecode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_ESPECIALIDADES;
 
 export class Especialidad {
@@ -33,7 +33,7 @@ export class Especialidad {
     getState = ({ nomb:nomb='' }) => {                            // Method
         const [nombre, setNombre] = useState( nomb );             // Input nombre state
         const state = [
-          { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) }
+          { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (value) => setNombre( decode(value) ) }
         ];
         
         return( state )

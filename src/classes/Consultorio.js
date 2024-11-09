@@ -3,6 +3,7 @@ import { Alert } from '../components/alert/Alert';
 import { useFetch } from '../hooks/useFetch';
 import { getConsultoriosFiltered } from '../components/selectors/getConsultoriosFiltered';
 import { jwtDecode as decode } from "jwt-decode";
+
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
 export class Consultorio {
@@ -31,13 +32,11 @@ export class Consultorio {
     get titles () { return this.getTitles() }                        // Getter titles
 
     getState = ({ num:num='', nomb:nomb='' }) => {                   // METHOD STATE
-        const [ numero, setNumero ] = useState( num );               // Input Número state
-        const [ nombre, setNombre ] = useState( nomb );              // Input Nombre state
+        const [ numero, setNumero ] = useState( num );               // Input número state
+        const [ nombre, setNombre ] = useState( nomb );              // Input nombre state
         const state = [
-        //   { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (event) => setNumero( event.target.value ) },
           { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (value) => setNumero( decode(value) ) },
-        //   { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => setNombre( event.target.value) }
-          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (value) => {console.log("event°°°°°: ",value); setNombre( decode(value) ) } }
+          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (value) => setNombre( decode(value) ) }
         ];
         
         return( state )

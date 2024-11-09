@@ -6,6 +6,7 @@ import { Consultorio } from './Consultorio';
 import { Doctor } from './User';
 import { getTratamientosFiltered } from '../components/selectors/getTratamientosFiltered';
 import { jwtDecode as decode } from "jwt-decode";
+
 const urlApi = process.env.REACT_APP_API_TRATAMIENTOS;
 
 export class Tratamiento {

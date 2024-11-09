@@ -4,6 +4,7 @@ import { useFetch } from '../hooks/useFetch';
 import { getPacientesFiltered } from '../components/selectors/getPacientesFiltered';
 import { getDoctoresFiltered } from '../components/selectors/getDoctoresFiltered';
 import { jwtDecode as decode } from "jwt-decode";
+
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 
@@ -51,9 +52,9 @@ export class Paciente extends User {
       const [genero, setGenero] = useState( gen );                 // Select genero state
       const [eps, setEps] = useState( eps_ );                       // Select eps state
       const state = [
-        { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
-        { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
-        { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
+        { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (value) => setNombre( decode(value) ) },
+        { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (value) => setApellido( decode(value) ) },
+        { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (value) => setIdentificacion( decode(value) ) },
         { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( decode(event.target.value) ) },
         { key:'eps', value:eps, type:"dropdown", setState:setEps, handleChange: (event) => setEps( decode(event.target.value) ) }
       ];
@@ -167,9 +168,9 @@ export class Doctor extends User {
       const [genero, setGenero] = useState( gen );                 // Select genero state
       const [especialidad, setEspecialidad] = useState( esp );     // Select especialidad state
       const state = [
-        { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
-        { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
-        { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (event) => setIdentificacion( event.target.value ) },
+        { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (value) => setNombre( decode(value) ) },
+        { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (value) => setApellido( decode(value) ) },
+        { key:'identificacion', value:identificacion, type:"number", setState:setIdentificacion, handleChange: (value) => setIdentificacion( decode(value) ) },
         { key:'genero', value:genero, type:"dropdown", setState:setGenero, handleChange: (event) => setGenero( decode(event.target.value) ) },
         { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( decode(event.target.value) ) }
       ];
