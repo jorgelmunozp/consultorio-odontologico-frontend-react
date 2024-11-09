@@ -1,7 +1,7 @@
 import '../forms.css';
 import { useState } from 'react';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
-import { jwtDecode as decode } from "jwt-decode";
+
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const Input = ({ type, placeholder, defaultValue, handleChange, className }) => {

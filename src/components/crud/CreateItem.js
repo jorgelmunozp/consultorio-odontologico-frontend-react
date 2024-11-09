@@ -75,7 +75,7 @@ console.log("item: ", item)
               return(
                 <div key={'row'+property.key} className='row'>
                   { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                 : <div className='col'><Input value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                                                 : <div className='col'><Input type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})
