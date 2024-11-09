@@ -11,10 +11,11 @@ import { Input } from '../forms/inputs/Input';
 import { BotonFetch } from "../forms/buttons/BotonFetch";
 
 import sign from 'jwt-encode';                                              // Para firma con jwt
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode as decode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
+  const [loadData, setLoadData] = useState(false);
   const [responseStatus, setResponseStatus] = useState(0);
   
   const classes = { cita: { Classe: Cita },
@@ -30,14 +31,15 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const state = objectClass.state;
   const urlApi = objectClass.api;
   let item = "";
-  
+
+console.log("state: ", state)
   if(state.filter( property => property.value === '').length === 0 ) {      // Check for emtpy fields to avoid any empty item
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
       ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
-
+console.log("item: ", item)
   } 
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
@@ -80,7 +82,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
           }
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <BotonFetch endIcon={<Icon />} title={'Registrar'} urlApi={urlApi} contenidoApi={item} setResponseStatus={setResponseStatus} className={'button rounded border-0 py-3 shadow-sm'} ></BotonFetch>
+              <BotonFetch endIcon={<Icon />} title={'Registrar'} urlApi={urlApi} dataApi={item} setResponseStatus={setResponseStatus} className={'button rounded border-0 py-3 shadow-sm'} ></BotonFetch>
             </div>
           </div>              
 			  </div>

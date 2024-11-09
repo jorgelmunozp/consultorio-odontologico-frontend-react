@@ -1,7 +1,7 @@
-export const fetchCreate = ( urlApi,contenidoApi,setResponseStatus ) => {
+export const fetchCreate = ( urlApi,dataApi,setResponseStatus ) => {
     fetch(urlApi, {
       method: "POST",
-      body: eval(contenidoApi),
+      body: eval( dataApi ),
       headers: { "Content-type": "application/json" }
     }).then((response) => {
       response.json();

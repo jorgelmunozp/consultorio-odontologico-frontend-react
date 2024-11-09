@@ -73,7 +73,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
                         <div key={index} className='row'>
                           { property.type === 'dropdown' 
                                 ? <Dropdown classType={property.key} array={array} defaultSelect={ property.value } handleChange={ property.handleChange } placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
-                                : <Input property={true} value={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                                : <Input property={true} defaultValue={property.value} type={property.type} onChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
                           }
                         </div>
                       )

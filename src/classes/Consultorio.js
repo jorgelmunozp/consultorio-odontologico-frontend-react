@@ -34,9 +34,10 @@ export class Consultorio {
         const [ numero, setNumero ] = useState( num );               // Input Número state
         const [ nombre, setNombre ] = useState( nomb );              // Input Nombre state
         const state = [
-          { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (event) => setNumero( event.target.value ) },
-        //   { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => {console.log("event: ",event.target.value); setNombre( decode(event.target.value) ) } }
-          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => {console.log("event: ",event.target.value); setNombre( event.target.value ) } }
+        //   { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (event) => setNumero( event.target.value ) },
+          { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (value) => setNumero( decode(value) ) },
+        //   { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => setNombre( event.target.value) }
+          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (value) => {console.log("event°°°°°: ",value); setNombre( decode(value) ) } }
         ];
         
         return( state )
