@@ -34,10 +34,10 @@ export class Tratamiento {
     }                          
     get titles () { return this.getTitles() }                        // Getter titles
 
-    getState = () => {                                               // Method
-        const [especialidad, setEspecialidad] = useState("");        // Input especialidad state
-        const [consultorio, setConsultorio] = useState("");          // Select consultorio state
-        const [doctor, setDoctor] = useState("");                    // Select doctor state
+    getState = ({ esp:esp='', cons:cons='', doc:doc='' }) => {       // Method
+        const [especialidad, setEspecialidad] = useState( esp );     // Input especialidad state
+        const [consultorio, setConsultorio] = useState( cons );      // Select consultorio state
+        const [doctor, setDoctor] = useState( doc );                 // Select doctor state
         const state = [
           { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( event.target.value ) },
           { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( event.target.value ) },
@@ -46,7 +46,7 @@ export class Tratamiento {
         
         return( state )
     }      
-    get state () { return this.getState() }                          // Getter state
+    get state () { return this.getState({ esp:'', cons:'', doc:'' }) } // Getter state
 
     getData = () => {                                                // METHOD DATA
         /* Fetch */
@@ -65,24 +65,24 @@ export class Tratamiento {
         const arrayFiltered = useMemo( () => getTratamientosFiltered(array,queryCode,querySpecialty,queryConsultoryRoom,queryDoctor), [array,queryCode,querySpecialty,queryConsultoryRoom,queryDoctor] );
         
         /* Pagination */
-        const [itemsPerPage, setItemsPerPage ] = useState(10);                // Se define el número de items por página
-        const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-        const numPages = Math.floor(arrayFiltered.length/itemsPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-        const resPages = arrayFiltered.length%itemsPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+        const [itemsPerPage, setItemsPerPage ] = useState(10);          // Se define el número de items por página
+        const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+        const numPages = Math.floor(arrayFiltered.length/itemsPerPage); // Se calcula la cantidad de páginas = cantidad de items/item por página
+        const resPages = arrayFiltered.length%itemsPerPage;             // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
         let indexPages = [];
-        let activePage = [true];                                            // [true]
+        let activePage = [true];                                        // [true]
         if(resPages !== 0 ){
         for(let i = 0; i <= numPages; i++) { 
-            indexPages.push(i);                                             // [0,1,2,3]
-            if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+            indexPages.push(i);                                         // [0,1,2,3]
+            if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         } else if(resPages === 0 ){
         for(let i = 0; i < numPages; i++) { 
-            indexPages.push(i);                                             // [0,1,2,3]
-            if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+            indexPages.push(i);                                         // [0,1,2,3]
+            if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         }
-        const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+        const [activePages, setActivePages] = useState(activePage);     // [true,false,false,false]
     
         return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }

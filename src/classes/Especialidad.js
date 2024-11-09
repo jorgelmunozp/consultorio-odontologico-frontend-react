@@ -11,8 +11,8 @@ export class Especialidad {
         this.nombre = {nombre}.nombre;
     }
 
-    getApi = () => { return( urlApi )}                               // METHOD API
-    get api () { return this.getApi() }                              // Getter api
+    getApi = () => { return( urlApi )}                            // METHOD API
+    get api () { return this.getApi() }                           // Getter api
 
     getTitles = () => {                                           // METHOD TITLES
         let titles = [];
@@ -30,17 +30,17 @@ export class Especialidad {
     }                          
     get titles () { return this.getTitles() }                     // Getter titles
 
-    getState = () => {                                               // Method
-        const [nombre, setNombre] = useState("");                    // Input nombre state
+    getState = ({ nomb:nomb='' }) => {                            // Method
+        const [nombre, setNombre] = useState( nomb );             // Input nombre state
         const state = [
           { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) }
         ];
         
         return( state )
     }      
-    get state () { return this.getState() }                          // Getter state
+    get state () { return this.getState({ nomb:'' }) }            // Getter state
 
-    getData = () => {                                                // METHOD DATA
+    getData = () => {                                             // METHOD DATA
         /* Fetch */
         let array = [];
         const arrayFetch = useFetch(urlApi);
@@ -55,24 +55,24 @@ export class Especialidad {
         const arrayFiltered = useMemo( () => getEspecialidadesFiltered(array,queryCode,queryName), [array,queryCode,queryName] );
         
         /* Pagination */
-        const [itemsPerPage, setItemsPerPage ] = useState(10);                // Se define el número de items por página
-        const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-        const numPages = Math.floor(arrayFiltered.length/itemsPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-        const resPages = arrayFiltered.length%itemsPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+        const [itemsPerPage, setItemsPerPage ] = useState(10);          // Se define el número de items por página
+        const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+        const numPages = Math.floor(arrayFiltered.length/itemsPerPage); // Se calcula la cantidad de páginas = cantidad de items/item por página
+        const resPages = arrayFiltered.length%itemsPerPage;             // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
         let indexPages = [];
-        let activePage = [true];                                            // [true]
+        let activePage = [true];                                        // [true]
         if(resPages !== 0 ){
         for(let i = 0; i <= numPages; i++) { 
-            indexPages.push(i);                                             // [0,1,2,3]
-            if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+            indexPages.push(i);                                         // [0,1,2,3]
+            if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         } else if(resPages === 0 ){
         for(let i = 0; i < numPages; i++) { 
-            indexPages.push(i);                                             // [0,1,2,3]
-            if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+            indexPages.push(i);                                         // [0,1,2,3]
+            if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         }
-        const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+        const [activePages, setActivePages] = useState(activePage);     // [true,false,false,false]
     
         return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }

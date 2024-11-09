@@ -16,7 +16,14 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
   const IconEdit = icons[classType].IconEdit;                                  // Selección de icono update
   const IconDelete = icons[classType].IconDelete;                              // Selección de icono delete
 
-  const state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento });
+  let state = {};
+  switch( classType ) {
+    case 'cita': state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento }); break;
+    case 'paciente': state = objectClass.getState({ nomb:item[classType].nombre, ape:item[classType].apellido, id:item[classType].identificacion, gen:item[classType].genero, eps_:item[classType].eps }); break;
+    case 'doctor': state = objectClass.getState({ nomb:item[classType].nombre, ape:item[classType].apellido, id:item[classType].identificacion, gen:item[classType].genero, esp:item[classType].especialidad }); break;
+    case 'consultorio': state = objectClass.getState({ num:item[classType].numero, nomb:item[classType].nombre }); break;
+    case 'tratamiento': state = objectClass.getState({ esp:item[classType].especialidad, cons:item[classType].consultorio, doc:item[classType].doctor }); break;
+  }
   
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);

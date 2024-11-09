@@ -30,9 +30,9 @@ export class Consultorio {
     }                          
     get titles () { return this.getTitles() }                        // Getter titles
 
-    getState = () => {                                               // METHOD STATE
-        const [ numero, setNumero ] = useState('');                  // Input Número state
-        const [ nombre, setNombre ] = useState('');                  // Input Nombre state
+    getState = ({ num:num='', nomb:nomb='' }) => {                   // METHOD STATE
+        const [ numero, setNumero ] = useState( num );               // Input Número state
+        const [ nombre, setNombre ] = useState( nomb );              // Input Nombre state
         const state = [
           { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (event) => setNumero( event.target.value ) },
           { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (event) => setNombre( event.target.value ) }
@@ -40,7 +40,7 @@ export class Consultorio {
         
         return( state )
     }      
-    get state () { return this.getState() }                          // Getter state
+    get state () { return this.getState({ num:'', nomb:'' }) }       // Getter state
 
     getData = () => {                                                // METHOD DATA
         /* Fetch */
@@ -58,7 +58,7 @@ export class Consultorio {
         const arrayFiltered = useMemo( () => getConsultoriosFiltered(array,queryCode,queryNumber,queryName), [array,queryCode,queryNumber,queryName] );
         
         /* Pagination */
-        const [itemsPerPage, setItemsPerPage ] = useState(10);           // Se define el número de items por página
+        const [itemsPerPage, setItemsPerPage ] = useState(10);          // Se define el número de items por página
         const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
         const numPages = Math.floor(arrayFiltered.length/itemsPerPage); // Se calcula la cantidad de páginas = cantidad de items/item por página
         const resPages = arrayFiltered.length%itemsPerPage;             // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página

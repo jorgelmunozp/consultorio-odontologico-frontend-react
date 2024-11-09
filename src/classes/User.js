@@ -16,7 +16,7 @@ export class User {
 
 export class Paciente extends User {
     constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', eps:eps='' }) {
-        super({nombre:nombre, apellido:apellido});
+        super({ nombre:nombre, apellido:apellido });
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
         this.eps = {eps}.eps;
@@ -28,7 +28,7 @@ export class Paciente extends User {
     getUser () { return new User( this.nombre, this.apellido ) }   // METHOD USER
     get user () { return this.getUser() }                          // Getter user
 
-    getTitles = () => {                                           // METHOD TITLES
+    getTitles = () => {                                            // METHOD TITLES
       let titles = [];
       this.state.forEach((parameter, index) => { 
           titles[index] = { 
@@ -42,14 +42,14 @@ export class Paciente extends User {
 
       return({ titles, placeholders })
     }                          
-    get titles () { return this.getTitles() }                     // Getter titles
+    get titles () { return this.getTitles() }                      // Getter titles
 
-    getState = () => {                                             // METHOD STATE
-      const [nombre, setNombre] = useState("");                    // Input Nombre state
-      const [apellido, setApellido] = useState("");                // Input Apellido state
-      const [identificacion, setIdentificacion] = useState("");    // Input Identificacion state
-      const [genero, setGenero] = useState("");                    // Select Genero state
-      const [eps, setEps] = useState("");                          // Select Eps state
+    getState = ({ nomb:nomb='', ape:ape='', id:id='', gen:gen='', eps_:eps_='' }) => { // METHOD STATE
+      const [nombre, setNombre] = useState( nomb );                // Input nombre state
+      const [apellido, setApellido] = useState( ape );             // Input apellido state
+      const [identificacion, setIdentificacion] = useState( id );  // Input identificacion state
+      const [genero, setGenero] = useState( gen );                 // Select genero state
+      const [eps, setEps] = useState( eps_ );                       // Select eps state
       const state = [
         { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
@@ -61,7 +61,7 @@ export class Paciente extends User {
       return( state )
 
     }      
-    get state () { return this.getState() }                        // Getter state
+    get state () { return this.getState({ nomb:'', ape:'', id:'', gen:'', eps_:'' }) } // Getter state
 
     getData = () => {                                              // METHOD DATA
       /* Fetch */
@@ -82,30 +82,30 @@ export class Paciente extends User {
       const arrayFiltered = useMemo( () => getPacientesFiltered(array,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps), [array,queryCode,queryIdentification,queryName,queryLastname,queryGender,queryEps] );
       
       /* Pagination */
-      const [itemsPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
-      const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-      const numPages = Math.floor(arrayFiltered.length/itemsPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-      const resPages = arrayFiltered.length%itemsPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+      const [itemsPerPage, setItemPerPage ] = useState(10);           // Se define el número de items por página
+      const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+      const numPages = Math.floor(arrayFiltered.length/itemsPerPage); // Se calcula la cantidad de páginas = cantidad de items/item por página
+      const resPages = arrayFiltered.length%itemsPerPage;             // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
       let indexPages = [];
-      let activePage = [true];                                            // [true]
+      let activePage = [true];                                        // [true]
       if(resPages !== 0 ){
         for(let i = 0; i <= numPages; i++) { 
-          indexPages.push(i);                                             // [0,1,2,3]
-          if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+          indexPages.push(i);                                         // [0,1,2,3]
+          if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
       } else if(resPages === 0 ){
         for(let i = 0; i < numPages; i++) { 
-          indexPages.push(i);                                             // [0,1,2,3]
-          if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+          indexPages.push(i);                                         // [0,1,2,3]
+          if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
       }
-      const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+      const [activePages, setActivePages] = useState(activePage);     // [true,false,false,false]
           
       return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
-    get data () { return this.getData() }                                 // Getter data
+    get data () { return this.getData() }                             // Getter data
 
-    getSort = () => {                                                  // METHOD SORT
+    getSort = () => {                                                 // METHOD SORT
       /* Sort */
       const [sortBy, setSortBy] = useState(0);
       let SortByProperty = () => {};
@@ -126,13 +126,13 @@ export class Paciente extends User {
 
       return({ SortByProperty, setSortBy })
     }
-    get sort () { return this.getSort() }                              // Getter data
+    get sort () { return this.getSort() }                             // Getter data
 
   }
 
 export class Doctor extends User {
     constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', especialidad:especialidad='' }) {
-        super({nombre:nombre, apellido:apellido});
+        super({ nombre:nombre, apellido:apellido });
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
         this.especialidad = {especialidad}.especialidad;
@@ -144,7 +144,7 @@ export class Doctor extends User {
     getUser () { return new User(this.nombre, this.apellido) }     // METHOD USER
     get user () { return this.getUser() }                          // Getter user
 
-    getTitles = () => {                                           // METHOD TITLES
+    getTitles = () => {                                            // METHOD TITLES
       let titles = [];
       this.state.forEach((parameter, index) => { 
           titles[index] = { 
@@ -158,14 +158,14 @@ export class Doctor extends User {
 
       return({ titles, placeholders })
     }                          
-    get titles () { return this.getTitles() }                     // Getter titles
+    get titles () { return this.getTitles() }                      // Getter titles
 
-    getState = () => {                                             // METHOD STATE
-      const [nombre, setNombre] = useState("");                    // Input Nombre state
-      const [apellido, setApellido] = useState("");                // Input Apellido state
-      const [identificacion, setIdentificacion] = useState("");    // Input Identificacion state
-      const [genero, setGenero] = useState("");                    // Select Genero state
-      const [especialidad, setEspecialidad] = useState("");        // Select Especialidad state
+    getState = ({ nomb:nomb='', ape:ape='', id:id='', gen:gen='', esp:esp='' }) => { // METHOD STATE
+      const [nombre, setNombre] = useState( nomb );                // Input nombre state
+      const [apellido, setApellido] = useState( ape );             // Input apellido state
+      const [identificacion, setIdentificacion] = useState( id );  // Input identificacion state
+      const [genero, setGenero] = useState( gen );                 // Select genero state
+      const [especialidad, setEspecialidad] = useState( esp );     // Select especialidad state
       const state = [
         { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (event) => setNombre( event.target.value ) },
         { key:'apellido', value:apellido, type:"text", setState:setApellido, handleChange: (event) => setApellido( event.target.value ) },
@@ -176,9 +176,9 @@ export class Doctor extends User {
 
       return( state )
     }      
-    get state () { return this.getState() }                          // Getter state
+    get state () { return this.getState({ nomb:'', ape:'', id:'', gen:'', esp:'' }) } // Getter state
 
-    getData = () => {                                                // METHOD DATA
+    getData = () => {                                               // METHOD DATA
       /* Fetch */
       let array = [];
       const arrayFetch = useFetch(urlApiDoctores);
@@ -195,24 +195,24 @@ export class Doctor extends User {
       const arrayFiltered = useMemo( () => getDoctoresFiltered(array,queryCode,queryName,queryLastname,querySpeciality), [array,queryCode,queryName,queryLastname,querySpeciality] );
       
       /* Pagination */
-      const [itemsPerPage, setItemPerPage ] = useState(10);                // Se define el número de items por página
-      const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);       // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
-      const numPages = Math.floor(arrayFiltered.length/itemsPerPage);      // Se calcula la cantidad de páginas = cantidad de items/item por página
-      const resPages = arrayFiltered.length%itemsPerPage;                  // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
+      const [itemsPerPage, setItemPerPage ] = useState(10);           // Se define el número de items por página
+      const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
+      const numPages = Math.floor(arrayFiltered.length/itemsPerPage); // Se calcula la cantidad de páginas = cantidad de items/item por página
+      const resPages = arrayFiltered.length%itemsPerPage;             // Se calcula la cantidad de páginas faltantes = cantidad de items%item por página
       let indexPages = [];
-      let activePage = [true];                                            // [true]
+      let activePage = [true];                                        // [true]
       if(resPages !== 0 ){
         for(let i = 0; i <= numPages; i++) { 
-          indexPages.push(i);                                             // [0,1,2,3]
-          if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+          indexPages.push(i);                                          // [0,1,2,3]
+          if(i < 0) { activePage.push(false); }                        // [true,false,false,false]
         }
       } else if(resPages === 0 ){
         for(let i = 0; i < numPages; i++) { 
-          indexPages.push(i);                                             // [0,1,2,3]
-          if(i < 0) { activePage.push(false); }                           // [true,false,false,false]
+          indexPages.push(i);                                          // [0,1,2,3]
+          if(i < 0) { activePage.push(false); }                        // [true,false,false,false]
         }
       }
-      const [activePages, setActivePages] = useState(activePage);         // [true,false,false,false]
+      const [activePages, setActivePages] = useState(activePage);      // [true,false,false,false]
         
       return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }

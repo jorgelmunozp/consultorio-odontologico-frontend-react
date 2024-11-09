@@ -1,4 +1,4 @@
-import { useState,useEffect, Suspense } from 'react';
+import { useState,useEffect } from 'react';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import '../forms.css';
 
@@ -27,7 +27,7 @@ export const Dropdown = ({ classType, placeholder, array, defaultSelect='', hand
               case 'genero': value=option[classType].nombre; break;
               case 'especialidad': value=option[classType].nombre; break;
             }
-            return ( <Options classType={classType} index={index} value={value} setValue={setValue} setOpen={setOpen} handleChange={handleChange} /> );
+            return ( <Options key={ classType+'Option'+index } classType={classType} index={index} value={value} setValue={setValue} setOpen={setOpen} handleChange={handleChange} /> );
           })
         }
         <PaginationBar array={array} itemsPerPage={pagination.itemsPerPage} indexPage={pagination.indexPage} activePages={pagination.activePages} indexPages={pagination.indexPages} setIndexPage={pagination.setIndexPage} setActivePages={pagination.setActivePages} />
@@ -39,8 +39,5 @@ export const Dropdown = ({ classType, placeholder, array, defaultSelect='', hand
 
 
 const Options = ({ classType, index, value, setValue, setOpen, handleChange  }) => {
-  return ( <li key={ classType+'Option'+index }>
-             <button className="dropdown-item" value={ value } onClick={ (event) => { setValue(event.target.value); setOpen(false); handleChange(event)} }>{ value }</button>
-           </li> 
-          );
+  return ( <li><button className="dropdown-item" value={ value } onClick={ (event) => { setValue(event.target.value); setOpen(false); handleChange(event)} }>{ value }</button></li> );
 }

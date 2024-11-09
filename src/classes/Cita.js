@@ -41,12 +41,12 @@ export class Cita {
     get titles () { return this.getTitles() }                     // Getter titles
 
     getState = ({ pac:pac='', cons:cons='', doc:doc='', trat:trat='' }) => {                             // Method
-        const [paciente, setPaciente] = useState( pac );       // Select paciente
+        const [paciente, setPaciente] = useState( pac );          // Select paciente
         let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
         let [hora, setHora] = useState(getTime);
-        const [consultorio, setConsultorio] = useState( cons );       // Select consultorio
-        const [doctor, setDoctor] = useState( doc );                 // Select doctor
-        const [tratamiento, setTratamiento] = useState( trat );       // Select tratamiento      
+        const [consultorio, setConsultorio] = useState( cons );   // Select consultorio
+        const [doctor, setDoctor] = useState( doc );              // Select doctor
+        const [tratamiento, setTratamiento] = useState( trat );   // Select tratamiento      
         const state = [
           { key:'paciente', value:paciente, type:"dropdown", setState:setPaciente , handleChange: (event) => setPaciente( event.target.value ) },
           { key:'fecha', value:fecha, type:"date", setState:setFecha, handleChange: (event) => setFecha( event.target.value ) },
