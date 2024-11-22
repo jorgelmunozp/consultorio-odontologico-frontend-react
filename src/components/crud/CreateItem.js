@@ -32,14 +32,12 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const urlApi = objectClass.api;
   let item = "";
 
-console.log("state: ", state)
   if(state.filter( property => property.value === '').length === 0 ) {      // Check for emtpy fields to avoid any empty item
     state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
       ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
     })`; 
-console.log("item: ", item)
   } 
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
@@ -71,11 +69,11 @@ console.log("item: ", item)
             state.map((property) => {
               const myDropdown = new DropdownClass({ classType:property.key });
               const { array, pagination } = myDropdown.getData();
-
+              
               return(
                 <div key={'row'+property.key} className='row'>
                   { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                 : <div className='col'><Input type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                                                 : <div className='col'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
                 </div>
               )})

@@ -4,7 +4,7 @@ import sign from 'jwt-encode';                                                  
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const Input = ({ type, placeholder, defaultValue, handleChange, className }) => {
+export const Input = ({ type, placeholder, defaultValue='', handleChange, className }) => {
     let [value, setValue] = useState( defaultValue );
 
     return (
