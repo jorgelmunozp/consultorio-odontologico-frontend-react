@@ -1,4 +1,4 @@
-import { useState }  from "react";
+import { useEffect, useState }  from "react";
 import { Alert } from '../alert/Alert';
 import { DropdownClass } from '../../classes/Dropdown';
 import { Cita } from '../../classes/Cita';
@@ -15,7 +15,6 @@ import { jwtDecode as decode } from "jwt-decode";
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
-  const [loadData, setLoadData] = useState(false);
   const [responseStatus, setResponseStatus] = useState(0);
   
   const classes = { cita: { Classe: Cita },
@@ -33,7 +32,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   let item = "";
 
   if(state.filter( property => property.value === '').length === 0 ) {      // Check for emtpy fields to avoid any empty item
-    state.forEach(property => objectClass[property.key] = property.value);  // Carga los valores ingresados por el usuario en el objeto
+    state.forEach( property => objectClass[property.key] = property.value );// Carga los valores ingresados por el usuario en el objeto
     
     item = `JSON.stringify({                           
       ${classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
@@ -41,12 +40,12 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   } 
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
-    console.log("state CreateItem: ", state)
-    console.log("objectClass CreateItem: ", objectClass)
+    console.log("state CreateItem 1: ", state)
 
 //************ NO FUNCIONA: -->
     state.forEach( property => property.setState('') );                     // Reinicia todas las variables  
-        state.forEach(property => objectClass[property.key] = '');          // Reinicia los valores ingresados por el usuario en el objeto
+
+    console.log("state CreateItem 2: ", state)
 
     Alert({ type:'success', title:'Registro exitoso' }).launch();
     setResponseStatus(0);
@@ -69,7 +68,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
             state.map((property) => {
               const myDropdown = new DropdownClass({ classType:property.key });
               const { array, pagination } = myDropdown.getData();
-              
+
               return(
                 <div key={'row'+property.key} className='row'>
                   { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>

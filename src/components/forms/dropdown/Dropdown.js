@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { PaginationBar } from '../../pagination/PaginationBar';
 import '../forms.css';
 
-import * as jose from 'jose'
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 import { jwtDecode as decode } from "jwt-decode";
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 
-export const Dropdown = ({ classType, placeholder, array, defaultSelect='', handleChange, pagination, className }) => {
+export const Dropdown = ({ classType, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='' }) => {
   let [value, setValue] = useState( defaultSelect );
   const [open, setOpen] = useState(false)
 
