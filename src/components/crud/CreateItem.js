@@ -1,6 +1,8 @@
 import { useEffect, useState }  from "react";
+import { createRoot } from 'react-dom/client';
+
 import { Alert } from '../alert/Alert';
-import { DropdownClass } from '../../classes/Dropdown';
+import { Dropdown as DropdownClass } from '../../classes/Dropdown';
 import { Cita } from '../../classes/Cita';
 import { Paciente, Doctor } from '../../classes/User';
 import { Especialidad } from '../../classes/Especialidad';
@@ -41,9 +43,24 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
 
   if( 200 <= responseStatus && responseStatus <= 299 ) {
     console.log("state CreateItem 1: ", state)
+//************ SI FUNCIONA PERO NO RENDERIZA: -->
+    state.forEach( property => property.setState('') );                    // Reinicia todas las variables  
+    // state.forEach( 
+    //   property => { property.setState('');
+    //   const myDropdown = new DropdownClass({ classType:property.key });
+    //   const { array, pagination } = myDropdown.getData();
 
-//************ NO FUNCIONA: -->
-    state.forEach( property => property.setState('') );                     // Reinicia todas las variables  
+    //   const row = createRoot(document.getElementById( 'row'+property.key ));
+    //   row.render(
+    //     <>
+    //       { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+    //                                      : <div className='col'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+    //       }
+    //     </>
+    //   )}
+    // );                     // Reinicia todas las variables  
+    
+
 
     console.log("state CreateItem 2: ", state)
 
@@ -67,13 +84,15 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
           {
             state.map((property) => {
               const myDropdown = new DropdownClass({ classType:property.key });
-              const { array, pagination } = myDropdown.getData();
+              const { array, pagination } = myDropdown.data;
 
-              return(
-                <div key={'row'+property.key} className='row'>
-                  { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
+              return (
+                <div key={'row'+property.key} id={'row'+property.key} className='row'>
+                  <>
+                  { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
                                                  : <div className='col'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
                   }
+                  </>
                 </div>
               )})
           }
