@@ -1,13 +1,13 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { DashboardRoutes } from "./DashboardRoutes";
-import { PrivateRoute } from "./PrivateRoute";
-import { PublicRoute } from "./PublicRoute";
-import { Navbar } from "../components/menu/Navbar";
-import { TemplateScreen } from '../components/views/TemplateScreen';
-import { IndexScreen } from '../components/views/index/IndexScreen';
-import { HomeScreen } from "../components/views/home/HomeScreen";
-import { NotFound } from '../components/views/404/NotFound';
-import { myColor, myTitle } from "../global";
+import { DashboardRoutes } from "./DashboardRoutes.js";
+import { PrivateRoute } from "./PrivateRoute.js";
+import { PublicRoute } from "./PublicRoute.js";
+import { Navbar } from "../components/menu/Navbar.js";
+import { TemplateScreen } from '../components/views/TemplateScreen.js';
+import { IndexScreen } from '../components/views/index/IndexScreen.js';
+import { HomeScreen } from "../components/views/home/HomeScreen.js";
+import { NotFound } from '../components/views/404/NotFound.js';
+import { myColor, myTitle } from "../global.js";
 
 import { useState } from 'react';
 
@@ -78,3 +78,4 @@ export const AppRouter = () => {
     </BrowserRouter>
   )
 }
+export default AppRouter;

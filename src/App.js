@@ -1,7 +1,7 @@
-import { useEffect, useReducer } from 'react';
-import { AuthContext } from './auth/authContext';
-import { authReducer } from './auth/authReducer';
-import { AppRouter } from './routers/AppRouter';
+import { lazy, useEffect, useReducer } from 'react';
+import { AuthContext } from './auth/authContext.js';
+import { authReducer } from './auth/authReducer.js';
+const AppRouter = lazy(() => import('./routers/AppRouter.js'));
 
 const init = () => { return JSON.parse(localStorage.getItem('user') ) || { logged: false}; }
 
