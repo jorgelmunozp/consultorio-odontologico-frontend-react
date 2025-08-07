@@ -29,7 +29,7 @@ const SearchBar = lazy(() => import('../search/SearchBar.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 const ItemsList = lazy(() => import('./ItemsList.js'));
 
-export const QueryItem = ({ classType, isMenuOpen, theme }) => {
+export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
   const classes = { cita: { Classe: Cita },
                     paciente: { Classe: Paciente },
                     doctor: { Classe: Doctor },
@@ -38,12 +38,17 @@ export const QueryItem = ({ classType, isMenuOpen, theme }) => {
                     especialidad: { Classe: Especialidad }
   }
 
-  const icons = { cita: { IconSearch:CalendarSearch, IconRead:CalendarSmile, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
-                  paciente: { IconSearch:UserSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
-                  doctor: { IconSearch:UserSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
-                  consultorio: { IconSearch:HomeSearch, IconRead:HomeIndex, IconEdit:HomeEdit, IconDelete:HomeDelete },
-                  tratamiento: { IconSearch:FilterSearch, IconRead:SyringeLight, IconEdit:FilterEdit, IconDelete:FilterDelete },
-                  especialidad: { IconSearch:HearthSearch, IconRead:StethoscopeLight, IconEdit:HearthEdit, IconDelete:HearthDelete }
+  console.log('menuIcons 3: ', menuIcons)
+  console.log('menuIcons 3.cita: ', menuIcons.cita)
+  console.log('menuIcons 3.citaSearch: ', menuIcons.citaSearch)
+  console.log('menuIcons 3[]: ', menuIcons['cita'])
+
+  const icons = { cita: { IconSearch:menuIcons.citaSearch, IconRead:CalendarSmile, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
+                  paciente: { IconSearch:menuIcons.pacienteSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
+                  doctor: { IconSearch:menuIcons.doctorSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
+                  consultorio: { IconSearch:menuIcons.consultorioSearch, IconRead:HomeIndex, IconEdit:HomeEdit, IconDelete:HomeDelete },
+                  tratamiento: { IconSearch:menuIcons.tratamientoSearch, IconRead:SyringeLight, IconEdit:FilterEdit, IconDelete:FilterDelete },
+                  especialidad: { IconSearch:menuIcons.especialidadSearch, IconRead:StethoscopeLight, IconEdit:HearthEdit, IconDelete:HearthDelete }
                 }
   
   const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 

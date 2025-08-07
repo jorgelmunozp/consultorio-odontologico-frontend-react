@@ -19,7 +19,7 @@ const services = [
   { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
 ];
 
-export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
+export const IndexScreen = ({ Logo, menuIcons, isMenuOpen, theme }) => {
   let [view, setView] = useState(0);
 
   return (
@@ -49,12 +49,12 @@ export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
           </div>
 
           <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
-            <QueryItems classType={'cita'} theme={theme} />
-            <QueryItems classType={'paciente'} theme={theme} />
-            <QueryItems classType={'doctor'} theme={theme} />
-            <QueryItems classType={'especialidad'} theme={theme} />
-            <QueryItems classType={'consultorio'} theme={theme} />
-            <QueryItems classType={'tratamiento'} theme={theme} />
+            <QueryItems classType={'cita'} menuIcons={menuIcons} theme={theme} />
+            <QueryItems classType={'paciente'} menuIcons={menuIcons} theme={theme} />
+            <QueryItems classType={'doctor'} menuIcons={menuIcons} theme={theme} />
+            <QueryItems classType={'especialidad'} menuIcons={menuIcons} theme={theme} />
+            <QueryItems classType={'consultorio'} menuIcons={menuIcons} theme={theme} />
+            <QueryItems classType={'tratamiento'} menuIcons={menuIcons} theme={theme} />
           </SwipeableViews>
         </div>
     </div>
