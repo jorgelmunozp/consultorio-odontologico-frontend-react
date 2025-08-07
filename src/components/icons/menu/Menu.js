@@ -6,4 +6,7 @@ export const Menu = ({ color='currentColor', className='', strokeWidth='1', widt
                 <path d="M4 18l16 0"></path>
             </svg>
     );
-}
+};
+// export default Menu;
+const MenuIcon = Menu;
+export default MenuIcon;

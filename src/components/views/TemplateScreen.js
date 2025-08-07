@@ -1,8 +1,7 @@
 import '../../assets/styles/App.css';
 import { Suspense, lazy } from 'react';
-import { Menu as MenuIcon } from '../icons/menu/Menu';
 import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
-// const Menu as MenuIcon = lazy(() => import('../icons/menu/Menu.js'));
+const MenuIcon = lazy(() => import('../icons/menu/Menu.js'));
 const CalendarMedical = lazy(() => import('../icons/calendar/CalendarMedical.js'));
 const UserInjured = lazy(() => import('../icons/user/UserInjured.js'));
 const UserMedical = lazy(() => import('../icons/user/UserMedical.js'));
