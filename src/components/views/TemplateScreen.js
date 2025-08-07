@@ -29,6 +29,13 @@ const QueryItems = lazy(() => import('../crud/views/QueryItems.js'));
 const CreateItems = lazy(() => import('../crud/views/CreateItems.js'));
 
 export const TemplateScreen = ({ Logo, isMenuOpen, menu, setMenu, theme }) => {
+  const MenuIcons = {
+    'cita': CalendarSmile, 
+    'citaSearch': CalendarSearch,
+    'citaPlus': CalendarPlus
+  }
+  console.log('MenuIcons: ', MenuIcons);
+
   return (
     <div className="App user-select-none">
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
