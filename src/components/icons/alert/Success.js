@@ -5,3 +5,4 @@ export const Success = ({ color='currentColor', className='', strokeWidth='0', w
       </svg>
   )
 }
+export default Success;

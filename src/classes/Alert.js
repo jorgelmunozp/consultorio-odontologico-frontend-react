@@ -1,8 +1,10 @@
+import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Modal } from '../components/modal/Modal';
-import { Success } from '../components/icons/success/Success';
-import { Warning } from '../components/icons/warning/Warning';
-import { Error } from '../components/icons/error/Error';
+
+const Success = lazy(() => import('../components/icons/alert/Success.js'));
+const Warning = lazy(() => import('../components/icons/alert/Warning.js'));
+const Error = lazy(() => import('../components/icons/alert/Error.js'));
 
 export class Alert {
     constructor({ type:type='',title:title='', message:message='', buttons:buttons='' }) {
