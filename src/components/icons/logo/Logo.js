@@ -6,3 +6,4 @@ export const Logo = ({ color='currentColor', className='', fillColor='transparen
             </svg>
     );
 }
+export default Logo;

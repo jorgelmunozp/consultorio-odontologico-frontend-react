@@ -5,24 +5,14 @@ import { Especialidad } from '../../classes/Especialidad.js';
 import { Consultorio } from '../../classes/Consultorio.js';
 import { Tratamiento } from '../../classes/Tratamiento.js';
 
-const CalendarSmile = lazy(() => import('../icons/calendar/CalendarSmile.js'));
-const User = lazy(() => import('../icons/user/User.js'));
-const StethoscopeLight = lazy(() => import('../icons/medical/StethoscopeLight.js'));
-const SyringeLight = lazy(() => import('../icons/medical/SyringeLight.js'));
-const HomeIndex = lazy(() => import('../icons/home/HomeIndex.js'));
-const CalendarSearch = lazy(() => import('../icons/calendar/CalendarSearch.js'));
 const CalendarEdit = lazy(() => import('../icons/calendar/CalendarEdit.js'));
 const CalendarDelete = lazy(() => import('../icons/calendar/CalendarDelete.js'));
-const UserSearch = lazy(() => import('../icons/user/UserSearch.js'));
 const UserEdit = lazy(() => import('../icons/user/UserEdit.js'));
 const UserDelete = lazy(() => import('../icons/user/UserDelete.js'));
-const HomeSearch = lazy(() => import('../icons/home/HomeSearch.js'));
 const HomeEdit = lazy(() => import('../icons/home/HomeEdit.js'));
 const HomeDelete = lazy(() => import('../icons/home/HomeDelete.js'));
-const HearthSearch = lazy(() => import('../icons/hearth/HearthSearch.js'));
 const HearthEdit = lazy(() => import('../icons/hearth/HearthEdit.js'));
 const HearthDelete = lazy(() => import('../icons/hearth/HearthDelete.js'));
-const FilterSearch = lazy(() => import('../icons/filter/FilterSearch.js'));
 const FilterEdit = lazy(() => import('../icons/filter/FilterEdit.js'));
 const FilterDelete = lazy(() => import('../icons/filter/FilterDelete.js'));
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
@@ -38,17 +28,12 @@ export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
                     especialidad: { Classe: Especialidad }
   }
 
-  console.log('menuIcons 3: ', menuIcons)
-  console.log('menuIcons 3.cita: ', menuIcons.cita)
-  console.log('menuIcons 3.citaSearch: ', menuIcons.citaSearch)
-  console.log('menuIcons 3[]: ', menuIcons['cita'])
-
-  const icons = { cita: { IconSearch:menuIcons.citaSearch, IconRead:CalendarSmile, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
-                  paciente: { IconSearch:menuIcons.pacienteSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
-                  doctor: { IconSearch:menuIcons.doctorSearch, IconRead:User, IconEdit:UserEdit, IconDelete:UserDelete },
-                  consultorio: { IconSearch:menuIcons.consultorioSearch, IconRead:HomeIndex, IconEdit:HomeEdit, IconDelete:HomeDelete },
-                  tratamiento: { IconSearch:menuIcons.tratamientoSearch, IconRead:SyringeLight, IconEdit:FilterEdit, IconDelete:FilterDelete },
-                  especialidad: { IconSearch:menuIcons.especialidadSearch, IconRead:StethoscopeLight, IconEdit:HearthEdit, IconDelete:HearthDelete }
+  const icons = { cita: { IconSearch:menuIcons.citaSearch, IconRead:menuIcons.cita, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
+                  paciente: { IconSearch:menuIcons.pacienteSearch, IconRead:menuIcons.paciente, IconEdit:UserEdit, IconDelete:UserDelete },
+                  doctor: { IconSearch:menuIcons.doctorSearch, IconRead:menuIcons.doctor, IconEdit:UserEdit, IconDelete:UserDelete },
+                  consultorio: { IconSearch:menuIcons.consultorioSearch, IconRead:menuIcons.consultorio, IconEdit:HomeEdit, IconDelete:HomeDelete },
+                  tratamiento: { IconSearch:menuIcons.tratamientoSearch, IconRead:menuIcons.tratamiento, IconEdit:FilterEdit, IconDelete:FilterDelete },
+                  especialidad: { IconSearch:menuIcons.especialidadSearch, IconRead:menuIcons.especialidad, IconEdit:HearthEdit, IconDelete:HearthDelete }
                 }
   
   const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 

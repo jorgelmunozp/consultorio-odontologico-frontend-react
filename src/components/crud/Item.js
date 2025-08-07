@@ -1,8 +1,9 @@
+import { lazy, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useState } from 'react';
-import { ReadItem } from './ReadItem.js';
-import { UpdateItem } from './UpdateItem.js';
-import { DeleteItem } from './DeleteItem.js';
+
+const ReadItem = lazy(() => import('./ReadItem.js'));
+const UpdateItem = lazy(() => import('./DeleteItem.js'));
+const DeleteItem = lazy(() => import('./DeleteItem.js'));
 
 export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     const [open, setOpen] = useState(false);                                                                    // Input crud modal views status
@@ -26,6 +27,7 @@ export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
             case 'read': modalRoot.render( <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />  ); break;
             case 'update': modalRoot.render( <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} /> ); break;
             case 'delete': modalRoot.render( <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} /> ); break;
+            default: modalRoot.render(<></>); break;
         }
         
         setOpen(false);
