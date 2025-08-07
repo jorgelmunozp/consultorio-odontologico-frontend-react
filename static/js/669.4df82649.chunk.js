@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkconsultorio_odontologico_frontend_react=self.webpackChunkconsultorio_odontologico_frontend_react||[]).push([[669],{2669:(e,n,o)=>{o.r(n),o.d(n,{QueryPacientes:()=>c,default:()=>l});var s=o(5043),t=o(579);const r=(0,s.lazy)((()=>Promise.resolve().then(o.bind(o,4526)))),c=e=>{let{isMenuOpen:n}=e;return(0,t.jsx)(s.Suspense,{fallback:(0,t.jsx)(t.Fragment,{}),children:(0,t.jsx)(r,{classType:"paciente",isMenuOpen:n})})},l=c}}]);
-//# sourceMappingURL=669.4df82649.chunk.js.map
