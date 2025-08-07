@@ -1,15 +1,24 @@
 import { IndexItem } from '../IndexItem.js';
-import { CalendarSmile } from '../../icons/calendar/CalendarSmile';
-import { CalendarSearch } from '../../icons/calendar/CalendarSearch';
-import { CalendarPlus } from '../../icons/calendar/CalendarPlus';
 
-export const IndexItems = ({ classType, isMenuOpen, setMenu }) => {
+export const IndexItems = ({ classType, isMenuOpen, Icon, IconSearch, IconPlus, menu, setMenu }) => {
+  let menu = 0;
+
+  switch (classType) {
+    case 'cita':  menu = 3; break;
+    case 'paciente': menu = 6; break;
+    case 'tratamiento': menu = 9; break;
+    case 'doctor': menu = 12; break;
+    case 'especialidad': menu = 15; break;
+    case 'consultorio': menu = 18; break; 
+    default: menu = 0; break;
+  }
+
   const services = [
-    { 'title':'Consultar', 'menu':3, 'Icon':CalendarSearch },
-    { 'title':'Registrar', 'menu':4, 'Icon':CalendarPlus },
+    { 'title':'Consultar', 'menu':menu, 'Icon':IconSearch },
+    { 'title':'Registrar', 'menu':menu+1, 'Icon':IconPlus },
   ];
 
-  return ( <IndexItem classType={classType} Icon={CalendarSmile} services={services} IconCreate={CalendarPlus} IconQuery={CalendarSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
+  return ( <IndexItem classType={classType} Icon={Icon} services={services} IconCreate={IconPlus} IconQuery={IconSearch} isMenuOpen={isMenuOpen} setMenu={setMenu} /> )
 }
 
 export default IndexItems;

@@ -16,11 +16,11 @@ export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) =>
                 services.map((service,index) => {
                   return (
                     <div key={ service.title + index } className="col-6 col-sm-4 mb-1 mb-sm-2 text-center">
-                      <div className="card border-0 rounded-xs pt-0 jumpHover hover shadow">
+                      <div className="card bg-transparent border-0 rounded-xs pt-0 jumpHover hover shadow">
                         <button onClick={() => setMenu( service.menu )} className="bg-transparent border-0">
                           <div className="card-body pt-4 pt-sm-5">
-                            <service.Icon color={myColor} height={4} width={4} strokeWidth={1} className='text-muted' />
-                            <h5 className="text-dark text-nowrap text-truncate fs-sm-2 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h5>
+                            <service.Icon color={myColor} height={4} width={4} strokeWidth={1} />
+                            <h5 className="text-nowrap text-truncate fs-sm-2 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h5>
                           </div>
                         </button>
                       </div>

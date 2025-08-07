@@ -12,8 +12,10 @@ const HomeMedical = lazy(() => import('../icons/home/HomeMedical.js'));
 const HomeIndex = lazy(() => import('../icons/home/HomeIndex.js'));
 const HomeSearch = lazy(() => import('../icons/home/HomeSearch.js'));
 const HomePlus = lazy(() => import('../icons/home/HomePlus.js'));
+const CalendarSmile = lazy(() => import('../icons/calendar/CalendarSmile.js'));
 const CalendarSearch = lazy(() => import('../icons/calendar/CalendarSearch.js'));
 const CalendarPlus = lazy(() => import('../icons/calendar/CalendarPlus.js'));
+const User = lazy(() => import('../icons/user/User.js'));
 const UserSearch = lazy(() => import('../icons/user/UserSearch.js'));
 const UserPlus = lazy(() => import('../icons/user/UserPlus.js'));
 const HearthSearch = lazy(() => import('../icons/hearth/HearthSearch.js'));
@@ -29,6 +31,7 @@ const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades
 const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios.js'));
 const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos.js'));
 
+const IndexItems = lazy(() => import('../crud/index/IndexItems.js'));
 const QueryItems = lazy(() => import('../crud/views/QueryItems.js'));
 const CreateItems = lazy(() => import('../crud/views/CreateItems.js'));
 
@@ -89,16 +92,19 @@ const Menu = ({ menu, setMenu }) => {
 const View = ({ Logo, menu, isMenuOpen, setMenu, theme }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
     case 1: return <IndexScreen Logo={Logo} isMenuOpen={isMenuOpen} theme={theme} />;
-    case 2: return <IndexCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    // case 2: return <IndexCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 2: return <IndexItems classType={'cita'} Icon={CalendarSmile} IconSearch={CalendarSearch} IconPlus={CalendarPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
     case 3: return <QueryItems classType={'cita'} isMenuOpen={isMenuOpen} />;
     case 4: return <CreateItems classType={'cita'} Icon={CalendarMedical} isMenuOpen={isMenuOpen} theme={theme} />;
-    case 5: return <IndexPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    // case 5: return <IndexPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 5: return <IndexItems classType={'paciente'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 6: return <QueryItems classType={'paciente'} isMenuOpen={isMenuOpen} />;
     case 7: return <CreateItems classType={'paciente'} Icon={UserInjured} isMenuOpen={isMenuOpen} theme={theme} />;
     case 8: return <IndexTratamientos isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 9: return <QueryItems classType={'tratamiento'} isMenuOpen={isMenuOpen} />;
     case 10: return <CreateItems classType={'tratamiento'} Icon={Stethoscope} isMenuOpen={isMenuOpen} theme={theme} />;
-    case 11: return <IndexDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    // case 11: return <IndexDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
+    case 11: return <IndexItems classType={'doctor'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 12: return <QueryItems classType={'doctor'} isMenuOpen={isMenuOpen} />;
     case 13: return <CreateItems classType={'doctor'} Icon={UserMedical} isMenuOpen={isMenuOpen} theme={theme} />;
     case 14: return <IndexEspecialidades isMenuOpen={isMenuOpen} setMenu={setMenu} />;
