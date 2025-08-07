@@ -21,6 +21,9 @@
 }
 .century-gothic { font-family: 'CenturyGothic', 'Century Gothic' !important;}
 
+body[ data-theme="dark" ] { background-color:var(--dark-color) !important; color:white !important; }
+body[ data-theme="light" ] { background-color:white !important; color:black !important; }
+
 .fs-sm-1 {}
 .fs-sm-2 {}
 @media (max-width: 576px) {
