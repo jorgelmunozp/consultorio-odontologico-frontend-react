@@ -1,14 +1,16 @@
-import { useState, useMemo, useEffect }  from "react";
-import { Alert } from '../components/alert/Alert';
-import { useFetch } from '../hooks/useFetch';
-import { Paciente } from './User';
-import { Tratamiento } from './Tratamiento';
-import { Consultorio } from './Consultorio';
-import { Doctor } from './User';
-import { getDate } from '../helpers/getDate';
-import { getTime } from '../helpers/getTime';
-import { getCitasFiltered } from '../components/selectors/getCitasFiltered';
+import { lazy, useState, useMemo, useEffect }  from "react";
+import { Alert } from '../components/alert/Alert.js';
+import { useFetch } from '../hooks/useFetch.js';
+import { Paciente } from './User.js';
+import { Tratamiento } from './Tratamiento.js';
+import { Consultorio } from './Consultorio.js';
+import { Doctor } from './User.js';
+import { getDate } from '../helpers/getDate.js';
+import { getTime } from '../helpers/getTime.js';
+import { getCitasFiltered } from '../components/selectors/getCitasFiltered.js';
 import { jwtDecode as decode } from "jwt-decode";
+
+// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const urlApi = process.env.REACT_APP_API_CITAS;
 

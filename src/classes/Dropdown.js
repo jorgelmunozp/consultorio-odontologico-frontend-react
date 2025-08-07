@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import { Alert } from '../components/alert/Alert';
-import { useFetch } from '../hooks/useFetch';
+import { lazy, useState, useEffect } from "react";
+import { Alert } from '../components/alert/Alert.js';
+import { useFetch } from '../hooks/useFetch.js';
+
+// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const apiPacientes = process.env.REACT_APP_API_PACIENTES;           // Apis para obtención de los datos
 const apiDoctores = process.env.REACT_APP_API_DOCTORES;

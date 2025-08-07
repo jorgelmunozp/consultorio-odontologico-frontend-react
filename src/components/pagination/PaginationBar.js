@@ -1,4 +1,4 @@
-import './pagination.css'
+import './pagination.css';
 export const PaginationBar = ({ array,itemsPerPage,indexPage,activePages,indexPages,setIndexPage,setActivePages }) => {
   return (
     <nav aria-label="Page navigation" className='mt-3'>

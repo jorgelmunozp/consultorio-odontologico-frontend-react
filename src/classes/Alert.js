@@ -1,13 +1,14 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Modal } from '../components/modal/Modal';
 
+const Modal = lazy(() => import('../components/modal/Modal.js'));
+const Logo = lazy(() => import('../components/icons/logo/Logo.js'));
 const Success = lazy(() => import('../components/icons/alert/Success.js'));
 const Warning = lazy(() => import('../components/icons/alert/Warning.js'));
 const Error = lazy(() => import('../components/icons/alert/Error.js'));
 
 export class Alert {
-    constructor({ type:type='',title:title='', message:message='', buttons:buttons='' }) {
+    constructor({ type:type='default',title:title='', message:message='', buttons:buttons='' }) {
         this.type = {type}.type;
         this.title = {title}.title;
         this.message = {message}.message;
@@ -16,6 +17,7 @@ export class Alert {
    
     launch = () => {
         const icons = {
+            default: { Icon:Logo, iconColor:'#5285c5' },
             success: { Icon:Success, iconColor:'#0f0' },
             warning: { Icon:Warning, iconColor:'#f8bb86' },
             error: { Icon:Error, iconColor:'#f00' }
@@ -29,7 +31,6 @@ export class Alert {
         if( !isAlert ) { document.getElementById('root').insertAdjacentHTML('afterend',`<div id="alert"></div>`); } // Create element Alert in the body if there's no one
 
         const root = createRoot( document.getElementById('alert') );
-        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
+        root.render( <Suspense fallback={<></>}><Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /></Suspense> );
     }
-    
 }

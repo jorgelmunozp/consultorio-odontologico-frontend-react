@@ -1,6 +1,6 @@
 
-import { useState, useEffect } from 'react'
-import { getData } from '../helpers/getData';
+import { useState, useEffect } from 'react';
+import { getData } from '../helpers/getData.js';
 
 export const useFetch = ( urlApi ) => {
     const [responseFetch, setResponseFetch] = useState({ data: [], status: 0 });

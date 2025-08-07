@@ -1,8 +1,10 @@
-import { useState, useMemo, useEffect }  from "react";
-import { Alert } from '../components/alert/Alert';
-import { useFetch } from '../hooks/useFetch';
-import { getConsultoriosFiltered } from '../components/selectors/getConsultoriosFiltered';
+import { lazy, useState, useMemo, useEffect }  from "react";
+import { Alert } from '../components/alert/Alert.js';
+import { useFetch } from '../hooks/useFetch.js';
+import { getConsultoriosFiltered } from '../components/selectors/getConsultoriosFiltered.js';
 import { jwtDecode as decode } from "jwt-decode";
+
+// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 

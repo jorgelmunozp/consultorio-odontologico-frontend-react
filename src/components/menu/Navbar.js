@@ -1,10 +1,10 @@
+import '../views/login/login.css';
 import { lazy, useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext.js';
 import { types } from '../../types/types.js';
 import { getDate } from '../../helpers/getDate.js';
 import { getTime } from '../../helpers/getTime.js';
-import '../views/login/login.css';
 
 const User = lazy(() => import('../icons/user/User.js'));
 const Moon = lazy(() => import('../icons/theme/Moon.js'));
@@ -12,7 +12,6 @@ const Sun = lazy(() => import('../icons/theme/Sun.js'));
 const HomeMenu = lazy(() => import('../icons/home/HomeMenu.js'));
 const Error = lazy(() => import('../icons/alert/Error.js'));
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
-
 const LoginScreen = lazy(() => import('../views/login/LoginScreen.js'));
 
 export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu, setIsMenuOpen, theme, handleTheme }) => {

@@ -1,8 +1,7 @@
 import './modal.css';
 import { useState } from 'react';
-import { Logo } from '../icons/logo/Logo';
 
-export const Modal = ({ Icon=Logo, iconColor='#000', title='', openStatus=true, content='', buttons=1, fontFamily='' }) => {
+export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, content='', buttons=1, fontFamily='' }) => {
   const [open, setOpen] = useState(openStatus);                   // Input alert status
   
   { open !== false && document.getElementById('body').classList.add('noScroll') }
@@ -41,3 +40,4 @@ export const Modal = ({ Icon=Logo, iconColor='#000', title='', openStatus=true, 
       </>
     )
 };
+export default Modal;
