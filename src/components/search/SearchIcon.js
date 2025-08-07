@@ -6,3 +6,4 @@ export const SearchIcon = ({ color='currentColor', className='', strokeWidth='1'
             </svg>
     );
 }
+export default SearchIcon;

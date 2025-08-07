@@ -1,5 +1,5 @@
-import { Item } from './Item';
-import { Arrows } from '../forms/arrows/Arrows';
+import { Item } from './Item.js';
+import { Arrows } from '../forms/arrows/Arrows.js';
 
 export const ItemsList = ({classType, icons, titles, urlApi, array, objectClass, SortByProperty, setSortBy, indexPage }) => {
   return (

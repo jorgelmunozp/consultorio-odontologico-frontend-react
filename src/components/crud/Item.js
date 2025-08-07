@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
-import { ReadItem } from './ReadItem';
-import { UpdateItem } from './UpdateItem';
-import { DeleteItem } from './DeleteItem';
+import { ReadItem } from './ReadItem.js';
+import { UpdateItem } from './UpdateItem.js';
+import { DeleteItem } from './DeleteItem.js';
 
 export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     const [open, setOpen] = useState(false);                                                                    // Input crud modal views status

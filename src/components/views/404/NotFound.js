@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { Navbar } from '../../menu/Navbar';
 import { Logo } from '../../icons/logo/Logo';
 import { HomeMenu } from '../../icons/home/HomeMenu';
 import { Warning } from "../../icons/warning/Warning";
-import { PiWarningCircleThin } from "react-icons/pi";
 
 export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
   return (

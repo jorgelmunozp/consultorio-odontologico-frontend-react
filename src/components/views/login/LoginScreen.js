@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import { lazy, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../auth/authContext';
-import { types } from '../../../types/types';
-import { Input } from '../../forms/inputs/Input';
-import { InputPassword } from '../../forms/inputs/InputPassword';
+import { AuthContext } from '../../../auth/authContext.js';
+import { types } from '../../../types/types.js';
+
+const Input = lazy(() => import('../../forms/inputs/Input.js'));
+const InputPassword = lazy(() => import('../../forms/inputs/InputPassword.js'));
 
 const superuser = process.env.REACT_APP_SUPERUSER;
 const password = process.env.REACT_APP_SUPERPASSWORD;
@@ -47,3 +48,4 @@ export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
     </div>
   )
 };
+export default LoginScreen;

@@ -7,3 +7,4 @@ export const User = ({ color='currentColor', className='', strokeWidth='1', widt
             </svg>
     );
 }
+export default User;

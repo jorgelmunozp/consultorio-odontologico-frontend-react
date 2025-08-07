@@ -1,7 +1,8 @@
-import { Input } from '../forms/inputs/Input';
-import { SearchIcon } from './SearchIcon';
-import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
+import { lazy } from 'react';
+import { iconHeight,iconWidth,iconStrokeWidth } from '../../global.js';
 import './search.css';
+const Input = lazy(() => import('../forms/inputs/Input.js'));
+const SearchIcon = lazy(() => import('./SearchIcon.js'));
 
 export const SearchBar = ({ Icon=SearchIcon,items,queries,setQueries,className }) => {
     return (

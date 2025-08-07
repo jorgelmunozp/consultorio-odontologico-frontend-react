@@ -14,3 +14,4 @@ export const Input = ({ type='', placeholder='', defaultValue='', handleChange, 
         </div>
     )
 }
+export default Input;

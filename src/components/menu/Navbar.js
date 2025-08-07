@@ -1,19 +1,19 @@
 import { lazy, useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../auth/authContext';
-import { types } from '../../types/types';
-import { getDate } from '../../helpers/getDate';
-import { getTime } from '../../helpers/getTime';
-import { LoginScreen } from '../views/login/LoginScreen';
-import { Error } from '../icons/error/Error';
-import { HomeMenu } from '../icons/home/HomeMenu';
-import { User } from '../icons/user/User';
-import { Warning } from '../icons/warning/Warning';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/authContext.js';
+import { types } from '../../types/types.js';
+import { getDate } from '../../helpers/getDate.js';
+import { getTime } from '../../helpers/getTime.js';
 import '../views/login/login.css';
 
+const User = lazy(() => import('../icons/user/User.js'));
 const Moon = lazy(() => import('../icons/theme/Moon.js'));
 const Sun = lazy(() => import('../icons/theme/Sun.js'));
+const HomeMenu = lazy(() => import('../icons/home/HomeMenu.js'));
+const Error = lazy(() => import('../icons/error/Error.js'));
+const Warning = lazy(() => import('../icons/warning/Warning.js'));
+
+const LoginScreen = lazy(() => import('../views/login/LoginScreen.js'));
 
 export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu, setIsMenuOpen, theme, handleTheme }) => {
     const [ alertMessage,setAlertMessage ] = useState("");

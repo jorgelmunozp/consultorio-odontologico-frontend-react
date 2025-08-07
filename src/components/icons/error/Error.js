@@ -5,3 +5,4 @@ export const Error = ({ color='currentColor', className='', strokeWidth='0', wid
       </svg>
   )
 }
+export default Error;

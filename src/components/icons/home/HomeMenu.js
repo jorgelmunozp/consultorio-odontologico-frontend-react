@@ -5,3 +5,4 @@ export const HomeMenu = ({ color='currentColor', className='', strokeWidth='0', 
             </svg>
     );
 }
+export default HomeMenu;
