@@ -1,4 +1,5 @@
 :root {
+  --black-color: #000000;
   --dark-color: #212529;
   --darkgray-color:#555;
   --dark-transparent-color: rgba(33,37,41, 0.25);
@@ -21,8 +22,16 @@
 }
 .century-gothic { font-family: 'CenturyGothic', 'Century Gothic' !important;}
 
-body[ data-theme="dark" ] { background-color:var(--dark-color) !important; color:white !important; }
-body[ data-theme="light" ] { background-color:white !important; color:black !important; }
+body[ data-theme="dark" ] { background-color:var(--dark-color) !important; color:var(--white-color) !important; }
+body[ data-theme="light" ] { background-color:var(--white-color) !important; color:var(--dark-color) !important; }
+h5[ data-theme="dark" ] { color:var(--white-color) !important; }
+h5[ data-theme="light" ] { color:var(--dark-color) !important; }
+#menuIndex[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
+#menuIndex[ data-theme="light" ] { background-color: var(--white-color) !important; }
+
+#collapseContent[ data-theme="dark" ] .card { background-color: var(--dark-color) !important; }
+#collapseContent[ data-theme="light" ] .card { background-color: var(--white-color) !important; }
+
 
 .fs-sm-1 {}
 .fs-sm-2 {}
@@ -35,12 +44,14 @@ body[ data-theme="light" ] { background-color:white !important; color:black !imp
 .gray-color { color: var(--gray-color) !important; }
 .main-color { color: var(--main-color) !important; }
 .lightgray-color { color: var(--lightgray-color) !important; }
+.white-color { color: var(--white-color) !important }
 .bg-main-color { background-color: var(--main-color) !important; }
 .bg-dark-color { background-color: var(--dark-color) !important; }
+.bg-white-color { background-color: var(--white-color) !important; }
 .dark-color-hover:hover { color: var(--dark-color) !important; }
 .gray-color-hover:hover { color: var(--gray-color) !important; }
 .main-color-hover:hover { color: var(--main-color) !important; }
-.white-color { color: var(--white-color) !important }
+.white-color-hover:hover { color: var(--white-color) !important; }
 
 hr { opacity: 0.5; }
 .smooth { transition: all 0.25s ease; }

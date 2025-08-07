@@ -1,7 +1,7 @@
 
 import { myColor } from '../../global.js';
 
-export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) => {
+export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu, theme }) => {
   return (
     <div className="App">
       <div className='mt-4 mt-sm-5'>
@@ -20,7 +20,7 @@ export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) =>
                         <button onClick={() => setMenu( service.menu )} className="bg-transparent border-0">
                           <div className="card-body pt-4 pt-sm-5">
                             <service.Icon color={myColor} height={4} width={4} strokeWidth={1} />
-                            <h5 className="text-nowrap text-truncate fs-sm-2 mt-2 mt-sm-3 pb-3 pb-sm-4">{ service.title }</h5>
+                            <h5 className="text-nowrap text-truncate fs-sm-2 mt-2 mt-sm-3 pb-3 pb-sm-4" data-theme={theme}>{ service.title }</h5>
                           </div>
                         </button>
                       </div>

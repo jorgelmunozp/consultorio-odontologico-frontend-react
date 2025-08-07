@@ -1,4 +1,4 @@
-import { useState, lazy } from 'react';
+import { lazy, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
@@ -34,7 +34,7 @@ export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
               services.map((service,index) => {
                 return (
                   <div key={ service.title + index } className={"col-2 nav-item nav-link text-center"}>
-                    <div className={"card border-0 rounded-0 pt-0 hover"}>
+                    <div id={"menuIndex"} className={"card border-0 rounded-0 pt-0 hover"} data-theme={theme}>
                       <button onClick={() => setView(index)} className="bg-transparent border-0">
                         <div className={"card-body bg-transparent jumpHover" + (view === index ? ' bounce':'')}>
                           <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
@@ -49,17 +49,12 @@ export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
           </div>
 
           <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
-            <QueryItems classType={'cita'} />
-            <QueryItems classType={'paciente'} />
-            <QueryItems classType={'doctor'} />
-            <QueryItems classType={'especialidad'} />
-            <QueryItems classType={'consultorio'} />
-            <QueryItems classType={'tratamiento'} />
-            {/* <QueryPacientes />
-            <QueryDoctores />
-            <QueryEspecialidades />
-            <QueryConsultorios />
-            <QueryTratamientos /> */}
+            <QueryItems classType={'cita'} theme={theme} />
+            <QueryItems classType={'paciente'} theme={theme} />
+            <QueryItems classType={'doctor'} theme={theme} />
+            <QueryItems classType={'especialidad'} theme={theme} />
+            <QueryItems classType={'consultorio'} theme={theme} />
+            <QueryItems classType={'tratamiento'} theme={theme} />
           </SwipeableViews>
         </div>
     </div>

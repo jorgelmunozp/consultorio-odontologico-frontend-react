@@ -29,7 +29,7 @@ const SearchBar = lazy(() => import('../search/SearchBar.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 const ItemsList = lazy(() => import('./ItemsList.js'));
 
-export const QueryItem = ({ classType, isMenuOpen }) => {
+export const QueryItem = ({ classType, isMenuOpen, theme }) => {
   const classes = { cita: { Classe: Cita },
                     paciente: { Classe: Paciente },
                     doctor: { Classe: Doctor },
@@ -57,7 +57,7 @@ export const QueryItem = ({ classType, isMenuOpen }) => {
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
-        <SearchBar Icon={icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
+        <SearchBar Icon={icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} theme={theme}/>
         <Suspense fallback={ <div className="loaderSpin"></div> }>
           <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={arrayFiltered} objectClass={objectClass} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} />
         </Suspense>
