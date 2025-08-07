@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkconsultorio_odontologico_frontend_react=self.webpackChunkconsultorio_odontologico_frontend_react||[]).push([[724,924],{3697:(e,o,t)=>{t.r(o),t.d(o,{QueryCitas:()=>r,default:()=>c});var n=t(4526),s=t(579);const r=e=>{let{isMenuOpen:o}=e;return(0,s.jsx)(n.QueryItems,{classType:"cita",isMenuOpen:o})},c=r}}]);
+//# sourceMappingURL=724.f9468cfc.chunk.js.map
