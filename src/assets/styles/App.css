@@ -26,6 +26,9 @@ body[ data-theme="dark" ] { background-color:var(--dark-color) !important; color
 body[ data-theme="light" ] { background-color:var(--white-color) !important; color:var(--dark-color) !important; }
 h5[ data-theme="dark" ] { color:var(--white-color) !important; }
 h5[ data-theme="light" ] { color:var(--dark-color) !important; }
+
+#navbar[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
+#navbar[ data-theme="light" ] { background-color: var(--white-color) !important; }
 #menuIndex[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
 #menuIndex[ data-theme="light" ] { background-color: var(--white-color) !important; }
 #collapseContent[ data-theme="dark" ] .card { background-color: var(--dark-color) !important; }
