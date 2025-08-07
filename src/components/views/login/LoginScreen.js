@@ -10,7 +10,7 @@ const superuser = process.env.REACT_APP_SUPERUSER;
 const password = process.env.REACT_APP_SUPERPASSWORD;
 const username = process.env.REACT_APP_USERNAME;
 
-export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
+export const LoginScreen = ({ setAlertMessage, setAlertType, theme }) => {
   const [ userInput,setUserInput ] = useState("");
   const [ passwordInput,setPasswordInput ] = useState("");
 
@@ -37,7 +37,7 @@ export const LoginScreen = ({ setAlertMessage,setAlertType }) => {
     }
   }
   return (
-    <div className='container mt-1 text-center user-select-none'>
+    <div id='loginScreen' className='container mt-1 text-center user-select-none' data-theme={theme}>
         <div className="d-grid gap-2 col mx-auto pb-3 w-100">
           <Input placeholder={'Usuario'} value={userInput} type={'text'} onChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           <InputPassword placeholder={'Contraseña'} value={passwordInput} onChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />

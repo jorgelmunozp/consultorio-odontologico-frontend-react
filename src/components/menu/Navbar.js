@@ -68,15 +68,15 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
                 </div>
             </nav>
             <center>
-                <div className="modal fade align-self-auto" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div id='loginModal' className="modal fade align-self-auto" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-modalContainer">
-                        <div className="modal-content">
+                        <div id='loginModalContent' className="modal-content" data-theme={theme}>
                             <div className="modal-header d-grid mx-auto border-0 mt-4 pb-1">
-                                <User strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
-                                <h1 className="modal-title main-color fs-5 pb-4" id="loginModalLabel">Ingresar</h1>
+                                <User strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="main-color fs-5" />
+                                <h1 className="main-color fs-5 pb-4" id="loginModalLabel">Ingresar</h1>
                             </div>
                             <div className="modal-body mx-auto w-100 pt-1">
-                                <LoginScreen setAlertMessage={setAlertMessage} setAlertType={setAlertType} />
+                                <LoginScreen setAlertMessage={setAlertMessage} setAlertType={setAlertType} theme={theme} />
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
                                     ( user.logged ) 
                                         ?   <>
                                                 <button type="button" className="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
-                                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="modal-title main-color fs-5" />
+                                                    <Logo strokeWidth={1} height={1.5} width={1.5} data-bs-dismiss="modal" className="main-color fs-5" />
                                                 </button>
                                                 <div className="container">
                                                     <p className="text-muted mt-4">Fecha: { fecha } Hora: { hora }</p>

@@ -9,13 +9,21 @@
     --red-color: #f00;
     --white-color: #fff;
 }
+
+#loginModalContent[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
+#loginModalContent[ data-theme="light" ] { background-color: var(--white-color) !important; }
+#loginScreen[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
+#loginScreen[ data-theme="light" ] { background-color: var(--white-color) !important; }
+
+input[ data-theme="dark" ] { color: var(--dark-color) !important; }
+input[ data-theme="light" ] { color: var(--white-color) !important; }
 /****** LOGIN ******/
 .input-login {
     background-color: var(--white-color);
     border-color: var(--gray-color)!important;
 }
 
-.btn-login { background-color: var(--white-color) !important; border-color: var(--main-color) !important; color: var(--main-color) !important;}
+.btn-login { border-color: var(--main-color) !important; color: var(--main-color) !important;}
 .btn-login:hover { background-color: var(--main-dark-color) !important; color: var(--white-color) !important; }
 
 input::placeholder { color: var(--gray-color); }

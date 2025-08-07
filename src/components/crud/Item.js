@@ -1,9 +1,13 @@
 import { lazy, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-const ReadItem = lazy(() => import('./ReadItem.js'));
-const UpdateItem = lazy(() => import('./DeleteItem.js'));
-const DeleteItem = lazy(() => import('./DeleteItem.js'));
+import { ReadItem } from './ReadItem.js';
+import { UpdateItem } from './UpdateItem.js';
+import { DeleteItem } from './DeleteItem.js';
+
+// const ReadItem = lazy(() => import('./ReadItem.js'));
+// const UpdateItem = lazy(() => import('./DeleteItem.js'));
+// const DeleteItem = lazy(() => import('./DeleteItem.js'));
 
 export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     const [open, setOpen] = useState(false);                                                                    // Input crud modal views status
@@ -38,9 +42,9 @@ export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
                     { Object.entries(item[classType]).map((item,index) => {
                         return( <div key={'item'+index} className={'text-start text-nowrap' + ( wideItems.includes(item[0]) ? ' col-6 col-sm-3':' col-4 col-sm-2') }>{ item[1] }</div> ) })
                     }
-                    <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('read') }><IconSearch /></button></div>
-                    <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('update') }><IconEdit /></button></div>
-                    <div className='col'><button className='border-0 bg-transparent queryBtn' onClick={ () => setOpen('delete')}><IconDelete /></button></div>       
+                    <div className='col'><button className='border-0 bg-transparent queryBtn main-color' onClick={ () => setOpen('read') }><IconSearch /></button></div>
+                    <div className='col'><button className='border-0 bg-transparent queryBtn main-color' onClick={ () => setOpen('update') }><IconEdit /></button></div>
+                    <div className='col'><button className='border-0 bg-transparent queryBtn main-color' onClick={ () => setOpen('delete')}><IconDelete /></button></div>       
                 </>
             )
 }

@@ -16,8 +16,8 @@ const HearthDelete = lazy(() => import('../icons/hearth/HearthDelete.js'));
 const FilterEdit = lazy(() => import('../icons/filter/FilterEdit.js'));
 const FilterDelete = lazy(() => import('../icons/filter/FilterDelete.js'));
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
-const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 const ItemsList = lazy(() => import('./ItemsList.js'));
+const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
   const classes = { cita: { Classe: Cita },
