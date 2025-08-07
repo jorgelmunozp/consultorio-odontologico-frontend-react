@@ -1,19 +1,19 @@
 import { useState, lazy } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { QueryCitas } from '../../crud/query/QueryCitas';
-import { CalendarMedical } from '../../icons/calendar/CalendarMedical';
-import { UserInjured } from '../../icons/user/UserInjured';
-import { UserMedical } from '../../icons/user/UserMedical';
-import { Stethoscope } from '../../icons/medical/Stethoscope';
-import { HomeMedical } from '../../icons/home/HomeMedical';
-import { Syringe } from '../../icons/medical/Syringe';
-import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global';
+import { QueryCitas } from '../../crud/query/QueryCitas.js';
+import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
-const QueryPacientes = lazy(() => import('../../crud/query/QueryPacientes'));
-const QueryDoctores = lazy(() => import('../../crud/query/QueryDoctores'));
-const QueryEspecialidades = lazy(() => import('../../crud/query/QueryEspecialidades'));
-const QueryConsultorios = lazy(() => import('../../crud/query/QueryConsultorios'));
-const QueryTratamientos = lazy(() => import('../../crud/query/QueryTratamientos'));
+const CalendarMedical = lazy(() => import('../../icons/calendar/CalendarMedical.js'));
+const UserInjured = lazy(() => import('../../icons/user/UserInjured.js'));
+const UserMedical = lazy(() => import('../../icons/user/UserMedical.js'));
+const Stethoscope = lazy(() => import('../../icons/medical/Stethoscope.js'));
+const HomeMedical = lazy(() => import('../../icons/home/HomeMedical.js'));
+const Syringe = lazy(() => import('../../icons/medical/Syringe.js'));
+const QueryPacientes = lazy(() => import('../../crud/query/QueryPacientes.js'));
+const QueryDoctores = lazy(() => import('../../crud/query/QueryDoctores.js'));
+const QueryEspecialidades = lazy(() => import('../../crud/query/QueryEspecialidades.js'));
+const QueryConsultorios = lazy(() => import('../../crud/query/QueryConsultorios.js'));
+const QueryTratamientos = lazy(() => import('../../crud/query/QueryTratamientos.js'));
 
 const services = [
   { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },

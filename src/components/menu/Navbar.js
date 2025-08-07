@@ -54,8 +54,8 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
                                             </NavLink>
                                         </ul>
                                         <ul className="navbar-nav col">
-                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link' } >
-                                                <button className='nav-link main-color nav-icon-shadow' onClick={ handleTheme } data-theme={ theme }>{ (theme ==='light') ? <Moon strokeWidth={1.5} height={1.375} width={1.375} /> : <Sun strokeWidth={10} height={1.375} width={1.375} /> }</button>
+                                            <NavLink onClick={ handleTheme } className={ ({ isActive }) => 'nav-item nav-link' } >
+                                                { (theme ==='light') ? <Moon className='main-color' strokeWidth={1.5} height={1.25} width={1.25} /> : <Sun className='main-color' strokeWidth={10} height={1.25} width={1.25} /> }
                                             </NavLink>
                                         </ul>
                                         <ul className="navbar-nav col">
