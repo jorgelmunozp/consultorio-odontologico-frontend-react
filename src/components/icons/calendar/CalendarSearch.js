@@ -11,3 +11,4 @@ export const CalendarSearch = ({ color='currentColor', className='', strokeWidth
             </svg>
     );
 }
+export default CalendarSearch;

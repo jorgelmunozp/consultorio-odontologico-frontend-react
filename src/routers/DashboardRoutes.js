@@ -1,5 +1,6 @@
+import { lazy } from 'react';
 import { Routes, Route } from "react-router-dom";
-import { HomeScreen } from "../components/views/home/HomeScreen";
+const HomeScreen = lazy(() => import('../components/views/home/HomeScreen.js'));
 
 export const DashboardRoutes = ({ urlBaseFrontend }) => {
   return (
@@ -13,3 +14,4 @@ export const DashboardRoutes = ({ urlBaseFrontend }) => {
     </div>
   )
 }
+export default DashboardRoutes;

@@ -5,3 +5,4 @@ export const HomeMedical = ({ color='currentColor', className='', strokeWidth='1
             </svg>
     );
 }
+export default HomeMedical;

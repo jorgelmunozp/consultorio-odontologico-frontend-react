@@ -9,3 +9,4 @@ export const UserSearch = ({ color='currentColor', className='', strokeWidth='1'
             </svg>
     );
 }
+export default UserSearch;

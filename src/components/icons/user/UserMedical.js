@@ -5,3 +5,4 @@ export const UserMedical = ({ color='currentColor', className='', strokeWidth='1
             </svg>
     );
 }
+export default UserMedical;

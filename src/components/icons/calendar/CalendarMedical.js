@@ -5,3 +5,4 @@ export const CalendarMedical = ({ color='currentColor', className='', strokeWidt
             </svg>
     );
 }
+export default CalendarMedical;

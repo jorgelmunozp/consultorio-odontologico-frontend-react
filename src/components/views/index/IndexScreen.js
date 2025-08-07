@@ -7,7 +7,6 @@ import { UserMedical } from '../../icons/user/UserMedical';
 import { Stethoscope } from '../../icons/medical/Stethoscope';
 import { HomeMedical } from '../../icons/home/HomeMedical';
 import { Syringe } from '../../icons/medical/Syringe';
-import { Logo } from '../../icons/logo/Logo';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global';
 
 const QueryPacientes = lazy(() => import('../../crud/query/QueryPacientes'));
@@ -25,14 +24,14 @@ const services = [
   { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
 ];
 
-export const IndexScreen = ({ isMenuOpen }) => {
+export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
   let [view, setView] = useState(0);
 
   return (
     <div className="App">
         <div className={"container-fluid px-0 pt-2 me-0 smooth" + (isMenuOpen ? ' w-responsive':' w-100')}>
           <div id='headerIndex' className='backgroundImage pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
-            <Logo color={myColor} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} />
+            <Logo color={myColor} fillColor={(theme==='light')?'#fff':'#212529'} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} />
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
           </div>
           <div id="collapseMenu" className="row bg-transparent collapse shadow">   

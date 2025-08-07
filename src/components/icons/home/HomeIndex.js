@@ -8,3 +8,4 @@ export const HomeIndex = ({ color='currentColor', className='', strokeWidth='0',
             </svg>
     );
 }
+export default HomeIndex;

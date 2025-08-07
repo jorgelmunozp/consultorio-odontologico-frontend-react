@@ -8,3 +8,4 @@ export const FilterSearch = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default FilterSearch;

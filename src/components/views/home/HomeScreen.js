@@ -1,5 +1,4 @@
 export const HomeScreen = () => {
-
   return (
     <>
       <center>
@@ -11,6 +10,4 @@ export const HomeScreen = () => {
     </>
   )
 }
-
-
-
+export default HomeScreen;

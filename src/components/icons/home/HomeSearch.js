@@ -8,3 +8,4 @@ export const HomeSearch = ({ color='currentColor', className='', strokeWidth='1'
             <path d="M20.2 20.2l1.8 1.8"></path></svg>
     );
 }
+export default HomeSearch;

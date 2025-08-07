@@ -1,46 +1,47 @@
 import '../../assets/styles/App.css';
 import { Suspense, lazy } from 'react';
 import { Menu as MenuIcon } from '../icons/menu/Menu';
-import { CalendarMedical } from '../icons/calendar/CalendarMedical';
-import { UserInjured } from '../icons/user/UserInjured';
-import { UserMedical } from '../icons/user/UserMedical';
-import { Stethoscope } from '../icons/medical/Stethoscope';
-import { Syringe } from '../icons/medical/Syringe';
-import { HomeMedical } from '../icons/home/HomeMedical';
-import { HomeIndex } from '../icons/home/HomeIndex';
-import { HomePlus } from '../icons/home/HomePlus';
-import { HomeSearch } from '../icons/home/HomeSearch';
-import { CalendarSearch } from '../icons/calendar/CalendarSearch';
-import { CalendarPlus } from '../icons/calendar/CalendarPlus';
-import { UserSearch } from '../icons/user/UserSearch';
-import { UserPlus } from '../icons/user/UserPlus';
-import { HearthSearch } from '../icons/hearth/HearthSearch';
-import { HearthPlus } from '../icons/hearth/HearthPlus';
-import { FilterSearch } from '../icons/filter/FilterSearch';
-import { FilterPlus } from '../icons/filter/FilterPlus';
-import { iconHeight,iconWidth,iconStrokeWidth } from '../../global';
+import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
+// const Menu as MenuIcon = lazy(() => import('../icons/menu/Menu.js'));
+const CalendarMedical = lazy(() => import('../icons/calendar/CalendarMedical.js'));
+const UserInjured = lazy(() => import('../icons/user/UserInjured.js'));
+const UserMedical = lazy(() => import('../icons/user/UserMedical.js'));
+const Stethoscope = lazy(() => import('../icons/medical/Stethoscope.js'));
+const Syringe = lazy(() => import('../icons/medical/Syringe.js'));
+const HomeMedical = lazy(() => import('../icons/home/HomeMedical.js'));
+const HomeIndex = lazy(() => import('../icons/home/HomeIndex.js'));
+const HomeSearch = lazy(() => import('../icons/home/HomeSearch.js'));
+const HomePlus = lazy(() => import('../icons/home/HomePlus.js'));
+const CalendarSearch = lazy(() => import('../icons/calendar/CalendarSearch.js'));
+const CalendarPlus = lazy(() => import('../icons/calendar/CalendarPlus.js'));
+const UserSearch = lazy(() => import('../icons/user/UserSearch.js'));
+const UserPlus = lazy(() => import('../icons/user/UserPlus.js'));
+const HearthSearch = lazy(() => import('../icons/hearth/HearthSearch.js'));
+const HearthPlus = lazy(() => import('../icons/hearth/HearthPlus.js'));
+const FilterSearch = lazy(() => import('../icons/filter/FilterSearch.js'));
+const FilterPlus = lazy(() => import('../icons/filter/FilterPlus.js'));
 
-const IndexScreen = lazy(() => import('./index/IndexScreen'));
-const IndexCitas = lazy(() => import('../crud/index/IndexCitas'));
-const IndexPacientes = lazy(() => import('../crud/index/IndexPacientes'));
-const IndexDoctores = lazy(() => import('../crud/index/IndexDoctores'));
-const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades'));
-const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios'));
-const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos'));
-const QueryCitas = lazy(() => import('../crud/query/QueryCitas'));
-const QueryPacientes = lazy(() => import('../crud/query/QueryPacientes'));
-const QueryDoctores = lazy(() => import('../crud/query/QueryDoctores'));
-const QueryEspecialidades = lazy(() => import('../crud/query/QueryEspecialidades'));
-const QueryConsultorios = lazy(() => import('../crud/query/QueryConsultorios'));
-const QueryTratamientos = lazy(() => import('../crud/query/QueryTratamientos'));
-const CreateCita = lazy(() => import('../crud/create/CreateCita'));
-const CreatePaciente = lazy(() => import('../crud/create/CreatePaciente'));
-const CreateDoctor = lazy(() => import('../crud/create/CreateDoctor'));
-const CreateEspecialidad = lazy(() => import('../crud/create/CreateEspecialidad'));
-const CreateConsultorio = lazy(() => import('../crud/create/CreateConsultorio'));
-const CreateTratamiento = lazy(() => import('../crud/create/CreateTratamiento'));
+const IndexScreen = lazy(() => import('./index/IndexScreen.js'));
+const IndexCitas = lazy(() => import('../crud/index/IndexCitas.js'));
+const IndexPacientes = lazy(() => import('../crud/index/IndexPacientes.js'));
+const IndexDoctores = lazy(() => import('../crud/index/IndexDoctores.js'));
+const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades.js'));
+const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios.js'));
+const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos.js'));
+const QueryCitas = lazy(() => import('../crud/query/QueryCitas.js'));
+const QueryPacientes = lazy(() => import('../crud/query/QueryPacientes.js'));
+const QueryDoctores = lazy(() => import('../crud/query/QueryDoctores.js'));
+const QueryEspecialidades = lazy(() => import('../crud/query/QueryEspecialidades.js'));
+const QueryConsultorios = lazy(() => import('../crud/query/QueryConsultorios.js'));
+const QueryTratamientos = lazy(() => import('../crud/query/QueryTratamientos.js'));
+const CreateCita = lazy(() => import('../crud/create/CreateCita.js'));
+const CreatePaciente = lazy(() => import('../crud/create/CreatePaciente.js'));
+const CreateDoctor = lazy(() => import('../crud/create/CreateDoctor.js'));
+const CreateEspecialidad = lazy(() => import('../crud/create/CreateEspecialidad.js'));
+const CreateConsultorio = lazy(() => import('../crud/create/CreateConsultorio.js'));
+const CreateTratamiento = lazy(() => import('../crud/create/CreateTratamiento.js'));
 
-export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
+export const TemplateScreen = ({ Logo, isMenuOpen, menu, setMenu, theme }) => {
   return (
     <div className="App user-select-none">
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
@@ -49,7 +50,7 @@ export const TemplateScreen = ({ isMenuOpen, menu, setMenu, }) => {
       <div className='App-body d-flex'>
         <div id="App" className="App mx-auto w-100"> 
           <Suspense fallback={ <div className="loaderBalls"><div className="loading"><div className="balls shadow"></div><div className="balls shadow"></div><div className="balls shadow"></div><span className="loadingTitle">Cargando...</span></div></div> }>
-            <View menu={ menu } isMenuOpen={ isMenuOpen } setMenu={ setMenu } />
+            <View Logo={Logo} menu={menu} isMenuOpen={isMenuOpen} setMenu={setMenu} theme={theme} />
           </Suspense>
         </div>
       </div>
@@ -94,9 +95,9 @@ const Menu = ({ menu, setMenu }) => {
   )
 }
 
-const View = ({ menu, isMenuOpen, setMenu }) => {                            // Componente para elegir vista a renderizar
+const View = ({ Logo, menu, isMenuOpen, setMenu, theme }) => {                            // Componente para elegir vista a renderizar
   switch ( menu ) {
-    case 1: return <IndexScreen isMenuOpen={isMenuOpen} />;
+    case 1: return <IndexScreen Logo={Logo} isMenuOpen={isMenuOpen} theme={theme} />;
     case 2: return <IndexCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 3: return <QueryCitas isMenuOpen={isMenuOpen} />;
     case 4: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
@@ -115,6 +116,6 @@ const View = ({ menu, isMenuOpen, setMenu }) => {                            // 
     case 17: return <IndexConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
     case 18: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
     case 19: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
-    default: return <IndexScreen isMenuOpen={isMenuOpen} />;
+    default: return <IndexScreen Logo={Logo} isMenuOpen={isMenuOpen} theme={theme} />;
   }
 }

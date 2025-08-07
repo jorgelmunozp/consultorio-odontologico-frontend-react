@@ -11,3 +11,4 @@ export const CalendarPlus = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default CalendarPlus;

@@ -7,3 +7,4 @@ export const HearthSearch = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default HearthSearch;

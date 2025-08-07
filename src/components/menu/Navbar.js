@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { lazy, useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext';
@@ -7,13 +7,15 @@ import { getDate } from '../../helpers/getDate';
 import { getTime } from '../../helpers/getTime';
 import { LoginScreen } from '../views/login/LoginScreen';
 import { Error } from '../icons/error/Error';
-import { Logo } from '../icons/logo/Logo';
 import { HomeMenu } from '../icons/home/HomeMenu';
 import { User } from '../icons/user/User';
 import { Warning } from '../icons/warning/Warning';
 import '../views/login/login.css';
 
-export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu, setIsMenuOpen }) => {
+const Moon = lazy(() => import('../icons/theme/Moon.js'));
+const Sun = lazy(() => import('../icons/theme/Sun.js'));
+
+export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu, setIsMenuOpen, theme, handleTheme }) => {
     const [ alertMessage,setAlertMessage ] = useState("");
     const [ alertType,setAlertType ] = useState("");
 
@@ -32,7 +34,7 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu,
 
     return (
         <>
-            <nav className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none z-10000">
+            <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none z-10000">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand main-color d-flex bg-transparent" to={"/" + urlBaseFrontend} onClick={() => setMenu(1)}>
                         <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-3 ms-sm-4 me-2 mt-logo'/>
@@ -49,6 +51,11 @@ export const Navbar = ({ urlBaseFrontend, myColor, myTitle, isMenuOpen, setMenu,
                                         <ul className="navbar-nav col">
                                             <NavLink className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
                                                 <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
+                                            </NavLink>
+                                        </ul>
+                                        <ul className="navbar-nav col">
+                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link' } >
+                                                <button className='nav-link main-color nav-icon-shadow' onClick={ handleTheme } data-theme={ theme }>{ (theme ==='light') ? <Moon strokeWidth={1.5} height={1.375} width={1.375} /> : <Sun strokeWidth={10} height={1.375} width={1.375} /> }</button>
                                             </NavLink>
                                         </ul>
                                         <ul className="navbar-nav col">
