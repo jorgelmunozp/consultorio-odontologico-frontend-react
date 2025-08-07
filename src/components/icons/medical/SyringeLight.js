@@ -5,3 +5,4 @@ export const SyringeLight = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default SyringeLight;

@@ -7,3 +7,4 @@ export const HomeEdit = ({ color='currentColor', className='', strokeWidth='1', 
             </svg>
     );
 }
+export default HomeEdit;

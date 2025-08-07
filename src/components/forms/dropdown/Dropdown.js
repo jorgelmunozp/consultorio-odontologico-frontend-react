@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { PaginationBar } from '../../pagination/PaginationBar';
 import '../forms.css';
-
+import { lazy, useState } from 'react';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 import { jwtDecode as decode } from "jwt-decode";
 
-const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
+const PaginationBar = lazy(() => import('../../pagination/PaginationBar.js'));
 
+const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const Dropdown = ({ classType, object, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='' }) => {
   const [open, setOpen] = useState(false)
@@ -40,8 +39,8 @@ export const Dropdown = ({ classType, object, placeholder='', array=[], defaultS
   )
 }
 
-
-
 const Options = ({ value, setValue, setOpen, handleChange  }) => {
   return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event)} }>{ value }</button></li> );
 }
+
+export default Dropdown;

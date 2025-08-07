@@ -6,3 +6,4 @@ export const CalendarSmile = ({ color='currentColor', className='', strokeWidth=
             </svg>
     );
 }
+export default CalendarSmile;

@@ -1,5 +1,5 @@
-import { myColor } from '../../global';
 import '../modal/modal.css';
+import { myColor } from '../../global.js';
 
 export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto

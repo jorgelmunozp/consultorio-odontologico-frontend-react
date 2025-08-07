@@ -7,3 +7,4 @@ export const FilterEdit = ({ color='currentColor', className='', strokeWidth='1'
             </svg>
     );
 }
+export default FilterEdit;

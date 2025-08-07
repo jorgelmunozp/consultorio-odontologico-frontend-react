@@ -1,5 +1,5 @@
-import { Alert } from '../../alert/Alert';
-import { fetchCreate } from '../../../helpers/fetchCreate';
+import { Alert } from '../../alert/Alert.js';
+import { fetchCreate } from '../../../helpers/fetchCreate.js';
 
 export const BotonFetch = ({ endIcon,title,urlApi,dataApi,setResponseStatus,className }) => {
   const handleClick = () => {
@@ -9,3 +9,4 @@ export const BotonFetch = ({ endIcon,title,urlApi,dataApi,setResponseStatus,clas
 
   return ( <button onClick={ handleClick } className={ className }> { title } { endIcon } </button> )
 }
+export default BotonFetch;

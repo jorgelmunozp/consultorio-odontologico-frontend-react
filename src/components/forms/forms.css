@@ -1,4 +1,7 @@
 /****** Forms ******/
+input[ data-theme="light" ] { background-color:var(--white-color) !important; color:#000 !important }
+input[ data-theme="dark" ] { background-color:var(--dark-color) !important; color:#fff !important; }
+
 /* InputText */ 
 .input:focus { border-width: 2px !important; }
 /* All forms */
@@ -11,5 +14,3 @@
     right: 0.75rem;
     top: 1.625rem;
 }
-
-

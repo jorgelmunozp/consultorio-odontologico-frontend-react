@@ -1,17 +1,17 @@
-import { createRoot } from 'react-dom/client';
-import { Alert } from '../alert/Alert';
-import { Item } from './Item';
-import { Dropdown as DropdownClass } from '../../classes/Dropdown';
-import { fetchUpdate } from '../../helpers/fetchUpdate';
-import { Dropdown } from '../forms/dropdown/Dropdown';
-import { Input } from '../forms/inputs/Input';
-import { myColor } from '../../global';
 import '../modal/modal.css';
+import { lazy } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Alert } from '../alert/Alert.js';
+// import { Item } from './Item.js';
+import { Dropdown as DropdownClass } from '../../classes/Dropdown.js';
+import { fetchUpdate } from '../../helpers/fetchUpdate.js';
+import { myColor } from '../../global.js';
+
+const Item = lazy(() => import('./Item.js'));
+const Input = lazy(() => import('../forms/inputs/Input.js'));
+const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, icons }) => { 
-  const IconSearch = icons[classType].IconSearch;                              // Selección de icono read
-  const IconEdit = icons[classType].IconEdit;                                  // Selección de icono update
-  const IconDelete = icons[classType].IconDelete;                              // Selección de icono delete
 
   let state = {};
   switch( classType ) {

@@ -8,3 +8,4 @@ export const HomeDelete = ({ color='currentColor', className='', strokeWidth='1'
             </svg>
     );
 }
+export default HomeDelete;

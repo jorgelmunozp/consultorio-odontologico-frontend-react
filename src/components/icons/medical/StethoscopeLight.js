@@ -8,3 +8,4 @@ export const StethoscopeLight = ({ color='currentColor', className='', strokeWid
             </svg>
     );
 }
+export default StethoscopeLight;

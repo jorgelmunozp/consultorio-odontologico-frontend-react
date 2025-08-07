@@ -1,6 +1,5 @@
 import { useState, lazy } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { QueryCitas } from '../../crud/query/QueryCitas.js';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
 const CalendarMedical = lazy(() => import('../../icons/calendar/CalendarMedical.js'));
@@ -9,11 +8,7 @@ const UserMedical = lazy(() => import('../../icons/user/UserMedical.js'));
 const Stethoscope = lazy(() => import('../../icons/medical/Stethoscope.js'));
 const HomeMedical = lazy(() => import('../../icons/home/HomeMedical.js'));
 const Syringe = lazy(() => import('../../icons/medical/Syringe.js'));
-const QueryPacientes = lazy(() => import('../../crud/query/QueryPacientes.js'));
-const QueryDoctores = lazy(() => import('../../crud/query/QueryDoctores.js'));
-const QueryEspecialidades = lazy(() => import('../../crud/query/QueryEspecialidades.js'));
-const QueryConsultorios = lazy(() => import('../../crud/query/QueryConsultorios.js'));
-const QueryTratamientos = lazy(() => import('../../crud/query/QueryTratamientos.js'));
+const QueryItems = lazy(() => import('../../crud/views/QueryItems.js'));
 
 const services = [
   { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },
@@ -54,12 +49,17 @@ export const IndexScreen = ({ Logo, isMenuOpen, theme }) => {
           </div>
 
           <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
-            <QueryCitas />
-            <QueryPacientes />
+            <QueryItems classType={'cita'} />
+            <QueryItems classType={'paciente'} />
+            <QueryItems classType={'doctor'} />
+            <QueryItems classType={'especialidad'} />
+            <QueryItems classType={'consultorio'} />
+            <QueryItems classType={'tratamiento'} />
+            {/* <QueryPacientes />
             <QueryDoctores />
             <QueryEspecialidades />
             <QueryConsultorios />
-            <QueryTratamientos />
+            <QueryTratamientos /> */}
           </SwipeableViews>
         </div>
     </div>

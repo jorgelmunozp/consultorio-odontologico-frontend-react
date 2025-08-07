@@ -28,18 +28,9 @@ const IndexDoctores = lazy(() => import('../crud/index/IndexDoctores.js'));
 const IndexEspecialidades = lazy(() => import('../crud/index/IndexEspecialidades.js'));
 const IndexConsultorios = lazy(() => import('../crud/index/IndexConsultorios.js'));
 const IndexTratamientos = lazy(() => import('../crud/index/IndexTratamientos.js'));
-const QueryCitas = lazy(() => import('../crud/query/QueryCitas.js'));
-const QueryPacientes = lazy(() => import('../crud/query/QueryPacientes.js'));
-const QueryDoctores = lazy(() => import('../crud/query/QueryDoctores.js'));
-const QueryEspecialidades = lazy(() => import('../crud/query/QueryEspecialidades.js'));
-const QueryConsultorios = lazy(() => import('../crud/query/QueryConsultorios.js'));
-const QueryTratamientos = lazy(() => import('../crud/query/QueryTratamientos.js'));
-const CreateCita = lazy(() => import('../crud/create/CreateCita.js'));
-const CreatePaciente = lazy(() => import('../crud/create/CreatePaciente.js'));
-const CreateDoctor = lazy(() => import('../crud/create/CreateDoctor.js'));
-const CreateEspecialidad = lazy(() => import('../crud/create/CreateEspecialidad.js'));
-const CreateConsultorio = lazy(() => import('../crud/create/CreateConsultorio.js'));
-const CreateTratamiento = lazy(() => import('../crud/create/CreateTratamiento.js'));
+
+const QueryItems = lazy(() => import('../crud/views/QueryItems.js'));
+const CreateItems = lazy(() => import('../crud/views/CreateItems.js'));
 
 export const TemplateScreen = ({ Logo, isMenuOpen, menu, setMenu, theme }) => {
   return (
@@ -99,23 +90,23 @@ const View = ({ Logo, menu, isMenuOpen, setMenu, theme }) => {                  
   switch ( menu ) {
     case 1: return <IndexScreen Logo={Logo} isMenuOpen={isMenuOpen} theme={theme} />;
     case 2: return <IndexCitas isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 3: return <QueryCitas isMenuOpen={isMenuOpen} />;
-    case 4: return <CreateCita Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
+    case 3: return <QueryItems classType={'cita'} isMenuOpen={isMenuOpen} />;
+    case 4: return <CreateItems classType={'cita'} Icon={CalendarMedical} isMenuOpen={isMenuOpen} theme={theme} />;
     case 5: return <IndexPacientes isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 6: return <QueryPacientes isMenuOpen={isMenuOpen} />;
-    case 7: return <CreatePaciente Icon={UserInjured} isMenuOpen={isMenuOpen} />;
+    case 6: return <QueryItems classType={'paciente'} isMenuOpen={isMenuOpen} />;
+    case 7: return <CreateItems classType={'paciente'} Icon={UserInjured} isMenuOpen={isMenuOpen} theme={theme} />;
     case 8: return <IndexTratamientos isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 9: return <QueryTratamientos isMenuOpen={isMenuOpen} />;
-    case 10: return <CreateTratamiento Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 9: return <QueryItems classType={'tratamiento'} isMenuOpen={isMenuOpen} />;
+    case 10: return <CreateItems classType={'tratamiento'} Icon={Stethoscope} isMenuOpen={isMenuOpen} theme={theme} />;
     case 11: return <IndexDoctores isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 12: return <QueryDoctores isMenuOpen={isMenuOpen} />;
-    case 13: return <CreateDoctor Icon={UserMedical} isMenuOpen={isMenuOpen} />;
+    case 12: return <QueryItems classType={'doctor'} isMenuOpen={isMenuOpen} />;
+    case 13: return <CreateItems classType={'doctor'} Icon={UserMedical} isMenuOpen={isMenuOpen} theme={theme} />;
     case 14: return <IndexEspecialidades isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 15: return <QueryEspecialidades isMenuOpen={isMenuOpen} />;
-    case 16: return <CreateEspecialidad Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 15: return <QueryItems classType={'especialidad'} isMenuOpen={isMenuOpen} />;
+    case 16: return <CreateItems classType={'especialidad'} Icon={Stethoscope} isMenuOpen={isMenuOpen} theme={theme} />;
     case 17: return <IndexConsultorios isMenuOpen={isMenuOpen} setMenu={setMenu} />;
-    case 18: return <QueryConsultorios isMenuOpen={isMenuOpen} />;
-    case 19: return <CreateConsultorio Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
+    case 18: return <QueryItems classType={'consultorio'} isMenuOpen={isMenuOpen} />;
+    case 19: return <CreateItems classType={'consultorio'} Icon={HomeMedical} isMenuOpen={isMenuOpen} theme={theme} />;
     default: return <IndexScreen Logo={Logo} isMenuOpen={isMenuOpen} theme={theme} />;
   }
 }

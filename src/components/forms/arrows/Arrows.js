@@ -3,3 +3,4 @@ export const Arrows = ({ direction }) => {
                           case 'down': return '▾';
     }
 }
+export default Arrows;

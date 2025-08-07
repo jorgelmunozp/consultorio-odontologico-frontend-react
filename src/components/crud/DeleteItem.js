@@ -1,8 +1,10 @@
-import { createRoot } from 'react-dom/client';
-import { Alert } from '../alert/Alert';
-import { fetchDelete } from '../../helpers/fetchDelete';
-import { Warning } from '../icons/warning/Warning';
 import '../modal/modal.css';
+import { lazy } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Alert } from '../alert/Alert.js';
+import { fetchDelete } from '../../helpers/fetchDelete.js';
+
+const Warning = lazy(() => import('../icons/warning/Warning.js'));
 
 export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto

@@ -10,3 +10,4 @@ export const CalendarEdit = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default CalendarEdit;

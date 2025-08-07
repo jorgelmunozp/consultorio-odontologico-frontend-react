@@ -7,3 +7,4 @@ export const HearthDelete = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default HearthDelete;

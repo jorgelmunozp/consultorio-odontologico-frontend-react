@@ -1,22 +1,24 @@
-import { useEffect, useState }  from "react";
+import { lazy, useEffect, useState }  from "react";
 import { createRoot } from 'react-dom/client';
 
-import { Alert } from '../alert/Alert';
-import { Dropdown as DropdownClass } from '../../classes/Dropdown';
-import { Cita } from '../../classes/Cita';
-import { Paciente, Doctor } from '../../classes/User';
-import { Especialidad } from '../../classes/Especialidad';
-import { Consultorio } from '../../classes/Consultorio';
-import { Tratamiento } from '../../classes/Tratamiento';
-import { Dropdown } from '../forms/dropdown/Dropdown';
-import { Input } from '../forms/inputs/Input';
-import { BotonFetch } from "../forms/buttons/BotonFetch";
+import { Alert } from '../alert/Alert.js';
+import { Dropdown as DropdownClass } from '../../classes/Dropdown.js';
+import { Cita } from '../../classes/Cita.js';
+import { Paciente, Doctor } from '../../classes/User.js';
+import { Especialidad } from '../../classes/Especialidad.js';
+import { Consultorio } from '../../classes/Consultorio.js';
+import { Tratamiento } from '../../classes/Tratamiento.js';
 
 import sign from 'jwt-encode';                                              // Para firma con jwt
 import { jwtDecode as decode } from "jwt-decode";
+
+const Input = lazy(() => import('../forms/inputs/Input.js'));
+const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
+const BotonFetch = lazy(() => import('../forms/buttons/BotonFetch.js'));
+
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
+export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
   const [responseStatus, setResponseStatus] = useState(0);
   
   const classes = { cita: { Classe: Cita },
@@ -89,8 +91,8 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
               return (
                 <div key={'row'+property.key} id={'row'+property.key} className='row'>
                   <>
-                  { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} /></div>
-                                                 : <div className='col'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                  { property.type === 'dropdown' ? <div className='col'><Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} data-theme={theme} /></div>
+                                                 : <div className='col'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} data-theme={theme} /></div>
                   }
                   </>
                 </div>

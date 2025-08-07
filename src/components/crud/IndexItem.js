@@ -1,5 +1,6 @@
 
-import { myColor } from '../../global';
+import { myColor } from '../../global.js';
+
 export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) => {
   return (
     <div className="App">

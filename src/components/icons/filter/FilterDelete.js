@@ -7,3 +7,4 @@ export const FilterDelete = ({ color='currentColor', className='', strokeWidth='
             </svg>
     );
 }
+export default FilterDelete;

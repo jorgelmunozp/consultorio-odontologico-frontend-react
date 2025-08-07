@@ -10,3 +10,4 @@ export const CalendarDelete = ({ color='currentColor', className='', strokeWidth
             </svg>
     );
 }
+export default CalendarDelete;

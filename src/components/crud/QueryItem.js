@@ -1,35 +1,35 @@
 import { Suspense, lazy } from 'react';
-import { Cita } from '../../classes/Cita';
-import { Paciente, Doctor } from '../../classes/User';
-import { Especialidad } from '../../classes/Especialidad';
-import { Consultorio } from '../../classes/Consultorio';
-import { Tratamiento } from '../../classes/Tratamiento';
-import { CalendarSmile } from '../icons/calendar/CalendarSmile';
-import { User } from '../icons/user/User';
-import { StethoscopeLight } from '../icons/medical/StethoscopeLight';
-import { SyringeLight } from '../icons/medical/SyringeLight';
-import { HomeIndex } from '../icons/home/HomeIndex';
-import { CalendarSearch } from '../icons/calendar/CalendarSearch';
-import { CalendarEdit } from '../icons/calendar/CalendarEdit';
-import { CalendarDelete } from '../icons/calendar/CalendarDelete';
-import { UserSearch } from '../icons/user/UserSearch';
-import { UserEdit } from '../icons/user/UserEdit';
-import { UserDelete } from '../icons/user/UserDelete';
-import { HomeSearch } from '../icons/home/HomeSearch';
-import { HomeEdit } from '../icons/home/HomeEdit';
-import { HomeDelete } from '../icons/home/HomeDelete';
-import { HearthSearch } from '../icons/hearth/HearthSearch';
-import { HearthEdit } from '../icons/hearth/HearthEdit';
-import { HearthDelete } from '../icons/hearth/HearthDelete';
-import { FilterSearch } from '../icons/filter/FilterSearch';
-import { FilterEdit } from '../icons/filter/FilterEdit';
-import { FilterDelete } from '../icons/filter/FilterDelete';
-import { SearchBar } from '../search/SearchBar';
-import { PaginationBar } from '../pagination/PaginationBar';
+import { Cita } from '../../classes/Cita.js';
+import { Paciente, Doctor } from '../../classes/User.js';
+import { Especialidad } from '../../classes/Especialidad.js';
+import { Consultorio } from '../../classes/Consultorio.js';
+import { Tratamiento } from '../../classes/Tratamiento.js';
 
-const ItemsList = lazy(() => import('./ItemsList'));
+const CalendarSmile = lazy(() => import('../icons/calendar/CalendarSmile.js'));
+const User = lazy(() => import('../icons/user/User.js'));
+const StethoscopeLight = lazy(() => import('../icons/medical/StethoscopeLight.js'));
+const SyringeLight = lazy(() => import('../icons/medical/SyringeLight.js'));
+const HomeIndex = lazy(() => import('../icons/home/HomeIndex.js'));
+const CalendarSearch = lazy(() => import('../icons/calendar/CalendarSearch.js'));
+const CalendarEdit = lazy(() => import('../icons/calendar/CalendarEdit.js'));
+const CalendarDelete = lazy(() => import('../icons/calendar/CalendarDelete.js'));
+const UserSearch = lazy(() => import('../icons/user/UserSearch.js'));
+const UserEdit = lazy(() => import('../icons/user/UserEdit.js'));
+const UserDelete = lazy(() => import('../icons/user/UserDelete.js'));
+const HomeSearch = lazy(() => import('../icons/home/HomeSearch.js'));
+const HomeEdit = lazy(() => import('../icons/home/HomeEdit.js'));
+const HomeDelete = lazy(() => import('../icons/home/HomeDelete.js'));
+const HearthSearch = lazy(() => import('../icons/hearth/HearthSearch.js'));
+const HearthEdit = lazy(() => import('../icons/hearth/HearthEdit.js'));
+const HearthDelete = lazy(() => import('../icons/hearth/HearthDelete.js'));
+const FilterSearch = lazy(() => import('../icons/filter/FilterSearch.js'));
+const FilterEdit = lazy(() => import('../icons/filter/FilterEdit.js'));
+const FilterDelete = lazy(() => import('../icons/filter/FilterDelete.js'));
+const SearchBar = lazy(() => import('../search/SearchBar.js'));
+const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
+const ItemsList = lazy(() => import('./ItemsList.js'));
 
-export const QueryItems = ({ classType, isMenuOpen }) => {
+export const QueryItem = ({ classType, isMenuOpen }) => {
   const classes = { cita: { Classe: Cita },
                     paciente: { Classe: Paciente },
                     doctor: { Classe: Doctor },
@@ -67,4 +67,4 @@ export const QueryItems = ({ classType, isMenuOpen }) => {
   );
 };
 
-export default QueryItems;
+export default QueryItem;
