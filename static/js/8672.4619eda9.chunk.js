@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkconsultorio_odontologico_frontend_react=self.webpackChunkconsultorio_odontologico_frontend_react||[]).push([[8672],{8672:(o,t,e)=>{e.r(t),e.d(t,{Arrows:()=>n,default:()=>r});const n=o=>{let{direction:t}=o;switch(t){case"up":return"\u25b4";case"down":return"\u25be"}},r=n}}]);
+//# sourceMappingURL=8672.4619eda9.chunk.js.map
