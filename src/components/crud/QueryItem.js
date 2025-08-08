@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState, useEffect } from 'react';
 import { Cita } from '../../classes/Cita.js';
 import { Paciente, Doctor } from '../../classes/User.js';
 import { Especialidad } from '../../classes/Especialidad.js';
@@ -43,13 +43,20 @@ export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
   const { SortByProperty, setSortBy } = objectClass.sort;
   const pluralEs = ['doctor','especialidad'];
 
+  const [items, setItems] = useState(arrayFiltered);
+  useEffect(() => setItems(arrayFiltered || []), [arrayFiltered]);     // Si initialArray cambia desde fuera, se sincroniza
+  
+  const handleDeleteItem = (id) => {
+    setItems( arrayFiltered.filter(item => item.id !== id) );         // Actualiza el estado de items para que ItemsList se re-renderice
+  };
+
   return (
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (pluralEs.includes(classType) ? 'es':'s') }</h5>
         <SearchBar Icon={icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} theme={theme}/>
         <Suspense fallback={ <div className="loaderSpin"></div> }>
-          <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={arrayFiltered} objectClass={objectClass} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} />
+          <ItemsList classType={classType} icons={icons} titles={titles} urlApi={urlApi} array={items} objectClass={objectClass} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} handleDeleteItem={handleDeleteItem} />
         </Suspense>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>

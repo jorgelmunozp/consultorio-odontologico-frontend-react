@@ -22,10 +22,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
     case 'tratamiento': state = objectClass.getState({ esp:item[classType].especialidad, cons:item[classType].consultorio, doc:item[classType].doctor }); break;
   }
   
-  const handleClose = () => {                                                   // Gestiona el cierre del modal
-    setOpen(false);
-    document.body.classList.remove('noScroll');
-  }
+  const handleClose = () => { setOpen(false); }                                 // Gestiona el cierre del modal
 
   const handleUpdate = () => {
     if(state.filter( property => property.value === '').length === 0 ) {        // Check for emtpy fields to avoid any empty item

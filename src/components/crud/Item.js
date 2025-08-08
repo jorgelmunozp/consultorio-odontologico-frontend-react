@@ -4,7 +4,7 @@ import { ReadItem } from './ReadItem.js';
 import { UpdateItem } from './UpdateItem.js';
 import { DeleteItem } from './DeleteItem.js';
 
-export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
+export const Item = ({ classType, icons, item, urlApi, objectClass, handleDeleteItem }) => {
     const [open, setOpen] = useState(false);
 
     const IconRead = icons[classType].IconRead;
@@ -17,7 +17,7 @@ export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
     const components = {
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
         update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} />,
-        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} />
+        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleDeleteItem={handleDeleteItem} />
     };
 
     // Bloquear scroll cuando hay modal abierto
@@ -27,7 +27,7 @@ export const Item = ({ classType, icons, item, urlApi, objectClass }) => {
         <>
             <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
             { Object.entries(item[classType]).map(([key, value], index) => (
-                <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') } >
+                <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') }>
                     { value }
                 </div>
             ))}

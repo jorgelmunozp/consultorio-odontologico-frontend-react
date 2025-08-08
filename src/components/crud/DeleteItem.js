@@ -1,12 +1,11 @@
 import '../modal/modal.css';
 import { lazy } from 'react';
-import { createRoot } from 'react-dom/client';
 import { Alert } from '../alert/Alert.js';
 import { fetchDelete } from '../../helpers/fetchDelete.js';
 
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
 
-export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) => {
+export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleDeleteItem }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -17,27 +16,20 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) =
     } else { valuesData.push( value ) }
   });
 
-  const handleClose = () => {                                     // Gestiona el cierre del modal
-    setOpen(false);
-    document.body.classList.remove('noScroll');
-  }
+  const handleClose = () => { setOpen(false); }                   // Gestiona el cierre del modal
 
   const handleDelete = () => {
-    const fetchResponse = fetchDelete(urlApi,item.id);
-    fetchResponse.then(
-      async function(value) {
+    fetchDelete(urlApi,item.id).then(
+      async (value) => {
         if(200 <= value && value <= 299) {
-          await fetch(urlApi)                                     // API Restful para eliminar dato de la base de datos
-              .then(response => response.json())
-    
-          const row = createRoot(document.getElementById( 'row'+item.id ));
-          row.render();
-
+          await fetch(urlApi).then(response => response.json())  // API Restful para eliminar dato de la base de datos
+              
+          handleDeleteItem(item.id);     // El padre actualiza el estado y React re-renderiza
           Alert({ type:'success', title:'Eliminación exitosa' }).launch()
         }
         else { Alert({ type:'error', title:'Error en la eliminación' }).launch() }
       },
-      function(error) { Alert({ type:'error', title:'Error en la eliminación' }).launch(); console.log("Error en la eliminación: ",error) }
+      (error) => { Alert({ type:'error', title:'Error en la eliminación' }).launch(); console.log("Error en la eliminación: ",error) }
     )
   };
  
