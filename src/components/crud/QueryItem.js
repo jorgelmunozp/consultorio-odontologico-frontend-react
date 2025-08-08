@@ -51,22 +51,20 @@ export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
   };
 
   const handleItems = (action, id) => {
-    // setItems( arrayFiltered.filter(item => item.id !== id) );         // Actualiza el estado de items para que ItemsList se re-renderice
     setItems(arrayFiltered => {
       switch (action) {
-        case 'delete':
-          return arrayFiltered.filter(item => item.id !== id);
+        case 'delete': return arrayFiltered.filter(item => item.id !== id);
         case 'update':
           return arrayFiltered.map(item =>
             // item.id === id ? { ...item, [classType]: { ...newData } } : item
             item.id === id ? { ...item } : item
           );
-        default:
-          return arrayFiltered;
+        default: return arrayFiltered;
       }
   
     });
   }
+  
   return (
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>

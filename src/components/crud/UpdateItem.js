@@ -36,7 +36,9 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
       
             // const row = createRoot(document.getElementById( 'row'+classType+item.id ));
             // row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />);
-            handleItems('update',item.id);          // El padre actualiza el estado y React re-renderiza sin el elemento eliminado
+            
+            // handleItems('update',item.id);          // El padre actualiza el estado y React re-renderiza con el elemento actualizado
+            handleItems('update',item.id, classType, item);          // El padre actualiza el estado y React re-renderiza con el elemento actualizado
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
           }
           else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
