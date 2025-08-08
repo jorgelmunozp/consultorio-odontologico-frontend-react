@@ -1,13 +1,12 @@
 import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Logo } from '../src/components/icons/logo/Logo.js';
+import { Logo } from './components/icons/logo/Logo.js';
 import { myColor } from './global.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'animate.css';
 
-// const App = lazy(() => import('./App'));
-const preloadApp = import('./App.js'); // Preload the App component to improve initial load time
+const preloadApp = import('./App.js');
 const App = lazy(() => preloadApp);
 
 const root = createRoot(document.getElementById('root'));
