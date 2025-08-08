@@ -24,8 +24,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
   
   const handleClose = () => {                                                   // Gestiona el cierre del modal
     setOpen(false);
-    document.getElementById('modal').remove();
-    document.getElementById('body').classList.remove('noScroll');
+    document.body.classList.remove('noScroll');
   }
 
   const handleUpdate = () => {

@@ -19,8 +19,7 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen }) =
 
   const handleClose = () => {                                     // Gestiona el cierre del modal
     setOpen(false);
-    document.getElementById('modal').remove();
-    document.getElementById('body').classList.remove('noScroll');
+    document.body.classList.remove('noScroll');
   }
 
   const handleDelete = () => {
