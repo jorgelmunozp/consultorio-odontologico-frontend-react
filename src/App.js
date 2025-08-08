@@ -8,7 +8,7 @@ const init = () => { return JSON.parse(localStorage.getItem('user') ) || { logge
 
 export const App = ({ Logo }) => {
   const [ user, dispatch ] = useReducer( authReducer, {}, init );
-  const [ theme, handleTheme ] = useTheme();                        // App theme
+  const [ theme, handleTheme ] = useTheme();
 
   useEffect(() => {
     if(!user) return;
