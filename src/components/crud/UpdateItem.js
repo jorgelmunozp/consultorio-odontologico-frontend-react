@@ -11,7 +11,7 @@ const Item = lazy(() => import('./Item.js'));
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, icons }) => { 
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, icons, handleItems }) => { 
 
   let state = {};
   switch( classType ) {
@@ -28,21 +28,20 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
     if(state.filter( property => property.value === '').length === 0 ) {        // Check for emtpy fields to avoid any empty item
       state.forEach((property) => { item[classType][property.key] = property.value });   // Actualiza los nuevos valores en el item
 
-      const fetchResponse = fetchUpdate(urlApi,JSON.stringify(item),item.id);   // Fetch PUT para actualización de datos
-      fetchResponse.then(
-        async function(value) {
+      fetchUpdate(urlApi,JSON.stringify(item),item.id).then(                    // Fetch PUT para actualización de datos
+        async (value) => {
             if(200 <= value && value <= 299) { 
             await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
                 .then(response => response.json())
       
-            const row = createRoot(document.getElementById( 'row'+classType+item.id ));
-            row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />);
-
+            // const row = createRoot(document.getElementById( 'row'+classType+item.id ));
+            // row.render(<Item classType={classType} icons={icons} item={item} urlApi={urlApi} objectClass={objectClass} />);
+            handleItems('update',item.id);          // El padre actualiza el estado y React re-renderiza sin el elemento eliminado
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
           }
           else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
         },
-        function(error) { Alert({ type:'error', title:'Error en la actualización' }).launch(); console.log('Error Update: ', error) }
+        (error) => { Alert({ type:'error', title:'Error en la actualización' }).launch(); console.log('Error Update: ', error) }
       )
     }
   };

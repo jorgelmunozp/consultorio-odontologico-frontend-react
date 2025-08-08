@@ -4,7 +4,7 @@ import { ReadItem } from './ReadItem.js';
 import { UpdateItem } from './UpdateItem.js';
 import { DeleteItem } from './DeleteItem.js';
 
-export const Item = ({ classType, icons, item, urlApi, objectClass, handleDeleteItem }) => {
+export const Item = ({ classType, icons, item, urlApi, objectClass, handleItems }) => {
     const [open, setOpen] = useState(false);
 
     const IconRead = icons[classType].IconRead;
@@ -16,8 +16,8 @@ export const Item = ({ classType, icons, item, urlApi, objectClass, handleDelete
 
     const components = {
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} />,
-        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleDeleteItem={handleDeleteItem} />
+        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} handleItems={handleItems} />,
+        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
     };
 
     // Bloquear scroll cuando hay modal abierto
