@@ -46,22 +46,13 @@ export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
   const [items, setItems] = useState(arrayFiltered);
   useEffect(() => setItems(arrayFiltered || []), [arrayFiltered]);     // Si initialArray cambia desde fuera, se sincroniza
   
-  const handleDeleteItem = (id) => {
-    setItems( arrayFiltered.filter(item => item.id !== id) );         // Actualiza el estado de items para que ItemsList se re-renderice
-  };
-
-  const handleItems = (action, id) => {
+  const handleItems = (action, id, classType) => {
     setItems(arrayFiltered => {
       switch (action) {
         case 'delete': return arrayFiltered.filter(item => item.id !== id);
-        case 'update':
-          return arrayFiltered.map(item =>
-            // item.id === id ? { ...item, [classType]: { ...newData } } : item
-            item.id === id ? { ...item } : item
-          );
+        case 'update': return arrayFiltered.map(item => item.id === id ? { ...item, [classType]: { ...item[classType] } } : item);
         default: return arrayFiltered;
       }
-  
     });
   }
   
