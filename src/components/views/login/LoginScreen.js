@@ -2,6 +2,7 @@ import { lazy, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../auth/authContext.js';
 import { types } from '../../../types/types.js';
+import { jwtDecode as decode } from "jwt-decode";
 
 const Input = lazy(() => import('../../forms/inputs/Input.js'));
 const InputPassword = lazy(() => import('../../forms/inputs/InputPassword.js'));
@@ -39,8 +40,8 @@ export const LoginScreen = ({ setAlertMessage, setAlertType, theme }) => {
   return (
     <div id='loginScreen' className='container mt-1 text-center user-select-none' data-theme={theme}>
         <div className="d-grid gap-2 col mx-auto pb-3 w-100">
-          <Input placeholder={'Usuario'} value={userInput} type={'text'} onChange={(target) => setUserInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
-          <InputPassword placeholder={'Contraseña'} value={passwordInput} onChange={(target) => setPasswordInput(target.target.value)} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
+          <Input placeholder={'Usuario'} value={userInput} type={'text'} handleChange={(target) => setUserInput( decode(target) )} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
+          <InputPassword placeholder={'Contraseña'} value={passwordInput} handleChange={(target) => setPasswordInput( target.target.value )} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' />
           
           <button className='btn btn-login my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user.logged ? "" : "#loginModalFail"} aria-controls="modalBody" onClick={ handleLogin }>Ingresar</button>
           <button type="button" className="btn btn-outline-danger py-3 shadow-sm" data-bs-dismiss="modal">Cancelar</button>

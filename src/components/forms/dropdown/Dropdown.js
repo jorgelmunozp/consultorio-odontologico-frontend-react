@@ -29,6 +29,7 @@ export const Dropdown = ({ classType, object, placeholder='', array=[], defaultS
               case 'eps': value=option[classType].nombre; break;
               case 'genero': value=option[classType].nombre; break;
               case 'especialidad': value=option[classType].nombre; break;
+              default: value=''; break;
             }
             return ( <Options key={ classType+'Option'+index } value={value} setValue={setValue} setOpen={setOpen} handleChange={handleChange} /> );
           })
@@ -40,7 +41,8 @@ export const Dropdown = ({ classType, object, placeholder='', array=[], defaultS
 }
 
 const Options = ({ value, setValue, setOpen, handleChange  }) => {
-  return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event)} }>{ value }</button></li> );
+  // return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event)} }>{ value }</button></li> );
+  return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event.target.value)} }>{ value }</button></li> );
 }
 
 export default Dropdown;

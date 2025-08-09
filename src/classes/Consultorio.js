@@ -37,8 +37,8 @@ export class Consultorio {
         const [ numero, setNumero ] = useState( num );               // Input número state
         const [ nombre, setNombre ] = useState( nomb );              // Input nombre state
         const state = [
-          { key:'numero', value:numero, type:'number', setState:setNumero, handleChange: (value) => setNumero( decode(value) ) },
-          { key:'nombre', value:nombre, type:'text', setState:setNombre, handleChange: (value) => setNombre( decode(value) ) }
+          { key:'numero', value:numero, type:'number', handleChange: (value) => setNumero( decode(value) ) },
+          { key:'nombre', value:nombre, type:'text', handleChange: (value) => setNombre( decode(value) ) }
         ];
         
         return( state )

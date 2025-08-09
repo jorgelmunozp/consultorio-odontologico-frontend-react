@@ -20,8 +20,8 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
 
   const handleDelete = () => {
     fetchDelete(urlApi,item.id).then(
-      async (value) => {
-        if(200 <= value && value <= 299) {
+      async (responseStatus) => {
+        if(200 <= responseStatus && responseStatus <= 299) {
           await fetch(urlApi).then(response => response.json())  // API Restful para eliminar dato de la base de datos
               
           handleItems('delete',item.id);          // El padre actualiza el estado y React re-renderiza sin el elemento eliminado

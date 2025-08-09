@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
+import { createPortal } from 'react-dom';
 
 const Modal = lazy(() => import('../components/modal/Modal.js'));
 const Logo = lazy(() => import('../components/icons/logo/Logo.js'));
@@ -23,14 +24,33 @@ export class Alert {
             error: { Icon:Error, iconColor:'#f00' }
         }
 
-        let isAlert = false;
-        document.getElementById('body').childNodes.forEach(child => {                       // Check for any alert element in the body
-            if (child.id === 'alert' ) { isAlert = true }
-        });
+        if( !document.getElementById('modal') ) { document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`); } // Create element Alert in the body if there's no one
 
-        if( !isAlert ) { document.getElementById('root').insertAdjacentHTML('afterend',`<div id="alert"></div>`); } // Create element Alert in the body if there's no one
-
-        const root = createRoot( document.getElementById('alert') );
+        const root = createRoot( document.getElementById('modal') );
         root.render( <Suspense fallback={<></>}><Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /></Suspense> );
+
+        // let modalContainer = document.getElementById('modal');
+        // if (!modalContainer) {
+        //     modalContainer = document.createElement('div');
+        //     modalContainer.id = 'modal';
+        //     document.body.appendChild(modalContainer);
+        // }
+
+        // const { Icon, iconColor } = icons[this.type];
+
+        // // Usamos createPortal para inyectar el modal fuera del root
+        // createPortal(
+        //     <Suspense fallback={<></>}>
+        //         <Modal
+        //             Icon={Icon}
+        //             iconColor={iconColor}
+        //             title={this.title}
+        //             fontFamily={'century-gothic'}
+        //         />
+        //     </Suspense>,
+        //     modalContainer
+        // );
+
+
     }
 }

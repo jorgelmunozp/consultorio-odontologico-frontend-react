@@ -16,8 +16,8 @@ export const fetchUpdate = async ( urlApi,contenidoApi,id ) => {
     }
     return response.status;
   } catch (error) {
-    const errorMessage = error.toString().split(':')[1].trim();
-    if (errorMessage === 'Failed to fetch') { console.log('Registro fallido: ' + 'No hay conexión con la base de datos');
-    } else { console.log('Registro fallido: ' + errorMessage); }
+      const errorMessage = error.toString().split(':')[1].trim();
+      if (errorMessage === 'Failed to fetch') { console.log(error.status +' Actualización fallida: No hay conexión con la base de datos') } 
+      else { console.log('Registro fallido: ' + errorMessage) }
   }
 }

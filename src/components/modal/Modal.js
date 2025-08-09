@@ -8,7 +8,7 @@ export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, conte
   
   const handleClose = () => {                                     // Close the alert
     setOpen(false);
-    document.getElementById('alert').remove();
+    document.getElementById('modal').remove();
     document.getElementById('body').classList.remove('noScroll');
   }
     

@@ -35,7 +35,7 @@ export class Especialidad {
     getState = ({ nomb:nomb='' }) => {                            // Method
         const [nombre, setNombre] = useState( nomb );             // Input nombre state
         const state = [
-          { key:'nombre', value:nombre, type:"text", setState:setNombre, handleChange: (value) => setNombre( decode(value) ) }
+          { key:'nombre', value:nombre, type:"text", handleChange: (value) => setNombre( decode(value) ) }
         ];
         
         return( state )

@@ -42,9 +42,9 @@ export class Tratamiento {
         const [consultorio, setConsultorio] = useState( cons );      // Select consultorio state
         const [doctor, setDoctor] = useState( doc );                 // Select doctor state
         const state = [
-          { key:'especialidad', value:especialidad, type:"dropdown", setState:setEspecialidad, handleChange: (event) => setEspecialidad( decode(event.target.value) ) },
-          { key:'consultorio', value:consultorio, type:"dropdown", setState:setConsultorio, handleChange: (event) => setConsultorio( decode(event.target.value) ) },
-          { key:'doctor', value:doctor, type:"dropdown", setState:setDoctor, handleChange: (event) => setDoctor( decode(event.target.value) ) }
+          { key:'especialidad', value:especialidad, type:"dropdown", handleChange: (value) => setEspecialidad( decode(value) ) },
+          { key:'consultorio', value:consultorio, type:"dropdown", handleChange: (value) => setConsultorio( decode(value) ) },
+          { key:'doctor', value:doctor, type:"dropdown", handleChange: (value) => setDoctor( decode(value) ) }
         ];
         
         return( state )

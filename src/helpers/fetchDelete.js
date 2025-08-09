@@ -13,12 +13,9 @@ export const fetchDelete = async ( urlApi,id ) => {
       console.log('DELETE ' + response.status + ' Eliminación fallida: ' + 'Error en el servidor remoto');
     }
     return response.status;
-    } catch (error) {
+  } catch (error) {
       const errorMessage = error.toString().split(':')[1].trim();
-      if(errorMessage === 'Failed to fetch') {
-        console.log('Eliminación fallida: ' + 'No hay conexión con la base de datos');
-      } else {
-        console.log('Eliminación fallida: ' + errorMessage);
-      }     
-    }
-  }
+      if(errorMessage === 'Failed to fetch') { console.log(error.status +' Eliminación fallida: No hay conexión con la base de datos') } 
+      else { console.log('Eliminación fallida: ' + errorMessage) }     
+  };
+}

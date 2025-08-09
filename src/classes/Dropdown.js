@@ -37,6 +37,7 @@ export class Dropdown {
           case 'eps': urlApi= apiEpss; break;
           case 'genero': urlApi= apiGeneros; break;
           case 'especialidad': urlApi= apiEspecialidades; break;
+          default: urlApi= ''; break;
         };
 
         const arrayFetch = useFetch(urlApi);

@@ -15,10 +15,7 @@ export const fetchRead = async ( urlApi ) => {
     return response.status;
   } catch(error) {
       const errorMessage = error.toString().split(':')[1].trim();
-      if(errorMessage === 'Failed to fetch') {
-        console.log('GET fallido: ' + 'No hay conexión con la base de datos');
-      } else {
-        console.log('GET fallido: ' + errorMessage);
-      }     
-    }
+      if(errorMessage === 'Failed to fetch') { console.log(error.status +' Lectura fallida: No hay conexión con la base de datos') } 
+      else { console.log('GET fallido: ' + errorMessage) }     
+  }
 }

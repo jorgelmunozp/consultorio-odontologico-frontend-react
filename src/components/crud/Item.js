@@ -16,11 +16,10 @@ export const Item = ({ classType, icons, item, urlApi, objectClass, handleItems 
 
     const components = {
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} icons={icons} handleItems={handleItems} />,
+        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} handleItems={handleItems} />,
         delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
     };
 
-    // Bloquear scroll cuando hay modal abierto
     if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }
 
     return (
