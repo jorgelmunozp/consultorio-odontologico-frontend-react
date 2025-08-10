@@ -12,7 +12,7 @@ import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_TRATAMIENTOS;
 
 export class Tratamiento {
-    constructor({ especialidad:especialidad='', consultorio:consultorio='', doctor:doctor='' }) {
+    constructor({ especialidad='', consultorio='', doctor='' }) {
         this.especialidad = new Especialidad({ especialidad:{especialidad} });
         this.consultorio = new Consultorio({ consultorio:{consultorio} });
         this.doctor = new Doctor({ doctor:doctor });
@@ -37,7 +37,7 @@ export class Tratamiento {
     }                          
     get titles () { return this.getTitles() }                        // Getter titles
 
-    getState = ({ esp:esp='', cons:cons='', doc:doc='' }) => {       // Method
+    getState = ({ esp='', cons='', doc='' }) => {       // Method
         const [especialidad, setEspecialidad] = useState( esp );     // Input especialidad state
         const [consultorio, setConsultorio] = useState( cons );      // Select consultorio state
         const [doctor, setDoctor] = useState( doc );                 // Select doctor state
@@ -53,10 +53,14 @@ export class Tratamiento {
 
     getData = () => {                                                // METHOD DATA
         /* Fetch */
-        let array = [];
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-        if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
+        const array = useMemo(() => {
+            if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
+                return arrayFetch.data;
+            }
+            return [];
+        }, [arrayFetch.data]);
 
         /* Query */
         let [ queryCode, setQueryCode ] = useState('');
@@ -104,6 +108,7 @@ export class Tratamiento {
             case 6: SortByProperty = (a,b) => { return b.tratamiento.consultorio.localeCompare(a.tratamiento.consultorio) }; break;   // Sort by consultorio down
             case 7: SortByProperty = (a,b) => { return a.tratamiento.doctor.localeCompare(b.tratamiento.doctor) }; break;   // Sort by doctor name up
             case 8: SortByProperty = (a,b) => { return b.tratamiento.doctor.localeCompare(a.tratamiento.doctor) }; break;   // Sort by doctor name down
+            default: SortByProperty = () => {}; break;                 // Default case to avoid errors
         }
 
         return({ SortByProperty, setSortBy })

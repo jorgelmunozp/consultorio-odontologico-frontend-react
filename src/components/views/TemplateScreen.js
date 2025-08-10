@@ -1,6 +1,5 @@
 import '../../assets/styles/App.css';
 import { Suspense, lazy } from 'react';
-// import { MenuSide } from '../menu/MenuSide.js';
 const MenuSide = lazy(() => import('../menu/MenuSide.js'));
 
 const Menu = lazy(() => import('../icons/menu/Menu.js'));

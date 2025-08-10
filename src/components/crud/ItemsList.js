@@ -2,7 +2,7 @@ import { lazy } from 'react';
 const Arrows = lazy(() => import('../forms/arrows/Arrows.js'));
 const Item = lazy(() => import('./Item.js'));
 
-export const ItemsList = ({classType, Icons, titles, urlApi, array, objectClass, SortByProperty, setSortBy, indexPage, handleItems }) => {
+export const ItemsList = ({classType, Icons, titles, urlApi, array, objectClass, SortByProperty, setSortBy, indexPage, handleItems, theme }) => {
   return (
     <div className={'container-fluid border overflow-auto px-0' }>
         <div className={'row flex-nowrap bg-main-color'}>
@@ -12,7 +12,7 @@ export const ItemsList = ({classType, Icons, titles, urlApi, array, objectClass,
         </div>
         { array.sort(SortByProperty).slice(indexPage[0],indexPage[1]).map((item) => { return (
             <div id={ 'row'+classType+item.id } key={ item.id } className='row flex-nowrap border-bottom text-start text-nowrap py-2' >
-              <Item classType={classType} Icons={Icons} item={item} urlApi={urlApi} objectClass={objectClass} handleItems={handleItems} />
+              <Item classType={classType} Icons={Icons} item={item} urlApi={urlApi} objectClass={objectClass} handleItems={handleItems} theme={theme} />
             </div>
             )})
         }

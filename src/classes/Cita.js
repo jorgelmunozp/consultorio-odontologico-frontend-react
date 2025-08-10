@@ -15,7 +15,7 @@ import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_CITAS;
 
 export class Cita {
-    constructor({ paciente:paciente='', consultorio:consultorio='', doctor:doctor='', tratamiento:tratamiento='' }) {
+    constructor({ paciente='', consultorio='', doctor='', tratamiento='' }) {
         this.paciente = new Paciente({ paciente:{paciente} });
         this.fecha = getDate[2] + "/" + getDate[1] + "/" + getDate[0];
         this.hora = getTime;
@@ -43,7 +43,7 @@ export class Cita {
     }                          
     get titles () { return this.getTitles() }                     // Getter titles
 
-    getState = ({ pac:pac='', cons:cons='', doc:doc='', trat:trat='' }) => {                             // Method
+    getState = ({ pac='', cons='', doc='', trat='' }) => {                             // Method
         const [paciente, setPaciente] = useState( pac );          // Select paciente
         let [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
         let [hora, setHora] = useState(getTime);
@@ -65,10 +65,11 @@ export class Cita {
 
     getData = () => {                                              // METHOD DATA
         /* Fetch */
-        let array = [];
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-        if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data; }
+        const array = useMemo(() => {
+            return (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) ? arrayFetch.data : [];
+        }, [arrayFetch.data]);
 
         /* Query */
         let [ queryCode, setQueryCode ] = useState('');
@@ -125,6 +126,7 @@ export class Cita {
             case 12: SortByProperty = (a,b) => { return b.cita.doctor.localeCompare(a.cita.doctor) }; break;    // Sort by doctor down
             case 13: SortByProperty = (a,b) => { return a.cita.tratamiento.localeCompare(b.cita.tratamiento) }; break; // Sort by tratamiento up
             case 14: SortByProperty = (a,b) => { return b.cita.tratamiento.localeCompare(a.cita.tratamiento) }; break; // Sort by tratamiento down
+            default: SortByProperty = () => {}; break;              // Default case to avoid errors
         }
 
         return({ SortByProperty, setSortBy })

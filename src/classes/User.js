@@ -11,14 +11,14 @@ const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
 
 export class User {
-    constructor({ nombre:nombre, apellido:apellido }) {
+    constructor({ nombre='', apellido='' }) {
       this.nombre = {nombre}.nombre;
       this.apellido = {apellido}.apellido;
     }
   }
 
 export class Paciente extends User {
-    constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', eps:eps='' }) {
+    constructor({ nombre='', apellido='', identificacion='', genero='', eps='' }) {
         super({ nombre:nombre, apellido:apellido });
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
@@ -47,7 +47,7 @@ export class Paciente extends User {
     }                          
     get titles () { return this.getTitles() }                      // Getter titles
 
-    getState = ({ nomb:nomb='', ape:ape='', id:id='', gen:gen='', eps_:eps_='' }) => { // METHOD STATE
+    getState = ({ nomb='', ape='', id='', gen='', eps_='' }) => { // METHOD STATE
       const [nombre, setNombre] = useState( nomb );                // Input nombre state
       const [apellido, setApellido] = useState( ape );             // Input apellido state
       const [identificacion, setIdentificacion] = useState( id );  // Input identificacion state
@@ -68,10 +68,14 @@ export class Paciente extends User {
 
     getData = () => {                                              // METHOD DATA
       /* Fetch */
-      let array = [];
       const arrayFetch = useFetch(urlApiPacientes);
       useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-      if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
+      const array = useMemo(() => {
+        if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
+          return arrayFetch.data;
+        }
+        return [];
+      }, [arrayFetch.data]);
 
       /* Query */
       let [ queryCode, setQueryCode ] = useState('');
@@ -125,6 +129,7 @@ export class Paciente extends User {
           case 10: SortByProperty = (a,b) => { return b.paciente.genero.localeCompare(a.paciente.genero) }; break;    // Sort by genero down
           case 11: SortByProperty = (a,b) => { return a.paciente.eps.localeCompare(b.paciente.eps) }; break;          // Sort by eps up
           case 12: SortByProperty = (a,b) => { return b.paciente.eps.localeCompare(a.paciente.eps) }; break;          // Sort by eps down
+          default: SortByProperty = () => {}; break;                  // Default case to avoid errors
       }
 
       return({ SortByProperty, setSortBy })
@@ -134,7 +139,7 @@ export class Paciente extends User {
   }
 
 export class Doctor extends User {
-    constructor({ nombre:nombre='', apellido:apellido='', identificacion:identificacion='', genero:genero='', especialidad:especialidad='' }) {
+    constructor({ nombre='', apellido='', identificacion='', genero='', especialidad='' }) {
         super({ nombre:nombre, apellido:apellido });
         this.identificacion = {identificacion}.identificacion;
         this.genero = {genero}.genero;
@@ -163,7 +168,7 @@ export class Doctor extends User {
     }                          
     get titles () { return this.getTitles() }                      // Getter titles
 
-    getState = ({ nomb:nomb='', ape:ape='', id:id='', gen:gen='', esp:esp='' }) => { // METHOD STATE
+    getState = ({ nomb='', ape='', id='', gen='', esp='' }) => { // METHOD STATE
       const [nombre, setNombre] = useState( nomb );                // Input nombre state
       const [apellido, setApellido] = useState( ape );             // Input apellido state
       const [identificacion, setIdentificacion] = useState( id );  // Input identificacion state
@@ -183,10 +188,14 @@ export class Doctor extends User {
 
     getData = () => {                                               // METHOD DATA
       /* Fetch */
-      let array = [];
       const arrayFetch = useFetch(urlApiDoctores);
       useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-      if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
+      const array = useMemo(() => {
+        if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
+          return arrayFetch.data;
+        }
+        return [];
+      }, [arrayFetch.data]);
   
       /* Query */
       let [ queryCode, setQueryCode ] = useState('');
@@ -238,6 +247,7 @@ export class Doctor extends User {
           case 10: SortByProperty = (a,b) => { return b.doctor.genero.localeCompare(a.doctor.genero) }; break;             // Sort by genero down
           case 11: SortByProperty = (a,b) => { return a.doctor.especialidad.localeCompare(b.doctor.especialidad) }; break; // Sort by especialidad up
           case 12: SortByProperty = (a,b) => { return b.doctor.especialidad.localeCompare(a.doctor.especialidad) }; break; // Sort by especialidad down
+          default: SortByProperty = () => {}; break;                  // Default case to avoid errors
       }
 
       return({ SortByProperty, setSortBy })

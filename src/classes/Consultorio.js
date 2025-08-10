@@ -9,7 +9,7 @@ import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
 export class Consultorio {
-    constructor({ numero:numero='', nombre:nombre='' }) {
+    constructor({ numero='', nombre='' }) {
         this.numero = {numero}.numero;
         this.nombre = {nombre}.nombre;
     }
@@ -33,7 +33,7 @@ export class Consultorio {
     }                          
     get titles () { return this.getTitles() }                        // Getter titles
 
-    getState = ({ num:num='', nomb:nomb='' }) => {                   // METHOD STATE
+    getState = ({ num='', nomb='' }) => {                   // METHOD STATE
         const [ numero, setNumero ] = useState( num );               // Input número state
         const [ nombre, setNombre ] = useState( nomb );              // Input nombre state
         const state = [
@@ -47,10 +47,11 @@ export class Consultorio {
 
     getData = () => {                                                // METHOD DATA
         /* Fetch */
-        let array = [];
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-        if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data }
+        const array = useMemo(() => {
+            return (arrayFetch.data.length !== (0 || undefined)) ? arrayFetch.data : [];
+        }, [arrayFetch.data]);
         
         /* Query */
         let [ queryCode, setQueryCode ] = useState('');
@@ -96,6 +97,7 @@ export class Consultorio {
             case 4: SortByProperty = (a,b) => { return b.consultorio.numero - a.consultorio.numero }; break;                // Sort by numero down
             case 5: SortByProperty = (a,b) => { return a.consultorio.nombre.localeCompare(b.consultorio.nombre) }; break;   // Sort by nombre up
             case 6: SortByProperty = (a,b) => { return b.consultorio.nombre.localeCompare(a.consultorio.nombre) }; break;   // Sort by nombre down
+            default: SortByProperty = () => {}; break;                  // Default case to avoid errors
         }
 
         return({ SortByProperty, setSortBy })
