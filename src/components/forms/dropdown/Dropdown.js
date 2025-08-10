@@ -41,7 +41,6 @@ export const Dropdown = ({ classType, object, placeholder='', array=[], defaultS
 }
 
 const Options = ({ value, setValue, setOpen, handleChange  }) => {
-  // return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event)} }>{ value }</button></li> );
   return ( <li><button className="dropdown-item" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event.target.value)} }>{ value }</button></li> );
 }
 

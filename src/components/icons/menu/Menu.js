@@ -7,6 +7,4 @@ export const Menu = ({ color='currentColor', className='', strokeWidth='1', widt
             </svg>
     );
 };
-// export default Menu;
-const MenuIcon = Menu;
-export default MenuIcon;
+export default Menu;

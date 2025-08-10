@@ -5,21 +5,11 @@ import { Especialidad } from '../../classes/Especialidad.js';
 import { Consultorio } from '../../classes/Consultorio.js';
 import { Tratamiento } from '../../classes/Tratamiento.js';
 
-const CalendarEdit = lazy(() => import('../icons/calendar/CalendarEdit.js'));
-const CalendarDelete = lazy(() => import('../icons/calendar/CalendarDelete.js'));
-const UserEdit = lazy(() => import('../icons/user/UserEdit.js'));
-const UserDelete = lazy(() => import('../icons/user/UserDelete.js'));
-const HomeEdit = lazy(() => import('../icons/home/HomeEdit.js'));
-const HomeDelete = lazy(() => import('../icons/home/HomeDelete.js'));
-const HearthEdit = lazy(() => import('../icons/hearth/HearthEdit.js'));
-const HearthDelete = lazy(() => import('../icons/hearth/HearthDelete.js'));
-const FilterEdit = lazy(() => import('../icons/filter/FilterEdit.js'));
-const FilterDelete = lazy(() => import('../icons/filter/FilterDelete.js'));
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
 const ItemsList = lazy(() => import('./ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
-export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
+export const QueryItem = ({ classType, icons, isMenuOpen, theme }) => {
   const classes = { cita: { Classe: Cita },
                     paciente: { Classe: Paciente },
                     doctor: { Classe: Doctor },
@@ -28,14 +18,6 @@ export const QueryItem = ({ classType, menuIcons, isMenuOpen, theme }) => {
                     especialidad: { Classe: Especialidad }
   }
 
-  const icons = { cita: { IconSearch:menuIcons.citaSearch, IconRead:menuIcons.cita, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
-                  paciente: { IconSearch:menuIcons.pacienteSearch, IconRead:menuIcons.paciente, IconEdit:UserEdit, IconDelete:UserDelete },
-                  doctor: { IconSearch:menuIcons.doctorSearch, IconRead:menuIcons.doctor, IconEdit:UserEdit, IconDelete:UserDelete },
-                  consultorio: { IconSearch:menuIcons.consultorioSearch, IconRead:menuIcons.consultorio, IconEdit:HomeEdit, IconDelete:HomeDelete },
-                  tratamiento: { IconSearch:menuIcons.tratamientoSearch, IconRead:menuIcons.tratamiento, IconEdit:FilterEdit, IconDelete:FilterDelete },
-                  especialidad: { IconSearch:menuIcons.especialidadSearch, IconRead:menuIcons.especialidad, IconEdit:HearthEdit, IconDelete:HearthDelete }
-                }
-  
   const objectClass = new classes[classType].Classe('');                      // Objeto instanciado con la Class 
   const urlApi = objectClass.api;
   const { titles, placeholders } = objectClass.titles;
