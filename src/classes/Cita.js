@@ -13,6 +13,7 @@ import { jwtDecode as decode } from "jwt-decode";
 // const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const urlApi = process.env.REACT_APP_API_CITAS;
+// const urlApi = process.env.REACT_APP_API_DATABASE;
 
 export class Cita {
     constructor({ paciente='', consultorio='', doctor='', tratamiento='' }) {
@@ -65,11 +66,16 @@ export class Cita {
 
     getData = () => {                                              // METHOD DATA
         /* Fetch */
-        const arrayFetch = useFetch(urlApi);
+        let arrayFetch = useFetch(urlApi);
+       
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
         const array = useMemo(() => {
             return (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) ? arrayFetch.data : [];
+            // return ( (JSON.stringify(arrayFetch.data.citas) && JSON.stringify(arrayFetch.data.citas).length !== (0 || undefined)) ? arrayFetch.data.citas : [] );
         }, [arrayFetch.data]);
+        // }, [arrayFetch.data.citas]);
+
+        // console.log('array Cita: ', array);
 
         /* Query */
         let [ queryCode, setQueryCode ] = useState('');

@@ -8,14 +8,14 @@ export const fetchRead = async ( urlApi ) => {
     if(200 <= response.status && response.status <= 299){
       console.log('GET ' + response.status +' Consulta exitosa')
     } else if(400 <= response.status && response.status <= 499){
-      console.log('GET ' + response.status +' Consulta fallida: ' + 'Error en el envío de datos')
+      console.log('GET ' + response.status +' Consulta fallida: Error en el envío de datos')
     } else if(500 <= response.status && response.status <= 599){
-      console.log('GET ' + response.status +' Consulta fallida: ' + 'Error en el servidor remoto')
+      console.log('GET ' + response.status +' Consulta fallida: Error en el servidor remoto')
     }
     return response.status;
   } catch(error) {
       const errorMessage = error.toString().split(':')[1].trim();
-      if(errorMessage === 'Failed to fetch') { console.log(error.status +' Lectura fallida: No hay conexión con la base de datos') } 
-      else { console.log('GET fallido: ' + errorMessage) }     
+      if(errorMessage === 'Failed to fetch') { console.log('Lectura fallida: No hay conexión con la base de datos') } 
+      else { console.log('Lectura fallida: ' + errorMessage) }     
   }
 }

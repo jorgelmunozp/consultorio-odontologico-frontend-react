@@ -54,8 +54,6 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
     }
   };
 
-  console.log('UpdateItem.js loaded');
-
   return (
       <>
         <div className={'modalContainer justify-items-center'}>

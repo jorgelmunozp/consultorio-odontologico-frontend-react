@@ -1,9 +1,11 @@
-import { lazy, useState, useEffect } from "react";
+import { lazy, useState, useEffect, useMemo } from "react";
 import { Alert } from '../components/alert/Alert.js';
 import { useFetch } from '../hooks/useFetch.js';
+import { plurales } from '../global.js';
 
 // const Alert = lazy(() => import('../components/alert/Alert.js'));
 
+// const urlApi = process.env.REACT_APP_API_DATABASE;
 const apiPacientes = process.env.REACT_APP_API_PACIENTES;           // Apis para obtención de los datos
 const apiDoctores = process.env.REACT_APP_API_DOCTORES;
 const apiConsultorios = process.env.REACT_APP_API_CONSULTORIOS;
@@ -27,7 +29,7 @@ export class Dropdown {
 
     getData = () => {                                               // METHOD DATA
         /* Fetch */
-        let array = [];
+        // let array = [];
         let urlApi = '';
         switch(this.classType) { 
           case 'paciente': urlApi= apiPacientes; break;
@@ -42,7 +44,11 @@ export class Dropdown {
 
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-        if(arrayFetch.data.length !== (0 || undefined)) { array = arrayFetch.data; }
+        const array = useMemo(() => {
+            const classType = this.classType + (plurales.includes(this.classType) ? 'es':'s');   
+            // return ( (JSON.stringify(arrayFetch.data[classType]) && JSON.stringify(arrayFetch.data[classType]).length !== (0 || undefined)) ? arrayFetch.data[classType] : [] );
+            return ( (JSON.stringify(arrayFetch.data) && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [] );
+        }, [arrayFetch.data ] );
 
         /* Pagination */
         const [itemsPerPage, setItemsPerPage ] = useState(5);           // Se define el número de items por página
