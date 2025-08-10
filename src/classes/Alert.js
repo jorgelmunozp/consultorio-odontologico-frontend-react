@@ -9,7 +9,7 @@ const Warning = lazy(() => import('../components/icons/alert/Warning.js'));
 const Error = lazy(() => import('../components/icons/alert/Error.js'));
 
 export class Alert {
-    constructor({ type:type='default',title:title='', message:message='', buttons:buttons='' }) {
+    constructor({ type='default',title='', message='', buttons='' }) {
         this.type = {type}.type;
         this.title = {title}.title;
         this.message = {message}.message;
@@ -27,7 +27,8 @@ export class Alert {
         if( !document.getElementById('modal') ) { document.getElementById('root').insertAdjacentHTML('afterend',`<div id="modal"></div>`); } // Create element Alert in the body if there's no one
 
         const root = createRoot( document.getElementById('modal') );
-        root.render( <Suspense fallback={<></>}><Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /></Suspense> );
+        // root.render( <Suspense fallback={<></>}><Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /></Suspense> );
+        root.render( <Modal Icon={icons[this.type].Icon} iconColor={icons[this.type].iconColor} title={this.title} fontFamily={'century-gothic'} /> );
 
         // let modalContainer = document.getElementById('modal');
         // if (!modalContainer) {
