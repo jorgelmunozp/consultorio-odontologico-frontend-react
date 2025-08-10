@@ -1,7 +1,7 @@
 export const fetchUpdate = async ( urlApi,contenidoApi,id ) => {
   try {
-    // const response = await fetch(urlApi + "/" + id, {
-    const response = await fetch(urlApi, {
+    const response = await fetch(urlApi + "/" + id, {
+    // const response = await fetch(urlApi, {
       method: "PUT",
       // body: eval(contenidoApi),
       body: contenidoApi,
