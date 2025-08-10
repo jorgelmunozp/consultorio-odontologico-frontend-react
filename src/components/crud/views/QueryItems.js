@@ -11,16 +11,16 @@ const FilterEdit = lazy(() => import('../../icons/filter/FilterEdit.js'));
 const FilterDelete = lazy(() => import('../../icons/filter/FilterDelete.js'));
 const QueryItem = lazy(() => import('../QueryItem.js'));
 
-export const QueryItems = ({ classType, icons, isMenuOpen, theme }) => {
-  const iconsCrud = { cita: { IconSearch:icons.CitaSearch, IconRead:icons.Cita, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
-                      paciente: { IconSearch:icons.PacienteSearch, IconRead:icons.Paciente, IconEdit:UserEdit, IconDelete:UserDelete },
-                      doctor: { IconSearch:icons.DoctorSearch, IconRead:icons.Doctor, IconEdit:UserEdit, IconDelete:UserDelete },
-                      consultorio: { IconSearch:icons.ConsultorioSearch, IconRead:icons.Consultorio, IconEdit:HomeEdit, IconDelete:HomeDelete },
-                      tratamiento: { IconSearch:icons.TratamientoSearch, IconRead:icons.Tratamiento, IconEdit:FilterEdit, IconDelete:FilterDelete },
-                      especialidad: { IconSearch:icons.EspecialidadSearch, IconRead:icons.Especialidad, IconEdit:HearthEdit, IconDelete:HearthDelete }
+export const QueryItems = ({ classType, Icons, isMenuOpen, theme }) => {
+  const IconsCrud = { cita: { IconSearch:Icons.CitaSearch, IconRead:Icons.Cita, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
+                      paciente: { IconSearch:Icons.PacienteSearch, IconRead:Icons.Paciente, IconEdit:UserEdit, IconDelete:UserDelete },
+                      doctor: { IconSearch:Icons.DoctorSearch, IconRead:Icons.Doctor, IconEdit:UserEdit, IconDelete:UserDelete },
+                      consultorio: { IconSearch:Icons.ConsultorioSearch, IconRead:Icons.Consultorio, IconEdit:HomeEdit, IconDelete:HomeDelete },
+                      tratamiento: { IconSearch:Icons.TratamientoSearch, IconRead:Icons.Tratamiento, IconEdit:FilterEdit, IconDelete:FilterDelete },
+                      especialidad: { IconSearch:Icons.EspecialidadSearch, IconRead:Icons.Especialidad, IconEdit:HearthEdit, IconDelete:HearthDelete }
                     }
 
-  return ( <Suspense fallback={<></>}><QueryItem classType={classType} icons={iconsCrud} isMenuOpen={isMenuOpen} theme={theme}/></Suspense> )
+  return ( <Suspense fallback={<></>}><QueryItem classType={classType} Icons={IconsCrud} isMenuOpen={isMenuOpen} theme={theme}/></Suspense> )
 }
 
 export default QueryItems;

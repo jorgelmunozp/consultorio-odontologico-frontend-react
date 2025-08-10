@@ -4,13 +4,13 @@ import { ReadItem } from './ReadItem.js';
 import { UpdateItem } from './UpdateItem.js';
 import { DeleteItem } from './DeleteItem.js';
 
-export const Item = ({ classType, icons, item, urlApi, objectClass, handleItems }) => {
+export const Item = ({ classType, Icons, item, urlApi, objectClass, handleItems }) => {
     const [open, setOpen] = useState(false);
 
-    const IconRead = icons[classType].IconRead;
-    const IconSearch = icons[classType].IconSearch;
-    const IconEdit = icons[classType].IconEdit;
-    const IconDelete = icons[classType].IconDelete;
+    const IconRead = Icons[classType].IconRead;
+    const IconSearch = Icons[classType].IconSearch;
+    const IconEdit = Icons[classType].IconEdit;
+    const IconDelete = Icons[classType].IconDelete;
 
     const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];
 

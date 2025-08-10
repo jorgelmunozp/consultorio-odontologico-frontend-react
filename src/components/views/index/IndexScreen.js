@@ -2,25 +2,19 @@ import { lazy, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
-const CalendarMedical = lazy(() => import('../../icons/calendar/CalendarMedical.js'));
-const UserInjured = lazy(() => import('../../icons/user/UserInjured.js'));
-const UserMedical = lazy(() => import('../../icons/user/UserMedical.js'));
-const Stethoscope = lazy(() => import('../../icons/medical/Stethoscope.js'));
-const HomeMedical = lazy(() => import('../../icons/home/HomeMedical.js'));
-const Syringe = lazy(() => import('../../icons/medical/Syringe.js'));
 const QueryItems = lazy(() => import('../../crud/views/QueryItems.js'));
 
-const services = [
-  { "title":"Citas", "icon":<CalendarMedical height={iconHeight} width={iconWidth} /> },
-  { "title":"Pacientes", "icon":<UserInjured height={iconHeight} width={iconWidth} /> },
-  { "title":"Doctores", "icon":<UserMedical height={iconHeight} width={iconWidth} /> },
-  { "title":"Especialidades", "icon":<Stethoscope height={iconHeight} width={iconWidth} /> },
-  { "title":"Consultorios", "icon":<HomeMedical height={iconHeight} width={iconWidth} /> },
-  { "title":"Tratamientos", "icon":<Syringe height={iconHeight} width={iconWidth} /> }
-];
-
-export const IndexScreen = ({ Logo, icons, isMenuOpen, theme }) => {
+export const IndexScreen = ({ Logo, Icons, isMenuOpen, theme }) => {
   let [view, setView] = useState(0);
+
+  const services = [
+    { "title":"Citas", "icon":<Icons.CitaMenu height={iconHeight} width={iconWidth} /> },
+    { "title":"Pacientes", "icon":<Icons.PacienteMenu height={iconHeight} width={iconWidth} /> },
+    { "title":"Doctores", "icon":<Icons.DoctorMenu height={iconHeight} width={iconWidth} /> },
+    { "title":"Especialidades", "icon":<Icons.EspecialidadMenu height={iconHeight} width={iconWidth} /> },
+    { "title":"Consultorios", "icon":<Icons.ConsultorioMenu height={iconHeight} width={iconWidth} /> },
+    { "title":"Tratamientos", "icon":<Icons.TratamientoMenu height={iconHeight} width={iconWidth} /> }
+  ];
 
   return (
     <div className="App">
@@ -49,12 +43,12 @@ export const IndexScreen = ({ Logo, icons, isMenuOpen, theme }) => {
           </div>
 
           <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
-            <QueryItems classType={'cita'} icons={icons} theme={theme} />
-            <QueryItems classType={'paciente'} icons={icons} theme={theme} />
-            <QueryItems classType={'doctor'} icons={icons} theme={theme} />
-            <QueryItems classType={'especialidad'} icons={icons} theme={theme} />
-            <QueryItems classType={'consultorio'} icons={icons} theme={theme} />
-            <QueryItems classType={'tratamiento'} icons={icons} theme={theme} />
+            <QueryItems classType={'cita'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'paciente'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'doctor'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'especialidad'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'consultorio'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'tratamiento'} Icons={Icons} theme={theme} />
           </SwipeableViews>
         </div>
     </div>
