@@ -1,6 +1,8 @@
 /****** Forms ******/
 input[ data-theme="dark" ] { background-color: var(--dark-color) !important; color:var(--white-color) !important; }
 input[ data-theme="light" ] { background-color: var(--white-color) !important; color:var(--dark-color) !important; }
+label[ data-theme="dark" ] { color:var(--white-color) !important; }
+label[ data-theme="light" ] { color:var(--dark-color) !important; }
 
 /* InputText */ 
 .input:focus { border-width: 2px !important; }

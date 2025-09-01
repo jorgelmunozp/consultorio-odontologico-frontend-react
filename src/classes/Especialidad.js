@@ -18,10 +18,10 @@ export class Especialidad {
 
     getTitles = () => {                                           // METHOD TITLES
         let titles = [];
-        this.state.forEach((parameter, index) => { 
-            titles[index] = { 
-                title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1), 
-                type:parameter.type 
+        this.state.forEach((parameter, index) => {
+            titles[index] = {
+                title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+                type:parameter.type
             }
         });
 
@@ -29,7 +29,7 @@ export class Especialidad {
         titles.forEach(item => { placeholders.push(item.title) } );
 
         return({ titles, placeholders })
-    }                          
+    }
     get titles () { return this.getTitles() }                     // Getter titles
 
     getState = ({ nomb='' }) => {                            // Method
@@ -37,9 +37,9 @@ export class Especialidad {
         const state = [
           { key:'nombre', value:nombre, type:"text", handleChange: (value) => setNombre( decode(value) ) }
         ];
-        
+
         return( state )
-    }      
+    }
     get state () { return this.getState({ nomb:'' }) }            // Getter state
 
     getData = () => {                                             // METHOD DATA
@@ -47,10 +47,7 @@ export class Especialidad {
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
         const array = useMemo(() => {
-            if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
-                return arrayFetch.data;
-            }
-            return [];
+            return ( (JSON.stringify(arrayFetch.data) && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [] );
         }, [arrayFetch.data]);
 
         /* Query */
@@ -59,7 +56,7 @@ export class Especialidad {
         const queries = [queryCode,queryName];
         const setQueries = [setQueryCode,setQueryName];
         const arrayFiltered = useMemo( () => getEspecialidadesFiltered(array,queryCode,queryName), [array,queryCode,queryName] );
-        
+
         /* Pagination */
         const [itemsPerPage, setItemsPerPage ] = useState(10);          // Se define el número de items por página
         const [indexPage, setIndexPage ] = useState([0,itemsPerPage]);  // Se calculan los indices de la paginación para el filtro Slice(x,y) que entrega un rango de los items de x a y
@@ -68,18 +65,18 @@ export class Especialidad {
         let indexPages = [];
         let activePage = [true];                                        // [true]
         if(resPages !== 0 ){
-        for(let i = 0; i <= numPages; i++) { 
+        for(let i = 0; i <= numPages; i++) {
             indexPages.push(i);                                         // [0,1,2,3]
             if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         } else if(resPages === 0 ){
-        for(let i = 0; i < numPages; i++) { 
+        for(let i = 0; i < numPages; i++) {
             indexPages.push(i);                                         // [0,1,2,3]
             if(i < 0) { activePage.push(false); }                       // [true,false,false,false]
         }
         }
         const [activePages, setActivePages] = useState(activePage);     // [true,false,false,false]
-    
+
         return({ queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages })
     }
     get data () { return this.getData() }                              // Getter data
@@ -88,7 +85,7 @@ export class Especialidad {
         /* Sort */
         const [sortBy, setSortBy] = useState(0);
         let SortByProperty = () => {};
-        switch (sortBy) { 
+        switch (sortBy) {
             case 1: SortByProperty = (a,b) => { return a.id - b.id }; break;                                                // Sort by id up
             case 2: SortByProperty = (a,b) => { return b.id - a.id }; break;                                                // Sort by id down
             case 3: SortByProperty = (a,b) => { return a.especialidad.nombre.localeCompare(b.especialidad.nombre) }; break; // Sort by nombre up

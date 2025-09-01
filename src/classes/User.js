@@ -25,7 +25,7 @@ export class Paciente extends User {
         this.eps = {eps}.eps;
     }
 
-    getApi = () => { return( urlApiPacientes )}                    // METHOD API
+    getApi = () => { return( urlApiPacientes )}                 // METHOD API
     get api () { return this.getApi() }                            // Getter api
 
     getUser () { return new User( this.nombre, this.apellido ) }   // METHOD USER
@@ -47,12 +47,12 @@ export class Paciente extends User {
     }                          
     get titles () { return this.getTitles() }                      // Getter titles
 
-    getState = ({ nomb='', ape='', id='', gen='', eps_='' }) => { // METHOD STATE
+    getState = ({ nomb='', ape='', id='', gen='', eps_='' }) => {  // METHOD STATE
       const [nombre, setNombre] = useState( nomb );                // Input nombre state
       const [apellido, setApellido] = useState( ape );             // Input apellido state
       const [identificacion, setIdentificacion] = useState( id );  // Input identificacion state
       const [genero, setGenero] = useState( gen );                 // Select genero state
-      const [eps, setEps] = useState( eps_ );                       // Select eps state
+      const [eps, setEps] = useState( eps_ );                      // Select eps state
       const state = [
         { key:'nombre', value:nombre, type:"text", handleChange: (value) => setNombre( decode(value) ) },
         { key:'apellido', value:apellido, type:"text", handleChange: (value) => setApellido( decode(value) ) },
@@ -70,12 +70,9 @@ export class Paciente extends User {
       /* Fetch */
       const arrayFetch = useFetch(urlApiPacientes);
       useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-      const array = useMemo(() => {
-        if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
-          return arrayFetch.data;
-        }
-        return [];
-      }, [arrayFetch.data]);
+        const array = useMemo(() => {
+            return ( (JSON.stringify(arrayFetch.data) && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [] );
+        }, [arrayFetch.data]);
 
       /* Query */
       let [ queryCode, setQueryCode ] = useState('');
@@ -190,12 +187,9 @@ export class Doctor extends User {
       /* Fetch */
       const arrayFetch = useFetch(urlApiDoctores);
       useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
-      const array = useMemo(() => {
-        if (arrayFetch.data && arrayFetch.data.length !== (0 || undefined)) {
-          return arrayFetch.data;
-        }
-        return [];
-      }, [arrayFetch.data]);
+        const array = useMemo(() => {
+            return ( (JSON.stringify(arrayFetch.data) && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [] );
+        }, [arrayFetch.data]);
   
       /* Query */
       let [ queryCode, setQueryCode ] = useState('');

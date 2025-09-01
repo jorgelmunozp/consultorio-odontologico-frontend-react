@@ -50,7 +50,7 @@ export class Consultorio {
         const arrayFetch = useFetch(urlApi);
         useEffect(() => { if(arrayFetch.status >= 400) { Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch() } },[arrayFetch]);
         const array = useMemo(() => {
-            return (arrayFetch.data.length !== (0 || undefined)) ? arrayFetch.data : [];
+            return ( (JSON.stringify(arrayFetch.data) && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [] );
         }, [arrayFetch.data]);
         
         /* Query */

@@ -51,7 +51,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
               Alert({ type:'error', title:'Error en el registro' }).launch();
             }
         },
-        (error) => { Alert({ type:'error', title:'Error en la creación' }).launch(); console.log("Error en la creación: ",error) }
+        (error) => { Alert({ type:'error', title:'Error en el registro' }).launch(); console.log("Error en la creación: ",error) }
       ) 
     }
   }
@@ -70,7 +70,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
                   <div key={'row'+property.key} id={'row'+property.key} className='row'>
                     <>
                       { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
-                                                    : <div className='col px-0'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} data-theme={theme} /></div>
+                                                    : <div className='col px-0'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                       }
                     </>
                   </div>
