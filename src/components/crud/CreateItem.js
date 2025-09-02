@@ -32,16 +32,10 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
   const objectClass2 = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
 console.log("objectClass: ",objectClass)
 console.log("objectClass2: ",objectClass2)
-const state2 = objectClass2.state;
-const urlApi2 = objectClass.api;
-
-  const state = objectClass.state;
-  const urlApi = objectClass.api;
-
-  console.log("state: ",state)
-  console.log("state2: ",state2)
-    console.log("urlApi: ",urlApi)
-  console.log("urlApi2: ",urlApi2)
+  // const state = objectClass.state;
+  // const urlApi = objectClass.api;
+  const state = objectClass2.state;
+  const urlApi = objectClass2.api;
 
   let item = "";
 
