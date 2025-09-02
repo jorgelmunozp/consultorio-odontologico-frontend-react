@@ -1,6 +1,8 @@
 import { lazy, useMemo }  from "react";
 import { Alert } from '../alert/Alert.js';
 import { Dropdown as DropdownClass } from '../../classes/Dropdown.js';
+import { useDropdown } from '../../hooks/useDropdown.js';
+import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
 import { Classes } from '../../classes/Classes.js';                         // Importing Classes module to access all class definitions
 
@@ -13,11 +15,13 @@ const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 // --- Componente hijo para memorizar cada dropdown ---
 const DropdownField = ({ property, theme }) => {
   const myDropdown = useMemo( () => new DropdownClass({ classType: property.key }), [property.key] );
-  const { array, pagination } = myDropdown.data;
+  // const { array, pagination } = myDropdown.data;
+  const { value, setValue, array, pagination } = useDropdown({ classType:property.key });
 
   return (
     <div className='col px-0'>
-      <Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
+      {/* <Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} /> */}
+      <Dropdown classType={property.key} value={value} setValue={setValue} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
     </div>
   );
 };
@@ -25,8 +29,20 @@ const DropdownField = ({ property, theme }) => {
 export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
   // --- Clase Item
   const objectClass = new Classes[classType].Classe('');                    // Objeto instanciado con la Class correspondiente
+  const objectClass2 = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
+console.log("objectClass: ",objectClass)
+console.log("objectClass2: ",objectClass2)
+const state2 = objectClass2.state;
+const urlApi2 = objectClass.api;
+
   const state = objectClass.state;
   const urlApi = objectClass.api;
+
+  console.log("state: ",state)
+  console.log("state2: ",state2)
+    console.log("urlApi: ",urlApi)
+  console.log("urlApi2: ",urlApi2)
+
   let item = "";
 
   const handleCreate = (item) => {

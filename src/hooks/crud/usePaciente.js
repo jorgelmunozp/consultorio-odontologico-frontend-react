@@ -6,13 +6,13 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_PACIENTES;
 
-export const usePaciente = () => {
-  /** ---------- STATE ---------- */
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [identificacion, setIdentificacion] = useState("");
-  const [genero, setGenero] = useState("");
-  const [eps, setEps] = useState("");
+export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identificacion:'', genero:'', eps:'' } }) => {
+  // --- State ---
+  const [nombre, setNombre] = useState(initialValues.nombre || '');
+  const [apellido, setApellido] = useState(initialValues.apellido || '');
+  const [identificacion, setIdentificacion] = useState(initialValues.identificacion || '');
+  const [genero, setGenero] = useState(initialValues.genero || '');
+  const [eps, setEps] = useState(initialValues.eps || '');
 
   const state = [
     { key: "nombre", value: nombre, type: "text", handleChange: (v) => setNombre(decode(v)) },
@@ -22,21 +22,15 @@ export const usePaciente = () => {
     { key: "eps", value: eps, type: "dropdown", handleChange: (v) => setEps(decode(v)) },
   ];
 
-  const getTitles = () => {
-    let titles = state.map((parameter) => ({
-      title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
-      type: parameter.type,
-    }));
+  // --- Titles ---
+  const titles = state.map((parameter) => ({
+    title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+    type: parameter.type,
+  }));
+  const placeholders = titles.map((item) => item.title);
 
-    let placeholders = titles.map((item) => item.title);
-    return { titles, placeholders };
-  };
-
-  const { titles, placeholders } = getTitles();
-
-  /** ---------- DATA ---------- */
+  // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
-
   useEffect(() => {
     if (arrayFetch.status >= 400) {
       Alert({ type: "error", title: "Error en la conexión con la base de datos" }).launch();
@@ -44,13 +38,10 @@ export const usePaciente = () => {
   }, [arrayFetch]);
 
   const array = useMemo(() => {
-    return JSON.stringify(arrayFetch.data) &&
-      JSON.stringify(arrayFetch.data).length !== (0 || undefined)
-      ? arrayFetch.data
-      : [];
+    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [];
   }, [arrayFetch.data]);
 
-  // queries
+  // Queries
   const [queryCode, setQueryCode] = useState("");
   const [queryName, setQueryName] = useState("");
   const [queryLastname, setQueryLastname] = useState("");
@@ -61,13 +52,12 @@ export const usePaciente = () => {
   const queries = [queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps];
   const setQueries = [setQueryCode, setQueryIdentification, setQueryName, setQueryLastname, setQueryGender, setQueryEps];
 
-  const arrayFiltered = useMemo(
-    () =>
-      getPacientesFiltered(array, queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps),
+  const arrayFiltered = useMemo(() =>
+    getPacientesFiltered(array, queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps),
     [array, queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps]
   );
 
-  /** ---------- PAGINATION ---------- */
+  // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, itemsPerPage]);
   const numPages = Math.floor(arrayFiltered.length / itemsPerPage);
@@ -88,19 +78,7 @@ export const usePaciente = () => {
   }
   const [activePages, setActivePages] = useState(activePage);
 
-  const data = {
-    queries,
-    setQueries,
-    arrayFiltered,
-    indexPage,
-    itemsPerPage,
-    activePages,
-    indexPages,
-    setIndexPage,
-    setActivePages,
-  };
-
-  /** ---------- SORT ---------- */
+  // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
   let SortByProperty = () => {};
 
@@ -117,10 +95,8 @@ export const usePaciente = () => {
     case 10: SortByProperty = (a, b) => b.paciente.genero.localeCompare(a.paciente.genero); break;
     case 11: SortByProperty = (a, b) => a.paciente.eps.localeCompare(b.paciente.eps); break;
     case 12: SortByProperty = (a, b) => b.paciente.eps.localeCompare(a.paciente.eps); break;
-    default: SortByProperty = () => {}; break;
+    default: break;
   }
-
-  const sort = { SortByProperty, setSortBy };
 
   /** ---------- RETURN ---------- */
   return {
@@ -128,8 +104,8 @@ export const usePaciente = () => {
     titles,
     placeholders,
     state,
-    data,
-    sort,
+    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort: { SortByProperty, setSortBy },
   };
 };
 export default usePaciente;

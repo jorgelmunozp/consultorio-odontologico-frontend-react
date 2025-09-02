@@ -50,7 +50,6 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
                 <div className='row flex-nowrap'>
                   <div className='col-6 modalTableData text-start'>Código</div>
                   <div className='col-6 modalTableData text-start'>{ item._id }</div>
-                  {/* <div className='col-6 modalTableData text-start'>{ item.id }</div> */}
                 </div>
                 {
                   valuesData.map((data,index)=>{ return(

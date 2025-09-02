@@ -8,13 +8,14 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CITAS;
 
-export function useCita(initial = {}) {
-  const [paciente, setPaciente] = useState(initial.paciente || '');
+export function useCita({ initialValues={ paciente:'', consultorio:'', doctor:'', tratamiento:'' } }) {
+  // --- State ---
+  const [paciente, setPaciente] = useState(initialValues.paciente || '');
   const [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
   const [hora, setHora] = useState(getTime);
-  const [consultorio, setConsultorio] = useState(initial.consultorio || '');
-  const [doctor, setDoctor] = useState(initial.doctor || '');
-  const [tratamiento, setTratamiento] = useState(initial.tratamiento || '');
+  const [consultorio, setConsultorio] = useState(initialValues.consultorio || '');
+  const [doctor, setDoctor] = useState(initialValues.doctor || '');
+  const [tratamiento, setTratamiento] = useState(initialValues.tratamiento || '');
 
   const state = [
     { key:'paciente', value:paciente, type:"dropdown", handleChange: (value) => setPaciente(decode(value)) },
@@ -25,10 +26,12 @@ export function useCita(initial = {}) {
     { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange: (value) => setTratamiento(decode(value)) }
   ];
 
+  // --- Titles ---
   const titles = state.map(param => ({
     title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
     type: param.type
   }));
+  const placeholders = titles.map(item => item.title);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -38,9 +41,9 @@ export function useCita(initial = {}) {
     }
   }, [arrayFetch]);
 
-  const array = useMemo(() => (
-    (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== 0) ? arrayFetch.data : []
-  ), [arrayFetch.data]);
+  const array = useMemo(() => {
+    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
+  }, [arrayFetch.data]);
 
   // Queries
   const [queryCode, setQueryCode] = useState('');
@@ -89,13 +92,13 @@ export function useCita(initial = {}) {
     case 2: SortByProperty = (a,b) => b.id - a.id; break;
     case 3: SortByProperty = (a,b) => a.cita.paciente.localeCompare(b.cita.paciente); break;
     case 4: SortByProperty = (a,b) => b.cita.paciente.localeCompare(a.cita.paciente); break;
-    // ... el resto de tus cases
-    default: break;
+    default: break;     
   }
 
   return {
     api: urlApi,
     titles,
+    placeholders,
     state,
     data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort: { SortByProperty, setSortBy }

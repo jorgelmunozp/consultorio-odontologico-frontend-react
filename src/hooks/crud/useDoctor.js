@@ -6,13 +6,13 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_DOCTORES;
 
-export const useDoctor = () => {
-  /** ---------- STATE ---------- */
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [identificacion, setIdentificacion] = useState("");
-  const [genero, setGenero] = useState("");
-  const [especialidad, setEspecialidad] = useState("");
+export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificacion:'', genero:'', especialidad:'' } }) => {
+  // --- State ---
+  const [nombre, setNombre] = useState(initialValues.nombre || '');
+  const [apellido, setApellido] = useState(initialValues.apellido || '');
+  const [identificacion, setIdentificacion] = useState(initialValues.identificacion || '');
+  const [genero, setGenero] = useState(initialValues.genero || '');
+  const [especialidad, setEspecialidad] = useState(initialValues.especialidad || '');
 
   const state = [
     { key: "nombre", value: nombre, type: "text", handleChange: (v) => setNombre(decode(v)) },
@@ -22,21 +22,15 @@ export const useDoctor = () => {
     { key: "especialidad", value: especialidad, type: "dropdown", handleChange: (v) => setEspecialidad(decode(v)) },
   ];
 
-  const getTitles = () => {
-    let titles = state.map((parameter) => ({
-      title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
-      type: parameter.type,
-    }));
+   // --- Titles ---
+  const titles = state.map((parameter) => ({
+    title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+    type: parameter.type,
+  }));
+  const placeholders = titles.map((item) => item.title);
 
-    let placeholders = titles.map((item) => item.title);
-    return { titles, placeholders };
-  };
-
-  const { titles, placeholders } = getTitles();
-
-  /** ---------- DATA ---------- */
+  // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
-
   useEffect(() => {
     if (arrayFetch.status >= 400) {
       Alert({ type: "error", title: "Error en la conexión con la base de datos" }).launch();
@@ -44,10 +38,7 @@ export const useDoctor = () => {
   }, [arrayFetch]);
 
   const array = useMemo(() => {
-    return JSON.stringify(arrayFetch.data) &&
-      JSON.stringify(arrayFetch.data).length !== (0 || undefined)
-      ? arrayFetch.data
-      : [];
+    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
   }, [arrayFetch.data]);
 
   // queries
@@ -75,33 +66,17 @@ export const useDoctor = () => {
   if (resPages !== 0) {
     for (let i = 0; i <= numPages; i++) {
       indexPages.push(i);
-      if (i < 0) {
-        activePage.push(false);
-      }
+      if (i < 0) activePage.push(false);
     }
   } else if (resPages === 0) {
     for (let i = 0; i < numPages; i++) {
       indexPages.push(i);
-      if (i < 0) {
-        activePage.push(false);
-      }
+      if (i < 0) activePage.push(false);
     }
   }
   const [activePages, setActivePages] = useState(activePage);
 
-  const data = {
-    queries,
-    setQueries,
-    arrayFiltered,
-    indexPage,
-    itemsPerPage,
-    activePages,
-    indexPages,
-    setIndexPage,
-    setActivePages,
-  };
-
-  /** ---------- SORT ---------- */
+  // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
   let SortByProperty = () => {};
 
@@ -118,10 +93,8 @@ export const useDoctor = () => {
     case 10: SortByProperty = (a, b) => b.doctor.genero.localeCompare(a.doctor.genero); break;
     case 11: SortByProperty = (a, b) => a.doctor.especialidad.localeCompare(b.doctor.especialidad); break;
     case 12: SortByProperty = (a, b) => b.doctor.especialidad.localeCompare(a.doctor.especialidad); break;
-    default: SortByProperty = () => {}; break;
+    default: break;
   }
-
-  const sort = { SortByProperty, setSortBy };
 
   /** ---------- RETURN ---------- */
   return {
@@ -129,8 +102,8 @@ export const useDoctor = () => {
     titles,
     placeholders,
     state,
-    data,
-    sort,
+    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort: { SortByProperty, setSortBy },
   };
 };
 export default useDoctor;

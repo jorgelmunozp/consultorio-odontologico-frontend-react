@@ -7,9 +7,10 @@ const PaginationBar = lazy(() => import('../../pagination/PaginationBar.js'));
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const Dropdown = ({ classType, object, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='', theme }) => {
-  const [open, setOpen] = useState(false)
-  let { value, setValue } = object.getValue({ defaultValue:defaultSelect })
+// export const Dropdown = ({ classType, object, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='', theme }) => {
+export const Dropdown = ({ classType, value='', setValue, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='', theme }) => {
+  const [open, setOpen] = useState(false);
+  // let { value, setValue } = object.getValue({ defaultValue:defaultSelect })
 
   const class1 = ' dropdown-toggle text-start pt-2 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';
   const class2 = ' dropdown-toggle text-center pt-4 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';

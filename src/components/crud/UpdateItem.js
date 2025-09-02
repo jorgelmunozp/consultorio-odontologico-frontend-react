@@ -1,7 +1,8 @@
 import '../modal/modal.css';
-import { lazy, useMemo } from 'react';
+import { lazy } from 'react';
 import { Alert } from '../alert/Alert.js';
-import { Dropdown as DropdownClass } from '../../classes/Dropdown.js';
+import { useDropdown } from '../../hooks/useDropdown.js';
+import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchUpdate } from '../../helpers/fetchUpdate.js';
 import { myColor } from '../../global.js';
 
@@ -10,41 +11,42 @@ const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 // --- Componente hijo para memorizar cada dropdown ---
 const DropdownField = ({ property, theme }) => {
-  const myDropdown = useMemo( () => new DropdownClass({ classType: property.key }), [property.key] );
-  const { array, pagination } = myDropdown.data;
+  const { value, setValue, array, pagination } = useDropdown({ classType:property.key, defaultValue:property.value });
 
   return (
     <div className='col px-0'>
-      <Dropdown classType={property.key} object={myDropdown} array={array} defaultSelect={ property.value } handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
+      <Dropdown classType={property.key} value={value} setValue={setValue} array={array} defaultSelect={ property.value } handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
     </div>
   );
 };
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass, handleItems, theme }) => { 
-  let state = {};
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems, theme }) => { 
+  let initialValues = {};
   switch( classType ) {
-    case 'cita': state = objectClass.getState({ pac:item[classType].paciente, cons:item[classType].consultorio, doc:item[classType].doctor, trat:item[classType].tratamiento }); break;
-    case 'paciente': state = objectClass.getState({ nomb:item[classType].nombre, ape:item[classType].apellido, id:item[classType].identificacion, gen:item[classType].genero, eps_:item[classType].eps }); break;
-    case 'doctor': state = objectClass.getState({ nomb:item[classType].nombre, ape:item[classType].apellido, id:item[classType].identificacion, gen:item[classType].genero, esp:item[classType].especialidad }); break;
-    case 'consultorio': state = objectClass.getState({ num:item[classType].numero, nomb:item[classType].nombre }); break;
-    case 'especialidad': state = objectClass.getState({ nomb:item[classType].nombre }); break;
-    case 'tratamiento': state = objectClass.getState({ esp:item[classType].especialidad, cons:item[classType].consultorio, doc:item[classType].doctor }); break;
-    default: state = objectClass.getState({}); break;
+    case 'cita': initialValues = { paciente:item[classType].paciente, consultorio:item[classType].consultorio, doctor:item[classType].doctor, tratamiento:item[classType].tratamiento }; break;
+    case 'paciente': initialValues = { nombre:item[classType].nombre, apellido:item[classType].apellido, identificacion:item[classType].identificacion, genero:item[classType].genero, eps_:item[classType].eps }; break;
+    case 'doctor': initialValues = { nombre:item[classType].nombre, apellido:item[classType].apellido, identificacion:item[classType].identificacion, genero:item[classType].genero, especialidad:item[classType].especialidad }; break;
+    case 'consultorio': initialValues = { numero:item[classType].numero, nombre:item[classType].nombre }; break;
+    case 'especialidad': initialValues = { nombre:item[classType].nombre }; break;
+    case 'tratamiento': initialValues = { especialidad:item[classType].especialidad, consultorio:item[classType].consultorio, doc:item[classType].doctor }; break;
+    default: initialValues = {}; break;
   }
-  
+
+  const state = useCrudFactory({ classType:classType, initialValues:initialValues }).state;
+
   const handleClose = () => { setOpen(false); }                                 // Gestiona el cierre del modal
 
   const handleUpdate = () => {
     if( state.every( property => property.value !== '') ) {                     // Check for emtpy fields to avoid any empty item
       state.forEach((property) => { item[classType][property.key] = property.value });   // Actualiza los nuevos valores en el item
 
-      fetchUpdate(urlApi,JSON.stringify(item),item.id).then(                    // Fetch PUT para actualización de datos
+      fetchUpdate(urlApi,JSON.stringify(item),item._id).then(                    // Fetch PUT para actualización de datos
         async (responseStatus) => {
             if(200 <= responseStatus && responseStatus <= 299) { 
             await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
                 .then(response => response.json())
       
-            handleItems('update',item.id, classType);          // El padre actualiza el estado y React re-renderiza con el elemento actualizado
+            handleItems('update',item._id, classType);          // El padre actualiza el estado y React re-renderiza con el elemento actualizado
             Alert({ type:'success', title:'Actualización exitosa' }).launch()
           }
           else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
@@ -66,7 +68,6 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
               <div className='container-fluid modalTable mt-2'>
                 <div className='row'>
                   <Input placeholder={'Código'} defaultValue={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} theme={theme} />
-                  {/* <Input placeholder={'Código'} defaultValue={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} /> */}
                 </div>
                 { state.map((property,index)=>{
                     return(

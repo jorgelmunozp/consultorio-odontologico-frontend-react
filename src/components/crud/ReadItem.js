@@ -30,7 +30,6 @@ export const ReadItem = ({ classType, Icon, item, setOpen, theme }) => {
                 </div>
                 <div className='row flex-nowrap'>
                   <div className='col-6 modalTableData text-start'>Código</div>
-                  {/* <div className='col-6 modalTableData text-start'>{ item.id }</div> */}
                   <div className='col-6 modalTableData text-start'>{ item._id }</div>
                 </div>
                 {

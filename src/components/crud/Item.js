@@ -5,7 +5,7 @@ import { UpdateItem } from './UpdateItem.js';
 import { DeleteItem } from './DeleteItem.js';
 import { formatterHour12 } from '../../helpers/formatterHour12.js';
 
-export const Item = ({ classType, Icons, item={}, urlApi, objectClass, handleItems, theme }) => {
+export const Item = ({ classType, Icons, item={}, urlApi, handleItems, theme }) => {
     const [open, setOpen] = useState(false);
 
     const IconRead = Icons[classType].IconRead;
@@ -17,7 +17,7 @@ export const Item = ({ classType, Icons, item={}, urlApi, objectClass, handleIte
 
     const components = {
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} theme={theme} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} handleItems={handleItems} theme={theme} />,
+        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} theme={theme} />,
         delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} theme={theme} />
     };
 
@@ -26,7 +26,6 @@ export const Item = ({ classType, Icons, item={}, urlApi, objectClass, handleIte
     return (
         <>
             {/* <div className='col-3 col-sm-2 text-nowrap'>{ item._id }</div> */}
-            {/* <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div> */}
             { Object.entries(item?.[classType] || {}).map(([key, value], index) => (
                 <div key={'item'+index} className={'text-start text-nowrap ms-2 ms-sm-2 pe-0' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') }>
                 {/* <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ( key==='hora') ? ' col-3 col-sm-1' : ' col-4 col-sm-2') }> */}

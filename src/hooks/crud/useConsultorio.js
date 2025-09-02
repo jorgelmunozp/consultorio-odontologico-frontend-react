@@ -6,36 +6,34 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
-export function useConsultorio(initial = { numero: '', nombre: '' }) {
-  // --- STATE ---
-  const [numero, setNumero] = useState(initial.numero || '');
-  const [nombre, setNombre] = useState(initial.nombre || '');
+export function useConsultorio({ initialValues={ numero:'', nombre:'' } }) {
+  // --- State ---
+  const [numero, setNumero] = useState(initialValues.numero || '');
+  const [nombre, setNombre] = useState(initialValues.nombre || '');
 
   const state = [
     { key: 'numero', value: numero, type: 'number', handleChange: (value) => setNumero(decode(value)) },
     { key: 'nombre', value: nombre, type: 'text', handleChange: (value) => setNombre(decode(value)) }
   ];
 
+   // --- Titles ---
   const titles = state.map(param => ({
     title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
     type: param.type
   }));
   const placeholders = titles.map(item => item.title);
 
-  // --- DATA (fetch + queries + pagination) ---
+  // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
-
   useEffect(() => {
     if (arrayFetch.status >= 400) {
       Alert({ type: 'error', title: 'Error en la conexión con la base de datos' }).launch();
     }
   }, [arrayFetch]);
 
-  const array = useMemo(() => (
-    arrayFetch.data && JSON.stringify(arrayFetch.data).length !== 0
-      ? arrayFetch.data
-      : []
-  ), [arrayFetch.data]);
+  const array = useMemo(() => {
+    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
+  }, [arrayFetch.data]);
 
   // Queries
   const [queryCode, setQueryCode] = useState('');
