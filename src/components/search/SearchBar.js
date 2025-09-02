@@ -6,7 +6,7 @@ import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const SearchIcon = lazy(() => import('./SearchIcon.js'));
 
-export const SearchBar = ({ Icon=SearchIcon,items,queries,setQueries,className,theme }) => {
+export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,className,theme }) => {
     return (
         <div className={ className + ' justify-items-center bg-transparent' }>
             <button data-bs-toggle="collapse" href="#collapseContent" className="form-control border border-muted text-center text-decoration-none py-0 py-sm-1 w-75 justify-items-center box-shadow bg-transparent" aria-expanded="false" aria-controls="collapseContent">

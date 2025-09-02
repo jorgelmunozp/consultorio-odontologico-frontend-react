@@ -1,5 +1,5 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
-import { Classes } from '../../classes/Classes.js';
+import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { plurales } from '../../global.js';
 
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
@@ -7,9 +7,10 @@ const ItemsList = lazy(() => import('./ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
-  const objectClass = new Classes[classType].Classe('');                      // Objeto instanciado con la Class 
+  const objectClass = useCrudFactory(classType);
+
   const urlApi = objectClass.api;
-  const { titles } = objectClass.titles;
+  const titles = objectClass.titles;
   const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectClass.data;
   const { SortByProperty, setSortBy } = objectClass.sort;
 

@@ -90,24 +90,12 @@ hr { opacity: 0.5; }
   background-color: transparent !important;
   color: var(--dark-color);
 } */
-/* .table-rows[ data-theme="dark" ]:nth-child(even) { }
-.table-rows[ data-theme="dark" ]:nth-child(odd) { background-color: var(--darkrow-color); }
-.table-rows[ data-theme="light" ]:nth-child(even) { }
-.table-rows[ data-theme="light" ]:nth-child(odd) { background-color: var(--lightrow-color); } */
-.table-rows:nth-child(even):hover, .table-rows:nth-child(odd):hover { background-color:var(--main-transparent-color); }
+.bg-row:nth-child(even):hover, .bg-row:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
-[data-theme="dark"] .table-rows:nth-child(odd) { background-color: var(--darkrow-color); }
-[data-theme="dark"] .table-rows:nth-child(even) { background-color: transparent; }
-[data-theme="light"] .table-rows:nth-child(odd) { background-color: var(--lightrow-color); }
-[data-theme="light"] .table-rows:nth-child(even) { background-color: transparent; }
-
-
-.table-rows {
-  width: 100%;
-  table-layout: fixed; /* Para que las celdas se distribuyan */
-}
-
-.table-rows td { width: auto; }
+[data-theme="dark"] .bg-row:nth-child(odd) { background-color: var(--darkrow-color); }
+[data-theme="dark"] .bg-row:nth-child(even) { background-color: transparent; }
+[data-theme="light"] .bg-row:nth-child(odd) { background-color: var(--lightrow-color); }
+[data-theme="light"] .bg-row:nth-child(even) { background-color: transparent; }
 
 /*************************** Sort **************************/
 .active { color: var(--main-color) !important;}              /* Buttons */
