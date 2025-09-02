@@ -7,7 +7,6 @@ const ItemsList = lazy(() => import('./ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
-
   const objectClass = new Classes[classType].Classe('');                      // Objeto instanciado con la Class 
   const urlApi = objectClass.api;
   const { titles } = objectClass.titles;

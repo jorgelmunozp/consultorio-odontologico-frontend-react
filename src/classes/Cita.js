@@ -1,4 +1,4 @@
-import { lazy, useState, useMemo, useEffect }  from "react";
+import { useState, useMemo, useEffect }  from "react";
 import { Alert } from '../components/alert/Alert.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { Paciente } from './User.js';
@@ -9,8 +9,6 @@ import { getDate } from '../helpers/getDate.js';
 import { getTime } from '../helpers/getTime.js';
 import { getCitasFiltered } from '../components/selectors/getCitasFiltered.js';
 import { jwtDecode as decode } from "jwt-decode";
-
-// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const urlApi = process.env.REACT_APP_API_CITAS;
 
@@ -36,7 +34,8 @@ export class Cita {
             }
         });
 
-        let placeholders = ['Código'];
+        // let placeholders = ['Código'];
+        let placeholders = [];
         titles.forEach(item => { placeholders.push(item.title) } );
 
         return({ titles, placeholders })

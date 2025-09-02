@@ -1,11 +1,9 @@
-import { lazy, useState, useMemo, useEffect }  from "react";
+import { useState, useMemo, useEffect }  from "react";
 import { Alert } from '../components/alert/Alert.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { getPacientesFiltered } from '../components/selectors/getPacientesFiltered.js';
 import { getDoctoresFiltered } from '../components/selectors/getDoctoresFiltered.js';
 import { jwtDecode as decode } from "jwt-decode";
-
-// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const urlApiPacientes = process.env.REACT_APP_API_PACIENTES;
 const urlApiDoctores = process.env.REACT_APP_API_DOCTORES;
@@ -40,7 +38,8 @@ export class Paciente extends User {
           }
       });
 
-      let placeholders = ['Código'];
+      // let placeholders = ['Código'];
+      let placeholders = [];
       titles.forEach(item => { placeholders.push(item.title) } );
 
       return({ titles, placeholders })
@@ -158,7 +157,8 @@ export class Doctor extends User {
           }
       });
 
-      let placeholders = ['Código'];
+      // let placeholders = ['Código'];
+      let placeholders = [];
       titles.forEach(item => { placeholders.push(item.title) } );
 
       return({ titles, placeholders })

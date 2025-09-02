@@ -1,7 +1,7 @@
 import '../modal/modal.css';
 import { myColor } from '../../global.js';
 
-export const ReadItem = ({ classType, Icon, item, setOpen }) => {
+export const ReadItem = ({ classType, Icon, item, setOpen, theme }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -17,7 +17,7 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   return (
       <>
         <div className={'modalContainer justify-items-center'}>
-          <div className={'modalBox'}>
+          <div id={'modalBox'} className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
               <h6 className={'modalTitle main-color pt-2'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h6>
@@ -30,7 +30,8 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
                 </div>
                 <div className='row flex-nowrap'>
                   <div className='col-6 modalTableData text-start'>Código</div>
-                  <div className='col-6 modalTableData text-start'>{ item.id }</div>
+                  {/* <div className='col-6 modalTableData text-start'>{ item.id }</div> */}
+                  <div className='col-6 modalTableData text-start'>{ item._id }</div>
                 </div>
                 {
                   valuesData.map((data,index)=>{ return(

@@ -15,16 +15,17 @@ export const Item = ({ classType, Icons, item, urlApi, objectClass, handleItems,
     const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];
 
     const components = {
-        read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
+        read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} theme={theme} />,
         update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} objectClass={objectClass} handleItems={handleItems} theme={theme} />,
-        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
+        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} theme={theme} />
     };
 
     if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }
 
     return (
         <>
-            <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div>
+            {/* <div className='col-3 col-sm-2 text-nowrap'>{ item._id }</div> */}
+            {/* <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div> */}
             { Object.entries(item[classType]).map(([key, value], index) => (
                 <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') }>
                     { value }

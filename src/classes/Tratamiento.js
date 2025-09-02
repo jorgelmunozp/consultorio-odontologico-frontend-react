@@ -1,4 +1,4 @@
-import { lazy, useState, useMemo, useEffect }  from "react";
+import { useState, useMemo, useEffect }  from "react";
 import { Alert } from '../components/alert/Alert.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { Especialidad } from './Especialidad.js';
@@ -30,7 +30,8 @@ export class Tratamiento {
             }
         });
 
-        let placeholders = ['Código'];
+        // let placeholders = ['Código'];
+        let placeholders = [];
         titles.forEach(item => { placeholders.push(item.title) } );
 
         return({ titles, placeholders })

@@ -1,9 +1,6 @@
-import { lazy, useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Alert } from '../components/alert/Alert.js';
 import { useFetch } from '../hooks/useFetch.js';
-import { plurales } from '../global.js';
-
-// const Alert = lazy(() => import('../components/alert/Alert.js'));
 
 const apiPacientes = process.env.REACT_APP_API_PACIENTES;           // Apis para obtención de los datos
 const apiDoctores = process.env.REACT_APP_API_DOCTORES;
@@ -14,11 +11,11 @@ const apiGeneros  = process.env.REACT_APP_API_GENEROS;
 const apiEspecialidades  = process.env.REACT_APP_API_ESPECIALIDADES;
 
 export class Dropdown {
-    constructor({ classType:classType='' }) {
+    constructor({ classType='' }) {
         this.classType = {classType}.classType;
     }
 
-    getValue = ({ defaultValue:defaultValue='' }) => {              // METHOD VALUE
+    getValue = ({ defaultValue='' }) => {              // METHOD VALUE
         let [value, setValue] = useState( defaultValue );
         
         return ({ value, setValue })

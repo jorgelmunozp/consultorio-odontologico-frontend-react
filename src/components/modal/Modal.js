@@ -1,9 +1,11 @@
 import './modal.css';
 import { useState } from 'react';
+import { useTheme  } from './../../hooks/useTheme.js';
 
 export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, content='', buttons=1, fontFamily='' }) => {
   const [open, setOpen] = useState(openStatus);                   // Input alert status
-  
+  const [ theme, handleTheme ] = useTheme();                      // Get theme from hook
+
   { open !== false && document.getElementById('body').classList.add('noScroll') }
   
   const handleClose = () => {                                     // Close the alert
@@ -17,7 +19,7 @@ export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, conte
       {
         open !== false && <>
                   <div className={fontFamily + ' modalContainer justify-items-center justify-content-center'}>
-                    <div className={'modalBox'}>
+                    <div id={'modalBox'} className={'modalBox'} data-theme={theme}>
                       <div className={'modalHeader'}>
                         <center><Icon color={iconColor} height={4.5} width={4.5} className={'bounce center mt-4'} /></center>
                         <h3 className={'modalTitle main-color pt-3'}>{ title }</h3>
@@ -28,7 +30,7 @@ export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, conte
                       <div className={'modalFooter justify-items-center'}>
                         <div className={'mt-4'}>
                             {   buttons === 1 ? <button className={'aceptBtn w-100'} onClick={ handleClose }>Aceptar</button>
-                              : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={ handleClose }>Aceptar</button> <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button></>
+                              : buttons === 2 ? <><button className={'aceptBtn w-100'} onClick={ handleClose }>Aceptar</button> <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancelar</button></>
                               : ""}
                         </div>
                       </div>

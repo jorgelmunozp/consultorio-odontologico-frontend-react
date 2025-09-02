@@ -5,7 +5,7 @@ import { fetchDelete } from '../../helpers/fetchDelete.js';
 
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
 
-export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems }) => {
+export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems, theme }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -36,7 +36,7 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
   return (
       <>
         <div className={'modalContainer justify-items-center'}>
-          <div className={'modalBox'}>
+          <div id={'modalBox'} className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={'#f8bb86'} height={3} width={3} className={'center'} /></center>
               <h6 className={'modalTitle main-color pt-2'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
@@ -49,7 +49,8 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
                 </div>
                 <div className='row flex-nowrap'>
                   <div className='col-6 modalTableData text-start'>Código</div>
-                  <div className='col-6 modalTableData text-start'>{ item.id }</div>
+                  <div className='col-6 modalTableData text-start'>{ item._id }</div>
+                  {/* <div className='col-6 modalTableData text-start'>{ item.id }</div> */}
                 </div>
                 {
                   valuesData.map((data,index)=>{ return(

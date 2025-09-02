@@ -57,7 +57,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
   return (
       <>
         <div className={'modalContainer justify-items-center'}>
-          <div className={'modalBox'}>
+          <div id={'modalBox'} className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
               <h6 className={'modalTitle main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
@@ -65,13 +65,14 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, objectClass
             <div className={'modalContent'}>
               <div className='container-fluid modalTable mt-2'>
                 <div className='row'>
-                  <Input placeholder={'Código'} defaultValue={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
+                  <Input placeholder={'Código'} defaultValue={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} theme={theme} />
+                  {/* <Input placeholder={'Código'} defaultValue={item.id} type={'number'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} /> */}
                 </div>
                 { state.map((property,index)=>{
                     return(
                       <div key={'row'+index} className='row'>
                         { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
-                                                       : <div className='col px-0'><Input property={true} defaultValue={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /></div>
+                                                       : <div className='col px-0'><Input property={true} defaultValue={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                         }
                       </div>
                     )

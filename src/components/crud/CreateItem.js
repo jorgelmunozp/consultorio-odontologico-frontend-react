@@ -79,7 +79,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
           </>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <button onClick={ ()=>handleCreate(item) } className={ 'button rounded border-0 py-3 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
+              <button onClick={ ()=>handleCreate(item) } className={ 'button bg-main-color text-white rounded border-0 py-3 w-50 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
             </div>
           </div>              
 			  </div>

@@ -2,11 +2,13 @@
   --black-color: #000000;
   --dark-color: #212529;
   --darkgray-color:#555;
+  --darkrow-color: #303030;
   --dark-transparent-color: rgba(33,37,41, 0.25);
   --gray-color: #999999;
   --icon-color:#ffffff;
   --lightgray-color: #dddddd;
   --lightgray-transparent-color: rgba(221,221,221, 0.25);
+  --lightrow-color: #f7f7f7;
   --main-color: #5285c5;
   --main-transparent-color: rgba(82, 133, 197, 0.25);
   --red-color: #ff0000;
@@ -33,7 +35,6 @@ h5[ data-theme="light" ] { color:var(--dark-color) !important; }
 #menuIndex[ data-theme="light" ] { background-color: var(--white-color) !important; }
 #collapseContent[ data-theme="dark" ] .card { background-color: var(--dark-color) !important; }
 #collapseContent[ data-theme="light" ] .card { background-color: var(--white-color) !important; }
-
 
 .fs-sm-1 {}
 .fs-sm-2 {}
@@ -70,12 +71,9 @@ hr { opacity: 0.5; }
 .offcanvas-header { padding-bottom: 0 !important;  }
 .offcanvas-body { padding-top: 0 !important; }
 
-/*************************** HEADER **************************/
-
-.backgroundImage { background: url("../images/background.svg") repeat; }
 
 /*************************** BODY **************************/
-.table {
+/* .table {
   border-collapse: collapse;
   border-color: var(--lightgray-color);
   width: 100%;
@@ -91,24 +89,25 @@ hr { opacity: 0.5; }
 .table td, .table {
   background-color: transparent !important;
   color: var(--dark-color);
-}
-.table tr:nth-child(even) { background-color:var(--white-color); }
-.table tr:nth-child(odd) { background-color: #f7f7f7; }
-.table tr:nth-child(even):hover { background-color:var(--main-transparent-color); }
-.table tr:nth-child(odd):hover { background-color:var(--main-transparent-color); }
+} */
+.table-rows[ data-theme="dark" ]:nth-child(even) { }
+.table-rows[ data-theme="dark" ]:nth-child(odd) { background-color: var(--darkrow-color); }
+.table-rows[ data-theme="light" ]:nth-child(even) { }
+.table-rows[ data-theme="light" ]:nth-child(odd) { background-color: var(--lightrow-color); }
+.table-rows:nth-child(even):hover, .table-rows:nth-child(odd):hover { background-color:var(--main-transparent-color); }
 
 /*************************** Sort **************************/
 .active { color: var(--main-color) !important;}              /* Buttons */
 .hover:hover { background-color: #f3f3f3 !important; }
 
-.button {
+/* .button {
   font-family: 'Century Gothic','centuryGothic'!important;
   background-color: var(--main-color)!important;
   color: var(--icon-color);
   width: 100%;
   text-align: center;
   transition: all 0.25s ease;
-}
+} */
 
 .button:hover {
   box-shadow: 0 10px 20px -10px rgba(100, 100, 100, 0.8)!important;
@@ -120,7 +119,6 @@ input {
   color: var(--darkgray-color);
   width: 100%;
   height: 3vmin !important;
-  background-color: var(--lightgray-color);
   border: none;
 }
 label {
@@ -130,14 +128,7 @@ label {
   min-width: 10vmin!important;
   text-align: left;
 }
-.idText {
-  text-align: left;
-  margin-left: -1vmin !important;
-}
 
-input[type='number'] {
-  color: var(--darkgray-color)!important;
-}
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   background-color: var(--white-color);
@@ -165,7 +156,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color-scheme: inherit;
   cursor: pointer;
 }
-select {                                          /* Select views */      
+/* select {                                             
   background-color: var(--white-color);
   font-size: inherit;
   font-family: inherit;
@@ -177,9 +168,9 @@ select {                                          /* Select views */
   padding: 0.5vmin 0;
   cursor: pointer;
 }
-select::-ms-expand { display: none; }
+select::-ms-expand { display: none; } */
 
-.dateSelector {
+/* .dateSelector {
   padding: 0 0 0 0.75vmin !important;
   border:none;
   box-shadow: none;
@@ -188,7 +179,7 @@ select::-ms-expand { display: none; }
   padding: 0 0 0 0.75vmin !important;
   border:none;
   box-shadow: none;
-}
+} */
 
 
 /*************************** Modal Alerts **************************/
@@ -231,7 +222,7 @@ select::-ms-expand { display: none; }
 }
 
 /********** Loader Clock **********/
-.loaderClock {                                          /* Loader Clock */ 
+/* .loaderClock {                                     
   --clock-color: var(--main-color);
   --clock-width: 2.5rem;
   --clock-radius: calc(var(--clock-width) / 2);
@@ -270,7 +261,7 @@ select::-ms-expand { display: none; }
     height: var(--clock-hour-length);
     animation-duration: 15s;
   }
-}
+} */
 
 
 
