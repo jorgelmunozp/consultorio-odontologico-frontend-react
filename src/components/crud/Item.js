@@ -28,6 +28,7 @@ export const Item = ({ classType, Icons, item, urlApi, objectClass, handleItems,
             {/* <div className='col-3 col-sm-2 text-nowrap'>{ item.id }</div> */}
             { Object.entries(item[classType]).map(([key, value], index) => (
                 <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') }>
+                {/* <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ( key==='hora') ? ' col-3 col-sm-1' : ' col-4 col-sm-2') }> */}
                     { value }
                 </div>
             ))}

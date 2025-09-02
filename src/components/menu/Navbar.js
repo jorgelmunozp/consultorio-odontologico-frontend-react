@@ -33,7 +33,7 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
 
     return (
         <>
-            <nav id="navbar" className="navbar navbar-expand-sm navbar-light bg-white fixed-top shadow-lg user-select-none z-10000" data-theme={theme} >
+            <nav id="navbar" className="navbar navbar-expand-sm navbar-light fixed-top shadow-lg user-select-none z-10000" data-theme={theme} >
                 <div className="container-fluid">
                     <NavLink className="navbar-brand main-color d-flex bg-transparent" to={"/" + urlBaseFrontend} onClick={() => setMenu(1)}>
                         <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-3 ms-sm-4 me-2 mt-logo'/>
