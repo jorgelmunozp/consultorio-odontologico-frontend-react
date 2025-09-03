@@ -12,9 +12,7 @@ const apis = {
   especialidad: process.env.REACT_APP_API_ESPECIALIDADES,
 };
 
-export const useDropdown = ({ classType='',defaultValue='' }) => {
-  const [value, setValue] = useState(defaultValue);
-  
+export const useDropdown = ({ classType='' }) => {  
   const urlApi = apis[classType] || "";
   const { data, status } = useFetch(urlApi);
 
@@ -36,36 +34,20 @@ export const useDropdown = ({ classType='',defaultValue='' }) => {
   const resPages = array.length % itemsPerPage;
 
   let indexPages = [];
-  if (resPages !== 0) {
-    for (let i = 0; i <= numPages; i++) {
-      indexPages.push(i);
-    }
+  if (resPages !== 0) { 
+    for (let i = 0; i <= numPages; i++) { indexPages.push(i); }
   } else {
-    for (let i = 0; i < numPages; i++) {
-      indexPages.push(i);
-    }
+    for (let i = 0; i < numPages; i++) { indexPages.push(i); }
   }
 
   const [activePages, setActivePages] = useState(
     indexPages.map((_, i) => i === 0)
   );
 
-  const pagination = {
-    itemsPerPage,
-    indexPage,
-    activePages,
-    indexPages,
-    setIndexPage,
-    setActivePages,
-    setItemsPerPage,
-  };
-
   // ✅ Retorno del hook
   return {
-    value,
-    setValue,
     array,
-    pagination,
+    pagination: { itemsPerPage, indexPage, activePages, indexPages, setIndexPage, setActivePages, setItemsPerPage, },
   };
 }
 export default useDropdown;

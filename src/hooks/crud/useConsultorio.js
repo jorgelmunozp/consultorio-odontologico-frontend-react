@@ -16,7 +16,10 @@ export function useConsultorio({ initialValues={ numero:'', nombre:'' } }) {
     { key: 'nombre', value: nombre, type: 'text', handleChange: (value) => setNombre(decode(value)) }
   ];
 
-   // --- Titles ---
+  // --- Object ---
+  const dataObject = { numero:'', nombre:'' }
+
+  // --- Titles ---
   const titles = state.map(param => ({
     title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
     type: param.type
@@ -85,6 +88,7 @@ export function useConsultorio({ initialValues={ numero:'', nombre:'' } }) {
 
   return {
     api: urlApi,
+    dataObject,
     titles,
     placeholders,
     state,

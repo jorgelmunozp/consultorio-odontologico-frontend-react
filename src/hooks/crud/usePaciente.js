@@ -21,7 +21,9 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     { key: "genero", value: genero, type: "dropdown", handleChange: (v) => setGenero(decode(v)) },
     { key: "eps", value: eps, type: "dropdown", handleChange: (v) => setEps(decode(v)) },
   ];
-
+  // --- Object ---
+  const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', eps:'' }
+  
   // --- Titles ---
   const titles = state.map((parameter) => ({
     title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
@@ -101,6 +103,7 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   /** ---------- RETURN ---------- */
   return {
     api: urlApi,
+    dataObject,
     titles,
     placeholders,
     state,

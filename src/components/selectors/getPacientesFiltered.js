@@ -1,3 +1,3 @@
-export const getPacientesFiltered = ( array,code='',identification='',name='',lastname='',gender='',eps='' ) => {
+export const getPacientesFiltered = ( array=[],code='',identification='',name='',lastname='',gender='',eps='' ) => {
     return array.filter( item => item._id.toString().includes(code) && item.paciente.identificacion.toLowerCase().includes(identification.toLowerCase()) && item.paciente.nombre.toLowerCase().includes(name.toLowerCase()) && item.paciente.apellido.toLowerCase().includes(lastname.toLowerCase()) && item.paciente.genero.toLowerCase().includes(gender.toLowerCase()) && item.paciente.eps.toLowerCase().includes(eps.toLowerCase()) );
 }

@@ -26,6 +26,9 @@ export function useCita({ initialValues={ paciente:'', consultorio:'', doctor:''
     { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange: (value) => setTratamiento(decode(value)) }
   ];
 
+  // --- Object ---
+  const dataObject = { paciente:'', fecha:'', hora:'', consultorio:'', doctor:'', tratamiento:'' }
+
   // --- Titles ---
   const titles = state.map(param => ({
     title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
@@ -97,6 +100,7 @@ export function useCita({ initialValues={ paciente:'', consultorio:'', doctor:''
 
   return {
     api: urlApi,
+    dataObject,
     titles,
     placeholders,
     state,

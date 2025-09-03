@@ -2,7 +2,7 @@ export const fetchCreate = async ( urlApi,dataApi ) => {
   try {  
     const response = await fetch(urlApi, {
       method: "POST",
-      body: eval( dataApi ),
+      body: dataApi,
       headers: { "Content-type": "application/json" }
     });
     response.json();

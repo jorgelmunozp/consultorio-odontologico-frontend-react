@@ -1,16 +1,13 @@
 import '../forms.css';
 import { lazy, useState } from 'react';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
-import { jwtDecode as decode } from "jwt-decode";
 
 const PaginationBar = lazy(() => import('../../pagination/PaginationBar.js'));
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-// export const Dropdown = ({ classType, object, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='', theme }) => {
-export const Dropdown = ({ classType, value='', setValue, placeholder='', array=[], defaultSelect='', handleChange, pagination, className='', theme }) => {
+export const Dropdown = ({ classType, value='', placeholder='', array=[], handleChange, pagination, className='', theme }) => {
   const [open, setOpen] = useState(false);
-  // let { value, setValue } = object.getValue({ defaultValue:defaultSelect })
 
   const class1 = ' dropdown-toggle text-start pt-2 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';
   const class2 = ' dropdown-toggle text-center pt-4 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';
@@ -32,7 +29,7 @@ export const Dropdown = ({ classType, value='', setValue, placeholder='', array=
               case 'especialidad': value=option[classType].nombre; break;
               default: value=''; break;
             }
-            return ( <Options key={ classType+'Option'+index } value={value} setValue={setValue} setOpen={setOpen} handleChange={handleChange} theme={theme} /> );
+            return ( <Options key={ classType+'Option'+index } value={value} setOpen={setOpen} handleChange={handleChange} theme={theme} /> );
           })
         }
         <PaginationBar array={array} itemsPerPage={pagination.itemsPerPage} indexPage={pagination.indexPage} activePages={pagination.activePages} indexPages={pagination.indexPages} setIndexPage={pagination.setIndexPage} setActivePages={pagination.setActivePages} />
@@ -41,8 +38,8 @@ export const Dropdown = ({ classType, value='', setValue, placeholder='', array=
   )
 }
 
-const Options = ({ value, setValue, setOpen, handleChange,theme  }) => {
-  return ( <li><button className="dropdown-item bg-transparent" value={ sign(value,jwtSecretKey) } onClick={ (event) => { setValue( decode(event.target.value) ); setOpen(false); handleChange(event.target.value)} } data-theme={theme}>{ value }</button></li> );
+const Options = ({ value, setOpen, handleChange,theme  }) => {
+  return ( <li><button className="dropdown-item bg-transparent" value={ sign(value,jwtSecretKey) } onClick={ (event) => {  handleChange(event.target.value); setOpen(false); } } data-theme={theme}>{ value }</button></li> );
 }
 
 export default Dropdown;

@@ -11,11 +11,11 @@ const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 // --- Componente hijo para memorizar cada dropdown ---
 const DropdownField = ({ property, theme }) => {
-  const { value, setValue, array, pagination } = useDropdown({ classType:property.key, defaultValue:property.value });
+  const { array, pagination } = useDropdown({ classType:property.key });
 
   return (
     <div className='col px-0'>
-      <Dropdown classType={property.key} value={value} setValue={setValue} array={array} defaultSelect={ property.value } handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
+      <Dropdown classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
     </div>
   );
 };

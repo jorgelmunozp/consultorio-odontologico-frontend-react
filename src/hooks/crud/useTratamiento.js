@@ -18,6 +18,9 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
     { key: 'doctor', value: doctor, type: "dropdown", handleChange: (value) => setDoctor(decode(value)), },
   ];
 
+  // --- Object ---
+  const dataObject = { especialidad:'', consultorio:'', doctor:'' }
+
   // --- Titles ---
   const titles = state.map((parameter) => ({
     title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
@@ -94,6 +97,7 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   /** ---------- RETURN ---------- */
   return {
     api: urlApi,
+    dataObject,
     titles,
     placeholders,
     state,

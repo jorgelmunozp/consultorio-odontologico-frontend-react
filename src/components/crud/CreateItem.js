@@ -1,10 +1,8 @@
-import { lazy, useMemo }  from "react";
+import { lazy }  from "react";
 import { Alert } from '../alert/Alert.js';
-import { Dropdown as DropdownClass } from '../../classes/Dropdown.js';
 import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
-import { Classes } from '../../classes/Classes.js';                         // Importing Classes module to access all class definitions
 
 import sign from 'jwt-encode';                                              // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
@@ -14,39 +12,32 @@ const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 // --- Componente hijo para memorizar cada dropdown ---
 const DropdownField = ({ property, theme }) => {
-  const myDropdown = useMemo( () => new DropdownClass({ classType: property.key }), [property.key] );
-  // const { array, pagination } = myDropdown.data;
-  const { value, setValue, array, pagination } = useDropdown({ classType:property.key });
+  const { array, pagination } = useDropdown({ classType:property.key });
 
   return (
     <div className='col px-0'>
-      {/* <Dropdown classType={property.key} object={myDropdown} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} /> */}
-      <Dropdown classType={property.key} value={value} setValue={setValue} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
+      <Dropdown classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
     </div>
   );
 };
 
 export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
-  // --- Clase Item
-  const objectClass = new Classes[classType].Classe('');                    // Objeto instanciado con la Class correspondiente
-  const objectClass2 = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
-console.log("objectClass: ",objectClass)
-console.log("objectClass2: ",objectClass2)
-  // const state = objectClass.state;
-  // const urlApi = objectClass.api;
-  const state = objectClass2.state;
-  const urlApi = objectClass2.api;
+  // --- Object Item
+  const objectHook = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
+
+  const state = objectHook.state;
+  const urlApi = objectHook.api;
+  const dataItem = objectHook.dataObject;
 
   let item = "";
 
   const handleCreate = (item) => {
     if( state.every( property => property.value !== '') ) {                   // Check for emtpy fields to avoid any empty item
-      state.forEach( property => objectClass[property.key] = property.value );// Carga los valores ingresados por el usuario en el objeto
-      
-      item = `JSON.stringify({                           
-        ${Classes[classType].Classe.name.toLowerCase()}: ${JSON.stringify(objectClass)}
-      })`; 
+      state.forEach( property => dataItem[property.key] = property.value );   // Carga los valores ingresados por el usuario en el objeto
+
+      item = JSON.stringify({ [classType]: dataItem }); 
     } 
+
     if( item.length === 0 ) { Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch() }
     else { 
       fetchCreate(urlApi,item).then(
@@ -80,7 +71,7 @@ console.log("objectClass2: ",objectClass2)
                   <div key={'row'+property.key} id={'row'+property.key} className='row'>
                     <>
                       { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
-                                                    : <div className='col px-0'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
+                                                     : <div className='col px-0'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                       }
                     </>
                   </div>

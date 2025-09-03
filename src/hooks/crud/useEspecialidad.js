@@ -14,6 +14,9 @@ export function useEspecialidad(initialValues={ nombre:'' }) {
     { key: 'nombre', value: nombre, type: 'text', handleChange: (value) => setNombre(decode(value)) }
   ];
 
+  // --- Object ---
+  const dataObject = { nombre:'' }
+
   // --- Titles ---
   const titles = state.map(param => ({
     title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
@@ -80,6 +83,7 @@ export function useEspecialidad(initialValues={ nombre:'' }) {
 
   return {
     api: urlApi,
+    dataObject,
     titles,
     placeholders,
     state,
