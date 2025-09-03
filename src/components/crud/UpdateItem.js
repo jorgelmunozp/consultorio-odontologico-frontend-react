@@ -73,7 +73,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
                     return(
                       <div key={'row'+index} className='row'>
                         { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
-                                                       : <div className='col px-0'><Input property={true} defaultValue={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
+                                                       : <div className='col px-0'><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                         }
                       </div>
                     )

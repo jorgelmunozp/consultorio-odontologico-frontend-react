@@ -3,6 +3,7 @@ import { Alert } from '../alert/Alert.js';
 import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
+import { startTransition } from "react";
 
 import sign from 'jwt-encode';                                              // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
@@ -44,7 +45,9 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
         async (responseStatus) => {
             if( 200 <= responseStatus && responseStatus <= 299 ) {
               state.forEach( property => { property.handleChange( sign('',jwtSecretKey) ) } );    // Reinicia todas las variables     
-
+  // startTransition(() => {
+  //   state.forEach(property => property.handleChange( sign('',jwtSecretKey) ));
+  // });
               Alert({ type:'success', title:'Registro exitoso' }).launch();
             } else if( 400 <= responseStatus && responseStatus <= 499 ) {
               Alert({ type:'error', title:'Error en el registro' }).launch();
@@ -71,7 +74,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
                   <div key={'row'+property.key} id={'row'+property.key} className='row'>
                     <>
                       { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
-                                                     : <div className='col px-0'><Input type={property.type} defaultValue={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
+                                                     : <div className='col px-0'><Input type={property.type} value={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                       }
                     </>
                   </div>
