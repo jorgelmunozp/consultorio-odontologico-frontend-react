@@ -38,8 +38,8 @@ export const Dropdown = ({ classType, value='', placeholder='', array=[], handle
   )
 }
 
-const Options = ({ value, setOpen, handleChange,theme  }) => {
-  return ( <li><button className="dropdown-item bg-transparent" value={ sign(value,jwtSecretKey) } onClick={ (event) => {  handleChange(event.target.value); setOpen(false); } } data-theme={theme}>{ value }</button></li> );
+const Options = ({ key, value, setOpen, handleChange,theme  }) => {
+  return ( <li key={key}><button className="dropdown-item bg-transparent" value={ sign(value,jwtSecretKey) } onClick={ (event) => {  handleChange(event.target.value); setOpen(false); } } data-theme={theme}>{ value }</button></li> );
 }
 
 export default Dropdown;
