@@ -40,15 +40,15 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
     if( state.every( property => property.value !== '') ) {                     // Check for emtpy fields to avoid any empty item
       state.forEach((property) => { item[classType][property.key] = property.value });   // Actualiza los nuevos valores en el item
 
-      fetchUpdate(urlApi,JSON.stringify(item),item._id).then(                    // Fetch PUT para actualización de datos
+      const dataItem = JSON.stringify({ [classType]: item[classType] }); 
+
+      fetchUpdate(urlApi,dataItem,item._id).then(                               // Fetch PUT para actualización de datos
         async (responseStatus) => {
             if(200 <= responseStatus && responseStatus <= 299) { 
-            await fetch(urlApi)                                                 // API Restful para actualizar datos en la base de datos
-                .then(response => response.json())
-      
-            handleItems('update',item._id, classType);          // El padre actualiza el estado y React re-renderiza con el elemento actualizado
-            Alert({ type:'success', title:'Actualización exitosa' }).launch()
-          }
+              handleItems('update',item._id, classType);                        // El padre actualiza el estado y React re-renderiza con el elemento actualizado
+              
+              Alert({ type:'success', title:'Actualización exitosa' }).launch()
+            }
           else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
         },
         (error) => { Alert({ type:'error', title:'Error en la actualización' }).launch(); console.log('Error Update: ', error) }

@@ -28,31 +28,29 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
 
   const state = objectHook.state;
   const urlApi = objectHook.api;
-  const dataItem = objectHook.dataObject;
+  const item = objectHook.dataObject;
 
-  let item = "";
+  let dataItem = "";
 
-  const handleCreate = (item) => {
+  const handleCreate = () => {
     if( state.every( property => property.value !== '') ) {                   // Check for emtpy fields to avoid any empty item
-      state.forEach( property => dataItem[property.key] = property.value );   // Carga los valores ingresados por el usuario en el objeto
+      state.forEach( property => item[property.key] = property.value );   // Carga los valores ingresados por el usuario en el objeto
 
-      item = JSON.stringify({ [classType]: dataItem }); 
+      dataItem = JSON.stringify({ [classType]: item }); 
     } 
 
-    if( item.length === 0 ) { Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch() }
+    if( dataItem.length === 0 ) { Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch() }
     else { 
-      fetchCreate(urlApi,item).then(
+      fetchCreate(urlApi,dataItem).then(
         async (responseStatus) => {
             if( 200 <= responseStatus && responseStatus <= 299 ) {
               state.forEach( property => { property.handleChange( sign('',jwtSecretKey) ) } );    // Reinicia todas las variables     
-  // startTransition(() => {
-  //   state.forEach(property => property.handleChange( sign('',jwtSecretKey) ));
-  // });
+
               Alert({ type:'success', title:'Registro exitoso' }).launch();
             } else if( 400 <= responseStatus && responseStatus <= 499 ) {
-              Alert({ type:'error', title:'Error en el registro' }).launch();
+              Alert({ type:'error', title:'Error en el envío de datos' }).launch();
             } else if( 500 <= responseStatus && responseStatus <= 599 ) {
-              Alert({ type:'error', title:'Error en el registro' }).launch();
+              Alert({ type:'error', title:'Error en el servidor remoto' }).launch();
             }
         },
         (error) => { Alert({ type:'error', title:'Error en el registro' }).launch(); console.log("Error en la creación: ",error) }
@@ -83,7 +81,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
           </>
           <div className='row mt-4 mt-sm-5'>
             <div className='col'>
-              <button onClick={ ()=>handleCreate(item) } className={ 'button bg-main-color text-white rounded border-0 py-3 w-50 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
+              <button onClick={ ()=>handleCreate() } className={ 'button bg-main-color text-white rounded border-0 py-3 w-50 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
             </div>
           </div>              
 			  </div>

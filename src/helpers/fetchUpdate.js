@@ -1,7 +1,6 @@
 export const fetchUpdate = async ( urlApi,dataApi,id ) => {
   try {
     const response = await fetch(urlApi + "/" + id, {
-    // const response = await fetch(urlApi, {
       method: "PUT",
       body: dataApi,
       headers: { "Content-type": "application/json" }

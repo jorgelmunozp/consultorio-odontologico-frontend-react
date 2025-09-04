@@ -19,12 +19,11 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
   const handleClose = () => { setOpen(false); }                   // Gestiona el cierre del modal
 
   const handleDelete = () => {
-    fetchDelete(urlApi,item.id).then(
+    fetchDelete(urlApi,item._id).then(
       async (responseStatus) => {
-        if(200 <= responseStatus && responseStatus <= 299) {
-          await fetch(urlApi).then(response => response.json())  // API Restful para eliminar dato de la base de datos
-              
-          handleItems('delete',item.id);          // El padre actualiza el estado y React re-renderiza sin el elemento eliminado
+        if(200 <= responseStatus && responseStatus <= 299) {             
+          handleItems('delete',item._id);                         // El padre actualiza el estado y React re-renderiza sin el elemento eliminado
+          
           Alert({ type:'success', title:'Eliminación exitosa' }).launch()
         }
         else { Alert({ type:'error', title:'Error en la eliminación' }).launch() }
