@@ -20,8 +20,8 @@ export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
   const handleItems = (action, id, classType) => {
     setItems(arrayFiltered => {
       switch (action) {
-        case 'delete': return arrayFiltered.filter(item => item.id !== id);
-        case 'update': return arrayFiltered.map(item => item.id === id ? { ...item, [classType]: { ...item[classType] } } : item);
+        case 'delete': return arrayFiltered.filter(item => item._id !== id);
+        case 'update': return arrayFiltered.map(item => item._id === id ? { ...item, [classType]: { ...item[classType] } } : item);
         default: return arrayFiltered;
       }
     });
