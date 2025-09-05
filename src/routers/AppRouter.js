@@ -15,16 +15,12 @@ export const AppRouter = ({ Logo, theme, handleTheme }) => {
   const [menu, setMenu] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log("isMenuOpen: ",isMenuOpen)
-
   return (
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true, }}>
       <Navbar Logo={Logo} urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} isMenuOpen={isMenuOpen} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} theme={theme} handleTheme={handleTheme} />
 
       <div className="container-fluid mt-5 text-center user-select-none">
         <Routes>
-          {/* <Route path={urlBaseFrontend + "/index"} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} /></PublicRoute> } /> */}
-
           <Route path={urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
           <Route path={"/" + urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
           <Route path={"/*"} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />

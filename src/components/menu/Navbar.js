@@ -36,7 +36,7 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
             <nav id="navbar" className="navbar navbar-expand-sm navbar-light fixed-top shadow-lg user-select-none z-10000" data-theme={theme} >
                 <div className="container-fluid">
                     <NavLink className="navbar-brand main-color d-flex bg-transparent" to={"/" + urlBaseFrontend} onClick={() => setMenu(1)}>
-                        <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-2 ms-sm-4 me-2 mt-logo'/>
+                        <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-0 ms-sm-4 me-0 me-sm-2 mt-logo'/>
                         <span className='main-color'>{ myTitle }</span>
                     </NavLink>
                     {
@@ -46,7 +46,7 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, isMenuOpen, se
                                         onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
                                 </>
                             :   <>
-                                    <div className="row justify-content-end me-1">
+                                    <div className="row justify-content-end me-0 me-sm-1">
                                         <ul className="navbar-nav col">
                                             <NavLink className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
                                                 <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>

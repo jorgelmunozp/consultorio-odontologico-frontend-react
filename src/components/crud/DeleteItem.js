@@ -1,11 +1,11 @@
 import '../modal/modal.css';
-import { lazy } from 'react';
-import { Alert } from '../alert/Alert.js';
+import { lazy, Suspense }  from "react";
+import { useAlert } from "../../hooks/useAlert.js";
 import { fetchDelete } from '../../helpers/fetchDelete.js';
 
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
 
-export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems, theme }) => {
+export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems, alert, theme }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -24,11 +24,11 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
         if(200 <= responseStatus && responseStatus <= 299) {             
           handleItems('delete',item._id);                         // El padre actualiza el estado y React re-renderiza sin el elemento eliminado
           
-          Alert({ type:'success', title:'Eliminación exitosa' }).launch()
+          alert({ type:'success', title:'Eliminación exitosa', buttons:1, theme:theme });
         }
-        else { Alert({ type:'error', title:'Error en la eliminación' }).launch() }
+        else { alert({ type:'error', title:'Error en la eliminación', buttons:1, theme:theme }) }
       },
-      (error) => { Alert({ type:'error', title:'Error en la eliminación' }).launch(); console.log("Error en la eliminación: ",error) }
+      (error) => { alert({ type:'error', title:'Error en la eliminación', buttons:1, theme:theme }); console.log("Error en la eliminación: ",error) }
     )
   };
  
@@ -66,6 +66,7 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
                   <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button>
               </div>
             </div>
+            {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
           </div>
         </div>
         <div className={'darkBackground'} onClick={ handleClose }></div>

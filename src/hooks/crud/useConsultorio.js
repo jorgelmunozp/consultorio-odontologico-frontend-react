@@ -6,7 +6,7 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
-export function useConsultorio({ initialValues={ numero:'', nombre:'' } }) {
+export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   // --- State ---
   const [numero, setNumero] = useState(initialValues.numero || '');
   const [nombre, setNombre] = useState(initialValues.nombre || '');

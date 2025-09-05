@@ -1,6 +1,6 @@
 import '../modal/modal.css';
-import { lazy } from 'react';
-import { Alert } from '../alert/Alert.js';
+import { lazy }  from "react";
+import { useAlert } from "../../hooks/useAlert.js";
 import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchUpdate } from '../../helpers/fetchUpdate.js';
@@ -20,7 +20,7 @@ const DropdownField = ({ property, theme }) => {
   );
 };
 
-export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems, theme }) => { 
+export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems, alert, theme }) => { 
   let initialValues = {};
   switch( classType ) {
     case 'cita': initialValues = { paciente:item[classType].paciente, consultorio:item[classType].consultorio, doctor:item[classType].doctor, tratamiento:item[classType].tratamiento }; break;
@@ -47,11 +47,11 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
             if(200 <= responseStatus && responseStatus <= 299) { 
               handleItems('update',item._id, classType);                        // El padre actualiza el estado y React re-renderiza con el elemento actualizado
               
-              Alert({ type:'success', title:'Actualización exitosa' }).launch()
+              alert({ type:'success', title:'Actualización exitosa', buttons:1, theme:theme });
             }
-          else { Alert({ type:'error', title:'Error en la actualización' }).launch() }
+          else { alert({ type:'error', title:'Error en la actualización', buttons:1, theme:theme }) }
         },
-        (error) => { Alert({ type:'error', title:'Error en la actualización' }).launch(); console.log('Error Update: ', error) }
+        (error) => { alert({ type:'error', title:'Error en la actualización', buttons:1, theme:theme }); console.log('Error Update: ', error) }
       )
     }
   };
@@ -89,6 +89,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
             </div>
           </div>
         </div>
+        {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
         <div className={'darkBackground'} onClick={ handleClose }></div>
       </>
     )

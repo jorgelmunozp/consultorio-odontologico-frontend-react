@@ -8,7 +8,7 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CITAS;
 
-export function useCita({ initialValues={ paciente:'', consultorio:'', doctor:'', tratamiento:'' } }) {
+export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:'', tratamiento:'' } }) => {
   // --- State ---
   const [paciente, setPaciente] = useState(initialValues.paciente || '');
   const [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);

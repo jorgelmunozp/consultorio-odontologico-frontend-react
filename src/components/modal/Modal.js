@@ -1,16 +1,24 @@
 import './modal.css';
-import { useState } from 'react';
-import { useTheme  } from './../../hooks/useTheme.js';
+import { useState, useEffect } from 'react';
 
-export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, content='', buttons=1, fontFamily='' }) => {
-  const [open, setOpen] = useState(openStatus);                   // Input alert status
-  const [ theme, handleTheme ] = useTheme();                      // Get theme from hook
+export const Modal = ({ Icon, iconColor='#000', title='', open=true, setOpen, content='', buttons=1, fontFamily='', theme }) => {
+  // const [open, setOpen] = useState(openStatus);                   // Input alert status
 
-  { open !== false && document.getElementById('body').classList.add('noScroll') }
+  //   // Cada vez que cambie openStatus, sincronizamos el estado interno
+  // useEffect(() => {
+  //   setOpen(openStatus);
+  // }, [openStatus]);
+
+  useEffect(() => {                                               // Add or remove 'noScroll' class from body when modal open state changes
+    const body = document.getElementById('body');
+    if (open) { body && body.classList.add('noScroll'); } 
+    else { body && body.classList.remove('noScroll'); }
+    
+    return () => { body && body.classList.remove('noScroll'); };  // Cleanup in case component unmounts while open
+  }, [open]);
   
   const handleClose = () => {                                     // Close the alert
     setOpen(false);
-    document.getElementById('modal').remove();
     document.getElementById('body').classList.remove('noScroll');
   }
     
@@ -24,7 +32,7 @@ export const Modal = ({ Icon, iconColor='#000', title='', openStatus=true, conte
                         <center><Icon color={iconColor} height={4.5} width={4.5} className={'bounce center mt-4'} /></center>
                         <h3 className={'modalTitle main-color pt-3'}>{ title }</h3>
                       </div>
-                      { content ? <div className={'modalContent'}><center><h3>{ content }</h3></center></div>
+                      { content ? <div className={'modalContent'}><center><h4>{ content }</h4></center></div>
                                 : ''
                       }
                       <div className={'modalFooter justify-items-center'}>

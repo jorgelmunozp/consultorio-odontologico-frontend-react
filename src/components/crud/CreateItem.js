@@ -1,5 +1,6 @@
-import { lazy }  from "react";
-import { Alert } from '../alert/Alert.js';
+import { lazy, Suspense }  from "react";
+import { alert } from '../alert/Alert.js';
+import { useAlert } from "../../hooks/useAlert.js";
 import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
@@ -23,6 +24,8 @@ const DropdownField = ({ property, theme }) => {
 };
 
 export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
+  const { alert } = useAlert();
+
   // --- Object Item
   const objectHook = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
 
@@ -39,32 +42,33 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
       dataItem = JSON.stringify({ [classType]: item }); 
     } 
 
-    if( dataItem.length === 0 ) { Alert({ type:'warning', title:'Debes ingresar todos los datos' }).launch() }
+    if( dataItem.length === 0 ) { alert({ type:'warning', title:'Debes ingresar todos los datos', buttons:1, theme:theme }) }
     else { 
       fetchCreate(urlApi,dataItem).then(
         async (responseStatus) => {
             if( 200 <= responseStatus && responseStatus <= 299 ) {
               state.forEach( property => { property.handleChange( sign('',jwtSecretKey) ) } );    // Reinicia todas las variables     
 
-              Alert({ type:'success', title:'Registro exitoso' }).launch();
+              alert({ type:'success', title:'Registro exitoso', buttons:1, theme:theme });
             } else if( 400 <= responseStatus && responseStatus <= 499 ) {
-              Alert({ type:'error', title:'Error en el envío de datos' }).launch();
+              alert({ type:'error', title:'Error en el envío de datos', buttons:1, theme:theme });
             } else if( 500 <= responseStatus && responseStatus <= 599 ) {
-              Alert({ type:'error', title:'Error en el servidor remoto' }).launch();
+              alert({ type:'error', title:'Error en el servidor remoto', buttons:1, theme:theme });
             }
         },
-        (error) => { Alert({ type:'error', title:'Error en el registro' }).launch(); console.log("Error en la creación: ",error) }
+        (error) => { alert({ type:'error', title:'Error en el registro', buttons:1, theme:theme }); console.log("Error en la creación: ",error) }
       ) 
     }
   }
 
   return (
     <div className="App">
-      <div className='mt-4 mt-sm-5'>
+      <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth ' + (isMenuOpen ? ' w-responsive' : ' w-100' )}>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
         </center>
-        <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}>
+        {/* <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}> */}
+        <div className='container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth'>
           <>
             {
               state.map((property) => {
@@ -83,7 +87,8 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
             <div className='col'>
               <button onClick={ ()=>handleCreate() } className={ 'button bg-main-color text-white rounded border-0 py-3 w-50 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
             </div>
-          </div>              
+          </div> 
+          {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
 			  </div>
       </div>
     </div>

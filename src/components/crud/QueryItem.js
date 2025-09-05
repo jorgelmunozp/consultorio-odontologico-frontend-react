@@ -1,4 +1,5 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
+import { useAlert } from "../../hooks/useAlert.js";
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { plurales } from '../../global.js';
 
@@ -7,6 +8,8 @@ const ItemsList = lazy(() => import('./ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
+  const { alert } = useAlert();
+
   const objectClass = useCrudFactory({ classType:classType });
 
   const urlApi = objectClass.api;
@@ -33,7 +36,7 @@ export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (plurales.includes(classType) ? 'es':'s') }</h5>
         <SearchBar Icon={Icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} theme={theme}/>
         <Suspense fallback={ <div className="loaderSpin"></div> }>
-          <ItemsList classType={classType} Icons={Icons} titles={titles} urlApi={urlApi} array={items} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} handleItems={handleItems} theme={theme}/>
+          <ItemsList classType={classType} Icons={Icons} titles={titles} urlApi={urlApi} array={items} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} handleItems={handleItems} alert={alert} theme={theme}/>
         </Suspense>
         <PaginationBar array={arrayFiltered} itemsPerPage={itemsPerPage} indexPage={indexPage} activePages={activePages} indexPages={indexPages} setIndexPage={setIndexPage} setActivePages={setActivePages} /> 
       </div>

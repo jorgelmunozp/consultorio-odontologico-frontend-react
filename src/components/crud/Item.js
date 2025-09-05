@@ -5,7 +5,7 @@ import { UpdateItem } from './UpdateItem.js';
 import { DeleteItem } from './DeleteItem.js';
 import { formatterHour12 } from '../../helpers/formatterHour12.js';
 
-export const Item = ({ classType, Icons, item={}, urlApi, handleItems, theme }) => {
+export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, theme }) => {
     const [open, setOpen] = useState(false);
 
     const IconRead = Icons[classType].IconRead;
@@ -17,8 +17,8 @@ export const Item = ({ classType, Icons, item={}, urlApi, handleItems, theme }) 
 
     const components = {
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} theme={theme} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} theme={theme} />,
-        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} theme={theme} />
+        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} alert={alert} theme={theme} />,
+        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} alert={alert} theme={theme} />
     };
 
     if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }

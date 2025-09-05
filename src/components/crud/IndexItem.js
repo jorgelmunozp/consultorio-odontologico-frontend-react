@@ -4,12 +4,12 @@ import { myColor } from '../../global.js';
 export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu, theme }) => {
   return (
     <div className="App">
-      <div className='mt-4 mt-sm-5'>
+      <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100' ) }>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
           <Icon color={myColor} height={4} width={4} strokeWidth={1} className='text-muted'/>
         </center>
-        <div className={'container-fluid mt-2 pe-0 pe-md-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100' )}>
+        <div className='container-fluid mt-2 pe-0 pe-md-5 me-0 smooth'>
           <div className="container-fluid px-0 pt-2">
             <div className="row justify-content-center">   
               {

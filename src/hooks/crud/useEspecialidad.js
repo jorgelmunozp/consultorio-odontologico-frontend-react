@@ -6,7 +6,7 @@ import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_ESPECIALIDADES;
 
-export function useEspecialidad(initialValues={ nombre:'' }) {
+export const useEspecialidad = (initialValues={ nombre:'' }) => {
   // --- State ---
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
