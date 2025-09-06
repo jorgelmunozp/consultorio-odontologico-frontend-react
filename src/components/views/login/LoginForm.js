@@ -38,12 +38,12 @@ export const LoginForm = ({ setAlertMessage, setAlertType, theme }) => {
     }
   }
   return (
-    <div id='loginScreen' className='container mt-1 text-center user-select-none' data-theme={theme}>
+    <div id='loginForm' className='container mt-1 text-center user-select-none' data-theme={theme}>
         <div className="d-grid gap-2 col mx-auto pb-3 w-100">
           <Input placeholder={'Usuario'} value={userInput} type={'text'} handleChange={(target) => setUserInput( decode(target) )} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' theme={theme} />
           <InputPassword placeholder={'Contraseña'} value={passwordInput} handleChange={(target) => setPasswordInput( target.target.value )} className='input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm' theme={theme} />
           
-          <button className='btn btn-login century-gothic my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user.logged ? "" : "#loginModalFail"} aria-controls="modalBody" onClick={ handleLogin }>Ingresar</button>
+          <button className='btn btn-login century-gothic my-1 py-3 rounded shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user.logged ? "" : "#loginAlert"} aria-controls="modalBody" onClick={ handleLogin }>Ingresar</button>
           <button type="button" className="btn btn-outline-danger century-gothic py-3 shadow-sm" data-bs-dismiss="modal">Cancelar</button>
         </div>
     </div>

@@ -61,7 +61,6 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, setMenu, setIs
                 </div>
             </nav>
             <Login Logo={Logo} Icon={User} user={user} alertMessage={alertMessage} alertType={alertType} setAlertMessage={setAlertMessage} setAlertType={setAlertType} theme={theme} />
-
         </>
     )
 }

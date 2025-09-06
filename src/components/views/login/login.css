@@ -10,13 +10,15 @@
     --white-color: #fff;
 }
 
-#loginModalContent[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
-#loginModalContent[ data-theme="light" ] { background-color: var(--white-color) !important; }
-#loginScreen[ data-theme="dark" ] { background-color: var(--dark-color) !important; }
-#loginScreen[ data-theme="light" ] { background-color: var(--white-color) !important; }
+#loginModalContent[data-theme="dark"] { background-color: var(--dark-color) !important; }
+#loginModalContent[data-theme="light"] { background-color: var(--white-color) !important; }
+#loginForm[data-theme="dark"] { background-color: var(--dark-color) !important; }
+#loginForm[data-theme="light"] { background-color: var(--white-color) !important; }
+[data-theme="dark"] .modal-dialog { background-color: var(--dark-color) !important; color: var(--white-color) !important; }
+[data-theme="light"] .modal-dialog { background-color: var(--white-color) !important; color: var(--dark-color) !important; }
 
-input[ data-theme="dark" ] { color: var(--dark-color) !important; }
-input[ data-theme="light" ] { color: var(--white-color) !important; }
+input[data-theme="dark"] { color: var(--dark-color) !important; }
+input[data-theme="light"] { color: var(--white-color) !important; }
 /****** LOGIN ******/
 .input-login {
     background-color: var(--white-color);
