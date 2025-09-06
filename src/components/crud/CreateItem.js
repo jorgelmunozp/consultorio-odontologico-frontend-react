@@ -1,4 +1,4 @@
-import { lazy }  from "react";
+import { lazy, useState }  from "react";
 import { useAlert } from "../../hooks/useAlert.js";
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
@@ -11,6 +11,9 @@ const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
   const { alert } = useAlert();
+
+  // 👇 Guarda la key del dropdown abierto
+  const [openDropdownKey, setOpenDropdownKey] = useState(null);
 
   // --- Object Item
   const objectHook = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
@@ -60,7 +63,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
                 return (
                   <div key={'row'+property.key} id={'row'+property.key} className='row'>
                     <>
-                      { property.type === 'dropdown' ? <Dropdown property={property} theme={theme} />
+                      { property.type === 'dropdown' ? <Dropdown property={property} isOpen={openDropdownKey === property.key} onToggle={() => setOpenDropdownKey(prev => prev === property.key ? null:property.key )} theme={theme} />
                                                      : <div className='col px-0'><Input type={property.type} value={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                       }
                     </>

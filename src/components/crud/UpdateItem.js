@@ -1,5 +1,5 @@
 import '../modal/modal.css';
-import { lazy }  from "react";
+import { lazy, useState }  from "react";
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchUpdate } from '../../helpers/fetchUpdate.js';
 import { myColor } from '../../global.js';
@@ -8,6 +8,9 @@ const Input = lazy(() => import('../forms/inputs/Input.js'));
 const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems, alert, theme }) => { 
+  // 👇 Guarda la key del dropdown abierto
+  const [openDropdownKey, setOpenDropdownKey] = useState(null);
+
   let initialValues = {};
   switch( classType ) {
     case 'cita': initialValues = { paciente:item[classType].paciente, consultorio:item[classType].consultorio, doctor:item[classType].doctor, tratamiento:item[classType].tratamiento }; break;
@@ -59,7 +62,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
                 { state.map((property,index)=>{
                     return(
                       <div key={'row'+index} className='row'>
-                        { property.type === 'dropdown' ? <Dropdown property={property} theme={theme} />
+                        { property.type === 'dropdown' ? <Dropdown property={property} isOpen={openDropdownKey === property.key} onToggle={() => setOpenDropdownKey(prev => prev === property.key ? null:property.key )} theme={theme} />
                                                        : <div className='col px-0'><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                         }
                       </div>
