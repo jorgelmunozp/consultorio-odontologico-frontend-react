@@ -1,24 +1,11 @@
 import '../modal/modal.css';
 import { lazy }  from "react";
-import { useAlert } from "../../hooks/useAlert.js";
-import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchUpdate } from '../../helpers/fetchUpdate.js';
 import { myColor } from '../../global.js';
 
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
-
-// --- Componente hijo para memorizar cada dropdown ---
-const DropdownField = ({ property, theme }) => {
-  const { array, pagination } = useDropdown({ classType:property.key });
-
-  return (
-    <div className='col px-0'>
-      <Dropdown classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
-    </div>
-  );
-};
 
 export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems, alert, theme }) => { 
   let initialValues = {};
@@ -72,7 +59,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
                 { state.map((property,index)=>{
                     return(
                       <div key={'row'+index} className='row'>
-                        { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
+                        { property.type === 'dropdown' ? <Dropdown property={property} theme={theme} />
                                                        : <div className='col px-0'><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                         }
                       </div>
@@ -89,7 +76,6 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
             </div>
           </div>
         </div>
-        {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
         <div className={'darkBackground'} onClick={ handleClose }></div>
       </>
     )

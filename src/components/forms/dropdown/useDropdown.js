@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { Alert } from "../components/alert/Alert.js";
-import { useFetch } from "../hooks/useFetch.js";
+import { Alert } from "../../alert/Alert.js";
+import { useFetch } from "../../../hooks/useFetch.js";
 
 const apis = {
   paciente: process.env.REACT_APP_API_PACIENTES,

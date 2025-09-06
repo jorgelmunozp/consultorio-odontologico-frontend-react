@@ -1,27 +1,13 @@
-import { lazy, Suspense }  from "react";
-import { alert } from '../alert/Alert.js';
+import { lazy }  from "react";
 import { useAlert } from "../../hooks/useAlert.js";
-import { useDropdown } from '../../hooks/useDropdown.js';
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
-import { startTransition } from "react";
 
 import sign from 'jwt-encode';                                              // Para firma con jwt
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
-
-// --- Componente hijo para memorizar cada dropdown ---
-const DropdownField = ({ property, theme }) => {
-  const { array, pagination } = useDropdown({ classType:property.key });
-
-  return (
-    <div className='col px-0'>
-      <Dropdown classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} pagination={pagination} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} theme={theme} />
-    </div>
-  );
-};
 
 export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
   const { alert } = useAlert();
@@ -67,7 +53,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
         </center>
-        {/* <div className={'container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth ' + (isMenuOpen ? ' w-responsive':' px-sm-5 w-100' )}> */}
         <div className='container-fluid mt-2 mt-sm-5 pe-0 pe-md-5 px-0 me-0 smooth'>
           <>
             {
@@ -75,7 +60,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
                 return (
                   <div key={'row'+property.key} id={'row'+property.key} className='row'>
                     <>
-                      { property.type === 'dropdown' ? <DropdownField property={property} theme={theme} />
+                      { property.type === 'dropdown' ? <Dropdown property={property} theme={theme} />
                                                      : <div className='col px-0'><Input type={property.type} value={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                       }
                     </>
@@ -88,7 +73,6 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
               <button onClick={ ()=>handleCreate() } className={ 'button bg-main-color text-white rounded border-0 py-3 w-50 shadow-sm' }> { 'Registrar' } { <Icon /> } </button>
             </div>
           </div> 
-          {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
 			  </div>
       </div>
     </div>

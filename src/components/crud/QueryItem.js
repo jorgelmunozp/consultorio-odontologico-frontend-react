@@ -4,18 +4,18 @@ import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { plurales } from '../../global.js';
 
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
-const ItemsList = lazy(() => import('./ItemsList.js'));
+const ItemsList = lazy(() => import('./items/ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, Icons, isMenuOpen, theme }) => {
   const { alert } = useAlert();
 
-  const objectClass = useCrudFactory({ classType:classType });
+  const objectHook = useCrudFactory({ classType:classType });
 
-  const urlApi = objectClass.api;
-  const titles = objectClass.titles;
-  const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectClass.data;
-  const { SortByProperty, setSortBy } = objectClass.sort;
+  const urlApi = objectHook.api;
+  const titles = objectHook.titles;
+  const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectHook.data;
+  const { SortByProperty, setSortBy } = objectHook.sort;
 
   const [items, setItems] = useState(arrayFiltered);
   useEffect(() => setItems(arrayFiltered || []), [arrayFiltered]);     // Si initialArray cambia desde fuera, se sincroniza

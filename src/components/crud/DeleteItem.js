@@ -1,6 +1,5 @@
 import '../modal/modal.css';
-import { lazy, Suspense }  from "react";
-import { useAlert } from "../../hooks/useAlert.js";
+import { lazy }  from "react";
 import { fetchDelete } from '../../helpers/fetchDelete.js';
 
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
@@ -66,7 +65,6 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
                   <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button>
               </div>
             </div>
-            {/* <Suspense fallback={null}>{ AlertModal }</Suspense> */}
           </div>
         </div>
         <div className={'darkBackground'} onClick={ handleClose }></div>

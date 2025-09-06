@@ -21,9 +21,7 @@
 //       };
 
 //       if (!document.getElementById("modal")) {
-//         document
-//           .getElementById("root")
-//           .insertAdjacentHTML("afterend", `<div id="modal"></div>`);
+//         document.getElementById("root").insertAdjacentHTML("afterend", `<div id="modal"></div>`);
 //       }
 
 //       setAlertConfig({ title, content, buttons, theme, Icon: icons[type].Icon, iconColor: icons[type].iconColor, });
@@ -60,15 +58,11 @@ export const useAlert = () => {
 
     let modalContainer = document.getElementById("modal");
     if (!modalContainer) {
-      document
-        .getElementById("root")
-        .insertAdjacentHTML("afterend", `<div id="modal"></div>`);
+      document.getElementById("root").insertAdjacentHTML("afterend", `<div id="modal"></div>`);
       modalContainer = document.getElementById("modal");
     }
 
-    if (!rootRef.current) {
-      rootRef.current = createRoot(modalContainer);
-    }
+    if (!rootRef.current) { rootRef.current = createRoot(modalContainer) }
 
     rootRef.current.render(
       <Suspense fallback={null}>
@@ -77,18 +71,16 @@ export const useAlert = () => {
     );
   }, [openAlert, alertConfig]); // 👈 ahora se re-renderiza siempre que cambie algo
 
-  const alert = useCallback(
-    ({ type = "default", title = "", content = "", buttons = "", theme }) => {
-      const icons = {
-        default: { Icon: Logo, iconColor: "#5285c5" },
-        success: { Icon: Success, iconColor: "#0f0" },
-        warning: { Icon: Warning, iconColor: "#f8bb86" },
-        error: { Icon: ErrorIcon, iconColor: "#f00" },
-      };
+  const icons = {
+    default: { Icon: Logo, iconColor: "#5285c5" },
+    success: { Icon: Success, iconColor: "#0f0" },
+    warning: { Icon: Warning, iconColor: "#f8bb86" },
+    error: { Icon: ErrorIcon, iconColor: "#f00" },
+  };
 
+  const alert = useCallback(({ type = "default", title = "", content = "", buttons = "", theme }) => {
       setAlertConfig({ Icon: icons[type].Icon, iconColor: icons[type].iconColor, title, content, buttons, theme, });
-
-      setOpenAlert(true); // 🔑 abrir modal aquí
+      setOpenAlert(true);         // Se abre modal aquí
     }, []);
 
   const closeAlert = useCallback(() => setOpenAlert(false), []);

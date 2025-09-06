@@ -1,14 +1,7 @@
 import './modal.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const Modal = ({ Icon, iconColor='#000', title='', open=true, setOpen, content='', buttons=1, fontFamily='', theme }) => {
-  // const [open, setOpen] = useState(openStatus);                   // Input alert status
-
-  //   // Cada vez que cambie openStatus, sincronizamos el estado interno
-  // useEffect(() => {
-  //   setOpen(openStatus);
-  // }, [openStatus]);
-
   useEffect(() => {                                               // Add or remove 'noScroll' class from body when modal open state changes
     const body = document.getElementById('body');
     if (open) { body && body.classList.add('noScroll'); } 

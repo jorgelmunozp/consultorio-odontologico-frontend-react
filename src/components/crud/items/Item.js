@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ReadItem } from './ReadItem.js';
-import { UpdateItem } from './UpdateItem.js';
-import { DeleteItem } from './DeleteItem.js';
-import { formatterHour12 } from '../../helpers/formatterHour12.js';
+import { ReadItem } from '../ReadItem.js';
+import { UpdateItem } from '../UpdateItem.js';
+import { DeleteItem } from '../DeleteItem.js';
+import { formatterHour12 } from '../../../helpers/formatterHour12.js';
 
 export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, theme }) => {
     const [open, setOpen] = useState(false);

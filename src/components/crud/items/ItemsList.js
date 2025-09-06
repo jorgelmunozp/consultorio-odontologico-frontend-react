@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-const Arrows = lazy(() => import('../forms/arrows/Arrows.js'));
+const Arrows = lazy(() => import('../../forms/arrows/Arrows.js'));
 const Item = lazy(() => import('./Item.js'));
 
 export const ItemsList = ({classType, Icons, titles=[], urlApi, array, SortByProperty, setSortBy, indexPage, handleItems, alert, theme }) => {
