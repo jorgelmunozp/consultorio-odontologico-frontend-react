@@ -45,13 +45,13 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
                   <div className='col-6'>Parámetro</div>
                   <div className='col-6'>Datos</div>
                 </div>
-                <div className='row flex-nowrap'>
+                <div className='row bg-row flex-nowrap'>
                   <div className='col-6 modalTableData text-start'>Código</div>
                   <div className='col-6 modalTableData text-start'>{ item._id }</div>
                 </div>
                 {
                   valuesData.map((data,index)=>{ return(
-                      <div key={ keys[index].toLowerCase() } className='row flex-nowrap'>
+                      <div key={ keys[index].toLowerCase() } className='row bg-row flex-nowrap'>
                         <div className='col-6 modalTableData text-start'>{ keys[index].charAt(0).toUpperCase() + keys[index].slice(1) }</div>
                         <div className='col-6 modalTableData text-start'>{ data }</div>
                       </div>

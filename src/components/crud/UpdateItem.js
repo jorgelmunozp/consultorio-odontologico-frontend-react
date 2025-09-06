@@ -56,12 +56,12 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
             </div>
             <div className={'modalContent'}>
               <div className='container-fluid modalTable mt-2'>
-                <div className='row'>
-                  <Input placeholder={'Código'} defaultValue={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} theme={theme} />
+                <div className='row bg-row flex-nowrap'>
+                  <Input placeholder={'Código'} value={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} theme={theme} />
                 </div>
                 { state.map((property,index)=>{
                     return(
-                      <div key={'row'+index} className='row'>
+                      <div key={'row'+index} className='row bg-row flex-nowrap'>
                         { property.type === 'dropdown' ? <Dropdown property={property} isOpen={openDropdownKey === property.key} onToggle={() => setOpenDropdownKey(prev => prev === property.key ? null:property.key )} theme={theme} />
                                                        : <div className='col px-0'><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} theme={theme} /></div>
                         }

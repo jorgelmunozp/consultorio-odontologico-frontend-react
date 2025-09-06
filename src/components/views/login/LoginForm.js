@@ -11,7 +11,7 @@ const superuser = process.env.REACT_APP_SUPERUSER;
 const password = process.env.REACT_APP_SUPERPASSWORD;
 const username = process.env.REACT_APP_USERNAME;
 
-export const LoginScreen = ({ setAlertMessage, setAlertType, theme }) => {
+export const LoginForm = ({ setAlertMessage, setAlertType, theme }) => {
   const [ userInput,setUserInput ] = useState("");
   const [ passwordInput,setPasswordInput ] = useState("");
 
@@ -49,4 +49,4 @@ export const LoginScreen = ({ setAlertMessage, setAlertType, theme }) => {
     </div>
   )
 };
-export default LoginScreen;
+export default LoginForm;

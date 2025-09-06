@@ -17,7 +17,7 @@ export const AppRouter = ({ Logo, theme, handleTheme }) => {
 
   return (
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true, }}>
-      <Navbar Logo={Logo} urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} isMenuOpen={isMenuOpen} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} theme={theme} handleTheme={handleTheme} />
+      <Navbar Logo={Logo} urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} theme={theme} handleTheme={handleTheme} />
 
       <div className="container-fluid mt-5 text-center user-select-none">
         <Routes>
