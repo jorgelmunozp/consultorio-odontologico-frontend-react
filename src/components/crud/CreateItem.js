@@ -52,7 +52,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen, theme }) => {
 
   return (
     <div className="App">
-      <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth ' + (isMenuOpen ? ' w-responsive' : ' w-100' )}>
+      <div className={'container-fluid mt-4 mt-sm-5 me-0 ps-4 ps-sm-5 pe-3 pe-sm-2 smooth ' + (isMenuOpen ? ' w-responsive' : ' w-100' )}>
         <center>
           <h5 className='century-gothic main-color fs-sm-2'>Registrar { classType.charAt(0).toUpperCase() + classType.slice(1) }</h5>
         </center>

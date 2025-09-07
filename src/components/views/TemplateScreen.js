@@ -41,7 +41,7 @@ export const TemplateScreen = ({ Logo, isMenuOpen, menu, setMenu, theme }) => {
   }
 
   return (
-    <div className="App user-select-none">
+    <div id="template" className="App user-select-none" data-theme={theme}>
       <aside className='float-start pt-5'>                {/** Menu lateral **/}
         <MenuSide Icons={Icons} menu={menu} setMenu={setMenu} theme={theme} />
       </aside>

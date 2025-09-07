@@ -1,5 +1,5 @@
-#modalBox[ data-theme="dark" ] { background-color: var(--dark-color) !important; color: var(--white-color) !important; }
-#modalBox[ data-theme="light" ] { background-color: var(--white-color) !important; color: var(--dark-color) !important; }
+#modalBox[data-theme="dark"] { background-color: var(--dark-color) !important; color: var(--white-color) !important; }
+#modalBox[data-theme="light"] { background-color: var(--white-color) !important; color: var(--dark-color) !important; }
 
 .darkBackground {
   position: absolute;

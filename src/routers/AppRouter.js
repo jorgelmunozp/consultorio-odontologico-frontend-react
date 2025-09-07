@@ -19,7 +19,7 @@ export const AppRouter = ({ Logo, theme, handleTheme }) => {
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true, }}>
       <Navbar Logo={Logo} urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} theme={theme} handleTheme={handleTheme} />
 
-      <div className="container-fluid mt-5 text-center user-select-none">
+      <div className="container-fluid mt-5 px-0 text-center user-select-none">
         <Routes>
           <Route path={urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
           <Route path={"/" + urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />

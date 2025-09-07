@@ -36,7 +36,7 @@ export const LoginAlert = ({ Logo, user, alertMessage, alertType, theme }) => {
                                     <button type="button" className="btn btn-login mb-3 p-3 w-100 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
                                 </>
                             :   <div className='container pb-3'>
-                                    <button className='btn btn-login my-1 p-3 w-100 shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">Reintentar</button>
+                                    <button className='btn btn-login my-1 p-3 w-100 shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#login" aria-controls="modalBody">Reintentar</button>
                                     <button type="button" className="btn btn-outline-danger p-3 w-100 shadow-sm" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
                         }

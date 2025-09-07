@@ -27,11 +27,11 @@ export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, th
         <>
             {/* <div className='col-3 col-sm-2 text-nowrap'>{ item._id }</div> */}
             { Object.entries(item?.[classType] || {}).map(([key, value], index) => (
-                <div key={'item'+index} className={'text-start text-nowrap ms-2 ms-sm-2 pe-0' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') }>
+                <span key={'item'+index} className={'text-start text-nowrap ms-2 ms-sm-2 pe-0' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') } data-theme={theme}>
                 {/* <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ( key==='hora') ? ' col-3 col-sm-1' : ' col-4 col-sm-2') }> */}
                     {/* { value } */}
                     { key==='hora'? formatterHour12(value) : value }
-                </div>
+                </span>
             ))}
 
             {/* Crud buttons */}

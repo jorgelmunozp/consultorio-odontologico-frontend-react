@@ -21,7 +21,8 @@ export const IndexScreen = ({ Logo, Icons, isMenuOpen, theme }) => {
     <div className="App">
         <div className={"container-fluid px-0 pt-2 me-0 smooth" + (isMenuOpen ? ' w-responsive':' w-100')}>
           <div id='headerIndex' style={{ backgroundImage: `url(${background})`, backgroundPosition: 'center', backgroundRepeat: 'repeat'}} className='pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
-            <Logo color={myColor} fillColor={(theme==='light')?'#fff':'#212529'} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} />
+            {/* <Logo color={myColor} fillColor={(theme==='light')?'#fff':'#212529'} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} /> */}
+            <Logo color={myColor} height={7} width={7} strokeWidth={0.9} className={'jumpHover themed-logo'} />
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
           </div>
           <div id="collapseMenu" className="row bg-transparent collapse shadow">   

@@ -35,13 +35,12 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, setMenu, setIs
                     {
                         ( user.logged )
                             ?   <>
-                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link' }
-                                        onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
+                                    <NavLink className={ ({ isActive }) => 'nav-item nav-link' } onClick={ handleLogout } to={ urlBaseFrontend }>{ user.logged ? 'Salir' : '' }</NavLink>
                                 </>
                             :   <>
                                     <div className="row justify-content-end me-0 me-sm-1">
                                         <ul className="navbar-nav col">
-                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="modalBody">
+                                            <NavLink className={ ({ isActive }) => 'nav-item nav-link' } data-bs-toggle="modal" data-bs-target="#login" aria-controls="modalBody">
                                                 <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5}/>
                                             </NavLink>
                                         </ul>
