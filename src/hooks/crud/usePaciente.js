@@ -17,19 +17,19 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   const [eps, setEps] = useState(initialValues.eps || '');
 
   const state = [
-    { key: "nombre", value: nombre, type: "text", handleChange: (v) => setNombre(decode(v)) },
-    { key: "apellido", value: apellido, type: "text", handleChange: (v) => setApellido(decode(v)) },
-    { key: "identificacion", value: identificacion, type: "number", handleChange: (v) => setIdentificacion(decode(v)) },
-    { key: "genero", value: genero, type: "dropdown", handleChange: (v) => setGenero(decode(v)) },
-    { key: "eps", value: eps, type: "dropdown", handleChange: (v) => setEps(decode(v)) },
+    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)) },
+    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)) },
+    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) },
+    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)) },
+    { key:"eps", value:eps, type:"dropdown", handleChange:(v) => setEps(decode(v)) },
   ];
   // --- Object ---
   const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', eps:'' }
   
   // --- Titles ---
   const titles = state.map((parameter) => ({
-    title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
-    type: parameter.type,
+    title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+    type:parameter.type,
   }));
   const placeholders = titles.map((item) => item.title);
 
@@ -39,7 +39,7 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     if (arrayFetch.status >= 400) {
       alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
-  }, [arrayFetch]);
+  }, [arrayFetch,alert]);
 
   const array = useMemo(() => {
     return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [];
@@ -104,13 +104,13 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
 
   /** ---------- RETURN ---------- */
   return {
-    api: urlApi,
+    api:urlApi,
     dataObject,
     titles,
     placeholders,
     state,
-    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort: { SortByProperty, setSortBy },
+    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort:{ SortByProperty, setSortBy },
   };
 };
 export default usePaciente;

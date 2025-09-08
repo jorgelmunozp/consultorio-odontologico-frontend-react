@@ -14,8 +14,8 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
   const state = [
-    { key: 'numero', value: numero, type: 'number', handleChange: (value) => setNumero(decode(value)) },
-    { key: 'nombre', value: nombre, type: 'text', handleChange: (value) => setNombre(decode(value)) }
+    { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(decode(value)) },
+    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)) }
   ];
 
   // --- Object ---
@@ -23,8 +23,8 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
 
   // --- Titles ---
   const titles = state.map(param => ({
-    title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
-    type: param.type
+    title:param.key.charAt(0).toUpperCase() + param.key.slice(1),
+    type:param.type
   }));
   const placeholders = titles.map(item => item.title);
 
@@ -34,7 +34,7 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     if (arrayFetch.status >= 400) {
       alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
-  }, [arrayFetch]);
+  }, [arrayFetch,alert]);
 
   const array = useMemo(() => {
     return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
@@ -89,13 +89,13 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   }
 
   return {
-    api: urlApi,
+    api:urlApi,
     dataObject,
     titles,
     placeholders,
     state,
-    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort: { SortByProperty, setSortBy }
+    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort:{ SortByProperty, setSortBy }
   };
 }
 export default useConsultorio;

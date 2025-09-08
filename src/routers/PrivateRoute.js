@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../auth/authContext.js';
 
@@ -12,4 +12,4 @@ export const PrivateRoute = ({ children }) => {
 
   return user.logged ? children : <Navigate to={"/" + urlBaseFrontend} /> 
 }
-export default PrivateRoute;
+export default memo(PrivateRoute);

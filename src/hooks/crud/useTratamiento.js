@@ -15,9 +15,9 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const [doctor, setDoctor] = useState(initialValues.doctor || '');
 
   const state = [
-    { key: 'especialidad', value: especialidad, type: "dropdown", handleChange: (value) => setEspecialidad(decode(value)), },
-    { key: 'consultorio', value: consultorio, type: "dropdown", handleChange: (value) => setConsultorio(decode(value)), },
-    { key: 'doctor', value: doctor, type: "dropdown", handleChange: (value) => setDoctor(decode(value)), },
+    { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), },
   ];
 
   // --- Object ---
@@ -25,8 +25,8 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
 
   // --- Titles ---
   const titles = state.map((parameter) => ({
-    title: parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
-    type: parameter.type,
+    title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+    type:parameter.type,
   }));
   const placeholders = titles.map((item) => item.title);
 
@@ -36,7 +36,7 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
     if (arrayFetch.status >= 400) {
       alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
-  }, [arrayFetch]);
+  }, [arrayFetch,alert]);
 
   const array = useMemo(() => {
     return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [];
@@ -98,13 +98,13 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
 
   /** ---------- RETURN ---------- */
   return {
-    api: urlApi,
+    api:urlApi,
     dataObject,
     titles,
     placeholders,
     state,
-    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort: { SortByProperty, setSortBy },
+    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort:{ SortByProperty, setSortBy },
   };
 };
 export default useTratamiento;

@@ -8,4 +8,4 @@ export const PublicRoute = ({ children }) => {
 
     return user.logged ? <DashboardRoutes /> : children
 }
-export default PublicRoute;
+export default memo(PublicRoute);

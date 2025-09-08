@@ -20,12 +20,12 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const [tratamiento, setTratamiento] = useState(initialValues.tratamiento || '');
 
   const state = [
-    { key:'paciente', value:paciente, type:"dropdown", handleChange: (value) => setPaciente(decode(value)) },
-    { key:'fecha', value:fecha, type:"date", handleChange: (value) => setFecha(decode(value)) },
-    { key:'hora', value:hora, type:"time", handleChange: (value) => setHora(decode(value)) },
-    { key:'consultorio', value:consultorio, type:"dropdown", handleChange: (value) => setConsultorio(decode(value)) },
-    { key:'doctor', value:doctor, type:"dropdown", handleChange: (value) => setDoctor(decode(value)) },
-    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange: (value) => setTratamiento(decode(value)) }
+    { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(decode(value)) },
+    { key:'fecha', value:fecha, type:"date", handleChange:(value) => setFecha(decode(value)) },
+    { key:'hora', value:hora, type:"time", handleChange:(value) => setHora(decode(value)) },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)) },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)) },
+    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange:(value) => setTratamiento(decode(value)) }
   ];
 
   // --- Object ---
@@ -33,8 +33,8 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
 
   // --- Titles ---
   const titles = state.map(param => ({
-    title: param.key.charAt(0).toUpperCase() + param.key.slice(1),
-    type: param.type
+    title:param.key.charAt(0).toUpperCase() + param.key.slice(1),
+    type:param.type
   }));
   const placeholders = titles.map(item => item.title);
 
@@ -44,7 +44,7 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
     if (arrayFetch.status >= 400) {
       alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
-  }, [arrayFetch]);
+  }, [arrayFetch,alert]);
 
   const array = useMemo(() => {
     return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
@@ -101,13 +101,13 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   }
 
   return {
-    api: urlApi,
+    api:urlApi,
     dataObject,
     titles,
     placeholders,
     state,
-    data: { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort: { SortByProperty, setSortBy }
+    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    sort:{ SortByProperty, setSortBy }
   };
 }
 
