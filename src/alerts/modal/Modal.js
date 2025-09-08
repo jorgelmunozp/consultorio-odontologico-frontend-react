@@ -24,7 +24,7 @@ export const Modal = memo( ({ Icon, iconColor='#000', title='', open=true, setOp
   // 👇 Memoriza el contenido para evitar re-render innecesario
   const modalContent = useMemo(() => (
       <div className={fontFamily + " modalContainer justify-items-center justify-content-center"}>
-        <div id="modalBox" className="modalBox" data-theme={theme}>
+        <div className="modalBox" data-theme={theme}>
           <div className="modalHeader">
             <center>
               <Icon color={iconColor} height={4.5} width={4.5} className="bounce center mt-4" />

@@ -20,7 +20,7 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   return (
       <>
         <div className={'modalContainer justify-items-center'}>
-          <div id={'modalBox'} className={'modalBox'} data-theme={theme}>
+          <div className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
               <h6 className={'modalTitle main-color pt-2'}>{ classType.charAt(0).toUpperCase() + classType.slice(1) }</h6>
