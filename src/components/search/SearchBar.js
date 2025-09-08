@@ -15,8 +15,8 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
             <button data-bs-toggle="collapse" href="#collapseContent" className="form-control border border-muted text-center text-decoration-none py-0 py-sm-1 w-75 justify-items-center box-shadow bg-transparent" aria-expanded="false" aria-controls="collapseContent">
                 <Icon height={iconHeight} width={iconWidth} strokeWidth={iconStrokeWidth} className={'main-color jumpHover'}/>
             </button>
-            <div id="collapseContent" className="collapse pb-2 slideIn smooth" data-theme={theme} >
-                <div className="card card-body shadow-sm">
+            <div id="collapseContent" className="collapse pb-2 slideIn smooth w-100" data-theme={theme} >
+                <div className="card card-body bg-transparent shadow-sm">
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
                             <Input placeholder={'Código'} key={'number0'} value={queries[0]} type={'number'} handleChange={(target) => setQueries[0]( decode(target) ) } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />

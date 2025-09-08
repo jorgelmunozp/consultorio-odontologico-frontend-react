@@ -31,7 +31,7 @@ export const QueryItem = ({ classType, Icons, isMenuOpen }) => {
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')}>
         <h5 className='main-color fs-sm-2 mb-4'>{ classType.charAt(0).toUpperCase() + classType.slice(1) + (plurales.includes(classType) ? 'es':'s') }</h5>
-        <SearchBar Icon={Icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} isMenuOpen={isMenuOpen} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
+        <SearchBar Icon={Icons[classType].IconSearch} items={titles} queries={queries} setQueries={setQueries} className={'float-end pb-3 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100')} />
         <Suspense fallback={ <div className="loaderSpin"></div> }>
           <ItemsList classType={classType} Icons={Icons} titles={titles} urlApi={urlApi} array={items} SortByProperty={SortByProperty} setSortBy={setSortBy} indexPage={indexPage} handleItems={handleItems} />
         </Suspense>

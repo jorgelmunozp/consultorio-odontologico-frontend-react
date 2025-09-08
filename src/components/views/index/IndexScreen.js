@@ -48,12 +48,12 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
           </div>
 
           <SwipeableViews index={view} onChangeIndex={(indexLatest) => setView(indexLatest)} enableMouseEvents>
-            <QueryItems classType={'cita'} Icons={Icons} theme={theme} />
-            <QueryItems classType={'paciente'} Icons={Icons} theme={theme} />
-            <QueryItems classType={'doctor'} Icons={Icons} theme={theme} />
-            <QueryItems classType={'especialidad'} Icons={Icons} theme={theme} />
-            <QueryItems classType={'consultorio'} Icons={Icons} theme={theme} />
-            <QueryItems classType={'tratamiento'} Icons={Icons} theme={theme} />
+            <QueryItems classType={'cita'} Icons={Icons} />
+            <QueryItems classType={'paciente'} Icons={Icons} />
+            <QueryItems classType={'doctor'} Icons={Icons} />
+            <QueryItems classType={'especialidad'} Icons={Icons} />
+            <QueryItems classType={'consultorio'} Icons={Icons} />
+            <QueryItems classType={'tratamiento'} Icons={Icons} />
           </SwipeableViews>
         </div>
     </div>
