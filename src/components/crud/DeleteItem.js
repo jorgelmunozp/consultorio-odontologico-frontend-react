@@ -1,10 +1,15 @@
-import '../modal/modal.css';
+import '../../alerts/modal/modal.css';
 import { lazy }  from "react";
+import { useThemeContext } from "../../theme/ThemeContext.js";
+import { useAlertContext } from '../../alerts/AlertContext.js';
 import { fetchDelete } from '../../helpers/fetchDelete.js';
 
 const Warning = lazy(() => import('../icons/alert/Warning.js'));
 
-export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems, alert, theme }) => {
+export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, handleItems }) => {
+  const { theme } = useThemeContext();                            // 👈 Call the global theme
+  const { alert } = useAlertContext();
+
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -71,3 +76,4 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
       </>
     )
 };
+export default DeleteItem;

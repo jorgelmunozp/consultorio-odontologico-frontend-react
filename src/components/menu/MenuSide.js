@@ -1,10 +1,13 @@
+import { useThemeContext } from "../../theme/ThemeContext.js";
 import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
 
-export const MenuSide = ({ Icons, menu, setMenu, theme }) => {
-  let iconColorHover = theme === 'dark' ? 'white-color-hover' : 'dark-color-hover';
+export const MenuSide = ({ Icons, menu, setMenu }) => {
+    const { theme } = useThemeContext();          // 👈 Call the global theme
+
+  const iconColorHover = theme === 'dark' ? 'white-color-hover' : 'dark-color-hover';
 
   return(
-      <nav className="navbar">
+      <nav className="navbar" data-theme={theme} >
         <div className="offcanvas offcanvas-start bg-transparent" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasBody" aria-labelledby="offcanvasBodyLabel">
           <div className="offcanvas-header justify-content-center align-self-center align-items-center mx-auto w-100 shadow-sm">
             <h5 className="offcanvas-title nav-item">

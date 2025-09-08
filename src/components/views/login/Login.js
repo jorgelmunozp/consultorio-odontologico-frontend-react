@@ -1,9 +1,15 @@
-import { lazy } from 'react'
+import { lazy, memo, useState } from 'react';
+import { useThemeContext } from "../../../theme/ThemeContext.js";
 
-const LoginForm = lazy(() => import('./LoginForm.js'));
-const LoginAlert = lazy(() => import('./LoginAlert.js'));
+const Logo = memo( lazy(() => import('../../icons/logo/Logo.js')) );
+const LoginForm = memo( lazy(() => import('./LoginForm.js')) );
+const LoginAlert = memo( lazy(() => import('./LoginAlert.js')) );
 
-export const Login = ({ Logo, Icon, user, alertMessage, alertType, setAlertMessage, setAlertType, theme }) => {
+export const Login = ({ Icon, user }) => {
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertType, setAlertType] = useState("");
+
+    const { theme } = useThemeContext();        // 👈 Call the global theme
 
     return (
     <>
@@ -15,13 +21,13 @@ export const Login = ({ Logo, Icon, user, alertMessage, alertType, setAlertMessa
                         <h1 className="main-color fs-5 pb-4" id="loginModalLabel">Ingresar</h1>
                     </div>
                     <div className="modal-body mx-auto w-100 pt-1">
-                        <LoginForm setAlertMessage={setAlertMessage} setAlertType={setAlertType} theme={theme} />
+                        <LoginForm setAlertMessage={setAlertMessage} setAlertType={setAlertType} />
                     </div>
                 </div>
             </div>
         </div>
-        <LoginAlert Logo={Logo} user={user} alertMessage={alertMessage} alertType={alertType} theme />
+        <LoginAlert Logo={Logo} user={user} alertMessage={alertMessage} alertType={alertType} />
     </>
   )
 }
-export default Login;
+export default memo(Login);

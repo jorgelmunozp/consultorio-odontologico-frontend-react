@@ -1,38 +1,33 @@
-import { lazy, useState } from 'react';
+import { lazy, memo, useState } from 'react';
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { PublicRoute } from "./PublicRoute.js";
-import { Navbar } from "../components/menu/Navbar.js";
-import { TemplateScreen } from '../components/views/TemplateScreen.js';
-import { myColor, myTitle } from "../global.js";
 
-const HomeScreen = lazy(() => import('../components/views/home/HomeScreen.js'));
-const PrivateRoute = lazy(() => import('./PrivateRoute.js'));
-const DashboardRoutes = lazy(() => import('./DashboardRoutes.js'));
+const Navbar = memo( lazy(() => import('../components/menu/Navbar.js')) );
+const TemplateScreen = memo( lazy(() => import('../components/views/TemplateScreen.js')) );
+const PublicRoute = memo( lazy(() => import('./PublicRoute.js')) );
+const DashboardRoutes = memo( lazy(() => import('./DashboardRoutes.js')) );
+const PrivateRoute = memo( lazy(() => import('./PrivateRoute.js')) );
+const HomeScreen = memo( lazy(() => import('../components/views/home/HomeScreen.js')) );
 
-export const AppRouter = ({ Logo, theme, handleTheme }) => {
-  const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
+const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
-  const [menu, setMenu] = useState(1);
+export const AppRouter = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  if( process.env.NODE_ENV === 'development' ) { console.log('[App Router]') }
 
   return (
     <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true, }}>
-      <Navbar Logo={Logo} urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} setMenu={setMenu} setIsMenuOpen={setIsMenuOpen} theme={theme} handleTheme={handleTheme} />
+      <Navbar setIsMenuOpen={setIsMenuOpen} />
 
       <div className="container-fluid mt-5 px-0 text-center user-select-none">
         <Routes>
-          <Route path={urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
-          <Route path={"/" + urlBaseFrontend} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
-          <Route path={"/*"} element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><TemplateScreen Logo={Logo} isMenuOpen={isMenuOpen} menu={menu} setMenu={setMenu} theme={theme} /></PublicRoute> } />
-          
-          {/* <Route path='*' element={ <PublicRoute urlBaseFrontend={urlBaseFrontend}><NotFound urlBaseFrontend={urlBaseFrontend} myColor={myColor} myTitle={myTitle} /></PublicRoute> }/> */}
-
-          <Route path={urlBaseFrontend + "/home"} element={ <PrivateRoute urlBaseFrontend={urlBaseFrontend}><HomeScreen /></PrivateRoute> } />
-          <Route path={urlBaseFrontend} element={ <PrivateRoute urlBaseFrontend={urlBaseFrontend}><HomeScreen /></PrivateRoute> } />
-          <Route path="/*" element={ <PrivateRoute urlBaseFrontend={urlBaseFrontend}><DashboardRoutes urlBaseFrontend={urlBaseFrontend} /></PrivateRoute> } />
+          <Route path={urlBaseFrontend || "/" + urlBaseFrontend || "/*"} element={ <PublicRoute><TemplateScreen isMenuOpen={isMenuOpen} /></PublicRoute> } />
+          <Route path={urlBaseFrontend || urlBaseFrontend + "/home"} element={ <PrivateRoute><HomeScreen /></PrivateRoute> } />
+          <Route path="/*" element={ <PrivateRoute><DashboardRoutes /></PrivateRoute> } />
         </Routes>
       </div>
     </Router>
   )
-}
-export default AppRouter;
+};
+
+export default memo(AppRouter);

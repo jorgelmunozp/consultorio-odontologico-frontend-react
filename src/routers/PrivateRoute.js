@@ -2,7 +2,9 @@ import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../auth/authContext.js';
 
-export const PrivateRoute = ({ children,urlBaseFrontend }) => {
+const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
+
+export const PrivateRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
   const { pathname, search } = useLocation();
 

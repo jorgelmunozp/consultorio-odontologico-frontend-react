@@ -1,4 +1,8 @@
-export const InputPassword = ({ placeholder,value,handleChange,className, theme }) => {
+import { useThemeContext } from '../../../theme/ThemeContext.js';
+
+export const InputPassword = ({ placeholder,value,handleChange,className }) => {
+    const { theme } = useThemeContext();       // 👈 Call the global theme
+    
     return (
         <>
             <div className="form-floating text-center text-nowrap text-truncate px-0 shadow-sm" data-mdb-input-init>

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Alert } from "../../components/alert/Alert.js";
+import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from "../useFetch.js";
 import { getDoctoresFiltered } from "../../components/selectors/getDoctoresFiltered.js";
 import { jwtDecode as decode } from "jwt-decode";
@@ -7,6 +7,8 @@ import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_DOCTORES;
 
 export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificacion:'', genero:'', especialidad:'' } }) => {
+  const { alert } = useAlertContext();
+  
   // --- State ---
   const [nombre, setNombre] = useState(initialValues.nombre || '');
   const [apellido, setApellido] = useState(initialValues.apellido || '');
@@ -36,7 +38,7 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
-      Alert({ type: "error", title: "Error en la conexión con la base de datos" }).launch();
+      alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
   }, [arrayFetch]);
 

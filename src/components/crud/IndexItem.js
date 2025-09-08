@@ -1,7 +1,10 @@
 
+import { useThemeContext } from "../../theme/ThemeContext.js";
 import { myColor } from '../../global.js';
 
-export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu, theme }) => {
+export const IndexItem = ({ classType, Icon, services, isMenuOpen, setMenu }) => {
+  const { theme } = useThemeContext();        // 👈 Call the global theme
+
   return (
     <div className="App">
       <div className={'container-fluid mt-4 mt-sm-5 me-0 smooth' + (isMenuOpen ? ' w-responsive':' w-100' ) }>

@@ -1,11 +1,14 @@
-import { lazy, useState } from 'react'
+import { lazy, memo, useState } from 'react';
+import { useThemeContext } from "../../../theme/ThemeContext.js";
 import { getDate } from '../../../helpers/getDate.js';
 import { getTime } from '../../../helpers/getTime.js';
 
-const Error = lazy(() => import('../../icons/alert/Error.js'));
-const Warning = lazy(() => import('../../icons/alert/Warning.js'));
+const Error = memo( lazy(() => import('../../icons/alert/Error.js')) );
+const Warning = memo( lazy(() => import('../../icons/alert/Warning.js')) );
 
-export const LoginAlert = ({ Logo, user, alertMessage, alertType, theme }) => {
+export const LoginAlert = ({ Logo, user, alertMessage, alertType }) => {
+    const { theme } = useThemeContext();        // 👈 Call the global theme
+
     let fecha = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
     let hora = useState(getTime);
 
@@ -46,4 +49,4 @@ export const LoginAlert = ({ Logo, user, alertMessage, alertType, theme }) => {
         </div>
   )
 }
-export default LoginAlert;
+export default memo(LoginAlert);

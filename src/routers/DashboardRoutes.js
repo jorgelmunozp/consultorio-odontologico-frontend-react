@@ -1,17 +1,17 @@
-import { lazy } from 'react';
+import { lazy, memo } from 'react';
 import { Routes, Route } from "react-router-dom";
-const HomeScreen = lazy(() => import('../components/views/home/HomeScreen.js'));
 
-export const DashboardRoutes = ({ urlBaseFrontend }) => {
+const HomeScreen = memo( lazy(() => import('../components/views/home/HomeScreen.js')) );
+
+const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
+
+export const DashboardRoutes = () => {
   return (
     <div className="container user-select-none">
       <Routes>
-          <Route path={urlBaseFrontend + "/home"} element={<HomeScreen />} />
-          <Route path={"/" + urlBaseFrontend} element={<HomeScreen />} />
-          <Route path={"/*"} element={<HomeScreen />} />
-          <Route path={"/"} element={<HomeScreen />} />
+          <Route path={urlBaseFrontend + "/home" || "/" + urlBaseFrontend || "/*" || "/"} element={<HomeScreen />} />
       </Routes>
     </div>
   )
 }
-export default DashboardRoutes;
+export default memo(DashboardRoutes);

@@ -1,12 +1,16 @@
-import { lazy, useState } from 'react';
+import { lazy, memo, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
+import { useThemeContext } from "../../../theme/ThemeContext.js";
 import { background } from '../../banners/background/background.js';
+import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
-const QueryItems = lazy(() => import('../../crud/views/QueryItems.js'));
+const QueryItems = memo(  lazy(() => import('../../crud/views/QueryItems.js')) );
+const Logo = memo( lazy(() => import('../../icons/logo/Logo.js')) );
 
-export const IndexScreen = ({ Logo, Icons, isMenuOpen, theme }) => {
+export const IndexScreen = ({ Icons, isMenuOpen }) => {
   let [view, setView] = useState(0);
+
+  const { theme } = useThemeContext();        // 👈 Call the global theme
 
   const services = [
     { "title":"Citas", "icon":<Icons.CitaMenu height={iconHeight} width={iconWidth} /> },
@@ -20,8 +24,7 @@ export const IndexScreen = ({ Logo, Icons, isMenuOpen, theme }) => {
   return (
     <div className="App">
         <div className={"container-fluid px-0 pt-2 me-0 smooth" + (isMenuOpen ? ' w-responsive':' w-100')}>
-          <div id='headerIndex' style={{ backgroundImage: `url(${background})`, backgroundPosition: 'center', backgroundRepeat: 'repeat'}} className='pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
-            {/* <Logo color={myColor} fillColor={(theme==='light')?'#fff':'#212529'} height={7} width={7} strokeWidth={0.9} className={'jumpHover'} /> */}
+          <div id='headerIndex' style={{ backgroundImage:`url(${background})`, backgroundPosition:'center', backgroundRepeat:'repeat'}} className='pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} className={'jumpHover themed-logo'} />
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
           </div>
@@ -57,4 +60,4 @@ export const IndexScreen = ({ Logo, Icons, isMenuOpen, theme }) => {
   )
 }
 
-export default IndexScreen;
+export default memo(IndexScreen);

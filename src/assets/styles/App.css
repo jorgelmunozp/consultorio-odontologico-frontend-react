@@ -36,21 +36,9 @@
   src: url("../fonts/CenturyGothic.ttf") format("truetype");
 }
 .century-gothic { font-family: 'CenturyGothic', 'Century Gothic' !important;}
-/* body[data-theme="dark"] { background-color:var(--dark-color) !important; color:var(--white-color) !important; }
-body[data-theme="light"] { background-color:var(--white-color) !important; color:var(--dark-color) !important; } */
 body { background-color:var(--bg-color-theme) !important; color:var(--color-theme) !important; }
-
-
-h5[data-theme="dark"], span[data-theme="dark"] { color:var(--white-color) !important; }
-h5[data-theme="light"], span[data-theme="light"] { color:var(--dark-color) !important; }
-
-#navbar, #template { background-color: var(--bg-color-theme) !important; }
-/* #navbar[data-theme="dark"], #template[data-theme="dark"] { background-color: var(--dark-color) !important; }
-#navbar[data-theme="light"], #template[data-theme="light"] { background-color: var(--white-color) !important; } */
-#menuIndex[data-theme="dark"] { background-color: var(--dark-color) !important; }
-#menuIndex[data-theme="light"] { background-color: var(--white-color) !important; }
-#collapseContent[data-theme="dark"] .card { background-color: var(--dark-color) !important; }
-#collapseContent[data-theme="light"] .card { background-color: var(--white-color) !important; }
+#navbar, #template, #menuIndex { background-color: var(--bg-color-theme) !important; }
+h5, span { color:var(--color-theme) !important; }
 
 .fs-sm-1 {}
 .fs-sm-2 {}
@@ -387,4 +375,8 @@ select::-ms-expand { display: none; } */
 @keyframes slideIn {
   0% { transform: scale(0.9); }
   100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }

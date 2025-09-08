@@ -1,34 +1,44 @@
 import '../views/login/login.css';
-import { lazy, useContext, useState } from 'react';
+import { lazy, memo, useContext, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/authContext.js';
 import { types } from '../../types/types.js';
+import { useThemeContext } from "../../theme/ThemeContext.js";
+import { myColor, myTitle } from "../../global.js";
 
-const User = lazy(() => import('../icons/user/User.js'));
-const Moon = lazy(() => import('../icons/theme/Moon.js'));
-const Sun = lazy(() => import('../icons/theme/Sun.js'));
-const HomeMenu = lazy(() => import('../icons/home/HomeMenu.js'));
-const Login = lazy(() => import('../views/login/Login.js'));
+const Logo = memo( lazy(() => import('../icons/logo/Logo.js')) );
+const User = memo( lazy(() => import('../icons/user/User.js')) );
+const Moon = memo( lazy(() => import('../icons/theme/Moon.js')) );
+const Sun = memo( lazy(() => import('../icons/theme/Sun.js')) );
+const HomeMenu = memo( lazy(() => import('../icons/home/HomeMenu.js')) );
+const Login = memo( lazy(() => import('../views/login/Login.js')) );
 
-export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, setMenu, setIsMenuOpen, theme, handleTheme }) => {
-    const [alertMessage,setAlertMessage] = useState("");
-    const [alertType,setAlertType] = useState("");
+const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND;
 
+export const Navbar = ({ setIsMenuOpen }) => {
     const { user, dispatch } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        dispatch({ type: types.logout });
-        navigate((urlBaseFrontend), { replace: true });
-    }
+    const { theme, handleTheme } = useThemeContext();       // 👈 Call the global theme
 
-    const handleMenu = () => { setIsMenuOpen(prev => !prev) }
+    // const handleLogout = () => {
+    //     dispatch({ type: types.logout });
+    //     navigate((urlBaseFrontend), { replace: true });
+    // }
+    const handleLogout = useCallback(() => {
+        dispatch({ type: types.logout });
+        navigate(urlBaseFrontend, { replace: true });
+    }, [dispatch, navigate, urlBaseFrontend]);
+
+    const handleMenu = useCallback(() => { setIsMenuOpen(prev => !prev) }, [setIsMenuOpen]);
+
+    if( process.env.NODE_ENV === 'development' ) { console.log('[Nav bar]') }
 
     return (
         <>
             <nav id="navbar" className="navbar navbar-expand-sm navbar-light fixed-top shadow-lg user-select-none z-10000" data-theme={theme} >
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand main-color d-flex bg-transparent" to={"/" + urlBaseFrontend} onClick={() => setMenu(1)}>
+                    <NavLink className="navbar-brand main-color d-flex bg-transparent" to={"/" + urlBaseFrontend}>
                         <Logo color={myColor} width={1.25} height={1.25} strokeWidth={1.2} className='ms-0 ms-sm-4 me-0 me-sm-2 mt-logo'/>
                         <span className='main-color'>{ myTitle }</span>
                     </NavLink>
@@ -59,7 +69,8 @@ export const Navbar = ({ Logo, urlBaseFrontend, myColor, myTitle, setMenu, setIs
                     }
                 </div>
             </nav>
-            <Login Logo={Logo} Icon={User} user={user} alertMessage={alertMessage} alertType={alertType} setAlertMessage={setAlertMessage} setAlertType={setAlertType} theme={theme} />
+            <Login Icon={User} user={user} />
         </>
     )
 }
+export default memo(Navbar);

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Alert } from "../../alert/Alert.js";
+import { useAlertContext } from "../../../alerts/AlertContext.js";
 import { useFetch } from "../../../hooks/useFetch.js";
 
 const apis = {
@@ -12,13 +12,15 @@ const apis = {
   especialidad: process.env.REACT_APP_API_ESPECIALIDADES,
 };
 
-export const useDropdown = ({ classType='' }) => {  
+export const useDropdown = ({ classType='' }) => {
+  const { alert } = useAlertContext();
+  
   const urlApi = apis[classType] || "";
   const { data, status } = useFetch(urlApi);
 
   useEffect(() => {
     if (status >= 400) {
-      Alert({ type: "error", title: "Error en la conexión con la base de datos", }).launch();
+      alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
   }, [status]);
 

@@ -1,7 +1,10 @@
-import '../modal/modal.css';
+import '../../alerts/modal/modal.css';
+import { useThemeContext } from "../../theme/ThemeContext.js";
 import { myColor } from '../../global.js';
 
-export const ReadItem = ({ classType, Icon, item, setOpen, theme }) => {
+export const ReadItem = ({ classType, Icon, item, setOpen }) => {
+  const { theme } = useThemeContext();                            // 👈 Call the global theme
+
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
@@ -53,3 +56,4 @@ export const ReadItem = ({ classType, Icon, item, setOpen, theme }) => {
       </>
     )
 };
+export default ReadItem;

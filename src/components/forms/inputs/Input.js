@@ -1,9 +1,11 @@
 import '../forms.css';
+import { useThemeContext } from '../../../theme/ThemeContext.js';
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const Input = ({ type='', placeholder='', value='', handleChange, className='', theme }) => {
+export const Input = ({ type='', placeholder='', value='', handleChange, className='' }) => {
+    const { theme } = useThemeContext();       // 👈 Call the global theme
 
     return (
         <div className="form-floating text-center text-nowrap text-truncate px-0 shadow-sm" data-mdb-input-init>

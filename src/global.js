@@ -3,4 +3,6 @@ export const myTitle = 'El Consultorio';
 export const iconHeight = 1.25;
 export const iconWidth = 1.25;
 export const iconStrokeWidth = 1.5;
+export const darkColor = "#212529";
+export const lightColor = "#ffffff";
 export const plurales = ['doctor','especialidad'];

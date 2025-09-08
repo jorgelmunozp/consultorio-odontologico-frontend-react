@@ -1,12 +1,15 @@
 import '../forms.css';
-import { lazy } from 'react';
+import { lazy, memo } from 'react';
+import { useThemeContext } from "../../../theme/ThemeContext.js";
 import sign from 'jwt-encode';                                                  // Para firma con jwt
 
-const PaginationBar = lazy(() => import('../../pagination/PaginationBar.js'));
+const PaginationBar = memo( lazy(() => import('../../pagination/PaginationBar.js')) );
 
 const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
-export const DropdownSelector = ({ classType, value='', placeholder='', array=[], handleChange, pagination, isOpen, onToggle, className='', theme }) => {
+export const DropdownSelector = ({ classType, value='', placeholder='', array=[], handleChange, pagination, isOpen, onToggle, className='' }) => {
+  const { theme } = useThemeContext();        // 👈 Call the global theme
+
   const class1 = ' dropdown-toggle text-start pt-2 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';
   const class2 = ' dropdown-toggle text-center pt-4 ps-2 ps-sm-3 pe-5 w-100 bg-transparent';
 

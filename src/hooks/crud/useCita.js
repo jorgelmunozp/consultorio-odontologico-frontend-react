@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Alert } from '../../components/alert/Alert.js';
+import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getDate } from '../../helpers/getDate.js';
 import { getTime } from '../../helpers/getTime.js';
@@ -9,6 +9,8 @@ import { jwtDecode as decode } from "jwt-decode";
 const urlApi = process.env.REACT_APP_API_CITAS;
 
 export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:'', tratamiento:'' } }) => {
+  const { alert } = useAlertContext();
+  
   // --- State ---
   const [paciente, setPaciente] = useState(initialValues.paciente || '');
   const [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
@@ -40,7 +42,7 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
-      Alert({ type:'error', title:'Error en la conexión con la base de datos' }).launch();
+      alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 });
     }
   }, [arrayFetch]);
 

@@ -11,7 +11,7 @@ const FilterEdit = lazy(() => import('../../icons/filter/FilterEdit.js'));
 const FilterDelete = lazy(() => import('../../icons/filter/FilterDelete.js'));
 const QueryItem = lazy(() => import('../QueryItem.js'));
 
-export const QueryItems = ({ classType, Icons, isMenuOpen, theme }) => {
+export const QueryItems = ({ classType, Icons, isMenuOpen }) => {
   const IconsCrud = { cita: { IconSearch:Icons.CitaSearch, IconRead:Icons.Cita, IconEdit:CalendarEdit, IconDelete:CalendarDelete },
                       paciente: { IconSearch:Icons.PacienteSearch, IconRead:Icons.Paciente, IconEdit:UserEdit, IconDelete:UserDelete },
                       doctor: { IconSearch:Icons.DoctorSearch, IconRead:Icons.Doctor, IconEdit:UserEdit, IconDelete:UserDelete },
@@ -20,7 +20,7 @@ export const QueryItems = ({ classType, Icons, isMenuOpen, theme }) => {
                       especialidad: { IconSearch:Icons.EspecialidadSearch, IconRead:Icons.Especialidad, IconEdit:HearthEdit, IconDelete:HearthDelete }
                     }
 
-  return ( <Suspense fallback={<></>}><QueryItem classType={classType} Icons={IconsCrud} isMenuOpen={isMenuOpen} theme={theme}/></Suspense> )
+  return ( <Suspense fallback={<></>}><QueryItem classType={classType} Icons={IconsCrud} isMenuOpen={isMenuOpen}/></Suspense> )
 }
 
 export default QueryItems;

@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ReadItem } from '../ReadItem.js';
-import { UpdateItem } from '../UpdateItem.js';
-import { DeleteItem } from '../DeleteItem.js';
+import { useThemeContext } from '../../../theme/ThemeContext.js';
 import { formatterHour12 } from '../../../helpers/formatterHour12.js';
 
-export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, theme }) => {
+const ReadItem = lazy(() => import('../ReadItem.js'));
+const UpdateItem = lazy(() => import('../UpdateItem.js'));
+const DeleteItem = lazy(() => import('../DeleteItem.js'));
+
+export const Item = ({ classType, Icons, item={}, urlApi, handleItems }) => {
+    const { theme } = useThemeContext();        // 👈 Call the global theme
+
     const [open, setOpen] = useState(false);
 
     const IconRead = Icons[classType].IconRead;
@@ -16,9 +20,9 @@ export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, th
     const wideItems = ['paciente','doctor','consultorio','tratamiento','especialidad', 'genero', 'eps'];
 
     const components = {
-        read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} theme={theme} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} alert={alert} theme={theme} />,
-        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} alert={alert} theme={theme} />
+        read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
+        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />,
+        delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
     };
 
     if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }
@@ -29,7 +33,6 @@ export const Item = ({ classType, Icons, item={}, urlApi, handleItems, alert, th
             { Object.entries(item?.[classType] || {}).map(([key, value], index) => (
                 <span key={'item'+index} className={'text-start text-nowrap ms-2 ms-sm-2 pe-0' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ' col-4 col-sm-2') } data-theme={theme}>
                 {/* <div key={'item'+index} className={'text-start text-nowrap' + (wideItems.includes(key) ? ' col-6 col-sm-3' : ( key==='hora') ? ' col-3 col-sm-1' : ' col-4 col-sm-2') }> */}
-                    {/* { value } */}
                     { key==='hora'? formatterHour12(value) : value }
                 </span>
             ))}
