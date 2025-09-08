@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/consultorio-odontologico-frontend-react/static/css/main.ba6ee7f4.css",
-    "main.js": "/consultorio-odontologico-frontend-react/static/js/main.926087a7.js",
+    "main.js": "/consultorio-odontologico-frontend-react/static/js/main.cf375c40.js",
     "static/js/5495.3602f1f1.chunk.js": "/consultorio-odontologico-frontend-react/static/js/5495.3602f1f1.chunk.js",
     "static/css/1153.6c1b941b.chunk.css": "/consultorio-odontologico-frontend-react/static/css/1153.6c1b941b.chunk.css",
     "static/js/1153.53805d73.chunk.js": "/consultorio-odontologico-frontend-react/static/js/1153.53805d73.chunk.js",
     "static/js/5950.6776c703.chunk.js": "/consultorio-odontologico-frontend-react/static/js/5950.6776c703.chunk.js",
     "static/js/7793.042154ee.chunk.js": "/consultorio-odontologico-frontend-react/static/js/7793.042154ee.chunk.js",
     "static/js/9635.ed729119.chunk.js": "/consultorio-odontologico-frontend-react/static/js/9635.ed729119.chunk.js",
-    "static/js/1831.7b5ca47a.chunk.js": "/consultorio-odontologico-frontend-react/static/js/1831.7b5ca47a.chunk.js",
+    "static/js/1831.56a7484d.chunk.js": "/consultorio-odontologico-frontend-react/static/js/1831.56a7484d.chunk.js",
     "static/css/2243.b6daeff9.chunk.css": "/consultorio-odontologico-frontend-react/static/css/2243.b6daeff9.chunk.css",
     "static/js/2243.9681c303.chunk.js": "/consultorio-odontologico-frontend-react/static/js/2243.9681c303.chunk.js",
     "static/css/5937.75c8eed7.chunk.css": "/consultorio-odontologico-frontend-react/static/css/5937.75c8eed7.chunk.css",
@@ -82,19 +82,19 @@
     "static/js/7654.4f97e562.chunk.js": "/consultorio-odontologico-frontend-react/static/js/7654.4f97e562.chunk.js",
     "static/css/4043.6c1b941b.chunk.css": "/consultorio-odontologico-frontend-react/static/css/4043.6c1b941b.chunk.css",
     "static/js/4043.7ec987b1.chunk.js": "/consultorio-odontologico-frontend-react/static/js/4043.7ec987b1.chunk.js",
-    "static/js/5475.6ccb5a55.chunk.js": "/consultorio-odontologico-frontend-react/static/js/5475.6ccb5a55.chunk.js",
+    "static/js/5475.dc23fec1.chunk.js": "/consultorio-odontologico-frontend-react/static/js/5475.dc23fec1.chunk.js",
     "static/js/9999.3451000a.chunk.js": "/consultorio-odontologico-frontend-react/static/js/9999.3451000a.chunk.js",
     "static/media/CenturyGothic.ttf": "/consultorio-odontologico-frontend-react/static/media/CenturyGothic.b1b792bab1bff8f27ba7.ttf",
     "index.html": "/consultorio-odontologico-frontend-react/index.html",
     "main.ba6ee7f4.css.map": "/consultorio-odontologico-frontend-react/static/css/main.ba6ee7f4.css.map",
-    "main.926087a7.js.map": "/consultorio-odontologico-frontend-react/static/js/main.926087a7.js.map",
+    "main.cf375c40.js.map": "/consultorio-odontologico-frontend-react/static/js/main.cf375c40.js.map",
     "5495.3602f1f1.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/5495.3602f1f1.chunk.js.map",
     "1153.6c1b941b.chunk.css.map": "/consultorio-odontologico-frontend-react/static/css/1153.6c1b941b.chunk.css.map",
     "1153.53805d73.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/1153.53805d73.chunk.js.map",
     "5950.6776c703.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/5950.6776c703.chunk.js.map",
     "7793.042154ee.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/7793.042154ee.chunk.js.map",
     "9635.ed729119.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/9635.ed729119.chunk.js.map",
-    "1831.7b5ca47a.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/1831.7b5ca47a.chunk.js.map",
+    "1831.56a7484d.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/1831.56a7484d.chunk.js.map",
     "2243.b6daeff9.chunk.css.map": "/consultorio-odontologico-frontend-react/static/css/2243.b6daeff9.chunk.css.map",
     "2243.9681c303.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/2243.9681c303.chunk.js.map",
     "5937.75c8eed7.chunk.css.map": "/consultorio-odontologico-frontend-react/static/css/5937.75c8eed7.chunk.css.map",
@@ -168,11 +168,11 @@
     "7654.4f97e562.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/7654.4f97e562.chunk.js.map",
     "4043.6c1b941b.chunk.css.map": "/consultorio-odontologico-frontend-react/static/css/4043.6c1b941b.chunk.css.map",
     "4043.7ec987b1.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/4043.7ec987b1.chunk.js.map",
-    "5475.6ccb5a55.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/5475.6ccb5a55.chunk.js.map",
+    "5475.dc23fec1.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/5475.dc23fec1.chunk.js.map",
     "9999.3451000a.chunk.js.map": "/consultorio-odontologico-frontend-react/static/js/9999.3451000a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ba6ee7f4.css",
-    "static/js/main.926087a7.js"
+    "static/js/main.cf375c40.js"
   ]
 }
