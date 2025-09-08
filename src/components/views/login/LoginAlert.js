@@ -1,4 +1,4 @@
-import { lazy, memo, useState } from 'react';
+import { lazy, memo, useState, useEffect } from 'react';
 import { useThemeContext } from "../../../theme/ThemeContext.js";
 import { getDate } from '../../../helpers/getDate.js';
 import { getTime } from '../../../helpers/getTime.js';
@@ -9,13 +9,21 @@ const Warning = memo( lazy(() => import('../../icons/alert/Warning.js')) );
 export const LoginAlert = ({ Logo, user, alertMessage, alertType }) => {
     const { theme } = useThemeContext();        // 👈 Call the global theme
 
-    let fecha = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
-    let hora = useState(getTime);
+    // 👇 Usa useState bien para fecha y hora
+    const [fecha] = useState(() => `${getDate[2]}-${getDate[1]}-${getDate[0]}`);
+    const [hora, setHora] = useState(getTime);
+
+    // 👇 Actualiza la hora en tiempo real si quieres que sea dinámica
+    useEffect(() => {
+        const interval = setInterval(() => setHora(getTime), 60000); // cada minuto
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div id="loginAlert" className="modal fade" tabIndex="-1" aria-labelledby="loginAlertLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-modalContainer" data-theme={theme}>
-                <div className="modal-content bg-transparent">
+            <div className="loginBackdrop" data-bs-dismiss="modal"></div>
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content rounded-0 bg-theme" data-theme={theme}>
                     <div className="modal-body mt-5 mx-auto w-100 pt-1 text-center">
                         { 
                             ( user.logged ) 
@@ -35,9 +43,7 @@ export const LoginAlert = ({ Logo, user, alertMessage, alertType }) => {
                         <p className='mt-3 pb-4'>{ user.logged ? '' : alertMessage }</p>
                         {
                             ( user.logged )
-                            ?   <>
-                                    <button type="button" className="btn btn-login mb-3 p-3 w-100 shadow-sm" data-bs-dismiss="modal">Aceptar</button>
-                                </>
+                            ?   <><button type="button" className="btn btn-login mb-3 p-3 w-100 shadow-sm" data-bs-dismiss="modal">Aceptar</button></>
                             :   <div className='container pb-3'>
                                     <button className='btn btn-login my-1 p-3 w-100 shadow-sm' data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#login" aria-controls="modalBody">Reintentar</button>
                                     <button type="button" className="btn btn-outline-danger p-3 w-100 shadow-sm" data-bs-dismiss="modal">Cancelar</button>

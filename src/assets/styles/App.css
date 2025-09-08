@@ -28,6 +28,8 @@
   --color-theme: var(--white-color) !important;
 }
 
+.bg-theme { background-color:var(--bg-color-theme) !important; }
+
 .App { font: 3vmin 'CenturyGothic', 'Century Gothic'; scroll-behavior: smooth;}
 @media (max-width: 576px) { .App { font: 4.5vmin 'CenturyGothic', 'Century Gothic'; }}
 @media (max-width: 768px) { .App { font: 4vmin 'CenturyGothic', 'Century Gothic'; }}

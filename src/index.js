@@ -30,4 +30,4 @@ root.render(
     </AppTheme>
 </Suspense> );
 
-if( process.env.NODE_ENV === 'development' ) { console.log('[Index]') }
+if( process.env.NODE_ENV === 'development' ) { console.log('[Index 👇]') }

@@ -10,8 +10,17 @@
     --white-color: #fff;
 }
 
-#loginModal[data-theme="dark"] { background-color: var(--dark-color) !important; }
-#loginModal[data-theme="light"] { background-color: var(--white-color) !important; }
+.loginBackdrop {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+#loginContent[data-theme="dark"] { background-color: var(--dark-color) !important; }
+#loginContent[data-theme="light"] { background-color: var(--white-color) !important; }
 #loginForm[data-theme="dark"] { background-color: var(--dark-color) !important; }
 #loginForm[data-theme="light"] { background-color: var(--white-color) !important; }
 

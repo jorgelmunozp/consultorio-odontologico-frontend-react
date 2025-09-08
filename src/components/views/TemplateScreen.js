@@ -66,22 +66,22 @@ const View = ({ Icons, menu, setMenu, isMenuOpen }) => {                        
   switch ( menu ) {
     case 1: return <IndexScreen Icons={Icons} isMenuOpen={isMenuOpen} />;
     case 2: return <IndexItems classType={'cita'} Icon={CalendarSmile} IconSearch={CalendarSearch} IconPlus={CalendarPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 3: return <QueryItems classType={'cita'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 3: return <QueryItems classType={'cita'} Icons={Icons} title={'Citas'} isMenuOpen={isMenuOpen} />;
     case 4: return <CreateItems classType={'cita'} Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
     case 5: return <IndexItems classType={'paciente'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 6: return <QueryItems classType={'paciente'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 6: return <QueryItems classType={'paciente'} Icons={Icons} title={'Pacientes'} isMenuOpen={isMenuOpen} />;
     case 7: return <CreateItems classType={'paciente'} Icon={UserInjured} isMenuOpen={isMenuOpen} />;
     case 8: return <IndexItems classType={'tratamiento'} Icon={SyringeLight} IconSearch={FilterSearch} IconPlus={FilterPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 9: return <QueryItems classType={'tratamiento'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 9: return <QueryItems classType={'tratamiento'} Icons={Icons} title={'Tratamientos'} isMenuOpen={isMenuOpen} />;
     case 10: return <CreateItems classType={'tratamiento'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
     case 11: return <IndexItems classType={'doctor'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 12: return <QueryItems classType={'doctor'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 12: return <QueryItems classType={'doctor'} Icons={Icons} title={'Doctores'} isMenuOpen={isMenuOpen} />;
     case 13: return <CreateItems classType={'doctor'} Icon={UserMedical} isMenuOpen={isMenuOpen} />;
     case 14: return <IndexItems classType={'especialidad'} Icon={StethoscopeLight} IconSearch={HearthSearch} IconPlus={HearthPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 15: return <QueryItems classType={'especialidad'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 15: return <QueryItems classType={'especialidad'} Icons={Icons} title={'Especialidades'}  isMenuOpen={isMenuOpen} />;
     case 16: return <CreateItems classType={'especialidad'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
     case 17: return <IndexItems classType={'consultorio'} Icon={HomeIndex} IconSearch={HomeSearch} IconPlus={HomePlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 18: return <QueryItems classType={'consultorio'} Icons={Icons} isMenuOpen={isMenuOpen} />;
+    case 18: return <QueryItems classType={'consultorio'} Icons={Icons} title={'Consultorios'}  isMenuOpen={isMenuOpen} />;
     case 19: return <CreateItems classType={'consultorio'} Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen Icons={Icons} isMenuOpen={isMenuOpen} />;
   }
