@@ -32,7 +32,7 @@ export const PaginationBar = ({
   }
 
   return (
-    <nav aria-label="Page navigation" className="mt-3">
+    <nav aria-label="Page navigation" className="container-fluid mt-3">
       <ul className="pagination pagination-sm justify-content-center">
         {/* Botón anterior */}
         <li className="page-item">
