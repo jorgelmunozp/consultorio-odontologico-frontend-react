@@ -20,23 +20,23 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const [tratamiento, setTratamiento] = useState(initialValues.tratamiento || '');
 
   const state = [
-    { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(decode(value)) },
-    { key:'fecha', value:fecha, type:"date", handleChange:(value) => setFecha(decode(value)) },
-    { key:'hora', value:hora, type:"time", handleChange:(value) => setHora(decode(value)) },
-    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)) },
-    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)) },
-    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange:(value) => setTratamiento(decode(value)) }
+    { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(decode(value)), placeholder:'Paciente' },
+    { key:'fecha', value:fecha, type:"date", handleChange:(value) => setFecha(decode(value)), placeholder:'Fecha' },
+    { key:'hora', value:hora, type:"time", handleChange:(value) => setHora(decode(value)), placeholder:'Hora' },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), placeholder:'Consultorio' },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), placeholder:'Doctor' },
+    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange:(value) => setTratamiento(decode(value)), placeholder:'Tratamiento' }
   ];
 
   // --- Object ---
   const dataObject = { paciente:'', fecha:'', hora:'', consultorio:'', doctor:'', tratamiento:'' }
 
   // --- Titles ---
-  const titles = state.map(param => ({
-    title:param.key.charAt(0).toUpperCase() + param.key.slice(1),
-    type:param.type
+  const keys = state.map(parameter => ({
+    key:parameter.placeholder,
+    type:parameter.type
   }));
-  const placeholders = titles.map(item => item.title);
+  const placeholders = keys.map(item => item.key);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -103,7 +103,7 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   return {
     api:urlApi,
     dataObject,
-    titles,
+    keys,
     placeholders,
     state,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },

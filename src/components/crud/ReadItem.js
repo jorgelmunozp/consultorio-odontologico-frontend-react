@@ -8,6 +8,10 @@ export const ReadItem = ({ classType, Icon, item, setOpen }) => {
   const keys = Object.keys(item[classType]);                      // Nombre de los parámetros del objeto
   const values = Object.values(item[classType]);                  // Valores de cada parámetro del objeto
   let valuesData = [];
+
+    console.log(item[classType])
+  console.log(keys)
+  console.log(values)
   
   values.forEach(value => {                                       // Arreglo con los datos de los valores de cada parámetro del objeto
     if(typeof value === 'object') { 

@@ -15,20 +15,20 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const [doctor, setDoctor] = useState(initialValues.doctor || '');
 
   const state = [
-    { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), },
-    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), },
-    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), },
+    { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), placeholder:'Especialidad' },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), placeholder:'Consultorio' },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), placeholder:'Doctor' },
   ];
 
   // --- Object ---
   const dataObject = { especialidad:'', consultorio:'', doctor:'' }
 
   // --- Titles ---
-  const titles = state.map((parameter) => ({
-    title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+  const keys = state.map((parameter) => ({
+    key:parameter.placeholder,
     type:parameter.type,
   }));
-  const placeholders = titles.map((item) => item.title);
+  const placeholders = keys.map((item) => item.key);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -100,7 +100,7 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   return {
     api:urlApi,
     dataObject,
-    titles,
+    keys,
     placeholders,
     state,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },

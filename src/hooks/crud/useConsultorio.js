@@ -14,19 +14,19 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
   const state = [
-    { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(decode(value)) },
-    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)) }
+    { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(decode(value)), placeholder:'Número' },
+    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)), placeholder:'Nombre' }
   ];
 
   // --- Object ---
   const dataObject = { numero:'', nombre:'' }
 
   // --- Titles ---
-  const titles = state.map(param => ({
-    title:param.key.charAt(0).toUpperCase() + param.key.slice(1),
-    type:param.type
+  const keys = state.map(parameter => ({
+    key:parameter.placeholder,
+    type:parameter.type
   }));
-  const placeholders = titles.map(item => item.title);
+  const placeholders = keys.map(item => item.key);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -91,7 +91,7 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   return {
     api:urlApi,
     dataObject,
-    titles,
+    keys,
     placeholders,
     state,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },

@@ -23,7 +23,7 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
                         </div>
                         <div className='row d-block d-sm-flex'>
                             {   items.map((item, index)=>{
-                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type} handleChange={(target) => setQueries[index+1]( decode(target) ) } placeholder={item.title.charAt(0).toUpperCase() + item.title.slice(1)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> )
+                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type} handleChange={(target) => setQueries[index+1]( decode(target) ) } placeholder={item.key } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> )
                                 })
                             }
                         </div>

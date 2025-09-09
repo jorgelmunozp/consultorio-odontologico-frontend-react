@@ -10,6 +10,7 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
 
   const urlApi = objectHook.api;
   const keys = objectHook.keys;
+
   const { queries,setQueries,arrayFiltered,indexPage,itemsPerPage,activePages,indexPages,setIndexPage,setActivePages } = objectHook.data;
   const { SortByProperty, setSortBy } = objectHook.sort;
 

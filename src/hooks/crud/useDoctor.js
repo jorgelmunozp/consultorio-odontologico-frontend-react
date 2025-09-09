@@ -17,22 +17,22 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   const [especialidad, setEspecialidad] = useState(initialValues.especialidad || '');
 
   const state = [
-    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)) },
-    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)) },
-    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) },
-    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)) },
-    { key:"especialidad", value:especialidad, type:"dropdown", handleChange:(v) => setEspecialidad(decode(v)) },
+    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
+    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)), placeholder:'Apellido' },
+    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) , placeholder:'Identificación'},
+    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)), placeholder:'Género' },
+    { key:"especialidad", value:especialidad, type:"dropdown", handleChange:(v) => setEspecialidad(decode(v)), placeholder:'Especialidad' },
   ];
 
   // --- Object ---
   const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', especialidad:'' }
 
    // --- Titles ---
-  const titles = state.map((parameter) => ({
-    title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+  const keys = state.map((parameter) => ({
+    key:parameter.placeholder,
     type:parameter.type,
   }));
-  const placeholders = titles.map((item) => item.title);
+  const placeholders = keys.map((item) => item.key);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -105,7 +105,7 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   return {
     api:urlApi,
     dataObject,
-    titles,
+    keys,
     placeholders,
     state,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },

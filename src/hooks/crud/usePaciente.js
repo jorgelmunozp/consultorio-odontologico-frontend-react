@@ -17,21 +17,21 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   const [eps, setEps] = useState(initialValues.eps || '');
 
   const state = [
-    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)) },
-    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)) },
-    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) },
-    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)) },
-    { key:"eps", value:eps, type:"dropdown", handleChange:(v) => setEps(decode(v)) },
+    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
+    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)), placeholder:'Apellido' },
+    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)), placeholder:'Identificación' },
+    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)), placeholder:'Género' },
+    { key:"eps", value:eps, type:"dropdown", handleChange:(v) => setEps(decode(v)), placeholder:'Eps' },
   ];
   // --- Object ---
   const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', eps:'' }
   
   // --- Titles ---
-  const titles = state.map((parameter) => ({
-    title:parameter.key.charAt(0).toUpperCase() + parameter.key.slice(1),
+  const keys = state.map((parameter) => ({
+    key:parameter.placeholder,
     type:parameter.type,
   }));
-  const placeholders = titles.map((item) => item.title);
+  const placeholders = keys.map((item) => item.key);
 
   // --- Data (fetch + queries + pagination) ---
   const arrayFetch = useFetch(urlApi);
@@ -106,7 +106,7 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   return {
     api:urlApi,
     dataObject,
-    titles,
+    keys,
     placeholders,
     state,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },

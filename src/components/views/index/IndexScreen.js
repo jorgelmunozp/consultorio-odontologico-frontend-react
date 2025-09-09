@@ -14,12 +14,12 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
 
   // 👇 Servicios memorizados para que no se regenere el array
   const services = useMemo(() => [
-    { type:"cita", title:"Citas", icon: <Icons.CitaMenu height={iconHeight} width={iconWidth} /> },
-    { type:"paciente", title:"Pacientes", icon: <Icons.PacienteMenu height={iconHeight} width={iconWidth} /> },
-    { type:"doctor", title:"Doctores", icon: <Icons.DoctorMenu height={iconHeight} width={iconWidth} /> },
-    { type:"especialidad", title:"Especialidades", icon: <Icons.EspecialidadMenu height={iconHeight} width={iconWidth} /> },
-    { type:"consultorio", title:"Consultorios", icon: <Icons.ConsultorioMenu height={iconHeight} width={iconWidth} /> },
-    { type:"tratamiento", title:"Tratamientos", icon: <Icons.TratamientoMenu height={iconHeight} width={iconWidth} /> }
+    { type:"cita", title:"Citas", icon:<Icons.CitaMenu height={iconHeight} width={iconWidth} /> },
+    { type:"paciente", title:"Pacientes", icon:<Icons.PacienteMenu height={iconHeight} width={iconWidth} /> },
+    { type:"doctor", title:"Doctores", icon:<Icons.DoctorMenu height={iconHeight} width={iconWidth} /> },
+    { type:"especialidad", title:"Especialidades", icon:<Icons.EspecialidadMenu height={iconHeight} width={iconWidth} /> },
+    { type:"consultorio", title:"Consultorios", icon:<Icons.ConsultorioMenu height={iconHeight} width={iconWidth} /> },
+    { type:"tratamiento", title:"Tratamientos", icon:<Icons.TratamientoMenu height={iconHeight} width={iconWidth} /> }
   ], []);
 
   //👇 Estilos memorizados para no recrear el objeto en cada render
