@@ -12,6 +12,11 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
   // --- State ---
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
+  // Reset state encapsulado
+  const resetState = useCallback(() => {
+    setNombre('');
+  }, []);
+
   // State unificado para inputs
   const state = useMemo(() => [
     { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)), placeholder:'Nombre' }
@@ -74,6 +79,7 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
     keys,
     placeholders,
     state,
+    resetState,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };

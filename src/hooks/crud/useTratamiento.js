@@ -14,6 +14,13 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const [consultorio, setConsultorio] = useState(initialValues.consultorio || '');
   const [doctor, setDoctor] = useState(initialValues.doctor || '');
 
+  // Reset state encapsulado
+  const resetState = useCallback(() => {
+    setEspecialidad('');
+    setConsultorio('');
+    setDoctor('');
+  }, []);
+
   // State unificado para inputs
   const state = useMemo(() => [
     { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), placeholder:'Especialidad' },
@@ -79,6 +86,7 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
     keys,
     placeholders,
     state,
+    resetState,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy },
   };

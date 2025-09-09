@@ -16,6 +16,15 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   const [genero, setGenero] = useState(initialValues.genero || '');
   const [especialidad, setEspecialidad] = useState(initialValues.especialidad || '');
 
+  // Reset state encapsulado
+  const resetState = useCallback(() => {
+    setNombre('');
+    setApellido('');
+    setIdentificacion('');
+    setGenero('');
+    setEspecialidad('');
+  }, []);
+
   // State unificado para inputs
   const state = useMemo(() => [
     { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
@@ -83,6 +92,7 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
     keys,
     placeholders,
     state,
+    resetState,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy },
   };

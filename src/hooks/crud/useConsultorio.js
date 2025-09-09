@@ -13,6 +13,12 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   const [numero, setNumero] = useState(initialValues.numero || '');
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
+  // Reset state encapsulado
+  const resetState = useCallback(() => {
+    setNumero('');
+    setNombre('');
+  }, []);
+
   // State unificado para inputs
   const state = useMemo(() => [
     { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(decode(value)), placeholder:'Número' },
@@ -76,6 +82,7 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     keys,
     placeholders,
     state,
+    resetState,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };

@@ -3,17 +3,13 @@ import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { fetchCreate } from '../../helpers/fetchCreate.js';
 
-import sign from 'jwt-encode';                                              // Para firma con jwt
-const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
-
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const Dropdown = lazy(() => import('../forms/dropdown/Dropdown.js'));
 
 export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   const { alert } = useAlertContext();
 
-  // 👇 Guarda la key del dropdown abierto
-  const [openDropdownKey, setOpenDropdownKey] = useState(null);
+  const [openDropdownKey, setOpenDropdownKey] = useState(null);   // 👈 Guarda la key del dropdown abierto
 
   // --- Object Item
   const objectHook = useCrudFactory({ classType:classType });                    // Objeto instanciado con el Hook correspondiente 
@@ -36,7 +32,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
       fetchCreate(urlApi,dataItem).then(
         async (responseStatus) => {
             if( 200 <= responseStatus && responseStatus <= 299 ) {
-              state.forEach( property => { property.handleChange( sign('',jwtSecretKey) ) } );    // Reinicia todas las variables     
+              objectHook.resetState();        // 👈 Reinicia todas las variables   
 
               alert({ type:'success', title:'Registro exitoso', buttons:1 });
             } else if( 400 <= responseStatus && responseStatus <= 499 ) {

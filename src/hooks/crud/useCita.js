@@ -19,6 +19,16 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const [doctor, setDoctor] = useState(initialValues.doctor || '');
   const [tratamiento, setTratamiento] = useState(initialValues.tratamiento || '');
 
+  // Reset state encapsulado
+  const resetState = useCallback(() => {
+    setPaciente('');
+    setFecha(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
+    setHora(getTime);
+    setConsultorio('');
+    setDoctor('');
+    setTratamiento('');
+  }, []);
+
   // State unificado para inputs
   const state = useMemo(() => [
     { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(decode(value)), placeholder:'Paciente' },
@@ -86,6 +96,7 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
     keys,
     placeholders,
     state,
+    resetState,
     data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };
