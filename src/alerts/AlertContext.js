@@ -1,20 +1,3 @@
-// import { createContext, useContext } from "react";
-// import { useAlert } from "./useAlert.js";
-
-// const AlertContext = createContext();
-
-// export const AppAlerts = ({ children }) => {
-//   const alertHook = useAlert(); // 👈 Se crea una sola vez y se comparte
-//   return (
-//     <AlertContext.Provider value={alertHook}>
-//       {children}
-//     </AlertContext.Provider>
-//   );
-// };
-
-// export const useAlertContext = () => useContext(AlertContext);
-
-//****************************** */
 import { createContext, useContext, useState, useCallback, lazy, Suspense } from "react";
 
 const Modal = lazy(() => import("./modal/Modal.js"));
@@ -57,20 +40,10 @@ export const AppAlerts = ({ children }) => {
       {children}
 
       {/* Modal se renderiza dentro del mismo árbol de React */}
-      {alertConfig && (
-        <Suspense fallback={null}>
-          <Modal
-            Icon={alertConfig.Icon}
-            iconColor={alertConfig.iconColor}
-            open={openAlert}
-            setOpen={setOpenAlert}
-            title={alertConfig.title}
-            content={alertConfig.content}
-            buttons={alertConfig.buttons}
-            fontFamily="century-gothic"
-          />
-        </Suspense>
-      )}
+      { alertConfig && ( <Suspense fallback={null}>
+                           <Modal Icon={alertConfig.Icon} iconColor={alertConfig.iconColor} open={openAlert} setOpen={setOpenAlert} title={alertConfig.title} content={alertConfig.content} buttons={alertConfig.buttons} fontFamily="century-gothic" />
+                         </Suspense>
+                       )}
     </AlertContext.Provider>
   );
 };

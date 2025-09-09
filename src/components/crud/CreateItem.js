@@ -25,7 +25,7 @@ export const CreateItem = ({ classType, Icon, isMenuOpen }) => {
   let dataItem = "";
 
   const handleCreate = () => {
-    if( state.every( property => property.value !== '') ) {                   // Check for emtpy fields to avoid any empty item
+    if( state.every( property => property.value !== '') ) {               // Check for emtpy fields to avoid any empty item
       state.forEach( property => item[property.key] = property.value );   // Carga los valores ingresados por el usuario en el objeto
 
       dataItem = JSON.stringify({ [classType]: item }); 

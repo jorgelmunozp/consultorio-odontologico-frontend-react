@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from "../useFetch.js";
 import { getPacientesFiltered } from "../../components/selectors/getPacientesFiltered.js";
@@ -16,24 +16,24 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   const [genero, setGenero] = useState(initialValues.genero || '');
   const [eps, setEps] = useState(initialValues.eps || '');
 
-  const state = [
+  // State unificado para inputs
+  const state = useMemo(() => [
     { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
     { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)), placeholder:'Apellido' },
     { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)), placeholder:'Identificación' },
     { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)), placeholder:'Género' },
     { key:"eps", value:eps, type:"dropdown", handleChange:(v) => setEps(decode(v)), placeholder:'Eps' },
-  ];
+  ], [nombre, apellido, identificacion, genero, eps]);
+
   // --- Object ---
   const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', eps:'' }
   
   // --- Titles ---
-  const keys = state.map((parameter) => ({
-    key:parameter.placeholder,
-    type:parameter.type,
-  }));
-  const placeholders = keys.map((item) => item.key);
+  const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
+  const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // --- Data (fetch + queries + pagination) ---
+  // 👇 Data (fetch + queries + pagination) ---
+  // Fetch de datos
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -41,66 +41,40 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     }
   }, [arrayFetch,alert]);
 
-  const array = useMemo(() => {
-    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [];
-  }, [arrayFetch.data]);
+  const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries
-  const [queryCode, setQueryCode] = useState("");
-  const [queryName, setQueryName] = useState("");
-  const [queryLastname, setQueryLastname] = useState("");
-  const [queryIdentification, setQueryIdentification] = useState("");
-  const [queryGender, setQueryGender] = useState("");
-  const [queryEps, setQueryEps] = useState("");
-
-  const queries = [queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps];
-  const setQueries = [setQueryCode, setQueryIdentification, setQueryName, setQueryLastname, setQueryGender, setQueryEps];
-
-  const arrayFiltered = useMemo(() =>
-    getPacientesFiltered(array, queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps),
-    [array, queryCode, queryIdentification, queryName, queryLastname, queryGender, queryEps]
-  );
+  // Queries unificadas
+  const [queries, setQueries] = useState(["", "", "", "", "", ""]);
+  const [queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps] = queries;
+  
+  const arrayFiltered = useMemo(() => getPacientesFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, eps:queryEps }), [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps] );
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, itemsPerPage]);
-  const numPages = Math.floor(arrayFiltered.length / itemsPerPage);
-  const resPages = arrayFiltered.length % itemsPerPage;
-
-  let indexPages = [];
-  let activePage = [true];
-  if (resPages !== 0) {
-    for (let i = 0; i <= numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  } else {
-    for (let i = 0; i < numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);
+  
+  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
+  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
+  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
+  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
 
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
-  let SortByProperty = () => {};
 
-  switch (sortBy) {
-    case 1: SortByProperty = (a, b) => a.id - b.id; break;
-    case 2: SortByProperty = (a, b) => b.id - a.id; break;
-    case 3: SortByProperty = (a, b) => a.paciente.identificacion.localeCompare(b.paciente.identificacion); break;
-    case 4: SortByProperty = (a, b) => b.paciente.identificacion.localeCompare(a.paciente.identificacion); break;
-    case 5: SortByProperty = (a, b) => a.paciente.nombre.localeCompare(b.paciente.nombre); break;
-    case 6: SortByProperty = (a, b) => b.paciente.nombre.localeCompare(a.paciente.nombre); break;
-    case 7: SortByProperty = (a, b) => a.paciente.apellido.localeCompare(b.paciente.apellido); break;
-    case 8: SortByProperty = (a, b) => b.paciente.apellido.localeCompare(a.paciente.apellido); break;
-    case 9: SortByProperty = (a, b) => a.paciente.genero.localeCompare(b.paciente.genero); break;
-    case 10: SortByProperty = (a, b) => b.paciente.genero.localeCompare(a.paciente.genero); break;
-    case 11: SortByProperty = (a, b) => a.paciente.eps.localeCompare(b.paciente.eps); break;
-    case 12: SortByProperty = (a, b) => b.paciente.eps.localeCompare(a.paciente.eps); break;
-    default: break;
-  }
+  const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
+    const fields =  state.map(({ key }) => key);
+    return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
+  }, []);
+
+  const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
+    const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
+    if (!config) return 0;
+
+    const valueA = a.paciente[config.key];
+    const valueB = b.paciente[config.key];
+
+    return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
+  }, [sortBy, sortConfig]);
 
   /** ---------- RETURN ---------- */
   return {

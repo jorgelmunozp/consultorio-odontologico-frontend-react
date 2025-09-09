@@ -1,3 +1,3 @@
-export const getTratamientosFiltered = ( array=[],code='',specialty='',consultoryRoom='',doctor='' ) => {
+export const getTratamientosFiltered = ({ array=[],code='',specialty='',consultoryRoom='',doctor='' }) => {
     return array.filter( item => item._id.toString().includes(code) && item.tratamiento.especialidad.toLowerCase().includes(specialty.toLowerCase()) && item.tratamiento.consultorio.toLowerCase().includes(consultoryRoom.toLowerCase()) && item.tratamiento.doctor.toLowerCase().includes(doctor.toLowerCase()) );
 }

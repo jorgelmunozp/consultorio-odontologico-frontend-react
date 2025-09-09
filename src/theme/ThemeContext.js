@@ -1,19 +1,18 @@
-import { createContext, useContext, useMemo } from "react";
+import { memo, createContext, useContext, useMemo } from "react";
 import { useTheme } from './useTheme.js';
 import { background } from '../components/banners/background/background.js';
 import { darkColor, lightColor } from "../global.js";
 
 export const ThemeContext = createContext();
 
-export const AppTheme = ({ children, isBackground, backdrop }) => {
+export const AppTheme = memo( ({ children, isBackground }) => {
   const [theme, handleTheme] = useTheme();
 
   // 👇 Memoriza los valores de colores para evitar recálculo en cada render
   const { bgColor, textColor } = useMemo(() => {
-    return {
-      bgColor: theme === "dark" ? darkColor : lightColor,
-      textColor: theme === "dark" ? lightColor : darkColor
-    };
+    return { bgColor: theme === "dark" ? darkColor : lightColor,
+             textColor: theme === "dark" ? lightColor : darkColor
+           };
   }, [theme]);
 
     // 👇 Memoriza la imagen de fondo (o vacía si no se debe mostrar)
@@ -32,7 +31,8 @@ export const AppTheme = ({ children, isBackground, backdrop }) => {
       </div>
     </ThemeContext.Provider>
   );
-}
+});
+
 export default AppTheme;
 
 // 👇 Hook para consumir el contexto más fácilmente

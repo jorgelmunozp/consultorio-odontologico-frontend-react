@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getEspecialidadesFiltered } from '../../components/selectors/getEspecialidadesFiltered.js';
@@ -12,21 +12,20 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
   // --- State ---
   const [nombre, setNombre] = useState(initialValues.nombre || '');
 
-  const state = [
+  // State unificado para inputs
+  const state = useMemo(() => [
     { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)), placeholder:'Nombre' }
-  ];
+  ], [nombre]);
 
   // --- Object ---
   const dataObject = { nombre:'' }
 
   // --- Titles ---
-  const keys = state.map(parameter => ({
-    key:parameter.placeholder,
-    type:parameter.type
-  }));
-  const placeholders = keys.map(item => item.key);
+  const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
+  const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // --- Data (fetch + queries + pagination) ---
+  // 👇 Data (fetch + queries + pagination) ---
+  // Fetch de datos
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -34,55 +33,41 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
     }
   }, [arrayFetch,alert]);
 
-  const array = useMemo(() => {
-   return ( arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
-  }, [arrayFetch.data]);
+  const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries
-  const [queryCode, setQueryCode] = useState('');
-  const [queryName, setQueryName] = useState('');
+  // Queries unificadas
+  const [queries, setQueries] = useState(["", ""]);
+  const [queryCode, queryName] = queries;
 
-  const queries = [queryCode, queryName];
-  const setQueries = [setQueryCode, setQueryName];
-
-  const arrayFiltered = useMemo(() =>
-    getEspecialidadesFiltered(array, queryCode, queryName),
-    [array, queryCode, queryName]
-  );
+  const arrayFiltered = useMemo(() => getEspecialidadesFiltered({ array, code:queryCode, name:queryName }), [array, queryCode, queryName] );
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, 10]);
 
-  const numPages = Math.floor(arrayFiltered.length / itemsPerPage);
-  const resPages = arrayFiltered.length % itemsPerPage;
-
-  let indexPages = [];
-  let activePage = [true];
-  if (resPages !== 0) {
-    for (let i = 0; i <= numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  } else {
-    for (let i = 0; i < numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);
+  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
+  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
+  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
+  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
 
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
-  let SortByProperty = () => {};
-  switch (sortBy) {
-    case 1: SortByProperty = (a, b) => a.id - b.id; break;
-    case 2: SortByProperty = (a, b) => b.id - a.id; break;
-    case 3: SortByProperty = (a, b) => a.especialidad.nombre.localeCompare(b.especialidad.nombre); break;
-    case 4: SortByProperty = (a, b) => b.especialidad.nombre.localeCompare(a.especialidad.nombre); break;
-    default: break;
-  }
 
+  const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
+    const fields =  state.map(({ key }) => key);
+    return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
+  }, []);
+
+  const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
+    const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
+    if (!config) return 0;
+
+    const valueA = a.especialidad[config.key];
+    const valueB = b.especialidad[config.key];
+
+    return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
+  }, [sortBy, sortConfig]);
+  
   return {
     api:urlApi,
     dataObject,

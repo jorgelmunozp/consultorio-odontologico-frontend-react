@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getTratamientosFiltered } from '../../components/selectors/getTratamientosFiltered.js';
@@ -14,23 +14,22 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const [consultorio, setConsultorio] = useState(initialValues.consultorio || '');
   const [doctor, setDoctor] = useState(initialValues.doctor || '');
 
-  const state = [
+  // State unificado para inputs
+  const state = useMemo(() => [
     { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), placeholder:'Especialidad' },
     { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), placeholder:'Consultorio' },
     { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), placeholder:'Doctor' },
-  ];
+  ], [especialidad, consultorio, doctor]);
 
   // --- Object ---
   const dataObject = { especialidad:'', consultorio:'', doctor:'' }
 
   // --- Titles ---
-  const keys = state.map((parameter) => ({
-    key:parameter.placeholder,
-    type:parameter.type,
-  }));
-  const placeholders = keys.map((item) => item.key);
+  const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
+  const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // --- Data (fetch + queries + pagination) ---
+  // 👇 Data (fetch + queries + pagination) ---
+  // Fetch de datos
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -38,63 +37,40 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
     }
   }, [arrayFetch,alert]);
 
-  const array = useMemo(() => {
-    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : [];
-  }, [arrayFetch.data]);
+  const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries
-  const [queryCode, setQueryCode] = useState('');
-  const [querySpecialty, setQuerySpecialty] = useState('');
-  const [queryConsultoryRoom, setQueryConsultoryRoom] = useState('');
-  const [queryDoctor, setQueryDoctor] = useState('');
-  const queries = [queryCode, querySpecialty, queryConsultoryRoom, queryDoctor];
-  const setQueries = [
-    setQueryCode,
-    setQuerySpecialty,
-    setQueryConsultoryRoom,
-    setQueryDoctor,
-  ];
+  // Queries unificadas
+  const [queries, setQueries] = useState(["", "", "", ""]);
+  const [queryCode, querySpecialty, queryConsultoryRoom, queryDoctor] = queries;
 
-  const arrayFiltered = useMemo(() =>
-    getTratamientosFiltered(array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor),
-    [array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor]
-  );
+  const arrayFiltered = useMemo(() => getTratamientosFiltered({array, code:queryCode, specialty:querySpecialty, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor }), [array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor] );
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, itemsPerPage]);
-  const numPages = Math.floor(arrayFiltered.length / itemsPerPage);
-  const resPages = arrayFiltered.length % itemsPerPage;
 
-  let indexPages = [];
-  let activePage = [true];
-  if (resPages !== 0) {
-    for (let i = 0; i <= numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  } else if (resPages === 0) {
-    for (let i = 0; i < numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);
+  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
+  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
+  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
+  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
 
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
-  let SortByProperty = () => {};
-  switch (sortBy) {
-    case 1: SortByProperty = (a, b) => a.id - b.id; break;
-    case 2: SortByProperty = (a, b) => b.id - a.id; break;
-    case 3: SortByProperty = (a, b) => a.tratamiento.especialidad.localeCompare(b.tratamiento.especialidad); break;
-    case 4: SortByProperty = (a, b) => b.tratamiento.especialidad.localeCompare(a.tratamiento.especialidad);  break;
-    case 5: SortByProperty = (a, b) => a.tratamiento.consultorio.localeCompare(b.tratamiento.consultorio); break;
-    case 6: SortByProperty = (a, b) => b.tratamiento.consultorio.localeCompare(a.tratamiento.consultorio); break;
-    case 7: SortByProperty = (a, b) => a.tratamiento.doctor.localeCompare(b.tratamiento.doctor); break;
-    case 8: SortByProperty = (a, b) => b.tratamiento.doctor.localeCompare(a.tratamiento.doctor); break;
-    default: break;
-  }
+
+  const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
+    const fields =  state.map(({ key }) => key);
+    return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
+  }, []);
+
+  const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
+    const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
+    if (!config) return 0;
+
+    const valueA = a.tratamiento[config.key];
+    const valueB = b.tratamiento[config.key];
+
+    return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
+  }, [sortBy, sortConfig]);
 
   /** ---------- RETURN ---------- */
   return {

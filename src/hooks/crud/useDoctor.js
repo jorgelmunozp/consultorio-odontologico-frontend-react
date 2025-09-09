@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from "../useFetch.js";
 import { getDoctoresFiltered } from "../../components/selectors/getDoctoresFiltered.js";
@@ -16,25 +16,24 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   const [genero, setGenero] = useState(initialValues.genero || '');
   const [especialidad, setEspecialidad] = useState(initialValues.especialidad || '');
 
-  const state = [
+  // State unificado para inputs
+  const state = useMemo(() => [
     { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
     { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)), placeholder:'Apellido' },
     { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) , placeholder:'Identificación'},
     { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)), placeholder:'Género' },
     { key:"especialidad", value:especialidad, type:"dropdown", handleChange:(v) => setEspecialidad(decode(v)), placeholder:'Especialidad' },
-  ];
+  ], [nombre, apellido, identificacion, genero, especialidad]);
 
   // --- Object ---
   const dataObject = { nombre:'', apellido:'', identificacion:'', genero:'', especialidad:'' }
 
    // --- Titles ---
-  const keys = state.map((parameter) => ({
-    key:parameter.placeholder,
-    type:parameter.type,
-  }));
-  const placeholders = keys.map((item) => item.key);
+  const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
+  const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // --- Data (fetch + queries + pagination) ---
+  // 👇 Data (fetch + queries + pagination) ---
+  // Fetch de datos
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -42,64 +41,40 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
     }
   }, [arrayFetch,alert]);
 
-  const array = useMemo(() => {
-    return (arrayFetch.data && JSON.stringify(arrayFetch.data).length !== (0 || undefined)) ? arrayFetch.data : []
-  }, [arrayFetch.data]);
+  const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // queries
-  const [queryCode, setQueryCode] = useState("");
-  const [queryName, setQueryName] = useState("");
-  const [queryLastname, setQueryLastname] = useState("");
-  const [querySpeciality, setQuerySpeciality] = useState("");
-
-  const queries = [queryCode, queryName, queryLastname, querySpeciality];
-  const setQueries = [setQueryCode, setQueryName, setQueryLastname, setQuerySpeciality];
-
-  const arrayFiltered = useMemo(
-    () => getDoctoresFiltered(array, queryCode, queryName, queryLastname, querySpeciality),
-    [array, queryCode, queryName, queryLastname, querySpeciality]
-  );
+  // Queries unificadas
+  const [queries, setQueries] = useState(["", "", "", "", "", ""]);
+  const [queryCode, queryName, queryLastname, queryIdentification, queryGender, querySpeciality] = queries;
+  
+  const arrayFiltered = useMemo( () => getDoctoresFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, speciality:querySpeciality }), [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, querySpeciality] );
 
   // pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, itemsPerPage]);
-  const numPages = Math.floor(arrayFiltered.length / itemsPerPage);
-  const resPages = arrayFiltered.length % itemsPerPage;
 
-  let indexPages = [];
-  let activePage = [true];
-  if (resPages !== 0) {
-    for (let i = 0; i <= numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  } else if (resPages === 0) {
-    for (let i = 0; i < numPages; i++) {
-      indexPages.push(i);
-      if (i < 0) activePage.push(false);
-    }
-  }
-  const [activePages, setActivePages] = useState(activePage);
+  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
+  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
+  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
+  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
 
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
-  let SortByProperty = () => {};
 
-  switch (sortBy) {
-    case 1: SortByProperty = (a, b) => a.id - b.id; break;
-    case 2: SortByProperty = (a, b) => b.id - a.id; break;
-    case 3: SortByProperty = (a, b) => a.doctor.nombre.localeCompare(b.doctor.nombre); break;
-    case 4: SortByProperty = (a, b) => b.doctor.nombre.localeCompare(a.doctor.nombre); break;
-    case 5: SortByProperty = (a, b) => a.doctor.apellido.localeCompare(b.doctor.apellido); break;
-    case 6: SortByProperty = (a, b) => b.doctor.apellido.localeCompare(a.doctor.apellido); break;
-    case 7: SortByProperty = (a, b) => a.doctor.identificacion.localeCompare(b.doctor.identificacion); break;
-    case 8: SortByProperty = (a, b) => b.doctor.identificacion.localeCompare(a.doctor.identificacion); break;
-    case 9: SortByProperty = (a, b) => a.doctor.genero.localeCompare(b.doctor.genero); break;
-    case 10: SortByProperty = (a, b) => b.doctor.genero.localeCompare(a.doctor.genero); break;
-    case 11: SortByProperty = (a, b) => a.doctor.especialidad.localeCompare(b.doctor.especialidad); break;
-    case 12: SortByProperty = (a, b) => b.doctor.especialidad.localeCompare(a.doctor.especialidad); break;
-    default: break;
-  }
+  const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
+    const fields =  state.map(({ key }) => key);
+    return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
+  }, []);
+
+  const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
+    const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
+    if (!config) return 0;
+
+    const valueA = a.doctor[config.key];
+    const valueB = b.doctor[config.key];
+
+    return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
+  }, [sortBy, sortConfig]);
 
   /** ---------- RETURN ---------- */
   return {
