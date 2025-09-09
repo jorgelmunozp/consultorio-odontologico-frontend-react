@@ -44,8 +44,11 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
   const [queries, setQueries] = useState(["", ""]);
   const [queryCode, queryName] = queries;
 
-  const arrayFiltered = useMemo(() => getEspecialidadesFiltered({ array, code:queryCode, name:queryName }), [array, queryCode, queryName] );
-
+  const [arrayFiltered, setArrayFiltered] = useState([]);
+  useEffect(() => {
+    setArrayFiltered( getEspecialidadesFiltered({ array, code:queryCode, name:queryName }) );
+  }, [array, queryCode, queryName]);
+  
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, 10]);
@@ -80,7 +83,7 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };
 }

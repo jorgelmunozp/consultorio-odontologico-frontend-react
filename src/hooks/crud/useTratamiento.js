@@ -50,7 +50,10 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const [queries, setQueries] = useState(["", "", "", ""]);
   const [queryCode, querySpecialty, queryConsultoryRoom, queryDoctor] = queries;
 
-  const arrayFiltered = useMemo(() => getTratamientosFiltered({array, code:queryCode, specialty:querySpecialty, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor }), [array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor] );
+  const [arrayFiltered, setArrayFiltered] = useState([]);
+  useEffect(() => {
+    setArrayFiltered( getTratamientosFiltered({array, code:queryCode, specialty:querySpecialty, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor }) );
+  }, [array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor]);
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -87,7 +90,7 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy },
   };
 };

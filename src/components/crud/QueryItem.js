@@ -9,18 +9,17 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
   const objectHook = useCrudFactory({ classType });
 
   const { api: urlApi, keys, data, sort } = objectHook;
-  const { queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages } = data;
+  const { queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages } = data;
   const { SortByProperty, setSortBy } = sort;
 
   const items = useMemo(() => arrayFiltered ?? [], [arrayFiltered]);    // 👈 Evita estado duplicado
 
   const handleItems = useCallback((action, id, classType) => {          // 👈 Memorized handler
-    return items.filter(item =>
-      action === "delete" ? item._id !== id : true
-    ).map(item =>
-      action === "update" && item._id === id ? { ...item, [classType]: { ...item[classType] } } : item
-    );
-  }, [items]);
+    setArrayFiltered(prevItems =>
+      prevItems
+        .filter(item => (action === "delete" ? item._id !== id : true))
+        .map(item => action === "update" && item._id === id ? { ...item, [classType]: { ...item[classType] } } : item ) );
+  }, [setArrayFiltered]);
 
   const containerClass = useMemo(() => `container-fluid mt-4 mt-sm-5 me-0 smooth ${isMenuOpen ? "w-responsive" : "w-100"}`, [isMenuOpen] );
 

@@ -61,7 +61,12 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const [queries, setQueries] = useState(["", "", "", "", "", "", ""]);
   const [queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment] = queries;
   
-  const arrayFiltered = useMemo(() => getCitasFiltered({ array, code:queryCode, patient:queryPatient, date:queryDate, time:queryTime, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor, treatment:queryTreatment }), [array, queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment] );
+  // const arrayFiltered = useMemo(() => getCitasFiltered({ array, code:queryCode, patient:queryPatient, date:queryDate, time:queryTime, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor, treatment:queryTreatment }), [array, queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment] );
+
+  const [arrayFiltered, setArrayFiltered] = useState([]);
+  useEffect(() => {
+    setArrayFiltered( getCitasFiltered({ array, code: queryCode, patient: queryPatient, date: queryDate, time: queryTime, consultoryRoom: queryConsultoryRoom, doctor: queryDoctor, treatment: queryTreatment }) );
+  }, [array, queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment]);
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -97,7 +102,7 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };
 }

@@ -56,7 +56,10 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
   const [queries, setQueries] = useState(["", "", "", "", "", ""]);
   const [queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps] = queries;
   
-  const arrayFiltered = useMemo(() => getPacientesFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, eps:queryEps }), [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps] );
+  const [arrayFiltered, setArrayFiltered] = useState([]);
+  useEffect(() => {
+    setArrayFiltered( getPacientesFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, eps:queryEps }) );
+  }, [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps]);
 
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -93,7 +96,7 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy },
   };
 };

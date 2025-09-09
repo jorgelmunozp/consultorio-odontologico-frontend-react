@@ -47,8 +47,11 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   const [queries, setQueries] = useState(["", "", ""]);
   const [queryCode, queryNumber, queryName] = queries;
   
-  const arrayFiltered = useMemo(() => getConsultoriosFiltered({ array, code:queryCode, number:queryNumber, name:queryName }), [array, queryCode, queryNumber, queryName] );
-
+  const [arrayFiltered, setArrayFiltered] = useState([]);
+  useEffect(() => {
+    setArrayFiltered( getConsultoriosFiltered({ array, code:queryCode, number:queryNumber, name:queryName }) );
+  }, [array, queryCode, queryNumber, queryName]);
+  
   // Pagination
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [indexPage, setIndexPage] = useState([0, 10]);
@@ -83,7 +86,7 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
+    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
     sort:{ SortByProperty, setSortBy }
   };
 }
