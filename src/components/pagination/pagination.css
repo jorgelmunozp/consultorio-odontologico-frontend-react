@@ -23,7 +23,7 @@
 }
 .page-link:hover {
     background-color: transparent !important;
-    color: var(--dark-color) !important;
+    color: var(--main-color) !important;
     border: none !important;
     box-shadow: none !important;
 }
