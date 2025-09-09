@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"; // 👈 Usar Redux
 import { login } from "../../../store/authSlice";       // 👈 Importa la acción de login desde tu slice
 import { useThemeContext } from "../../../theme/ThemeContext.js";
-import { jwtDecode as decode } from "jwt-decode";
 
 const Input = memo(lazy(() => import("../../forms/inputs/Input.js")));
 const InputPassword = memo(lazy(() => import("../../forms/inputs/InputPassword.js")));
@@ -45,7 +44,7 @@ export const LoginForm = ({ setAlertMessage, setAlertType }) => {
   return (
     <div id="loginForm" className="container mt-1 text-center user-select-none" data-theme={theme}>
       <div className="d-grid gap-2 col mx-auto pb-3 w-100">
-        <Input placeholder={"Usuario"} value={userInput} type={"text"} handleChange={(target) => setUserInput(decode(target))} className="input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm" />
+        <Input placeholder={"Usuario"} value={userInput} type={"text"} handleChange={(target) => setUserInput(target)} className="input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm" />
         <InputPassword placeholder={"Contraseña"} value={passwordInput} handleChange={(target) => setPasswordInput(target.target.value)} className="input form-control rounded border-muted border-1 text-muted text-center my-1 shadow-sm" />
 
         <button className="btn btn-login century-gothic my-1 py-3 rounded shadow-sm" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target={user?.logged ? "" : "#loginAlert"} aria-controls="modalBody" onClick={handleLogin}>Ingresar</button>

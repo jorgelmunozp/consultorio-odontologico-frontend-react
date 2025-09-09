@@ -2,7 +2,6 @@ import './search.css';
 import { lazy, memo, useCallback } from 'react';
 import { useThemeContext } from '../../theme/ThemeContext.js';
 import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
-import { jwtDecode as decode } from "jwt-decode";
 
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const SearchIcon = memo( lazy(() => import('./SearchIcon.js')) );
@@ -15,7 +14,7 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
     // 👇 Manejo memorizado de cambios en un solo array
     const handleChange = useCallback((index, value) => {
         setQueries(prev => { const newQueries = [...prev];
-                             newQueries[index] = decode(value);
+                             newQueries[index] = value;
                              return newQueries;
         });
     }, [setQueries]);

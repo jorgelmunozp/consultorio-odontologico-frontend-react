@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getConsultoriosFiltered } from '../../components/selectors/getConsultoriosFiltered.js';
-import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CONSULTORIOS;
 
@@ -21,8 +20,8 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
 
   // State unificado para inputs
   const state = useMemo(() => [
-    { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(decode(value)), placeholder:'Número' },
-    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)), placeholder:'Nombre' }
+    { key:'numero', value:numero, type:'number', handleChange:(value) => setNumero(value), placeholder:'Número' },
+    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(value), placeholder:'Nombre' }
   ], [numero, nombre]);
 
   // --- Object ---

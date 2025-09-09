@@ -4,14 +4,13 @@ import { useFetch } from '../useFetch.js';
 import { getDate } from '../../helpers/getDate.js';
 import { getTime } from '../../helpers/getTime.js';
 import { getCitasFiltered } from '../../components/selectors/getCitasFiltered.js';
-import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_CITAS;
 
 export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:'', tratamiento:'' } }) => {
   const { alert } = useAlertContext();
   
-  // --- State ---
+  // 👇 State ---
   const [paciente, setPaciente] = useState(initialValues.paciente || '');
   const [fecha, setFecha] = useState(getDate[2] + "-" + getDate[1] + "-" + getDate[0]);
   const [hora, setHora] = useState(getTime);
@@ -31,12 +30,12 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
 
   // State unificado para inputs
   const state = useMemo(() => [
-    { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(decode(value)), placeholder:'Paciente' },
-    { key:'fecha', value:fecha, type:"date", handleChange:(value) => setFecha(decode(value)), placeholder:'Fecha' },
-    { key:'hora', value:hora, type:"time", handleChange:(value) => setHora(decode(value)), placeholder:'Hora' },
-    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), placeholder:'Consultorio' },
-    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), placeholder:'Doctor' },
-    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange:(value) => setTratamiento(decode(value)), placeholder:'Tratamiento' }
+    { key:'paciente', value:paciente, type:"dropdown", handleChange:(value) => setPaciente(value), placeholder:'Paciente' },
+    { key:'fecha', value:fecha, type:"date", handleChange:(value) => setFecha(value), placeholder:'Fecha' },
+    { key:'hora', value:hora, type:"time", handleChange:(value) => setHora(value), placeholder:'Hora' },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(value), placeholder:'Consultorio' },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(value), placeholder:'Doctor' },
+    { key:'tratamiento', value:tratamiento, type:"dropdown", handleChange:(value) => setTratamiento(value), placeholder:'Tratamiento' }
   ], [paciente, fecha, hora, consultorio, doctor, tratamiento]);
 
   // --- Object ---
@@ -61,8 +60,6 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
   const [queries, setQueries] = useState(["", "", "", "", "", "", ""]);
   const [queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment] = queries;
   
-  // const arrayFiltered = useMemo(() => getCitasFiltered({ array, code:queryCode, patient:queryPatient, date:queryDate, time:queryTime, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor, treatment:queryTreatment }), [array, queryCode, queryPatient, queryDate, queryTime, queryConsultoryRoom, queryDoctor, queryTreatment] );
-
   const [arrayFiltered, setArrayFiltered] = useState([]);
   useEffect(() => {
     setArrayFiltered( getCitasFiltered({ array, code: queryCode, patient: queryPatient, date: queryDate, time: queryTime, consultoryRoom: queryConsultoryRoom, doctor: queryDoctor, treatment: queryTreatment }) );

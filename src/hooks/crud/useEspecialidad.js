@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getEspecialidadesFiltered } from '../../components/selectors/getEspecialidadesFiltered.js';
-import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_ESPECIALIDADES;
 
@@ -19,7 +18,7 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
 
   // State unificado para inputs
   const state = useMemo(() => [
-    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(decode(value)), placeholder:'Nombre' }
+    { key:'nombre', value:nombre, type:'search', handleChange:(value) => setNombre(value), placeholder:'Nombre' }
   ], [nombre]);
 
   // --- Object ---

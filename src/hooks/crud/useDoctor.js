@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from "../useFetch.js";
 import { getDoctoresFiltered } from "../../components/selectors/getDoctoresFiltered.js";
-import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_DOCTORES;
 
@@ -27,11 +26,11 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
 
   // State unificado para inputs
   const state = useMemo(() => [
-    { key:"nombre", value:nombre, type:"search", handleChange:(v) => setNombre(decode(v)), placeholder:'Nombre' },
-    { key:"apellido", value:apellido, type:"search", handleChange:(v) => setApellido(decode(v)), placeholder:'Apellido' },
-    { key:"identificacion", value:identificacion, type:"number", handleChange:(v) => setIdentificacion(decode(v)) , placeholder:'Identificación'},
-    { key:"genero", value:genero, type:"dropdown", handleChange:(v) => setGenero(decode(v)), placeholder:'Género' },
-    { key:"especialidad", value:especialidad, type:"dropdown", handleChange:(v) => setEspecialidad(decode(v)), placeholder:'Especialidad' },
+    { key:"nombre", value:nombre, type:"search", handleChange:(value) => setNombre(value), placeholder:'Nombre' },
+    { key:"apellido", value:apellido, type:"search", handleChange:(value) => setApellido(value), placeholder:'Apellido' },
+    { key:"identificacion", value:identificacion, type:"number", handleChange:(value) => setIdentificacion(value) , placeholder:'Identificación'},
+    { key:"genero", value:genero, type:"dropdown", handleChange:(value) => setGenero(value), placeholder:'Género' },
+    { key:"especialidad", value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(value), placeholder:'Especialidad' },
   ], [nombre, apellido, identificacion, genero, especialidad]);
 
   // --- Object ---

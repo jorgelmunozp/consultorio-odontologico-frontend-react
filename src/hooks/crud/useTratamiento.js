@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { useAlertContext } from "../../alerts/AlertContext.js";
 import { useFetch } from '../useFetch.js';
 import { getTratamientosFiltered } from '../../components/selectors/getTratamientosFiltered.js';
-import { jwtDecode as decode } from "jwt-decode";
 
 const urlApi = process.env.REACT_APP_API_TRATAMIENTOS;
 
@@ -23,9 +22,9 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
 
   // State unificado para inputs
   const state = useMemo(() => [
-    { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(decode(value)), placeholder:'Especialidad' },
-    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(decode(value)), placeholder:'Consultorio' },
-    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(decode(value)), placeholder:'Doctor' },
+    { key:'especialidad', value:especialidad, type:"dropdown", handleChange:(value) => setEspecialidad(value), placeholder:'Especialidad' },
+    { key:'consultorio', value:consultorio, type:"dropdown", handleChange:(value) => setConsultorio(value), placeholder:'Consultorio' },
+    { key:'doctor', value:doctor, type:"dropdown", handleChange:(value) => setDoctor(value), placeholder:'Doctor' },
   ], [especialidad, consultorio, doctor]);
 
   // --- Object ---

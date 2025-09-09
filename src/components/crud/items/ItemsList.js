@@ -1,34 +1,130 @@
-import { lazy, memo, useMemo, useCallback } from 'react';
-import { getArrow } from '../../../helpers/getArrow.js';
+// import { lazy, memo, useMemo, useCallback } from 'react';
+// import { getArrow } from '../../../helpers/getArrow.js';
 
-const Item = lazy(() => import('./Item.js'));
+// const Item = lazy(() => import('./Item.js'));
 
-export const ItemsList = ({classType, Icons, keys=[], urlApi, array, SortByProperty, setSortBy, indexPage, handleItems }) => {
-  // 👇 Memoriza el array ordenado + paginado
+// export const ItemsList = ({classType, Icons, keys=[], urlApi, array, SortByProperty, setSortBy, indexPage, handleItems }) => {
+//   // 👇 Memoriza el array ordenado + paginado
+//   const sortedItems = useMemo(() => {
+//     return [...array].sort(SortByProperty).slice(indexPage[0], indexPage[1]);
+//   }, [array, SortByProperty, indexPage]);
+
+//   // 👇 Memoriza el handler de orden para que no cambie en cada render
+//   const handleSort = useCallback( (order) => setSortBy(order), [setSortBy] );
+
+//   return (
+//     <div className={'container-fluid border overflow-auto px-0' }>
+//         {/* 👇 Titles Row */}
+//         <div className={'row flex-nowrap bg-main-color'}>
+//           { keys.map((item,index) => { return( <span key={'title'+index} className={'bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' + ( item.type === 'dropdown' ? ' col-6 col-sm-3':' col-4 col-sm-2') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 ms-1 ms-sm-3 align-self-center white-color'>{ item.key }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={() => handleSort(1 + (index * 2))}>{getArrow("up")}</button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={() => handleSort(2 + (index * 2))}>{getArrow("down")}</button></div></div></div></span> )}) }
+//           {/* { keys.map((item,index) => { return( <span key={'title'+index} className={'bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' + ( item.type === 'dropdown' ? ' col-6 col-sm-3':item.title === 'Hora' ? ' col-3 col-sm-1':' col-4 col-sm-2') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ item.key }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 1 + (index * 2) )}>{getArrow("up")}</button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 2 + (index * 2) )}>{getArrow("down")}</button></div></div></div></span> )}) } */}
+//           <div className='col-2 col-sm-1 bg-main-color border-bottom border-dark'></div>        {/* header botones crud */}
+//         </div>
+//         {/* 👇 Item Row */}
+//         { sortedItems.map((item,index) => { return (
+//             <div id={`row${classType}${index}`} key={`row${classType}${index}`} className='row bg-row flex-nowrap border-bottom text-start text-nowrap py-2 w-100'>
+//               <Item key={'item'+classType+index} classType={classType} Icons={Icons} item={item} urlApi={urlApi} handleItems={handleItems} />
+//             </div>
+//             )})
+//         }
+//     </div>
+//   )
+// }
+
+// export default memo(ItemsList);
+
+
+import { lazy, memo, useMemo, useCallback } from "react";
+import { getArrow } from "../../../helpers/getArrow.js";
+
+const Item = lazy(() => import("./Item.js"));
+
+export const ItemsList = ({
+  classType,
+  Icons,
+  keys = [],
+  urlApi,
+  array,
+  SortByProperty,
+  setSortBy,
+  indexPage = [0, 10],
+  handleItems,
+}) => {
+  // 📌 Memoriza el array ordenado + paginado
   const sortedItems = useMemo(() => {
     return [...array].sort(SortByProperty).slice(indexPage[0], indexPage[1]);
   }, [array, SortByProperty, indexPage]);
 
-  // 👇 Memoriza el handler de orden para que no cambie en cada render
-  const handleSort = useCallback( (order) => setSortBy(order), [setSortBy] );
+  // 📌 Memoriza el handler de orden para que no cambie
+  const handleSort = useCallback((order) => setSortBy(order), [setSortBy]);
+
+  // 📌 Memoriza los headers para evitar re-render innecesario
+  const headerColumns = useMemo(
+    () =>
+      keys.map((item, index) => {
+        const sortAsc = 1 + index * 2;
+        const sortDesc = 2 + index * 2;
+        const colClass =
+          "bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5 " +
+          (item.type === "dropdown" ? "col-6 col-sm-3" : "col-4 col-sm-2");
+
+        return (
+          <span key={`title-${index}`} className={colClass}>
+            <div className="row bg-main-color justify-content-between">
+              <div className="col-3 col-sm-1 ms-1 ms-sm-3 align-self-center white-color">
+                {item.key}
+              </div>
+              <div className="col-2">
+                <div className="row lh-1">
+                  <button
+                    className="border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3"
+                    onClick={() => handleSort(sortAsc)}
+                  >
+                    {getArrow("up")}
+                  </button>
+                </div>
+                <div className="row lh-1">
+                  <button
+                    className="border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3"
+                    onClick={() => handleSort(sortDesc)}
+                  >
+                    {getArrow("down")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </span>
+        );
+      }),
+    [keys, handleSort]
+  );
 
   return (
-    <div className={'container-fluid border overflow-auto px-0' }>
-        {/* 👇 Titles Row */}
-        <div className={'row flex-nowrap bg-main-color'}>
-          { keys.map((item,index) => { return( <span key={'title'+index} className={'bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' + ( item.type === 'dropdown' ? ' col-6 col-sm-3':' col-4 col-sm-2') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 ms-1 ms-sm-3 align-self-center white-color'>{ item.key }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={() => handleSort(1 + (index * 2))}>{getArrow("up")}</button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={() => handleSort(2 + (index * 2))}>{getArrow("down")}</button></div></div></div></span> )}) }
-          {/* { keys.map((item,index) => { return( <span key={'title'+index} className={'bg-main-color border-bottom border-dark text-center pe-3 pe-sm-5' + ( item.type === 'dropdown' ? ' col-6 col-sm-3':item.title === 'Hora' ? ' col-3 col-sm-1':' col-4 col-sm-2') }><div className='row bg-main-color justify-content-between'><div className='col-3 col-sm-1 align-self-center white-color'>{ item.key }</div><div className='col-2'><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 1 + (index * 2) )}>{getArrow("up")}</button></div><div className='row lh-1'><button className='border-0 bg-transparent dark-color-hover white-color fs-5 pt-0 pb-0 px-0 ms-2 ms-sm-3' onClick={()=>setSortBy( 2 + (index * 2) )}>{getArrow("down")}</button></div></div></div></span> )}) } */}
-          <div className='col-2 col-sm-1 bg-main-color border-bottom border-dark'></div>        {/* header botones crud */}
+    <div className="container-fluid border overflow-auto px-0">
+      {/* Headers */}
+      <div className="row flex-nowrap bg-main-color">
+        {headerColumns}
+        <div className="col-2 col-sm-1 bg-main-color border-bottom border-dark" />
+      </div>
+
+      {/* Items */}
+      {sortedItems.map((item, index) => (
+        <div
+          id={`row-${classType}-${index}`}
+          key={item._id ?? `row-${classType}-${index}`}
+          className="row bg-row flex-nowrap border-bottom text-start text-nowrap py-2 w-100"
+        >
+          <Item
+            classType={classType}
+            Icons={Icons}
+            item={item}
+            urlApi={urlApi}
+            handleItems={handleItems}
+          />
         </div>
-        {/* 👇 Item Row */}
-        { sortedItems.map((item,index) => { return (
-            <div id={`row${classType}${index}`} key={`row${classType}${index}`} className='row bg-row flex-nowrap border-bottom text-start text-nowrap py-2 w-100'>
-              <Item key={'item'+classType+index} classType={classType} Icons={Icons} item={item} urlApi={urlApi} handleItems={handleItems} />
-            </div>
-            )})
-        }
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default memo(ItemsList);

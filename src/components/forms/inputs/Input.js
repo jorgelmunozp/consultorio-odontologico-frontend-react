@@ -1,15 +1,12 @@
 import '../forms.css';
 import { memo, useCallback } from 'react';
 import { useThemeContext } from '../../../theme/ThemeContext.js';
-import sign from 'jwt-encode';                                                  // Para firma con jwt
-
-const jwtSecretKey = process.env.REACT_APP_JWTSECRET;
 
 export const Input = memo(({ type='', placeholder='', value='', handleChange, className='' }) => {
     const { theme } = useThemeContext();       // 👈 Call the global theme
 
     // 👇 Memoriza el handler para no recrearlo en cada render
-    const handleInputChange = useCallback((event) => handleChange(sign(event.target.value, jwtSecretKey)), [handleChange]); // 👈 depende de handleChange, así no se rompe
+    const handleInputChange = useCallback((event) => handleChange(event.target.value), [handleChange]); // 👈 depende de handleChange, así no se rompe
 
     const inputId = placeholder + 'Input'; // 👈 calculado una sola vez por render
 

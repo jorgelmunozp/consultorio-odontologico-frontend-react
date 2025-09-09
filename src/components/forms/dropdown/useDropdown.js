@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAlertContext } from "../../../alerts/AlertContext.js";
 import { useFetch } from "../../../hooks/useFetch.js";
 
@@ -12,34 +12,66 @@ const apis = {
   especialidad: process.env.REACT_APP_API_ESPECIALIDADES,
 };
 
-export const useDropdown = ({ classType='' }) => {
+export const useDropdown = ({ classType = "", itemsPerPageInitial = 5 }) => {
   const { alert } = useAlertContext();
-  
-  const urlApi = useMemo(() => apis[classType] ?? "", [classType]);   // 👈 Memoriza la URL para evitar recrearla en cada render
+
+  const safeItemsPerPage = Math.max(1, itemsPerPageInitial);
+
+  const urlApi = useMemo(() => apis[classType] ?? "", [classType]);
   const { data, status } = useFetch(urlApi);
 
   useEffect(() => {
-    if (status >= 400) { alert({ type:'error', title:'Error en la conexión con la base de datos', buttons:1 }) }
+    if (status >= 400) {
+      alert({
+        type: "error",
+        title: "Error en la conexión con la base de datos",
+        buttons: 1,
+      });
+    }
   }, [status, alert]);
 
-  const array = useMemo(() => { return Array.isArray(data) ? data : [] }, [data]);
+  const array = useMemo(() => (Array.isArray(data) ? data : []), [data]);
 
-  // 👇 Pagination
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [indexPage, setIndexPage] = useState([0, 5]);
+  const [itemsPerPage, setItemsPerPage] = useState(safeItemsPerPage);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const indexPages = useMemo(() => {
-    const totalPages = Math.ceil(array.length / itemsPerPage);
-    return Array.from({ length: totalPages }, (_, i) => i) 
-  }, [array.length, itemsPerPage]);  // 👈 Calcula páginas de forma eficiente y memorizada
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(array.length / itemsPerPage)),
+    [array.length, itemsPerPage]
+  );
 
-  const [activePages, setActivePages] = useState(() => indexPages.map((_, i) => i === 0));    // 👈 Estado inicial de páginas activas basado en indexPages
-  useEffect(() => { setActivePages(indexPages.map((_, i) => i === 0)) }, [indexPages]);       // 👈 Sincroniza activePages si cambia indexPages
+  const indexPages = useMemo(() => Array.from({ length: totalPages }, (_, i) => i), [totalPages]);
 
-  // 👇 Retorno del hook
+  const currentItems = useMemo(() => {
+    const start = currentPage * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, array.length);
+    return array.slice(start, end);
+  }, [array, currentPage, itemsPerPage]);
+
+  const goToPage = useCallback(
+    (pageIndex) => setCurrentPage(Math.max(0, Math.min(pageIndex, totalPages - 1))),
+    [totalPages]
+  );
+  const goPrev = useCallback(() => goToPage(currentPage - 1), [currentPage, goToPage]);
+  const goNext = useCallback(() => goToPage(currentPage + 1), [currentPage, goToPage]);
+
+  const activePages = useMemo(() => indexPages.map((_, i) => i === currentPage), [indexPages, currentPage]);
+
   return {
     array,
-    pagination: { itemsPerPage, indexPage, activePages, indexPages, setIndexPage, setActivePages, setItemsPerPage, },
+    pagination: {
+      itemsPerPage,
+      setItemsPerPage,
+      currentPage,
+      totalPages,
+      indexPages,
+      currentItems,
+      activePages,
+      goToPage,
+      goPrev,
+      goNext,
+    },
   };
-}
+};
+
 export default useDropdown;
