@@ -97,6 +97,16 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
     case 2: SortByProperty = (a,b) => b.id - a.id; break;
     case 3: SortByProperty = (a,b) => a.cita.paciente.localeCompare(b.cita.paciente); break;
     case 4: SortByProperty = (a,b) => b.cita.paciente.localeCompare(a.cita.paciente); break;
+    case 5: SortByProperty = (a,b) => { return a.cita.fecha.localeCompare(b.cita.fecha) }; break;       // Sort by fecha up
+    case 6: SortByProperty = (a,b) => { return b.cita.fecha.localeCompare(a.cita.fecha) }; break;       // Sort by fecha down
+    case 7: SortByProperty = (a,b) => { return a.cita.hora.localeCompare(b.cita.hora) }; break;         // Sort by hora up
+    case 8: SortByProperty = (a,b) => { return b.cita.hora.localeCompare(a.cita.hora) }; break;         // Sort by hora down
+    case 9: SortByProperty = (a,b) => { return a.cita.consultorio.localeCompare(b.cita.consultorio) }; break;  // Sort by consultorio up
+    case 10: SortByProperty = (a,b) => { return b.cita.consultorio.localeCompare(a.cita.consultorio) }; break; // Sort by consultorio down
+    case 11: SortByProperty = (a,b) => { return a.cita.doctor.localeCompare(b.cita.doctor) }; break;    // Sort by doctor up
+    case 12: SortByProperty = (a,b) => { return b.cita.doctor.localeCompare(a.cita.doctor) }; break;    // Sort by doctor down
+    case 13: SortByProperty = (a,b) => { return a.cita.tratamiento.localeCompare(b.cita.tratamiento) }; break; // Sort by tratamiento up
+    case 14: SortByProperty = (a,b) => { return b.cita.tratamiento.localeCompare(a.cita.tratamiento) }; break; // Sort by tratamiento down
     default: break;     
   }
 
