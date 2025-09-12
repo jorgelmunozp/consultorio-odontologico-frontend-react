@@ -1,4 +1,4 @@
-import { memo, createContext, useContext, useMemo } from "react";
+import { memo, createContext, useContext, useMemo, useRef, useEffect } from "react";
 import { useTheme } from './useTheme.js';
 import { background } from '../components/banners/background/background.js';
 import { darkColor, lightColor } from "../global.js";
@@ -15,23 +15,22 @@ export const AppTheme = memo( ({ children, isBackground }) => {
            };
   }, [theme]);
 
-    // 👇 Memoriza la imagen de fondo (o vacía si no se debe mostrar)
-  const backgroundImage = useMemo(() => {
-    if (!isBackground) return "";
-    return `url(${background})`;
-  }, [isBackground]);
+  // 👇 Memoriza la imagen de fondo
+  const backgroundImage = useMemo(() => isBackground ? `url(${background})` : "", [isBackground]);
+
+  const valueThemeContext = useMemo(() => ({ theme, handleTheme }), [theme, handleTheme]);
 
   if( process.env.NODE_ENV === 'development' ) { console.log('[App Theme]') }
  
   return (
-    <ThemeContext.Provider value={{ theme, handleTheme }}>
+    <ThemeContext.Provider value={valueThemeContext}>
       {/* <div id="app-theme-root" style={{ backgroundColor:bgColor, color:textColor, backgroundImage, backgroundPosition:"center", backgroundRepeat:"repeat", display:"flex", flexDirection:"column", alignItems:'center', minHeight:"100vh", minWidth:"100vw", opacity:0.75, animation:"fadeIn 0.3s ease-out forwards" }}> */}
       <div id="app-theme-root" style={{ backgroundColor:bgColor, color:textColor, backgroundImage, backgroundPosition:"center", backgroundRepeat:"repeat", display:"flex", flexDirection:"column", alignItems:'center', minHeight:"100vh", minWidth:"100vw", opacity:0.75, animation:"fadeIn 0.3s ease-out forwards", position:'relative', zIndex:1055 }}>
           { children }
       </div>
     </ThemeContext.Provider>
   );
-});
+}, (prev, next) => prev.isBackground === next.isBackground);
 
 export default AppTheme;
 

@@ -15,19 +15,29 @@ const App = memo( lazy(() => preloadApp) );
 
 // 👇 Fallback memorizado
 const FallbackView = memo(() => {
-  // Memoriza estilo para evitar recreación en cada render
   const style = useMemo( () => ({ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", width: "100vw", animation: "splash 0.75s linear infinite" }), [] );
-  return ( <AppTheme isBackground={true}><div style={style}><MemoLogo height={10} width={10} strokeWidth={1} color={myColor} /></div></AppTheme> );
+  return <div style={style}><MemoLogo height={10} width={10} strokeWidth={1} color={myColor} /></div>;
 });
 
 const root = createRoot(document.getElementById('root'));
+
 root.render( 
-<Suspense fallback={<FallbackView />}>
-    <AppTheme>
+  <AppTheme isBackground={true}>
+    <Suspense fallback={<FallbackView />}>
       <AppAlerts>
         <App />
       </AppAlerts>
-    </AppTheme>
-</Suspense> );
+    </Suspense> 
+  </AppTheme> );
 
 if( process.env.NODE_ENV === 'development' ) { console.log('[Index 👇]') }
+
+
+  // // Ttestear renders y mounts
+  // // 🟢 contador de renders
+  // const renderCount = useRef(0);
+  // renderCount.current++;
+  // console.log(`[Index] Render #${renderCount.current}`);
+
+  // // 🟡 log solo cuando se monta
+  // useEffect(() => { console.log("[Index] 🔵 MOUNTED"); return () => { console.log("[App Theme] 🔴 UNMOUNTED"); }; }, []);

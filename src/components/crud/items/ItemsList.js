@@ -39,8 +39,7 @@ import { getArrow } from "../../../helpers/getArrow.js";
 
 const Item = lazy(() => import("./Item.js"));
 
-export const ItemsList = ({
-  classType, Icons, keys = [], urlApi, array, SortByProperty, setSortBy, indexPage = [0, 10], handleItems }) => {
+export const ItemsList = ({ classType, Icons, keys = [], urlApi, array, SortByProperty, setSortBy, indexPage = [0, 10], handleItems }) => {
   // 📌 Memoriza el array ordenado + paginado
   const sortedItems = useMemo(() => {
     return [...array].sort(SortByProperty).slice(indexPage[0], indexPage[1]);

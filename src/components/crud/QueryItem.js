@@ -8,7 +8,7 @@ const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
 export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
   const objectHook = useCrudFactory({ classType });
-  const { api: urlApi, keys, data, sort } = objectHook;
+  const { api: urlApi, keys, data, sort, handleItems } = objectHook;
   const { queries, setQueries, arrayFiltered } = data;
   const { SortByProperty, setSortBy } = sort;
 
@@ -22,7 +22,7 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
     [isMenuOpen]
   );
 
-  console.log('QueryItem!!!');  // DEBUG  
+  // console.log('QueryItem!!!');  // DEBUG  
 
   // ✅ Memorizamos props de SearchBar para que no cambien entre renders
   const searchBarProps = useMemo(() => ({
@@ -43,7 +43,6 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
       <div className={containerClass}>
         <h5 className="main-color fs-sm-2 mb-4">{title}</h5>
         <Suspense fallback={<div className="loaderSpin"></div>}>
-
           <SearchBar {...searchBarProps} />
 
           {/* ItemsList recibe directamente los items de la página actual */}
@@ -55,6 +54,7 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
             array={pagination.currentItems}
             SortByProperty={SortByProperty}
             setSortBy={setSortBy}
+            handleItems={handleItems}
           />
 
           {/* PaginationBar usando currentPage */}

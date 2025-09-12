@@ -80,6 +80,16 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
 
   const data = useMemo(() => ({ queries, setQueries, arrayFiltered, setArrayFiltered }), [queries, arrayFiltered]);
   const sort = useMemo(() => ({ SortByProperty, setSortBy }), [SortByProperty]);
+  
+  const handleItems = useCallback((action, item) => {
+    if (action === "create") {
+      setArrayFiltered(prev => [item, ...prev]);
+    } else if (action === "update") {
+      setArrayFiltered(prev => prev.map(i => (i._id === item._id ? item : i)));
+    } else if (action === "delete") {
+      setArrayFiltered(prev => prev.filter(i => i._id !== item));
+    }
+  }, []);
 
   return {
     api:urlApi,
@@ -90,6 +100,7 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
     resetState,
     data,
     sort,
+    handleItems
   };
 };
 export default useDoctor;
