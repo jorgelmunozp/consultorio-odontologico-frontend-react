@@ -38,7 +38,7 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
           </div>
            {/* 👇 Menú */}
-          <div id="collapseMenu" className="row bg-transparent collapse shadow">   
+          <div id="collapseMenu" className="row container-fluid bg-transparent mx-auto collapse shadow">   
             {
               services.map((service,index) => {
                 return (

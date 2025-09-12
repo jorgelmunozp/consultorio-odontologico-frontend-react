@@ -33,11 +33,11 @@ root.render(
 if( process.env.NODE_ENV === 'development' ) { console.log('[Index 👇]') }
 
 
-  // // Ttestear renders y mounts
+  // // Testear renders y mounts
   // // 🟢 contador de renders
   // const renderCount = useRef(0);
   // renderCount.current++;
   // console.log(`[Index] Render #${renderCount.current}`);
 
   // // 🟡 log solo cuando se monta
-  // useEffect(() => { console.log("[Index] 🔵 MOUNTED"); return () => { console.log("[App Theme] 🔴 UNMOUNTED"); }; }, []);
+  // useEffect(() => { console.log("[Index] 🔵 MOUNTED"); return () => { console.log("[Index] 🔴 UNMOUNTED"); }; }, []);

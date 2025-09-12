@@ -12,6 +12,7 @@ export const Login = ({ Icon, user }) => {
     const { theme } = useThemeContext();        // 👈 Call the global theme
 
     if( process.env.NODE_ENV === 'development' ) { console.log('[Login 👤]') }
+       
     return (
     <>
         <div id='login' className="modal fade" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">

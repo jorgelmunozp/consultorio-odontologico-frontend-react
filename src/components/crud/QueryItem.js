@@ -24,7 +24,7 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
 
   // console.log('QueryItem!!!');  // DEBUG  
 
-  // ✅ Memorizamos props de SearchBar para que no cambien entre renders
+  // 👇 Memorizamos props de SearchBar para que no cambien entre renders
   const searchBarProps = useMemo(() => ({
     Icon: Icons[classType].IconSearch,
     items: keys,
