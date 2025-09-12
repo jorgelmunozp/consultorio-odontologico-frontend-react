@@ -10,8 +10,6 @@ export const useTheme = () => {
         setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
     }, []);
 
-    console.log('UseTheme')
-
     // 👇 Memoriza el resultado para evitar recrearlo en cada render
     return useMemo(() => [theme, handleTheme], [theme, handleTheme]);
 }
