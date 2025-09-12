@@ -60,22 +60,13 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     setArrayFiltered( getPacientesFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, eps:queryEps }) );
   }, [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, queryEps]);
 
-  // Pagination
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [indexPage, setIndexPage] = useState([0, itemsPerPage]);
-  
-  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
-  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
-  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
-  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
-
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
 
   const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
     const fields =  state.map(({ key }) => key);
     return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
-  }, []);
+  }, [state]);
 
   const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
     const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
@@ -87,7 +78,9 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
   }, [sortBy, sortConfig]);
 
-  /** ---------- RETURN ---------- */
+  const data = useMemo(() => ({ queries, setQueries, arrayFiltered, setArrayFiltered }), [queries, arrayFiltered]);
+  const sort = useMemo(() => ({ SortByProperty, setSortBy }), [SortByProperty]);
+
   return {
     api:urlApi,
     dataObject,
@@ -95,8 +88,8 @@ export const usePaciente = ({ initialValues={ nombre:'', apellido:'', identifica
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort:{ SortByProperty, setSortBy },
+    data,
+    sort,
   };
 };
 export default usePaciente;

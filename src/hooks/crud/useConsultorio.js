@@ -51,22 +51,13 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     setArrayFiltered( getConsultoriosFiltered({ array, code:queryCode, number:queryNumber, name:queryName }) );
   }, [array, queryCode, queryNumber, queryName]);
   
-  // Pagination
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [indexPage, setIndexPage] = useState([0, 10]);
-
-  const totalPages = Math.ceil(arrayFiltered.length / itemsPerPage);
-  const indexPages = useMemo( () => Array.from({ length: totalPages }, (_, i) => i), [totalPages] );
-  const [activePages, setActivePages] = useState(() => Array(totalPages).fill(false).map((_, i) => i === 0) );    // 👈 Estado inicial: primera página activa
-  useEffect(() => { setActivePages(Array(totalPages).fill(false).map((_, i) => i === 0)); }, [totalPages]);       // 👈 Recalcula al cambiar el número de páginas
-
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
 
   const sortConfig = useMemo(() => {                // 👈 Genera la configuración de ordenamiento
     const fields =  state.map(({ key }) => key);
     return fields.flatMap(field => [{ key: field, order: "asc" }, { key: field, order: "desc" }]); 
-  }, []);
+  }, [state]);
 
   const SortByProperty = useCallback((a, b) => {    // 👈 Función memorizada de comparación en base a sortBy
     const config = sortConfig[sortBy - 1];          // 👈 -1 porque sortBy empieza en 1
@@ -78,6 +69,9 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     return config.order === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA); 
   }, [sortBy, sortConfig]);
 
+  const data = useMemo(() => ({ queries, setQueries, arrayFiltered, setArrayFiltered }), [queries, arrayFiltered]);
+  const sort = useMemo(() => ({ SortByProperty, setSortBy }), [SortByProperty]);
+
   return {
     api:urlApi,
     dataObject,
@@ -85,8 +79,8 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
     placeholders,
     state,
     resetState,
-    data:{ queries, setQueries, arrayFiltered, setArrayFiltered, indexPage, itemsPerPage, activePages, indexPages, setIndexPage, setActivePages },
-    sort:{ SortByProperty, setSortBy }
+    data,
+    sort
   };
 }
 export default useConsultorio;

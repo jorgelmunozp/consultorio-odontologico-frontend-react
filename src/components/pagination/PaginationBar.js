@@ -1,4 +1,5 @@
 import './pagination.css';
+import { memo } from 'react';
 
 export const PaginationBar = ({
   currentPage,
@@ -30,6 +31,8 @@ export const PaginationBar = ({
     if (i > 0 && sortedPages[i] - sortedPages[i - 1] > 1) finalPages.push('ellipsis');
     finalPages.push(sortedPages[i]);
   }
+
+  if( process.env.NODE_ENV === 'development' ) { console.log('[Pagination 1️⃣2️⃣3️⃣]') }
 
   return (
     <nav aria-label="Page navigation" className="container-fluid mt-3">
@@ -86,4 +89,4 @@ export const PaginationBar = ({
   );
 };
 
-export default PaginationBar;
+export default memo(PaginationBar);

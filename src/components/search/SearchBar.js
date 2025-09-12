@@ -6,10 +6,8 @@ import { iconHeight, iconWidth, iconStrokeWidth } from '../../global.js';
 const Input = lazy(() => import('../forms/inputs/Input.js'));
 const SearchIcon = memo( lazy(() => import('./SearchIcon.js')) );
 
-export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,className }) => {
+export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,className }) => {  
     const { theme } = useThemeContext();       // 👈 Call the global theme
-
-    if( process.env.NODE_ENV === 'development' ) { console.log('[Search 🔎]') }
 
     // 👇 Manejo memorizado de cambios en un solo array
     const handleChange = useCallback((index, value) => {
@@ -18,6 +16,8 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
                              return newQueries;
         });
     }, [setQueries]);
+
+    if( process.env.NODE_ENV === 'development' ) { console.log('[Search 🔎]') }
 
     return (
         <div className={ className + ' justify-items-center bg-transparent' }>
@@ -32,7 +32,7 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
                         </div>
                         <div className='row d-block d-sm-flex'>
                             {   items.map((item, index)=>{
-                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type} handleChange={(target) => handleChange(index + 1, target)} placeholder={item.key } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> )
+                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type !== 'dropdown' ? item.type : 'search' } handleChange={(target) => handleChange(index + 1, target)} placeholder={item.key } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> )
                                 })
                             }
                         </div>
@@ -42,4 +42,4 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
         </div>
     )
 }
-export default SearchBar;
+export default memo(SearchBar);
