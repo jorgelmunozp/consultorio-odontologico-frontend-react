@@ -71,13 +71,9 @@ export const PaginationBar = ({
       <ul className="pagination pagination-sm justify-content-center">
         {/* Botón anterior */}
         <li className="page-item">
-          <button
-            onClick={goPrev}
-            type="button"
+          <button onClick={goPrev} type="button"
             className="page-link rounded-circle page-arrow"
-            aria-label="◂"
-            disabled={currentPage === 0}
-          >
+            aria-label="◂" disabled={currentPage === 0}>
             ◂
           </button>
         </li>
@@ -89,15 +85,8 @@ export const PaginationBar = ({
               <span className="page-link">…</span>
             </li>
           ) : (
-            <li
-              key={`p-${p}`}
-              className={currentPage === p ? 'page-item active fw-bolder' : 'page-item'}
-            >
-              <button
-                onClick={handleGoToPage(p)}
-                type="button"
-                className="page-link rounded-circle fw-bolder"
-              >
+            <li key={`p-${p}`} className={currentPage === p ? 'page-item active fw-bolder' : 'page-item'}>
+              <button onClick={handleGoToPage(p)} type="button" className="page-link rounded-circle fw-bolder">
                 {p + 1}
               </button>
             </li>
@@ -106,13 +95,9 @@ export const PaginationBar = ({
 
         {/* Botón siguiente */}
         <li className="page-item">
-          <button
-            onClick={goNext}
-            type="button"
+          <button onClick={goNext} type="button"
             className="page-link rounded-circle page-arrow"
-            aria-label="▸"
-            disabled={currentPage === totalPages - 1}
-          >
+            aria-label="▸" disabled={currentPage === totalPages - 1}>
             ▸
           </button>
         </li>

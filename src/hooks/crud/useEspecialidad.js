@@ -28,8 +28,8 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
   const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
   const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // 👇 Data (fetch + queries + pagination) ---
-  // Fetch de datos
+  // 👇 Data (fetch + queries + filtering) ---
+  // Data fetch
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -39,14 +39,16 @@ export const useEspecialidad = ({ initialValues={ nombre:'' } }) => {
 
   const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries unificadas
+  // Queries + Filtering
   const [queries, setQueries] = useState(["", ""]);
   const [queryCode, queryName] = queries;
 
-  const [arrayFiltered, setArrayFiltered] = useState([]);
-  useEffect(() => {
-    setArrayFiltered( getEspecialidadesFiltered({ array, code:queryCode, name:queryName }) );
+  const memoFiltered = useMemo(() => {
+    return getEspecialidadesFiltered({ array, code:queryCode, name:queryName });
   }, [array, queryCode, queryName]);
+
+  const [arrayFiltered, setArrayFiltered] = useState(memoFiltered);
+  useEffect(() => { setArrayFiltered(memoFiltered); }, [memoFiltered]); // 👈 Sincroniza cuando cambie memoFiltered
   
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);

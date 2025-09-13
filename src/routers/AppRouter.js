@@ -10,9 +10,9 @@ const HomeScreen = memo( lazy(() => import('../components/views/home/HomeScreen.
 
 const urlBaseFrontend = process.env.REACT_APP_URL_BASE_FRONTEND || '';
 
-export const AppRouter = memo(() => {
+export const AppRouter = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // 👇 con useCallback Evita recrear la función en cada render
   const handleMenuToggle = useCallback((open) => setIsMenuOpen(open), []);
 
@@ -36,6 +36,6 @@ export const AppRouter = memo(() => {
       </div>
     </Router>
   )
-});
+};
 
-export default AppRouter;
+export default memo(AppRouter);

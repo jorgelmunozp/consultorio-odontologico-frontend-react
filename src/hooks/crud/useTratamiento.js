@@ -34,8 +34,8 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
   const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
   const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // 👇 Data (fetch + queries + pagination) ---
-  // Fetch de datos
+  // 👇 Data (fetch + queries + filtering) ---
+  // Data fetch
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -45,15 +45,17 @@ export const useTratamiento = ({ initialValues={ especialidad:'', consultorio:''
 
   const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries unificadas
+  // Queries + Filtering
   const [queries, setQueries] = useState(["", "", "", ""]);
   const [queryCode, querySpecialty, queryConsultoryRoom, queryDoctor] = queries;
 
-  const [arrayFiltered, setArrayFiltered] = useState([]);
-  useEffect(() => {
-    setArrayFiltered( getTratamientosFiltered({array, code:queryCode, specialty:querySpecialty, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor }) );
+  const memoFiltered = useMemo(() => {
+    return getTratamientosFiltered({ array, code:queryCode, specialty:querySpecialty, consultoryRoom:queryConsultoryRoom, doctor:queryDoctor });
   }, [array, queryCode, querySpecialty, queryConsultoryRoom, queryDoctor]);
 
+  const [arrayFiltered, setArrayFiltered] = useState(memoFiltered);
+  useEffect(() => { setArrayFiltered(memoFiltered); }, [memoFiltered]); // 👈 Sincroniza cuando cambie memoFiltered
+  
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
 

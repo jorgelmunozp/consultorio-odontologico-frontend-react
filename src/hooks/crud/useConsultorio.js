@@ -31,8 +31,8 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
   const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
   const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // 👇 Data (fetch + queries + pagination) ---
-  // Fetch de datos
+  // 👇 Data (fetch + queries + filtering) ---
+  // Data fetch
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -42,14 +42,17 @@ export const useConsultorio = ({ initialValues={ numero:'', nombre:'' } }) => {
 
   const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries unificadas
+  // Queries + Filtering
   const [queries, setQueries] = useState(["", "", ""]);
   const [queryCode, queryNumber, queryName] = queries;
   
-  const [arrayFiltered, setArrayFiltered] = useState([]);
-  useEffect(() => {
-    setArrayFiltered( getConsultoriosFiltered({ array, code:queryCode, number:queryNumber, name:queryName }) );
+  const memoFiltered = useMemo(() => {
+    return getConsultoriosFiltered({ array, code:queryCode, number:queryNumber, name:queryName });
   }, [array, queryCode, queryNumber, queryName]);
+
+  const [arrayFiltered, setArrayFiltered] = useState(memoFiltered);
+  useEffect(() => { setArrayFiltered(memoFiltered); }, [memoFiltered]); // 👈 Sincroniza cuando cambie memoFiltered
+  
   
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);

@@ -27,7 +27,6 @@ const HearthPlus = lazy(() => import('../icons/hearth/HearthPlus.js'));
 const FilterSearch = lazy(() => import('../icons/filter/FilterSearch.js'));
 const FilterPlus = lazy(() => import('../icons/filter/FilterPlus.js'));
 const IndexScreen = lazy(() => import('./index/IndexScreen.js'));
-const IndexItems = lazy(() => import('../crud/views/IndexItems.js'));
 const QueryItems = lazy(() => import('../crud/views/QueryItems.js'));
 const CreateItems = lazy(() => import('../crud/views/CreateItems.js'));
 
@@ -54,7 +53,7 @@ export const TemplateScreen = ({ isMenuOpen }) => {
       <div className='App-body d-flex'>
         <div id="App" className="App mx-auto w-100"> 
           <Suspense fallback={ <div className="loaderBalls"><div className="loading"><div className="balls shadow"></div><div className="balls shadow"></div><div className="balls shadow"></div><span className="loadingTitle">Cargando...</span></div></div> }>
-            <View Icons={Icons} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />
+            <View Icons={Icons} menu={menu} isMenuOpen={isMenuOpen} />
           </Suspense>
         </div>
       </div>
@@ -62,27 +61,21 @@ export const TemplateScreen = ({ isMenuOpen }) => {
   );
 }
 
-const View = ({ Icons, menu, setMenu, isMenuOpen }) => {                            // Componente para elegir vista a renderizar 
+const View = ({ Icons, menu, isMenuOpen }) => {                            // Componente para elegir vista a renderizar 
   switch ( menu ) {
     case 1: return <IndexScreen Icons={Icons} isMenuOpen={isMenuOpen} />;
-    case 2: return <IndexItems classType={'cita'} Icon={CalendarSmile} IconSearch={CalendarSearch} IconPlus={CalendarPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 3: return <QueryItems classType={'cita'} Icons={Icons} title={'Citas'} isMenuOpen={isMenuOpen} />;
-    case 4: return <CreateItems classType={'cita'} Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
-    case 5: return <IndexItems classType={'paciente'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 6: return <QueryItems classType={'paciente'} Icons={Icons} title={'Pacientes'} isMenuOpen={isMenuOpen} />;
-    case 7: return <CreateItems classType={'paciente'} Icon={UserInjured} isMenuOpen={isMenuOpen} />;
-    case 8: return <IndexItems classType={'tratamiento'} Icon={SyringeLight} IconSearch={FilterSearch} IconPlus={FilterPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 9: return <QueryItems classType={'tratamiento'} Icons={Icons} title={'Tratamientos'} isMenuOpen={isMenuOpen} />;
-    case 10: return <CreateItems classType={'tratamiento'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 11: return <IndexItems classType={'doctor'} Icon={User} IconSearch={UserSearch} IconPlus={UserPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 12: return <QueryItems classType={'doctor'} Icons={Icons} title={'Doctores'} isMenuOpen={isMenuOpen} />;
-    case 13: return <CreateItems classType={'doctor'} Icon={UserMedical} isMenuOpen={isMenuOpen} />;
-    case 14: return <IndexItems classType={'especialidad'} Icon={StethoscopeLight} IconSearch={HearthSearch} IconPlus={HearthPlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 15: return <QueryItems classType={'especialidad'} Icons={Icons} title={'Especialidades'}  isMenuOpen={isMenuOpen} />;
-    case 16: return <CreateItems classType={'especialidad'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
-    case 17: return <IndexItems classType={'consultorio'} Icon={HomeIndex} IconSearch={HomeSearch} IconPlus={HomePlus} menu={menu} setMenu={setMenu} isMenuOpen={isMenuOpen} />;
-    case 18: return <QueryItems classType={'consultorio'} Icons={Icons} title={'Consultorios'}  isMenuOpen={isMenuOpen} />;
-    case 19: return <CreateItems classType={'consultorio'} Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
+    case 2: return <QueryItems classType={'cita'} Icons={Icons} title={'Citas'} isMenuOpen={isMenuOpen} />;
+    case 3: return <CreateItems classType={'cita'} Icon={CalendarMedical} isMenuOpen={isMenuOpen} />;
+    case 4: return <QueryItems classType={'paciente'} Icons={Icons} title={'Pacientes'} isMenuOpen={isMenuOpen} />;
+    case 5: return <CreateItems classType={'paciente'} Icon={UserInjured} isMenuOpen={isMenuOpen} />;
+    case 6: return <QueryItems classType={'tratamiento'} Icons={Icons} title={'Tratamientos'} isMenuOpen={isMenuOpen} />;
+    case 7: return <CreateItems classType={'tratamiento'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 8: return <QueryItems classType={'doctor'} Icons={Icons} title={'Doctores'} isMenuOpen={isMenuOpen} />;
+    case 9: return <CreateItems classType={'doctor'} Icon={UserMedical} isMenuOpen={isMenuOpen} />;
+    case 10: return <QueryItems classType={'especialidad'} Icons={Icons} title={'Especialidades'}  isMenuOpen={isMenuOpen} />;
+    case 11: return <CreateItems classType={'especialidad'} Icon={Stethoscope} isMenuOpen={isMenuOpen} />;
+    case 12: return <QueryItems classType={'consultorio'} Icons={Icons} title={'Consultorios'}  isMenuOpen={isMenuOpen} />;
+    case 13: return <CreateItems classType={'consultorio'} Icon={HomeMedical} isMenuOpen={isMenuOpen} />;
     default: return <IndexScreen Icons={Icons} isMenuOpen={isMenuOpen} />;
   }
 }

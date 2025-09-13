@@ -40,8 +40,8 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
   const keys = useMemo(() => state.map(({ placeholder, type }) => ({ key: placeholder, type })), [state]);
   const placeholders = useMemo(() => keys.map((k) => k.key), [keys]);
 
-  // 👇 Data (fetch + queries + pagination) ---
-  // Fetch de datos
+  // 👇 Data (fetch + queries + filtering) ---
+  // Data fetch
   const arrayFetch = useFetch(urlApi);
   useEffect(() => {
     if (arrayFetch.status >= 400) {
@@ -51,15 +51,17 @@ export const useDoctor = ({ initialValues={ nombre:'', apellido:'', identificaci
 
   const array = useMemo(() => arrayFetch.data || [], [arrayFetch.data]);
 
-  // Queries unificadas
+  // Queries + Filtering
   const [queries, setQueries] = useState(["", "", "", "", "", ""]);
   const [queryCode, queryName, queryLastname, queryIdentification, queryGender, querySpeciality] = queries;
-  
-  const [arrayFiltered, setArrayFiltered] = useState([]);
-  useEffect(() => {
-    setArrayFiltered( getDoctoresFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, speciality:querySpeciality }) );
+
+  const memoFiltered = useMemo(() => {
+    return getDoctoresFiltered({ array, code:queryCode, name:queryName, lastname:queryLastname, identification:queryIdentification, gender:queryGender, speciality:querySpeciality });
   }, [array, queryCode, queryName, queryLastname, queryIdentification, queryGender, querySpeciality]);
 
+  const [arrayFiltered, setArrayFiltered] = useState(memoFiltered);
+  useEffect(() => { setArrayFiltered(memoFiltered); }, [memoFiltered]); // 👈 Sincroniza cuando cambie memoFiltered
+  
   // --- SORT ---
   const [sortBy, setSortBy] = useState(0);
 

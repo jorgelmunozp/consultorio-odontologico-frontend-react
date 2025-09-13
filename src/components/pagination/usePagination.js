@@ -14,13 +14,25 @@ export const usePagination = ({ array = [], initialItemsPerPage = 10 }) => {
     return array.slice(start, end);
   }, [array, currentPage, itemsPerPage]);
 
-  const goToPage = useCallback((pageIndex) => {
-    const safePage = Math.max(0, Math.min(pageIndex, totalPages - 1));
-    setCurrentPage(safePage);
-  }, [totalPages]);
+  // const goToPage = useCallback((pageIndex) => {
+  //   const safePage = Math.max(0, Math.min(pageIndex, totalPages - 1));
+  //   setCurrentPage(safePage);
+  // }, [totalPages]);
 
-  const goPrev = useCallback(() => goToPage(currentPage - 1), [currentPage, goToPage]);
-  const goNext = useCallback(() => goToPage(currentPage + 1), [currentPage, goToPage]);
+  // const goPrev = useCallback(() => goToPage(currentPage - 1), [currentPage, goToPage]);
+  // const goNext = useCallback(() => goToPage(currentPage + 1), [currentPage, goToPage]);
+
+  const goToPage = useCallback((pageIndex) => {
+  setCurrentPage(prev => Math.max(0, Math.min(pageIndex, totalPages - 1)));
+}, [totalPages]);
+
+const goPrev = useCallback(() => {
+  setCurrentPage(prev => Math.max(0, prev - 1));
+}, []);
+
+const goNext = useCallback(() => {
+  setCurrentPage(prev => Math.min(prev + 1, totalPages - 1));
+}, [totalPages]);
 
   return { itemsPerPage, setItemsPerPage, currentPage, totalPages, indexPages, currentItems, goToPage, goPrev, goNext };
 };
