@@ -69,7 +69,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
     [state, openDropdownKey, handleToggleDropdown]
   );
 
-  if (process.env.NODE_ENV === 'development') console.log('[Update Item 🔄]');
+  if (process.env.NODE_ENV === 'development') console.log('[Update Item ♻️]');
 
   return (
       <>

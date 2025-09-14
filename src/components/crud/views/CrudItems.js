@@ -1,6 +1,8 @@
-import { Suspense, lazy, useState, useEffect, useMemo } from "react";
+import '../../../alerts/modal/modal.css';
+import { Suspense, lazy, memo, useState, useEffect, useMemo } from "react";
 import { createPortal } from 'react-dom';
 import { useCrudFactory } from '../../../hooks/useCrudFactory.js';
+import { iconHeight, iconWidth, iconStrokeWidth } from '../../../global.js';
 
 // helper para lazy-imports, DRY
 const lazyIcon = (path) => lazy(() => import(`../../icons/${path}.js`));
@@ -46,64 +48,37 @@ const IconsLazy = {
 
 const CreateItem = lazy(() => import("../CreateItem.js"));
 const QueryItem = lazy(() => import("../QueryItem.js"));
+const SearchItem = lazy(() => import('../SearchItem.js'));
 
 export const CrudItems = ({ classType, title = "Registros" }) => {
   const [open, setOpen] = useState(false);
 
   const objectHook = useCrudFactory({ classType });
-  
-  // usamos useMemo para no recrear este objeto en cada render
+  const { keys, data } = objectHook;
+  const { queries, setQueries } = data;
+
+  // Iconos con useMemo para no recrear este objeto en cada render
   const IconsCrud = useMemo( () => ({
-      cita: {
-        IconSearch:IconsLazy.calendar.search,
-        IconCreate:IconsLazy.calendar.create,
-        IconRead:IconsLazy.calendar.read,
-        IconUpdate:IconsLazy.calendar.update,
-        IconDelete:IconsLazy.calendar.delete,
-      },
-      paciente:{
-        IconSearch:IconsLazy.user.search,
-        IconCreate:IconsLazy.user.create,
-        IconRead:IconsLazy.user.read,
-        IconUpdate:IconsLazy.user.update,
-        IconDelete:IconsLazy.user.delete,
-      },
-      doctor:{
-        IconSearch:IconsLazy.user.search,
-        IconCreate:IconsLazy.user.create,
-        IconRead:IconsLazy.user.read,
-        IconUpdate:IconsLazy.user.update,
-        IconDelete:IconsLazy.user.delete,
-      },
-      consultorio:{
-        IconSearch:IconsLazy.home.search,
-        IconCreate:IconsLazy.home.create,
-        IconRead:IconsLazy.home.read,
-        IconUpdate:IconsLazy.home.update,
-        IconDelete:IconsLazy.home.delete,
-      },
-      tratamiento:{
-        IconSearch:IconsLazy.filter.search,
-        IconCreate:IconsLazy.filter.create,
-        IconRead:IconsLazy.syringe.read,
-        IconUpdate:IconsLazy.filter.update,
-        IconDelete:IconsLazy.filter.delete,
-      },
-      especialidad:{
-        IconSearch:IconsLazy.hearth.search,
-        IconCreate:IconsLazy.hearth.create,
-        IconRead:IconsLazy.especialidad.read,
-        IconUpdate:IconsLazy.hearth.update,
-        IconDelete:IconsLazy.hearth.delete,
-      },
+      cita: { IconSearch:IconsLazy.calendar.search, IconCreate:IconsLazy.calendar.create, IconRead:IconsLazy.calendar.read, IconUpdate:IconsLazy.calendar.update, IconDelete:IconsLazy.calendar.delete, },
+      paciente:{ IconSearch:IconsLazy.user.search, IconCreate:IconsLazy.user.create, IconRead:IconsLazy.user.read, IconUpdate:IconsLazy.user.update, IconDelete:IconsLazy.user.delete, },
+      doctor:{ IconSearch:IconsLazy.user.search, IconCreate:IconsLazy.user.create, IconRead:IconsLazy.user.read, IconUpdate:IconsLazy.user.update, IconDelete:IconsLazy.user.delete, },
+      consultorio:{ IconSearch:IconsLazy.home.search, IconCreate:IconsLazy.home.create, IconRead:IconsLazy.home.read, IconUpdate:IconsLazy.home.update, IconDelete:IconsLazy.home.delete, },
+      tratamiento:{ IconSearch:IconsLazy.filter.search, IconCreate:IconsLazy.filter.create, IconRead:IconsLazy.syringe.read, IconUpdate:IconsLazy.filter.update, IconDelete:IconsLazy.filter.delete, },
+      especialidad:{ IconSearch:IconsLazy.hearth.search, IconCreate:IconsLazy.hearth.create, IconRead:IconsLazy.especialidad.read, IconUpdate:IconsLazy.hearth.update, IconDelete:IconsLazy.hearth.delete, },
   }), [] );
 
   const IconCreate = IconsCrud[classType].IconCreate;
+  const IconSearch = IconsCrud[classType].IconSearch;
+
+    // 👇 Props de SearchItem memorizados para que no cambien entre renders
+  const searchItemProps = useMemo(() => ({ classType:classType, Icon:IconSearch, items:keys, queries, setQueries, className:'float-end pb-3 me-0 smooth w-100', setOpen }), [IconSearch, classType, keys, queries, setQueries]);
+  const createItemProps = useMemo(() => ({ classType:classType, Icon:IconCreate, objectHook, setOpen }), [IconCreate, classType, objectHook, setOpen]);
 
   // 👇 Componentes del CRUD memorizados
   const components = useMemo(() => ({
-      create: <CreateItem classType={classType} Icon={IconCreate} objectHook={objectHook} setOpen={setOpen} />,
-  }), [classType, IconCreate, objectHook, setOpen]);
+      search: <SearchItem {...searchItemProps} />,
+      create: <CreateItem {...createItemProps} />,
+  }), [createItemProps, searchItemProps]);
 
   // 👇 Hace scroll-lock solo cuando cambia 'open'
   useEffect(() => {
@@ -112,19 +87,21 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
       return () => document.body.classList.remove('noScroll'); // cleanup
   }, [open]);
   
+  if (process.env.NODE_ENV === 'development') console.log('[Crud Items 🟠]');
 
   return (
     <div className="App">
       <Suspense fallback={null}>
-        <h5 className="main-color fs-sm-2 mt-4 mb-4">{title}</h5>
+        <h5 className="main-color mt-4 mb-4">{title}</h5>
 
-        <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('create')}><IconCreate width={'1.5'} height={'1.5'} /></button>
+        {/* 👇 Buttons */}
+        <div className='d-flex justify-content-center mb-2 gap-2'>
+          <button className='form-control iconBtn py-0 py-sm-1 bg-transparent w-25' onClick={()=>setOpen('search')}><IconSearch width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} className={'main-color jumpHover'}/></button>
+          <button className='form-control iconBtn py-0 py-sm-1 bg-transparent w-25' onClick={()=>setOpen('create')}><IconCreate width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} className={'main-color jumpHover'}/></button>
+        </div>
 
-        <QueryItem
-          classType={classType}
-          Icons={IconsCrud}
-          objectHook={objectHook}
-        />
+        <QueryItem classType={classType} Icons={IconsCrud} objectHook={objectHook} />
+        
         {/* 👇 Modal con portal */}
         { open && createPortal( <div id="modal">{ components[open] }</div>, document.body ) }
       </Suspense>
@@ -132,4 +109,4 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
   );
 };
 
-export default CrudItems;
+export default memo(CrudItems);

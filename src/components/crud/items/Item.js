@@ -2,6 +2,7 @@ import { lazy, memo, useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useThemeContext } from '../../../theme/ThemeContext.js';
 import { formatterHour12 } from '../../../helpers/formatterHour12.js';
+import { iconHeight, iconWidth, iconStrokeWidth } from '../../../global.js';
 
 const ReadItem = lazy(() => import('../ReadItem.js'));
 const UpdateItem = lazy(() => import('../UpdateItem.js'));
@@ -46,9 +47,9 @@ export const Item = memo(({ classType, Icons, item={}, urlApi, handleItems }) =>
             ))}
 
             {/* 👇 Crud buttons */}
-            <div className='col'><button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('read')}><IconSearch width={'1.5'} height={'1.5'} /></button>
-                                 <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('update')}><IconUpdate width={'1.5'} height={'1.5'} /></button>
-                                 <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('delete')}><IconDelete width={'1.5'} height={'1.5'} /></button></div>
+            <div className='col'><button className='border-0 bg-transparent iconBtn main-color' onClick={()=>setOpen('read')}><IconSearch width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} /></button>
+                                 <button className='border-0 bg-transparent iconBtn main-color' onClick={()=>setOpen('update')}><IconUpdate width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} /></button>
+                                 <button className='border-0 bg-transparent iconBtn main-color' onClick={()=>setOpen('delete')}><IconDelete width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} /></button></div>
 
             {/* 👇 Modal con portal */}
             { open && createPortal( <div id="modal">{ components[open] }</div>, document.body ) }

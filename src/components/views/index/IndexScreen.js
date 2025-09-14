@@ -19,21 +19,44 @@ export const IndexScreen = () => {
 
   const { theme } = useThemeContext();        // 👈 Call the global theme
 
-  // 👇 Servicios memorizados para que no se regenere el array
-  const services = useMemo(() => [
-    { type:"cita", title:"Citas", icon:<CalendarMedical height={iconHeight} width={iconWidth} /> },
-    { type:"paciente", title:"Pacientes", icon:<UserInjured height={iconHeight} width={iconWidth} /> },
-    { type:"doctor", title:"Doctores", icon:<UserMedical height={iconHeight} width={iconWidth} /> },
-    { type:"especialidad", title:"Especialidades", icon:<Stethoscope height={iconHeight} width={iconWidth} /> },
-    { type:"consultorio", title:"Consultorios", icon:<HomeMedical height={iconHeight} width={iconWidth} /> },
-    { type:"tratamiento", title:"Tratamientos", icon:<Syringe height={iconHeight} width={iconWidth} /> }
-  ], []);
-
   //👇 Estilos memorizados para no recrear el objeto en cada render
   const headerStyle = useMemo(() => ({ backgroundImage: `url(${background})`, backgroundPosition: 'center', backgroundRepeat: 'repeat' }), []);
 
   // 👇 Handler memorizado para evitar recrearlo en cada render
-  const handleChangeView = useCallback((index) => { setView(index) }, []);
+  const handleChangeView = useCallback((index) => { setView(index) }, [setView]);
+
+  // 👇 Servicios memorizados para que no se regenere el array
+  const services = useMemo( () => {
+    const servicesSuite = [
+      { type:"cita", title:"Citas", Icon:CalendarMedical },
+      { type:"paciente", title:"Pacientes", Icon:UserInjured },
+      { type:"doctor", title:"Doctores", Icon:UserMedical },
+      { type:"especialidad", title:"Especialidades", Icon:Stethoscope },
+      { type:"consultorio", title:"Consultorios", Icon:HomeMedical },
+      { type:"tratamiento", title:"Tratamientos", Icon:Syringe }
+    ];
+    return servicesSuite.map(s => ({ ...s, icon: <s.Icon height={iconHeight} width={iconWidth}/> }));
+  }, []);
+
+  // 👇 Servicios memorizados
+  const menu = useMemo(() =>
+    services.map((service,index) => {
+      return (
+        <div key={service.type} className={"col-2 nav-item nav-link text-center"}>
+          <div className={"card bg-theme border-0 rounded-0 pt-0 hover"} data-theme={theme}>
+            <button onClick={() => handleChangeView(index)} className="bg-transparent border-0">
+              <div className={`card-body bg-transparent jumpHover ${view === index ? 'bounce' : ''}`}>
+                <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
+                <h6 className={`d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2 ${view === index ? 'main-color' : 'gray-color'}`}>{ service.title }</h6>
+              </div>
+            </button>
+          </div>
+        </div>
+      )
+  }), [services, theme, view, handleChangeView] );
+
+  // 👇 Vistas memorizadas
+  const crudViews = useMemo(() => services.map(service => ( <CrudItems key={service.type} classType={service.type}  title={service.title} /> )), [services]);
 
   if (process.env.NODE_ENV === 'development') console.log('[Index Screen 👍]');
 
@@ -46,28 +69,11 @@ export const IndexScreen = () => {
           </div>
            {/* 👇 Menú */}
           <div id="collapseMenu" className="row container-fluid bg-transparent mx-auto collapse shadow">   
-            {
-              services.map((service,index) => {
-                return (
-                  <div key={service.type} className={"col-2 nav-item nav-link text-center"}>
-                    <div className={"card bg-theme border-0 rounded-0 pt-0 hover"} data-theme={theme}>
-                      <button onClick={() => handleChangeView(index)} className="bg-transparent border-0">
-                        <div className={`card-body bg-transparent jumpHover ${view === index ? 'bounce' : ''}`}>
-                          <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
-                          <h6 className={`d-none d-md-block text-nowrap text-truncate fs-6 fs-sm-1 mt-1 mt-sm-2 mb-0 mb-sm-2 ${view === index ? 'main-color' : 'gray-color'}`}>{ service.title }</h6>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                )
-              })
-            }
+            { menu }
           </div>
 
           <SwipeableViews index={view} onChangeIndex={handleChangeView} enableMouseEvents>
-            {services.map(service => (
-              <CrudItems key={service.type} classType={service.type}  title={service.title} />
-            ))}
+            { crudViews }
           </SwipeableViews>
         </div>
     </div>

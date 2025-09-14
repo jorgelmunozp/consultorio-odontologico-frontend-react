@@ -76,23 +76,8 @@ export const CreateItem = ({ classType, Icon, objectHook, setOpen }) => {
             <div className='container-fluid modalTable mt-2'>
               {state.map((property) => (
                 <div key={property.key} className="row bg-row">
-                  {property.type === "dropdown" ? (
-                    <Dropdown
-                      property={property}
-                      isOpen={openDropdownKey === property.key}
-                      onToggle={() => handleToggleDropdown(property.key)}
-                    />
-                  ) : (
-                    <div className="col px-0">
-                      <Input
-                        type={property.type}
-                        value={property.value}
-                        handleChange={property.handleChange}
-                        placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)}
-                        className="input form-control rounded border-muted border-1 text-center shadow-sm"
-                      />
-                    </div>
-                  )}
+                  { property.type === "dropdown" ? ( <Dropdown property={property} isOpen={openDropdownKey === property.key} onToggle={() => handleToggleDropdown(property.key)} /> ) 
+                                                 : ( <div className="col px-0"><Input type={property.type} value={property.value} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className="input form-control rounded border-muted border-1 text-center shadow-sm" /> </div> )}
                 </div>
               ))}
             </div>
