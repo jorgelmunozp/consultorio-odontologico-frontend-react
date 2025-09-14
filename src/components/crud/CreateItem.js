@@ -1,4 +1,3 @@
-import '../../alerts/modal/modal.css';
 import { lazy, useState, useCallback, useMemo, memo } from "react";
 import { useThemeContext } from "../../theme/ThemeContext.js";
 import { useAlertContext } from "../../alerts/AlertContext.js";

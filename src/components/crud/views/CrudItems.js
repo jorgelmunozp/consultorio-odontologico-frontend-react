@@ -1,7 +1,7 @@
-import '../../../alerts/modal/modal.css';
 import { Suspense, lazy, memo, useState, useEffect, useMemo } from "react";
 import { createPortal } from 'react-dom';
 import { useCrudFactory } from '../../../hooks/useCrudFactory.js';
+import { usePagination } from '../../pagination/usePagination.js';
 import { iconHeight, iconWidth, iconStrokeWidth } from '../../../global.js';
 
 // helper para lazy-imports, DRY
@@ -47,8 +47,9 @@ const IconsLazy = {
 };
 
 const CreateItem = lazy(() => import("../CreateItem.js"));
-const QueryItem = lazy(() => import("../QueryItem.js"));
-const SearchItem = lazy(() => import('../SearchItem.js'));
+const QueryItems = lazy(() => import("../QueryItems.js"));
+const QueryItem = lazy(() => import('../QueryItem.js'));
+const PaginationBar = lazy(() => import('../../pagination/PaginationBar.js'));
 
 export const CrudItems = ({ classType, title = "Registros" }) => {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,8 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
   const objectHook = useCrudFactory({ classType });
   const { keys, data } = objectHook;
   const { queries, setQueries } = data;
+
+  // const pagination = usePagination({ array:items, initialItemsPerPage: 10 });  // 👈 Hook de paginación
 
   // Iconos con useMemo para no recrear este objeto en cada render
   const IconsCrud = useMemo( () => ({
@@ -70,13 +73,13 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
   const IconCreate = IconsCrud[classType].IconCreate;
   const IconSearch = IconsCrud[classType].IconSearch;
 
-    // 👇 Props de SearchItem memorizados para que no cambien entre renders
+    // 👇 Props de QueryItem memorizados para que no cambien entre renders
   const searchItemProps = useMemo(() => ({ classType:classType, Icon:IconSearch, items:keys, queries, setQueries, className:'float-end pb-3 me-0 smooth w-100', setOpen }), [IconSearch, classType, keys, queries, setQueries]);
   const createItemProps = useMemo(() => ({ classType:classType, Icon:IconCreate, objectHook, setOpen }), [IconCreate, classType, objectHook, setOpen]);
 
   // 👇 Componentes del CRUD memorizados
   const components = useMemo(() => ({
-      search: <SearchItem {...searchItemProps} />,
+      search: <QueryItem {...searchItemProps} />,
       create: <CreateItem {...createItemProps} />,
   }), [createItemProps, searchItemProps]);
 
@@ -100,8 +103,10 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
           <button className='form-control iconBtn py-0 py-sm-1 bg-transparent w-25' onClick={()=>setOpen('create')}><IconCreate width={iconWidth} height={iconHeight} strokeWidth={iconStrokeWidth} className={'main-color jumpHover'}/></button>
         </div>
 
-        <QueryItem classType={classType} Icons={IconsCrud} objectHook={objectHook} />
+        <QueryItems classType={classType} Icons={IconsCrud} objectHook={objectHook} />
         
+        {/* <PaginationBar currentPage={pagination.currentPage} totalPages={pagination.totalPages} goToPage={goToPage} goPrev={goPrev} goNext={goNext} /> */}
+
         {/* 👇 Modal con portal */}
         { open && createPortal( <div id="modal">{ components[open] }</div>, document.body ) }
       </Suspense>

@@ -1,34 +1,57 @@
-import { Suspense, lazy, useMemo, useCallback } from 'react';
-import { usePagination } from '../pagination/usePagination.js';
+import { lazy, memo, useCallback, useMemo } from 'react';
+import { useThemeContext } from '../../theme/ThemeContext.js';
+import { myColor } from '../../global.js';
 
-// const SearchItem = lazy(() => import('../search/SearchItem.js'));
-const ItemsList = lazy(() => import('./items/ItemsList.js'));
-const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
+const Input = memo( lazy(() => import('../forms/inputs/Input.js')) );
 
-export const QueryItem = ({ classType, Icons, objectHook }) => {
-  const { api:urlApi, keys, data, sort, handleItems } = objectHook;
-  const { arrayFiltered } = data;
-  const { SortByProperty, setSortBy } = sort;
+export const QueryItem = ({ classType, Icon, items=[], queries, setQueries,className='', setOpen }) => {  
+    const { theme } = useThemeContext();       // 👈 Call the global theme
+  
+    // Capitaliza el nombre del tipo de clase para mostrar en el título
+    const capitalizedClassType = useMemo( () => classType.charAt(0).toUpperCase() + classType.slice(1), [classType] );
 
-  const items = useMemo(() => arrayFiltered ?? [], [arrayFiltered]); // 👈 Items memorizados para evitar re-creación innecesaria
+    // 👇 Manejo memorizado de cambios en un solo array
+    const handleChange = useCallback((index, value) => {
+        setQueries(prev => { const newQueries = [...prev];
+                             newQueries[index] = value;
+                             return newQueries;
+        });
+    }, [setQueries]);
 
-  const pagination = usePagination({ array: items, initialItemsPerPage: 10 });  // 👈 Hook de paginación
+    // 👇 Close view memorized handler
+    const handleClose = useCallback(() => setOpen(false), [setOpen]); 
 
-  // 👇 Callbacks de paginación memorizados para referencias estables
-  const goToPage = useCallback((page) => pagination.goToPage(page), [pagination]);
-  const goPrev = useCallback(() => pagination.goPrev(), [pagination]);
-  const goNext = useCallback(() => pagination.goNext(), [pagination]);
+    if( process.env.NODE_ENV === 'development' ) { console.log('[QueryItem 🔎]') }
 
-  if (process.env.NODE_ENV === 'development') console.log('[Query Item 📍]');
-
-  return (
-      <div className="container-fluid mt-3 mt-sm-4 me-0 smooth w-100">
-        <Suspense fallback={<div className="loaderSpin"></div>}>
-          <ItemsList classType={classType} Icons={Icons} keys={keys} urlApi={urlApi} array={pagination.currentItems} SortByProperty={SortByProperty} setSortBy={setSortBy} handleItems={handleItems} />
-        </Suspense>
-        <PaginationBar currentPage={pagination.currentPage} totalPages={pagination.totalPages} goToPage={goToPage} goPrev={goPrev} goNext={goNext} />
+    return (
+    <>
+      <div className={'modalContainer justify-items-center'}>
+        <div className={'modalBox'} data-theme={theme}>
+          <div className={'modalHeader'}>
+             <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
+             <h6 className="modalTitle century-gothic main-color pt-2">Buscar {capitalizedClassType}</h6>
+          </div>
+          <div className={'modalContent'}>
+            <div className='container-fluid modalTable mt-2'>
+                <div className='row bg-row'><Input placeholder={'Código'} key={'number0'} value={queries[0]} type={'number'} handleChange={(target) => handleChange(0, target)} className={'input form-control rounded border-muted border-1 text-center shadow-sm'} /></div>
+                    { items.map((item, index) => 
+                        <div key={item.key} className='row bg-row'>
+                            <div className="col px-0"><Input key={item.type+index} value={queries[index+1]} type={item.type !== 'dropdown' ? item.type : 'search' } handleChange={(target) => handleChange(index + 1, target)} placeholder={item.key } className={'input form-control rounded border-muted border-1 text-center shadow-sm'} /></div>
+                        </div> ) 
+                    }
+            </div>
+          </div>
+          <div className={'modalFooter'}>
+            <div className={'d-flex mt-2 w-100'}>
+              <button className={'aceptBtn w-100'} onClick={() => { handleClose(); }}>Buscar</button>
+              <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancelar</button>
+            </div>
+          </div>
+        </div>
       </div>
-  );
-};
+      <div className={'darkBackground'} onClick={ handleClose }></div>
+    </>        
+    )
+}
 
-export default QueryItem;
+export default memo(QueryItem);

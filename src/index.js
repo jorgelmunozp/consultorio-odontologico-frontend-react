@@ -30,7 +30,7 @@ root.render(
     </Suspense> 
   </AppTheme> );
 
-if( process.env.NODE_ENV === 'development' ) { console.log('[Index 👇]') }
+if( process.env.NODE_ENV === 'development' ) { console.log('[Index 🚀]') }
 
 
   // // Testear renders y mounts

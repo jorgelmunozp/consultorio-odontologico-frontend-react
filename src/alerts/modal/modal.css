@@ -104,18 +104,6 @@
   color: var(--white-color);
 }
 
-/** Botones vista Consultar QueryItem **/
-.iconBtn {
-  cursor: pointer;
-  padding: 0 12px;
-  border: none;
-  transition: all 0.25s ease;
-}
-.iconBtn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
-}
-
 /* Table */
 .modalTable { border: lightgray 1px solid;}
 /* .modalTable .row:nth-child(even){background-color:var(--white-color);} 

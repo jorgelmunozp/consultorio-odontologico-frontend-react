@@ -20,7 +20,7 @@ export const AppTheme = memo( ({ children, isBackground }) => {
 
   const valueThemeContext = useMemo(() => ({ theme, handleTheme }), [theme, handleTheme]);
 
-  if( process.env.NODE_ENV === 'development' ) { console.log('[App Theme 🌈]') }
+  if( process.env.NODE_ENV === 'development' ) { console.log('[App Theme 🏳️‍🌈]') }
  
   return (
     <ThemeContext.Provider value={valueThemeContext}>

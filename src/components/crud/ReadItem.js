@@ -1,4 +1,3 @@
-import '../../alerts/modal/modal.css';
 import { useThemeContext } from "../../theme/ThemeContext.js";
 import { myColor } from '../../global.js';
 import { useMemo, useCallback, memo } from "react";
