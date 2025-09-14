@@ -1,4 +1,4 @@
-import { lazy, memo, useState, useCallback, useMemo } from 'react';
+import { lazy, memo, useMemo } from 'react';
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 const Navbar = memo( lazy(() => import('../components/menu/Navbar.js')) );

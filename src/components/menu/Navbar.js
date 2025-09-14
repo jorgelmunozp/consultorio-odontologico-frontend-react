@@ -43,7 +43,7 @@ export const Navbar = () => {
           ) : (
             <div className="row justify-content-end me-0 me-sm-1">
               <ul className="navbar-nav col">
-                <NavLink className="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#login" aria-controls="modalBody">
+                <NavLink className="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#login" aria-controls="modal-body">
                   <User color={myColor} height={1.3} width={1.3} strokeWidth={1.5} />
                 </NavLink>
               </ul>

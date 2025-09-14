@@ -34,8 +34,8 @@ export const Modal = memo( ({ Icon, iconColor='#000', title='', open=true, setOp
           <div className="modalFooter justify-items-center">
             <div className="mt-4">
               {/* 👇 Render condicional para botones */}
-              { buttons === 1 ? ( <button className="aceptBtn w-100" onClick={handleClose}>Aceptar</button> ) 
-              : buttons === 2 ? ( <><button className="aceptBtn w-100" onClick={handleClose}>Aceptar</button><button className="cancelBtn w-100" onClick={handleClose}>Cancelar</button></> ) 
+              { buttons === 1 ? ( <button className="aceptBtn w-100" onClick={handleClose} aria-label="Aceptar">Aceptar</button> ) 
+              : buttons === 2 ? ( <><button className="aceptBtn w-100" onClick={handleClose} aria-label="Aceptar">Aceptar</button><button className="cancelBtn w-100" onClick={handleClose} aria-label="Cancelar">Cancelar</button></> ) 
               : null}
             </div>
           </div>
