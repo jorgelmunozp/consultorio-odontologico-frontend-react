@@ -13,7 +13,7 @@ export const Dropdown = ({ property, isOpen, onToggle }) => {
 
   return (
     <div className='col px-0'>
-      <DropdownSelector classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={placeholder} pagination={pagination} isOpen={isOpen} onToggle={onToggle} className={"input form-control rounded border-muted border-1 text-muted shadow-sm"} />
+      <DropdownSelector classType={property.key} value={property.value} array={array} handleChange={property.handleChange} placeholder={placeholder} pagination={pagination} isOpen={isOpen} onToggle={onToggle} className={"input form-control shadow-sm"} />
     </div>
   );
 }

@@ -35,7 +35,9 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
       (error) => { alert({ type:'error', title:'Error en la eliminación', buttons:1, theme:theme }); console.log("Error en la eliminación: ",error) }
     )
   };
- 
+
+  if (process.env.NODE_ENV === 'development') console.log('[Delete Item ❌]');
+
   return (
       <>
         <div className={'modalContainer justify-items-center'}>

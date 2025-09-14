@@ -56,8 +56,13 @@ export const CreateItem = ({ classType, Icon, objectHook, setOpen }) => {
       });
   }, [state, urlApi, classType, alert, resetState, handleItems]);
 
-    // 👇 Memoriza handleClose para evitar recreación en cada render
+  // 👇 Close view memorized handler
   const handleClose = useCallback(() => setOpen(false), [setOpen]);   
+
+  // 👇 Dropdowns toggle memorized handler
+  const handleToggleDropdown = useCallback((key) => setOpenDropdownKey((prev) => (prev === key ? null : key)), []);
+
+  if (process.env.NODE_ENV === 'development') console.log('[Create Item ➕]');
 
   return (
     <>
@@ -70,16 +75,12 @@ export const CreateItem = ({ classType, Icon, objectHook, setOpen }) => {
           <div className={'modalContent'}>
             <div className='container-fluid modalTable mt-2'>
               {state.map((property) => (
-                <div key={property.key} className="row mb-3">
+                <div key={property.key} className="row bg-row">
                   {property.type === "dropdown" ? (
                     <Dropdown
                       property={property}
-                      array={property.options} // Asegúrate de que cada propiedad tenga un array de opciones
-                      handleChange={property.handleChange}
                       isOpen={openDropdownKey === property.key}
-                      onToggle={() =>
-                        setOpenDropdownKey((prev) => (prev === property.key ? null : property.key))
-                      }
+                      onToggle={() => handleToggleDropdown(property.key)}
                     />
                   ) : (
                     <div className="col px-0">
@@ -88,7 +89,7 @@ export const CreateItem = ({ classType, Icon, objectHook, setOpen }) => {
                         value={property.value}
                         handleChange={property.handleChange}
                         placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)}
-                        className="input form-control rounded border-muted border-1 text-muted text-center shadow-sm"
+                        className="input form-control rounded border-muted border-1 text-center shadow-sm"
                       />
                     </div>
                   )}
@@ -99,7 +100,7 @@ export const CreateItem = ({ classType, Icon, objectHook, setOpen }) => {
           <div className={'modalFooter'}>
             <div className={'d-flex mt-2 w-100'}>
               <button className={'aceptBtn w-100'} onClick={() => { handleCreate(); handleClose(); }}>Registrar</button>
-              <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancel</button>
+              <button className={'cancelBtn w-100'} onClick={ handleClose }>Cancelar</button>
             </div>
           </div>
         </div>

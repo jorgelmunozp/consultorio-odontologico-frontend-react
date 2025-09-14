@@ -28,11 +28,11 @@ export const SearchBar = ({ Icon=SearchIcon,items=[],queries,setQueries,classNam
                 <div className="card card-body bg-transparent shadow-sm">
                     <div className='container-fluid'>
                         <div className='row d-block d-sm-flex'>
-                            <Input placeholder={'Código'} key={'number0'} value={queries[0]} type={'number'} handleChange={(target) => handleChange(0, target)} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} />
+                            <Input placeholder={'Código'} key={'number0'} value={queries[0]} type={'number'} handleChange={(target) => handleChange(0, target)} className={'input form-control rounded border-muted border-1 text-center shadow-sm'} />
                         </div>
                         <div className='row d-block d-sm-flex'>
                             {   items.map((item, index)=>{
-                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type !== 'dropdown' ? item.type : 'search' } handleChange={(target) => handleChange(index + 1, target)} placeholder={item.key } className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm'} /> )
+                                    return ( <Input key={item.type+index} value={queries[index+1]} type={item.type !== 'dropdown' ? item.type : 'search' } handleChange={(target) => handleChange(index + 1, target)} placeholder={item.key } className={'input form-control rounded border-muted border-1 text-center shadow-sm'} /> )
                                 })
                             }
                         </div>

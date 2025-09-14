@@ -30,10 +30,10 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
 
   const state = useCrudFactory({ classType:classType, initialValues:initialValues }).state;
 
-  // 👇 Memoriza handleClose para evitar recreación en cada render
+  // 👇 Close view memorized handler
   const handleClose = useCallback(() => setOpen(false), [setOpen]);                            // Gestiona el cierre del modal
 
-  // 👇 Memoriza el toggle de los dropdowns
+  // 👇 Dropdowns toggle memorized handler
   const handleToggleDropdown = useCallback((key) => setOpenDropdownKey((prev) => (prev === key ? null : key)), []);
 
   // 👇 Maneja la actualización del item y llama la API
@@ -62,12 +62,14 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
       state.map((property,index) => (
         <div key={"row"+index} className="row bg-row flex-nowrap">
           { property.type === "dropdown" ? ( <Dropdown property={property} isOpen={openDropdownKey === property.key} onToggle={() => handleToggleDropdown(property.key)} /> ) 
-                                         : ( <div className="col px-0"><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className="input form-control rounded border-muted border-1 text-muted text-center shadow-sm" /></div> )
+                                         : ( <div className="col px-0"><Input property={true} value={property.value} type={property.type} handleChange={property.handleChange} placeholder={property.key.charAt(0).toUpperCase() + property.key.slice(1)} className="input form-control rounded border-muted border-1 text-center shadow-sm" /></div> )
           }
         </div>
       )),
     [state, openDropdownKey, handleToggleDropdown]
   );
+
+  if (process.env.NODE_ENV === 'development') console.log('[Update Item 🔄]');
 
   return (
       <>
@@ -80,7 +82,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
             <div className={'modalContent'}>
               <div className='container-fluid modalTable mt-2'>
                 <div className='row bg-row flex-nowrap'>
-                  <Input placeholder={'Código'} value={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-muted text-center shadow-sm pe-none'} />
+                  <Input placeholder={'Código'} value={item._id} type={'text'} className={'input form-control rounded border-muted border-1 text-center shadow-sm pe-none'} />
                 </div>
                 { formRows }
               </div>

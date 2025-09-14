@@ -15,6 +15,8 @@ const ReadItem = ({ classType, Icon, item, setOpen }) => {
 
   const handleClose = useCallback(() => setOpen(false), [setOpen]);  // 👈 Memorized handler
 
+  if (process.env.NODE_ENV === 'development') console.log('[Read Item ✔️]');
+
   return (
     <>
       <div className="modalContainer justify-items-center">

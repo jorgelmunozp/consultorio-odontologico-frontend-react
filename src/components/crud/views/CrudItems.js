@@ -1,4 +1,5 @@
-import { Suspense, lazy, useState, useMemo } from "react";
+import { Suspense, lazy, useState, useEffect, useMemo } from "react";
+import { createPortal } from 'react-dom';
 import { useCrudFactory } from '../../../hooks/useCrudFactory.js';
 
 // helper para lazy-imports, DRY
@@ -99,6 +100,19 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
 
   const IconCreate = IconsCrud[classType].IconCreate;
 
+  // 👇 Componentes del CRUD memorizados
+  const components = useMemo(() => ({
+      create: <CreateItem classType={classType} Icon={IconCreate} objectHook={objectHook} setOpen={setOpen} />,
+  }), [classType, IconCreate, objectHook, setOpen]);
+
+  // 👇 Hace scroll-lock solo cuando cambia 'open'
+  useEffect(() => {
+      if (open) { document.body.classList.add('noScroll'); } 
+      else { document.body.classList.remove('noScroll'); }
+      return () => document.body.classList.remove('noScroll'); // cleanup
+  }, [open]);
+  
+
   return (
     <div className="App">
       <Suspense fallback={null}>
@@ -111,7 +125,8 @@ export const CrudItems = ({ classType, title = "Registros" }) => {
           Icons={IconsCrud}
           objectHook={objectHook}
         />
-        { open && <CreateItem classType={classType} Icon={IconCreate} objectHook={objectHook} setOpen={setOpen} /> }
+        {/* 👇 Modal con portal */}
+        { open && createPortal( <div id="modal">{ components[open] }</div>, document.body ) }
       </Suspense>
     </div>
   );

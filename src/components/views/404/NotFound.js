@@ -18,7 +18,7 @@ export const NotFound = ({ urlBaseFrontend,myColor,myTitle }) => {
       <div className='App-body d-flex mt-5'>
         <div className='mt-5 mx-auto w-100'>
           <div className="container-fluid text-center">
-            <h1 className="text-muted mt-4"><Warning height={2} width={2}/></h1>
+            <h1 className="mt-4"><Warning height={2} width={2}/></h1>
             <h1 className="text-muted">404</h1>
             <h4 className="main-color">Oops! Enlace inexistente</h4>
             <p className="mt-4">Regresa a nuestro portal</p>

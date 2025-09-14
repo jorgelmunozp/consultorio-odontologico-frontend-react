@@ -16,14 +16,12 @@ export const Item = memo(({ classType, Icons, item={}, urlApi, handleItems }) =>
 
     const { IconRead, IconSearch, IconUpdate, IconDelete } = Icons[classType];
 
-    // 👇 Memoriza componentes del CRUD
+    // 👇 Componentes del CRUD memorizados
     const components = useMemo(() => ({
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
         update: <UpdateItem classType={classType} Icon={IconUpdate} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />,
         delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
     }), [classType, IconRead, IconUpdate, item, urlApi, handleItems]);
-
-    if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }
 
     // 👇 Hace scroll-lock solo cuando cambia 'open'
     useEffect(() => {
