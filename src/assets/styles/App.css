@@ -15,7 +15,6 @@
   --white-color: #ffffff;
 }
 
-
 /* Tema claro */
 [data-theme="light"] {
   --bg-color-theme: var(--white-color) !important;
@@ -29,6 +28,11 @@
 }
 
 .bg-theme { background-color:var(--bg-color-theme) !important; }
+.color-theme { color:var(--color-theme) !important; }
+.themed-logo {
+  fill: var(--bg-color-theme);
+  transition: none !important;
+}
 
 .App { font: 3vmin 'CenturyGothic', 'Century Gothic'; scroll-behavior: smooth;}
 @media (max-width: 576px) { .App { font: 4.5vmin 'CenturyGothic', 'Century Gothic'; }}
@@ -39,7 +43,6 @@
 }
 .century-gothic { font-family: 'CenturyGothic', 'Century Gothic' !important;}
 body { background-color:var(--bg-color-theme) !important; color:var(--color-theme) !important; }
-#navbar, #template, #menuIndex { background-color: var(--bg-color-theme) !important; }
 h5, span { color:var(--color-theme) !important; }
 
 .fs-sm-1 {}
@@ -55,27 +58,16 @@ h5, span { color:var(--color-theme) !important; }
 .lightgray-color { color: var(--lightgray-color) !important; }
 .white-color { color: var(--white-color) !important }
 .bg-main-color { background-color: var(--main-color) !important; }
-.bg-dark-color { background-color: var(--dark-color) !important; }
-.bg-white-color { background-color: var(--white-color) !important; }
 .dark-color-hover:hover { color: var(--dark-color) !important; }
-.gray-color-hover:hover { color: var(--gray-color) !important; }
-.main-color-hover:hover { color: var(--main-color) !important; }
-.white-color-hover:hover { color: var(--white-color) !important; }
 
 hr { opacity: 0.5; }
 .smooth { transition: all 0.25s ease; }
 .mt-logo { margin-top: 0.08em !important; }
 .lh-0 { line-height: 0.5; }
 .z-10000 { z-index: 10000 !important;}
-.w-responsive { width: 94% !important; }
-@media (max-width: 576px) { .w-responsive { width: 87.5% !important; } }
 
 .justify-items-center { justify-items: center; }
 
-.themed-logo {
-  fill: var(--bg-color-theme);
-  transition: none !important;
-}
 /*************************** Menú **************************/
 .offcanvas { width: 4em !important; }
 .offcanvas-header { padding-bottom: 0 !important;  }
@@ -230,116 +222,9 @@ select::-ms-expand { display: none; } */
     to{ transform: translateY(-50px) scaleX(1); }
 }
 
-/********** Loader Clock **********/
-/* .loaderClock {                                     
-  --clock-color: var(--main-color);
-  --clock-width: 2.5rem;
-  --clock-radius: calc(var(--clock-width) / 2);
-  --clock-minute-length: calc(var(--clock-width) * 0.4);
-  --clock-hour-length: calc(var(--clock-width) * 0.2);
-  --clock-thickness: 0.15rem;
-  position: relative;
-  display: flex;
-  margin-top: 2em;
-  justify-content: center;
-  align-items: center;
-  width: var(--clock-width);
-  height: var(--clock-width);
-  border: 3px solid var(--clock-color);
-  border-radius: 50%;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    top: calc(var(--clock-radius) * 0.25);
-    width: var(--clock-thickness);
-    background: var(--clock-color);
-    border-radius: 10px;
-    transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
-    animation: spin infinite linear;
-  }
-
-  &::before {
-    height: var(--clock-minute-length);
-    animation-duration: 2s;
-  }
-
-  &::after {
-    top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
-    height: var(--clock-hour-length);
-    animation-duration: 15s;
-  }
-} */
 
 
-
-/********** Abstracto **********/
-/* <center>
-<div className="loader">
-  <div className="inner one"></div>
-  <div className="inner two"></div>
-  <div className="inner three"></div>
-</div>
-</center> */
-
-/* .loader {
-  margin-top: 1em;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  perspective: 800px;
-}
-
-.inner {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;  
-}
-
-.inner.one {
-  left: 0%;
-  top: 0%;
-  animation: rotate-one 1s linear infinite;
-  border-bottom: 3px solid var(--main-color);
-}
-
-.inner.two {
-  right: 0%;
-  top: 0%;
-  animation: rotate-two 1s linear infinite;
-  border-right: 3px solid var(--main-color);
-}
-
-.inner.three {
-  right: 0%;
-  bottom: 0%;
-  animation: rotate-three 1s linear infinite;
-  border-top: 3px solid var(--main-color);
-}
-
-.center { justify-self: center; vertical-align: middle;}
-
-@keyframes rotate-one {
-  0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
-  100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
-}
-
-@keyframes rotate-two {
-  0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }
-  100% {transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); }
-}
-
-@keyframes rotate-three {
-  0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }
-  100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); }
-} */
-
-
-
-/********** Giros naranjas **********/
+/********** Giros **********/
 .loaderSpin {
   position: relative;
   display: flex;

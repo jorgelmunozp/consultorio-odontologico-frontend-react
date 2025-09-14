@@ -42,7 +42,7 @@ export const DeleteItem = ({ classType, Icon=Warning, item, urlApi, setOpen, han
           <div className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={'#f8bb86'} height={3} width={3} className={'center'} /></center>
-              <h6 className={'modalTitle main-color pt-2'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
+              <h6 className={'modalTitle century-gothic main-color pt-2'}>{ "Eliminar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
             </div>
             <div className={'modalContent'}>
               <div className='container-fluid modalTable mt-2 overflow-auto'>

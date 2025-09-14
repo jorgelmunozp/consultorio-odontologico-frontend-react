@@ -1,6 +1,6 @@
 import { CreateItem } from '../CreateItem.js';
 
-export const CreateItems = ({ classType, Icon, isMenuOpen }) => {
-  return ( <CreateItem classType={classType} Icon={Icon} isMenuOpen={isMenuOpen} /> )
+export const CreateItems = ({ classType, Icon }) => {
+  return ( <CreateItem classType={classType} Icon={Icon} /> )
 }
 export default CreateItems;

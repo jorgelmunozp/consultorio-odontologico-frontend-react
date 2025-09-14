@@ -14,14 +14,14 @@ export const Item = memo(({ classType, Icons, item={}, urlApi, handleItems }) =>
 
     const [open, setOpen] = useState(false);
 
-    const { IconRead, IconSearch, IconEdit, IconDelete } = Icons[classType];
+    const { IconRead, IconSearch, IconUpdate, IconDelete } = Icons[classType];
 
     // 👇 Memoriza componentes del CRUD
     const components = useMemo(() => ({
         read:   <ReadItem classType={classType} Icon={IconRead} item={item} setOpen={setOpen} />,
-        update: <UpdateItem classType={classType} Icon={IconEdit} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />,
+        update: <UpdateItem classType={classType} Icon={IconUpdate} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />,
         delete: <DeleteItem classType={classType} item={item} urlApi={urlApi} setOpen={setOpen} handleItems={handleItems} />
-    }), [classType, IconRead, IconEdit, item, urlApi, handleItems]);
+    }), [classType, IconRead, IconUpdate, item, urlApi, handleItems]);
 
     if (open) { document.body.classList.add('noScroll'); } else { document.body.classList.remove('noScroll'); }
 
@@ -49,7 +49,7 @@ export const Item = memo(({ classType, Icons, item={}, urlApi, handleItems }) =>
 
             {/* 👇 Crud buttons */}
             <div className='col'><button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('read')}><IconSearch width={'1.5'} height={'1.5'} /></button>
-                                 <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('update')}><IconEdit width={'1.5'} height={'1.5'} /></button>
+                                 <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('update')}><IconUpdate width={'1.5'} height={'1.5'} /></button>
                                  <button className='border-0 bg-transparent queryBtn main-color' onClick={()=>setOpen('delete')}><IconDelete width={'1.5'} height={'1.5'} /></button></div>
 
             {/* 👇 Modal con portal */}

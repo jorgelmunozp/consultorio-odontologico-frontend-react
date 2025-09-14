@@ -1,28 +1,20 @@
 import { Suspense, lazy, useMemo, useCallback } from 'react';
-import { useCrudFactory } from '../../hooks/useCrudFactory.js';
 import { usePagination } from '../pagination/usePagination.js';
 
+// const SearchBar = lazy(() => import('../search/SearchBar.js'));
 const SearchBar = lazy(() => import('../search/SearchBar.js'));
 const ItemsList = lazy(() => import('./items/ItemsList.js'));
 const PaginationBar = lazy(() => import('../pagination/PaginationBar.js'));
 
-export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
-  const objectHook = useCrudFactory({ classType });
-  const { api: urlApi, keys, data, sort, handleItems } = objectHook;
+export const QueryItem = ({ classType, Icons, objectHook }) => {
+  // const objectHook = useCrudFactory({ classType });
+  const { api:urlApi, keys, data, sort, handleItems } = objectHook;
   const { queries, setQueries, arrayFiltered } = data;
   const { SortByProperty, setSortBy } = sort;
 
   const items = useMemo(() => arrayFiltered ?? [], [arrayFiltered]); // ✅ Memoizamos items para evitar re-creación innecesaria
 
-
   const pagination = usePagination({ array: items, initialItemsPerPage: 10 });  // Hook de paginación
-
-  const containerClass = useMemo(
-    () => `container-fluid mt-4 mt-sm-5 me-0 smooth ${isMenuOpen ? "w-responsive" : "w-100"}`,
-    [isMenuOpen]
-  );
-
-  // console.log('QueryItem!!!');  // DEBUG  
 
   // 👇 Memorizamos props de SearchBar para que no cambien entre renders
   const searchBarProps = useMemo(() => ({
@@ -30,18 +22,18 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
     items: keys,
     queries,
     setQueries,
-    className: `float-end pb-3 me-0 smooth ${isMenuOpen ? "w-responsive" : "w-100"}`
-  }), [Icons, classType, keys, queries, setQueries, isMenuOpen]);
+    className: 'float-end pb-3 me-0 smooth w-100'
+  }), [Icons, classType, keys, queries, setQueries]);
 
   // ✅ Memoizamos callbacks de paginación para referencias estables
   const goToPage = useCallback((page) => pagination.goToPage(page), [pagination]);
   const goPrev = useCallback(() => pagination.goPrev(), [pagination]);
   const goNext = useCallback(() => pagination.goNext(), [pagination]);
 
+  if (process.env.NODE_ENV === 'development') console.log('[Query Item 📍]');
+
   return (
-    <div className="App">
-      <div className={containerClass}>
-        <h5 className="main-color fs-sm-2 mb-4">{title}</h5>
+      <div className="container-fluid mt-3 mt-sm-4 me-0 smooth w-100">
         <Suspense fallback={<div className="loaderSpin"></div>}>
           <SearchBar {...searchBarProps} />
 
@@ -67,7 +59,6 @@ export const QueryItem = ({ classType, Icons, title, isMenuOpen }) => {
           />
         </Suspense>
       </div>
-    </div>
   );
 };
 

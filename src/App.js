@@ -6,7 +6,7 @@ import { store, persistor } from "./store/index.js";
 const AppRouter = memo(lazy(() => import("./routers/AppRouter.js")));
 
 export const App = () => {
-  if (process.env.NODE_ENV === "development") console.log("[App] 👇");
+  if (process.env.NODE_ENV === "development") console.log("[App 👇]");
 
   return (
     <Provider store={store}>

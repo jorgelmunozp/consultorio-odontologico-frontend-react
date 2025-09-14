@@ -1,25 +1,32 @@
+import '../../../assets/styles/App.css';
 import { lazy, memo, useState, useMemo, useCallback } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { useThemeContext } from "../../../theme/ThemeContext.js";
 import { background } from '../../banners/background/background.js';
 import { myColor, myTitle, iconHeight, iconWidth } from  '../../../global.js';
 
-const QueryItems = memo( lazy(() => import('../../crud/views/QueryItems.js')) );
+const CrudItems = memo( lazy(() => import('../../crud/views/CrudItems.js')) );
 const Logo = memo( lazy(() => import('../../icons/logo/Logo.js')) );
+const CalendarMedical = lazy(() => import('../../icons/calendar/CalendarMedical.js'));
+const UserInjured = lazy(() => import('../../icons/user/UserInjured.js'));
+const UserMedical = lazy(() => import('../../icons/user/UserMedical.js'));
+const Stethoscope = lazy(() => import('../../icons/medical/Stethoscope.js'));
+const HomeMedical = lazy(() => import('../../icons/home/HomeMedical.js'));
+const Syringe = lazy(() => import('../../icons/medical/Syringe.js'));
 
-export const IndexScreen = ({ Icons, isMenuOpen }) => {
+export const IndexScreen = () => {
   let [view, setView] = useState(0);
 
   const { theme } = useThemeContext();        // 👈 Call the global theme
 
   // 👇 Servicios memorizados para que no se regenere el array
   const services = useMemo(() => [
-    { type:"cita", title:"Citas", icon:<Icons.CitaMenu height={iconHeight} width={iconWidth} /> },
-    { type:"paciente", title:"Pacientes", icon:<Icons.PacienteMenu height={iconHeight} width={iconWidth} /> },
-    { type:"doctor", title:"Doctores", icon:<Icons.DoctorMenu height={iconHeight} width={iconWidth} /> },
-    { type:"especialidad", title:"Especialidades", icon:<Icons.EspecialidadMenu height={iconHeight} width={iconWidth} /> },
-    { type:"consultorio", title:"Consultorios", icon:<Icons.ConsultorioMenu height={iconHeight} width={iconWidth} /> },
-    { type:"tratamiento", title:"Tratamientos", icon:<Icons.TratamientoMenu height={iconHeight} width={iconWidth} /> }
+    { type:"cita", title:"Citas", icon:<CalendarMedical height={iconHeight} width={iconWidth} /> },
+    { type:"paciente", title:"Pacientes", icon:<UserInjured height={iconHeight} width={iconWidth} /> },
+    { type:"doctor", title:"Doctores", icon:<UserMedical height={iconHeight} width={iconWidth} /> },
+    { type:"especialidad", title:"Especialidades", icon:<Stethoscope height={iconHeight} width={iconWidth} /> },
+    { type:"consultorio", title:"Consultorios", icon:<HomeMedical height={iconHeight} width={iconWidth} /> },
+    { type:"tratamiento", title:"Tratamientos", icon:<Syringe height={iconHeight} width={iconWidth} /> }
   ], []);
 
   //👇 Estilos memorizados para no recrear el objeto en cada render
@@ -31,8 +38,8 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
   if (process.env.NODE_ENV === 'development') console.log('[Index Screen 👍]');
 
   return (
-    <div className="App">
-        <div className={`container-fluid px-0 pt-2 me-0 smooth ${isMenuOpen ? 'w-responsive' : 'w-100'}`}>
+    <div className="App bg-theme color-theme user-select-none" data-theme={theme}>
+        <div className='container-fluid px-0 pt-2 me-0 smoothw-100'>
           <div id='headerIndex' style={headerStyle} className='pt-5 pb-5 z-0 smooth shadow' data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
             <Logo color={myColor} height={7} width={7} strokeWidth={0.9} className={'jumpHover themed-logo'} />
             <h1 className='main-color fw-semibold jumpHover'>{ myTitle }</h1>
@@ -43,7 +50,7 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
               services.map((service,index) => {
                 return (
                   <div key={service.type} className={"col-2 nav-item nav-link text-center"}>
-                    <div id={"menuIndex"} className={"card border-0 rounded-0 pt-0 hover"} data-theme={theme}>
+                    <div className={"card bg-theme border-0 rounded-0 pt-0 hover"} data-theme={theme}>
                       <button onClick={() => handleChangeView(index)} className="bg-transparent border-0">
                         <div className={`card-body bg-transparent jumpHover ${view === index ? 'bounce' : ''}`}>
                           <i className={(view === index ? ' main-color':' gray-color')}>{ service.icon }</i>
@@ -59,7 +66,7 @@ export const IndexScreen = ({ Icons, isMenuOpen }) => {
 
           <SwipeableViews index={view} onChangeIndex={handleChangeView} enableMouseEvents>
             {services.map(service => (
-              <QueryItems key={service.type} classType={service.type} Icons={Icons} title={service.title} />
+              <CrudItems key={service.type} classType={service.type}  title={service.title} />
             ))}
           </SwipeableViews>
         </div>

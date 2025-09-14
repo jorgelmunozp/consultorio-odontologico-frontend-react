@@ -46,7 +46,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
       fetchUpdate(urlApi,dataItem,item._id).then(                               // Fetch PUT para actualización de datos
         async (responseStatus) => {
             if(200 <= responseStatus && responseStatus <= 299) { 
-              handleItems('update',item._id, classType);                        // El padre actualiza el estado y React re-renderiza con el elemento actualizado
+              handleItems('update',item._id);                        // El padre actualiza el estado y React re-renderiza con el elemento actualizado
               
               alert({ type:'success', title:'Actualización exitosa', buttons:1 });
             }
@@ -75,7 +75,7 @@ export const UpdateItem = ({ classType, Icon, item, urlApi, setOpen, handleItems
           <div className={'modalBox'} data-theme={theme}>
             <div className={'modalHeader'}>
               <center><Icon color={myColor} height={2.5} width={2.5} strokeWidth={0.6} className={'center'} /></center>
-              <h6 className={'modalTitle main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
+              <h6 className={'modalTitle century-gothic main-color pt-2'}>{ "Actualizar " + classType.charAt(0).toUpperCase() + classType.slice(1) + "?" }</h6>
             </div>
             <div className={'modalContent'}>
               <div className='container-fluid modalTable mt-2'>

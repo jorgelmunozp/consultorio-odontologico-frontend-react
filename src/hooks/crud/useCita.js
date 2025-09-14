@@ -90,7 +90,8 @@ export const useCita = ({ initialValues={ paciente:'', consultorio:'', doctor:''
 
   const handleItems = useCallback((action, item) => {
     if (action === "create") {
-      setArrayFiltered(prev => [item, ...prev]);
+      console.log(item);
+      setArrayFiltered(prev => [...prev, item]);
     } else if (action === "update") {
       setArrayFiltered(prev => prev.map(i => (i._id === item._id ? item : i)));
     } else if (action === "delete") {
